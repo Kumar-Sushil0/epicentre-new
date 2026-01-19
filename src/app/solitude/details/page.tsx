@@ -322,7 +322,7 @@ export default function SolitudeDetailsPage() {
                 ))}
               </div>
               <div className="space-y-4">
-                {scheduleData[activeDay as keyof typeof scheduleData].map((item: any, index: number) => (
+                {scheduleData[activeDay as keyof typeof scheduleData].map((item: { time: string; activity: string }, index: number) => (
                   <div key={index} className="flex gap-4">
                     <div className="w-24 text-base text-black font-medium">{item.time}</div>
                     <div className="text-base text-black">{item.activity}</div>
