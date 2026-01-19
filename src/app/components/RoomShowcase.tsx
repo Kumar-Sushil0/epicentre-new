@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 
 export default function RoomShowcase() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -27,19 +28,41 @@ export default function RoomShowcase() {
 
   const currentRoom = rooms[currentIndex];
   const slides = [1, 2, 3]; // 3 image slides per carousel
+  const SLIDE_DURATION = 3000; // 3 seconds per slide
+
+  // Use refs to track current values in the interval
+  const currentSlideRef = useRef(0);
+  const currentRoomRef = useRef(0);
+
+  // Auto-advance carousel slides
+  useEffect(() => {
+    const timer = setInterval(() => {
+      currentSlideRef.current += 1;
+
+      // If we've gone through all slides
+      if (currentSlideRef.current >= slides.length) {
+        // Reset slide and move to next room
+        currentSlideRef.current = 0;
+        currentRoomRef.current = (currentRoomRef.current + 1) % rooms.length;
+
+        setCarouselSlide(0);
+        setCurrentIndex(currentRoomRef.current);
+      } else {
+        setCarouselSlide(currentSlideRef.current);
+      }
+    }, SLIDE_DURATION);
+
+    return () => clearInterval(timer);
+  }, [rooms.length, slides.length]);
+
+  // Sync refs when user manually changes room
+  useEffect(() => {
+    currentRoomRef.current = currentIndex;
+    currentSlideRef.current = carouselSlide;
+  }, [currentIndex, carouselSlide]);
 
   const goToSlide = (index: number) => {
     setCarouselSlide(index);
-  };
-
-  const nextRoom = () => {
-    setCurrentIndex((prev) => (prev + 1) % rooms.length);
-    setCarouselSlide(0);
-  };
-
-  const prevRoom = () => {
-    setCurrentIndex((prev) => (prev - 1 + rooms.length) % rooms.length);
-    setCarouselSlide(0);
   };
 
   const goToRoom = (index: number) => {
@@ -103,9 +126,12 @@ export default function RoomShowcase() {
       <p className="text-lg text-gray-700 mb-8 leading-relaxed">
         {currentRoom.description}
       </p>
-      <button className="w-fit px-8 py-3 bg-[#8B4513] text-white rounded-lg font-medium hover:bg-[#6B3410] transition-colors">
+      <Link 
+        href="/rooms"
+        className="w-fit px-8 py-3 bg-[#8B4513] text-white rounded-lg font-medium hover:bg-[#6B3410] transition-colors inline-block"
+      >
         LEARN MORE
-      </button>
+      </Link>
     </div>
   );
 
@@ -127,29 +153,8 @@ export default function RoomShowcase() {
       </div>
 
       {/* Navigation Controls */}
-      <div className="flex items-center justify-center gap-8 pb-12">
-        {/* Previous Button */}
-        <button
-          onClick={prevRoom}
-          className="w-12 h-12 rounded-full border-2 border-gray-900 text-gray-900 hover:bg-gray-100 transition-all flex items-center justify-center"
-          aria-label="Previous room"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </button>
-
-        {/* Room Dots Indicator */}
+      <div className="flex items-center justify-center pb-12">
+        {/* Room Indicators */}
         <div className="flex gap-3">
           {rooms.map((_, index) => (
             <button
@@ -163,27 +168,6 @@ export default function RoomShowcase() {
             />
           ))}
         </div>
-
-        {/* Next Button */}
-        <button
-          onClick={nextRoom}
-          className="w-12 h-12 rounded-full border-2 border-gray-900 text-gray-900 hover:bg-gray-100 transition-all flex items-center justify-center"
-          aria-label="Next room"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </button>
       </div>
     </section>
   );

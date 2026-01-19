@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import BannerCarousel from "../components/BannerCarousel";
 import Image from "next/image";
 
-export default function ExperiencesPage() {
+export default function WellnessPage() {
   const loremIpsum = `LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA`;
 
   return (
@@ -13,12 +13,12 @@ export default function ExperiencesPage() {
       <BannerCarousel />
       <Header />
       
-      {/* Experiences Section */}
+      {/* Wellness Section */}
       <section className="w-full bg-white py-16">
         <div className="max-w-4xl mx-auto px-8 text-center">
           {/* Heading */}
           <h1 className="text-6xl font-bold text-black mb-8" style={{ fontFamily: 'serif' }}>
-            EXPERIENCES
+            WELLNESS
           </h1>
 
           {/* Description Paragraph */}
@@ -33,7 +33,7 @@ export default function ExperiencesPage() {
         </div>
       </section>
 
-      {/* Experience Section */}
+      {/* Wellness Section */}
       <section className="w-full bg-white">
         <div className="w-full">
           <div className="bg-white p-12">
@@ -49,19 +49,19 @@ export default function ExperiencesPage() {
                     <div className="flip-card-front relative">
                       <Image
                         src="/banner.png"
-                        alt={`Experience ${index + 1}`}
+                        alt={`Wellness ${index + 1}`}
                         fill
                         className="object-cover"
                       />
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
                         <h3 className="text-2xl font-bold text-white" style={{ fontFamily: 'serif' }}>
-                          Experience {index + 1}
+                          Wellness {index + 1}
                         </h3>
                       </div>
                     </div>
                     {/* Back Side - Information */}
                     <div className="flip-card-back">
-                      <h3 className="text-2xl font-bold mb-4">Experience {index + 1}</h3>
+                      <h3 className="text-2xl font-bold mb-4">Wellness {index + 1}</h3>
                       <p className="text-sm text-center">
                         {loremIpsum.substring(0, 100)}...
                       </p>

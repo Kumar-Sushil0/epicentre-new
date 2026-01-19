@@ -6,16 +6,19 @@ export default function Stories() {
       id: 1,
       title: "STORY 01",
       description: "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT.",
+      video: "https://lidbucketnew.s3.ap-south-1.amazonaws.com/toolVideos/LID+V1.mp4",
     },
     {
       id: 2,
-      title: "STORY 01",
+      title: "STORY 02",
       description: "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT.",
+      video: "https://lidbucketnew.s3.ap-south-1.amazonaws.com/toolVideos/LID+V1.mp4",
     },
     {
       id: 3,
-      title: "STORY 01",
+      title: "STORY 03",
       description: "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT.",
+      video: "https://lidbucketnew.s3.ap-south-1.amazonaws.com/toolVideos/LID+V1.mp4",
     },
   ];
 
@@ -28,34 +31,39 @@ export default function Stories() {
         </h1>
       </div>
 
-      {/* Three Cards */}
+      {/* Three Cards with Videos */}
       <div className="max-w-7xl mx-auto px-8">
         <div className="grid grid-cols-3 gap-8">
           {stories.map((story) => (
             <div
               key={story.id}
-              className="bg-gray-200 rounded-lg p-8 pb-12 flex flex-col items-center text-center gap-6 relative"
+              className="relative rounded-lg overflow-hidden h-[600px] group"
             >
-              {/* Title */}
-              <h2
-                className="text-3xl font-bold text-black uppercase"
-                style={{ fontFamily: 'serif' }}
+              {/* Video Background */}
+              <video
+                className="w-full h-full object-cover"
+                autoPlay
+                loop
+                muted
+                playsInline
               >
-                {story.title}
-              </h2>
+                <source src={story.video} type="video/mp4" />
+                {/* Fallback image if video doesn't load */}
+                <img src="/banner.jpg" alt={story.title} className="w-full h-full object-cover" />
+              </video>
 
-              {/* Description */}
-              <p className="text-sm text-black uppercase leading-relaxed">
-                {story.description}
-              </p>
-
-              {/* Button - Absolutely positioned at bottom border */}
-              <button 
-                className="absolute bottom-[-20px] left-1/2 transform -translate-x-1/2 px-8 py-3 bg-[#8B4513] text-white rounded-lg font-medium hover:bg-[#6B3410] transition-colors uppercase"
-                style={{ height: '48px' }}
-              >
-                LEARN MORE
-              </button>
+              {/* Text Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col items-center justify-end p-8 text-center">
+                <h2
+                  className="text-3xl font-bold text-white uppercase mb-4"
+                  style={{ fontFamily: 'serif' }}
+                >
+                  {story.title}
+                </h2>
+                <p className="text-sm text-white uppercase leading-relaxed">
+                  {story.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>

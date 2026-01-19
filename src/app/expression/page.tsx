@@ -1,11 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import BannerCarousel from "../components/BannerCarousel";
 import Image from "next/image";
 
-export default function ExperiencesPage() {
+export default function ExpressionPage() {
   const loremIpsum = `LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA`;
 
   return (
@@ -13,17 +14,41 @@ export default function ExperiencesPage() {
       <BannerCarousel />
       <Header />
       
-      {/* Experiences Section */}
+      {/* Expression Section */}
       <section className="w-full bg-white py-16">
         <div className="max-w-4xl mx-auto px-8 text-center">
           {/* Heading */}
           <h1 className="text-6xl font-bold text-black mb-8" style={{ fontFamily: 'serif' }}>
-            EXPERIENCES
+            EXPRESSION
           </h1>
 
           {/* Description Paragraph */}
           <p className="text-base text-black mb-8 leading-relaxed">
             {loremIpsum}
+          </p>
+
+          {/* Bullet Points Grid */}
+          <div className="grid grid-cols-3 gap-6 mb-8 max-w-5xl mx-auto text-left">
+            <div className="space-y-3">
+              <p className="text-base text-black">• Premium accommodation facilities</p>
+              <p className="text-base text-black">• Exclusive access to private spaces</p>
+              <p className="text-base text-black">• Personalized wellness programs</p>
+            </div>
+            <div className="space-y-3">
+              <p className="text-base text-black">• Gourmet dining experiences</p>
+              <p className="text-base text-black">• Curated cultural activities</p>
+              <p className="text-base text-black">• Professional guidance and support</p>
+            </div>
+            <div className="space-y-3">
+              <p className="text-base text-black">• Serene natural surroundings</p>
+              <p className="text-base text-black">• State-of-the-art amenities</p>
+              <p className="text-base text-black">• Transformative retreat experience</p>
+            </div>
+          </div>
+
+          {/* Closing Text */}
+          <p className="text-base text-black mb-8 leading-relaxed max-w-3xl mx-auto">
+            Experience a journey of transformation and renewal in our carefully curated spaces designed for reflection, creativity, and personal growth.
           </p>
 
           {/* Download Brochure Button */}
@@ -33,41 +58,42 @@ export default function ExperiencesPage() {
         </div>
       </section>
 
-      {/* Experience Section */}
+      {/* Expression Section */}
       <section className="w-full bg-white">
         <div className="w-full">
           <div className="bg-white p-12">
-            {/* Six Cards */}
-            <div className="flex justify-center flex-wrap gap-4 mb-8">
-              {Array.from({ length: 6 }).map((_, index) => (
-                <div
+            {/* Four Cards - 2 Column Grid */}
+            <div className="grid grid-cols-2 gap-4 mb-8 max-w-4xl mx-auto">
+              {Array.from({ length: 4 }).map((_, index) => (
+                <Link
                   key={index}
-                  className="flip-card-container"
+                  href={`/expression/details?id=${index + 1}`}
+                  className="flip-card-container cursor-pointer"
                 >
                   <div className="flip-card-inner">
                     {/* Front Side - Image with Title */}
                     <div className="flip-card-front relative">
                       <Image
                         src="/banner.png"
-                        alt={`Experience ${index + 1}`}
+                        alt={`Expression ${index + 1}`}
                         fill
                         className="object-cover"
                       />
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
                         <h3 className="text-2xl font-bold text-white" style={{ fontFamily: 'serif' }}>
-                          Experience {index + 1}
+                          Expression {index + 1}
                         </h3>
                       </div>
                     </div>
                     {/* Back Side - Information */}
                     <div className="flip-card-back">
-                      <h3 className="text-2xl font-bold mb-4">Experience {index + 1}</h3>
+                      <h3 className="text-2xl font-bold mb-4">Expression {index + 1}</h3>
                       <p className="text-sm text-center">
                         {loremIpsum.substring(0, 100)}...
                       </p>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
 

@@ -1,5 +1,7 @@
 import Header from "./components/Header";
 import BannerCarousel from "./components/BannerCarousel";
+import BookingWidget from "./components/BookingWidget";
+import BookWithIrada from "./components/BookWithIrada";
 import RoomShowcase from "./components/RoomShowcase";
 import DiningShowcase from "./components/DiningShowcase";
 import ExperiencesShowcase from "./components/ExperiencesShowcase";
@@ -9,20 +11,24 @@ import FAQ from "./components/FAQ";
 import Stories from "./components/Stories";
 import Footer from "./components/Footer";
 import NewsletterPopup from "./components/NewsletterPopup";
+import VerticalCTA from "./components/VerticalCTA";
 
 export default function Home() {
   return (
     <main className="relative">
+      <VerticalCTA />
       <NewsletterPopup />
       <BannerCarousel />
       <Header />
+      <BookingWidget />
+      <Stories />
+      <BookWithIrada />
       <RoomShowcase />
       <DiningShowcase />
       <ExperiencesShowcase />
       <Gallery />
       <HowToGetHere />
       <FAQ />
-      <Stories />
       <Footer />
     </main>
   );

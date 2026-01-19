@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 
 export default function ExperiencesShowcase() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -41,19 +42,41 @@ export default function ExperiencesShowcase() {
 
   const currentExperience = experiences[currentIndex];
   const slides = [1, 2, 3]; // 3 image slides per carousel
+  const SLIDE_DURATION = 3000; // 3 seconds per slide
+
+  // Use refs to track current values in the interval
+  const currentSlideRef = useRef(0);
+  const currentExperienceRef = useRef(0);
+
+  // Auto-advance carousel slides
+  useEffect(() => {
+    const timer = setInterval(() => {
+      currentSlideRef.current += 1;
+
+      // If we've gone through all slides
+      if (currentSlideRef.current >= slides.length) {
+        // Reset slide and move to next experience
+        currentSlideRef.current = 0;
+        currentExperienceRef.current = (currentExperienceRef.current + 1) % experiences.length;
+
+        setCarouselSlide(0);
+        setCurrentIndex(currentExperienceRef.current);
+      } else {
+        setCarouselSlide(currentSlideRef.current);
+      }
+    }, SLIDE_DURATION);
+
+    return () => clearInterval(timer);
+  }, [experiences.length, slides.length]);
+
+  // Sync refs when user manually changes experience
+  useEffect(() => {
+    currentExperienceRef.current = currentIndex;
+    currentSlideRef.current = carouselSlide;
+  }, [currentIndex, carouselSlide]);
 
   const goToSlide = (index: number) => {
     setCarouselSlide(index);
-  };
-
-  const nextExperience = () => {
-    setCurrentIndex((prev) => (prev + 1) % experiences.length);
-    setCarouselSlide(0);
-  };
-
-  const prevExperience = () => {
-    setCurrentIndex((prev) => (prev - 1 + experiences.length) % experiences.length);
-    setCarouselSlide(0);
   };
 
   const goToExperience = (index: number) => {
@@ -76,8 +99,8 @@ export default function ExperiencesShowcase() {
               key={index}
               onClick={() => goToSlide(index)}
               className={`w-2 h-2 rounded-full transition-all ${index === carouselSlide
-                  ? "bg-white w-8"
-                  : "bg-white/50 hover:bg-white/75"
+                ? "bg-white w-8"
+                : "bg-white/50 hover:bg-white/75"
                 }`}
               aria-label={`Go to slide ${index + 1}`}
             />
@@ -117,9 +140,12 @@ export default function ExperiencesShowcase() {
       <p className="text-lg text-gray-700 mb-8 leading-relaxed">
         {currentExperience.description}
       </p>
-      <button className="w-fit px-8 py-3 bg-[#8B4513] text-white rounded-lg font-medium hover:bg-[#6B3410] transition-colors">
+      <Link 
+        href="/experiences"
+        className="w-fit px-8 py-3 bg-[#8B4513] text-white rounded-lg font-medium hover:bg-[#6B3410] transition-colors inline-block"
+      >
         LEARN MORE
-      </button>
+      </Link>
     </div>
   );
 
@@ -145,64 +171,21 @@ export default function ExperiencesShowcase() {
         )}
       </div>
 
-      {/* Navigation Controls */}
-      <div className="flex items-center justify-center gap-8 pb-12">
-        {/* Previous Button */}
-        <button
-          onClick={prevExperience}
-          className="w-12 h-12 rounded-full border-2 border-gray-900 text-gray-900 hover:bg-gray-100 transition-all flex items-center justify-center"
-          aria-label="Previous experience"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </button>
-
-        {/* Experience Dots Indicator */}
+      {/* Experience Indicators */}
+      <div className="flex items-center justify-center pb-12">
         <div className="flex gap-3">
           {experiences.map((_, index) => (
             <button
               key={index}
               onClick={() => goToExperience(index)}
               className={`w-3 h-3 rounded-full transition-all ${index === currentIndex
-                  ? "bg-gray-900 w-10"
-                  : "bg-gray-400 hover:bg-gray-600"
+                ? "bg-gray-900 w-10"
+                : "bg-gray-400 hover:bg-gray-600"
                 }`}
               aria-label={`Go to ${experiences[index].title}`}
             />
           ))}
         </div>
-
-        {/* Next Button */}
-        <button
-          onClick={nextExperience}
-          className="w-12 h-12 rounded-full border-2 border-gray-900 text-gray-900 hover:bg-gray-100 transition-all flex items-center justify-center"
-          aria-label="Next experience"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </button>
       </div>
     </section>
   );

@@ -8,25 +8,31 @@ export default function Header() {
   const isBookingPage = pathname === "/bookings";
   const isRoomsPage = pathname === "/rooms";
   const isResidencyPage = pathname === "/residency";
-  const isWhitePage = isBookingPage || isRoomsPage || isResidencyPage;
+  const isWellnessPage = pathname === "/wellness";
+  const isExpressionPage = pathname === "/expression";
+  const isSolitudePage = pathname === "/solitude";
+  const isExperiencesPage = pathname === "/experiences";
+  const isVenuePage = pathname === "/venue";
+  const isAboutPage = pathname === "/about";
+  const isWhitePage = isBookingPage || isRoomsPage || isResidencyPage || isWellnessPage || isExpressionPage || isSolitudePage || isExperiencesPage || isVenuePage || isAboutPage;
   
   const menuItems = [
     "EPiCENTRE",
+    "ABOUT US",
     "BOOKINGS",
     "ROOMS",
-    "DINING",
     "SOLITUDE",
     "EXPRESSION",
+    "RESIDENCY",
     "WELLNESS",
     "EXPERIENCES",
-    "RESIDENCY",
+    "VENUE",
     "GALLERY",
-    "ABOUT US",
     
   ];
 
   return (
-    <header className={`${isWhitePage ? 'relative bg-white' : 'absolute'} top-0 left-0 right-0 z-50 w-full`}>
+    <header className={`absolute top-0 left-0 right-0 z-50 w-full ${isWhitePage ? 'bg-white/95 backdrop-blur-sm' : ''}`}>
       <nav className="flex items-center justify-between px-8 py-6">
         <a href="/" className="relative h-10 w-32 block">
           <Image
@@ -40,10 +46,16 @@ export default function Header() {
         <ul className={`flex items-center gap-8 ${isWhitePage ? 'text-black' : 'text-white'}`}>
           {menuItems.slice(1).map((item, index) => {
             let href = "#";
+            if (item === "ABOUT US") href = "/about";
             if (item === "BOOKINGS") href = "/bookings";
             if (item === "ROOMS") href = "/rooms";
             if (item === "EXPERIENCES") href = "/experiences";
+            if (item === "EXPERIENCE") href = "/experiences";
             if (item === "RESIDENCY") href = "/residency";
+            if (item === "WELLNESS") href = "/wellness";
+            if (item === "EXPRESSION") href = "/expression";
+            if (item === "SOLITUDE") href = "/solitude";
+            if (item === "VENUE") href = "/venue";
             return (
               <li key={index}>
                 <a

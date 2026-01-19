@@ -76,3 +76,8 @@ body {
   align-items: center;
   padding: 1.5rem;
 }
+
+/* Venue Flip Card - Responsive in Grid */
+.venue-flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}

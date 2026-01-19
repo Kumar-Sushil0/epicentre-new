@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function DiningShowcase() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -27,19 +27,41 @@ export default function DiningShowcase() {
 
   const currentDining = dinings[currentIndex];
   const slides = [1, 2, 3]; // 3 image slides per carousel
+  const SLIDE_DURATION = 3000; // 3 seconds per slide
+
+  // Use refs to track current values in the interval
+  const currentSlideRef = useRef(0);
+  const currentDiningRef = useRef(0);
+
+  // Auto-advance carousel slides
+  useEffect(() => {
+    const timer = setInterval(() => {
+      currentSlideRef.current += 1;
+
+      // If we've gone through all slides
+      if (currentSlideRef.current >= slides.length) {
+        // Reset slide and move to next dining
+        currentSlideRef.current = 0;
+        currentDiningRef.current = (currentDiningRef.current + 1) % dinings.length;
+
+        setCarouselSlide(0);
+        setCurrentIndex(currentDiningRef.current);
+      } else {
+        setCarouselSlide(currentSlideRef.current);
+      }
+    }, SLIDE_DURATION);
+
+    return () => clearInterval(timer);
+  }, [dinings.length, slides.length]);
+
+  // Sync refs when user manually changes dining
+  useEffect(() => {
+    currentDiningRef.current = currentIndex;
+    currentSlideRef.current = carouselSlide;
+  }, [currentIndex, carouselSlide]);
 
   const goToSlide = (index: number) => {
     setCarouselSlide(index);
-  };
-
-  const nextDining = () => {
-    setCurrentIndex((prev) => (prev + 1) % dinings.length);
-    setCarouselSlide(0);
-  };
-
-  const prevDining = () => {
-    setCurrentIndex((prev) => (prev - 1 + dinings.length) % dinings.length);
-    setCarouselSlide(0);
   };
 
   const goToDining = (index: number) => {
@@ -131,30 +153,8 @@ export default function DiningShowcase() {
         )}
       </div>
 
-      {/* Navigation Controls */}
-      <div className="flex items-center justify-center gap-8 pb-12">
-        {/* Previous Button */}
-        <button
-          onClick={prevDining}
-          className="w-12 h-12 rounded-full border-2 border-white text-white hover:bg-gray-800 transition-all flex items-center justify-center"
-          aria-label="Previous dining"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </button>
-
-        {/* Dining Dots Indicator */}
+      {/* Dining Indicators */}
+      <div className="flex items-center justify-center pb-12">
         <div className="flex gap-3">
           {dinings.map((_, index) => (
             <button
@@ -168,27 +168,6 @@ export default function DiningShowcase() {
             />
           ))}
         </div>
-
-        {/* Next Button */}
-        <button
-          onClick={nextDining}
-          className="w-12 h-12 rounded-full border-2 border-white text-white hover:bg-gray-800 transition-all flex items-center justify-center"
-          aria-label="Next dining"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </button>
       </div>
     </section>
   );
