@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
-export default function ExpressionDetailsPage() {
+function ExpressionDetailsContent() {
   const searchParams = useSearchParams();
   const expressionId = parseInt(searchParams.get("id") || "1");
   const [activeDay, setActiveDay] = useState("DAY 1");
@@ -484,5 +484,21 @@ export default function ExpressionDetailsPage() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function ExpressionDetailsPage() {
+  return (
+    <Suspense fallback={
+      <div className="relative min-h-screen bg-[#F5F5F0]">
+        <Header />
+        <div className="flex items-center justify-center h-screen">
+          <p className="text-base text-black">Loading...</p>
+        </div>
+        <Footer />
+      </div>
+    }>
+      <ExpressionDetailsContent />
+    </Suspense>
   );
 }
