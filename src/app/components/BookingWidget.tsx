@@ -9,14 +9,23 @@ export default function BookingWidget() {
   const [currency, setCurrency] = useState("₹ INR");
 
   return (
-    <section className="w-full bg-[#F5F5F0] py-16 px-8">
-      <div className="max-w-6xl mx-auto">
+    <section className="w-full bg-white py-20">
+      <div className="max-w-7xl mx-auto px-8">
         {/* Descriptive Text Section */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-6">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-3 mb-6">
+            <div className="w-1 h-12 bg-[#D4A574]"></div>
+            <div className="w-16 h-16 bg-[#D4A574] rounded-full flex items-center justify-center">
+              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+            </div>
+            <div className="w-1 h-12 bg-[#D4A574]"></div>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-black mb-6" style={{ fontFamily: 'serif' }}>
             A manor reborn in India's Wine Country
           </h2>
-          <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base text-gray-700 max-w-3xl mx-auto leading-relaxed">
             Hotel Irada breathes new life into Vijay Mallya's storied 2000's estate. Once a destination for his extravagant soirees, Hotel Irada is a 66-acre working winery, cradled by 4000 acres of reserve forest, bringing soul to every detail — through wine trails, forest rituals, and the creative spirit of a new India.
           </p>
         </div>

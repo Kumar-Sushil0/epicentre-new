@@ -14,7 +14,8 @@ export default function Header() {
   const isExperiencesPage = pathname === "/experiences";
   const isVenuePage = pathname === "/venue";
   const isAboutPage = pathname === "/about";
-  const isWhitePage = isBookingPage || isRoomsPage || isResidencyPage || isWellnessPage || isExpressionPage || isSolitudePage || isExperiencesPage || isVenuePage || isAboutPage;
+  const isContactPage = pathname === "/contact";
+  const isWhitePage = isBookingPage || isRoomsPage || isResidencyPage || isWellnessPage || isExpressionPage || isSolitudePage || isExperiencesPage || isVenuePage || isAboutPage || isContactPage;
   
   const menuItems = [
     "EPiCENTRE",
@@ -32,7 +33,7 @@ export default function Header() {
   ];
 
   return (
-    <header className={`absolute top-0 left-0 right-0 z-50 w-full ${isWhitePage ? 'bg-white/95 backdrop-blur-sm' : ''}`}>
+    <header className="absolute top-0 left-0 right-0 z-50 w-full">
       <nav className="flex items-center justify-between px-8 py-6">
         <a href="/" className="relative h-10 w-32 block">
           <Image
@@ -43,7 +44,7 @@ export default function Header() {
             priority
           />
         </a>
-        <ul className={`flex items-center gap-8 ${isWhitePage ? 'text-black' : 'text-white'}`}>
+        <ul className="flex items-center gap-8 text-white">
           {menuItems.slice(1).map((item, index) => {
             let href = "#";
             if (item === "ABOUT US") href = "/about";
@@ -56,11 +57,12 @@ export default function Header() {
             if (item === "EXPRESSION") href = "/expression";
             if (item === "SOLITUDE") href = "/solitude";
             if (item === "VENUE") href = "/venue";
+            if (item === "GALLERY") href = "/gallery";
             return (
               <li key={index}>
                 <a
                   href={href}
-                  className="text-sm font-medium hover:opacity-80 transition-opacity"
+                  className="text-sm font-bold hover:opacity-80 transition-opacity"
                 >
                   {item}
                 </a>

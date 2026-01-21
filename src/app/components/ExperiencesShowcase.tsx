@@ -1,47 +1,53 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function ExperiencesShowcase() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [carouselSlide, setCarouselSlide] = useState(0);
 
-  const loremIpsum = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.`;
-
   const experiences = [
     {
       id: 1,
-      title: "EXPERIENCE 01",
-      description: loremIpsum,
-      image: "/banner.jpg",
+      title: "Wellness",
+      description: "Gentle practices that support the body and nervous system.\n\nSelf-paced, optional, and non-instructional.",
+      images: ["/banner.png", "/banner.png", "/banner.png"],
       imagePosition: "left" as const,
     },
     {
       id: 2,
-      title: "EXPERIENCE 02",
-      description: loremIpsum,
-      image: "/banner.jpg",
+      title: "Experience",
+      description: "Context-driven activities shaped by place, time, and mood.\n\nEntered when relevant, ignored when not.",
+      images: ["/banner.png", "/banner.png", "/banner.png"],
       imagePosition: "left" as const,
     },
     {
       id: 3,
-      title: "EXPERIENCE 03",
-      description: loremIpsum,
-      image: "/banner.jpg",
+      title: "Solitude",
+      description: "Time alone without tasks or expectations.\n\nSpace to observe, reflect, and settle.",
+      images: ["/banner.png", "/banner.png", "/banner.png"],
       imagePosition: "left" as const,
     },
     {
       id: 4,
-      title: "EXPERIENCE 04",
-      description: loremIpsum,
-      image: "/banner.jpg",
+      title: "Expression",
+      description: "Quiet containers for voice, movement, or making.\n\nShared without performance or evaluation.",
+      images: ["/banner.png", "/banner.png", "/banner.png"],
+      imagePosition: "left" as const,
+    },
+    {
+      id: 5,
+      title: "Residency",
+      description: "Multi-day immersions around a single theme.\n\nDesigned for depth, not consumption.",
+      images: ["/banner.png", "/banner.png", "/banner.png"],
       imagePosition: "left" as const,
     },
   ];
 
   const currentExperience = experiences[currentIndex];
-  const slides = [1, 2, 3]; // 3 image slides per carousel
+  const currentImages = currentExperience.images;
   const SLIDE_DURATION = 3000; // 3 seconds per slide
 
   // Use refs to track current values in the interval
@@ -53,8 +59,8 @@ export default function ExperiencesShowcase() {
     const timer = setInterval(() => {
       currentSlideRef.current += 1;
 
-      // If we've gone through all slides
-      if (currentSlideRef.current >= slides.length) {
+      // If we've gone through all slides for current experience
+      if (currentSlideRef.current >= currentImages.length) {
         // Reset slide and move to next experience
         currentSlideRef.current = 0;
         currentExperienceRef.current = (currentExperienceRef.current + 1) % experiences.length;
@@ -67,13 +73,19 @@ export default function ExperiencesShowcase() {
     }, SLIDE_DURATION);
 
     return () => clearInterval(timer);
-  }, [experiences.length, slides.length]);
+  }, [currentImages.length, experiences.length]);
 
   // Sync refs when user manually changes experience
   useEffect(() => {
     currentExperienceRef.current = currentIndex;
     currentSlideRef.current = carouselSlide;
   }, [currentIndex, carouselSlide]);
+
+  // Reset slide when experience changes
+  useEffect(() => {
+    setCarouselSlide(0);
+    currentSlideRef.current = 0;
+  }, [currentIndex]);
 
   const goToSlide = (index: number) => {
     setCarouselSlide(index);
@@ -85,21 +97,34 @@ export default function ExperiencesShowcase() {
   };
 
   const imageCarousel = (
-    <div className="w-full h-full flex items-center justify-center p-8">
-      <div className="relative w-full h-[400px] bg-gray-200 rounded-lg overflow-hidden">
-        {/* Placeholder for image */}
-        <div className="w-full h-full flex items-center justify-center bg-gray-300">
-          <span className="text-gray-500">Image Carousel</span>
-        </div>
+    <div className="w-full flex items-center justify-center">
+      <div className="relative w-full h-[500px] bg-gray-200 rounded-2xl overflow-hidden">
+        {/* Image Carousel */}
+        {currentImages.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === carouselSlide ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <Image
+              src={image}
+              alt={`${currentExperience.title} ${index + 1}`}
+              fill
+              className="object-cover"
+              priority={index === 0}
+            />
+          </div>
+        ))}
 
         {/* Carousel Dots Indicator (Bottom Center) */}
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-40 flex gap-2">
-          {slides.map((_, index) => (
+          {currentImages.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
               className={`w-2 h-2 rounded-full transition-all ${index === carouselSlide
-                ? "bg-white w-8"
+                ? "bg-[#6B3410] w-8"
                 : "bg-white/50 hover:bg-white/75"
                 }`}
               aria-label={`Go to slide ${index + 1}`}
@@ -110,11 +135,11 @@ export default function ExperiencesShowcase() {
         {/* Circular Button (Bottom Right) */}
         <div className="absolute bottom-4 right-4 z-40">
           <button
-            className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-all flex items-center justify-center"
+            className="w-12 h-12 rounded-full bg-white/80 hover:bg-white transition-all flex items-center justify-center"
             aria-label="Carousel control"
           >
             <svg
-              className="w-6 h-6 text-white"
+              className="w-6 h-6 text-gray-700"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -133,16 +158,16 @@ export default function ExperiencesShowcase() {
   );
 
   const textContent = (
-    <div className="flex flex-col justify-center px-12 py-16">
-      <h2 className="text-5xl font-bold text-gray-900 mb-6">
+    <div className="flex flex-col justify-center px-4 md:px-8 py-8">
+      <h2 className="text-4xl md:text-5xl font-bold text-black mb-2">
         {currentExperience.title}
       </h2>
-      <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+      <div className="text-base text-gray-700 mb-8 leading-relaxed whitespace-pre-line">
         {currentExperience.description}
-      </p>
+      </div>
       <Link 
         href="/experiences"
-        className="w-fit px-8 py-3 bg-[#8B4513] text-white rounded-lg font-medium hover:bg-[#6B3410] transition-colors inline-block"
+        className="w-fit border-2 border-black bg-white text-black uppercase font-semibold px-8 py-3 hover:bg-black hover:text-white transition-colors inline-block"
       >
         LEARN MORE
       </Link>
@@ -150,29 +175,26 @@ export default function ExperiencesShowcase() {
   );
 
   return (
-    <section className="w-full bg-white">
-      {/* EXPERIENCES Heading */}
-      <div className="text-center py-12">
-        <h1 className="text-6xl font-bold text-black uppercase">EXPERIENCES</h1>
-      </div>
-
-      {/* Main Content */}
-      <div className="flex min-h-[500px] items-center">
-        {currentExperience.imagePosition === "left" ? (
-          <>
-            <div className="w-1/2 flex items-center">{imageCarousel}</div>
-            <div className="w-1/2 flex items-center">{textContent}</div>
-          </>
-        ) : (
-          <>
-            <div className="w-1/2 flex items-center">{textContent}</div>
-            <div className="w-1/2 flex items-center">{imageCarousel}</div>
-          </>
-        )}
+    <section className="w-full bg-[#F5F5F0] py-20">
+      <div className="max-w-7xl mx-auto px-8">
+        {/* Main Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          {currentExperience.imagePosition === "left" ? (
+            <>
+              <div className="flex items-center">{imageCarousel}</div>
+              <div className="flex items-center">{textContent}</div>
+            </>
+          ) : (
+            <>
+              <div className="flex items-center">{textContent}</div>
+              <div className="flex items-center">{imageCarousel}</div>
+            </>
+          )}
+        </div>
       </div>
 
       {/* Experience Indicators */}
-      <div className="flex items-center justify-center pb-12">
+      <div className="flex items-center justify-center pt-16">
         <div className="flex gap-3">
           {experiences.map((_, index) => (
             <button

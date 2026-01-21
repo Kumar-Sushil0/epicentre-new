@@ -70,24 +70,48 @@ export default function RoomsPage() {
       <BannerCarousel />
       <Header />
       
-      {/* Reserve Rooms Section */}
-      <section className="w-full bg-white py-16">
-        {/* Header Section */}
-        <div className="text-center mb-12 px-8">
-          <h1 className="text-5xl font-bold text-black mb-4" style={{ fontFamily: 'serif' }}>
-            RESERVE ROOMS
-          </h1>
-          <p className="text-base text-black max-w-3xl mx-auto">
-            {loremIpsum}
-          </p>
+      {/* Places to Rest Section */}
+      <section className="w-full bg-[#F5F5F0] py-20">
+        <div className="max-w-4xl mx-auto px-8">
+          <div className="text-center mb-16">
+            <div className="inline-block mb-6">
+              <div className="w-20 h-20 bg-[#D4A574] rounded-full mx-auto flex items-center justify-center">
+                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+              </div>
+            </div>
+            <h1 className="text-5xl md:text-6xl font-bold text-black mb-8" style={{ fontFamily: 'serif' }}>
+              Places to rest at EPiCENTRE
+            </h1>
+            <div className="max-w-3xl mx-auto space-y-4 text-base text-gray-700 leading-relaxed">
+              <p>
+                Accommodation at EPiCentre is designed to support rest, quiet, and continuity of thought.
+              </p>
+              <p>
+                Spaces are simple, functional, and free from unnecessary stimulation.
+              </p>
+              <p className="font-semibold text-black">
+                Where you sleep is meant to hold you — not distract you.
+              </p>
+            </div>
+          </div>
         </div>
-
+      </section>
+      
+      {/* Reserve Rooms Section */}
+      <section className="w-full bg-white py-20">
+        <div className="max-w-7xl mx-auto px-8 mb-12">
+          <h2 className="text-5xl md:text-6xl font-bold text-black mb-4 text-center" style={{ fontFamily: 'serif' }}>
+            Reserve Rooms
+          </h2>
+        </div>
         {/* Main Content Area */}
         <div className="max-w-7xl mx-auto px-8">
-          <div className="flex gap-8 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             {/* Left Column - Image Carousel */}
-            <div className="w-[45%]">
-              <div className="relative w-full h-[600px] rounded-lg overflow-hidden">
+            <div className="flex items-center">
+              <div className="relative w-full h-[500px] rounded-2xl overflow-hidden">
                 {carouselImages.map((image, index) => (
                   <div
                     key={index}
@@ -123,36 +147,37 @@ export default function RoomsPage() {
             </div>
 
             {/* Right Column - Content */}
-            <div className="w-[55%] flex flex-col gap-8">
+            <div className="flex flex-col justify-center px-4 md:px-8 py-8">
               {/* DORMS Section */}
               <div>
-                <h2 className="text-3xl font-bold text-black mb-4" style={{ fontFamily: 'serif' }}>
-                  DORMS
+                <h2 className="text-4xl md:text-5xl font-bold text-black mb-2">
+                  Dorms
                 </h2>
-                <p className="text-base text-black leading-relaxed">
-                  {loremIpsum}
-                </p>
+                <ul className="text-base text-gray-700 mb-8 leading-relaxed space-y-1">
+                  <li>• Shared sleeping spaces for quiet coexistence.</li>
+                  <li>• Simple, open, and suited for low-key group stays.</li>
+                </ul>
               </div>
 
               {/* AMENITIES Section */}
               <div>
-                <h2 className="text-3xl font-bold text-black mb-4" style={{ fontFamily: 'serif' }}>
+                <h2 className="text-4xl md:text-5xl font-bold text-black mb-2">
                   AMENITIES
                 </h2>
                 <div className="grid grid-cols-2 gap-2 mb-4">
                   {Array.from({ length: 6 }).map((_, index) => (
-                    <div key={index} className="text-base text-black">
+                    <div key={index} className="text-base text-gray-700">
                       • KING BED
                     </div>
                   ))}
                 </div>
-                <p className="text-base text-black leading-relaxed">
+                <p className="text-base text-gray-700 mb-8 leading-relaxed">
                   {loremIpsum}
                 </p>
               </div>
 
               {/* Book Now Button */}
-              <button className="w-fit px-8 py-4 bg-[#8B4513] text-white rounded-lg font-bold hover:bg-[#6B3410] transition-colors uppercase">
+              <button className="w-fit border-2 border-black bg-white text-black uppercase font-semibold px-8 py-3 hover:bg-black hover:text-white transition-colors">
                 BOOK NOW
               </button>
             </div>
@@ -160,46 +185,47 @@ export default function RoomsPage() {
         </div>
 
         {/* Alternate Layout - Reversed */}
-        <div className="max-w-7xl mx-auto px-8 mt-16">
-          <div className="flex gap-8 items-center">
+        <div className="max-w-7xl mx-auto px-8 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             {/* Left Column - Content */}
-            <div className="w-[55%] flex flex-col gap-8">
+            <div className="flex flex-col justify-center px-4 md:px-8 py-8">
               {/* ROOMS Section */}
               <div>
-                <h2 className="text-3xl font-bold text-black mb-4" style={{ fontFamily: 'serif' }}>
-                  ROOMS
+                <h2 className="text-4xl md:text-5xl font-bold text-black mb-2">
+                  Rooms
                 </h2>
-                <p className="text-base text-black leading-relaxed uppercase">
-                  LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT. SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA
-                </p>
+                <ul className="text-base text-gray-700 mb-8 leading-relaxed space-y-1">
+                  <li>• Private spaces for rest and withdrawal.</li>
+                  <li>• Quiet, contained, and distraction-free.</li>
+                </ul>
               </div>
 
               {/* AMENITIES Section */}
               <div>
-                <h2 className="text-3xl font-bold text-black mb-4" style={{ fontFamily: 'serif' }}>
+                <h2 className="text-4xl md:text-5xl font-bold text-black mb-2">
                   AMENITIES
                 </h2>
                 <div className="grid grid-cols-2 gap-2 mb-4">
                   {Array.from({ length: 6 }).map((_, index) => (
-                    <div key={index} className="text-base text-black">
+                    <div key={index} className="text-base text-gray-700">
                       • KING BED
                     </div>
                   ))}
                 </div>
-                <p className="text-base text-black leading-relaxed uppercase">
-                  LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT. SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA
+                <p className="text-base text-gray-700 mb-8 leading-relaxed">
+                  {loremIpsum}
                 </p>
               </div>
 
               {/* Book Now Button */}
-              <button className="w-fit px-8 py-4 bg-[#8B4513] text-white rounded-lg font-bold hover:bg-[#6B3410] transition-colors uppercase">
+              <button className="w-fit border-2 border-black bg-white text-black uppercase font-semibold px-8 py-3 hover:bg-black hover:text-white transition-colors">
                 BOOK NOW
               </button>
             </div>
 
             {/* Right Column - Image Carousel */}
-            <div className="w-[45%]">
-              <div className="relative w-full h-[600px] rounded-lg overflow-hidden">
+            <div className="flex items-center">
+              <div className="relative w-full h-[500px] rounded-2xl overflow-hidden">
                 {carouselImages.map((image, index) => (
                   <div
                     key={index}
@@ -237,11 +263,11 @@ export default function RoomsPage() {
         </div>
 
         {/* TENTS Section - Image Left, Content Right */}
-        <div className="max-w-7xl mx-auto px-8 mt-16">
-          <div className="flex gap-8 items-center">
+        <div className="max-w-7xl mx-auto px-8 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             {/* Left Column - Image Carousel */}
-            <div className="w-[45%]">
-              <div className="relative w-full h-[600px] rounded-lg overflow-hidden">
+            <div className="flex items-center">
+              <div className="relative w-full h-[500px] rounded-2xl overflow-hidden">
                 {carouselImages.map((image, index) => (
                   <div
                     key={index}
@@ -277,36 +303,37 @@ export default function RoomsPage() {
             </div>
 
             {/* Right Column - Content */}
-            <div className="w-[55%] flex flex-col gap-8">
+            <div className="flex flex-col justify-center px-4 md:px-8 py-8">
               {/* TENTS Section */}
               <div>
-                <h2 className="text-3xl font-bold text-black mb-4" style={{ fontFamily: 'serif' }}>
-                  TENTS
+                <h2 className="text-4xl md:text-5xl font-bold text-black mb-2">
+                  Tents
                 </h2>
-                <p className="text-base text-black leading-relaxed">
-                  {loremIpsum}
-                </p>
+                <ul className="text-base text-gray-700 mb-8 leading-relaxed space-y-1">
+                  <li>• Basic outdoor sleeping close to land and sky.</li>
+                  <li>• Minimal, weather-aware, and intentionally uncomplicated.</li>
+                </ul>
               </div>
 
               {/* AMENITIES Section */}
               <div>
-                <h2 className="text-3xl font-bold text-black mb-4" style={{ fontFamily: 'serif' }}>
+                <h2 className="text-4xl md:text-5xl font-bold text-black mb-2">
                   AMENITIES
                 </h2>
                 <div className="grid grid-cols-2 gap-2 mb-4">
                   {Array.from({ length: 6 }).map((_, index) => (
-                    <div key={index} className="text-base text-black">
+                    <div key={index} className="text-base text-gray-700">
                       • KING BED
                     </div>
                   ))}
                 </div>
-                <p className="text-base text-black leading-relaxed">
+                <p className="text-base text-gray-700 mb-8 leading-relaxed">
                   {loremIpsum}
                 </p>
               </div>
 
               {/* Book Now Button */}
-              <button className="w-fit px-8 py-4 bg-[#8B4513] text-white rounded-lg font-bold hover:bg-[#6B3410] transition-colors uppercase">
+              <button className="w-fit border-2 border-black bg-white text-black uppercase font-semibold px-8 py-3 hover:bg-black hover:text-white transition-colors">
                 BOOK NOW
               </button>
             </div>
@@ -314,46 +341,47 @@ export default function RoomsPage() {
         </div>
 
         {/* COMMUNITY HALL Section - Content Left, Image Right */}
-        <div className="max-w-7xl mx-auto px-8 mt-16">
-          <div className="flex gap-8 items-center">
+        <div className="max-w-7xl mx-auto px-8 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             {/* Left Column - Content */}
-            <div className="w-[55%] flex flex-col gap-8">
+            <div className="flex flex-col justify-center px-4 md:px-8 py-8">
               {/* COMMUNITY HALL Section */}
               <div>
-                <h2 className="text-3xl font-bold text-black mb-4" style={{ fontFamily: 'serif' }}>
-                  COMMUNITY HALL
+                <h2 className="text-4xl md:text-5xl font-bold text-black mb-2">
+                  Community Halls
                 </h2>
-                <p className="text-base text-black leading-relaxed uppercase">
-                  LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT. SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA
-                </p>
+                <ul className="text-base text-gray-700 mb-8 leading-relaxed space-y-1">
+                  <li>• Large shared indoor spaces for rest or gathering.</li>
+                  <li>• Flexible, uncluttered, and purpose-neutral.</li>
+                </ul>
               </div>
 
               {/* AMENITIES Section */}
               <div>
-                <h2 className="text-3xl font-bold text-black mb-4" style={{ fontFamily: 'serif' }}>
+                <h2 className="text-4xl md:text-5xl font-bold text-black mb-2">
                   AMENITIES
                 </h2>
                 <div className="grid grid-cols-2 gap-2 mb-4">
                   {Array.from({ length: 6 }).map((_, index) => (
-                    <div key={index} className="text-base text-black">
+                    <div key={index} className="text-base text-gray-700">
                       • KING BED
                     </div>
                   ))}
                 </div>
-                <p className="text-base text-black leading-relaxed uppercase">
-                  LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT. SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA
+                <p className="text-base text-gray-700 mb-8 leading-relaxed">
+                  {loremIpsum}
                 </p>
               </div>
 
               {/* Book Now Button */}
-              <button className="w-fit px-8 py-4 bg-[#8B4513] text-white rounded-lg font-bold hover:bg-[#6B3410] transition-colors uppercase">
+              <button className="w-fit border-2 border-black bg-white text-black uppercase font-semibold px-8 py-3 hover:bg-black hover:text-white transition-colors">
                 BOOK NOW
               </button>
             </div>
 
             {/* Right Column - Image Carousel */}
-            <div className="w-[45%]">
-              <div className="relative w-full h-[600px] rounded-lg overflow-hidden">
+            <div className="flex items-center">
+              <div className="relative w-full h-[500px] rounded-2xl overflow-hidden">
                 {carouselImages.map((image, index) => (
                   <div
                     key={index}
@@ -391,11 +419,11 @@ export default function RoomsPage() {
         </div>
 
         {/* FULL VILLA Section - Image Left, Content Right */}
-        <div className="max-w-7xl mx-auto px-8 mt-16">
-          <div className="flex gap-8 items-center">
+        <div className="max-w-7xl mx-auto px-8 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             {/* Left Column - Image Carousel */}
-            <div className="w-[45%]">
-              <div className="relative w-full h-[600px] rounded-lg overflow-hidden">
+            <div className="flex items-center">
+              <div className="relative w-full h-[500px] rounded-2xl overflow-hidden">
                 {carouselImages.map((image, index) => (
                   <div
                     key={index}
@@ -431,36 +459,36 @@ export default function RoomsPage() {
             </div>
 
             {/* Right Column - Content */}
-            <div className="w-[55%] flex flex-col gap-8">
+            <div className="flex flex-col justify-center px-4 md:px-8 py-8">
               {/* FULL VILLA Section */}
               <div>
-                <h2 className="text-3xl font-bold text-black mb-4" style={{ fontFamily: 'serif' }}>
+                <h2 className="text-4xl md:text-5xl font-bold text-black mb-2">
                   FULL VILLA
                 </h2>
-                <p className="text-base text-black leading-relaxed">
+                <p className="text-base text-gray-700 mb-8 leading-relaxed">
                   {loremIpsum}
                 </p>
               </div>
 
               {/* AMENITIES Section */}
               <div>
-                <h2 className="text-3xl font-bold text-black mb-4" style={{ fontFamily: 'serif' }}>
+                <h2 className="text-4xl md:text-5xl font-bold text-black mb-2">
                   AMENITIES
                 </h2>
                 <div className="grid grid-cols-2 gap-2 mb-4">
                   {Array.from({ length: 6 }).map((_, index) => (
-                    <div key={index} className="text-base text-black">
+                    <div key={index} className="text-base text-gray-700">
                       • KING BED
                     </div>
                   ))}
                 </div>
-                <p className="text-base text-black leading-relaxed">
+                <p className="text-base text-gray-700 mb-8 leading-relaxed">
                   {loremIpsum}
                 </p>
               </div>
 
               {/* Book Now Button */}
-              <button className="w-fit px-8 py-4 bg-[#8B4513] text-white rounded-lg font-bold hover:bg-[#6B3410] transition-colors uppercase">
+              <button className="w-fit border-2 border-black bg-white text-black uppercase font-semibold px-8 py-3 hover:bg-black hover:text-white transition-colors">
                 BOOK NOW
               </button>
             </div>

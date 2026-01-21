@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import BannerCarousel from "../components/BannerCarousel";
 
 export default function BookingsPage() {
   const [checkIn, setCheckIn] = useState("");
@@ -12,6 +13,7 @@ export default function BookingsPage() {
   const [currency, setCurrency] = useState("₹ INR");
   return (
     <div className="relative min-h-screen">
+      <BannerCarousel />
       <Header />
       <div className="flex min-h-screen">
       {/* Left Section - Image */}

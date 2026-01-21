@@ -1,6 +1,9 @@
 import Header from "./components/Header";
 import BannerCarousel from "./components/BannerCarousel";
+import ReasonOfExistence from "./components/ReasonOfExistence";
+import WhatThisIsNot from "./components/WhatThisIsNot";
 import BookingWidget from "./components/BookingWidget";
+import UniqueBenefits from "./components/UniqueBenefits";
 import BookWithIrada from "./components/BookWithIrada";
 import RoomShowcase from "./components/RoomShowcase";
 import DiningShowcase from "./components/DiningShowcase";
@@ -20,7 +23,10 @@ export default function Home() {
       <NewsletterPopup />
       <BannerCarousel />
       <Header />
+      <ReasonOfExistence />
+      <WhatThisIsNot />
       <BookingWidget />
+      <UniqueBenefits />
       <Stories />
       <BookWithIrada />
       <RoomShowcase />

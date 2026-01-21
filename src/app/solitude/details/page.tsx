@@ -208,9 +208,6 @@ function SolitudeDetailsContent() {
           className="object-cover"
           priority
         />
-        <div className="absolute top-8 right-8 text-white text-2xl font-light">
-          epicentre
-        </div>
       </div>
 
       {/* Main Title Section */}

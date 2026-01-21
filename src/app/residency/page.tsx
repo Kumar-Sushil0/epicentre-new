@@ -119,9 +119,6 @@ export default function ResidencyPage() {
           className="object-cover"
           priority
         />
-        <div className="absolute top-8 right-8 text-white text-2xl font-light">
-          epicentre
-        </div>
       </div>
 
       {/* Cards Grid Section with Flip Cards */}
@@ -159,10 +156,10 @@ export default function ResidencyPage() {
                   </div>
                   {/* Back Side - Description */}
                   <div className="flip-card-back">
-                    <h3 className="text-2xl font-bold mb-4 text-center" style={{ fontFamily: 'serif' }}>
+                    <h3 className="text-2xl font-bold mb-4 text-center text-white" style={{ fontFamily: 'serif' }}>
                       {card.title}
                     </h3>
-                    <p className="text-sm text-center px-4 mb-4">
+                    <p className="text-sm text-center px-4 mb-4 text-white">
                       {card.description}
                     </p>
                     <div className="text-center text-xs text-gray-300 mb-4">

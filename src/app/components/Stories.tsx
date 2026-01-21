@@ -23,10 +23,10 @@ export default function Stories() {
   ];
 
   return (
-    <section className="w-full bg-white py-16">
+    <section className="w-full bg-[#F5F5F0] py-20">
       {/* STORIES Heading */}
       <div className="text-center mb-12">
-        <h1 className="text-6xl font-bold text-black uppercase" style={{ fontFamily: 'serif' }}>
+        <h1 className="text-5xl md:text-6xl font-bold text-black uppercase" style={{ fontFamily: 'serif' }}>
           STORIES
         </h1>
       </div>

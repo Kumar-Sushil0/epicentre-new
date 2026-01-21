@@ -1,33 +1,46 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function RoomShowcase() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [carouselSlide, setCarouselSlide] = useState(0);
 
-  const loremIpsum = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.`;
-
   const rooms = [
     {
       id: 1,
-      title: "ROOM 01",
-      description: loremIpsum,
-      image: "/banner.jpg",
+      title: "Rooms",
+      description: "Private spaces for rest and quiet stays.\n\nSimple, comfortable, and distraction-free.",
+      images: ["/banner.png", "/banner.png", "/banner.png"],
       imagePosition: "left" as const,
     },
     {
       id: 2,
-      title: "ROOM 02",
-      description: loremIpsum,
-      image: "/banner.jpg",
+      title: "Dorms",
+      description: "Shared sleeping spaces for low-key group stays.\n\nDesigned for coexistence without noise or pressure.",
+      images: ["/banner.png", "/banner.png", "/banner.png"],
+      imagePosition: "left" as const,
+    },
+    {
+      id: 3,
+      title: "Tents",
+      description: "Outdoor sleeping for those who prefer proximity to land and sky.\n\nBasic, weather-aware, and intentionally minimal.",
+      images: ["/banner.png", "/banner.png", "/banner.png"],
+      imagePosition: "left" as const,
+    },
+    {
+      id: 4,
+      title: "Community Hall",
+      description: "An open indoor space for shared time, movement, or reflection.\n\nFlexible, uncluttered, and purpose-neutral.",
+      images: ["/banner.png", "/banner.png", "/banner.png"],
       imagePosition: "left" as const,
     },
   ];
 
   const currentRoom = rooms[currentIndex];
-  const slides = [1, 2, 3]; // 3 image slides per carousel
+  const currentImages = currentRoom.images;
   const SLIDE_DURATION = 3000; // 3 seconds per slide
 
   // Use refs to track current values in the interval
@@ -39,8 +52,8 @@ export default function RoomShowcase() {
     const timer = setInterval(() => {
       currentSlideRef.current += 1;
 
-      // If we've gone through all slides
-      if (currentSlideRef.current >= slides.length) {
+      // If we've gone through all slides for current room
+      if (currentSlideRef.current >= currentImages.length) {
         // Reset slide and move to next room
         currentSlideRef.current = 0;
         currentRoomRef.current = (currentRoomRef.current + 1) % rooms.length;
@@ -53,13 +66,19 @@ export default function RoomShowcase() {
     }, SLIDE_DURATION);
 
     return () => clearInterval(timer);
-  }, [rooms.length, slides.length]);
+  }, [currentImages.length, rooms.length]);
 
   // Sync refs when user manually changes room
   useEffect(() => {
     currentRoomRef.current = currentIndex;
     currentSlideRef.current = carouselSlide;
   }, [currentIndex, carouselSlide]);
+
+  // Reset slide when room changes
+  useEffect(() => {
+    setCarouselSlide(0);
+    currentSlideRef.current = 0;
+  }, [currentIndex]);
 
   const goToSlide = (index: number) => {
     setCarouselSlide(index);
@@ -71,16 +90,29 @@ export default function RoomShowcase() {
   };
 
   const imageCarousel = (
-    <div className="w-full h-full flex items-center justify-center p-8">
-      <div className="relative w-full h-[400px] bg-gray-200 rounded-lg overflow-hidden">
-        {/* Placeholder for image */}
-        <div className="w-full h-full flex items-center justify-center bg-gray-300">
-          <span className="text-gray-500">Image Carousel</span>
-        </div>
+    <div className="w-full flex items-center justify-center">
+      <div className="relative w-full h-[500px] bg-gray-200 rounded-2xl overflow-hidden">
+        {/* Image Carousel */}
+        {currentImages.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === carouselSlide ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <Image
+              src={image}
+              alt={`${currentRoom.title} ${index + 1}`}
+              fill
+              className="object-cover"
+              priority={index === 0}
+            />
+          </div>
+        ))}
 
         {/* Carousel Dots Indicator (Bottom Center) */}
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-40 flex gap-2">
-          {slides.map((_, index) => (
+          {currentImages.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
@@ -119,16 +151,16 @@ export default function RoomShowcase() {
   );
 
   const textContent = (
-    <div className="flex flex-col justify-center px-12 py-16">
-      <h2 className="text-5xl font-bold text-gray-900 mb-6">
+    <div className="flex flex-col justify-center px-4 md:px-8 py-8">
+      <h2 className="text-4xl md:text-5xl font-bold text-black mb-2">
         {currentRoom.title}
       </h2>
-      <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+      <div className="text-base text-gray-700 mb-8 leading-relaxed whitespace-pre-line">
         {currentRoom.description}
-      </p>
+      </div>
       <Link 
         href="/rooms"
-        className="w-fit px-8 py-3 bg-[#8B4513] text-white rounded-lg font-medium hover:bg-[#6B3410] transition-colors inline-block"
+        className="w-fit border-2 border-black bg-white text-black uppercase font-semibold px-8 py-3 hover:bg-black hover:text-white transition-colors inline-block"
       >
         LEARN MORE
       </Link>
@@ -136,24 +168,26 @@ export default function RoomShowcase() {
   );
 
   return (
-    <section className="w-full bg-white">
-      {/* Main Content */}
-      <div className="flex min-h-[500px] items-center">
-        {currentRoom.imagePosition === "left" ? (
-          <>
-            <div className="w-1/2 flex items-center">{imageCarousel}</div>
-            <div className="w-1/2 flex items-center">{textContent}</div>
-          </>
-        ) : (
-          <>
-            <div className="w-1/2 flex items-center">{textContent}</div>
-            <div className="w-1/2 flex items-center">{imageCarousel}</div>
-          </>
-        )}
+    <section className="w-full bg-white py-20">
+      <div className="max-w-7xl mx-auto px-8">
+        {/* Main Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          {currentRoom.imagePosition === "left" ? (
+            <>
+              <div className="flex items-center">{imageCarousel}</div>
+              <div className="flex items-center">{textContent}</div>
+            </>
+          ) : (
+            <>
+              <div className="flex items-center">{textContent}</div>
+              <div className="flex items-center">{imageCarousel}</div>
+            </>
+          )}
+        </div>
       </div>
 
       {/* Navigation Controls */}
-      <div className="flex items-center justify-center pb-12">
+      <div className="flex items-center justify-center pt-16">
         {/* Room Indicators */}
         <div className="flex gap-3">
           {rooms.map((_, index) => (

@@ -67,7 +67,7 @@ export default function BookWithIrada() {
   };
 
   return (
-    <section className="w-full bg-[#F5F5F0] py-12 relative">
+    <section className="w-full bg-[#F5F5F0] py-20 relative">
       {/* Decorative curved element at top */}
       <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-[#6B3410] rounded-full"></div>
 

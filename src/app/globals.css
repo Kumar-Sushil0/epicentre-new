@@ -81,3 +81,43 @@ body {
 .venue-flip-card:hover .flip-card-inner {
   transform: rotateY(180deg);
 }
+
+/* Solitude Flip Card - Responsive in Grid */
+.solitude-flip-card {
+  display: block;
+  perspective: 1000px;
+}
+
+.solitude-flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Expression Flip Card - Responsive in Grid */
+.expression-flip-card {
+  display: block;
+  perspective: 1000px;
+}
+
+.expression-flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Wellness Flip Card - Responsive in Grid */
+.wellness-flip-card {
+  display: block;
+  perspective: 1000px;
+}
+
+.wellness-flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Experience Flip Card - Responsive in Grid */
+.experience-flip-card {
+  display: block;
+  perspective: 1000px;
+}
+
+.experience-flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}

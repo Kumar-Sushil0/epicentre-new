@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="w-full bg-black py-12">
@@ -21,8 +23,10 @@ export default function Footer() {
 
           {/* Third Column */}
           <div className="flex flex-col gap-4">
+            <Link href="/contact" className="text-white uppercase hover:text-[#D4A574] transition-colors">
+              CONTACT US
+            </Link>
             <span className="text-white uppercase">EMAIL</span>
-            <span className="text-white uppercase">INSTAGRAM</span>
             <span className="text-white uppercase">INSTAGRAM</span>
           </div>
 
