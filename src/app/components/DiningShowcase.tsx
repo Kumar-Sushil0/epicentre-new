@@ -3,45 +3,55 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
+type ImagePosition = "left" | "right";
+
+interface Dining {
+  id: number;
+  title: string;
+  description: string;
+  images: string[];
+  imagePosition: ImagePosition;
+}
+
 export default function DiningShowcase() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [carouselSlide, setCarouselSlide] = useState(0);
 
-  const dinings = [
+  const dinings: Dining[] = [
     {
       id: 1,
       title: "Home Food",
       description: "Simple, home-style vegetarian meals.\n\nCooked to support steadiness and clarity.",
       images: ["/banner.png", "/banner.png", "/banner.png"],
-      imagePosition: "right" as const,
+      imagePosition: "right",
     },
     {
       id: 2,
       title: "Salads, Smoothies, Bowls",
       description: "Light, fresh options for warm days and clear minds.\n\nEasy on the body, easy on attention.",
       images: ["/banner.png", "/banner.png", "/banner.png"],
-      imagePosition: "right" as const,
+      imagePosition: "right",
     },
     {
       id: 3,
       title: "Barbeque",
       description: "Slow, outdoor cooking done occasionally.\n\nSocial, grounded, and unhurried.",
       images: ["/banner.png", "/banner.png", "/banner.png"],
-      imagePosition: "right" as const,
+      imagePosition: "right",
     },
     {
       id: 4,
       title: "Woodstove Pizza",
       description: "Made in small batches when the context fits.\n\nSimple ingredients, shared without rush.",
       images: ["/banner.png", "/banner.png", "/banner.png"],
-      imagePosition: "right" as const,
+      imagePosition: "right",
     },
     {
       id: 5,
       title: "Sushi",
       description: "Prepared selectively and with care.\n\nMinimal, precise, and not routine.",
       images: ["/banner.png", "/banner.png", "/banner.png"],
-      imagePosition: "right" as const,
+      imagePosition: "right",
     },
   ];
 
