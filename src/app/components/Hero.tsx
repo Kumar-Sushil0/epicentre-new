@@ -1,0 +1,33 @@
+"use client";
+
+export default function Hero() {
+  return (
+    <section className="relative h-[85vh] min-h-[600px] w-full flex items-center justify-center overflow-hidden">
+      <div
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-[20s] hover:scale-105"
+        style={{
+          backgroundImage: `linear-gradient(rgba(26, 18, 11, 0.4), rgba(26, 18, 11, 0.6)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAt8nAb96Exmu9QhCiRKqZU5CxnQDk3iDJqkw73Va-rbUXZBaBBnvTyr_8X9npg6Yn_5wIi69Dz69sf6mT479dvp0WNVf3LQfzJm3Kxbwc_HmgBXOA1XsRvHtLaBLc_tK6eOcug7ZaFeINjj6YvwfPR7D2-h2b9_YcgV5fig53664CLwWblDWeRmIb3M53NPs8mrHn-SgfqLwHoeBmfHUnlks9IPXg-3KFucSJ8xkj_HMuyqAZ0SnWgdK65Pkzlf72e6F38Wc899wJz")`,
+        }}
+      />
+      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        <div className="inline-flex items-center justify-center p-3 mb-6 rounded-full bg-earth-900/30 backdrop-blur-sm border border-earth-100/20">
+          <span className="material-symbols-outlined text-earth-100 text-2xl">self_improvement</span>
+        </div>
+        <h1 className="text-earth-50 text-5xl md:text-7xl font-display font-black tracking-tight mb-6 shadow-sm drop-shadow-lg">
+          Find Your Center
+        </h1>
+        <p className="text-earth-100/90 text-lg md:text-xl font-light tracking-wide max-w-2xl mx-auto mb-10 font-body drop-shadow-md">
+          A sanctuary designed for silence, introspection, and a return to basics. Not a hotel, but a home for the spirit.
+        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            className="bg-earth-100 text-earth-900 hover:bg-white font-bold py-3 px-8 rounded-lg transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+            href="#philosophy"
+          >
+            Our Philosophy
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}

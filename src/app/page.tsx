@@ -1,40 +1,28 @@
 import Header from "./components/Header";
-import BannerCarousel from "./components/BannerCarousel";
-import ReasonOfExistence from "./components/ReasonOfExistence";
+import Hero from "./components/Hero";
+import BookingForm from "./components/BookingForm";
+import Philosophy from "./components/Philosophy";
 import WhatThisIsNot from "./components/WhatThisIsNot";
-import BookingWidget from "./components/BookingWidget";
-import UniqueBenefits from "./components/UniqueBenefits";
-import BookWithIrada from "./components/BookWithIrada";
-import RoomShowcase from "./components/RoomShowcase";
-import DiningShowcase from "./components/DiningShowcase";
-import ExperiencesShowcase from "./components/ExperiencesShowcase";
-import Gallery from "./components/Gallery";
-import HowToGetHere from "./components/HowToGetHere";
-import FAQ from "./components/FAQ";
-import Stories from "./components/Stories";
+import EPiCentreDifference from "./components/EPiCentreDifference";
+import Accommodation from "./components/Accommodation";
+import Dining from "./components/Dining";
+import Experiences from "./components/Experiences";
+import Location from "./components/Location";
 import Footer from "./components/Footer";
-import NewsletterPopup from "./components/NewsletterPopup";
-import VerticalCTA from "./components/VerticalCTA";
 
 export default function Home() {
   return (
-    <main className="relative">
-      <VerticalCTA />
-      <NewsletterPopup />
-      <BannerCarousel />
+    <main className="pt-[72px]">
       <Header />
-      <ReasonOfExistence />
+      <Hero />
+      <BookingForm />
+      <Philosophy />
       <WhatThisIsNot />
-      <BookingWidget />
-      <UniqueBenefits />
-      <Stories />
-      <BookWithIrada />
-      <RoomShowcase />
-      <DiningShowcase />
-      <ExperiencesShowcase />
-      <Gallery />
-      <HowToGetHere />
-      <FAQ />
+      <EPiCentreDifference />
+      <Accommodation />
+      <Dining />
+      <Experiences />
+      <Location />
       <Footer />
     </main>
   );

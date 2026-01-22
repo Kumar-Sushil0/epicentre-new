@@ -1,78 +1,118 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import Image from "next/image";
+
 export default function WhatThisIsNot() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const items = [
+    {
+      id: 0,
+      title: "Not a Luxury Resort",
+      description: "We prioritize self-sufficiency and communal living over concierge service.",
+      icon: "do_not_disturb_on",
+      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDgW2JCfQUk6WD7IrZgbpH-HhZ78gEK4Yb__SnaCaVXXfO0790-IVySsIsLDIClfkM2uY2lpKzrnz57Teh49lJe8h_MzJU6o5LAor-XHzM0yB2wQh1gIvdWMGs0GM18aOu-hbH50xvZZgXqd8is_NGa6LOJQZdL5kc36XN1qwYeLT0dO_5yNBz1HQGVDfmL0xyVqW8LnShVfj7IUfO37xXh-LFD9Xosn02Oo3AlYiWBy4PNcxBx3tQEYpHEgvVPybpFeVHcSWkFNwHL",
+      badge: "Self-Sufficiency",
+    },
+    {
+      id: 1,
+      title: "Not for Parties",
+      description: "This is a zone of quiet contemplation, strictly no loud celebrations.",
+      icon: "volume_off",
+      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDgW2JCfQUk6WD7IrZgbpH-HhZ78gEK4Yb__SnaCaVXXfO0790-IVySsIsLDIClfkM2uY2lpKzrnz57Teh49lJe8h_MzJU6o5LAor-XHzM0yB2wQh1gIvdWMGs0GM18aOu-hbH50xvZZgXqd8is_NGa6LOJQZdL5kc36XN1qwYeLT0dO_5yNBz1HQGVDfmL0xyVqW8LnShVfj7IUfO37xXh-LFD9Xosn02Oo3AlYiWBy4PNcxBx3tQEYpHEgvVPybpFeVHcSWkFNwHL",
+      badge: "Quiet Zone",
+    },
+    {
+      id: 2,
+      title: "No Room Service",
+      description: "Meals are served in the community dining area at set harmonious times.",
+      icon: "restaurant_menu",
+      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDgW2JCfQUk6WD7IrZgbpH-HhZ78gEK4Yb__SnaCaVXXfO0790-IVySsIsLDIClfkM2uY2lpKzrnz57Teh49lJe8h_MzJU6o5LAor-XHzM0yB2wQh1gIvdWMGs0GM18aOu-hbH50xvZZgXqd8is_NGa6LOJQZdL5kc36XN1qwYeLT0dO_5yNBz1HQGVDfmL0xyVqW8LnShVfj7IUfO37xXh-LFD9Xosn02Oo3AlYiWBy4PNcxBx3tQEYpHEgvVPybpFeVHcSWkFNwHL",
+      badge: "Community Dining",
+    },
+  ];
+
+  // Auto-advance carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % items.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [items.length]);
+
+  const currentItem = items[currentSlide];
+
   return (
-    <section className="w-full bg-white py-20">
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="text-center mb-16">
-          <div className="inline-block mb-6">
-            <div className="w-20 h-20 bg-black rounded-full mx-auto flex items-center justify-center">
-              <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </div>
-          </div>
-          <h2 className="text-5xl md:text-6xl font-bold text-black mb-12" style={{ fontFamily: 'serif' }}>
-            What this is not
-          </h2>
-        </div>
-        
-        <div className="max-w-4xl mx-auto">
-          <p className="text-base text-gray-700 leading-relaxed text-center mb-12">
-            <strong className="text-black">EPiCentre</strong> is not:
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-            <div className="flex items-start gap-4 p-6 bg-[#F5F5F0] rounded-lg">
-              <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </div>
-              <p className="text-base text-gray-700 leading-relaxed pt-2">
-                A resort or luxury stay
-              </p>
-            </div>
-            
-            <div className="flex items-start gap-4 p-6 bg-[#F5F5F0] rounded-lg">
-              <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </div>
-              <p className="text-base text-gray-700 leading-relaxed pt-2">
-                A wellness program
-              </p>
-            </div>
-            
-            <div className="flex items-start gap-4 p-6 bg-[#F5F5F0] rounded-lg">
-              <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </div>
-              <p className="text-base text-gray-700 leading-relaxed pt-2">
-                A retreat with schedules and activities
-              </p>
-            </div>
-            
-            <div className="flex items-start gap-4 p-6 bg-[#F5F5F0] rounded-lg">
-              <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </div>
-              <p className="text-base text-gray-700 leading-relaxed pt-2">
-                A place for parties or loud socialising
-              </p>
-            </div>
-          </div>
-          
-          <div className="text-center p-8 bg-black rounded-lg">
-            <p className="text-lg text-white leading-relaxed">
-              Nothing here is designed to entertain or impress.
+    <section className="py-20 bg-earth-800 border-y border-earth-700/50">
+      <div className="max-w-[1280px] mx-auto px-6">
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div>
+            <h3 className="text-3xl font-bold mb-6 text-earth-50">What this is not</h3>
+            <p className="text-earth-300 mb-8 font-body">
+              Setting clear expectations is the first step to finding peace. We are intentional about what we exclude to protect the atmosphere we include.
             </p>
+            <div className="space-y-4">
+              {items.map((item, index) => (
+                <div
+                  key={item.id}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`flex items-start gap-4 p-4 rounded-xl border cursor-pointer transition-all ${
+                    currentSlide === index
+                      ? "border-gold-500 bg-earth-900/80 shadow-lg"
+                      : "border-earth-700 bg-earth-900/50 hover:border-gold-500/30"
+                  }`}
+                >
+                  <span className="material-symbols-outlined text-gold-500 mt-1">{item.icon}</span>
+                  <div>
+                    <h4 className="font-bold text-lg mb-1 text-earth-100">{item.title}</h4>
+                    <p className="text-sm text-earth-300/80 font-body">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl shadow-black/50 group border border-earth-700">
+            {/* Carousel Images */}
+            {items.map((item, index) => (
+              <div
+                key={item.id}
+                className={`absolute inset-0 transition-opacity duration-700 ${
+                  index === currentSlide ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                <Image
+                  alt={item.title}
+                  src={item.image}
+                  fill
+                  className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+            ))}
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors z-10" />
+            <div className="absolute bottom-6 left-6 z-20">
+              <span className="bg-earth-900/90 text-gold-500 backdrop-blur px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider shadow-sm border border-earth-700">
+                {currentItem.badge}
+              </span>
+            </div>
+            {/* Carousel Dots */}
+            <div className="absolute bottom-6 right-6 z-20 flex gap-2">
+              {items.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-2 h-2 rounded-full transition-all ${
+                    index === currentSlide ? "bg-gold-500 w-8" : "bg-earth-100/50 hover:bg-earth-100/75"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
 }
+

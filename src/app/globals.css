@@ -1,123 +1,65 @@
 @import "tailwindcss";
 
+@theme {
+  --color-earth-950: #0f0b08;
+  --color-earth-900: #1A120B;
+  --color-earth-800: #261b14;
+  --color-earth-700: #3E2A20;
+  --color-earth-600: #5D4037;
+  --color-earth-300: #BCAAA4;
+  --color-earth-100: #E6DCCF;
+  --color-earth-50: #F5EFEB;
+  
+  --color-gold-400: #D4AF37;
+  --color-gold-500: #C5A065;
+  --color-gold-600: #A68552;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #1A120B;
+  --foreground: #E6DCCF;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-display);
+  antialiased: true;
 }
 
-/* Flip Card Styles */
-.flip-card-container {
-  perspective: 1000px;
-  width: 320px;
-  height: 256px;
+/* Material Icons */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
 }
 
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.7s;
-  transform-style: preserve-3d;
+.material-symbols-outlined.filled-icon {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
-.flip-card-container:hover .flip-card-inner {
-  transform: rotateY(180deg);
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-.flip-card-front,
-.flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  border-radius: 0.5rem;
-  overflow: hidden;
+::-webkit-scrollbar-track {
+  background: #1A120B;
 }
 
-.flip-card-front {
-  background-color: #bbb;
+::-webkit-scrollbar-thumb {
+  background: #3E2A20;
+  border-radius: 4px;
 }
 
-.flip-card-back {
-  background-color: #1f2937;
+::-webkit-scrollbar-thumb:hover {
+  background: #C5A065;
+}
+
+/* Selection */
+::selection {
+  background: rgba(197, 160, 101, 0.3);
   color: white;
-  transform: rotateY(180deg);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1.5rem;
-}
-
-/* Venue Flip Card - Responsive in Grid */
-.venue-flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-/* Solitude Flip Card - Responsive in Grid */
-.solitude-flip-card {
-  display: block;
-  perspective: 1000px;
-}
-
-.solitude-flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-/* Expression Flip Card - Responsive in Grid */
-.expression-flip-card {
-  display: block;
-  perspective: 1000px;
-}
-
-.expression-flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-/* Wellness Flip Card - Responsive in Grid */
-.wellness-flip-card {
-  display: block;
-  perspective: 1000px;
-}
-
-.wellness-flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-/* Experience Flip Card - Responsive in Grid */
-.experience-flip-card {
-  display: block;
-  perspective: 1000px;
-}
-
-.experience-flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
 }
