@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-earth-950/90 backdrop-blur-md border-b border-earth-700 transition-colors duration-300">
       <div className="max-w-[1280px] mx-auto px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-3">
           <Image
             src="/logo.svg"
             alt="EPiCentre Logo"
@@ -15,7 +15,7 @@ export default function Header() {
             height={40}
             className="object-contain"
           />
-        </div>
+        </Link>
         <nav className="hidden md:flex items-center gap-8">
           <Link className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="/rooms">
             Stay
