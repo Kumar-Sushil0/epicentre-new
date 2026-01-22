@@ -17,21 +17,18 @@ export default function Header() {
           />
         </div>
         <nav className="hidden md:flex items-center gap-8">
-          <a className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="#philosophy">
-            Philosophy
-          </a>
-          <a className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="#accommodation">
+          <Link className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="/rooms">
             Stay
-          </a>
+          </Link>
           <a className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="#dining">
             Dining
           </a>
-          <a className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="#experiences">
+          <Link className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="/experiences">
             Experiences
-          </a>
-          <a className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="#location">
-            Location
-          </a>
+          </Link>
+          <Link className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="/wellness">
+            Wellness
+          </Link>
         </nav>
         <Link
           href="/bookings"
