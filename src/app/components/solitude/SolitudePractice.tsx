@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 interface SolitudePracticeProps {
   number: string;
   category: string;
@@ -8,6 +10,7 @@ interface SolitudePracticeProps {
   buttonText: string;
   buttonIcon: string;
   imagePosition?: "left" | "right";
+  practiceId: string;
 }
 
 export default function SolitudePractice({
@@ -20,6 +23,7 @@ export default function SolitudePractice({
   buttonText,
   buttonIcon,
   imagePosition = "right",
+  practiceId,
 }: SolitudePracticeProps) {
   const isImageLeft = imagePosition === "left";
 
@@ -48,14 +52,17 @@ export default function SolitudePractice({
             <p className="text-earth-50/70 text-lg font-light leading-relaxed font-body">{description}</p>
           </div>
           <div className="pl-6">
-            <button className="flex items-center gap-2 text-gold-500 hover:text-earth-50 transition-colors duration-300 group/btn w-fit">
+            <Link
+              href={`/solitude/details?id=${practiceId}`}
+              className="flex items-center gap-2 text-gold-500 hover:text-earth-50 transition-colors duration-300 group/btn w-fit"
+            >
               <span className="text-sm font-bold tracking-wider uppercase border-b border-transparent group-hover/btn:border-earth-50 pb-0.5">
                 {buttonText}
               </span>
               <span className="material-symbols-outlined text-[18px] group-hover/btn:translate-x-1 transition-transform">
                 {buttonIcon}
               </span>
-            </button>
+            </Link>
           </div>
         </div>
       </div>

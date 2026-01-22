@@ -18,6 +18,7 @@ export default function SolitudePage() {
       buttonText: "Read Guide",
       buttonIcon: "arrow_forward",
       imagePosition: "left" as const,
+      practiceId: "angling",
     },
     {
       number: "02",
@@ -31,6 +32,7 @@ export default function SolitudePage() {
       buttonText: "View Species Map",
       buttonIcon: "map",
       imagePosition: "right" as const,
+      practiceId: "bird-watching",
     },
     {
       number: "03",
@@ -44,6 +46,7 @@ export default function SolitudePage() {
       buttonText: "Night Sky Guide",
       buttonIcon: "star",
       imagePosition: "left" as const,
+      practiceId: "star-gazing",
     },
     {
       number: "04",
@@ -57,6 +60,7 @@ export default function SolitudePage() {
       buttonText: "Explore Trails",
       buttonIcon: "directions_walk",
       imagePosition: "right" as const,
+      practiceId: "forest-walks",
     },
   ];
 
