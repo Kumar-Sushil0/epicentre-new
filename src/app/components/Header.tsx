@@ -17,17 +17,29 @@ export default function Header() {
           />
         </Link>
         <nav className="hidden md:flex items-center gap-8">
-          <Link className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="/rooms">
-            Stay
-          </Link>
-          <a className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="#dining">
-            Dining
-          </a>
-          <Link className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="/experiences">
-            Experiences
+          <Link className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="/about-us">
+            About Us
           </Link>
           <Link className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="/wellness">
             Wellness
+          </Link>
+          <Link className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="/expression">
+            Expression
+          </Link>
+          <Link className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="/rooms">
+            Rooms
+          </Link>
+          <Link className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="/solitude">
+            Solitude
+          </Link>
+          <Link className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="/residency">
+            Residency
+          </Link>
+          <Link className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="/experiences">
+            Experiences
+          </Link>
+          <Link className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="/venue">
+            Venue
           </Link>
         </nav>
         <Link

@@ -1,0 +1,30 @@
+import ResidencyCard from "./ResidencyCard";
+
+interface Residency {
+  category: string;
+  title: string;
+  description: string;
+  href?: string;
+}
+
+interface ResidencyGridProps {
+  residencies: Residency[];
+}
+
+export default function ResidencyGrid({ residencies }: ResidencyGridProps) {
+  return (
+    <section className="py-24 bg-earth-950">
+      <div className="max-w-[1280px] mx-auto px-6">
+        <div className="mb-16">
+          <h2 className="text-earth-50 text-3xl font-display font-medium mb-2">Available Immersions</h2>
+          <p className="text-earth-300 font-body">Choose your path of inquiry.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {residencies.map((residency, index) => (
+            <ResidencyCard key={index} {...residency} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

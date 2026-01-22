@@ -1,0 +1,34 @@
+export default function ExpressionHero() {
+  return (
+    <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 z-0">
+        <div
+          className="w-full h-full bg-cover bg-center bg-no-repeat bg-fixed transform scale-105"
+          style={{
+            backgroundImage: `url("https://lh3.googleusercontent.com/aida-public/AB6AXuCo3MJhZ2Vq9-Ga2Ea74ot7K3svtpwhjBfDSCrXUYnFOYTuKa0AlDwQhdZ8BxihuYNAXOpSdB-tTtKdMZs3cGX8b9BvyVJ0f7v10BnyVYkQEHkFN4-JvUnOV3TtcfaasbCLOtA1FJ36Hww-91OBUlDJHTpWkvWgfKLGDdNvhDccKPCHKxSre2HqIJDUmAdVeuaFlpLJWz1rQnuz4k27-rXUV4Tm2jrPtpK6Sxr5anLKPzQwalZ-iwFuH6pQqNpaJADP6WWqN2Pu-Yd4")`,
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-earth-950/60 via-earth-950/40 to-earth-950 z-10"></div>
+      </div>
+      {/* Hero Content */}
+      <div className="relative z-20 container mx-auto px-6 text-center max-w-4xl pt-20">
+        <div className="flex flex-col items-center gap-8">
+          <div className="w-16 h-[1px] bg-gold-500/60 mb-2"></div>
+          <h1 className="text-earth-50 text-4xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight drop-shadow-xl font-display">
+            Facilitated, work-in-progress spaces at EPiCentre
+          </h1>
+          <p className="text-earth-50/90 text-lg md:text-xl font-normal leading-relaxed max-w-2xl font-body drop-shadow-md">
+            A sanctuary for the unfinished, the raw, and the refined. We provide the space for you to explore your creative process without the pressure of performance.
+          </p>
+          <div className="pt-6">
+            <button className="flex items-center gap-2 cursor-pointer rounded-full h-14 px-8 bg-transparent border border-earth-50/30 hover:bg-earth-50/10 hover:border-gold-500/50 text-earth-50 text-base font-medium transition-all duration-300 font-body backdrop-blur-sm group">
+              <span>Explore the Space</span>
+              <span className="material-symbols-outlined group-hover:translate-y-1 transition-transform text-lg">arrow_downward</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
