@@ -5,9 +5,10 @@ interface Experience {
   description: string;
   time: string;
   icon: string;
-  image: string;
+  images: string[];
   imageAlt: string;
   aspectRatio: "4/3" | "3/4" | "video";
+  href?: string;
 }
 
 interface ExperiencesGridProps {

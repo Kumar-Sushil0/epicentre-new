@@ -2,8 +2,18 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const pathname = usePathname();
+
+  const isActive = (path: string) => {
+    if (path === "/") {
+      return pathname === "/";
+    }
+    return pathname.startsWith(path);
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-earth-950/90 backdrop-blur-md border-b border-earth-700 transition-colors duration-300">
       <div className="max-w-[1280px] mx-auto px-6 py-4 flex items-center justify-between">
@@ -17,28 +27,68 @@ export default function Header() {
           />
         </Link>
         <nav className="hidden md:flex items-center gap-8">
-          <Link className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="/about-us">
+          <Link
+            className={`text-sm font-medium transition-colors ${
+              isActive("/about-us") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
+            }`}
+            href="/about-us"
+          >
             About Us
           </Link>
-          <Link className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="/wellness">
+          <Link
+            className={`text-sm font-medium transition-colors ${
+              isActive("/wellness") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
+            }`}
+            href="/wellness"
+          >
             Wellness
           </Link>
-          <Link className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="/expression">
+          <Link
+            className={`text-sm font-medium transition-colors ${
+              isActive("/expression") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
+            }`}
+            href="/expression"
+          >
             Expression
           </Link>
-          <Link className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="/rooms">
+          <Link
+            className={`text-sm font-medium transition-colors ${
+              isActive("/rooms") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
+            }`}
+            href="/rooms"
+          >
             Rooms
           </Link>
-          <Link className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="/solitude">
+          <Link
+            className={`text-sm font-medium transition-colors ${
+              isActive("/solitude") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
+            }`}
+            href="/solitude"
+          >
             Solitude
           </Link>
-          <Link className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="/residency">
+          <Link
+            className={`text-sm font-medium transition-colors ${
+              isActive("/residency") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
+            }`}
+            href="/residency"
+          >
             Residency
           </Link>
-          <Link className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="/experiences">
+          <Link
+            className={`text-sm font-medium transition-colors ${
+              isActive("/experiences") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
+            }`}
+            href="/experiences"
+          >
             Experiences
           </Link>
-          <Link className="text-sm font-medium text-earth-300 hover:text-gold-400 transition-colors" href="/venue">
+          <Link
+            className={`text-sm font-medium transition-colors ${
+              isActive("/venue") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
+            }`}
+            href="/venue"
+          >
             Venue
           </Link>
         </nav>

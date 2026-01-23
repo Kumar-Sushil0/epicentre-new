@@ -15,6 +15,7 @@ export default function WellnessPage() {
         "https://lh3.googleusercontent.com/aida-public/AB6AXuAG8sRV16GeDF6s3Aix4GpETZ3eauYTdeaL5IlWaBQHdmLaEUl8HwITF-icK7rBJH3rs4_eyRc0OnTyudHniz8NCe3oRC2k5_KcTRLReqJdws9zmY25stjYSrFvYvnbb4fxetbYlgcqCJDWwMaBr_6UB09wT864MpT6mLPkqnqxG3JPy_DNNFOMUqcmW8iZWOE4etCbj4TW4EEkBzJss4y7vWzlNmUWjLyUiZaka0GRqyef8OxRV6v8-KYfO5Y2EoBHFW0f3nVZFV6T",
       imageAlt: "Person lifting weights in a dark moody gym setting",
       aspectRatio: "4/5" as const,
+      href: "/wellness",
     },
     {
       title: "Kayaking & Cycling",
@@ -26,6 +27,7 @@ export default function WellnessPage() {
       imageAlt: "Misty lake landscape with a lone kayak floating on calm water",
       aspectRatio: "wide" as const,
       spanColumns: 2,
+      href: "/wellness",
     },
     {
       title: "Yoga & Meditation",
@@ -36,6 +38,7 @@ export default function WellnessPage() {
         "https://lh3.googleusercontent.com/aida-public/AB6AXuBpZOvr0qjgBHYFzGTiTaPYUUfxtRTTng4Mwyz1Y1DWNZJ_1bIkfqJ3exaDYGFmGQH0kEFlJ--2x9K7P2_gWe-POWZpboure-tmEfUlOPBXEahy3y3fJM4Yf1VShZ5WCMnIOQRgohRnU1MHh9dBz_RMPXnR6lgAzzpCeWWqxfY1jj5rO29e1v-so6AiyI_-y3kx2qdK_n4hThx3ugUPOZty1UBFhhmRzm7Lds78A7DSjpxT19FH5wa-UqsVvRcWUBB5wtZ4-NGFFouA",
       imageAlt: "Silhouette of a person meditating in a dimly lit room with candles",
       aspectRatio: "4/5" as const,
+      href: "/wellness",
     },
     {
       title: "Board Games",
@@ -46,6 +49,7 @@ export default function WellnessPage() {
         "https://lh3.googleusercontent.com/aida-public/AB6AXuDpLgNIXCBBA7cPpXwO9csLOqZrHsSadnHbb7Q-s24LEXvnrtHwATVxM-rgQthaw7HXT23Wv2Vj4M0QHf7vMXlnFxVR_3527JHh44DEYoHmp9RAiTjj5UKVQsSpgDXnPAtpKFwBRYkq1brPYGQAyalnn8lw1Ew3ezLh9zoRAIiS58I2gC8YpIP3e3Vx-QSnJvTJzmVneD0Kah0f9YnTcUovk_mk9mNLTdZ2PEgiloIzz1gOrdmvtvnxrXR2idxdg2P4IVZ0jM6IqpKT",
       imageAlt: "Close up of wooden chess pieces on a board in warm light",
       aspectRatio: "4/5" as const,
+      href: "/wellness",
     },
     {
       title: "Pet Friendly",
@@ -56,6 +60,7 @@ export default function WellnessPage() {
         "https://lh3.googleusercontent.com/aida-public/AB6AXuA2Tpwiek3PonA5i87JcVQ0JysCYWwZeYKjPR00nuxAGlqkrb3Oc2Y76BPK5eoukMAJQpiiOpUXSye5KD7z0KrMUhR-VAei7QNfxuEafVCYyoPl2zI3KEil0UkwjxK_l6FhAUKIbZzxXgqDkWh-X6LW5Zh9V0fgppjnWfzsEE9CipCUk-lGo482Uh8fF2rqUczpWgg0hGFp7hIyQClItjfCzoXHDeU1kPzuo9ZBkjj7S1RucpxI27X9fAKm_lGvr_ZxX4o8cU_In7QQ",
       imageAlt: "A dog sleeping peacefully on a rug near a fireplace",
       aspectRatio: "4/5" as const,
+      href: "/wellness",
     },
     {
       title: "A Day at a Farm",
@@ -68,6 +73,7 @@ export default function WellnessPage() {
       aspectRatio: "farm" as const,
       spanColumns: 3,
       isFarmCard: true,
+      href: "/wellness",
     },
   ];
 

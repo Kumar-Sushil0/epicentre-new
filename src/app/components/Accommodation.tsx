@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Accommodation() {
   return (
@@ -14,7 +15,7 @@ export default function Accommodation() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[300px]">
-          <div className="lg:col-span-2 lg:row-span-2 group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
+          <Link href="/rooms" className="lg:col-span-2 lg:row-span-2 group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10" />
             <Image
               alt="Spacious private room with minimalist decor"
@@ -26,8 +27,8 @@ export default function Accommodation() {
               <h3 className="text-white text-2xl font-bold mb-1">Private Suites</h3>
               <p className="text-earth-200 text-sm font-body">Complete seclusion with en-suite facilities.</p>
             </div>
-          </div>
-          <div className="lg:col-span-1 lg:row-span-2 group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
+          </Link>
+          <Link href="/rooms" className="lg:col-span-1 lg:row-span-2 group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10" />
             <Image
               alt="Cozy glamping tent structure"
@@ -39,8 +40,8 @@ export default function Accommodation() {
               <h3 className="text-white text-xl font-bold mb-1">Luxury Tents</h3>
               <p className="text-earth-200 text-sm font-body">Closer to nature, without compromising comfort.</p>
             </div>
-          </div>
-          <div className="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
+          </Link>
+          <Link href="/rooms" className="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10" />
             <Image
               alt="Clean dormitory style room"
@@ -52,8 +53,8 @@ export default function Accommodation() {
               <h3 className="text-white text-lg font-bold">Dorms</h3>
               <p className="text-earth-200 text-xs font-body">Shared simplicity.</p>
             </div>
-          </div>
-          <div className="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
+          </Link>
+          <Link href="/rooms" className="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10" />
             <Image
               alt="Community hall with cushions"
@@ -65,7 +66,7 @@ export default function Accommodation() {
               <h3 className="text-white text-lg font-bold">Community Hall</h3>
               <p className="text-earth-200 text-xs font-body">For groups & workshops.</p>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     </section>

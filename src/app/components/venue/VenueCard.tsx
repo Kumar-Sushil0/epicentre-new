@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 interface VenueCardProps {
   title: string;
@@ -8,11 +9,12 @@ interface VenueCardProps {
   area: string;
   capacity: string;
   badge?: string;
+  href?: string;
 }
 
-export default function VenueCard({ title, description, image, imageAlt, area, capacity, badge }: VenueCardProps) {
-  return (
-    <article className="group bg-earth-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-gold-500/10 transition-all duration-300 border border-transparent hover:border-gold-500/20">
+export default function VenueCard({ title, description, image, imageAlt, area, capacity, badge, href }: VenueCardProps) {
+  const CardContent = (
+    <article className="group bg-earth-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-gold-500/10 transition-all duration-300 border border-transparent hover:border-gold-500/20 cursor-pointer">
       <div className="relative h-64 overflow-hidden">
         <Image
           alt={imageAlt}
@@ -41,4 +43,10 @@ export default function VenueCard({ title, description, image, imageAlt, area, c
       </div>
     </article>
   );
+
+  if (href) {
+    return <Link href={href}>{CardContent}</Link>;
+  }
+
+  return CardContent;
 }

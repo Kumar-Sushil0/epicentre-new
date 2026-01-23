@@ -8,6 +8,7 @@ interface Venue {
   area: string;
   capacity: string;
   badge?: string;
+  href?: string;
 }
 
 interface VenueSectionProps {

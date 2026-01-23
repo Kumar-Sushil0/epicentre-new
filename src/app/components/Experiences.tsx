@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Experiences() {
   return (
@@ -9,7 +10,7 @@ export default function Experiences() {
           <h2 className="text-3xl font-bold text-earth-50">Curated Experiences</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="group cursor-pointer">
+          <Link href="/experiences" className="group cursor-pointer">
             <div className="overflow-hidden rounded-xl mb-4 aspect-[4/3] border border-earth-700">
               <Image
                 alt="Pottery wheel hands"
@@ -21,8 +22,8 @@ export default function Experiences() {
             </div>
             <h3 className="text-xl font-bold mb-2 text-earth-100 group-hover:text-gold-500 transition-colors">Material Play</h3>
             <p className="text-sm text-earth-300 font-body">Connect with the earth literally through pottery and clay modeling sessions.</p>
-          </div>
-          <div className="group cursor-pointer">
+          </Link>
+          <Link href="/experiences" className="group cursor-pointer">
             <div className="overflow-hidden rounded-xl mb-4 aspect-[4/3] border border-earth-700">
               <Image
                 alt="Meditation cushion"
@@ -34,8 +35,8 @@ export default function Experiences() {
             </div>
             <h3 className="text-xl font-bold mb-2 text-earth-100 group-hover:text-gold-500 transition-colors">Guided Solitude</h3>
             <p className="text-sm text-earth-300 font-body">Structured silent hours and guided meditation to help declutter the mind.</p>
-          </div>
-          <div className="group cursor-pointer">
+          </Link>
+          <Link href="/experiences" className="group cursor-pointer">
             <div className="overflow-hidden rounded-xl mb-4 aspect-[4/3] border border-earth-700">
               <Image
                 alt="Organic farming"
@@ -47,7 +48,7 @@ export default function Experiences() {
             </div>
             <h3 className="text-xl font-bold mb-2 text-earth-100 group-hover:text-gold-500 transition-colors">Seasonal Living</h3>
             <p className="text-sm text-earth-300 font-body">Participate in our organic garden, harvesting the food you will eat later.</p>
-          </div>
+          </Link>
         </div>
       </div>
     </section>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 interface WellnessCardProps {
   title: string;
@@ -10,6 +11,7 @@ interface WellnessCardProps {
   aspectRatio: "4/5" | "wide" | "farm";
   spanColumns?: number;
   isFarmCard?: boolean;
+  href?: string;
 }
 
 export default function WellnessCard({
@@ -22,6 +24,7 @@ export default function WellnessCard({
   aspectRatio,
   spanColumns,
   isFarmCard,
+  href,
 }: WellnessCardProps) {
   const aspectClass =
     aspectRatio === "4/5"
@@ -40,8 +43,8 @@ export default function WellnessCard({
   const colSpanClass = getColSpanClass();
 
   if (isFarmCard) {
-    return (
-      <div className={`group flex flex-col gap-4 relative ${colSpanClass} lg:grid lg:grid-cols-2 lg:items-center lg:gap-8 bg-white/5 rounded-xl p-0 lg:pr-8 overflow-hidden`}>
+    const FarmCardContent = (
+      <div className={`group flex flex-col gap-4 relative ${colSpanClass} lg:grid lg:grid-cols-2 lg:items-center lg:gap-8 bg-white/5 rounded-xl p-0 lg:pr-8 overflow-hidden cursor-pointer`}>
         <div className={`${aspectClass} w-full overflow-hidden relative`}>
           <Image
             alt={imageAlt}
@@ -65,10 +68,15 @@ export default function WellnessCard({
         </div>
       </div>
     );
+
+    if (href) {
+      return <Link href={href}>{FarmCardContent}</Link>;
+    }
+    return FarmCardContent;
   }
 
-  return (
-    <div className={`group flex flex-col gap-4 relative ${colSpanClass}`}>
+  const RegularCardContent = (
+    <div className={`group flex flex-col gap-4 relative ${colSpanClass} cursor-pointer`}>
       <div className={`${aspectClass} w-full overflow-hidden rounded-lg bg-earth-800 relative`}>
         <Image
           alt={imageAlt}
@@ -88,4 +96,9 @@ export default function WellnessCard({
       </div>
     </div>
   );
+
+  if (href) {
+    return <Link href={href}>{RegularCardContent}</Link>;
+  }
+  return RegularCardContent;
 }

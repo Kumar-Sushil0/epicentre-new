@@ -10,6 +10,7 @@ interface WellnessPractice {
   aspectRatio: "4/5" | "wide" | "farm";
   spanColumns?: number;
   isFarmCard?: boolean;
+  href?: string;
 }
 
 interface WellnessGridProps {

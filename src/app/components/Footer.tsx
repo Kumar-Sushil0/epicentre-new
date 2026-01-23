@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="bg-earth-950 text-earth-300 py-16 border-t border-earth-700">
@@ -16,28 +18,52 @@ export default function Footer() {
           </div>
           <div>
             <h3 className="text-earth-50 font-bold mb-6">Explore</h3>
-            <ul className="space-y-3 text-sm text-earth-300/60 font-body">
-              <li>
-                <a className="hover:text-gold-500 transition-colors" href="#">
-                  Our Story
-                </a>
-              </li>
-              <li>
-                <a className="hover:text-gold-500 transition-colors" href="#">
-                  Accommodation
-                </a>
-              </li>
-              <li>
-                <a className="hover:text-gold-500 transition-colors" href="#">
-                  Retreats
-                </a>
-              </li>
-              <li>
-                <a className="hover:text-gold-500 transition-colors" href="#">
-                  Gift Cards
-                </a>
-              </li>
-            </ul>
+            <div className="grid grid-cols-2 gap-x-0 gap-y-3">
+              <ul className="space-y-3 text-sm text-earth-300/60 font-body w-fit">
+                <li className="w-fit">
+                  <Link className="hover:text-gold-500 transition-colors" href="/about-us">
+                    About Us
+                  </Link>
+                </li>
+                <li className="w-fit">
+                  <Link className="hover:text-gold-500 transition-colors" href="/wellness">
+                    Wellness
+                  </Link>
+                </li>
+                <li className="w-fit">
+                  <Link className="hover:text-gold-500 transition-colors" href="/expression">
+                    Expression
+                  </Link>
+                </li>
+                <li className="w-fit">
+                  <Link className="hover:text-gold-500 transition-colors" href="/rooms">
+                    Rooms
+                  </Link>
+                </li>
+              </ul>
+              <ul className="space-y-3 text-sm text-earth-300/60 font-body w-fit">
+                <li className="w-fit">
+                  <Link className="hover:text-gold-500 transition-colors" href="/solitude">
+                    Solitude
+                  </Link>
+                </li>
+                <li className="w-fit">
+                  <Link className="hover:text-gold-500 transition-colors" href="/residency">
+                    Residency
+                  </Link>
+                </li>
+                <li className="w-fit">
+                  <Link className="hover:text-gold-500 transition-colors" href="/experiences">
+                    Experiences
+                  </Link>
+                </li>
+                <li className="w-fit">
+                  <Link className="hover:text-gold-500 transition-colors" href="/venue">
+                    Venue
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
           <div>
             <h3 className="text-earth-50 font-bold mb-6">Connect</h3>

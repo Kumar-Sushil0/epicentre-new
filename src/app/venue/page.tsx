@@ -20,6 +20,7 @@ export default function VenuePage() {
           area: "2,000 sqft",
           capacity: "50 ppl",
           badge: "Flagship",
+          href: "/venue#collective",
         },
         {
           title: "Lazy Lounge",
@@ -29,6 +30,7 @@ export default function VenuePage() {
           imageAlt: "Cozy lounge with low sofas and warm ambient lighting",
           area: "800 sqft",
           capacity: "20 ppl",
+          href: "/venue#collective",
         },
         {
           title: "Front Lawn",
@@ -38,6 +40,7 @@ export default function VenuePage() {
           imageAlt: "Expansive green lawn with stone paths at twilight",
           area: "5,000 sqft",
           capacity: "100 ppl",
+          href: "/venue#collective",
         },
         {
           title: "Courtyard",
@@ -47,6 +50,7 @@ export default function VenuePage() {
           imageAlt: "Stone courtyard with fountain and benches",
           area: "1,500 sqft",
           capacity: "40 ppl",
+          href: "/venue#collective",
         },
         {
           title: "Restaurant",
@@ -56,6 +60,7 @@ export default function VenuePage() {
           imageAlt: "Rustic dining hall with long wooden tables and warm lighting",
           area: "2,500 sqft",
           capacity: "60 ppl",
+          href: "/venue#collective",
         },
         {
           title: "Fireplace",
@@ -65,6 +70,7 @@ export default function VenuePage() {
           imageAlt: "Outdoor fireplace surrounded by stone benches at night",
           area: "400 sqft",
           capacity: "10 ppl",
+          href: "/venue#collective",
         },
       ],
     },
@@ -81,6 +87,7 @@ export default function VenuePage() {
           imageAlt: "Small wooden treehouse nestled in a dense forest canopy",
           area: "100 sqft",
           capacity: "1 ppl",
+          href: "/venue#intimate",
         },
         {
           title: "Zen Garden",
@@ -90,6 +97,7 @@ export default function VenuePage() {
           imageAlt: "Minimalist zen rock garden with raked sand",
           area: "600 sqft",
           capacity: "5 ppl",
+          href: "/venue#intimate",
         },
         {
           title: "Discussion Decks",
@@ -99,6 +107,7 @@ export default function VenuePage() {
           imageAlt: "Wooden deck overlooking a misty valley",
           area: "300 sqft",
           capacity: "4 ppl",
+          href: "/venue#intimate",
         },
         {
           title: "Reflection Corner",
@@ -108,6 +117,7 @@ export default function VenuePage() {
           imageAlt: "Secluded bench in a dark quiet corner of a garden",
           area: "150 sqft",
           capacity: "1 ppl",
+          href: "/venue#intimate",
         },
         {
           title: "Compact Rooms",
@@ -117,6 +127,7 @@ export default function VenuePage() {
           imageAlt: "Small cozy room with a desk and window view",
           area: "200 sqft",
           capacity: "2 ppl",
+          href: "/venue#intimate",
         },
       ],
     },
@@ -133,6 +144,7 @@ export default function VenuePage() {
           imageAlt: "Basketball court with dramatic lighting",
           area: "3,000 sqft",
           capacity: "20 ppl",
+          href: "/venue#physical",
         },
         {
           title: "Buzzer Zone",
@@ -142,6 +154,7 @@ export default function VenuePage() {
           imageAlt: "High intensity gym area with weights",
           area: "1,200 sqft",
           capacity: "15 ppl",
+          href: "/venue#physical",
         },
         {
           title: "Contrast & Recovery",
@@ -151,6 +164,7 @@ export default function VenuePage() {
           imageAlt: "Spa interior with sauna and plunge pool",
           area: "800 sqft",
           capacity: "8 ppl",
+          href: "/venue#physical",
         },
       ],
     },
@@ -167,6 +181,7 @@ export default function VenuePage() {
           imageAlt: "Large graffiti wall with colorful abstract art",
           area: "N/A",
           capacity: "Unlimited",
+          href: "/venue#creative",
         },
         {
           title: "Identity Cemetery",
@@ -176,6 +191,7 @@ export default function VenuePage() {
           imageAlt: "Abstract sculpture garden with stone markers",
           area: "2,000 sqft",
           capacity: "30 ppl",
+          href: "/venue#creative",
         },
         {
           title: "Entry Gate",
@@ -185,6 +201,7 @@ export default function VenuePage() {
           imageAlt: "Large imposing wooden gate entrance",
           area: "N/A",
           capacity: "N/A",
+          href: "/venue#creative",
         },
       ],
     },
@@ -201,6 +218,7 @@ export default function VenuePage() {
           imageAlt: "Modern minimalist dormitory interior with bunk beds",
           area: "1,500 sqft",
           capacity: "12 ppl",
+          href: "/venue#living",
         },
         {
           title: "Private Cabins",
@@ -210,6 +228,7 @@ export default function VenuePage() {
           imageAlt: "Small wooden cabin in the woods",
           area: "400 sqft",
           capacity: "2 ppl",
+          href: "/venue#living",
         },
         {
           title: "Outdoor Kitchen",
@@ -219,6 +238,7 @@ export default function VenuePage() {
           imageAlt: "Outdoor kitchen setup with stone oven",
           area: "600 sqft",
           capacity: "8 ppl",
+          href: "/venue#living",
         },
         {
           title: "Self Serve Pantry",
@@ -228,6 +248,7 @@ export default function VenuePage() {
           imageAlt: "Well stocked pantry shelves with jars",
           area: "300 sqft",
           capacity: "3 ppl",
+          href: "/venue#living",
         },
       ],
     },
@@ -244,6 +265,7 @@ export default function VenuePage() {
           imageAlt: "Rows of crops in a vegetable farm at sunset",
           area: "2 Acres",
           capacity: "Unlimited",
+          href: "/venue#nature",
         },
         {
           title: "Animal Shed",
@@ -253,6 +275,7 @@ export default function VenuePage() {
           imageAlt: "Wooden barn with farm animals nearby",
           area: "1,000 sqft",
           capacity: "5 ppl",
+          href: "/venue#nature",
         },
         {
           title: "On the Edge",
@@ -262,6 +285,7 @@ export default function VenuePage() {
           imageAlt: "Scenic cliff edge view with a single chair",
           area: "N/A",
           capacity: "1 ppl",
+          href: "/venue#nature",
         },
         {
           title: "Casual Catch-up Loft",
@@ -271,6 +295,7 @@ export default function VenuePage() {
           imageAlt: "Rustic loft space with bean bags and nature view",
           area: "500 sqft",
           capacity: "6 ppl",
+          href: "/venue#nature",
         },
       ],
     },
