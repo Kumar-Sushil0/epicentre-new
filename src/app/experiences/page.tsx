@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import ExperiencesIntro from "../components/experiences/ExperiencesIntro";
 import ExperiencesGrid from "../components/experiences/ExperiencesGrid";
 import ExperiencesCTA from "../components/experiences/ExperiencesCTA";
+import DevelopmentTimeline from "../components/experiences/DevelopmentTimeline";
 
 export default function ExperiencesPage() {
   const experiences = [
@@ -99,6 +100,9 @@ export default function ExperiencesPage() {
         <ExperiencesIntro />
         <ExperiencesGrid experiences={experiences} />
         <ExperiencesCTA />
+      </div>
+      <div className="py-16 bg-earth-900">
+        <DevelopmentTimeline />
       </div>
       <Footer />
     </main>

@@ -26,18 +26,18 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li className="w-fit">
+                  <Link className="hover:text-gold-500 transition-colors" href="/rooms">
+                    Rooms
+                  </Link>
+                </li>
+                <li className="w-fit">
                   <Link className="hover:text-gold-500 transition-colors" href="/wellness">
                     Wellness
                   </Link>
                 </li>
                 <li className="w-fit">
-                  <Link className="hover:text-gold-500 transition-colors" href="/expression">
-                    Expression
-                  </Link>
-                </li>
-                <li className="w-fit">
-                  <Link className="hover:text-gold-500 transition-colors" href="/rooms">
-                    Rooms
+                  <Link className="hover:text-gold-500 transition-colors" href="/experiences">
+                    Experiences
                   </Link>
                 </li>
               </ul>
@@ -48,13 +48,13 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li className="w-fit">
-                  <Link className="hover:text-gold-500 transition-colors" href="/residency">
-                    Residency
+                  <Link className="hover:text-gold-500 transition-colors" href="/expression">
+                    Expression
                   </Link>
                 </li>
                 <li className="w-fit">
-                  <Link className="hover:text-gold-500 transition-colors" href="/experiences">
-                    Experiences
+                  <Link className="hover:text-gold-500 transition-colors" href="/residency">
+                    Residency
                   </Link>
                 </li>
                 <li className="w-fit">
