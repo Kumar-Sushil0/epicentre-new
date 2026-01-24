@@ -31,27 +31,14 @@ export default function Accommodation() {
           <Link href="/rooms" className="lg:col-span-1 lg:row-span-2 group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10" />
             <Image
-              alt="Cozy glamping tent structure"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6cp533rD2hQD7h4B-RpKKREBmm3s8x90hpO9pcXHR7Jj_t5Irxlyz92Hrm5LmCpp-_4wiRrD2igTCEBlSvWz9ZSIXh9rLXb5yANk7rWHOHLz7TfkkJfecRmovPUNnrruP-zbpoMFSueAEVvahR4K9I0KbmDplWZyocDTz6ebvHgdNgJ00Jidrk0zs5VuMdNEcRv3opfOO2ADL-3hlSX4BDN7SxBx8qQ3cpIgZhFKbikP7rtaljp_bYwXVa4ZIQrkl0QVmO7YJ4Dfg"
-              fill
-              className="object-cover transform group-hover:scale-105 transition-transform duration-700"
-            />
-            <div className="absolute bottom-6 left-6 z-20">
-              <h3 className="text-white text-xl font-bold mb-1">Luxury Tents</h3>
-              <p className="text-earth-200 text-sm font-body">Closer to nature, without compromising comfort.</p>
-            </div>
-          </Link>
-          <Link href="/rooms" className="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10" />
-            <Image
               alt="Clean dormitory style room"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_dFvHyP31JXbQRtNiZIUI94-8e_c0QShxJv1rmygbtridAA9K46Xa3QhUDB7a44eMqsv-s9HFVkx-o6wpN6WzGZo0WpEzDa285WmpQTAGbCzD1Tp-F9gThsXPoSRToC8oFd7uJnGoyIN_Sjm91MvJl0esPwg3ZmjulH3thRT0IQP81wmV2KshhQQAGu7dlmLU4FCvPYpIMWQcOHr_ot6fmFNikZK7soyC-7hY7XhmrrJeGaYljsrGvN5Ph4Zg71ul-P1-OCwhmPEl"
               fill
               className="object-cover transform group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute bottom-6 left-6 z-20">
-              <h3 className="text-white text-lg font-bold">Dorms</h3>
-              <p className="text-earth-200 text-xs font-body">Shared simplicity.</p>
+              <h3 className="text-white text-xl font-bold mb-1">Dorms</h3>
+              <p className="text-earth-200 text-sm font-body">Shared simplicity.</p>
             </div>
           </Link>
           <Link href="/rooms" className="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
@@ -65,6 +52,19 @@ export default function Accommodation() {
             <div className="absolute bottom-6 left-6 z-20">
               <h3 className="text-white text-lg font-bold">Community Hall</h3>
               <p className="text-earth-200 text-xs font-body">For groups & workshops.</p>
+            </div>
+          </Link>
+          <Link href="/rooms" className="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10" />
+            <Image
+              alt="Cozy glamping tent structure"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6cp533rD2hQD7h4B-RpKKREBmm3s8x90hpO9pcXHR7Jj_t5Irxlyz92Hrm5LmCpp-_4wiRrD2igTCEBlSvWz9ZSIXh9rLXb5yANk7rWHOHLz7TfkkJfecRmovPUNnrruP-zbpoMFSueAEVvahR4K9I0KbmDplWZyocDTz6ebvHgdNgJ00Jidrk0zs5VuMdNEcRv3opfOO2ADL-3hlSX4BDN7SxBx8qQ3cpIgZhFKbikP7rtaljp_bYwXVa4ZIQrkl0QVmO7YJ4Dfg"
+              fill
+              className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+            />
+            <div className="absolute bottom-6 left-6 z-20">
+              <h3 className="text-white text-lg font-bold">Luxury Tents</h3>
+              <p className="text-earth-200 text-xs font-body">Closer to nature, without compromising comfort.</p>
             </div>
           </Link>
         </div>

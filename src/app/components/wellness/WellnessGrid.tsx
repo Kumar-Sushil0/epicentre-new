@@ -5,7 +5,7 @@ interface WellnessPractice {
   description: string;
   category: string;
   icon: string;
-  image: string;
+  images: string[];
   imageAlt: string;
   aspectRatio: "4/5" | "wide" | "farm";
   spanColumns?: number;
