@@ -8,6 +8,9 @@ interface Experience {
   images: string[];
   imageAlt: string;
   aspectRatio: "4/3" | "3/4" | "video";
+  minimumGuests?: number;
+  minimumGuestsText?: string;
+  price?: string;
   href?: string;
 }
 

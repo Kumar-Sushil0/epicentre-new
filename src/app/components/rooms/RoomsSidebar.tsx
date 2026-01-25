@@ -6,6 +6,7 @@ export default function RoomsSidebar() {
   const items = useMemo(
     () => [
       { id: "private-rooms", label: "Private Rooms" },
+      { id: "dark-rooms", label: "Dark Rooms" },
       { id: "shared-dorms", label: "Shared Dorms" },
       { id: "minimalist-tents", label: "Minimalist Tents" },
       { id: "community-hall", label: "Community Hall" },

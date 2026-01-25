@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import VenueHero from "../components/venue/VenueHero";
+import VenueBookingDetails from "../components/venue/VenueBookingDetails";
 import VenueCategoryNav from "../components/venue/VenueCategoryNav";
 import VenueSection from "../components/venue/VenueSection";
 
@@ -19,7 +20,6 @@ export default function VenuePage() {
           imageAlt: "Futuristic geodesic dome structure glowing warmly at night",
           area: "2,000 sqft",
           capacity: "50 ppl",
-          badge: "Flagship",
           href: "/venue#collective",
         },
         {
@@ -80,7 +80,7 @@ export default function VenuePage() {
       icon: "self_improvement",
       venues: [
         {
-          title: "Tree Houses",
+          title: "Tree House",
           description: "Small, elevated spaces designed for absolute isolation and bird's eye perspective.",
           image:
             "https://lh3.googleusercontent.com/aida-public/AB6AXuAUmMeozchs1cFu8aFeLhWXOwDbDtuJjTtH2wY7Utd_8BbWJIUCVKdnIhdRttSt21O0oq81EB0Tpux9IxAj0bRG2wpJ7BEBG53n-KfzfMxULjAdsNm_-PjptGl7jrEZMuBFhL2BHQKWoJF5pZ_nqx4HQ6L_s_DDpixcQgp5pWjX2BiaewbpJXkJZIqdii-cE7d0TytZtMM-_gTf1vJB5NiSb6_1YFxgxyZo3zc5HggGew9n5WJ7ixbHaC2nkf3QBgDyjWBur8c6Q3YY",
@@ -100,7 +100,7 @@ export default function VenuePage() {
           href: "/venue#intimate",
         },
         {
-          title: "Discussion Decks",
+          title: "Discussion Deck",
           description: "Private wooden platforms nestled in nature for deep 1-on-1 conversations.",
           image:
             "https://lh3.googleusercontent.com/aida-public/AB6AXuA1mmt0qvHp6AVqZz4m_RcIw0R7vzQyoaZotlUZwO2iCHXzznLOmJsXMuaRTIV6hkBYHnnz2p_qPaEcr4fO7lo8fl-BvCwyEpcwoaQaSu28a00763b7lSM4q6VPF78E81GzIH2hl_7kH47YfGxkcmeIB3vsjOoFOSuyf_MAV3dwl0BzfkNvoyTUox_zkIP5G8_TxJb9v948nU6UoMa7olkeZQXWF8ptnYPJ35IvBs14PU7MfLtTwKmEsUBiuxLKokPgrESII_8-3Gvk",
@@ -174,7 +174,7 @@ export default function VenuePage() {
       icon: "brush",
       venues: [
         {
-          title: "Tru Man's Wall",
+          title: "Tru Man's Walls",
           description: "A constantly evolving canvas for free expression and artistic collaboration.",
           image:
             "https://lh3.googleusercontent.com/aida-public/AB6AXuDIiuRv3LHoCdwbXKNrpkzohoWX2MvwTOZ5lXr7ZJOJN4rtUB6lJ1qlZ-u2zCajLTcMLZTX15sYDB62IDqshV46VoFyn32DbTS-R6PeTU_3C2RKrUVrmxqRQFJ17pMOdIiaIuia9LpHEDrdBNfLcpNR9wrqiXEMTvyr0UCkr7BGsi72y02LS1hc3000i0Cqzbv_hYtveNrZXjbh8_Z4XfTOKoy3Y2rzGtgkTsddDMIibaa4Ytcg7j-IKPvRCPYwA_xkBv-U9a_tUlhb",
@@ -195,7 +195,7 @@ export default function VenuePage() {
         },
         {
           title: "Entry Gate",
-          description: "The threshold of the EPiCENTRE, marking the transition from the outer world.",
+          description: "The threshold of The Silent Club, marking the transition from the outer world.",
           image:
             "https://lh3.googleusercontent.com/aida-public/AB6AXuDLkKCbOoNiCh5GCaXKpDhhE61EuBWVMqfoDx1x_wyCJoA7PPkZmboVTkSD_1yjEjKPL0U6yCi1y95lu8MpShSApYpvBa-kH7le5gEg7sscNGWNucdUgeA-mCHvnuQyiiaKm7_dWnjuEJGruUnNYnReX02GjXcgpvs3zQENCaOm-XM1ooU-KamYXeXfrToETA6qvjaBp6TU6CG9s4sapxcYre2RGmVKISe7fG490J8Ru1kUvmvnvTo5WV1WDN6BWR-ijXSNkFgNnIM9",
           imageAlt: "Large imposing wooden gate entrance",
@@ -216,7 +216,7 @@ export default function VenuePage() {
           image:
             "https://lh3.googleusercontent.com/aida-public/AB6AXuDmYE7uQzqCPEUSx1PzSQvaNJcQur_MMIW0hlWNehK-OFDueDgUN7lYbLrTKCcFHpwgAgnc1VWNFhHTq7N4UITYxKAY3BjPsfNFQ8jxpqM0WaY0-2XQWEkef1LVUzXK83qSQa-FlCnmdCMui0DUfT7mqUeme6SDTsdQjp30zLpzdY2kJ9oMfEa6grHmfNxFPNz31Mt-_im9r1Li8DG-T0vHYjL48QPNl9dFL4STTKEs-C-hDp9lugle-UDaVx5AhapFJFnFBBWHVh_P",
           imageAlt: "Modern minimalist dormitory interior with bunk beds",
-          area: "1,500 sqft",
+          area: "500 sqft",
           capacity: "12 ppl",
           href: "/venue#living",
         },
@@ -258,6 +258,16 @@ export default function VenuePage() {
       icon: "forest",
       venues: [
         {
+          title: "Casual Catch-up Loft",
+          description: "An informal, semi-open loft space overlooking the farm for relaxed brainstorming.",
+          image:
+            "https://lh3.googleusercontent.com/aida-public/AB6AXuCAvKrv7PJ8yvY9tCzrKD4Ld6ecRlBrHnJTmpt9_CuT36r7Z9KJ56X-d0YGJzmdkRZtfZNVcJT2G5ekxOOJICgNGqRjCfpCUjf-Hcw2C0ECufVJKfsTsa9Mn2OnJkfyA1HYMf0L_o5CaaDKt3nTa5AfEsDaR_zByxo58C895A47hHanaRG2agvIa8TeUmw87DlFupqXY9XV95FlXvw96hSUYZt_qtreb0-w-4rQrUkz0xlmuO3oRSWHdlzy7837wYL2CowYvnylfXH2",
+          imageAlt: "Rustic loft space with bean bags and nature view",
+          area: "500 sqft",
+          capacity: "6 ppl",
+          href: "/venue#nature",
+        },
+        {
           title: "The Farm",
           description: "Working permaculture farm providing fresh ingredients for the restaurant.",
           image:
@@ -283,18 +293,8 @@ export default function VenuePage() {
           image:
             "https://lh3.googleusercontent.com/aida-public/AB6AXuCKlFdEyPPzIA-FlpFM8Rgjhu2uEnKpKtbfuEd-jRKV06kZFUpwmZBoiFsTWp68VAeqJaFHBVso2oh-KYw0opn-yRVKHsjyEZaM3mVI9O3bs0_dElLlRGghfl0rU_uxFNbO6TjIYLOcq1g2AIxv0e93bsRa0c878XnR47-o0yPXcPaOZtmbf81-_JGTzb9ka0U6H2vuHlrwW9_w--esu1vHlTUnK2jfGqzGMJqL0Oz7LtE4Q7U1FZ924a_BRREdIMuWKtA3JRIyKos4",
           imageAlt: "Scenic cliff edge view with a single chair",
-          area: "N/A",
-          capacity: "1 ppl",
-          href: "/venue#nature",
-        },
-        {
-          title: "Casual Catch-up Loft",
-          description: "An informal, semi-open loft space overlooking the farm for relaxed brainstorming.",
-          image:
-            "https://lh3.googleusercontent.com/aida-public/AB6AXuCAvKrv7PJ8yvY9tCzrKD4Ld6ecRlBrHnJTmpt9_CuT36r7Z9KJ56X-d0YGJzmdkRZtfZNVcJT2G5ekxOOJICgNGqRjCfpCUjf-Hcw2C0ECufVJKfsTsa9Mn2OnJkfyA1HYMf0L_o5CaaDKt3nTa5AfEsDaR_zByxo58C895A47hHanaRG2agvIa8TeUmw87DlFupqXY9XV95FlXvw96hSUYZt_qtreb0-w-4rQrUkz0xlmuO3oRSWHdlzy7837wYL2CowYvnylfXH2",
-          imageAlt: "Rustic loft space with bean bags and nature view",
-          area: "500 sqft",
-          capacity: "6 ppl",
+          area: "300 sqft",
+          capacity: "10 ppl",
           href: "/venue#nature",
         },
       ],
@@ -305,6 +305,7 @@ export default function VenuePage() {
     <main className="min-h-screen bg-earth-900 text-earth-100 pt-[72px]">
       <Header />
       <VenueHero />
+      <VenueBookingDetails />
       <VenueCategoryNav />
       <div className="max-w-[1200px] mx-auto px-4 sm:px-10 py-12 flex flex-col gap-24">
         {venueCategories.map((category) => (

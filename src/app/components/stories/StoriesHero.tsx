@@ -1,4 +1,4 @@
-export default function VenueHero() {
+export default function StoriesHero() {
   return (
     <section className="relative w-full h-[60vh] min-h-[500px] flex items-end pb-16 justify-center overflow-hidden">
       <div
@@ -16,18 +16,18 @@ export default function VenueHero() {
       <div className="relative z-20 max-w-[960px] w-full px-4 sm:px-10 text-center sm:text-left">
         <div className="flex flex-col gap-4">
           <h1 className="text-earth-50 text-5xl md:text-7xl font-black leading-tight tracking-tighter drop-shadow-2xl">
-            Spaces at <span className="italic text-gold-500">The Silent Club</span>
+            Stories at <span className="italic text-gold-500">The Silent Club</span>
           </h1>
           <div className="h-1 w-24 bg-gold-500 mb-2 mx-auto sm:mx-0"></div>
           <h2 className="text-earth-300 text-xl md:text-2xl font-light italic leading-relaxed max-w-2xl">
-            Designed for different states of attention.
+            Narratives of transformation and presence.
           </h2>
           <p className="text-earth-300/80 text-lg font-body leading-relaxed max-w-2xl mt-4">
-            Each space exists to support a specific way of being — alone, together, moving, or still. They are simple, flexible, and held without programming.
+            Each story captures a moment of clarity, stillness, or discovery. They are shared without judgment, held with care, and offered as witness to what becomes possible in silence.
           </p>
           <div className="pt-6">
             <button className="flex items-center gap-2 text-earth-50 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 px-6 py-3 rounded-lg transition-all mx-auto sm:mx-0">
-              <span className="text-sm font-bold tracking-wide font-body">Explore Philosophy</span>
+              <span className="text-sm font-bold tracking-wide font-body">Explore Stories</span>
               <span className="material-symbols-outlined text-sm">arrow_downward</span>
             </button>
           </div>

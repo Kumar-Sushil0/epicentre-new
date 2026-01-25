@@ -12,10 +12,13 @@ interface ExperienceCardProps {
   images: string[];
   imageAlt: string;
   aspectRatio: "4/3" | "3/4" | "video";
+  minimumGuests?: number;
+  minimumGuestsText?: string;
+  price?: string;
   href?: string;
 }
 
-export default function ExperienceCard({ title, description, time, icon, images, imageAlt, aspectRatio, href }: ExperienceCardProps) {
+export default function ExperienceCard({ title, description, time, icon, images, imageAlt, aspectRatio, minimumGuests, minimumGuestsText, price, href }: ExperienceCardProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const aspectClass =
     aspectRatio === "4/3" ? "aspect-[4/3]" : aspectRatio === "3/4" ? "aspect-[3/4]" : "aspect-video";
@@ -104,7 +107,25 @@ export default function ExperienceCard({ title, description, time, icon, images,
         <h3 className="text-earth-50 text-2xl font-medium font-display group-hover:text-gold-500 transition-colors">
           {title}
         </h3>
-        <p className="text-earth-300 text-base font-body">{description}</p>
+        <p className="text-earth-300 text-base font-body whitespace-pre-line">{description}</p>
+        {(minimumGuests || minimumGuestsText || price) && (
+          <div className="flex items-center gap-4 mt-3 pt-3 border-t border-earth-800">
+            {(minimumGuests || minimumGuestsText) && (
+              <div className="flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-earth-400 text-sm">groups</span>
+                <span className="text-earth-400 text-sm font-body">
+                  {minimumGuestsText || `Minimum ${minimumGuests} guests`}
+                </span>
+              </div>
+            )}
+            {price && (
+              <div className="flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-gold-500 text-sm">currency_rupee</span>
+                <span className="text-gold-500 text-sm font-medium font-body">{price}</span>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </>
   );

@@ -39,6 +39,25 @@ export default function RoomsPage() {
               ]}
             />
 
+            {/* Dark Rooms */}
+            <RoomSection
+              id="dark-rooms"
+              number="05"
+              category="Dark Room"
+              title="Complete Darkness"
+              description="A fully light-sealed space designed for extended stillness and sensory withdrawal. Used for deep rest, introspection, and uninterrupted self-observation."
+              image="https://lh3.googleusercontent.com/aida-public/AB6AXuDYw7zjjT1NTlSOYdFEp7-uHq0qYu0sfT6aUZMNM2ORSddAkOWotjiQuOXDlF61wyE24VSml-mENINPvgit4PMfWpZeH50NPc447sj25Lb9x3TaeBlPSU7wzYuj_9FCg7AibVjCYClPjUH2RnhsG5KEnMzj-HCgJ18Ml3AHQNFqX4nT-CvUDLtna6318BHSz60gSYsF_rolGCK_gpSLX0f4X7YWlq7PTgefwlFaLqlmddEb47Kk1ikXrmPgfcWjrQbX7yn5wzA--zcc"
+              imageAlt="Completely dark room with no light sources"
+              imagePosition="right"
+              features={[
+                { icon: "dark_mode", text: "Total light isolation" },
+                { icon: "bed", text: "Minimal interior with bed and seated space" },
+                { icon: "wifi_off", text: "No devices, no external input" },
+                { icon: "room_service", text: "Food delivered without visual contact" },
+              ]}
+              buttons={[{ text: "Check Availability", href: "/bookings", variant: "secondary" }]}
+            />
+
             {/* Shared Dorms */}
             <RoomSection
               id="shared-dorms"

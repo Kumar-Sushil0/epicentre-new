@@ -75,7 +75,7 @@ export default function ResidencyPage() {
     },
     {
       category: "Systemic Thinking",
-      title: "Life Systems Residency",
+      title: "Life Design Residency",
       description: "Designing personal systems for health, finance, and learning that work with your biology rather than against it.",
       href: "/residency/details?id=life-systems",
     },

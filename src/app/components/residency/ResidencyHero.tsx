@@ -8,12 +8,15 @@ export default function ResidencyHero() {
         }}
       />
       <div className="relative z-10 text-center px-6 max-w-5xl">
-        <span className="text-gold-500 font-bold tracking-[0.2em] uppercase text-xs mb-6 block">The Curated Experience</span>
-        <h1 className="text-earth-50 text-5xl md:text-7xl font-display font-light tracking-tight mb-6">
-          EPiCENTRE RESIDENCY PROGRAM
+        <h1 className="text-earth-50 text-5xl md:text-7xl font-display font-light tracking-tight mb-4">
+          The Held Immersion
         </h1>
-        <p className="text-earth-300 text-lg md:text-2xl font-light tracking-wide max-w-2xl mx-auto italic font-display">
-          Multi-day immersions at EPiCENTRE
+        <div className="w-24 h-1 bg-gold-500 rounded-full mx-auto mb-6"></div>
+        <p className="text-earth-50/90 text-lg md:text-xl font-bold tracking-widest uppercase mb-4 font-body">
+          THE SILENT CLUB RESIDENCY
+        </p>
+        <p className="text-earth-300 text-lg md:text-xl font-light tracking-wide max-w-2xl mx-auto italic font-display">
+          Multi-day immersions at <span className="text-gold-500">The Silent Club</span>
         </p>
       </div>
     </section>

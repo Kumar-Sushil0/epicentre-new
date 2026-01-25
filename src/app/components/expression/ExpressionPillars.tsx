@@ -20,7 +20,7 @@ export default function ExpressionPillars({ pillars }: ExpressionPillarsProps) {
         <div className="flex items-end justify-between mb-12 border-b border-earth-700 pb-4">
           <div>
             <h3 className="text-gold-500 text-sm font-bold uppercase tracking-widest font-body mb-2">Our Pillars</h3>
-            <h2 className="text-3xl md:text-4xl font-bold text-earth-50">The EPiCentre Method</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-earth-50">The Silent Club Method</h2>
           </div>
           <div className="hidden md:block text-earth-50/50 text-sm font-body">Curated spaces for every stage of expression.</div>
         </div>

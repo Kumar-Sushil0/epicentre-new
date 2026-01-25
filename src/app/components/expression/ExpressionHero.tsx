@@ -16,11 +16,19 @@ export default function ExpressionHero() {
         <div className="flex flex-col items-center gap-8">
           <div className="w-16 h-[1px] bg-gold-500/60 mb-2"></div>
           <h1 className="text-earth-50 text-4xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight drop-shadow-xl font-display">
-            Facilitated, work-in-progress spaces at EPiCentre
+            Facilitated, work-in-progress spaces at <span className="italic text-gold-500">The Silent Club</span>
           </h1>
-          <p className="text-earth-50/90 text-lg md:text-xl font-normal leading-relaxed max-w-2xl font-body drop-shadow-md">
-            A sanctuary for the unfinished, the raw, and the refined. We provide the space for you to explore your creative process without the pressure of performance.
-          </p>
+          <div className="space-y-3 text-earth-50/90 text-lg md:text-xl font-normal leading-relaxed max-w-2xl font-body drop-shadow-md">
+            <p>
+              Expression here is about staying with unfinished work.
+            </p>
+            <p>
+              These are held spaces for voice, movement, language, or ideas — without judgment or outcome.
+            </p>
+            <p>
+              Nothing needs to be explained, polished, or completed.
+            </p>
+          </div>
           <div className="pt-6">
             <button className="flex items-center gap-2 cursor-pointer rounded-full h-14 px-8 bg-transparent border border-earth-50/30 hover:bg-earth-50/10 hover:border-gold-500/50 text-earth-50 text-base font-medium transition-all duration-300 font-body backdrop-blur-sm group">
               <span>Explore the Space</span>
