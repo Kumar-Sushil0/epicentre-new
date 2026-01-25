@@ -7,8 +7,8 @@ import WellnessCTA from "../components/wellness/WellnessCTA";
 export default function WellnessPage() {
   const practices = [
     {
-      title: "Physical Training",
-      description: "Movement on your own terms. A fully equipped space for self-paced exertion, devoid of mirrors and metrics.",
+      title: "Self-Paced Physical Training",
+      description: "Quiet movement without mirrors or metrics.\nStrength and exertion on your own terms.",
       category: "Self-Paced",
       icon: "fitness_center",
       images: [
@@ -21,8 +21,8 @@ export default function WellnessPage() {
       href: "/wellness",
     },
     {
-      title: "Kayaking & Cycling",
-      description: "Dissolve into the landscape. Equipment provided, destination undefined. Let the fog guide your morning journey across the stillness.",
+      title: "Outdoor Kayaking & Cycling",
+      description: "Movement through land and water.\nNo routes, no destinations, no urgency.",
       category: "Outdoor",
       icon: "kayaking",
       images: [
@@ -37,7 +37,7 @@ export default function WellnessPage() {
     },
     {
       title: "Yoga & Meditation",
-      description: "Silence is the only guide. A low-light sanctuary designed for turning inward and reconnecting with your breath.",
+      description: "Low-light spaces for stillness and breath.\nSelf-led, informal, and unstructured.",
       category: "Mindfulness",
       icon: "self_improvement",
       images: [
@@ -50,8 +50,8 @@ export default function WellnessPage() {
       href: "/wellness",
     },
     {
-      title: "Board Games",
-      description: "Analog connection. Tactile pieces, wooden boards, and slow evenings spent in good company or solitary strategy.",
+      title: "Leisure — Board Games",
+      description: "Analog play without competition.\nEasy to begin, easy to leave.",
       category: "Leisure",
       icon: "casino",
       images: [
@@ -64,8 +64,8 @@ export default function WellnessPage() {
       href: "/wellness",
     },
     {
-      title: "Pet Friendly",
-      description: "Companions welcome. Because true recovery is often found in the quiet presence of a loyal friend.",
+      title: "Companionship — Pet Friendly",
+      description: "Shared presence with animals.\nCalm, grounding, and uncomplicated.",
       category: "Companionship",
       icon: "pets",
       images: [
@@ -78,8 +78,8 @@ export default function WellnessPage() {
       href: "/wellness",
     },
     {
-      title: "A Day at a Farm",
-      description: "Ground yourself. Hands in the earth, connecting with the cycle of growth. Experience the raw texture of life through our on-site sustainable farming practices. No theory, just touch.",
+      title: "Grounding — A Day at a Farm",
+      description: "Time spent with soil and routine.\nHands-on, slow, and without theory.",
       category: "Grounding",
       icon: "agriculture",
       images: [

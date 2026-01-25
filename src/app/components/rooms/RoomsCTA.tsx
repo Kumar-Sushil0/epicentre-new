@@ -5,13 +5,21 @@ export default function RoomsCTA() {
       <div className="w-full h-px bg-gradient-to-r from-transparent via-earth-700 to-transparent"></div>
       {/* Bottom CTA */}
       <section className="flex flex-col items-center justify-center text-center py-10 gap-6">
-        <span className="material-symbols-outlined text-gold-500 text-5xl">diamond</span>
-        <h2 className="text-earth-50 text-3xl font-serif">Not sure which room suits you?</h2>
-        <p className="text-earth-300 max-w-md font-body">Our concierge team can help tailor your retreat experience based on your specific wellness goals.</p>
-        <button className="bg-earth-100 text-earth-950 hover:bg-gold-500 hover:text-earth-950 transition-all duration-300 px-8 py-3 rounded-lg font-bold">
-          Contact Concierge
-        </button>
+        <h2 className="text-earth-50 text-3xl font-bold">Not sure which space fits you?</h2>
+        <p className="text-earth-300 max-w-md font-body">Entry support is available to help you choose based on how you want to spend your time here.</p>
+        <a href="/contact" className="bg-earth-100 text-earth-950 hover:bg-gold-500 hover:text-earth-950 transition-all duration-300 px-8 py-3 rounded-lg font-bold">
+          Contact
+        </a>
       </section>
+      {/* Quotes */}
+      <div className="flex flex-col items-center justify-center text-center py-10 gap-6 border-t border-earth-700">
+        <p className="text-earth-50/70 text-lg md:text-xl font-display italic max-w-2xl">
+          "Silence begins when nothing asks for your attention."
+        </p>
+        <p className="text-earth-50/70 text-lg md:text-xl font-display italic max-w-2xl">
+          "Silence is not the absence of noise, but the beginning of listening."
+        </p>
+      </div>
     </>
   );
 }

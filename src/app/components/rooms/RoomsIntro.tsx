@@ -1,16 +1,24 @@
 export default function RoomsIntro() {
   return (
     <section className="flex flex-col gap-6 max-w-3xl">
-      <div className="flex items-center gap-2 text-gold-500 uppercase tracking-widest text-xs font-bold">
-        <span className="w-8 h-[1px] bg-gold-500"></span>
-        The Philosophy
-      </div>
       <h1 className="text-earth-50 text-5xl lg:text-7xl font-black leading-tight tracking-tight">
-        Rest & <span className="text-gold-500 italic font-serif">Restore</span>
+        The Philosophy of Rest & Restore
       </h1>
-      <p className="text-earth-300 text-lg lg:text-xl font-normal leading-relaxed max-w-2xl font-body">
-        Reconnect with yourself in our distraction-free accommodations, designed for silence and deep rest. Experience the raw luxury of nature stripped of the unnecessary.
-      </p>
+      <div className="space-y-4 text-earth-300 text-lg lg:text-xl font-normal leading-relaxed max-w-2xl font-body">
+        <p>
+          Rest at The Silent Club is treated as a condition, not an indulgence.
+        </p>
+        <p>
+          These spaces are designed to reduce stimulation, support deep rest, and allow attention to settle without effort.
+        </p>
+        <p>
+          Comfort exists, but nothing here competes for your focus.
+        </p>
+      </div>
+      <div className="mt-8">
+        <h2 className="text-earth-50 text-2xl lg:text-3xl font-bold mb-2">Accommodations</h2>
+        <p className="text-earth-300 italic font-body">Select a space to view details.</p>
+      </div>
     </section>
   );
 }
