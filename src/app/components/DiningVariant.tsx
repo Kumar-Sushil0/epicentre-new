@@ -25,7 +25,7 @@ export default function DiningVariant() {
     },
     {
       id: 2,
-      title: "Wood-Fired Pizza, Barbeque & Sushi Experience",
+      title: "Wood-Fired Pizza, Barbeque & Sushi",
       description: "A restrained culinary practice. Minimal, balanced, occasional.",
       availability: "Weekend Special",
       thumbnail: "https://lh3.googleusercontent.com/aida-public/AB6AXuC72-qeY2eEUj-PVITTUo2cNBi448iUqzdHsoEipULmOX22vormapus2Ny-vkyznBYe1cCZEDjbvLIrW3GuSkIg8UG6cSQjorFd6SxJCSZjnFSUZunRVmsTumGnkttyCeI4bOc-hMIgYBiaqmhKgUJg4c3nVIhqa5238Nu7Cy11M88SVYJR3uvYHZhULleRmsgdg5DSXMHj_jRUCrX6fP_8TMxU7wgAkfOOrz1iU2VMvmW0E8_9TXF6oBAkhRYNTypjcCZ0XHF-AP5d",
@@ -65,10 +65,8 @@ export default function DiningVariant() {
                   />
                 </div>
                 <div className="flex-1 py-1 border-b border-earth-800 group-hover:border-gold-500 transition-colors">
-                  <div className="flex justify-between items-baseline mb-2">
-                    <h3 className="text-xl font-bold text-earth-100">{item.title}</h3>
-                    <span className="text-gold-500 text-sm font-medium">{item.availability}</span>
-                  </div>
+                  <span className="text-gold-500 text-sm font-medium block mb-1">{item.availability}</span>
+                  <h3 className="text-xl font-bold text-earth-100 mb-2">{item.title}</h3>
                   <p className="text-earth-300 text-sm font-body line-clamp-2">{item.description}</p>
                 </div>
               </div>

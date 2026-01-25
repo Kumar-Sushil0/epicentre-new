@@ -19,23 +19,29 @@ export default function AboutFounder() {
           {/* Content */}
           <div className="w-full lg:w-1/2 space-y-8">
             <div>
-              <h3 className="text-gold-500 text-lg font-medium mb-1 font-body">Founder & Lead Practitioner</h3>
+              <h3 className="text-gold-500 text-lg font-medium mb-1 font-body">Founder & Steward</h3>
               <h2 className="text-earth-50 text-4xl md:text-5xl font-bold mb-6">Neel Kothari</h2>
               <div className="h-[1px] w-full bg-gradient-to-r from-gold-500/50 to-transparent mb-6"></div>
             </div>
             <div className="space-y-6 text-earth-50/70 font-body text-base md:text-lg leading-relaxed">
               <p>
                 <span className="text-gold-500 text-4xl float-left mr-2 mt-[-10px] font-display">"</span>
-                My journey began not in wellness, but in the rigorous study of decision systems. I became fascinated by how our environments silently architect our choices, often before we are even aware of them.
+                My work did not begin in wellness. It began in studying how people make decisions, and how environments quietly influence those decisions long before we notice.
               </p>
               <p>
-                EPiCentre is the physical manifestation of that inquiry. It is an exploration into how a space can be stripped of 'signals'—the social cues that force us to perform—leaving only the raw, unfiltered self. It is a behavioral environment crafted for those brave enough to sit with their own thoughts.
+                The Silent Club is a continuation of that inquiry. It is a place designed with fewer signals—fewer cues to perform, explain, or optimise—so people can observe themselves without interference.
+              </p>
+              <p>
+                This is not guidance.
+              </p>
+              <p>
+                It is a condition for clarity.
               </p>
             </div>
             <div className="pt-4">
               <div className="flex items-center gap-2 text-gold-500/80">
                 <span className="material-symbols-outlined">psychology</span>
-                <span className="text-sm font-medium uppercase tracking-wider">Behavioral Architecture Specialist</span>
+                <span className="text-sm font-medium uppercase tracking-wider">Behavioral Architecture · Decision Systems</span>
               </div>
             </div>
           </div>

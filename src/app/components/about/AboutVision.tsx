@@ -11,9 +11,8 @@ export default function AboutVision() {
         }}
       ></div>
       <div className="max-w-2xl relative z-10">
-        <span className="material-symbols-outlined text-gold-500 text-5xl mb-8">spa</span>
         <p className="text-earth-50 text-xl md:text-3xl font-display font-medium leading-relaxed italic mb-10">
-          "We hope EPiCentre becomes a place where you don't just find silence, but where you learn to carry it with you, back into the noise of the world."
+          "We don't aim to give people silence.<br/>We aim to build a place where silence is easy to enter—and possible to carry back into the world."
         </p>
         <Link
           href="/residency"

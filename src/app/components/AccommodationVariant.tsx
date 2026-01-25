@@ -44,19 +44,6 @@ export default function AccommodationVariant() {
           <Link href="/rooms" className="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10" />
             <Image
-              alt="Cozy glamping tent structure"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6cp533rD2hQD7h4B-RpKKREBmm3s8x90hpO9pcXHR7Jj_t5Irxlyz92Hrm5LmCpp-_4wiRrD2igTCEBlSvWz9ZSIXh9rLXb5yANk7rWHOHLz7TfkkJfecRmovPUNnrruP-zbpoMFSueAEVvahR4K9I0KbmDplWZyocDTz6ebvHgdNgJ00Jidrk0zs5VuMdNEcRv3opfOO2ADL-3hlSX4BDN7SxBx8qQ3cpIgZhFKbikP7rtaljp_bYwXVa4ZIQrkl0QVmO7YJ4Dfg"
-              fill
-              className="object-cover transform group-hover:scale-105 transition-transform duration-700"
-            />
-            <div className="absolute bottom-6 left-6 z-20">
-              <h3 className="text-white text-lg font-bold">Luxury Tents</h3>
-              <p className="text-earth-200 text-xs font-body">Near nature, without unnecessary comforts</p>
-            </div>
-          </Link>
-          <Link href="/rooms" className="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10" />
-            <Image
               alt="Community hall with cushions"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNDFyy20o-AQkYEp2O4BNf_Wnz1guCpCA4Bk3m648Rjg2YfCdJnHgR9fm5nzNC0F0gIppMLs2N085b7oM_9PopUtIbw38rF_gcp8cte1qkzDEV2s6l5ZdLpyZPP7FAuXW6FRRIp0_r8l7Yuu-A7e1Op1T-SKetBfop6u8yOdUgreDTiOFj2BpfE4rtVk_D-8eQaBDZqL6mkQuDno1Asagcz1c-jI_tRFZ-nQuEECF0HxQ20-2aaellFwYLjOgzVHUi9xoJky4qDIMp"
               fill
@@ -65,6 +52,19 @@ export default function AccommodationVariant() {
             <div className="absolute bottom-6 left-6 z-20">
               <h3 className="text-white text-lg font-bold">Community Hall</h3>
               <p className="text-earth-200 text-xs font-body">For collective use and group presence</p>
+            </div>
+          </Link>
+          <Link href="/rooms" className="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10" />
+            <Image
+              alt="Cozy glamping tent structure"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6cp533rD2hQD7h4B-RpKKREBmm3s8x90hpO9pcXHR7Jj_t5Irxlyz92Hrm5LmCpp-_4wiRrD2igTCEBlSvWz9ZSIXh9rLXb5yANk7rWHOHLz7TfkkJfecRmovPUNnrruP-zbpoMFSueAEVvahR4K9I0KbmDplWZyocDTz6ebvHgdNgJ00Jidrk0zs5VuMdNEcRv3opfOO2ADL-3hlSX4BDN7SxBx8qQ3cpIgZhFKbikP7rtaljp_bYwXVa4ZIQrkl0QVmO7YJ4Dfg"
+              fill
+              className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+            />
+            <div className="absolute bottom-6 left-6 z-20">
+              <h3 className="text-white text-lg font-bold">Luxury Tents</h3>
+              <p className="text-earth-200 text-xs font-body">Near nature, without unnecessary comforts</p>
             </div>
           </Link>
         </div>

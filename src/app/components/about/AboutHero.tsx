@@ -19,10 +19,10 @@ export default function AboutHero() {
           <span className="h-16 w-[1px] bg-gold-500/60 block"></span>
         </div>
         <h1 className="text-earth-50 text-5xl md:text-7xl font-display font-black leading-tight tracking-tight mb-6 drop-shadow-xl">
-          The Story of <span className="text-gold-500 italic">EPiCentre</span>
+          The Story of <span className="text-gold-500 italic">The Silent Club</span>
         </h1>
         <h2 className="text-earth-50/90 text-lg md:text-xl font-body font-light tracking-wide uppercase opacity-90 mb-10">
-          Silence in the Bhigwan Landscape
+          Quiet in the Bhigwan Landscape
         </h2>
         <div className="flex justify-center">
           <span className="material-symbols-outlined text-earth-50/50 animate-bounce text-3xl">keyboard_arrow_down</span>

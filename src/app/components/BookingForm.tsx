@@ -66,10 +66,11 @@ export default function BookingForm() {
               <span className="material-symbols-outlined text-gold-500">bed</span>
               <select className="bg-transparent border-none text-sm focus:ring-0 text-earth-100 w-full md:w-40 font-body cursor-pointer">
                 <option className="bg-earth-900">Room Type</option>
-                <option className="bg-earth-900">Private Suites</option>
-                <option className="bg-earth-900">Luxury Tents</option>
+                <option className="bg-earth-900">Private Rooms</option>
+                
                 <option className="bg-earth-900">Dorms</option>
                 <option className="bg-earth-900">Community Hall</option>
+                <option className="bg-earth-900">Luxury Tents</option>
               </select>
             </div>
             <button

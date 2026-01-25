@@ -5,21 +5,21 @@ export default function AboutPrinciples() {
       icon: "graphic_eq",
       title: "Designed Silence",
       description:
-        "Silence here is not just the absence of noise, but a constructed presence. We engineer the soundscape to allow the internal voice to surface without competition.",
+        "Silence here is intentional. Sound, movement, and activity are shaped so internal attention has room to surface.",
     },
     {
       number: "02",
       icon: "visibility_off",
       title: "Non-Performative Space",
       description:
-        "A liberation from social expectations. In our communal areas, eye contact is optional, and conversation is intentional, removing the pressure to 'be' someone for others.",
+        "There is no expectation to speak, share, or present oneself. Presence is enough.",
     },
     {
       number: "03",
       icon: "landscape",
-      title: "Environment-Led Growth",
+      title: "Environment-Led Change",
       description:
-        "The terrain is the teacher. The harsh, beautiful landscape of Bhigwan mirrors the resilience required for internal growth. We learn by observing the land.",
+        "The land does the teaching. The pace, terrain, and openness quietly reflect what is needed.",
     },
   ];
 
@@ -30,7 +30,7 @@ export default function AboutPrinciples() {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-earth-50 text-3xl md:text-4xl font-bold">Core Principles</h2>
-          <p className="text-earth-50/50 mt-4 font-body">The pillars that hold our sanctuary.</p>
+          <p className="text-earth-50/50 mt-4 font-body">The agreements that hold the space.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
           {principles.map((principle, index) => (
