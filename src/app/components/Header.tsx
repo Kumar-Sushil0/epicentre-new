@@ -19,7 +19,7 @@ export default function Header() {
       <div className="max-w-[1280px] mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3">
           <Image
-            src="/logo.svg"
+            src="/logover.png"
             alt="EPiCentre Logo"
             width={120}
             height={40}
@@ -28,73 +28,64 @@ export default function Header() {
         </Link>
         <nav className="hidden md:flex items-center gap-8">
           <Link
-            className={`text-sm font-medium transition-colors ${
-              isActive("/about-us") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
-            }`}
+            className={`text-sm font-medium transition-colors ${isActive("/about-us") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
+              }`}
             href="/about-us"
           >
             About Us
           </Link>
           <Link
-            className={`text-sm font-medium transition-colors ${
-              isActive("/rooms") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
-            }`}
+            className={`text-sm font-medium transition-colors ${isActive("/rooms") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
+              }`}
             href="/rooms"
           >
             Rooms
           </Link>
           <Link
-            className={`text-sm font-medium transition-colors ${
-              isActive("/wellness") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
-            }`}
+            className={`text-sm font-medium transition-colors ${isActive("/wellness") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
+              }`}
             href="/wellness"
           >
             Wellness
           </Link>
           <Link
-            className={`text-sm font-medium transition-colors ${
-              isActive("/experiences") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
-            }`}
+            className={`text-sm font-medium transition-colors ${isActive("/experiences") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
+              }`}
             href="/experiences"
           >
             Experiences
           </Link>
           <Link
-            className={`text-sm font-medium transition-colors ${
-              isActive("/solitude") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
-            }`}
+            className={`text-sm font-medium transition-colors ${isActive("/solitude") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
+              }`}
             href="/solitude"
           >
             Solitude
           </Link>
           <Link
-            className={`text-sm font-medium transition-colors ${
-              isActive("/expression") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
-            }`}
+            className={`text-sm font-medium transition-colors ${isActive("/expression") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
+              }`}
             href="/expression"
           >
             Expression
           </Link>
           <Link
-            className={`text-sm font-medium transition-colors ${
-              isActive("/residency") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
-            }`}
+            className={`text-sm font-medium transition-colors ${isActive("/residency") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
+              }`}
             href="/residency"
           >
             Residency
           </Link>
           <Link
-            className={`text-sm font-medium transition-colors ${
-              isActive("/venue") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
-            }`}
+            className={`text-sm font-medium transition-colors ${isActive("/venue") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
+              }`}
             href="/venue"
           >
             Venue
           </Link>
           <Link
-            className={`text-sm font-medium transition-colors ${
-              isActive("/stories") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
-            }`}
+            className={`text-sm font-medium transition-colors ${isActive("/stories") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
+              }`}
             href="/stories"
           >
             Stories

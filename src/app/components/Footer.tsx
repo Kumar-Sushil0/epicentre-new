@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -40,9 +41,14 @@ export default function Footer() {
         </div>
         <div className="grid md:grid-cols-4 gap-12 mb-16 border-b border-earth-800 pb-12">
           <div className="col-span-1 md:col-span-1">
-            <div className="flex items-center gap-2 mb-6">
-              <span className="material-symbols-outlined text-gold-500 text-2xl">spa</span>
-              <h2 className="text-xl font-bold tracking-tight text-earth-50">EPiCentre</h2>
+            <div className="mb-6">
+              <Image
+                src="/logo.png"
+                alt="EPiCentre Logo"
+                width={120}
+                height={40}
+                className="object-contain"
+              />
             </div>
             <p className="text-sm text-earth-300/60 font-body leading-relaxed">
               A space for being, not doing. Reconnect with yourself in the embrace of nature.
