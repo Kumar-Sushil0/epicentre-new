@@ -120,7 +120,7 @@ export default function RoomsPage() {
               buttons={[{ text: "View Schedule", href: "#", variant: "secondary" }]}
             />
 
-            <RoomsCTA />
+
           </main>
         </div>
       </div>

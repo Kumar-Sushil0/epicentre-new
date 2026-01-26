@@ -211,11 +211,12 @@ export default function DevelopmentTimeline() {
   };
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-6 py-2">
+    <div className="w-full py-2">
       <div className="relative">
         {/* Scroll container */}
         <div 
           ref={scrollContainerRef}
+          data-timeline-scroll
           className="overflow-x-auto pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
         >
           <div className="inline-flex gap-8 min-w-full px-4 items-start">
@@ -268,15 +269,13 @@ export default function DevelopmentTimeline() {
                                 <h5 className="text-base font-bold text-earth-50 font-display mb-1">
                                   {zone.name}
                                 </h5>
+                                <p className="text-sm text-earth-300/60 font-body">
+                                  {zone.preciseDate}
+                                </p>
                                 {isExpanded && (
-                                  <>
-                                    <p className="text-sm text-earth-300/60 font-body mb-2">
-                                      {zone.preciseDate}
-                                    </p>
-                                    <p className="text-sm text-earth-300/80 font-body leading-relaxed">
-                                      {zone.description}
-                                    </p>
-                                  </>
+                                  <p className="text-sm text-earth-300/80 font-body leading-relaxed">
+                                    {zone.description}
+                                  </p>
                                 )}
                               </div>
                               {/* Expand/Collapse Icon */}
@@ -307,48 +306,6 @@ export default function DevelopmentTimeline() {
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Navigation Arrows */}
-        <div className="flex items-center justify-center gap-4 mt-6">
-          <button
-            onClick={scrollLeft}
-            className="group flex items-center justify-center w-12 h-12 rounded-full bg-gold-500/10 hover:bg-gold-500/20 border-2 border-gold-500/30 hover:border-gold-500 transition-all duration-300"
-            aria-label="Scroll left"
-          >
-            <svg
-              className="w-6 h-6 text-gold-500 group-hover:scale-110 transition-transform"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-          <button
-            onClick={scrollRight}
-            className="group flex items-center justify-center w-12 h-12 rounded-full bg-gold-500/10 hover:bg-gold-500/20 border-2 border-gold-500/30 hover:border-gold-500 transition-all duration-300"
-            aria-label="Scroll right"
-          >
-            <svg
-              className="w-6 h-6 text-gold-500 group-hover:scale-110 transition-transform"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
         </div>
       </div>
     </div>

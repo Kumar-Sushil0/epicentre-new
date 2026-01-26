@@ -114,12 +114,7 @@ export default function RoomsSidebar() {
             );
           })}
         </nav>
-        <div className="mt-8 p-6 bg-earth-700/10 rounded-xl border border-earth-700/30">
-          <span className="material-symbols-outlined text-gold-500 mb-3 text-3xl">self_improvement</span>
-          <p className="text-sm text-earth-300 italic leading-relaxed font-body">
-            "Silence is not the absence of noise, but the beginning of listening."
-          </p>
-        </div>
+
       </div>
     </aside>
   );

@@ -13,10 +13,7 @@ export default function RoomsIntro() {
         </p>
 
       </div>
-      <div className="mt-8">
-        <h2 className="text-earth-50 text-2xl lg:text-3xl font-bold mb-2">Accommodations</h2>
-        <p className="text-earth-300 italic font-body">Select a space to view details.</p>
-      </div>
+
     </section>
   );
 }

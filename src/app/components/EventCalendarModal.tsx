@@ -42,7 +42,7 @@ export default function EventCalendarModal() {
         <div className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
             <div
                 ref={modalRef}
-                className="bg-earth-900 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto relative"
+                className="bg-earth-900 rounded-2xl shadow-2xl w-full max-w-7xl max-h-[90vh] overflow-y-auto relative"
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Close Button */}
@@ -55,10 +55,62 @@ export default function EventCalendarModal() {
                 </button>
 
                 {/* Timeline Content */}
-                <div className="p-6">
-                    <h2 className="text-2xl font-bold text-earth-50 mb-6 font-display text-center">
-                        Event Calendar
-                    </h2>
+                <div>
+                    <div className="p-6 pb-0">
+                        <div className="flex items-center justify-center gap-4">
+                            <button
+                                onClick={() => {
+                                    const timeline = document.querySelector('[data-timeline-scroll]') as HTMLDivElement;
+                                    if (timeline) {
+                                        timeline.scrollBy({ left: -300, behavior: 'smooth' });
+                                    }
+                                }}
+                                className="group flex items-center justify-center w-8 h-8 rounded-full bg-gold-500/10 hover:bg-gold-500/20 border border-gold-500/30 hover:border-gold-500 transition-all duration-300"
+                                aria-label="Scroll left"
+                            >
+                                <svg
+                                    className="w-4 h-4 text-gold-500 group-hover:scale-110 transition-transform"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M15 19l-7-7 7-7"
+                                    />
+                                </svg>
+                            </button>
+                            <h2 className="text-2xl font-bold text-earth-50 font-display">
+                                Event Calendar
+                            </h2>
+                            <button
+                                onClick={() => {
+                                    const timeline = document.querySelector('[data-timeline-scroll]') as HTMLDivElement;
+                                    if (timeline) {
+                                        timeline.scrollBy({ left: 300, behavior: 'smooth' });
+                                    }
+                                }}
+                                className="group flex items-center justify-center w-8 h-8 rounded-full bg-gold-500/10 hover:bg-gold-500/20 border border-gold-500/30 hover:border-gold-500 transition-all duration-300"
+                                aria-label="Scroll right"
+                            >
+                                <svg
+                                    className="w-4 h-4 text-gold-500 group-hover:scale-110 transition-transform"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M9 5l7 7-7 7"
+                                    />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
                     <DevelopmentTimeline />
                 </div>
             </div>
