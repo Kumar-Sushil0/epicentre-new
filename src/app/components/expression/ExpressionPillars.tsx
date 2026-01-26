@@ -2,7 +2,7 @@ import ExpressionPillarCard from "./ExpressionPillarCard";
 
 interface Pillar {
   title: string;
-  description: string;
+  description: React.ReactNode;
   image: string;
   imageAlt: string;
   icon: string;

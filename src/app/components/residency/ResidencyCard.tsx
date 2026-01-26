@@ -29,12 +29,8 @@ export default function ResidencyCard({ category, title, description, speakers, 
       <p className="text-earth-300 mb-6 font-light leading-relaxed font-body flex-grow">{description}</p>
 
       <div className="flex items-center justify-between gap-4 pt-4 border-t border-earth-700">
-        <Link className="inline-flex items-center text-gold-500 font-bold text-sm hover:gap-2 transition-all flex-shrink-0" href={href}>
-          Learn More <span className="material-symbols-outlined text-base ml-1">arrow_forward</span>
-        </Link>
-
         {checkIn && checkOut && (
-          <div className="flex flex-col gap-1 text-xs text-earth-400 flex-shrink-0 items-end">
+          <div className="flex flex-col gap-1 text-xs text-earth-400 flex-shrink-0 items-start">
             <span className="whitespace-nowrap">
               <span className="font-medium">Checkin:</span> {checkIn}
             </span>
@@ -43,6 +39,10 @@ export default function ResidencyCard({ category, title, description, speakers, 
             </span>
           </div>
         )}
+
+        <Link className="inline-flex items-center text-gold-500 font-bold text-sm hover:gap-2 transition-all flex-shrink-0" href={href}>
+          Learn More <span className="material-symbols-outlined text-base ml-1">arrow_forward</span>
+        </Link>
       </div>
     </div>
   );

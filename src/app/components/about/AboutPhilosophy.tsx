@@ -13,9 +13,7 @@ export default function AboutPhilosophy() {
             This is not a retreat built around activities or outcomes. It is a deliberately shaped environment where noise—social, mental, performative—is reduced so attention can settle on its own.
           </p>
           <p>
-            Here, the landscape sets the pace.
-          </p>
-          <p>
+            Here, the landscape sets the pace.<br />
             Stillness is not practiced. It is allowed.
           </p>
         </div>

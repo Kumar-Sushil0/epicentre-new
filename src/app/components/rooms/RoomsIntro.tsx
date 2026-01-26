@@ -6,14 +6,12 @@ export default function RoomsIntro() {
       </h1>
       <div className="space-y-4 text-earth-300 text-lg lg:text-xl font-normal leading-relaxed max-w-2xl font-body">
         <p>
-          Rest at The Silent Club is treated as a condition, not an indulgence.
-        </p>
-        <p>
-          These spaces are designed to reduce stimulation, support deep rest, and allow attention to settle without effort.
-        </p>
-        <p>
+          Rest at The Silent Club is treated as a condition, not an indulgence.<br />
+          These spaces are designed to reduce stimulation, support deep rest, and allow attention to settle without effort.<br />
           Comfort exists, but nothing here competes for your focus.
+
         </p>
+
       </div>
       <div className="mt-8">
         <h2 className="text-earth-50 text-2xl lg:text-3xl font-bold mb-2">Accommodations</h2>
