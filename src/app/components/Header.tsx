@@ -19,7 +19,7 @@ export default function Header() {
       <div className="max-w-[1280px] mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center -ml-6 -my-4 relative h-[72px] w-52">
           <Image
-            src="/untitled.png"
+            src="/Untitled.png"
             alt="EPiCentre Logo"
             fill
             className="object-contain object-left"
