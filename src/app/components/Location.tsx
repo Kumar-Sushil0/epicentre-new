@@ -11,7 +11,7 @@ export default function Location() {
             Located in the serene landscapes of Maharashtra, accessible yet hidden.
           </p>
         </div>
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           <div className="bg-earth-800 p-8 rounded-2xl shadow-sm border border-earth-700">
             <div className="flex items-center gap-3 mb-6">
               <span className="material-symbols-outlined text-gold-500 text-3xl">location_on</span>
@@ -56,6 +56,29 @@ export default function Location() {
                 <span className="font-bold text-earth-100">1 Hour</span>
               </div>
               <p className="mt-4 italic text-xs text-earth-500">Easy access from the nearest railway station.</p>
+            </div>
+          </div>
+          <div className="bg-earth-800 p-8 rounded-2xl shadow-sm border border-earth-700">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="material-symbols-outlined text-gold-500 text-3xl">location_on</span>
+              <h3 className="text-xl font-bold text-earth-100">From Mumbai</h3>
+            </div>
+            <div className="space-y-4 font-body text-sm text-earth-300">
+              <div className="flex items-center justify-between border-b border-earth-700 pb-2">
+                <div className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-lg">directions_car</span>
+                  <span>Private Car</span>
+                </div>
+                <span className="font-bold text-earth-100">4.5 Hours</span>
+              </div>
+              <div className="flex items-center justify-between border-b border-earth-700 pb-2">
+                <div className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-lg">train</span>
+                  <span>Train to Pune</span>
+                </div>
+                <span className="font-bold text-earth-100">3 + 2.5 Hours</span>
+              </div>
+              <p className="mt-4 italic text-xs text-earth-500">Most travelers prefer train to Pune, then car.</p>
             </div>
           </div>
         </div>
