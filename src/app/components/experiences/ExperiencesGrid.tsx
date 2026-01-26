@@ -1,6 +1,7 @@
 import ExperienceCard from "./ExperienceCard";
 
 interface Experience {
+  id?: string;
   title: string;
   description: string;
   time: string;
@@ -12,6 +13,7 @@ interface Experience {
   minimumGuestsText?: string;
   price?: string;
   href?: string;
+  tags?: string[];
 }
 
 interface ExperiencesGridProps {
@@ -30,13 +32,13 @@ export default function ExperiencesGrid({ experiences }: ExperiencesGridProps) {
       {/* Column 1 */}
       <div className="flex flex-col gap-16">
         {column1.map((experience, index) => (
-          <ExperienceCard key={index} {...experience} />
+          <ExperienceCard key={experience.id || index} {...experience} />
         ))}
       </div>
       {/* Column 2 (Staggered) */}
       <div className="flex flex-col gap-16 md:mt-32">
         {column2.map((experience, index) => (
-          <ExperienceCard key={index} {...experience} />
+          <ExperienceCard key={experience.id || index} {...experience} />
         ))}
       </div>
     </div>

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface ExperienceCardProps {
+  id?: string;
   title: string;
   description: string;
   time: string;
@@ -16,9 +17,24 @@ interface ExperienceCardProps {
   minimumGuestsText?: string;
   price?: string;
   href?: string;
+  tags?: string[];
 }
 
-export default function ExperienceCard({ title, description, time, icon, images, imageAlt, aspectRatio, minimumGuests, minimumGuestsText, price, href }: ExperienceCardProps) {
+const tagLabels: Record<string, string> = {
+  morning: "Morning",
+  afternoon: "Afternoon",
+  evening: "Evening",
+  night: "Night",
+};
+
+const tagIcons: Record<string, string> = {
+  morning: "wb_twilight",
+  afternoon: "light_mode",
+  evening: "nights_stay",
+  night: "dark_mode",
+};
+
+export default function ExperienceCard({ id, title, description, time, icon, images, imageAlt, aspectRatio, minimumGuests, minimumGuestsText, price, href, tags }: ExperienceCardProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const aspectClass =
     aspectRatio === "4/3" ? "aspect-[4/3]" : aspectRatio === "3/4" ? "aspect-[3/4]" : "aspect-video";
@@ -99,44 +115,69 @@ export default function ExperienceCard({ title, description, time, icon, images,
           )}
         </div>
       </div>
-      <div className="flex flex-col gap-1">
-        <div className="flex items-center gap-2 mb-1">
-          <span className="material-symbols-outlined text-gold-500 text-sm">{icon}</span>
-          <span className="text-gold-500 text-xs font-bold uppercase tracking-widest font-body">{time}</span>
+      <div className="flex flex-col gap-1 relative">
+        {/* Top row: Tags on left, Min Guests & Price on right */}
+        <div className="flex items-start justify-between mb-1">
+          {/* Tags with icons */}
+          {tags && tags.length > 0 && (
+            <div className="flex items-center gap-2 flex-wrap">
+              {tags.map((tag) => (
+                <div key={tag} className="flex items-center gap-1">
+                  <span className="material-symbols-outlined text-gold-500 text-sm">
+                    {tagIcons[tag] || "schedule"}
+                  </span>
+                  <span className="text-gold-500 text-xs font-bold uppercase tracking-widest font-body">
+                    {tagLabels[tag] || tag}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+          {/* Minimum Guests & Price on top right */}
+          {(minimumGuests || minimumGuestsText || price) && (
+            <div className="flex items-center gap-3 flex-shrink-0 ml-2">
+              {(minimumGuests || minimumGuestsText) && (
+                <div className="flex items-center gap-1">
+                  <span className="material-symbols-outlined text-earth-400 text-xs">groups</span>
+                  <span className="text-earth-400 text-xs font-body">
+                    {minimumGuestsText || `${minimumGuests}`}
+                  </span>
+                </div>
+              )}
+              {price && (
+                <div className="flex items-center gap-1">
+                  <span className="material-symbols-outlined text-gold-500 text-xs">currency_rupee</span>
+                  <span className="text-gold-500 text-xs font-medium font-body">{price}</span>
+                </div>
+              )}
+            </div>
+          )}
         </div>
         <h3 className="text-earth-50 text-2xl font-medium font-display group-hover:text-gold-500 transition-colors">
           {title}
         </h3>
         <p className="text-earth-300 text-base font-body whitespace-pre-line">{description}</p>
-        {(minimumGuests || minimumGuestsText || price) && (
-          <div className="flex items-center gap-4 mt-3 pt-3 border-t border-earth-800">
-            {(minimumGuests || minimumGuestsText) && (
-              <div className="flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-earth-400 text-sm">groups</span>
-                <span className="text-earth-400 text-sm font-body">
-                  {minimumGuestsText || `Minimum ${minimumGuests} guests`}
-                </span>
-              </div>
-            )}
-            {price && (
-              <div className="flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-gold-500 text-sm">currency_rupee</span>
-                <span className="text-gold-500 text-sm font-medium font-body">{price}</span>
-              </div>
-            )}
-          </div>
-        )}
       </div>
     </>
   );
 
-  if (href) {
-    return (
-      <Link href={href} className="group cursor-pointer block">
-        {CardContent}
-      </Link>
-    );
-  }
+  const Wrapper = id ? (
+    <div id={id} className="scroll-mt-32">
+      {href ? (
+        <Link href={href} className="group cursor-pointer block">
+          {CardContent}
+        </Link>
+      ) : (
+        <div className="group cursor-pointer">{CardContent}</div>
+      )}
+    </div>
+  ) : href ? (
+    <Link href={href} className="group cursor-pointer block">
+      {CardContent}
+    </Link>
+  ) : (
+    <div className="group cursor-pointer">{CardContent}</div>
+  );
 
-  return <div className="group cursor-pointer">{CardContent}</div>;
+  return Wrapper;
 }

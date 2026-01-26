@@ -33,6 +33,7 @@ export default function RoomsPage() {
                 { icon: "wifi_off", text: "Tech-free interior" },
                 { icon: "deck", text: "Outdoor sit-out for stillness" },
               ]}
+              featuresStyle="list"
               buttons={[
                 { text: "Check Availability", href: "/bookings", variant: "secondary" },
                 { text: "View Floorplan", href: "#", variant: "secondary" },
@@ -55,6 +56,7 @@ export default function RoomsPage() {
                 { icon: "wifi_off", text: "No devices, no external input" },
                 { icon: "room_service", text: "Food delivered without visual contact" },
               ]}
+              featuresStyle="list"
               buttons={[{ text: "Check Availability", href: "/bookings", variant: "secondary" }]}
             />
 
@@ -68,10 +70,13 @@ export default function RoomsPage() {
               image="https://lh3.googleusercontent.com/aida-public/AB6AXuAd0MrUgxtI24ctYnNVK7t_0ipeTTqmWsJCLm5cpM9SR9eaqccitEqKNUHpiTcRy5_Reud0UU-OZvZFRwaKjCVFUxCCcr5x80ezOMsIk6ZYNAp5-rcQc65w_rIijqQ2xI_DTUrmhpSLXFkH-PJ7tC7F1e1CzGWzy00PXwmWLXC-UqJ9bg6TQfqN1eqg1OkF_v17JlAL4MB-EajLCUR26TuPjjyYiFzsiW8GD6zQrVwkgD66Kefyszm0kHtCfGkNkqLkrYKMViUchwie"
               imageAlt="Cozy wooden bunk beds in a dimly lit rustic room"
               imagePosition="right"
-              specialFeatures={[
-                { icon: "curtains", title: "Privacy Curtains", description: "Heavy fabric to block light and visual distraction." },
-                { icon: "shelves", title: "Secure Storage", description: "Lockers for personal belongings and devices." },
+              features={[
+                { icon: "curtains", text: "Privacy curtains for light blocking" },
+                { icon: "shelves", text: "Secure storage lockers" },
+                { icon: "bed", text: "Individual sleeping pods" },
+                { icon: "ac_unit", text: "Climate controlled space" },
               ]}
+              featuresStyle="list"
               buttons={[{ text: "Check Availability", href: "/bookings", variant: "primary" }]}
             />
 
@@ -89,6 +94,7 @@ export default function RoomsPage() {
                 { icon: "forest", text: "Elevated canvas structure" },
                 { icon: "light_mode", text: "Lantern lighting" },
                 { icon: "fireplace", text: "Fire pit access" },
+                { icon: "umbrella", text: "Natural weatherproofing" },
               ]}
               featuresStyle="list"
               buttons={[{ text: "Check Availability", href: "/bookings", variant: "secondary" }]}
@@ -104,12 +110,14 @@ export default function RoomsPage() {
               image="https://lh3.googleusercontent.com/aida-public/AB6AXuB0W9yJw8axjF-kN3nS3rx2wcnSyZDgPPr4N6-dQHkur_vVcYF7VJDVWzdTVlXQINnv8OPubPGsP93vzoZSB1siyf5Dfyl4VbjsiDfThEFh4mCXDJb2-Q3XzsQ-yKSgt_d9eFJgNilz-sF-0wpPmMdd_1eUEJmyZqiPXLW-gBggW1zAzs7-S96DxPtCF5pg4bxnbJGHsTOiNtH_b3S1jWkXeIxnAOQavLlixwoNfkJe-ZzbvSK4qZMGzvYZFscIPgABiVcKzflo9wUo"
               imageAlt="Warm interior with fireplace and comfortable armchairs"
               imagePosition="right"
-              highlightBox={{
-                title: "Morning Tea Ritual",
-                description: "A silent daily tea gathering for those who wish to join.",
-                linkText: "View Details",
-                linkHref: "#",
-              }}
+              features={[
+                { icon: "local_cafe", text: "Morning tea ritual (silent gathering)" },
+                { icon: "menu_book", text: "Reading and reflection space" },
+                { icon: "fireplace", text: "Warm fireplace seating" },
+                { icon: "self_improvement", text: "Quiet contemplation area" },
+              ]}
+              featuresStyle="list"
+              buttons={[{ text: "View Schedule", href: "#", variant: "secondary" }]}
             />
 
             <RoomsCTA />

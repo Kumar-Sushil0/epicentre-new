@@ -41,11 +41,10 @@ export default function RoomSection({
       {badge && (
         <div className={`absolute ${badge.position === "top-left" ? "top-4 left-4" : badge.position === "top-right" ? "top-4 right-4" : badge.position === "bottom-left" ? "bottom-4 left-4" : "bottom-4 right-4"} z-20`}>
           <span
-            className={`text-xs px-3 py-1 rounded-full ${
-              badge.position === "top-right"
-                ? "bg-gold-500 text-earth-950 font-bold uppercase tracking-wider shadow-lg"
-                : "bg-black/50 backdrop-blur-md text-earth-100 border border-white/10 flex items-center gap-1"
-            }`}
+            className={`text-xs px-3 py-1 rounded-full ${badge.position === "top-right"
+              ? "bg-gold-500 text-earth-950 font-bold uppercase tracking-wider shadow-lg"
+              : "bg-black/50 backdrop-blur-md text-earth-100 border border-white/10 flex items-center gap-1"
+              }`}
           >
             {badge.position === "bottom-left" && <span className="material-symbols-outlined text-[14px]">photo_camera</span>}
             {badge.text}
@@ -57,34 +56,74 @@ export default function RoomSection({
 
   const contentComponent = (
     <div className="flex flex-col gap-8 xl:w-5/12 xl:sticky xl:top-32 self-start">
-      <div className="flex flex-col gap-4">
-        <div className="flex items-center gap-2 text-gold-500/80 uppercase tracking-widest text-xs font-bold">
-          {number} / {category}
-        </div>
-        <h2 className="text-earth-50 text-4xl font-bold leading-tight">{title}</h2>
-        <p className="text-earth-300 text-base leading-loose font-light font-body">{description}</p>
-      </div>
-
-      {features && featuresStyle === "grid" && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-b border-earth-700 py-6">
-          {features.map((feature, idx) => (
-            <div key={idx} className="flex items-center gap-3 text-sm text-earth-100/90">
-              <span className="material-symbols-outlined text-gold-500 text-lg">{feature.icon}</span>
-              <span>{feature.text}</span>
+      {features ? (
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-[5px]">
+            <div className="flex items-center gap-2 text-gold-500/80 uppercase tracking-widest text-xs font-bold">
+              {number} / {category}
             </div>
-          ))}
+            <h2 className="text-earth-50 text-4xl font-bold leading-tight">{title}</h2>
+            <p className="text-earth-300 text-base leading-loose font-light font-body">{description}</p>
+          </div>
+
+          {featuresStyle === "grid" && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-b border-earth-700 py-6">
+              {features.map((feature, idx) => (
+                <div key={idx} className="flex items-center gap-3 text-sm text-earth-100/90">
+                  <span className="material-symbols-outlined text-gold-500 text-lg">{feature.icon}</span>
+                  <span>{feature.text}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {featuresStyle === "list" && (
+            <ul className="space-y-3 border-t border-b border-earth-700 py-6">
+              {features.map((feature, idx) => (
+                <li key={idx} className="flex items-center gap-3 text-sm text-earth-100/90">
+                  <span className="material-symbols-outlined text-gold-500 text-lg">{feature.icon}</span>
+                  <span>{feature.text}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {buttons && (
+            <div className="flex flex-col sm:flex-row gap-4">
+              {buttons.map((button, idx) => (
+                <Link
+                  key={idx}
+                  href={button.href || "#"}
+                  className="text-sm text-earth-200 hover:text-gold-500 underline underline-offset-4 transition-colors duration-300"
+                >
+                  {button.text}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="flex flex-col gap-[5px]">
+          <div className="flex items-center gap-2 text-gold-500/80 uppercase tracking-widest text-xs font-bold">
+            {number} / {category}
+          </div>
+          <h2 className="text-earth-50 text-4xl font-bold leading-tight">{title}</h2>
+          <p className="text-earth-300 text-base leading-loose font-light font-body">{description}</p>
         </div>
       )}
 
-      {features && featuresStyle === "list" && (
-        <ul className="space-y-4">
-          {features.map((feature, idx) => (
-            <li key={idx} className="flex items-center gap-4 p-3 bg-earth-700/20 rounded-lg border border-white/5">
-              <span className="material-symbols-outlined text-gold-500">{feature.icon}</span>
-              <span className="text-earth-50 text-sm">{feature.text}</span>
-            </li>
+      {!features && buttons && (
+        <div className="flex flex-col sm:flex-row gap-4">
+          {buttons.map((button, idx) => (
+            <Link
+              key={idx}
+              href={button.href || "#"}
+              className="text-sm text-earth-200 hover:text-gold-500 underline underline-offset-4 transition-colors duration-300"
+            >
+              {button.text}
+            </Link>
           ))}
-        </ul>
+        </div>
       )}
 
       {specialFeatures && (
@@ -116,24 +155,6 @@ export default function RoomSection({
               {highlightBox.linkText}
             </Link>
           )}
-        </div>
-      )}
-
-      {buttons && (
-        <div className="flex flex-col sm:flex-row gap-4 pt-2">
-          {buttons.map((button, idx) => (
-            <Link
-              key={idx}
-              href={button.href || "#"}
-              className={`flex-1 h-12 rounded-lg text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-300 ${
-                button.variant === "primary"
-                  ? "bg-gold-500 text-earth-950 hover:bg-gold-400 shadow-lg shadow-gold-500/20"
-                  : "border border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-earth-950"
-              }`}
-            >
-              {button.text}
-            </Link>
-          ))}
         </div>
       )}
     </div>

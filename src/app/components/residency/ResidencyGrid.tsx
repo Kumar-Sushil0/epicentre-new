@@ -4,6 +4,9 @@ interface Residency {
   category: string;
   title: string;
   description: string;
+  speakers?: string[];
+  checkIn?: string;
+  checkOut?: string;
   href?: string;
 }
 

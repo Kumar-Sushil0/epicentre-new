@@ -9,28 +9,28 @@ export default function VenueBookingDetails() {
   ];
 
   return (
-    <section className="py-16 px-4 sm:px-6 bg-earth-900">
+    <section className="py-8 px-4 sm:px-6 bg-earth-900">
       <div className="max-w-6xl mx-auto">
         {/* Venue Booking Details */}
-        <div className="border border-earth-700 rounded-lg overflow-hidden mb-12">
+        <div className="border border-earth-700 rounded-lg overflow-hidden mb-6">
           {/* Title */}
-          <div className="border-b border-earth-700 py-6 px-6">
-            <h2 className="text-earth-50 text-2xl md:text-3xl font-bold uppercase tracking-wide text-center font-display">
+          <div className="border-b border-earth-700 py-3 px-4">
+            <h2 className="text-earth-50 text-xl md:text-2xl font-bold uppercase tracking-wide text-center font-display">
               VENUE BOOKING DETAILS
             </h2>
           </div>
 
           {/* Half Day Section */}
           <div className="border-b border-earth-700">
-            <div className="py-4 px-6 border-b border-earth-700">
-              <p className="text-earth-300 text-lg italic text-center font-body">for half a day</p>
+            <div className="py-2 px-4 border-b border-earth-700">
+              <p className="text-earth-300 text-sm italic text-center font-body">for half a day</p>
             </div>
             <div className="grid grid-cols-6 divide-x divide-earth-700 overflow-x-auto">
               {halfDayPricing.map((item, index) => (
-                <div key={index} className="py-6 px-2 sm:px-3 text-center min-w-[120px]">
-                  <div className="flex flex-col gap-2">
-                    <p className="text-earth-200 text-xs sm:text-sm font-body leading-tight">{item.range}</p>
-                    <p className="text-gold-500 text-sm sm:text-base font-bold font-body">{item.price}</p>
+                <div key={index} className="py-3 px-2 text-center min-w-[100px]">
+                  <div className="flex flex-col gap-1">
+                    <p className="text-earth-200 text-xs font-body leading-tight">{item.range}</p>
+                    <p className="text-gold-500 text-sm font-bold font-body">{item.price}</p>
                   </div>
                 </div>
               ))}
@@ -39,24 +39,27 @@ export default function VenueBookingDetails() {
 
           {/* Entire Day Section */}
           <div>
-            <div className="py-4 px-6 border-b border-earth-700">
-              <p className="text-earth-300 text-lg italic text-center font-body">for the entire day</p>
+            <div className="py-2 px-4 border-b border-earth-700">
+              <p className="text-earth-300 text-sm italic text-center font-body">for the entire day</p>
             </div>
-            <div className="py-6 px-6 text-center">
-              <p className="text-gold-500 text-2xl font-bold font-body">2,20,000/-</p>
+            <div className="py-3 px-4 text-center">
+              <p className="text-gold-500 text-xl font-bold font-body">2,20,000/-</p>
             </div>
           </div>
         </div>
 
         {/* Things to Remember */}
-        <div className="border border-earth-700 rounded-lg overflow-hidden">
-          <div className="border-b border-earth-700 py-6 px-6">
-            <h2 className="text-earth-50 text-2xl md:text-3xl font-bold uppercase tracking-wide text-center font-display">
+        <div className="">
+          <div className="py-3 px-4">
+            <h2 className="text-earth-50 text-xl md:text-2xl font-bold uppercase tracking-wide text-center font-display">
               THINGS TO REMEMBER
             </h2>
+            <p className="text-earth-300 text-sm text-center mt-2 italic font-body">
+              Security deposit of ₹50,000 will be applicable to all venue rentals.
+            </p>
           </div>
-          <div className="py-6 px-6 md:px-12">
-            <ul className="space-y-3 text-earth-200 font-body">
+          <div className="py-4 px-4 md:px-8">
+            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-earth-200 font-body text-sm">
               <li className="flex items-start gap-2">
                 <span className="text-gold-500 mt-1">•</span>
                 <span>18% GST applicable on all payments</span>
@@ -69,21 +72,17 @@ export default function VenueBookingDetails() {
                 <span className="text-gold-500 mt-1">•</span>
                 <span>First half 9AM – 2PM and second half 3PM – 8PM</span>
               </li>
+
               <li className="flex items-start gap-2">
                 <span className="text-gold-500 mt-1">•</span>
-                <div className="flex flex-col gap-1">
-                  <span>Security deposit of ₹50,000 will be applicable to all venue rentals.</span>
-                  <span className="text-earth-400 italic text-sm ml-4">
-                    (Extended to 10PM with prior agreement)
-                  </span>
-                </div>
+                <span>Extended to 10PM with prior agreement</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-gold-500 mt-1">*</span>
+                <span className="text-gold-500 mt-1">•</span>
                 <span className="text-earth-400 italic">Outside catering permitted</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-gold-500 mt-1">*</span>
+                <span className="text-gold-500 mt-1">•</span>
                 <span className="text-earth-400 italic">Outside decorator permitted</span>
               </li>
             </ul>

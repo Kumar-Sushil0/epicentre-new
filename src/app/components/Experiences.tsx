@@ -10,9 +10,10 @@ interface ExperienceCardProps {
   href: string;
   images: string[];
   imageAlt: string;
+  itemTitles?: string[];
 }
 
-function ExperienceCard({ title, description, href, images, imageAlt }: ExperienceCardProps) {
+function ExperienceCard({ title, description, href, images, imageAlt, itemTitles }: ExperienceCardProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
@@ -40,9 +41,19 @@ function ExperienceCard({ title, description, href, images, imageAlt }: Experien
             />
           </div>
         ))}
+        {/* Title Overlay - shows item title for current image */}
+        {itemTitles && itemTitles.length > 0 && (
+          <div className="absolute inset-0 z-20 flex items-end pointer-events-none">
+            <div className="w-full bg-gradient-to-t from-earth-950/90 via-earth-950/70 to-transparent p-6">
+              <h3 className="text-2xl font-bold text-earth-50 group-hover:text-gold-500 transition-colors">
+                {itemTitles[currentSlide] || title}
+              </h3>
+            </div>
+          </div>
+        )}
         {/* Navigation Dots */}
         {images.length > 1 && (
-          <div className="absolute bottom-3 right-3 z-10 flex gap-1.5">
+          <div className="absolute bottom-3 right-3 z-30 flex gap-1.5">
             {images.map((_, index) => (
               <button
                 key={index}
@@ -83,6 +94,7 @@ export default function Experiences() {
         "https://lh3.googleusercontent.com/aida-public/AB6AXuAfUEFkuPsDcRrwomNpV_HwfuHf9O-A4L4U6MKLljPvLYJJwCUlXXxY2mjgE-er6h_jG_PklBuvKzJnEWMoUJTBEFnfYdbWj0UoS3cNXdzuBn3c88huWQsb9L1tETDwGKjEr-JXTFe2AZ17ij8blc4Ins9QdK95sIdIr8UwQdYwnWrcQj1lZakOp8Ym0eJLoProiY8a7Mgr0ih-iysVaPtnEnXgmXEjcYNY-jgM_8kZIOdBMKHtMR5R46CeAnA6rA3Z00VVJIJkJdLa",
       ],
       imageAlt: "Solitude practice images",
+      itemTitles: ["Angling", "Bird Watching", "Star Gazing"],
     },
     {
       title: "Expression",
@@ -94,6 +106,7 @@ export default function Experiences() {
         "https://lh3.googleusercontent.com/aida-public/AB6AXuABDtELNVZFlmNhezKAvfaFfbvOYFwMzeiLScpWnRzmifqd-QuQRWU1RZ2D4QNv2Uk_wl5jaZF-YAkvAk0_gh2fJSys3XF90IKlYUpHYOuW6ppEjRBhWDPVJCScTGuZ5SPQA6R5ZYDrGuCw1kvgNrHXWZW6e67U1QWhvc6TkRDxQkWoM79vuQ7ka0Xm8UsR3uczDJj_-FGcqA7r_1uIUoVI0fxKKvYX0broLqXmM0S74MHkHML23rj6FjUVaFEDDtSNY6qqvynhexYk",
       ],
       imageAlt: "Expression practice images",
+      itemTitles: ["Language Play", "Finding Voice", "Artist In Reflection"],
     },
     {
       title: "Residency",
@@ -105,6 +118,7 @@ export default function Experiences() {
         "https://lh3.googleusercontent.com/aida-public/AB6AXuDsP2PVMAnzEeQANwyaypvuhQWIt86oMF9re2yM2NG7_BzlSLrJN65CWOxusQWunAJmE3QFO5KI0y_wRzwx06Hf1pN5gjTvHjrhusUKu6KLAiYJdg5UqyuiV3Exg2Gx20sI1_BmDSyvmNahXSAiqdL9jtzB8c6xwHed0IyPo0Bs-jEZouWM4TARhZMON7EHMpCXGgxuD-xj1WpOkwIEH6Q_rSiGChRmBpn5iA7_qxdQcU6lzE12bqOVEBm59P0h2vHi_VoV3OLtsjnM",
       ],
       imageAlt: "Residency images",
+      itemTitles: ["AI Sense-Making Residency", "Risk & Attention Residency", "Tech Sabbatical Lite"],
     },
     {
       title: "Wellness",
@@ -127,6 +141,7 @@ export default function Experiences() {
         "https://lh3.googleusercontent.com/aida-public/AB6AXuCL7r_EfdzJXByVkgj8b1NMj-ZAtICOd-7f0nIhoxkQIxwBXH598TGdlFxtN24GiUoEphwYF0zIlhdvgru9oSMfTu9oihv5xP2V32qk72jVhmmMD13Pcuc1s0mmIW9z0PwjwSoqpRfVVjN7zXydMqkaSSiGcvxYcCH0nmyLUFMqAU494-rLxIKe2FG8GvN3X8ki91b9auaQ6g5uK2zpi_NeVNIbCo2enuZdmqIXYer0VC9t9T7g6Bxyw44xX4oXh4-0yrKVSoFNsFSS",
       ],
       imageAlt: "Experience activity images",
+      itemTitles: ["Evening Cooking", "Afternoon Pottery", "Midday Paint"],
     },
   ];
 
@@ -193,6 +208,7 @@ export default function Experiences() {
                     href={experience.href}
                     images={experience.images}
                     imageAlt={experience.imageAlt}
+                    itemTitles={experience.itemTitles}
                   />
                 </div>
               ))}
