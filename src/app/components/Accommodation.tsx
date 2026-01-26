@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Accommodation() {
   return (
-    <section className="py-24 bg-earth-800 border-t border-earth-700" id="accommodation">
+    <section className="py-24 bg-earth-900 border-t border-earth-700" id="accommodation">
       <div className="max-w-[1280px] mx-auto px-6">
         <div className="mb-12">
           <div>

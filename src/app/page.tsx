@@ -5,7 +5,7 @@ import Philosophy from "./components/Philosophy";
 import WhatThisIsNot from "./components/WhatThisIsNot";
 import EPiCentreDifference from "./components/EPiCentreDifference";
 import Accommodation from "./components/Accommodation";
-import Dining from "./components/Dining";
+import DiningVariant from "./components/DiningVariant";
 import Experiences from "./components/Experiences";
 import Location from "./components/Location";
 import Footer from "./components/Footer";
@@ -17,11 +17,12 @@ export default function Home() {
       <Header />
       <Hero />
       <Philosophy />
-      <BookingForm />
+
       <WhatThisIsNot />
-      <EPiCentreDifference />
+
       <Accommodation />
-      <Dining />
+      <BookingForm />
+      <DiningVariant />
       <Experiences />
       <Location />
       <Footer />

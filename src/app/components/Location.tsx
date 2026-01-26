@@ -15,6 +15,29 @@ export default function Location() {
           <div className="bg-earth-800 p-8 rounded-2xl shadow-sm border border-earth-700">
             <div className="flex items-center gap-3 mb-6">
               <span className="material-symbols-outlined text-gold-500 text-3xl">location_on</span>
+              <h3 className="text-xl font-bold text-earth-100">From Mumbai</h3>
+            </div>
+            <div className="space-y-4 font-body text-sm text-earth-300">
+              <div className="flex items-center justify-between border-b border-earth-700 pb-2">
+                <div className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-lg">directions_car</span>
+                  <span>Private Car</span>
+                </div>
+                <span className="font-bold text-earth-100">4.5 Hours</span>
+              </div>
+              <div className="flex items-center justify-between border-b border-earth-700 pb-2">
+                <div className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-lg">train</span>
+                  <span>Train to Pune</span>
+                </div>
+                <span className="font-bold text-earth-100">3 + 2.5 Hours</span>
+              </div>
+              <p className="mt-4 italic text-xs text-earth-500">Closest Railway Station: Pune or Daund</p>
+            </div>
+          </div>
+          <div className="bg-earth-800 p-8 rounded-2xl shadow-sm border border-earth-700">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="material-symbols-outlined text-gold-500 text-3xl">location_on</span>
               <h3 className="text-xl font-bold text-earth-100">From Pune</h3>
             </div>
             <div className="space-y-4 font-body text-sm text-earth-300">
@@ -58,39 +81,8 @@ export default function Location() {
               <p className="mt-4 italic text-xs text-earth-500">Easy access from the nearest railway station.</p>
             </div>
           </div>
-          <div className="bg-earth-800 p-8 rounded-2xl shadow-sm border border-earth-700">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="material-symbols-outlined text-gold-500 text-3xl">location_on</span>
-              <h3 className="text-xl font-bold text-earth-100">From Mumbai</h3>
-            </div>
-            <div className="space-y-4 font-body text-sm text-earth-300">
-              <div className="flex items-center justify-between border-b border-earth-700 pb-2">
-                <div className="flex items-center gap-2">
-                  <span className="material-symbols-outlined text-lg">directions_car</span>
-                  <span>Private Car</span>
-                </div>
-                <span className="font-bold text-earth-100">4.5 Hours</span>
-              </div>
-              <div className="flex items-center justify-between border-b border-earth-700 pb-2">
-                <div className="flex items-center gap-2">
-                  <span className="material-symbols-outlined text-lg">train</span>
-                  <span>Train to Pune</span>
-                </div>
-                <span className="font-bold text-earth-100">3 + 2.5 Hours</span>
-              </div>
-              <p className="mt-4 italic text-xs text-earth-500">Most travelers prefer train to Pune, then car.</p>
-            </div>
-          </div>
         </div>
-        <div className="bg-gold-500/5 border border-gold-500/20 p-6 rounded-xl flex items-start gap-4">
-          <span className="material-symbols-outlined text-gold-500 mt-1">visibility_off</span>
-          <div>
-            <h4 className="font-bold text-gold-500 mb-1">Privacy First</h4>
-            <p className="text-sm text-earth-300 font-body">
-              To maintain the sanctity and privacy of our current guests, exact GPS coordinates and detailed driving directions are shared only after a confirmed booking.
-            </p>
-          </div>
-        </div>
+
       </div>
     </section>
   );

@@ -10,23 +10,14 @@ export default function Hero() {
         }}
       />
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <div className="inline-flex items-center justify-center p-3 mb-6 rounded-full bg-earth-900/30 backdrop-blur-sm border border-earth-100/20">
-          <span className="material-symbols-outlined text-earth-100 text-2xl">self_improvement</span>
-        </div>
+
         <h1 className="text-earth-50 text-5xl md:text-7xl font-display font-black tracking-tight mb-6 shadow-sm drop-shadow-lg">
           Find Your Voice
         </h1>
         <p className="text-earth-100/90 text-lg md:text-xl font-light tracking-wide max-w-2xl mx-auto mb-10 font-body drop-shadow-md">
           A quiet club designed for silence, self-observation, and a return to basics. Not a hotel, but a shared space for those who value stillness.
         </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            className="bg-earth-100 text-earth-900 hover:bg-white font-bold py-3 px-8 rounded-lg transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-            href="#philosophy"
-          >
-            Our Philosophy
-          </a>
-        </div>
+
       </div>
     </section>
   );
