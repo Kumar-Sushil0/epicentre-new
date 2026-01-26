@@ -1,7 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SolitudeHero from "../components/solitude/SolitudeHero";
-import SolitudePhilosophy from "../components/solitude/SolitudePhilosophy";
 import SolitudePractice from "../components/solitude/SolitudePractice";
 
 export default function SolitudePage() {
@@ -111,7 +110,7 @@ export default function SolitudePage() {
     {
       number: "07",
       category: "Release",
-      title: "Fascia on Fire",
+      title: " The Fascia System",
       description:
         "Intense myofascial release through movement and pressure. A practice that targets deep connective tissue, releasing stored tension and restoring fluidity to the body. Feel the burn, find the release.",
       images: [
@@ -131,7 +130,6 @@ export default function SolitudePage() {
     <main className="min-h-screen bg-earth-900 text-earth-100 pt-[72px]">
       <Header />
       <SolitudeHero />
-      <SolitudePhilosophy />
       <div className="flex flex-1 flex-col bg-earth-900 px-4 lg:px-20 py-10 gap-32 pb-40">
         {practices.map((practice, index) => (
           <SolitudePractice key={index} {...practice} />

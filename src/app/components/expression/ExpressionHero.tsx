@@ -29,12 +29,6 @@ export default function ExpressionHero() {
               Nothing needs to be explained, polished, or completed.
             </p>
           </div>
-          <div className="pt-6">
-            <button className="flex items-center gap-2 cursor-pointer rounded-full h-14 px-8 bg-transparent border border-earth-50/30 hover:bg-earth-50/10 hover:border-gold-500/50 text-earth-50 text-base font-medium transition-all duration-300 font-body backdrop-blur-sm group">
-              <span>Explore the Space</span>
-              <span className="material-symbols-outlined group-hover:translate-y-1 transition-transform text-lg">arrow_downward</span>
-            </button>
-          </div>
         </div>
       </div>
     </section>

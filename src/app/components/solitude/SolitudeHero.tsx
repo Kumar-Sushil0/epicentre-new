@@ -16,12 +16,6 @@ export default function SolitudeHero() {
         <p className="text-earth-50/90 text-lg md:text-xl font-display font-light leading-relaxed max-w-2xl">
           Self-guided time at <span className="italic text-gold-500">The Silent Club</span>
         </p>
-        <div className="mt-8">
-          <button className="group flex items-center justify-center gap-3 overflow-hidden rounded-full h-14 px-8 border border-white/20 bg-white/5 hover:bg-gold-500 hover:border-gold-500 backdrop-blur-sm transition-all duration-300 text-earth-50 text-base font-bold leading-normal tracking-wide">
-            <span>Begin Journey</span>
-            <span className="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">arrow_downward</span>
-          </button>
-        </div>
       </div>
     </section>
   );

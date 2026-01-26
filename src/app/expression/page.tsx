@@ -1,7 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ExpressionHero from "../components/expression/ExpressionHero";
-import ExpressionPhilosophy from "../components/expression/ExpressionPhilosophy";
 import ExpressionPillars from "../components/expression/ExpressionPillars";
 import ExpressionCTA from "../components/expression/ExpressionCTA";
 
@@ -64,7 +63,6 @@ export default function ExpressionPage() {
     <main className="min-h-screen bg-earth-900 text-earth-100 pt-[72px]">
       <Header />
       <ExpressionHero />
-      <ExpressionPhilosophy />
       <ExpressionPillars pillars={pillars} />
       <ExpressionCTA />
       <Footer />

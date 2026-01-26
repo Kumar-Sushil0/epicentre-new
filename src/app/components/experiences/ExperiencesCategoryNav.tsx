@@ -40,12 +40,17 @@ export default function ExperiencesCategoryNav({
               <button
                 key={category.id}
                 onClick={() => toggleTag(category.id)}
-                className={`group flex items-center justify-center px-4 py-1.5 rounded-full transition-all ${
+                className={`group flex items-center justify-center gap-2 px-4 py-1.5 rounded-full transition-all ${
                   isSelected
                     ? "bg-gold-500/20 text-gold-400 border border-gold-500/50"
                     : "bg-earth-900/30 text-earth-400 border border-earth-700/30 hover:border-gold-500/30 hover:text-gold-400/70"
                 }`}
               >
+                <span className={`material-symbols-outlined text-sm transition-all ${
+                  isSelected ? "text-gold-400" : "text-earth-500 group-hover:text-gold-400/70"
+                }`}>
+                  {isSelected ? "check_circle" : "radio_button_unchecked"}
+                </span>
                 <span className="text-xs font-medium tracking-wide font-body">
                   {category.label}
                 </span>

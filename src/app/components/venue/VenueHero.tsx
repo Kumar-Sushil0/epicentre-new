@@ -25,12 +25,6 @@ export default function VenueHero() {
           <p className="text-earth-300/80 text-lg font-body leading-relaxed max-w-2xl mt-4">
             Each space exists to support a specific way of being — alone, together, moving, or still. They are simple, flexible, and held without programming.
           </p>
-          <div className="pt-6">
-            <button className="flex items-center gap-2 text-earth-50 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 px-6 py-3 rounded-lg transition-all mx-auto sm:mx-0">
-              <span className="text-sm font-bold tracking-wide font-body">Explore Philosophy</span>
-              <span className="material-symbols-outlined text-sm">arrow_downward</span>
-            </button>
-          </div>
         </div>
       </div>
     </section>
