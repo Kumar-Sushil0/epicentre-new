@@ -2,10 +2,18 @@
 
 import { useState } from 'react';
 
-export default function AboutPhilosophy() {
-  const [activeTab, setActiveTab] = useState(1);
+type TabKey = 1 | 2 | 3 | 4;
 
-  const content = {
+interface ContentItem {
+  title: string;
+  items: string[];
+  closing: string;
+}
+
+export default function AboutPhilosophy() {
+  const [activeTab, setActiveTab] = useState<TabKey>(1);
+
+  const content: Record<TabKey, ContentItem> = {
     1: {
       title: "Why Silence",
       items: [
