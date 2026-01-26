@@ -25,11 +25,9 @@ export default function AboutFounder() {
             <div className="space-y-6 text-earth-50/70 font-body text-base md:text-lg leading-relaxed">
               <p>
                 <span className="text-gold-500 text-4xl float-left mr-2 mt-[-10px] font-display">"</span>
-                Digen's work is centered on a single inquiry:
+                Digen's work is centered on a single inquiry: How environments shape attention, and how attention shapes choice.
               </p>
-              <p>
-                how environments shape attention, and how attention shapes choice.
-              </p>
+
               <p>
                 With a background in systems thinking, design, and decision-making, his approach avoids motivation, advice, or optimization. Instead, he focuses on designing experiences where interference is reduced and clarity can surface on its own.
               </p>

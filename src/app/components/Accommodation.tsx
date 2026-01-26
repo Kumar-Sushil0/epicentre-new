@@ -5,12 +5,12 @@ export default function Accommodation() {
   return (
     <section className="py-24 bg-earth-800 border-t border-earth-700" id="accommodation">
       <div className="max-w-[1280px] mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12">
+        <div className="mb-12">
           <div>
             <span className="text-gold-500 font-bold tracking-widest uppercase text-xs mb-2 block">Stay</span>
             <h2 className="text-4xl font-bold text-earth-50">Our Spaces</h2>
           </div>
-          <p className="text-earth-300 max-w-md text-right hidden md:block font-body mt-4 md:mt-0">
+          <p className="text-earth-300 max-w-2xl font-body mt-4">
             From private sanctuaries to communal living, choose the level of solitude that speaks to you.
           </p>
         </div>

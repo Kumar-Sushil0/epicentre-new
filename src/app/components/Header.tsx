@@ -17,13 +17,13 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-earth-950/90 backdrop-blur-md border-b border-earth-700 transition-colors duration-300">
       <div className="max-w-[1280px] mx-auto px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3">
+        <Link href="/" className="flex items-center -ml-6 -my-4 relative h-[72px] w-52">
           <Image
-            src="/logohor.png"
+            src="/untitled.png"
             alt="EPiCentre Logo"
-            width={120}
-            height={40}
-            className="object-contain"
+            fill
+            className="object-contain object-left"
+            priority
           />
         </Link>
         <nav className="hidden md:flex items-center gap-8">
