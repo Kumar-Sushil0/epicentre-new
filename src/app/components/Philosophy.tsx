@@ -9,7 +9,7 @@ export default function Philosophy() {
             format_quote
           </span>
           <p className="text-xl md:text-2xl leading-relaxed text-earth-300 font-display italic relative z-10">
-            "In a world of constant noise, we offer silence. In a culture of excess, we offer simplicity. EPiCentre is a canvas for your thoughts, a quiet retreat for the mind and soul where doing nothing is the ultimate activity."
+            "In a world of constant noise, we choose silence. In a culture of excess, we choose simplicity. The Silent Club exists as a shared refuge for thought, presence, and the freedom to do nothing without explanation."
           </p>
         </div>
       </div>

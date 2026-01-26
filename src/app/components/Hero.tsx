@@ -14,10 +14,10 @@ export default function Hero() {
           <span className="material-symbols-outlined text-earth-100 text-2xl">self_improvement</span>
         </div>
         <h1 className="text-earth-50 text-5xl md:text-7xl font-display font-black tracking-tight mb-6 shadow-sm drop-shadow-lg">
-          Find Your Center
+          Find Your Voice
         </h1>
         <p className="text-earth-100/90 text-lg md:text-xl font-light tracking-wide max-w-2xl mx-auto mb-10 font-body drop-shadow-md">
-          A sanctuary designed for silence, introspection, and a return to basics. Not a hotel, but a home for the spirit.
+          A quiet club designed for silence, self-observation, and a return to basics. Not a hotel, but a shared space for those who value stillness.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
