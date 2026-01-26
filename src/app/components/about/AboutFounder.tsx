@@ -24,7 +24,7 @@ export default function AboutFounder() {
             </div>
             <div className="space-y-6 text-earth-50/70 font-body text-base md:text-lg leading-relaxed">
               <p>
-                <span className="text-gold-500 text-4xl float-left mr-2 mt-[-10px] font-display">"</span>
+
                 Digen's work is centered on a single inquiry: How environments shape attention, and how attention shapes choice.
               </p>
 
