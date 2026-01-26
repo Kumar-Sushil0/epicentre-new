@@ -100,21 +100,21 @@ export default function AboutPhilosophy() {
                 >
                   01
                 </button>
-                <div className="h-px flex-grow bg-gold-500/20"></div>
+                <div className="h-px grow bg-gold-500/20"></div>
                 <button 
                   onClick={() => setActiveTab(2)}
                   className={`font-display text-2xl transition-colors ${activeTab === 2 ? 'text-gold-500' : 'text-earth-50/40 hover:text-earth-50/60'}`}
                 >
                   02
                 </button>
-                <div className="h-px flex-grow bg-gold-500/20"></div>
+                <div className="h-px grow bg-gold-500/20"></div>
                 <button 
                   onClick={() => setActiveTab(3)}
                   className={`font-display text-2xl transition-colors ${activeTab === 3 ? 'text-gold-500' : 'text-earth-50/40 hover:text-earth-50/60'}`}
                 >
                   03
                 </button>
-                <div className="h-px flex-grow bg-gold-500/20"></div>
+                <div className="h-px grow bg-gold-500/20"></div>
                 <button 
                   onClick={() => setActiveTab(4)}
                   className={`font-display text-2xl transition-colors ${activeTab === 4 ? 'text-gold-500' : 'text-earth-50/40 hover:text-earth-50/60'}`}
@@ -123,7 +123,7 @@ export default function AboutPhilosophy() {
                 </button>
               </div>
               <ul className="space-y-4 text-earth-50/80 text-lg font-body font-light leading-relaxed mb-8">
-                {content[activeTab].items.map((item, index) => (
+                {content[activeTab].items.map((item: string, index: number) => (
                   <li key={index} className="flex items-start gap-3">
                     <span className="text-gold-500 text-sm mt-2">•</span>
                     <span>{item}</span>
