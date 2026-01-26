@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Noto_Serif, Noto_Sans } from "next/font/google";
 import "./globals.css";
+import { EventCalendarProvider } from "./contexts/EventCalendarContext";
+import EventCalendarModal from "./components/EventCalendarModal";
 
 const notoSerif = Noto_Serif({
   variable: "--font-display",
@@ -35,7 +37,10 @@ export default function RootLayout({
       <body
         className={`${notoSerif.variable} ${notoSans.variable} bg-earth-900 text-earth-100 font-display antialiased`}
       >
-        {children}
+        <EventCalendarProvider>
+          {children}
+          <EventCalendarModal />
+        </EventCalendarProvider>
       </body>
     </html>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 
 export default function RoomsSidebar() {
   const items = useMemo(
@@ -73,6 +74,14 @@ export default function RoomsSidebar() {
   return (
     <aside className="hidden lg:block lg:col-span-3 relative">
       <div className="sticky top-32 flex flex-col gap-8 pr-8 border-r border-earth-700/30 min-h-[50vh]">
+        {/* Book Now Button */}
+        <Link
+          href="/bookings"
+          className="w-full bg-gold-500 hover:bg-gold-400 text-earth-950 text-sm font-bold py-3 px-6 rounded-lg transition-colors shadow-sm text-center"
+        >
+          Book Now
+        </Link>
+
         <div className="flex flex-col gap-2">
           <h1 className="text-earth-50 text-2xl font-medium leading-tight mb-2">Accommodations</h1>
           <p className="text-earth-300 text-sm font-normal italic opacity-80 font-body">Select a room type to view details.</p>

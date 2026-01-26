@@ -7,8 +7,8 @@ export default function Accommodation() {
       <div className="max-w-[1280px] mx-auto px-6">
         <div className="mb-12">
           <div>
-            <span className="text-gold-500 font-bold tracking-widest uppercase text-xs mb-2 block">Stay</span>
-            <h2 className="text-4xl font-bold text-earth-50">Our Spaces</h2>
+
+            <h2 className="text-4xl font-bold text-earth-50">Stays</h2>
           </div>
           <p className="text-earth-300 max-w-2xl font-body mt-4">
             From private sanctuaries to communal living, choose the level of solitude that speaks to you.

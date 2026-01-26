@@ -3,9 +3,9 @@
 export default function Location() {
   return (
     <section className="py-24 bg-earth-900" id="location">
-      <div className="max-w-[1000px] mx-auto px-6">
+      <div className="max-w-[1280px] mx-auto px-6">
         <div className="text-center mb-12">
-          <span className="text-gold-500 font-bold tracking-widest uppercase text-xs mb-2 block">Journey</span>
+
           <h2 className="text-3xl font-bold text-earth-50 mb-6">How to Get Here</h2>
           <p className="text-earth-300 max-w-2xl mx-auto font-body">
             Located in the serene landscapes of Maharashtra, accessible yet hidden.

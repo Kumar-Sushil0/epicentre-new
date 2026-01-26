@@ -9,7 +9,6 @@ import DiningVariant from "./components/DiningVariant";
 import Experiences from "./components/Experiences";
 import Location from "./components/Location";
 import Footer from "./components/Footer";
-import VerticalStickyButton from "./components/VerticalStickyButton";
 
 export default function Home() {
   return (
@@ -26,7 +25,6 @@ export default function Home() {
       <Experiences />
       <Location />
       <Footer />
-      <VerticalStickyButton text="Event Calendar" />
     </main>
   );
 }

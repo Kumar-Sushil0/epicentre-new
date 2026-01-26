@@ -29,9 +29,8 @@ function ExperienceCard({ title, description, href, images, imageAlt, itemTitles
         {images.map((image, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-opacity duration-700 ${
-              index === currentSlide ? "opacity-100" : "opacity-0"
-            }`}
+            className={`absolute inset-0 transition-opacity duration-700 ${index === currentSlide ? "opacity-100" : "opacity-0"
+              }`}
           >
             <Image
               alt={`${imageAlt} - Image ${index + 1}`}
@@ -62,9 +61,8 @@ function ExperienceCard({ title, description, href, images, imageAlt, itemTitles
                   e.preventDefault();
                   setCurrentSlide(index);
                 }}
-                className={`w-1.5 h-1.5 rounded-full transition-all ${
-                  index === currentSlide ? "bg-gold-500 w-4" : "bg-earth-100/50 hover:bg-earth-100/75"
-                }`}
+                className={`w-1.5 h-1.5 rounded-full transition-all ${index === currentSlide ? "bg-gold-500 w-4" : "bg-earth-100/50 hover:bg-earth-100/75"
+                  }`}
                 aria-label={`Go to image ${index + 1}`}
               />
             ))}
@@ -177,8 +175,7 @@ export default function Experiences() {
     <section className="py-24 bg-earth-800 border-t border-earth-700" id="experiences">
       <div className="max-w-[1280px] mx-auto px-6">
         <div className="text-center mb-16">
-          <span className="text-gold-500 font-bold tracking-widest uppercase text-xs mb-2 block">Activities</span>
-          <h2 className="text-3xl font-bold text-earth-50">Curated Experiences</h2>
+          <h2 className="text-3xl font-bold text-earth-50">Activities</h2>
         </div>
         <div className="relative">
           {/* Carousel Container */}
@@ -186,9 +183,9 @@ export default function Experiences() {
             ref={carouselRef}
             className="overflow-hidden w-full mx-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
           >
-            <div 
-              className="flex gap-8 transition-transform duration-500 ease-in-out" 
-              style={{ 
+            <div
+              className="flex gap-8 transition-transform duration-500 ease-in-out"
+              style={{
                 transform: `translateX(calc(-${currentIndex} * ((100% - 4rem) / 3 + 2rem)))`,
                 willChange: "transform",
               }}
@@ -197,7 +194,7 @@ export default function Experiences() {
                 <div
                   key={`${experience.href}-${index}`}
                   className="flex-shrink-0"
-                  style={{ 
+                  style={{
                     width: `calc((100% - 4rem) / 3)`,
                     flexShrink: 0,
                   }}
@@ -237,9 +234,8 @@ export default function Experiences() {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  index === currentIndex ? "bg-gold-500 w-8" : "bg-earth-100/50 hover:bg-earth-100/75"
-                }`}
+                className={`w-2 h-2 rounded-full transition-all ${index === currentIndex ? "bg-gold-500 w-8" : "bg-earth-100/50 hover:bg-earth-100/75"
+                  }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}

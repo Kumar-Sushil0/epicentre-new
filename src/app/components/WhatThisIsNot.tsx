@@ -49,7 +49,7 @@ export default function WhatThisIsNot() {
       <div className="max-w-[1280px] mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div>
-            <h3 className="text-3xl font-bold mb-6 text-earth-50">The EPiCentre Difference</h3>
+            <h3 className="text-3xl font-bold mb-6 text-earth-50">The Silent Club Difference</h3>
             <p className="text-earth-300 mb-8 font-body">
               A curated environment designed to help you disconnect to reconnect.
             </p>
@@ -59,8 +59,8 @@ export default function WhatThisIsNot() {
                   key={item.id}
                   onClick={() => setCurrentSlide(index)}
                   className={`flex items-start gap-4 p-4 rounded-xl border cursor-pointer transition-all ${currentSlide === index
-                      ? "border-gold-500 bg-earth-900/80 shadow-lg"
-                      : "border-earth-700 bg-earth-900/50 hover:border-gold-500/30"
+                    ? "border-gold-500 bg-earth-900/80 shadow-lg"
+                    : "border-earth-700 bg-earth-900/50 hover:border-gold-500/30"
                     }`}
                 >
                   <span className="material-symbols-outlined text-gold-500 mt-1">{item.icon}</span>
