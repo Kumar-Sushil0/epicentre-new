@@ -1,7 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import VenueHero from "../components/venue/VenueHero";
-import VenueBookingDetails from "../components/venue/VenueBookingDetails";
 import VenueCategoryNav from "../components/venue/VenueCategoryNav";
 import VenueSection from "../components/venue/VenueSection";
 
@@ -305,7 +304,6 @@ export default function VenuePage() {
     <main className="min-h-screen bg-earth-900 text-earth-100 pt-[72px]">
       <Header />
       <VenueHero />
-      <VenueBookingDetails />
       <VenueCategoryNav />
       <div className="max-w-[1200px] mx-auto px-4 sm:px-10 py-12 flex flex-col gap-24">
         {venueCategories.map((category) => (

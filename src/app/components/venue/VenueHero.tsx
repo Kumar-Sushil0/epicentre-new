@@ -15,16 +15,21 @@ export default function VenueHero() {
       ></div>
       <div className="relative z-20 max-w-[960px] w-full px-4 sm:px-10 text-center sm:text-left">
         <div className="flex flex-col gap-4">
-          <h1 className="text-gold-500 text-5xl md:text-7xl font-black leading-tight tracking-tighter drop-shadow-2xl" style={{ fontFamily: 'Trirong, serif' }}>
-            Spaces at <span className="italic">The Silent Club</span>
+          <h1 className="text-gold-500 text-3xl md:text-4xl font-black leading-tight tracking-tighter drop-shadow-2xl" style={{ fontFamily: 'Trirong, serif' }}>
+            A setting for gatherings that require focus, quiet, and containment.
           </h1>
-          <div className="h-1 w-24 bg-gold-500 mb-2 mx-auto sm:mx-0"></div>
-          <h2 className="text-earth-300 text-xl md:text-2xl font-light italic leading-relaxed max-w-2xl">
-            Designed for different states of attention.
-          </h2>
           <p className="text-earth-300/80 text-lg font-body leading-relaxed max-w-2xl mt-4">
-            Each space exists to support a specific way of being — alone, together, moving, or still. They are simple, flexible, and held without programming.
+            The venue supports different group formats without imposing programming or performance.
           </p>
+          <div className="mt-8">
+            <a
+              href="#"
+              className="inline-flex items-center gap-3 bg-gold-500 text-earth-950 px-6 py-3 rounded-lg font-medium hover:bg-gold-400 transition-colors duration-300"
+            >
+              <span className="material-symbols-outlined">download</span>
+              Download Brochure
+            </a>
+          </div>
         </div>
       </div>
     </section>

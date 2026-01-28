@@ -116,44 +116,43 @@ export default function ExperienceCard({ id, title, description, time, icon, ima
         </div>
       </div>
       <div className="flex flex-col gap-1 relative">
-        {/* Top row: Tags on left, Min Guests & Price on right */}
-        <div className="flex items-start justify-between mb-1">
-          {/* Tags with icons */}
-          {tags && tags.length > 0 && (
-            <div className="flex items-center gap-2 flex-wrap">
-              {tags.map((tag) => (
-                <div key={tag} className="flex items-center gap-1">
-                  <span className="material-symbols-outlined text-gold-500 text-sm">
-                    {tagIcons[tag] || "schedule"}
-                  </span>
-                  <span className="text-gold-500 text-xs font-bold uppercase tracking-widest font-body">
-                    {tagLabels[tag] || tag}
-                  </span>
-                </div>
-              ))}
-            </div>
-          )}
-          {/* Minimum Guests & Price on top right */}
-          {(minimumGuests || minimumGuestsText || price) && (
-            <div className="flex items-center gap-3 flex-shrink-0 ml-2">
-              {(minimumGuests || minimumGuestsText) && (
-                <div className="flex items-center gap-1">
-                  <span className="material-symbols-outlined text-earth-400 text-xs">groups</span>
-                  <span className="text-earth-400 text-xs font-body">
-                    {minimumGuestsText || `${minimumGuests}`}
-                  </span>
-                </div>
-              )}
-              {price && (
-                <div className="flex items-center gap-1">
-                  <span className="material-symbols-outlined text-gold-500 text-xs">currency_rupee</span>
-                  <span className="text-gold-500 text-xs font-medium font-body">{price}</span>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-        <h3 className="text-gold-500 text-2xl font-medium group-hover:text-gold-400 transition-colors" style={{ fontFamily: 'Trirong, serif' }}>
+        {/* Top row: Tags */}
+        {tags && tags.length > 0 && (
+          <div className="flex items-center gap-2 flex-wrap mb-1">
+            {tags.map((tag) => (
+              <div key={tag} className="flex items-center gap-1">
+                <span className="material-symbols-outlined text-gold-500 text-sm">
+                  {tagIcons[tag] || "schedule"}
+                </span>
+                <span className="text-gold-500 text-xs font-bold uppercase tracking-widest font-body">
+                  {tagLabels[tag] || tag}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+        {/* Price and Head count row */}
+        {((time || minimumGuests || minimumGuestsText) || price) && (
+          <div className="flex items-center justify-between mb-1">
+            {/* Price on left */}
+            {price && (
+              <div className="flex items-center gap-1">
+                <span className="material-symbols-outlined text-gold-500 text-sm">currency_rupee</span>
+                <span className="text-gold-500 text-sm font-medium font-body">{price}</span>
+              </div>
+            )}
+            {/* Head count on right */}
+            {(time || minimumGuests || minimumGuestsText) && (
+              <div className="flex items-center gap-1">
+                <span className="material-symbols-outlined text-earth-400 text-sm">groups</span>
+                <span className="text-earth-400 text-sm font-body">
+                  {time || minimumGuestsText || `${minimumGuests}`}
+                </span>
+              </div>
+            )}
+          </div>
+        )}
+        <h3 className="text-gold-500 text-2xl font-medium group-hover:text-gold-400 transition-colors mb-1" style={{ fontFamily: 'Trirong, serif' }}>
           {title}
         </h3>
         <p className="text-earth-300 text-base font-body whitespace-pre-line">{description}</p>

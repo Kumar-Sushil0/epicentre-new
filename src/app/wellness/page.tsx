@@ -50,7 +50,7 @@ export default function WellnessPage() {
       href: "/wellness",
     },
     {
-      title: "Leisure — Board Games",
+      title: "Leisure & Board Games",
       description: "Analog play without competition.\nEasy to begin, easy to leave.",
       category: "Leisure",
       icon: "casino",
@@ -64,7 +64,7 @@ export default function WellnessPage() {
       href: "/wellness",
     },
     {
-      title: "Companionship — Pet Friendly",
+      title: "Companionship & Pet Friendly",
       description: "Shared presence with animals.\nCalm, grounding, and uncomplicated.",
       category: "Companionship",
       icon: "pets",
@@ -78,7 +78,7 @@ export default function WellnessPage() {
       href: "/wellness",
     },
     {
-      title: "Grounding — A Day at a Farm",
+      title: "Grounding, A Day at a Farm",
       description: "Time spent with soil and routine.\nHands-on, slow, and without theory.",
       category: "Grounding",
       icon: "agriculture",

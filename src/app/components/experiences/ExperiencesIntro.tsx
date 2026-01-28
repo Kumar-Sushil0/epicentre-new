@@ -2,20 +2,11 @@ export default function ExperiencesIntro() {
   return (
     <div className="mb-20 max-w-5xl">
       <h1 className="text-gold-500 text-4xl md:text-6xl font-black leading-tight tracking-tight mb-4" style={{ fontFamily: 'Trirong, serif' }}>
-        Context-dependent experiences at <span className="italic">The Silent Club</span>
+        Moments shaped by context rather than schedule.
       </h1>
       <div className="space-y-2 text-earth-300 text-lg md:text-xl font-normal leading-relaxed max-w-3xl font-body">
         <p>
-          Experiences here are not scheduled in advance.
-        </p>
-        <p>
-          They happen only when conditions support them — light, weather, season, and group readiness.
-        </p>
-        <p>
-          When the moment aligns, the experience appears.
-        </p>
-        <p>
-          When it doesn't, nothing is forced.
+          They occur only when conditions align
         </p>
       </div>
     </div>

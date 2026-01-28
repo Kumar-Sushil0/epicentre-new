@@ -59,87 +59,54 @@ export default function AboutPhilosophy() {
   return (
     <section className="relative py-24 px-6 md:px-12 bg-earth-950 border-b border-earth-700">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-start">
-          <div>
-            <span className="text-gold-500 font-body text-xs tracking-[0.2em] uppercase mb-4 block">Core Inquiry</span>
-            <h2 className="text-earth-50 text-4xl font-display font-medium mb-8" style={{ fontFamily: 'Trirong, serif', color: '#C5A065' }}>The System Behind the Space</h2>
-            <div className="space-y-4 text-earth-50/70 font-body text-sm leading-relaxed">
-              <p>A behavioral system expressed as a place</p>
-              <div>
-                <p className="mb-2">Works through a simple loop:</p>
-                <ul className="ml-4 space-y-1">
-                  <li className="flex items-start gap-2">
-                    <span className="text-gold-500 text-sm mt-1">•</span>
-                    <span>environment → attention</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-gold-500 text-sm mt-1">•</span>
-                    <span>attention → perception</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-gold-500 text-sm mt-1">•</span>
-                    <span>perception → choice</span>
-                  </li>
-                </ul>
-              </div>
-              <p>No coaching, frameworks, or programs</p>
-              <p>Space, rhythm, constraint, and absence do the work</p>
-              <div className="pt-2">
-                <p className="text-earth-50 font-medium">This is not a retreat.</p>
-                <p className="text-gold-500/80 italic text-lg">It is infrastructure for self-observation.</p>
-              </div>
-            </div>
+        <div className="text-center mb-16">
+          <div className="text-earth-50/70 font-body text-lg leading-relaxed max-w-4xl mx-auto">
+            <p>The Silent Club exists to remove unnecessary signals so attention can settle and clarity can emerge.</p>
           </div>
-          <div className="bg-earth-900 p-10 border border-earth-700 rounded-lg">
-            <h3 className="text-gold-500 text-xl italic mb-6" style={{ fontFamily: 'Trirong, serif' }}>{content[activeTab].title}</h3>
-            <div className="space-y-6">
-              <div className="flex items-center gap-4">
-                <button 
-                  onClick={() => setActiveTab(1)}
-                  className={`font-display text-2xl transition-colors ${activeTab === 1 ? 'text-gold-500' : 'text-earth-50/40 hover:text-earth-50/60'}`}
-                >
-                  01
-                </button>
-                <div className="h-px grow bg-gold-500/20"></div>
-                <button 
-                  onClick={() => setActiveTab(2)}
-                  className={`font-display text-2xl transition-colors ${activeTab === 2 ? 'text-gold-500' : 'text-earth-50/40 hover:text-earth-50/60'}`}
-                >
-                  02
-                </button>
-                <div className="h-px grow bg-gold-500/20"></div>
-                <button 
-                  onClick={() => setActiveTab(3)}
-                  className={`font-display text-2xl transition-colors ${activeTab === 3 ? 'text-gold-500' : 'text-earth-50/40 hover:text-earth-50/60'}`}
-                >
-                  03
-                </button>
-                <div className="h-px grow bg-gold-500/20"></div>
-                <button 
-                  onClick={() => setActiveTab(4)}
-                  className={`font-display text-2xl transition-colors ${activeTab === 4 ? 'text-gold-500' : 'text-earth-50/40 hover:text-earth-50/60'}`}
-                >
-                  04
-                </button>
-              </div>
-              <ul className="space-y-4 text-earth-50/80 text-lg font-body font-light leading-relaxed mb-8">
-                {content[activeTab].items.map((item: string, index: number) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <span className="text-gold-500 text-sm mt-2">•</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="text-gold-500/80 italic text-xl font-light mb-4">
-                {content[activeTab].closing}
-              </p>
-              <div className="flex items-center justify-between pt-4 opacity-50">
-                <span className="material-symbols-outlined text-gold-500">distance</span>
-                <span className="material-symbols-outlined text-gold-500">arrow_forward</span>
-                <span className="material-symbols-outlined text-gold-500">visibility</span>
-                <span className="material-symbols-outlined text-gold-500">arrow_forward</span>
-                <span className="material-symbols-outlined text-gold-500">ads_click</span>
-              </div>
+        </div>
+        
+        <div className="p-10 max-w-4xl mx-auto relative">
+          <h3 className="text-gold-500 text-xl italic mb-6 max-w-2xl mx-auto px-8" style={{ fontFamily: 'Trirong, serif' }}>{content[activeTab].title}</h3>
+          <div className="space-y-6">
+            <ul className="space-y-4 text-earth-50/80 text-lg font-body font-light leading-relaxed mb-8 max-w-2xl mx-auto px-8">
+              {content[activeTab].items.map((item: string, index: number) => (
+                <li key={index} className="flex items-start gap-3">
+                  <span className="text-gold-500 text-sm mt-2">•</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-gold-500/80 italic text-xl font-light mb-4 max-w-2xl mx-auto px-8">
+              {content[activeTab].closing}
+            </p>
+            <div className="flex items-center gap-4 justify-center pt-4">
+              <button 
+                onClick={() => setActiveTab(1)}
+                className={`font-display text-2xl transition-colors ${activeTab === 1 ? 'text-gold-500' : 'text-earth-50/40 hover:text-earth-50/60'}`}
+              >
+                01
+              </button>
+              <div className="h-px w-16 bg-gold-500/20"></div>
+              <button 
+                onClick={() => setActiveTab(2)}
+                className={`font-display text-2xl transition-colors ${activeTab === 2 ? 'text-gold-500' : 'text-earth-50/40 hover:text-earth-50/60'}`}
+              >
+                02
+              </button>
+              <div className="h-px w-16 bg-gold-500/20"></div>
+              <button 
+                onClick={() => setActiveTab(3)}
+                className={`font-display text-2xl transition-colors ${activeTab === 3 ? 'text-gold-500' : 'text-earth-50/40 hover:text-earth-50/60'}`}
+              >
+                03
+              </button>
+              <div className="h-px w-16 bg-gold-500/20"></div>
+              <button 
+                onClick={() => setActiveTab(4)}
+                className={`font-display text-2xl transition-colors ${activeTab === 4 ? 'text-gold-500' : 'text-earth-50/40 hover:text-earth-50/60'}`}
+              >
+                04
+              </button>
             </div>
           </div>
         </div>

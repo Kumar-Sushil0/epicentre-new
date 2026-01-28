@@ -16,9 +16,13 @@ export default function AboutHero() {
           <span className="h-16 w-px bg-gold-500/60 block"></span>
         </div>
         <h1 className="text-gold-500 text-5xl md:text-7xl font-display font-medium leading-tight tracking-tight mb-8 drop-shadow-xl" style={{ fontFamily: 'Trirong, serif' }}>
-          A physical environment designed to <br className="hidden md:block"/>
-          <span className="italic">reduce interference</span>
+          A Physical Environment Designed to <br className="hidden md:block"/>
+          <span className="italic">Reduce Interference</span>
         </h1>
+        <p className="text-earth-300 text-xl md:text-2xl font-light leading-relaxed max-w-3xl mx-auto">
+          The Silent Club exists to remove unnecessary signals<br className="hidden md:block"/>
+          so attention can settle and clarity can emerge.
+        </p>
         <div className="flex justify-center">
           <span className="material-symbols-outlined text-earth-50/50 animate-bounce text-3xl">keyboard_arrow_down</span>
         </div>

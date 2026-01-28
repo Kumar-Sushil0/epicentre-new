@@ -2,19 +2,19 @@
 
 export default function Hero() {
   return (
-    <section className="relative h-[85vh] min-h-[600px] w-full flex items-center justify-center overflow-hidden">
+    <section className="relative h-[100vh] w-full flex items-center justify-center overflow-hidden">
       <div
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-[20s] hover:scale-105"
         style={{
-          backgroundImage: `linear-gradient(rgba(26, 18, 11, 0.4), rgba(26, 18, 11, 0.6)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAt8nAb96Exmu9QhCiRKqZU5CxnQDk3iDJqkw73Va-rbUXZBaBBnvTyr_8X9npg6Yn_5wIi69Dz69sf6mT479dvp0WNVf3LQfzJm3Kxbwc_HmgBXOA1XsRvHtLaBLc_tK6eOcug7ZaFeINjj6YvwfPR7D2-h2b9_YcgV5fig53664CLwWblDWeRmIb3M53NPs8mrHn-SgfqLwHoeBmfHUnlks9IPXg-3KFucSJ8xkj_HMuyqAZ0SnWgdK65Pkzlf72e6F38Wc899wJz")`,
+          backgroundImage: `linear-gradient(rgba(26, 18, 11, 0.6), rgba(26, 18, 11, 0.7)), url("/banner.jpg")`,
         }}
       />
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
 
-        <p className="text-gold-500 text-3xl md:text-4xl font-light leading-relaxed max-w-5xl mx-auto mb-4 font-body drop-shadow-md" style={{ fontFamily: 'Trirong, serif' }}>
+        <p className="text-gold-500 text-3xl md:text-4xl font-bold leading-relaxed max-w-5xl mx-auto mb-4 font-body" style={{ fontFamily: 'Trirong, serif', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.5)' }}>
           A quiet club designed to reduce noise,<br/> pressure, and performance.
         </p>
-        <p className="text-earth-100/90 text-lg md:text-xl font-light tracking-wide max-w-2xl mx-auto mb-10 font-body drop-shadow-md">
+        <p className="text-earth-100/90 text-lg md:text-xl font-light tracking-wide max-w-2xl mx-auto mb-10 font-body" style={{ textShadow: '1px 1px 3px rgba(0, 0, 0, 0.8)' }}>
           Not a hotel. Not a retreat. A shared space for those who value stillness.
         </p>
 

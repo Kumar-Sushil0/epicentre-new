@@ -127,11 +127,6 @@ export default function WellnessCard({
           </div>
           <h3 className="text-3xl lg:text-4xl text-gold-500 font-medium" style={{ fontFamily: 'Trirong, serif' }}>{title}</h3>
           <p className="text-earth-300/60 leading-relaxed text-base max-w-md font-body whitespace-pre-line">{description}</p>
-          <div className="pt-2">
-            <button className="text-earth-50 border-b border-gold-500/50 hover:border-gold-500 pb-1 text-sm font-medium transition-colors font-body">
-              Read about the harvest
-            </button>
-          </div>
         </div>
       </div>
     );

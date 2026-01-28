@@ -4,7 +4,6 @@ import AboutHero from "../components/about/AboutHero";
 import AboutPhilosophy from "../components/about/AboutPhilosophy";
 import AboutFounder from "../components/about/AboutFounder";
 import PrinciplesAndEnvironment from "../components/about/PrinciplesAndEnvironment";
-import WhoThisIsFor from "../components/about/WhoThisIsFor";
 import AboutVision from "../components/about/AboutVision";
 
 export default function AboutUsPage() {
@@ -21,7 +20,6 @@ export default function AboutUsPage() {
       <AboutPhilosophy />
       <AboutFounder />
       <PrinciplesAndEnvironment />
-      <WhoThisIsFor />
       <AboutVision />
       <Footer />
     </main>

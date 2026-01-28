@@ -28,6 +28,156 @@ const expressionPractices: Record<
     images: Array<{ src: string; alt: string; label: string }>;
   }
 > = {
+  "process-experiments": {
+    title: "Process Experiments",
+    subtitle: "Testing how you work, not what you produce.",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCo3MJhZ2Vq9-Ga2Ea74ot7K3svtpwhjBfDSCrXUYnFOYTuKa0AlDwQhdZ8BxihuYNAXOpSdB-tTtKdMZs3cGX8b9BvyVJ0f7v10BnyVYkQEHkFN4-JvUnOV3TtcfaasbCLOtA1FJ36Hww-91OBUlDJHTpWkvWgfKLGDdNvhDccKPCHKxSre2HqIJDUmAdVeuaFlpLJWz1rQnuz4k27-rXUV4Tm2jrPtpK6Sxr5anLKPzQwalZ-iwFuH6pQqNpaJADP6WWqN2Pu-Yd4",
+    intro:
+      "Process Experiments are designed for people who want to examine method, rhythm, and sequence before committing to outcomes. The focus is not productivity. It is understanding the structure that produces results. Nothing here needs to be finished.",
+    whatItIs:
+      "A Process Experiment is a temporary container to observe how work unfolds under reduced interference. Attention, pacing, fatigue, and decision flow are treated as variables. You are not here to perform. You are here to notice.",
+    howItWorks: [
+      {
+        title: "Open Process Experiment",
+        description: "Participants pay to enter and experience a method-in-progress. Participants are not observers. They are part of the test.",
+      },
+      {
+        title: "Closed Process Experiment",
+        description: "The creator pays for space, food, and stay. Participants may be self-invited collaborators, members of The Silent Club community, or anonymous participants.",
+      },
+      {
+        title: "Solo or Small-Group Configuration",
+        description: "Fixed duration agreed in advance. Entry and exit kept deliberate. Breaks and pauses encouraged. Repetition over intensity.",
+      },
+    ],
+    whatWeProvide: [
+      {
+        title: "Quiet Workspaces",
+        description: "Quiet workspaces and shared zones with time blocks held without interruption.",
+      },
+      {
+        title: "Optional Facilitation",
+        description: "Optional facilitation to define boundaries with minimal tools, surfaces, and materials.",
+      },
+      {
+        title: "Silence as Default",
+        description: "Silence as a default condition. No templates. No productivity frameworks. No optimization systems.",
+      },
+    ],
+    designConstraints: [
+      {
+        icon: "block",
+        title: "No Productivity Targets",
+        description: "No productivity targets or KPIs. No comparison between participants.",
+      },
+      {
+        icon: "volume_off",
+        title: "No Performance Sharing",
+        description: "No performance sharing by default. No external input unless requested.",
+      },
+    ],
+    price: "Variable",
+    sessionDates: [
+      { date: "Contact for scheduling", time: "Flexible duration", available: true },
+    ],
+    facilitatorName: "Process Design Team",
+    facilitatorRole: "Method Architects",
+    testimonials: [
+      {
+        quote: "A clearer sense of personal working rhythm. Reduced urge to multitask or over-optimize. Awareness of where energy leaks.",
+        author: "Typical Participant",
+        role: "Process Explorer",
+      },
+    ],
+    images: [
+      {
+        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuCo3MJhZ2Vq9-Ga2Ea74ot7K3svtpwhjBfDSCrXUYnFOYTuKa0AlDwQhdZ8BxihuYNAXOpSdB-tTtKdMZs3cGX8b9BvyVJ0f7v10BnyVYkQEHkFN4-JvUnOV3TtcfaasbCLOtA1FJ36Hww-91OBUlDJHTpWkvWgfKLGDdNvhDccKPCHKxSre2HqIJDUmAdVeuaFlpLJWz1rQnuz4k27-rXUV4Tm2jrPtpK6Sxr5anLKPzQwalZ-iwFuH6pQqNpaJADP6WWqN2Pu-Yd4",
+        alt: "Process experimentation workspace",
+        label: "The Lab",
+      },
+      {
+        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAPAjtxSh87gIafkgIqTQA4_WlBoXdA8o_35G4VKBbVse1DMUWiZfJRKzPGjlrGI9zwVUe17OPdlAa9eDGJimduOzWhw3_NGmPSM-owaLiC0ZDzOZrYwRq6gzX8Uu1NxkBzYzHe0-Wm213bdlpPLadfY9I9heB0l5jHHYlkSKpnweFU8u8Os8ZU0oPWnswySRkwRHCEuWRJSQkWsiJi0KIugcnXUrIgi8mK3Lhpej9bLkfGjJANLbVri_x-pda8_oyarPiN1ILubRWR",
+        alt: "Method testing in progress",
+        label: "Process",
+      },
+    ],
+  },
+  "material-experiments": {
+    title: "Material Experiments",
+    subtitle: "Testing unfinished work, not final output.",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCo3MJhZ2Vq9-Ga2Ea74ot7K3svtpwhjBfDSCrXUYnFOYTuKa0AlDwQhdZ8BxihuYNAXOpSdB-tTtKdMZs3cGX8b9BvyVJ0f7v10BnyVYkQEHkFN4-JvUnOV3TtcfaasbCLOtA1FJ36Hww-91OBUlDJHTpWkvWgfKLGDdNvhDccKPCHKxSre2HqIJDUmAdVeuaFlpLJWz1rQnuz4k27-rXUV4Tm2jrPtpK6Sxr5anLKPzQwalZ-iwFuH6pQqNpaJADP6WWqN2Pu-Yd4",
+    intro:
+      "Material Experiments are designed for creators who want to work with raw, incomplete, or unstable material before it becomes fixed. The focus is not polish. It is discovering what the work wants to become. Nothing here needs to be resolved.",
+    whatItIs:
+      "A Material Experiment is a temporary container for engaging with work-in-progress under reduced noise and expectation. Drafts, fragments, gestures, sounds, movements, and ideas are explored without pressure to conclude. You are not here to present. You are here to stay with the work.",
+    howItWorks: [
+      {
+        title: "Open Material Experiment",
+        description: "Participants pay to experience work-in-progress as it is. Participants are not critics. They are witnesses to process.",
+      },
+      {
+        title: "Closed Material Experiment",
+        description: "The creator pays for space, food, and stay. Participants may be trusted collaborators, Silent Club community members, or anonymous observers.",
+      },
+      {
+        title: "Solo or Small-Group Configuration",
+        description: "Duration agreed in advance. Repetition encouraged over refinement. Pauses treated as part of the process. Entry and exit kept intentional.",
+      },
+    ],
+    whatWeProvide: [
+      {
+        title: "Configured Spaces",
+        description: "Configured spaces for making, testing, or holding work with flexible use of rooms and environments.",
+      },
+      {
+        title: "Optional Facilitation",
+        description: "Optional facilitation to protect boundaries with basic materials and surfaces.",
+      },
+      {
+        title: "Silence as Stabilizing Condition",
+        description: "No critique structures. No feedback frameworks. No pressure to explain intent.",
+      },
+    ],
+    designConstraints: [
+      {
+        icon: "block",
+        title: "No Demand for Completion",
+        description: "No evaluation or advice by default. No comparison between materials.",
+      },
+      {
+        icon: "no_photography",
+        title: "No Recording Unless Requested",
+        description: "These constraints protect creative risk and allow material to exist unfinished.",
+      },
+    ],
+    price: "Variable",
+    sessionDates: [
+      { date: "Contact for scheduling", time: "Flexible duration", available: true },
+    ],
+    facilitatorName: "Material Design Team",
+    facilitatorRole: "Process Facilitators",
+    testimonials: [
+      {
+        quote: "Greater tolerance for unfinished states. Unexpected clarity through repetition. Reduced urgency to decide or finalize. A deeper relationship with the material.",
+        author: "Typical Participant",
+        role: "Material Explorer",
+      },
+    ],
+    images: [
+      {
+        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuCo3MJhZ2Vq9-Ga2Ea74ot7K3svtpwhjBfDSCrXUYnFOYTuKa0AlDwQhdZ8BxihuYNAXOpSdB-tTtKdMZs3cGX8b9BvyVJ0f7v10BnyVYkQEHkFN4-JvUnOV3TtcfaasbCLOtA1FJ36Hww-91OBUlDJHTpWkvWgfKLGDdNvhDccKPCHKxSre2HqIJDUmAdVeuaFlpLJWz1rQnuz4k27-rXUV4Tm2jrPtpK6Sxr5anLKPzQwalZ-iwFuH6pQqNpaJADP6WWqN2Pu-Yd4",
+        alt: "Material experimentation workspace",
+        label: "The Lab",
+      },
+      {
+        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAPAjtxSh87gIafkgIqTQA4_WlBoXdA8o_35G4VKBbVse1DMUWiZfJRKzPGjlrGI9zwVUe17OPdlAa9eDGJimduOzWhw3_NGmPSM-owaLiC0ZDzOZrYwRq6gzX8Uu1NxkBzYzHe0-Wm213bdlpPLadfY9I9heB0l5jHHYlkSKpnweFU8u8Os8ZU0oPWnswySRkwRHCEuWRJSQkWsiJi0KIugcnXUrIgi8mK3Lhpej9bLkfGjJANLbVri_x-pda8_oyarPiN1ILubRWR",
+        alt: "Unfinished material in progress",
+        label: "Process",
+      },
+    ],
+  },
   "the-writer-says": {
     title: "The Writer Says",
     subtitle: "Listening for resonance, not feedback.",
@@ -112,231 +262,273 @@ const expressionPractices: Record<
       },
     ],
   },
-  "language-play": {
-    title: "Language Play",
-    subtitle: "Experimenting with the structure and sound of words.",
+  "material-experiments": {
+    title: "Material Experiments",
+    subtitle: "Testing unfinished work, not final output.",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuAPAjtxSh87gIafkgIqTQA4_WlBoXdA8o_35G4VKBbVse1DMUWiZfJRKzPGjlrGI9zwVUe17OPdlAa9eDGJimduOzWhw3_NGmPSM-owaLiC0ZDzOZrYwRq6gzX8Uu1NxkBzYzHe0-Wm213bdlpPLadfY9I9heB0l5jHHYlkSKpnweFU8u8Os8ZU0oPWnswySRkwRHCEuWRJSQkWsiJi0KIugcnXUrIgi8mK3Lhpej9bLkfGjJANLbVri_x-pda8_oyarPiN1ILubRWR",
     intro:
-      "A space for linguistic experimentation where grammar rules are suggestions, not laws. Break free from conventional structures to discover new rhythms and meanings.",
+      "Material Experiments are designed for creators who want to work with raw, incomplete, or unstable material before it becomes fixed. The focus is not polish. It is discovering what the work wants to become. Nothing here needs to be resolved.",
     whatItIs:
-      "Language Play is an exploratory workshop where participants deconstruct and reconstruct language. Through exercises in syntax manipulation, sound poetry, and constraint-based writing, we discover what words can do when freed from their usual contexts.",
+      "A Material Experiment is a temporary container for engaging with work-in-progress under reduced noise and expectation. Drafts, fragments, gestures, sounds, movements, and ideas are explored without pressure to conclude. You are not here to present. You are here to stay with the work.",
     howItWorks: [
       {
-        title: "The Session",
-        description: "A 3-hour intensive workshop with structured exercises and free exploration time.",
+        title: "Who This Experiment Serves",
+        description: "Artists shaping early material, musicians exploring sound or structure, writers working with drafts or fragments, performers developing form before rehearsal, and creators unsure what their work is becoming. Works best when the material feels fragile, unfinished, or undefined.",
       },
       {
-        title: "The Group",
-        description: "Small groups of 6-8 participants to ensure individual attention and collaborative energy.",
+        title: "What Is Being Tested",
+        description: "What holds attention within the material. Where resistance, excitement, or collapse appears. How form shifts with time, silence, or repetition. Assumptions about readiness, clarity, or completion. The material is unstable by design. That instability is the signal.",
       },
       {
-        title: "The Method",
-        description: "Guided exercises followed by individual experimentation and optional sharing.",
+        title: "Open Material Experiment",
+        description: "Participants pay to experience work-in-progress as it is. This works when witnessing unfinished work has value, presence itself shapes the material, and others benefit from being inside emergence. Participants are not critics. They are witnesses to process.",
+      },
+      {
+        title: "Closed Material Experiment",
+        description: "The creator pays for space, food, and stay (if required). Participants may be trusted collaborators, Silent Club community members, or anonymous, silent observers. This works when material is highly sensitive, observation matters more than response, and privacy protects creative risk.",
+      },
+      {
+        title: "How It Works",
+        description: "Solo or small-group configuration. Duration agreed in advance. Repetition encouraged over refinement. Pauses treated as part of the process. Entry and exit kept intentional. The work sets the pace.",
       },
     ],
     whatWeProvide: [
       {
-        title: "Writing Materials",
-        description: "Various papers, pens, and tools for physical and digital experimentation.",
+        title: "Configured Spaces",
+        description: "Configured spaces for making, testing, or holding work with flexible use of rooms and environments.",
       },
       {
-        title: "Reference Library",
-        description: "Curated collection of experimental literature and linguistic theory.",
+        title: "Optional Facilitation",
+        description: "Optional facilitation to protect boundaries with basic materials and surfaces.",
       },
       {
-        title: "Recording Equipment",
-        description: "For capturing spoken word experiments and sound poetry.",
+        title: "Silence as Stabilizing Condition",
+        description: "Silence as a stabilizing condition. No critique structures. No feedback frameworks. No pressure to explain intent.",
       },
     ],
     designConstraints: [
       {
-        icon: "edit_note",
-        title: "No Judgement",
-        description: "All experiments are valid. There are no 'wrong' ways to play with language.",
+        icon: "block",
+        title: "No Demand for Completion",
+        description: "No demand for completion. No evaluation or advice by default. No comparison between materials.",
       },
       {
-        icon: "auto_awesome",
-        title: "Embrace the Absurd",
-        description: "The most interesting discoveries come from pushing boundaries.",
+        icon: "videocam_off",
+        title: "No Recording by Default",
+        description: "No recording unless explicitly requested. These constraints protect creative risk.",
       },
     ],
-    price: "$75",
+    price: "Variable",
     sessionDates: [
-      { date: "Friday, Nov 3", time: "2:00 PM - 5:00 PM", spots: "2 spots left", available: true },
-      { date: "Saturday, Nov 18", time: "10:00 AM - 1:00 PM", available: true },
+      { date: "Contact for scheduling", time: "Flexible duration", available: true },
     ],
-    facilitatorName: "Dr. Maya Chen",
-    facilitatorRole: "Linguist & Poet",
+    facilitatorName: "Silent Club Team",
+    facilitatorRole: "Process Facilitators",
     testimonials: [
       {
-        quote: "I discovered a new voice I didn't know I had. The constraints actually set me free.",
-        author: "Alex R.",
-        role: "Fiction Writer",
+        quote:
+          "Greater tolerance for unfinished states. Unexpected clarity through repetition. Reduced urgency to decide or finalize. A deeper relationship with the material.",
+        author: "Typical Participant",
+        role: "Creator",
+      },
+      {
+        quote:
+          "This is not a showcase. Not a critique session. Not a rehearsal for performance. Not production-focused work. If polish is the goal, this is not the right container.",
+        author: "Material Experiments Guide",
+        role: "Facilitator",
       },
     ],
     images: [
       {
         src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAPAjtxSh87gIafkgIqTQA4_WlBoXdA8o_35G4VKBbVse1DMUWiZfJRKzPGjlrGI9zwVUe17OPdlAa9eDGJimduOzWhw3_NGmPSM-owaLiC0ZDzOZrYwRq6gzX8Uu1NxkBzYzHe0-Wm213bdlpPLadfY9I9heB0l5jHHYlkSKpnweFU8u8Os8ZU0oPWnswySRkwRHCEuWRJSQkWsiJi0KIugcnXUrIgi8mK3Lhpej9bLkfGjJANLbVri_x-pda8_oyarPiN1ILubRWR",
-        alt: "Scattered letters and notes",
-        label: "Experimentation",
+        alt: "Work-in-progress materials",
+        label: "Raw Material",
       },
       {
-        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAPAjtxSh87gIafkgIqTQA4_WlBoXdA8o_35G4VKBbVse1DMUWiZfJRKzPGjlrGI9zwVUe17OPdlAa9eDGJimduOzWhw3_NGmPSM-owaLiC0ZDzOZrYwRq6gzX8Uu1NxkBzYzHe0-Wm213bdlpPLadfY9I9heB0l5jHHYlkSKpnweFU8u8Os8ZU0oPWnswySRkwRHCEuWRJSQkWsiJi0KIugcnXUrIgi8mK3Lhpej9bLkfGjJANLbVri_x-pda8_oyarPiN1ILubRWR",
-        alt: "Creative workspace",
+        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuBY5EzQoT-ln-vIJmQUQXprHfkVhamnYT-SUJQDgJ_x-ge2ddrWMUbHY-HulrWl5zy7E_7U-oa75n7z0c5hJjd2iHIfvQpPWkPA2DdpUXN7ZVY83Z8XrrP9wU7SXANiExCiyGU1Og9zK-TLtsvDZw_Ns70L2vkkBNyxCGS-KwbMBu-tkeAiSs7LyNa1p8Dt-EHFSSgZ7USt8cgIn-r1QT0JFo5ihBpZIylq3AfMl7iZ-rwm_Qu34XQczQd8PY5uD2NRk-MP4-UxTS0_",
+        alt: "Creative experimentation space",
         label: "Process",
       },
     ],
   },
-  "finding-voice": {
-    title: "Finding Voice",
-    subtitle: "Discovering the authentic timber of your personal narrative.",
+  "audience-experiments": {
+    title: "Audience Experiments",
+    subtitle: "Testing how work lands, without feedback loops.",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBY5EzQoT-ln-vIJmQUQXprHfkVhamnYT-SUJQDgJ_x-ge2ddrWMUbHY-HulrWl5zy7E_7U-oa75n7z0c5hJjd2iHIfvQpPWkPA2DdpUXN7ZVY83Z8XrrP9wU7SXANiExCiyGU1Og9zK-TLtsvDZw_Ns70L2vkkBNyxCGS-KwbMBu-tkeAiSs7LyNa1p8Dt-EHFSSgZ7USt8cgIn-r1QT0JFo5ihBpZIylq3AfMl7iZ-rwm_Qu34XQczQd8PY5uD2NRk-MP4-UxTS0_",
     intro:
-      "Vocal exercises designed to unlock your inner resonance. This practice helps you find and strengthen the authentic voice that carries your personal narrative.",
+      "Audience Experiments are designed for creators who need to observe attention, perception, and response without performance pressure or evaluation. The focus is not approval. It is exposure under controlled conditions. Nothing here needs to be explained.",
     whatItIs:
-      "Finding Voice combines vocal training with narrative exploration. Through breathing exercises, vocal warm-ups, and guided storytelling, participants discover the unique timbre and rhythm of their authentic voice.",
+      "An Audience Experiment is a temporary container where work-in-progress is encountered by others in silence or restraint. Attention is treated as the signal. Feedback, interpretation, and reaction are deliberately reduced. You are not here to impress. You are here to observe.",
     howItWorks: [
       {
-        title: "The Session",
-        description: "A 2.5-hour workshop combining vocal exercises with narrative work.",
+        title: "Who This Experiment Serves",
+        description: "Performers testing material before public release, speakers exploring pacing and presence, musicians observing attention without applause, theatre-makers testing form without reaction, and creators unsure how their work is being received. Works best when the gap between imagined and real response matters.",
       },
       {
-        title: "The Group",
-        description: "Intimate groups of 5-7 participants for personalized attention.",
+        title: "What Is Being Tested",
+        description: "What holds attention over time. Where attention drifts or collapses. The effect of silence, distance, or anonymity. Assumptions about audience reaction. Opinion is not collected. Attention is observed.",
       },
       {
-        title: "The Process",
-        description: "Warm-up exercises, individual voice work, and group resonance practices.",
+        title: "Open Audience Experiment",
+        description: "Participants pay to be present with work-in-progress. This works when witnessing unfinished work has value, attention itself is part of the experiment, and presence benefits both creator and participant. Participants are not critics. They are holders of attention.",
+      },
+      {
+        title: "Closed Audience Experiment",
+        description: "The creator pays for space, food, and stay (if required). Participants may be self-invited guests, Silent Club community members, or anonymous, non-interactive presence. This works when unfiltered attention is required, anonymity protects the work, and observation matters more than dialogue.",
+      },
+      {
+        title: "How It Works",
+        description: "Solo or small-group presentation. Fixed duration agreed in advance. No interruption during sessions. Response, if any, occurs later or not at all. The experiment ends when time ends.",
       },
     ],
     whatWeProvide: [
       {
-        title: "Vocal Training Space",
-        description: "Acoustically treated room designed for voice work and listening.",
+        title: "Configured Spaces",
+        description: "Configured viewing or listening spaces with clearly defined participation boundaries.",
       },
       {
-        title: "Recording Setup",
-        description: "Professional equipment to capture and review your voice.",
+        title: "Optional Facilitation",
+        description: "Optional facilitation to hold silence with controlled entry and exit.",
       },
       {
-        title: "Guided Materials",
-        description: "Exercises and prompts for continued practice.",
+        title: "No Default Feedback",
+        description: "No default feedback mechanisms. Attention is curated. Reaction is not.",
       },
     ],
     designConstraints: [
       {
-        icon: "mic_external_on",
-        title: "No Comparison",
-        description: "Your voice is unique. We focus on authenticity, not imitation.",
+        icon: "volume_off",
+        title: "No Applause or Commentary",
+        description: "No applause, commentary, or discussion during sessions. No critique or advice by default.",
       },
       {
-        icon: "hearing",
-        title: "Active Listening",
-        description: "We listen to understand, not to critique or judge.",
+        icon: "videocam_off",
+        title: "No Recording by Default",
+        description: "No recording unless explicitly requested. No obligation to explain intent or context. These constraints protect signal integrity.",
       },
     ],
-    price: "$90",
+    price: "Variable",
     sessionDates: [
-      { date: "Wednesday, Nov 8", time: "6:00 PM - 8:30 PM", spots: "3 spots left", available: true },
-      { date: "Sunday, Nov 19", time: "2:00 PM - 4:30 PM", available: true },
+      { date: "Contact for scheduling", time: "Flexible duration", available: true },
     ],
-    facilitatorName: "James Morrison",
-    facilitatorRole: "Voice Coach & Storyteller",
+    facilitatorName: "Silent Club Team",
+    facilitatorRole: "Attention Facilitators",
     testimonials: [
       {
-        quote: "I found my voice, literally. The exercises unlocked something I didn't know was there.",
-        author: "Rachel K.",
-        role: "Memoirist",
+        quote:
+          "Clearer sense of what truly holds attention. Reduced anxiety around unfinished work. Unexpected effects of silence and distance. Difference between imagined and actual response.",
+        author: "Typical Participant",
+        role: "Creator",
+      },
+      {
+        quote:
+          "This is not a performance. Not a showcase. Not a demo or launch. Not a feedback session. If validation is the goal, this is not the right container.",
+        author: "Audience Experiments Guide",
+        role: "Facilitator",
       },
     ],
     images: [
       {
         src: "https://lh3.googleusercontent.com/aida-public/AB6AXuBY5EzQoT-ln-vIJmQUQXprHfkVhamnYT-SUJQDgJ_x-ge2ddrWMUbHY-HulrWl5zy7E_7U-oa75n7z0c5hJjd2iHIfvQpPWkPA2DdpUXN7ZVY83Z8XrrP9wU7SXANiExCiyGU1Og9zK-TLtsvDZw_Ns70L2vkkBNyxCGS-KwbMBu-tkeAiSs7LyNa1p8Dt-EHFSSgZ7USt8cgIn-r1QT0JFo5ihBpZIylq3AfMl7iZ-rwm_Qu34XQczQd8PY5uD2NRk-MP4-UxTS0_",
-        alt: "Vocal training space",
-        label: "The Studio",
-      },
-      {
-        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuBY5EzQoT-ln-vIJmQUQXprHfkVhamnYT-SUJQDgJ_x-ge2ddrWMUbHY-HulrWl5zy7E_7U-oa75n7z0c5hJjd2iHIfvQpPWkPA2DdpUXN7ZVY83Z8XrrP9wU7SXANiExCiyGU1Og9zK-TLtsvDZw_Ns70L2vkkBNyxCGS-KwbMBu-tkeAiSs7LyNa1p8Dt-EHFSSgZ7USt8cgIn-r1QT0JFo5ihBpZIylq3AfMl7iZ-rwm_Qu34XQczQd8PY5uD2NRk-MP4-UxTS0_",
-        alt: "Voice work in progress",
-        label: "Practice",
-      },
-    ],
-  },
-  "artist-in-reflection": {
-    title: "Artist In Reflection",
-    subtitle: "A space for deep introspection and mirror work.",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuABDtELNVZFlmNhezKAvfaFfbvOYFwMzeiLScpWnRzmifqd-QuQRWU1RZ2D4QNv2Uk_wl5jaZF-YAkvAk0_gh2fJSys3XF90IKlYUpHYOuW6ppEjRBhWDPVJCScTGuZ5SPQA6R5ZYDrGuCw1kvgNrHXWZW6e67U1QWhvc6TkRDxQkWoM79vuQ7ka0Xm8UsR3uczDJj_-FGcqA7r_1uIUoVI0fxKKvYX0broLqXmM0S74MHkHML23rj6FjUVaFEDDtSNY6qqvynhexYk",
-    intro:
-      "Confront the self to deepen the artistic output. This practice uses mirror work, journaling, and guided introspection to explore the relationship between the artist and their art.",
-    whatItIs:
-      "Artist In Reflection is a contemplative practice that combines self-examination with artistic exploration. Through structured mirror work, reflective writing, and silent observation, participants explore how their inner landscape shapes their creative output.",
-    howItWorks: [
-      {
-        title: "The Session",
-        description: "A 4-hour intensive retreat combining guided exercises with silent reflection time.",
-      },
-      {
-        title: "The Group",
-        description: "Very small groups of 4-6 participants to maintain intimacy and focus.",
-      },
-      {
-        title: "The Structure",
-        description: "Alternating periods of guided work and independent reflection in private spaces.",
-      },
-    ],
-    whatWeProvide: [
-      {
-        title: "Reflection Spaces",
-        description: "Private rooms with mirrors and comfortable seating for individual work.",
-      },
-      {
-        title: "Journaling Materials",
-        description: "High-quality journals, pens, and prompts for deep reflection.",
-      },
-      {
-        title: "Meditation Tools",
-        description: "Cushions, blankets, and quiet spaces for contemplative practice.",
-      },
-    ],
-    designConstraints: [
-      {
-        icon: "self_improvement",
-        title: "No Sharing Required",
-        description: "This is personal work. Sharing is optional and never required.",
-      },
-      {
-        icon: "visibility_off",
-        title: "Respect Privacy",
-        description: "We honor each participant's need for solitude and introspection.",
-      },
-    ],
-    price: "$100",
-    sessionDates: [
-      { date: "Saturday, Nov 11", time: "9:00 AM - 1:00 PM", spots: "1 spot left", available: true },
-      { date: "Sunday, Nov 26", time: "2:00 PM - 6:00 PM", available: true },
-    ],
-    facilitatorName: "Dr. Anya Patel",
-    facilitatorRole: "Art Therapist & Guide",
-    testimonials: [
-      {
-        quote: "The most profound artistic breakthrough I've ever had. The mirror work was transformative.",
-        author: "David L.",
-        role: "Visual Artist",
-      },
-    ],
-    images: [
-      {
-        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuABDtELNVZFlmNhezKAvfaFfbvOYFwMzeiLScpWnRzmifqd-QuQRWU1RZ2D4QNv2Uk_wl5jaZF-YAkvAk0_gh2fJSys3XF90IKlYUpHYOuW6ppEjRBhWDPVJCScTGuZ5SPQA6R5ZYDrGuCw1kvgNrHXWZW6e67U1QWhvc6TkRDxQkWoM79vuQ7ka0Xm8UsR3uczDJj_-FGcqA7r_1uIUoVI0fxKKvYX0broLqXmM0S74MHkHML23rj6FjUVaFEDDtSNY6qqvynhexYk",
-        alt: "Reflection space",
+        alt: "Audience space for observation",
         label: "The Space",
       },
       {
+        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuBY5EzQoT-ln-vIJmQUQXprHfkVhamnYT-SUJQDgJ_x-ge2ddrWMUbHY-HulrWl5zy7E_7U-oa75n7z0c5hJjd2iHIfvQpPWkPA2DdpUXN7ZVY83Z8XrrP9wU7SXANiExCiyGU1Og9zK-TLtsvDZw_Ns70L2vkkBNyxCGS-KwbMBu-tkeAiSs7LyNa1p8Dt-EHFSSgZ7USt8cgIn-r1QT0JFo5ihBpZIylq3AfMl7iZ-rwm_Qu34XQczQd8PY5uD2NRk-MP4-UxTS0_",
+        alt: "Attention observation in practice",
+        label: "Observation",
+      },
+    ],
+  },
+  "system-experiments": {
+    title: "System Experiments",
+    subtitle: "Testing conditions, not individuals.",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuABDtELNVZFlmNhezKAvfaFfbvOYFwMzeiLScpWnRzmifqd-QuQRWU1RZ2D4QNv2Uk_wl5jaZF-YAkvAk0_gh2fJSys3XF90IKlYUpHYOuW6ppEjRBhWDPVJCScTGuZ5SPQA6R5ZYDrGuCw1kvgNrHXWZW6e67U1QWhvc6TkRDxQkWoM79vuQ7ka0Xm8UsR3uczDJj_-FGcqA7r_1uIUoVI0fxKKvYX0broLqXmM0S74MHkHML23rj6FjUVaFEDDtSNY6qqvynhexYk",
+    intro:
+      "System Experiments are designed for people exploring rules, structures, environments, and constraints rather than personal performance. The focus is not behavior change. It is understanding how conditions shape behavior. Nothing here is personal.",
+    whatItIs:
+      "A System Experiment is a temporary container where variables such as space, rhythm, rules, and absence are adjusted to observe their effects. The system is the subject. People move inside it. You are not here to improve anyone. You are here to observe what emerges.",
+    howItWorks: [
+      {
+        title: "Who This Experiment Serves",
+        description: "Researchers studying behavior, perception, or attention. Founders testing operating models or decision systems. Educators experimenting with learning environments. Designers exploring constraint-led systems. Thinkers working on long-horizon or meta-questions. Works best when insight depends on conditions, not instruction.",
+      },
+      {
+        title: "What Is Being Tested",
+        description: "How rules and constraints influence behavior. Effects of pace, silence, or absence. Interaction between environment and choice. Assumptions about control, freedom, and agency. Individuals are not optimized. The system is examined.",
+      },
+      {
+        title: "Open System Experiment",
+        description: "Participants pay to enter and experience a system in action. This works when the system itself is transferable, participation reveals patterns, and learning comes from being inside the structure. Participants are not subjects. They are components of the system.",
+      },
+      {
+        title: "Closed System Experiment",
+        description: "The creator pays for space, food, and stay (if required). Participants may be selected collaborators, Silent Club community members, or anonymous participants with defined roles. This works when controlled variables are required, observation matters more than interaction, and integrity of the system must be protected.",
+      },
+      {
+        title: "How It Works",
+        description: "Solo or multi-participant configurations. Duration defined by experimental need. Entry, exit, and roles agreed in advance. Observation prioritized over intervention. The experiment concludes when the system cycle completes.",
+      },
+    ],
+    whatWeProvide: [
+      {
+        title: "Configurable Environments",
+        description: "Configurable environments and zones with adjustable rules, rhythms, and constraints.",
+      },
+      {
+        title: "Optional Facilitation",
+        description: "Optional facilitation to hold structure with clear boundaries for participation and operational discretion.",
+      },
+      {
+        title: "System Stability",
+        description: "The system is held steady. Variables are adjusted deliberately.",
+      },
+    ],
+    designConstraints: [
+      {
+        icon: "block",
+        title: "No Coaching or Correction",
+        description: "No coaching or behavior correction. No personal evaluation. No outcome promises.",
+      },
+      {
+        icon: "lock",
+        title: "No Mid-Cycle Modification",
+        description: "No modification mid-cycle unless predefined. These constraints protect systemic insight.",
+      },
+    ],
+    price: "Variable",
+    sessionDates: [
+      { date: "Contact for scheduling", time: "Flexible duration", available: true },
+    ],
+    facilitatorName: "Silent Club Team",
+    facilitatorRole: "System Architects",
+    testimonials: [
+      {
+        quote:
+          "Unexpected effects of simple constraints. How quickly behavior adapts to structure. Reduced reliance on motivation or instruction. Clearer insight into agency and choice.",
+        author: "Typical Participant",
+        role: "Researcher",
+      },
+      {
+        quote:
+          "This is not a training program. Not a retreat. Not a group therapy space. Not a personal development intervention. If the goal is self-improvement, this is not the right container.",
+        author: "System Experiments Guide",
+        role: "Facilitator",
+      },
+    ],
+    images: [
+      {
         src: "https://lh3.googleusercontent.com/aida-public/AB6AXuABDtELNVZFlmNhezKAvfaFfbvOYFwMzeiLScpWnRzmifqd-QuQRWU1RZ2D4QNv2Uk_wl5jaZF-YAkvAk0_gh2fJSys3XF90IKlYUpHYOuW6ppEjRBhWDPVJCScTGuZ5SPQA6R5ZYDrGuCw1kvgNrHXWZW6e67U1QWhvc6TkRDxQkWoM79vuQ7ka0Xm8UsR3uczDJj_-FGcqA7r_1uIUoVI0fxKKvYX0broLqXmM0S74MHkHML23rj6FjUVaFEDDtSNY6qqvynhexYk",
-        alt: "Contemplative practice",
-        label: "Reflection",
+        alt: "System experiment environment",
+        label: "The System",
+      },
+      {
+        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuABDtELNVZFlmNhezKAvfaFfbvOYFwMzeiLScpWnRzmifqd-QuQRWU1RZ2D4QNv2Uk_wl5jaZF-YAkvAk0_gh2fJSys3XF90IKlYUpHYOuW6ppEjRBhWDPVJCScTGuZ5SPQA6R5ZYDrGuCw1kvgNrHXWZW6e67U1QWhvc6TkRDxQkWoM79vuQ7ka0Xm8UsR3uczDJj_-FGcqA7r_1uIUoVI0fxKKvYX0broLqXmM0S74MHkHML23rj6FjUVaFEDDtSNY6qqvynhexYk",
+        alt: "Observation in practice",
+        label: "Observation",
       },
     ],
   },

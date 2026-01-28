@@ -16,17 +16,21 @@ export default function ExpressionHero() {
         <div className="flex flex-col items-center gap-8">
           <div className="w-16 h-[1px] bg-gold-500/60 mb-2"></div>
           <h1 className="text-gold-500 text-4xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight drop-shadow-xl" style={{ fontFamily: 'Trirong, serif' }}>
-            Facilitated, work-in-progress spaces at <span className="italic">The Silent Club</span>
+            Facilitated sandboxes for unfinished work.
           </h1>
           <div className="space-y-3 text-earth-50/90 text-lg md:text-xl font-normal leading-relaxed max-w-2xl font-body drop-shadow-md">
             <p>
-              Expression here is about staying with unfinished work.
+              The Silent Club offers controlled environments to test ideas, formats, and signals<br/>
+              before they are ready for the public.
             </p>
             <p>
-              These are held spaces for voice, movement, language, or ideas — without judgment or outcome.
+              No performance.
             </p>
             <p>
-              Nothing needs to be explained, polished, or completed.
+              No critique.
+            </p>
+            <p>
+              No requirement for resolution.
             </p>
           </div>
         </div>
