@@ -10,7 +10,7 @@ export default function ResidencyPhilosophy() {
         </div>
         <div className="grid md:grid-cols-2 gap-12 text-left">
           <div>
-            <h3 className="font-display text-xl text-earth-50 mb-4">Conditions for Depth</h3>
+            <h3 className="text-xl text-gold-500 mb-4" style={{ fontFamily: 'Trirong, serif' }}>Conditions for Depth</h3>
             <ul className="space-y-2 text-earth-300 leading-relaxed font-light font-body">
               <li className="flex items-start gap-2">
                 <span className="text-gold-500 mt-1">•</span>
@@ -23,7 +23,7 @@ export default function ResidencyPhilosophy() {
             </ul>
           </div>
           <div>
-            <h3 className="font-display text-xl text-earth-50 mb-4">Shared Context</h3>
+            <h3 className="text-xl text-gold-500 mb-4" style={{ fontFamily: 'Trirong, serif' }}>Shared Context</h3>
             <ul className="space-y-2 text-earth-300 leading-relaxed font-light font-body">
               <li className="flex items-start gap-2">
                 <span className="text-gold-500 mt-1">•</span>

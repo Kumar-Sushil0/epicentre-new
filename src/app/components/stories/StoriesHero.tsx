@@ -15,8 +15,8 @@ export default function StoriesHero() {
       ></div>
       <div className="relative z-20 max-w-[960px] w-full px-4 sm:px-10 text-center sm:text-left">
         <div className="flex flex-col gap-4">
-          <h1 className="text-earth-50 text-5xl md:text-7xl font-black leading-tight tracking-tighter drop-shadow-2xl">
-            Stories at <span className="italic text-gold-500">The Silent Club</span>
+          <h1 className="text-gold-500 text-5xl md:text-7xl font-black leading-tight tracking-tighter drop-shadow-2xl" style={{ fontFamily: 'Trirong, serif' }}>
+            Stories at <span className="italic">The Silent Club</span>
           </h1>
           <div className="h-1 w-24 bg-gold-500 mb-2 mx-auto sm:mx-0"></div>
           <h2 className="text-earth-300 text-xl md:text-2xl font-light italic leading-relaxed max-w-2xl">

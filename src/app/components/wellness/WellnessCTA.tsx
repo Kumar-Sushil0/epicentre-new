@@ -5,7 +5,7 @@ export default function WellnessCTA() {
     <section className="py-20 border-t border-white/5 text-center">
       <div className="flex flex-col items-center gap-6">
         <span className="material-symbols-outlined text-gold-500/50 text-4xl">north</span>
-        <h2 className="text-2xl text-earth-50 font-medium">Ready to disconnect?</h2>
+        <h2 className="text-2xl text-gold-500 font-medium" style={{ fontFamily: 'Trirong, serif' }}>Ready to disconnect?</h2>
         <div className="flex gap-8 items-center justify-center mt-4">
           <Link
             href="/"

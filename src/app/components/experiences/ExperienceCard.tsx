@@ -153,7 +153,7 @@ export default function ExperienceCard({ id, title, description, time, icon, ima
             </div>
           )}
         </div>
-        <h3 className="text-earth-50 text-2xl font-medium font-display group-hover:text-gold-500 transition-colors">
+        <h3 className="text-gold-500 text-2xl font-medium group-hover:text-gold-400 transition-colors" style={{ fontFamily: 'Trirong, serif' }}>
           {title}
         </h3>
         <p className="text-earth-300 text-base font-body whitespace-pre-line">{description}</p>

@@ -4,7 +4,7 @@ export default function WhoThisIsFor() {
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-earth-700">
           <div className="bg-earth-950 p-12 md:p-20">
-            <h3 className="text-earth-50 text-2xl font-display mb-10 border-b border-gold-500/20 pb-4">Who This Is For</h3>
+            <h3 className="text-gold-500 text-2xl mb-10 border-b border-gold-500/20 pb-4" style={{ fontFamily: 'Trirong, serif' }}>Who This Is For</h3>
             <ul className="space-y-6">
               <li className="flex gap-4">
                 <span className="material-symbols-outlined text-gold-500/60">check_circle</span>
@@ -33,7 +33,7 @@ export default function WhoThisIsFor() {
             </ul>
           </div>
           <div className="bg-earth-950 p-12 md:p-20">
-            <h3 className="text-earth-50 text-2xl font-display mb-10 border-b border-white/5 pb-4 opacity-70">Who This Is Not For</h3>
+            <h3 className="text-gold-500 text-2xl mb-10 border-b border-white/5 pb-4 opacity-70" style={{ fontFamily: 'Trirong, serif' }}>Who This Is Not For</h3>
             <ul className="space-y-6">
               <li className="flex gap-4">
                 <span className="material-symbols-outlined text-white/20">cancel</span>

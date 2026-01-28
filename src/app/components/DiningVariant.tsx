@@ -10,15 +10,15 @@ export default function DiningVariant() {
     {
       id: 0,
       title: "Satvik Home Food",
-      description: "Locally sourced vegetarian meals. Light, steady, uncomplicated.",
+      description: "Locally sourced vegetarian meals. Light, steady, and uncomplicated.",
       availability: "Daily",
       thumbnail: "https://lh3.googleusercontent.com/aida-public/AB6AXuC7EqkXqQPU7fE4pLFU_Hk927TUqj83DfbTfUvPIihY2voNQvmPzkgFFvUowSJV8BeUmi3AK6_9d9MQPQBC_OXh3eBg9xIp_jNbcq4P1uQYXAH4udgKWxtFyRuenpPXcorX848v2tHHPWWYfK16iMhYDcmb9iw-JZ2WzgiEm9s4eNuGAgeRY8AMsVHC_k5fLfLYry5CbHdiz9uOsXZQFafe7IcPz2Ty17dsxEdLhomR6gW_ljYA7vJCFpBg4iyLqVjMKXTFWCffegD2",
       image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC7EqkXqQPU7fE4pLFU_Hk927TUqj83DfbTfUvPIihY2voNQvmPzkgFFvUowSJV8BeUmi3AK6_9d9MQPQBC_OXh3eBg9xIp_jNbcq4P1uQYXAH4udgKWxtFyRuenpPXcorX848v2tHHPWWYfK16iMhYDcmb9iw-JZ2WzgiEm9s4eNuGAgeRY8AMsVHC_k5fLfLYry5CbHdiz9uOsXZQFafe7IcPz2Ty17dsxEdLhomR6gW_ljYA7vJCFpBg4iyLqVjMKXTFWCffegD2",
     },
     {
       id: 1,
-      title: "Smoothie, Shakes, Sandwiches",
-      description: "Shared meals from the farm to the buffet, Freshly prepared.",
+      title: "Smoothies, Shakes, Sandwiches & Salads",
+      description: "Freshly prepared, farm-led meals. Shared from kitchen to table without excess.",
       availability: "Wed & Fri",
       thumbnail: "https://lh3.googleusercontent.com/aida-public/AB6AXuBPPRi1KA1SSwhk_HwPBfDwwsAERrk2PJlQEBBT-t3vsDceOPFxRCmCS2hOSB75G50kN4biPj2O6wed6Y5WHy9QYxwfH8SnuPsoH85EkeBG2eWtd61u1kxzb7Hvo1aRqQz8Hw0fhpybRMYRkBpd0hO_yyjc9Cd8p7GUmT-FXalpznzlPS8i_pqPTP-dRL1gJP5yqyABEWDkhy7V7DJxmjQTkdmmZh4DIyIpX7FcKG1hcb2P7A7ZA6abK6NzUJeiJWEJAKb5pwvQZMa5",
       image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBPPRi1KA1SSwhk_HwPBfDwwsAERrk2PJlQEBBT-t3vsDceOPFxRCmCS2hOSB75G50kN4biPj2O6wed6Y5WHy9QYxwfH8SnuPsoH85EkeBG2eWtd61u1kxzb7Hvo1aRqQz8Hw0fhpybRMYRkBpd0hO_yyjc9Cd8p7GUmT-FXalpznzlPS8i_pqPTP-dRL1gJP5yqyABEWDkhy7V7DJxmjQTkdmmZh4DIyIpX7FcKG1hcb2P7A7ZA6abK6NzUJeiJWEJAKb5pwvQZMa5",
@@ -26,7 +26,7 @@ export default function DiningVariant() {
     {
       id: 2,
       title: "Wood-Fired Pizza, Barbeque & Sushi",
-      description: "A restrained culinary practice. Minimal, balanced, occasional.",
+      description: "Occasional, restrained cooking practices. Minimal, balanced, and unhurried.",
       availability: "Weekend Special",
       thumbnail: "https://lh3.googleusercontent.com/aida-public/AB6AXuC72-qeY2eEUj-PVITTUo2cNBi448iUqzdHsoEipULmOX22vormapus2Ny-vkyznBYe1cCZEDjbvLIrW3GuSkIg8UG6cSQjorFd6SxJCSZjnFSUZunRVmsTumGnkttyCeI4bOc-hMIgYBiaqmhKgUJg4c3nVIhqa5238Nu7Cy11M88SVYJR3uvYHZhULleRmsgdg5DSXMHj_jRUCrX6fP_8TMxU7wgAkfOOrz1iU2VMvmW0E8_9TXF6oBAkhRYNTypjcCZ0XHF-AP5d",
       image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC72-qeY2eEUj-PVITTUo2cNBi448iUqzdHsoEipULmOX22vormapus2Ny-vkyznBYe1cCZEDjbvLIrW3GuSkIg8UG6cSQjorFd6SxJCSZjnFSUZunRVmsTumGnkttyCeI4bOc-hMIgYBiaqmhKgUJg4c3nVIhqa5238Nu7Cy11M88SVYJR3uvYHZhULleRmsgdg5DSXMHj_jRUCrX6fP_8TMxU7wgAkfOOrz1iU2VMvmW0E8_9TXF6oBAkhRYNTypjcCZ0XHF-AP5d",
@@ -45,7 +45,10 @@ export default function DiningVariant() {
       <div className="max-w-[1280px] mx-auto px-6">
         <div className="text-center mb-16">
 
-          <h2 className="text-3xl font-bold text-earth-50">Wholesome Dining</h2>
+          <h2 className="text-3xl font-bold text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>Food</h2>
+          <p className="text-earth-300 max-w-2xl mx-auto mt-4 font-body">
+            Food here is designed to support steadiness and attention. It is familiar, seasonal, and shared.
+          </p>
         </div>
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1 space-y-8">
@@ -66,7 +69,7 @@ export default function DiningVariant() {
                 </div>
                 <div className="flex-1 py-1 border-b border-earth-800 group-hover:border-gold-500 transition-colors">
                   <span className="text-gold-500 text-sm font-medium block mb-1">{item.availability}</span>
-                  <h3 className="text-xl font-bold text-earth-100 mb-2">{item.title}</h3>
+                  <h3 className="text-xl font-bold mb-2 text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>{item.title}</h3>
                   <p className="text-earth-300 text-sm font-body line-clamp-2">{item.description}</p>
                 </div>
               </div>
@@ -89,7 +92,7 @@ export default function DiningVariant() {
             ))}
             <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
               <div className="text-center text-white p-6 backdrop-blur-sm bg-earth-900/40 rounded-xl border border-earth-100/10">
-                <h3 className="text-2xl font-bold mb-2 text-earth-50">Communal Dining</h3>
+                <h3 className="text-2xl font-bold mb-2 text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>Communal Dining</h3>
                 <p className="text-sm font-body text-earth-100">Meals are shared. Conversations are gentle.</p>
               </div>
             </div>

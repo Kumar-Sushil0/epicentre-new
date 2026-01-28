@@ -17,7 +17,7 @@ export default function AboutFounder() {
           <div className="w-full lg:w-7/12 space-y-8">
             <div>
               <span className="text-gold-500 text-xs tracking-widest uppercase font-body block mb-2">The Steward</span>
-              <h2 className="text-earth-50 text-4xl md:text-5xl font-display font-medium mb-4">Digen Varma</h2>
+              <h2 className="text-gold-500 text-4xl md:text-5xl font-medium mb-4" style={{ fontFamily: 'Trirong, serif' }}>Digen Varma</h2>
               <h3 className="text-earth-50/60 text-lg font-body italic">Founder & Experience Architect</h3>
               <div className="h-px w-32 bg-gold-500/50 mt-6"></div>
             </div>

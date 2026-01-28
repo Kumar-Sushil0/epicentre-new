@@ -8,7 +8,7 @@ export default function ResidencyHero() {
         }}
       />
       <div className="relative z-10 text-center px-6 max-w-5xl">
-        <h1 className="text-earth-50 text-5xl md:text-7xl font-display font-light tracking-tight mb-4">
+        <h1 className="text-gold-500 text-5xl md:text-7xl font-light tracking-tight mb-4" style={{ fontFamily: 'Trirong, serif' }}>
           The Held Immersion
         </h1>
         <div className="w-24 h-1 bg-gold-500 rounded-full mx-auto mb-6"></div>

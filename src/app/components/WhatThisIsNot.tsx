@@ -9,27 +9,27 @@ export default function WhatThisIsNot() {
   const items = [
     {
       id: 0,
-      title: "Raw Nature",
-      description: "Surrounded by untouched landscapes that ground you in the present moment.",
-      icon: "nature_people",
+      title: "Designed Silence",
+      description: "Sound, movement, and activity are intentionally shaped so attention can settle.",
+      icon: "volume_off",
       image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDgW2JCfQUk6WD7IrZgbpH-HhZ78gEK4Yb__SnaCaVXXfO0790-IVySsIsLDIClfkM2uY2lpKzrnz57Teh49lJe8h_MzJU6o5LAor-XHzM0yB2wQh1gIvdWMGs0GM18aOu-hbH50xvZZgXqd8is_NGa6LOJQZdL5kc36XN1qwYeLT0dO_5yNBz1HQGVDfmL0xyVqW8LnShVfj7IUfO37xXh-LFD9Xosn02Oo3AlYiWBy4PNcxBx3tQEYpHEgvVPybpFeVHcSWkFNwHL",
-      badge: "Nature",
+      badge: "Silence",
     },
     {
       id: 1,
-      title: "Earthy Architecture",
-      description: "Structures built with clay and local stone that breathe with the environment.",
-      icon: "architecture",
+      title: "Non-Performative Space",
+      description: "There is no pressure to speak, share, or present an identity. Presence is enough.",
+      icon: "block",
       image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDgW2JCfQUk6WD7IrZgbpH-HhZ78gEK4Yb__SnaCaVXXfO0790-IVySsIsLDIClfkM2uY2lpKzrnz57Teh49lJe8h_MzJU6o5LAor-XHzM0yB2wQh1gIvdWMGs0GM18aOu-hbH50xvZZgXqd8is_NGa6LOJQZdL5kc36XN1qwYeLT0dO_5yNBz1HQGVDfmL0xyVqW8LnShVfj7IUfO37xXh-LFD9Xosn02Oo3AlYiWBy4PNcxBx3tQEYpHEgvVPybpFeVHcSWkFNwHL",
-      badge: "Architecture",
+      badge: "Space",
     },
     {
       id: 2,
-      title: "Silent Community",
-      description: "Shared spaces that encourage presence alongside others without the pressure of talk.",
-      icon: "diversity_3",
+      title: "Environment-Led Experience",
+      description: "Architecture, land, and rhythm do the work. There is no programming layer.",
+      icon: "landscape",
       image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDgW2JCfQUk6WD7IrZgbpH-HhZ78gEK4Yb__SnaCaVXXfO0790-IVySsIsLDIClfkM2uY2lpKzrnz57Teh49lJe8h_MzJU6o5LAor-XHzM0yB2wQh1gIvdWMGs0GM18aOu-hbH50xvZZgXqd8is_NGa6LOJQZdL5kc36XN1qwYeLT0dO_5yNBz1HQGVDfmL0xyVqW8LnShVfj7IUfO37xXh-LFD9Xosn02Oo3AlYiWBy4PNcxBx3tQEYpHEgvVPybpFeVHcSWkFNwHL",
-      badge: "Community",
+      badge: "Environment",
     },
   ];
 
@@ -49,9 +49,9 @@ export default function WhatThisIsNot() {
       <div className="max-w-[1280px] mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div>
-            <h3 className="text-3xl font-bold mb-6 text-earth-50">The Silent Club Difference</h3>
+            <h3 className="text-3xl font-bold mb-6 text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>Difference</h3>
             <p className="text-earth-300 mb-8 font-body">
-              A curated environment designed to help you disconnect to reconnect.
+              What makes The Silent Club distinct is not what happens here, but how the environment is held.
             </p>
             <div className="space-y-4">
               {items.map((item, index) => (
@@ -65,7 +65,7 @@ export default function WhatThisIsNot() {
                 >
                   <span className="material-symbols-outlined text-gold-500 mt-1">{item.icon}</span>
                   <div>
-                    <h4 className="font-bold text-lg mb-1 text-earth-100">{item.title}</h4>
+                    <h4 className="font-bold text-lg mb-1 text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>{item.title}</h4>
                     <p className="text-sm text-earth-300/80 font-body">{item.description}</p>
                   </div>
                 </div>

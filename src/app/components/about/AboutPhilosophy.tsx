@@ -62,7 +62,7 @@ export default function AboutPhilosophy() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-start">
           <div>
             <span className="text-gold-500 font-body text-xs tracking-[0.2em] uppercase mb-4 block">Core Inquiry</span>
-            <h2 className="text-earth-50 text-4xl font-display font-medium mb-8">The System Behind the Space</h2>
+            <h2 className="text-earth-50 text-4xl font-display font-medium mb-8" style={{ fontFamily: 'Trirong, serif', color: '#C5A065' }}>The System Behind the Space</h2>
             <div className="space-y-4 text-earth-50/70 font-body text-sm leading-relaxed">
               <p>A behavioral system expressed as a place</p>
               <div>
@@ -91,7 +91,7 @@ export default function AboutPhilosophy() {
             </div>
           </div>
           <div className="bg-earth-900 p-10 border border-earth-700 rounded-lg">
-            <h3 className="text-gold-500 text-xl font-display italic mb-6">{content[activeTab].title}</h3>
+            <h3 className="text-gold-500 text-xl italic mb-6" style={{ fontFamily: 'Trirong, serif' }}>{content[activeTab].title}</h3>
             <div className="space-y-6">
               <div className="flex items-center gap-4">
                 <button 

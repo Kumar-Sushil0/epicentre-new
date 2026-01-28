@@ -1,20 +1,7 @@
 import type { Metadata } from "next";
-import { Noto_Serif, Noto_Sans } from "next/font/google";
 import "./globals.css";
 import { EventCalendarProvider } from "./contexts/EventCalendarContext";
 import EventCalendarModal from "./components/EventCalendarModal";
-
-const notoSerif = Noto_Serif({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
-
-const notoSans = Noto_Sans({
-  variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
-});
 
 export const metadata: Metadata = {
   title: "EPiCentre - Dark Earthy Home Page",
@@ -34,9 +21,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body
-        className={`${notoSerif.variable} ${notoSans.variable} bg-earth-900 text-earth-100 font-display antialiased`}
-      >
+      <body className="bg-earth-900 text-earth-100 antialiased">
         <EventCalendarProvider>
           {children}
           <EventCalendarModal />

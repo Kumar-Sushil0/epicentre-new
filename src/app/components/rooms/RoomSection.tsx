@@ -62,7 +62,7 @@ export default function RoomSection({
             <div className="flex items-center gap-2 text-gold-500/80 uppercase tracking-widest text-xs font-bold">
               {number} / {category}
             </div>
-            <h2 className="text-earth-50 text-4xl font-bold leading-tight">{title}</h2>
+            <h2 className="text-gold-500 text-4xl font-bold leading-tight" style={{ fontFamily: 'Trirong, serif' }}>{title}</h2>
             <p className="text-earth-300 text-base leading-loose font-light font-body">{description}</p>
           </div>
 
@@ -107,7 +107,7 @@ export default function RoomSection({
           <div className="flex items-center gap-2 text-gold-500/80 uppercase tracking-widest text-xs font-bold">
             {number} / {category}
           </div>
-          <h2 className="text-earth-50 text-4xl font-bold leading-tight">{title}</h2>
+          <h2 className="text-gold-500 text-4xl font-bold leading-tight" style={{ fontFamily: 'Trirong, serif' }}>{title}</h2>
           <p className="text-earth-300 text-base leading-loose font-light font-body">{description}</p>
         </div>
       )}

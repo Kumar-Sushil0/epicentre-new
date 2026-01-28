@@ -8,10 +8,10 @@ export default function Accommodation() {
         <div className="mb-12">
           <div>
 
-            <h2 className="text-4xl font-bold text-earth-50">Stays</h2>
+            <h2 className="text-4xl font-bold text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>Stay</h2>
           </div>
           <p className="text-earth-300 max-w-2xl font-body mt-4">
-            From private sanctuaries to communal living, choose the level of solitude that speaks to you.
+            Places to rest are part of the system. Each option offers a different degree of privacy, proximity, and withdrawal.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[300px]">
@@ -24,8 +24,8 @@ export default function Accommodation() {
               className="object-cover transform group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute bottom-6 left-6 z-20">
-              <h3 className="text-white text-2xl font-bold mb-1">Private Suites</h3>
-              <p className="text-earth-200 text-sm font-body">Complete seclusion with en-suite facilities.</p>
+              <h3 className="text-2xl font-bold mb-1 text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>Private Rooms</h3>
+              <p className="text-earth-200 text-sm font-body">For complete withdrawal and uninterrupted rest. Designed for those who need separation from all shared presence.</p>
             </div>
           </Link>
           <Link href="/rooms" className="lg:col-span-1 lg:row-span-2 group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
@@ -37,8 +37,8 @@ export default function Accommodation() {
               className="object-cover transform group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute bottom-6 left-6 z-20">
-              <h3 className="text-white text-xl font-bold mb-1">Dorms</h3>
-              <p className="text-earth-200 text-sm font-body">Shared simplicity.</p>
+              <h3 className="text-xl font-bold mb-1 text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>Dorms</h3>
+              <p className="text-earth-200 text-sm font-body">Shared sleeping with clear boundaries. Quiet coexistence without expectation of interaction.</p>
             </div>
           </Link>
           <Link href="/rooms" className="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
@@ -50,8 +50,8 @@ export default function Accommodation() {
               className="object-cover transform group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute bottom-6 left-6 z-20">
-              <h3 className="text-white text-lg font-bold">Community Hall</h3>
-              <p className="text-earth-200 text-xs font-body">For groups & workshops.</p>
+              <h3 className="text-lg font-bold text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>Community Hall</h3>
+              <p className="text-earth-200 text-xs font-body">A shared indoor space for rest, reading, and stillness. Not private, not isolating — held in common.</p>
             </div>
           </Link>
           <Link href="/rooms" className="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
@@ -63,8 +63,8 @@ export default function Accommodation() {
               className="object-cover transform group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute bottom-6 left-6 z-20">
-              <h3 className="text-white text-lg font-bold">Luxury Tents</h3>
-              <p className="text-earth-200 text-xs font-body">Closer to nature, without compromising comfort.</p>
+              <h3 className="text-lg font-bold text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>Tents</h3>
+              <p className="text-earth-200 text-xs font-body">Minimal shelter close to land and weather. For those who prefer simplicity over insulation.</p>
             </div>
           </Link>
         </div>

@@ -83,7 +83,7 @@ export default function RoomsSidebar() {
         </Link>
 
         <div className="flex flex-col gap-2">
-          <h1 className="text-earth-50 text-2xl font-medium leading-tight mb-2">Accommodations</h1>
+          <h1 className="text-gold-500 text-2xl font-medium leading-tight mb-2" style={{ fontFamily: 'Trirong, serif' }}>Accommodations</h1>
           <p className="text-earth-300 text-sm font-normal italic opacity-80 font-body">Select a room type to view details.</p>
         </div>
         <nav className="flex flex-col gap-1">

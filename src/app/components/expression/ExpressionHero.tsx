@@ -15,8 +15,8 @@ export default function ExpressionHero() {
       <div className="relative z-20 container mx-auto px-6 text-center max-w-4xl pt-20">
         <div className="flex flex-col items-center gap-8">
           <div className="w-16 h-[1px] bg-gold-500/60 mb-2"></div>
-          <h1 className="text-earth-50 text-4xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight drop-shadow-xl font-display">
-            Facilitated, work-in-progress spaces at <span className="italic text-gold-500">The Silent Club</span>
+          <h1 className="text-gold-500 text-4xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight drop-shadow-xl" style={{ fontFamily: 'Trirong, serif' }}>
+            Facilitated, work-in-progress spaces at <span className="italic">The Silent Club</span>
           </h1>
           <div className="space-y-3 text-earth-50/90 text-lg md:text-xl font-normal leading-relaxed max-w-2xl font-body drop-shadow-md">
             <p>

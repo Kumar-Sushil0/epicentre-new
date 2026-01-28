@@ -11,12 +11,27 @@ export default function Hero() {
       />
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
 
-        <h1 className="text-earth-50 text-5xl md:text-7xl font-display font-black tracking-tight mb-6 shadow-sm drop-shadow-lg">
-          Find Your Voice
-        </h1>
-        <p className="text-earth-100/90 text-lg md:text-xl font-light tracking-wide max-w-2xl mx-auto mb-10 font-body drop-shadow-md">
-          A quiet club designed for silence, self-observation, and a return to basics. Not a hotel, but a shared space for those who value stillness.
+        <p className="text-gold-500 text-3xl md:text-4xl font-light leading-relaxed max-w-5xl mx-auto mb-4 font-body drop-shadow-md" style={{ fontFamily: 'Trirong, serif' }}>
+          A quiet club designed to reduce noise,<br/> pressure, and performance.
         </p>
+        <p className="text-earth-100/90 text-lg md:text-xl font-light tracking-wide max-w-2xl mx-auto mb-10 font-body drop-shadow-md">
+          Not a hotel. Not a retreat. A shared space for those who value stillness.
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a
+            href="/bookings"
+            className="bg-gold-500 text-earth-950 px-8 py-4 rounded-lg font-bold text-sm uppercase tracking-wider hover:bg-gold-400 transition-all shadow-lg hover:shadow-xl"
+          >
+            Explore Membership
+          </a>
+          <a
+            href="/bookings"
+            className="bg-transparent border-2 border-earth-100 text-earth-100 px-8 py-4 rounded-lg font-bold text-sm uppercase tracking-wider hover:bg-earth-100/10 transition-all"
+          >
+            Book a Tour
+          </a>
+        </div>
 
       </div>
     </section>

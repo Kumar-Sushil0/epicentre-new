@@ -15,7 +15,7 @@ export default function StoriesBookingDetails() {
         <div className="border border-earth-700 rounded-lg overflow-hidden mb-12">
           {/* Title */}
           <div className="border-b border-earth-700 py-6 px-6">
-            <h2 className="text-earth-50 text-2xl md:text-3xl font-bold uppercase tracking-wide text-center font-display">
+            <h2 className="text-gold-500 text-2xl md:text-3xl font-bold uppercase tracking-wide text-center font-display" style={{ fontFamily: 'Trirong, serif' }}>
               STORIES BOOKING DETAILS
             </h2>
           </div>
@@ -51,7 +51,7 @@ export default function StoriesBookingDetails() {
         {/* Things to Remember */}
         <div className="border border-earth-700 rounded-lg overflow-hidden">
           <div className="border-b border-earth-700 py-6 px-6">
-            <h2 className="text-earth-50 text-2xl md:text-3xl font-bold uppercase tracking-wide text-center font-display">
+            <h2 className="text-gold-500 text-2xl md:text-3xl font-bold uppercase tracking-wide text-center font-display" style={{ fontFamily: 'Trirong, serif' }}>
               THINGS TO REMEMBER
             </h2>
           </div>

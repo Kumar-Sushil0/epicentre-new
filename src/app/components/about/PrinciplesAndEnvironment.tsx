@@ -6,7 +6,7 @@ export default function PrinciplesAndEnvironment() {
           {/* Left Side - Operating Principles */}
           <div>
             <span className="text-gold-500 font-body text-xs tracking-[0.2em] uppercase mb-4 block">Constraints</span>
-            <h2 className="text-earth-50 text-4xl font-display font-medium mb-2">Operating Principles</h2>
+            <h2 className="text-gold-500 text-4xl font-medium mb-2" style={{ fontFamily: 'Trirong, serif' }}>Operating Principles</h2>
             <p className="text-earth-50/60 text-lg mb-6">These are constraints, not values.</p>
             <div className="grid grid-cols-1 gap-3">
               <div className="p-3 border border-earth-700 bg-earth-950/50 rounded">
@@ -41,7 +41,7 @@ export default function PrinciplesAndEnvironment() {
           
           {/* Right Side - Built Environment */}
           <div className="bg-earth-950 p-10 border border-earth-700 rounded-lg">
-            <h3 className="text-gold-500 text-xl font-display italic mb-6">Built Environment</h3>
+            <h3 className="text-gold-500 text-xl italic mb-6" style={{ fontFamily: 'Trirong, serif' }}>Built Environment</h3>
             <ul className="space-y-4 text-earth-50/70 font-body text-lg leading-relaxed mb-8">
               <li className="flex items-start gap-3">
                 <span className="text-gold-500 text-sm mt-2">•</span>

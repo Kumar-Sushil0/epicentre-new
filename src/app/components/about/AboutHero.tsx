@@ -15,9 +15,9 @@ export default function AboutHero() {
         <div className="mb-6 flex justify-center">
           <span className="h-16 w-px bg-gold-500/60 block"></span>
         </div>
-        <h1 className="text-earth-50 text-5xl md:text-7xl font-display font-medium leading-tight tracking-tight mb-8 drop-shadow-xl">
+        <h1 className="text-gold-500 text-5xl md:text-7xl font-display font-medium leading-tight tracking-tight mb-8 drop-shadow-xl" style={{ fontFamily: 'Trirong, serif' }}>
           A physical environment designed to <br className="hidden md:block"/>
-          <span className="text-gold-500 italic">reduce interference</span>
+          <span className="italic">reduce interference</span>
         </h1>
         <div className="flex justify-center">
           <span className="material-symbols-outlined text-earth-50/50 animate-bounce text-3xl">keyboard_arrow_down</span>

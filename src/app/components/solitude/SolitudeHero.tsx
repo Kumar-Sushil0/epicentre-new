@@ -9,7 +9,7 @@ export default function SolitudeHero() {
         }}
       ></div>
       <div className="relative z-10 container mx-auto px-4 lg:px-20 flex flex-col items-center text-center gap-8 mt-16">
-        <h1 className="text-earth-50 text-5xl md:text-7xl font-display font-black leading-tight tracking-tight max-w-4xl drop-shadow-2xl">
+        <h1 className="text-gold-500 text-5xl md:text-7xl font-black leading-tight tracking-tight max-w-4xl drop-shadow-2xl" style={{ fontFamily: 'Trirong, serif' }}>
           The Practice of Being
         </h1>
         <div className="w-24 h-1 bg-gold-500 rounded-full my-2"></div>

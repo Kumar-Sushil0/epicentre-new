@@ -7,8 +7,8 @@ export default function Philosophy() {
           <span className="material-symbols-outlined text-gold-500/10 text-6xl absolute top-0 left-0 -translate-x-4 -translate-y-4">
             format_quote
           </span>
-          <p className="text-xl md:text-2xl leading-relaxed text-earth-300 font-display italic relative z-10">
-            "In a world of constant noise, we choose silence. In a culture of excess, we choose simplicity. The Silent Club exists as a shared refuge for thought, presence, and the freedom to do nothing without explanation."
+          <p className="text-xl md:text-2xl leading-relaxed text-gold-500 relative z-10" style={{ fontFamily: 'Trirong, serif' }}>
+            "The Silent Club exists to reduce interference. In a world optimized for noise, speed, and performance, this is a space designed for stillness, self-observation, and clarity. Nothing here is trying to improve you. The conditions make it easier to see.""
           </p>
         </div>
       </div>

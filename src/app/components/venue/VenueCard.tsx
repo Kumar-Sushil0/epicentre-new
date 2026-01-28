@@ -30,7 +30,7 @@ export default function VenueCard({ title, description, image, imageAlt, area, c
             {badge}
           </div>
         )}
-        <h3 className="text-2xl font-bold text-earth-50 mb-2">{title}</h3>
+        <h3 className="text-2xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Trirong, serif' }}>{title}</h3>
         <div className="flex items-center gap-4 text-earth-300 text-xs font-mono mb-4">
           <span className="flex items-center gap-1">
             <span className="material-symbols-outlined text-base">square_foot</span> {area}
