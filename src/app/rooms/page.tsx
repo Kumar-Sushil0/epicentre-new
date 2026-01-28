@@ -23,13 +23,13 @@ export default function RoomsPage() {
               number="01"
               category="Sanctuary"
               title="Private Room"
-              description="A fully private space for withdrawal and rest. Designed to remove interruption and allow uninterrupted quiet."
+              description="A fully private space for withdrawal and rest. Designed to remove interruption and external signal."
               image="https://lh3.googleusercontent.com/aida-public/AB6AXuDYw7zjjT1NTlSOYdFEp7-uHq0qYu0sfT6aUZMNM2ORSddAkOWotjiQuOXDlF61wyE24VSml-mENINPvgit4PMfWpZeH50NPc447sj25Lb9x3TaeBlPSU7wzYuj_9FCg7AibVjCYClPjUH2RnhsG5KEnMzj-HCgJ18Ml3AHQNFqX4nT-CvUDLtna6318BHSz60gSYsF_rolGCK_gpSLX0f4X7YWlq7PTgefwlFaLqlmddEb47Kk1ikXrmPgfcWjrQbX7yn5wzA--zcc"
               imageAlt="Luxury dark bedroom with large window overlooking misty forest"
               imagePosition="left"
               features={[
-                { icon: "king_bed", text: "King-size organic mattress" },
-                { icon: "shower", text: "En-suite rain shower" },
+                { icon: "king_bed", text: "King-size bed" },
+                { icon: "desk", text: "Study & Stationery Corner" },
                 { icon: "wifi_off", text: "Tech-free interior" },
                 { icon: "deck", text: "Outdoor sit-out for stillness" },
               ]}
@@ -43,7 +43,7 @@ export default function RoomsPage() {
             {/* Dark Rooms */}
             <RoomSection
               id="dark-rooms"
-              number="05"
+              number="02"
               category="Dark Room"
               title="Complete Darkness"
               description="A fully light-sealed space designed for extended stillness and sensory withdrawal. Used for deep rest, introspection, and uninterrupted self-observation."
@@ -63,7 +63,7 @@ export default function RoomsPage() {
             {/* Shared Dorms */}
             <RoomSection
               id="shared-dorms"
-              number="02"
+              number="03"
               category="Community"
               title="Shared Dorm"
               description="Shared sleeping with clear boundaries. Built for quiet coexistence rather than interaction."
@@ -71,10 +71,10 @@ export default function RoomsPage() {
               imageAlt="Cozy wooden bunk beds in a dimly lit rustic room"
               imagePosition="right"
               features={[
-                { icon: "curtains", text: "Privacy curtains for light blocking" },
-                { icon: "shelves", text: "Secure storage lockers" },
-                { icon: "bed", text: "Individual sleeping pods" },
-                { icon: "ac_unit", text: "Climate controlled space" },
+                { icon: "desk", text: "Study Desk & Secure lockers" },
+                { icon: "open_in_full", text: "Spacious & Open setting" },
+                { icon: "bed", text: "Individual Sleeping beds" },
+                { icon: "ac_unit", text: "Climate-controlled space" },
               ]}
               featuresStyle="list"
               buttons={[{ text: "Check Availability", href: "/bookings", variant: "primary" }]}
@@ -83,16 +83,16 @@ export default function RoomsPage() {
             {/* Minimalist Tents */}
             <RoomSection
               id="minimalist-tents"
-              number="03"
+              number="05"
               category="Nature"
               title="Minimalist Tents"
-              description="Sleeping closer to land and weather. Minimal shelter that prioritises presence over comfort."
+              description="Sleeping closer to land and weather. Minimal shelter that prioritizes presence over comfort."
               image="https://lh3.googleusercontent.com/aida-public/AB6AXuATOA-7cEFkRwrPfO1Yi_GsWajtQm9kjP7vPcdoMkklExVYKXq1iHwHSN46TT9UzGXZ2GSvZNBTB1p-eMuuUvXuyuTueNOFBENS8jqs4my9pGxB5vcyr7x9voKTIRePCWmgmZr5a4WBdtkSTU9GmvHrQnQEscuZ9JMvgYXNAi22rrvPBBd93C8N_mao7s6WAkTydpuvYyx_ygEtCYiiCq2O0dMsBGO3LlMAosUfSCTq_BUAbUojIr8PTfDo-3Pec-w-I7ddy4UoeU12"
               imageAlt="Illuminated tent camping under a starry night sky in forest"
               imagePosition="left"
               features={[
-                { icon: "forest", text: "Elevated canvas structure" },
-                { icon: "light_mode", text: "Lantern lighting" },
+                { icon: "forest", text: "Elevated canvas structured tent" },
+                { icon: "wc", text: "Access to common bath & washrooms" },
                 { icon: "fireplace", text: "Fire pit access" },
                 { icon: "umbrella", text: "Natural weatherproofing" },
               ]}
@@ -111,9 +111,9 @@ export default function RoomsPage() {
               imageAlt="Warm interior with fireplace and comfortable armchairs"
               imagePosition="right"
               features={[
-                { icon: "local_cafe", text: "Morning tea ritual (silent gathering)" },
+                { icon: "roofing", text: "Covered and insulated structure" },
                 { icon: "menu_book", text: "Reading and reflection space" },
-                { icon: "fireplace", text: "Warm fireplace seating" },
+                { icon: "wc", text: "Access to common bath & washrooms" },
                 { icon: "self_improvement", text: "Quiet contemplation area" },
               ]}
               featuresStyle="list"
