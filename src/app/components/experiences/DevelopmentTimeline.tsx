@@ -51,6 +51,11 @@ const timelineData: TimelineMonth[] = [
         preciseDate: "March 1, 2026",
         description: "Dedicated spaces for rest, recovery, and mental rejuvenation. These zones are designed with natural elements and quiet environments to support personal well-being and reflection.",
       },
+      {
+        name: "Silent Retreat Workshop",
+        preciseDate: "March 26, 2026",
+        description: "A three-day immersive workshop focused on mindfulness, meditation, and inner stillness. Participants will engage in guided silence practices, contemplative walks, and group reflection sessions in a supportive environment.",
+      },
     ],
   },
   {
@@ -214,7 +219,7 @@ export default function DevelopmentTimeline() {
     <div className="w-full py-2">
       <div className="relative">
         {/* Scroll container */}
-        <div 
+        <div
           ref={scrollContainerRef}
           data-timeline-scroll
           className="overflow-x-auto pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
@@ -281,9 +286,8 @@ export default function DevelopmentTimeline() {
                               {/* Expand/Collapse Icon */}
                               <div className="shrink-0">
                                 <svg
-                                  className={`w-5 h-5 text-gold-500 transition-transform ${
-                                    isExpanded ? "rotate-180" : ""
-                                  }`}
+                                  className={`w-5 h-5 text-gold-500 transition-transform ${isExpanded ? "rotate-180" : ""
+                                    }`}
                                   fill="none"
                                   stroke="currentColor"
                                   viewBox="0 0 24 24"

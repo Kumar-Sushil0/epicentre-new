@@ -14,60 +14,23 @@ interface ExperienceCardProps {
 }
 
 function ExperienceCard({ title, description, href, images, imageAlt, itemTitles }: ExperienceCardProps) {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % images.length);
-    }, 3500);
-    return () => clearInterval(interval);
-  }, [images.length]);
-
   return (
     <Link href={href} className="group cursor-pointer block">
       <div className="relative overflow-hidden rounded-xl mb-4 aspect-[4/3] border border-earth-700">
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-opacity duration-700 ${index === currentSlide ? "opacity-100" : "opacity-0"
-              }`}
-          >
-            <Image
-              alt={`${imageAlt} - Image ${index + 1}`}
-              src={image}
-              fill
-              className="object-cover transform group-hover:scale-105 transition-transform duration-500"
-            />
+        <Image
+          alt={imageAlt}
+          src={images[0]} // Use only the first image
+          fill
+          className="object-cover transform group-hover:scale-105 transition-transform duration-500"
+        />
+        {/* Title Overlay - shows main title */}
+        <div className="absolute inset-0 z-20 flex items-end pointer-events-none">
+          <div className="w-full bg-gradient-to-t from-earth-950/90 via-earth-950/70 to-transparent p-6">
+            <h3 className="text-2xl font-bold text-gold-500 group-hover:text-gold-400 transition-colors" style={{ fontFamily: 'Trirong, serif' }}>
+              {title}
+            </h3>
           </div>
-        ))}
-        {/* Title Overlay - shows item title for current image */}
-        {itemTitles && itemTitles.length > 0 && (
-          <div className="absolute inset-0 z-20 flex items-end pointer-events-none">
-            <div className="w-full bg-gradient-to-t from-earth-950/90 via-earth-950/70 to-transparent p-6">
-              <h3 className="text-2xl font-bold text-gold-500 group-hover:text-gold-400 transition-colors" style={{ fontFamily: 'Trirong, serif' }}>
-                {itemTitles[currentSlide] || title}
-              </h3>
-            </div>
-          </div>
-        )}
-        {/* Navigation Dots */}
-        {images.length > 1 && (
-          <div className="absolute bottom-3 right-3 z-30 flex gap-1.5">
-            {images.map((_, index) => (
-              <button
-                key={index}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  setCurrentSlide(index);
-                }}
-                className={`w-1.5 h-1.5 rounded-full transition-all ${index === currentSlide ? "bg-gold-500 w-4" : "bg-earth-100/50 hover:bg-earth-100/75"
-                  }`}
-                aria-label={`Go to image ${index + 1}`}
-              />
-            ))}
-          </div>
-        )}
+        </div>
       </div>
       <h3 className="text-xl font-bold mb-2 text-gold-500 group-hover:text-gold-400 transition-colors" style={{ fontFamily: 'Trirong, serif' }}>
         {title}

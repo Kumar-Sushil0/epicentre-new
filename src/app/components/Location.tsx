@@ -7,8 +7,8 @@ export default function Location() {
         <div className="text-center mb-12">
 
           <h2 className="text-3xl font-bold text-gold-500 mb-6" style={{ fontFamily: 'Trirong, serif' }}>How to Get Here</h2>
-          <p className="text-earth-300 max-w-2xl mx-auto font-body">
-            Set away from speed, close enough to arrive.<br/>The journey marks the shift from movement to stillness.
+          <p className="text-earth-300 max-w-full mx-auto font-body">
+            Set away from speed, close enough to arrive. The journey marks the shift from movement to stillness.
           </p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">

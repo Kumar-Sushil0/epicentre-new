@@ -3,7 +3,7 @@ export default function PrinciplesAndEnvironment() {
     <section className="relative py-24 px-6 md:px-12 bg-earth-900 border-b border-earth-700">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <span className="text-gold-500 font-body text-xs tracking-[0.2em] uppercase mb-4 block">Constraints</span>
+          
           <h2 className="text-gold-500 text-4xl font-medium mb-2" style={{ fontFamily: 'Trirong, serif' }}>Operating Principles</h2>
           <p className="text-earth-50/60 text-lg">These are constraints, not values.</p>
         </div>

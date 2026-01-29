@@ -21,13 +21,22 @@ export default function VenueHero() {
           <p className="text-earth-300/80 text-lg font-body leading-relaxed max-w-2xl mt-4">
             The venue supports different group formats without imposing programming or performance.
           </p>
-          <div className="mt-8">
+          <div className="mt-8 flex flex-wrap gap-4">
             <a
               href="#"
               className="inline-flex items-center gap-3 bg-gold-500 text-earth-950 px-6 py-3 rounded-lg font-medium hover:bg-gold-400 transition-colors duration-300"
             >
               <span className="material-symbols-outlined">download</span>
               Download Brochure
+            </a>
+            <a
+              href="https://maps.google.com/?q=Bird+Sanctuary+Kumbhargaon+Bhigwan+Maharashtra"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-transparent border-2 border-gold-500 text-gold-500 px-6 py-3 rounded-lg font-medium hover:bg-gold-500 hover:text-earth-950 transition-colors duration-300"
+            >
+              <span className="material-symbols-outlined">location_on</span>
+              View on Map
             </a>
           </div>
         </div>

@@ -61,25 +61,13 @@ export default function AboutPhilosophy() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <div className="text-earth-50/70 font-body text-lg leading-relaxed max-w-4xl mx-auto">
-            <p>The Silent Club exists to remove unnecessary signals so attention can settle and clarity can emerge.</p>
+           
           </div>
         </div>
         
         <div className="p-10 max-w-4xl mx-auto relative">
           <h3 className="text-gold-500 text-xl italic mb-6 max-w-2xl mx-auto px-8" style={{ fontFamily: 'Trirong, serif' }}>{content[activeTab].title}</h3>
-          <div className="space-y-6">
-            <ul className="space-y-4 text-earth-50/80 text-lg font-body font-light leading-relaxed mb-8 max-w-2xl mx-auto px-8">
-              {content[activeTab].items.map((item: string, index: number) => (
-                <li key={index} className="flex items-start gap-3">
-                  <span className="text-gold-500 text-sm mt-2">•</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="text-gold-500/80 italic text-xl font-light mb-4 max-w-2xl mx-auto px-8">
-              {content[activeTab].closing}
-            </p>
-            <div className="flex items-center gap-4 justify-center pt-4">
+           <div className="flex items-center gap-4 pt-4 max-w-2xl mx-auto px-8">
               <button 
                 onClick={() => setActiveTab(1)}
                 className={`font-display text-2xl transition-colors ${activeTab === 1 ? 'text-gold-500' : 'text-earth-50/40 hover:text-earth-50/60'}`}
@@ -108,6 +96,19 @@ export default function AboutPhilosophy() {
                 04
               </button>
             </div>
+          <div className="space-y-6">
+            <ul className="space-y-4 text-earth-50/80 text-lg font-body font-light leading-relaxed mb-8 max-w-2xl mx-auto px-8">
+              {content[activeTab].items.map((item: string, index: number) => (
+                <li key={index} className="flex items-start gap-3">
+                  <span className="text-gold-500 text-sm mt-2">•</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-gold-500/80 italic text-xl font-light mb-4 max-w-2xl mx-auto px-8">
+              {content[activeTab].closing}
+            </p>
+           
           </div>
         </div>
       </div>
