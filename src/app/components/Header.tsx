@@ -61,13 +61,6 @@ export default function Header() {
           >
             Our Venue
           </Link>
-          <Link
-            className={`text-sm font-medium transition-colors ${isActive("/stories") ? "text-gold-500 font-bold" : "text-earth-300 hover:text-gold-400"
-              }`}
-            href="/stories"
-          >
-            Our Stories
-          </Link>
 
           {/* Experiences Dropdown */}
           <div
