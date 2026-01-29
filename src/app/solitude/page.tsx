@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SolitudeHero from "../components/solitude/SolitudeHero";
 import SolitudePractice from "../components/solitude/SolitudePractice";
+import ClosingSection from "../components/ClosingSection";
 
 export default function SolitudePage() {
   const practices = [
@@ -135,6 +136,7 @@ export default function SolitudePage() {
           <SolitudePractice key={index} {...practice} />
         ))}
       </div>
+      <ClosingSection />
       <Footer />
     </main>
   );

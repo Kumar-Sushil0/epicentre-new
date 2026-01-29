@@ -20,7 +20,7 @@ export default function Home() {
       <WhatThisIsNot />
 
       <Accommodation />
-      <BookingForm />
+
       <DiningVariant />
       <Experiences />
       <Location />

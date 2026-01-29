@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import ClosingSection from "../components/ClosingSection";
 
 export default function BookingsPage() {
   const [selectedDates, setSelectedDates] = useState<{ start: number | null; end: number | null }>({ start: 12, end: 15 });
@@ -106,8 +107,8 @@ export default function BookingsPage() {
                         {selectedDates.start && selectedDates.end
                           ? `Oct ${selectedDates.start} - Oct ${selectedDates.end}`
                           : selectedDates.start
-                          ? `Oct ${selectedDates.start}`
-                          : "Select dates..."}
+                            ? `Oct ${selectedDates.start}`
+                            : "Select dates..."}
                       </p>
                     </div>
                     <span className="material-symbols-outlined text-earth-300 text-sm group-hover:text-gold-500">edit</span>
@@ -188,13 +189,12 @@ export default function BookingsPage() {
                       <button
                         key={day}
                         onClick={() => handleDateClick(day)}
-                        className={`aspect-square flex items-center justify-center rounded-full transition-colors ${
-                          isStart || isEnd
+                        className={`aspect-square flex items-center justify-center rounded-full transition-colors ${isStart || isEnd
                             ? "bg-gold-500 text-earth-950 font-bold shadow-[0_0_15px_rgba(197,160,101,0.3)]"
                             : inRange
-                            ? "bg-gold-500/20 text-gold-500 font-medium"
-                            : "text-earth-300/50 hover:text-earth-100 hover:bg-white/5"
-                        }`}
+                              ? "bg-gold-500/20 text-gold-500 font-medium"
+                              : "text-earth-300/50 hover:text-earth-100 hover:bg-white/5"
+                          }`}
                       >
                         {day}
                       </button>
@@ -216,9 +216,8 @@ export default function BookingsPage() {
                 {rooms.map((room) => (
                   <div
                     key={room.id}
-                    className={`group bg-earth-800 border rounded-xl overflow-hidden transition-all duration-300 flex flex-col ${
-                      selectedRoom === room.id ? "border-gold-500" : "border-earth-700 hover:border-gold-500/50"
-                    } ${room.id === "nature-tent" ? "md:col-span-2 lg:col-span-1" : ""}`}
+                    className={`group bg-earth-800 border rounded-xl overflow-hidden transition-all duration-300 flex flex-col ${selectedRoom === room.id ? "border-gold-500" : "border-earth-700 hover:border-gold-500/50"
+                      } ${room.id === "nature-tent" ? "md:col-span-2 lg:col-span-1" : ""}`}
                   >
                     <div className="relative h-48 overflow-hidden">
                       <Image
@@ -245,11 +244,10 @@ export default function BookingsPage() {
                       </ul>
                       <button
                         onClick={() => handleRoomSelect(room.id)}
-                        className={`w-full py-3 border font-medium rounded-lg transition-colors duration-300 ${
-                          selectedRoom === room.id
+                        className={`w-full py-3 border font-medium rounded-lg transition-colors duration-300 ${selectedRoom === room.id
                             ? "border-gold-500 bg-gold-500 text-earth-950 hover:bg-gold-400"
                             : "border-earth-700 text-earth-300 hover:border-earth-100 hover:text-earth-100"
-                        }`}
+                          }`}
                       >
                         {selectedRoom === room.id ? "Selected" : `Select ${room.name.includes("Suite") ? "Room" : room.name.includes("Dorm") ? "Dorm" : "Tent"}`}
                       </button>
@@ -347,6 +345,7 @@ export default function BookingsPage() {
           </div>
         </div>
       </div>
+      <ClosingSection />
       <Footer />
     </main>
   );

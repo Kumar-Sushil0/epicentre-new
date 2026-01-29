@@ -10,7 +10,7 @@ export default function Accommodation() {
 
             <h2 className="text-4xl font-bold text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>Stay</h2>
           </div>
-          <p className="text-earth-300 max-w-2xl font-body mt-4">
+          <p className="text-earth-300 max-w-full font-body mt-4">
             Places to rest are part of the system. Each option offers a different degree of privacy, proximity, and withdrawal.
           </p>
         </div>
@@ -45,7 +45,7 @@ export default function Accommodation() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10" />
             <Image
               alt="Community hall with cushions"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNDFyy20o-AQkYEp2O4BNf_Wnz1guCpCA4Bk3m648Rjg2YfCdJnHgR9fm5nzNC0F0gIppMLs2N085b7oM_9PopUtIbw38rF_gcp8cte1qkzDEV2s6l5ZdLpyZPP7FAuXW6FRRIp0_r8l7Yuu-A7e1Op1T-SKetBfop6u8yOdUgreDTiOFj2BpfE4rtVk_D-8eQaBDZqL6mkQuDno1Asagcz1c-jI_tRFZ-nQuEECF0HxQ20-2aaellFwYLjOgzVHUi9xoJky4qDIMp"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVMEXUIh--EZP5fQBMot7ipsmQCI4w60rUmtgCRCv8ONulpWU6j4OW3PA4o0KwMtwDejXpiV3FqTXgT7nqoXoF607AHGqURe06tVE0AJJHiBNB4j2SnpOgEZPJF0pxIiDKFCMCXMgJNvaxTOEUvwCFdufEX0U71Q97lChwn8BYapAJ7AhXcZyouXA-0N-z17ZVe2XJLlN_HlI52GtQDyehXMU8BVLZgXkkHX6im_VJfSbOxCGyWsr8TyrlTTsuVxyxPSqfBw9r4Y8h"
               fill
               className="object-cover transform group-hover:scale-105 transition-transform duration-700"
             />

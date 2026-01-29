@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import ExpressionHero from "../components/expression/ExpressionHero";
 import ExpressionPillars from "../components/expression/ExpressionPillars";
 import ExpressionCTA from "../components/expression/ExpressionCTA";
+import ClosingSection from "../components/ClosingSection";
 
 export default function ExpressionPage() {
   const pillars = [
@@ -98,6 +99,7 @@ export default function ExpressionPage() {
       <ExpressionHero />
       <ExpressionPillars pillars={pillars} />
       <ExpressionCTA />
+      <ClosingSection />
       <Footer />
     </main>
   );

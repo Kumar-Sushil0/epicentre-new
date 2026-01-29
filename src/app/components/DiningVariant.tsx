@@ -46,7 +46,7 @@ export default function DiningVariant() {
         <div className="text-center mb-16">
 
           <h2 className="text-3xl font-bold text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>Food</h2>
-          <p className="text-earth-300 max-w-2xl mx-auto mt-4 font-body">
+          <p className="text-earth-300 max-w-full mx-auto mt-4 font-body">
             Food here is designed to support steadiness and attention. It is familiar, seasonal, and shared.
           </p>
         </div>

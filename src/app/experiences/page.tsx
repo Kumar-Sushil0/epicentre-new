@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import ExperiencesIntro from "../components/experiences/ExperiencesIntro";
 import ExperiencesCTA from "../components/experiences/ExperiencesCTA";
 import ExperiencesGrid from "../components/experiences/ExperiencesGrid";
+import ClosingSection from "../components/ClosingSection";
 
 // Helper function to generate a slug from title
 function generateId(title: string): string {
@@ -234,6 +235,7 @@ export default function ExperiencesPage() {
         <ExperiencesGrid experiences={experiences} />
         <ExperiencesCTA />
       </div>
+      <ClosingSection />
       <Footer />
     </main>
   );

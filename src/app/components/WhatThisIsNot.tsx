@@ -49,7 +49,7 @@ export default function WhatThisIsNot() {
       <div className="max-w-[1280px] mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div>
-            <h3 className="text-3xl font-bold mb-6 text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>Difference</h3>
+            <h3 className="text-3xl font-bold mb-6 text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>Our Moat</h3>
             <p className="text-earth-300 mb-8 font-body">
               What makes The Silent Club distinct is not what happens here, but how the environment is held.
             </p>
