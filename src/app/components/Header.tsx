@@ -10,7 +10,6 @@ export default function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isExperiencesOpen, setIsExperiencesOpen] = useState(false);
   const { openCalendar } = useEventCalendar();
 
   // Detect scroll for background change
@@ -36,16 +35,77 @@ export default function Header() {
   return (
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isScrolled ? 'bg-[#111004]/90 backdrop-blur-sm border-b border-earth-800/50' : 'bg-transparent'}`}>
-        <div className="w-full px-4 py-8 h-[30px] flex items-center justify-between">
+        <div className="w-full px-4 py-8 h-[30px] flex items-center justify-between relative">
 
           {/* LEFT: Hamburger Button */}
           <button
-            onClick={() => setIsMenuOpen(true)}
-            className="w-10 h-10 flex items-center justify-center text-gold-500 hover:text-gold-400 transition-colors"
-            aria-label="Open Menu"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className={`w-10 h-10 flex items-center justify-center transition-colors z-50 relative ${isMenuOpen ? "text-gold-500" : "text-gold-500 hover:text-gold-400"}`}
+            aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
           >
-            <span className="material-symbols-outlined text-3xl">menu</span>
+            <span className="material-symbols-outlined text-3xl">
+              {isMenuOpen ? "close" : "menu"}
+            </span>
           </button>
+
+          {/* POPUP NAVIGATION MENU (Horizontal Row) */}
+          {isMenuOpen && (
+            <nav className="absolute top-1/2 -translate-y-1/2 left-[70px] bg-[#0a0a05]/90 backdrop-blur-xl border border-earth-800/60 rounded-full px-8 py-2 md:py-3 shadow-2xl z-50 flex items-center gap-6 md:gap-8 transform origin-left animate-in slide-in-from-left-4 fade-in duration-200">
+
+              <Link href="/" onClick={() => setIsMenuOpen(false)} className={`text-sm md:text-base font-medium transition-colors whitespace-nowrap ${isActive("/") && pathname === "/" ? "text-gold-500 font-bold" : "text-earth-200 hover:text-gold-500"}`}>
+                Home
+              </Link>
+
+              <Link href="/about-us" onClick={() => setIsMenuOpen(false)} className={`text-sm md:text-base font-medium transition-colors whitespace-nowrap ${isActive("/about-us") ? "text-gold-500 font-bold" : "text-earth-200 hover:text-gold-500"}`}>
+                About
+              </Link>
+
+              <button onClick={() => { openCalendar(); setIsMenuOpen(false); }} className="text-earth-200 hover:text-gold-500 text-sm md:text-base font-medium transition-colors whitespace-nowrap">
+                Events
+              </button>
+
+              <Link href="/rooms" onClick={() => setIsMenuOpen(false)} className={`text-sm md:text-base font-medium transition-colors whitespace-nowrap ${isActive("/rooms") ? "text-gold-500 font-bold" : "text-earth-200 hover:text-gold-500"}`}>
+                Stays
+              </Link>
+
+              <Link href="/venue" onClick={() => setIsMenuOpen(false)} className={`text-sm md:text-base font-medium transition-colors whitespace-nowrap ${isActive("/venue") ? "text-gold-500 font-bold" : "text-earth-200 hover:text-gold-500"}`}>
+                Venue
+              </Link>
+
+              <Link href="/blogs" onClick={() => setIsMenuOpen(false)} className={`text-sm md:text-base font-medium transition-colors whitespace-nowrap ${isActive("/blogs") ? "text-gold-500 font-bold" : "text-earth-200 hover:text-gold-500"}`}>
+                Blogs
+              </Link>
+
+              {/* Experiences Dropdown */}
+              <div className="relative group">
+                <button className={`flex items-center gap-1 text-sm md:text-base font-medium transition-colors whitespace-nowrap ${isExperiencesActive ? "text-gold-500" : "text-earth-200 group-hover:text-gold-500"}`}>
+                  Experiences
+                  <span className="material-symbols-outlined text-sm transition-transform group-hover:rotate-180">expand_more</span>
+                </button>
+
+                {/* Dropdown Menu */}
+                <div className="absolute top-full right-0 md:left-0 md:right-auto mt-4 w-48 bg-[#0a0a05]/95 backdrop-blur-xl border border-earth-800/60 rounded-xl p-2 hidden group-hover:block shadow-xl flex flex-col gap-1">
+                  {[
+                    { name: "Wellness", path: "/wellness" },
+                    { name: "Activities", path: "/experiences" },
+                    { name: "Solitude", path: "/solitude" },
+                    { name: "Expression", path: "/expression" },
+                    { name: "Residency", path: "/residency" }
+                  ].map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.path}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`px-3 py-2 rounded-lg text-sm block transition-all ${isActive(item.path) ? "bg-earth-900/50 text-gold-500" : "text-earth-300 hover:text-earth-100 hover:bg-earth-900/50"}`}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+            </nav>
+          )}
 
           {/* CENTER: Logo */}
           <Link href="/" className="absolute left-1/2 transform -translate-x-1/2 h-[56px] w-32 flex items-center justify-center">
@@ -66,7 +126,7 @@ export default function Header() {
           >
             Book Now
           </Link>
-          {/* Mobile Booking Icon (if needed for small screens instead of full button) */}
+          {/* Mobile Booking Icon */}
           <Link
             href="/bookings"
             className="md:hidden flex items-center justify-center w-10 h-10 text-gold-500 border border-gold-500 rounded-full"
@@ -76,72 +136,13 @@ export default function Header() {
         </div>
       </header>
 
-      {/* OVERLAY & SIDEBAR */}
-      {/* Overlay */}
-      <div
-        className={`fixed inset-0 z-50 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"}`}
-        onClick={() => setIsMenuOpen(false)}
-      ></div>
-
-      {/* Sidebar Drawer */}
-      <aside
-        className={`fixed top-0 left-0 bottom-0 w-80 bg-earth-950 border-r border-earth-800 z-[60] shadow-2xl transform transition-transform duration-300 ease-in-out flex flex-col ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}
-      >
-        <div className="flex items-center justify-between p-6 border-b border-earth-800/50">
-          <span className="text-earth-300 font-serif text-lg italic tracking-wider">Menu</span>
-          <button
-            onClick={() => setIsMenuOpen(false)}
-            className="w-8 h-8 flex items-center justify-center text-gold-500 hover:text-red-400 transition-colors"
-          >
-            <span className="material-symbols-outlined text-xl">close</span>
-          </button>
-        </div>
-
-        <nav className="flex-1 overflow-y-auto py-8 px-6 space-y-6">
-          <Link href="/" className={`block text-2xl font-serif font-light ${isActive("/") ? "text-gold-500 italic" : "text-earth-100 hover:text-gold-400"}`}>
-            Home
-          </Link>
-          <Link href="/about-us" className={`block text-2xl font-serif font-light ${isActive("/about-us") ? "text-gold-500 italic" : "text-earth-100 hover:text-gold-400"}`}>
-            About Us
-          </Link>
-          <button onClick={openCalendar} className="block text-left text-2xl font-serif font-light text-earth-100 hover:text-gold-400 w-full">
-            Events
-          </button>
-
-          <Link href="/rooms" className={`block text-2xl font-serif font-light ${isActive("/rooms") ? "text-gold-500 italic" : "text-earth-100 hover:text-gold-400"}`}>
-            Stays
-          </Link>
-
-          <Link href="/venue" className={`block text-2xl font-serif font-light ${isActive("/venue") ? "text-gold-500 italic" : "text-earth-100 hover:text-gold-400"}`}>
-            Venue
-          </Link>
-
-          {/* Collapsible Experiences */}
-          <div className="border-t border-earth-800/50 pt-6 mt-4">
-            <button
-              onClick={() => setIsExperiencesOpen(!isExperiencesOpen)}
-              className={`w-full flex items-center justify-between text-2xl font-serif font-light mb-4 ${isExperiencesActive ? "text-gold-500" : "text-earth-100"}`}
-            >
-              Experiences
-              <span className={`material-symbols-outlined transition-transform duration-300 ${isExperiencesOpen ? "rotate-180" : ""}`}>expand_more</span>
-            </button>
-
-            <div className={`space-y-4 pl-4 border-l border-earth-800 transition-all duration-300 overflow-hidden ${isExperiencesOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}>
-              <Link href="/wellness" className={`block text-lg font-body ${isActive("/wellness") ? "text-gold-500" : "text-earth-300 hover:text-earth-100"}`}>Wellness</Link>
-              <Link href="/experiences" className={`block text-lg font-body ${isActive("/experiences") ? "text-gold-500" : "text-earth-300 hover:text-earth-100"}`}>Activities</Link>
-              <Link href="/solitude" className={`block text-lg font-body ${isActive("/solitude") ? "text-gold-500" : "text-earth-300 hover:text-earth-100"}`}>Solitude</Link>
-              <Link href="/expression" className={`block text-lg font-body ${isActive("/expression") ? "text-gold-500" : "text-earth-300 hover:text-earth-100"}`}>Expression</Link>
-              <Link href="/residency" className={`block text-lg font-body ${isActive("/residency") ? "text-gold-500" : "text-earth-300 hover:text-earth-100"}`}>Residency</Link>
-            </div>
-          </div>
-        </nav>
-
-        <div className="p-6 border-t border-earth-800 bg-earth-900/50">
-          <Link href="/bookings" className="block w-full text-center bg-gold-500 text-earth-950 font-bold py-3 rounded-lg hover:bg-gold-400 uppercase tracking-wider">
-            Book Your Stay
-          </Link>
-        </div>
-      </aside>
+      {/* CLICK OUTSIDE OVERLAY (Invisible) */}
+      {isMenuOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-transparent"
+          onClick={() => setIsMenuOpen(false)}
+        />
+      )}
     </>
   );
 }

@@ -1,7 +1,9 @@
+"use client";
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SolitudeHero from "../components/solitude/SolitudeHero";
-import SolitudePractice from "../components/solitude/SolitudePractice";
+import CarouselCard from "../components/CarouselCard"; // Import CarouselCard
 import ClosingSection from "../components/ClosingSection";
 
 export default function SolitudePage() {
@@ -131,10 +133,19 @@ export default function SolitudePage() {
     <main className="min-h-screen bg-earth-900 text-earth-100 pt-[72px]">
       <Header />
       <SolitudeHero />
-      <div className="flex flex-1 flex-col bg-earth-900 px-4 lg:px-20 py-10 gap-32 pb-40">
-        {practices.map((practice, index) => (
-          <SolitudePractice key={index} {...practice} />
-        ))}
+      <div className="bg-earth-900 px-4 lg:px-20 py-10 pb-40">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1400px] mx-auto">
+          {practices.map((practice, index) => (
+            <CarouselCard
+              key={index}
+              title={practice.title}
+              description={practice.description}
+              images={practice.images}
+              category={practice.category}
+              icon={practice.buttonIcon}
+            />
+          ))}
+        </div>
       </div>
       <ClosingSection />
       <Footer />

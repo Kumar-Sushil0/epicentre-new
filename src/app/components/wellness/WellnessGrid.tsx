@@ -1,4 +1,4 @@
-import WellnessCard from "./WellnessCard";
+import CarouselCard from "../CarouselCard";
 
 interface WellnessPractice {
   title: string;
@@ -7,7 +7,8 @@ interface WellnessPractice {
   icon: string;
   images: string[];
   imageAlt: string;
-  aspectRatio: "4/5" | "wide" | "farm";
+  // Keeping these in interface to avoid type errors from parent, but ignoring them in render
+  aspectRatio?: any;
   spanColumns?: number;
   isFarmCard?: boolean;
   href?: string;
@@ -21,7 +22,15 @@ export default function WellnessGrid({ practices }: WellnessGridProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
       {practices.map((practice, index) => (
-        <WellnessCard key={index} {...practice} />
+        <CarouselCard
+          key={index}
+          title={practice.title}
+          description={practice.description}
+          images={practice.images}
+          icon={practice.icon}
+          category={practice.category}
+          className={practice.spanColumns === 2 ? "md:col-span-2" : practice.spanColumns === 3 ? "md:col-span-2 lg:col-span-3" : ""}
+        />
       ))}
     </div>
   );

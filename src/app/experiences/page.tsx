@@ -1,11 +1,9 @@
 "use client";
 
-import { useState, useMemo } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ExperiencesIntro from "../components/experiences/ExperiencesIntro";
-import ExperiencesCTA from "../components/experiences/ExperiencesCTA";
-import ExperiencesGrid from "../components/experiences/ExperiencesGrid";
+import CarouselCard from "../components/CarouselCard";
 import ClosingSection from "../components/ClosingSection";
 
 // Helper function to generate a slug from title
@@ -222,7 +220,6 @@ export default function ExperiencesPage() {
       price: "5000 INR",
       href: "/experiences",
     },
-
   ];
 
   return (
@@ -231,9 +228,20 @@ export default function ExperiencesPage() {
       <div className="flex-1 w-full max-w-[1280px] mx-auto px-6 lg:px-8 py-12 md:py-20">
         <ExperiencesIntro />
       </div>
-      <div className="flex-1 w-full max-w-[1280px] mx-auto px-6 lg:px-8 py-12 md:py-20">
-        <ExperiencesGrid experiences={experiences} />
-        
+      <div className="flex-1 w-full max-w-[1400px] mx-auto px-6 lg:px-8 py-12 md:py-10 pb-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 align-top">
+          {experiences.map((exp, index) => (
+            <CarouselCard
+              key={exp.id || index}
+              title={exp.title}
+              description={exp.description}
+              images={exp.images}
+              icon={exp.icon}
+              price={exp.price}
+              userCount={exp.minimumGuests}
+            />
+          ))}
+        </div>
       </div>
       <ClosingSection />
       <Footer />

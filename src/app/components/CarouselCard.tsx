@@ -8,6 +8,10 @@ export interface CarouselCardProps {
     description: string;
     images: string[];
     className?: string;
+    icon?: string;
+    category?: string;
+    price?: string;
+    userCount?: string | number;
 }
 
 export default function CarouselCard({
@@ -15,13 +19,16 @@ export default function CarouselCard({
     description,
     images,
     className = "",
+    icon,
+    category,
+    price,
+    userCount,
 }: CarouselCardProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
 
     useEffect(() => {
         if (isHovered) return; // Pause on hover
-        // Prevent interval if only 1 image
         if (images.length <= 1) return;
 
         const interval = setInterval(() => {
@@ -36,19 +43,42 @@ export default function CarouselCard({
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            {/* Background Content (Revealed on Hover) - The "Back" of the card conceptually */}
+            {/* Background Content (Revealed on Hover) */}
             <div className="absolute inset-x-0 bottom-0 h-1/2 flex flex-col justify-end p-8 pb-10">
+
+                {/* Header: Icon/Category + Price/Count */}
+                <div className="flex items-center justify-between mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75 w-full text-earth-950">
+                    {(icon || category) && (
+                        <div className="flex items-center gap-2">
+                            {icon && <span className="material-symbols-outlined text-lg">{icon}</span>}
+                            {category && <span className="text-xs uppercase tracking-widest font-body font-bold">{category}</span>}
+                        </div>
+                    )}
+
+                    {(price || userCount) && (
+                        <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-wider text-earth-900/80">
+                            {userCount && (
+                                <div className="flex items-center gap-1">
+                                    <span className="material-symbols-outlined text-sm">group</span>
+                                    <span>{userCount}</span>
+                                </div>
+                            )}
+                            {price && <span>{price}</span>}
+                        </div>
+                    )}
+                </div>
+
                 <h4 className="text-xl font-bold text-earth-950 mb-2 font-serif opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
                     {title}
                 </h4>
-                <p className="text-earth-900 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150 font-medium font-body">
+                <p className="text-earth-900 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150 font-medium font-body whitespace-pre-line">
                     {description}
                 </p>
             </div>
 
-            {/* Foreground Image Layer (Carousel) - Slides up on hover */}
+            {/* Foreground Image Layer (Carousel) */}
             <div className="absolute inset-0 z-10 transition-transform duration-500 ease-in-out group-hover:-translate-y-[40%] bg-earth-900">
-                {/* Images with Fade Transition */}
+                {/* Images */}
                 {images.map((src, index) => (
                     <div
                         key={index}
@@ -69,10 +99,33 @@ export default function CarouselCard({
 
                 {/* Title Overlay (Initially Visible) */}
                 <div className="absolute bottom-8 left-8 right-8 transition-opacity duration-300 group-hover:opacity-0 pointer-events-none">
+
+                    {/* Header: Icon/Category + Price/Count (White/Gold) */}
+                    <div className="flex items-center justify-between mb-2 w-full">
+                        {(icon || category) && (
+                            <div className="flex items-center gap-2 text-gold-500">
+                                {icon && <span className="material-symbols-outlined text-lg drop-shadow-md">{icon}</span>}
+                                {category && <span className="text-xs uppercase tracking-widest font-body drop-shadow-md">{category}</span>}
+                            </div>
+                        )}
+
+                        {(price || userCount) && (
+                            <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-wider text-earth-300 drop-shadow-md">
+                                {userCount && (
+                                    <div className="flex items-center gap-1">
+                                        <span className="material-symbols-outlined text-sm">group</span>
+                                        <span>{userCount}</span>
+                                    </div>
+                                )}
+                                {price && <span>{price}</span>}
+                            </div>
+                        )}
+                    </div>
+
                     <h4 className="text-2xl font-bold text-white font-serif drop-shadow-md">{title}</h4>
                 </div>
 
-                {/* Pagination Dots */}
+                {/* Dots */}
                 {images.length > 1 && (
                     <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 transition-opacity duration-300 group-hover:opacity-0 z-20">
                         {images.map((_, idx) => (
