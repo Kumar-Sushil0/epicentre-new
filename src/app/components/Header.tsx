@@ -37,13 +37,13 @@ export default function Header() {
               }`}
             href="/about-us"
           >
-            Our Scene
+            About Us
           </Link>
           <button
             onClick={openCalendar}
             className="text-sm font-medium transition-colors text-earth-300 hover:text-gold-400"
           >
-            Our Events
+            Events
           </button>
 
           <Link
@@ -51,7 +51,7 @@ export default function Header() {
               }`}
             href="/rooms"
           >
-            Our Stays
+            Stays
           </Link>
 
           <Link
@@ -59,7 +59,7 @@ export default function Header() {
               }`}
             href="/venue"
           >
-            Our Venue
+            Venue
           </Link>
 
           {/* Experiences Dropdown */}
@@ -75,7 +75,7 @@ export default function Header() {
                 : "text-earth-300 hover:text-gold-400"
                 }`}
             >
-              Our Experiences
+              Experiences
               <span className={`material-symbols-outlined text-xs transition-transform ${isExperiencesOpen ? "rotate-180" : ""}`}>
                 expand_more
               </span>

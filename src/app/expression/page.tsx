@@ -98,7 +98,6 @@ export default function ExpressionPage() {
       <Header />
       <ExpressionHero />
       <ExpressionPillars pillars={pillars} />
-      <ExpressionCTA />
       <ClosingSection />
       <Footer />
     </main>

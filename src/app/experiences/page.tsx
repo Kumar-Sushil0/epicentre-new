@@ -233,7 +233,7 @@ export default function ExperiencesPage() {
       </div>
       <div className="flex-1 w-full max-w-[1280px] mx-auto px-6 lg:px-8 py-12 md:py-20">
         <ExperiencesGrid experiences={experiences} />
-        <ExperiencesCTA />
+        
       </div>
       <ClosingSection />
       <Footer />

@@ -1,31 +1,36 @@
 export default function AboutHero() {
   return (
-    <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-end pb-20 overflow-hidden">
+      {/* Background Image with Parallax-like feel */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-earth-950/30 via-transparent to-earth-950 z-10"></div>
-        <div className="absolute inset-0 bg-black/40 z-0"></div>
-        <div 
-          className="w-full h-full bg-cover bg-center bg-no-repeat transform scale-105" 
+        <div
+          className="w-full h-full bg-cover bg-center bg-no-repeat transform scale-105"
           style={{
             backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAgtoMMPZz88PXkDYrxvHVR6uCSwqNqDnob4jaoXODBFLGl2UsdhfJ4s__nqrXImhLMN4QUasNvlWzk9Yo_824P4d9lIvSn1WbjbbWb28HQs30tbEHbQGS_MuR1epNrsedDPULlE6AaZ45m5He654JaT49FOV-G_q2QjNTxPSVrimly9bjXTZ01TiOoTicoKoqMBOqEzGfSDPcspcYTtn2f9nvsAvItSPnGcZhvCVsFO9kjJPBy1OdqHj_PbY0RZq_5hkBecKLlEATa')"
           }}
         ></div>
+        {/* Cinematic Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-earth-950 via-earth-950/40 to-transparent z-10 opacity-90"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-earth-950/80 via-transparent to-transparent z-10"></div>
       </div>
-      <div className="relative z-20 container mx-auto px-6 text-center max-w-5xl">
-        <div className="mb-6 flex justify-center">
-          <span className="h-16 w-px bg-gold-500/60 block"></span>
+
+      {/* Content */}
+      <div className="relative z-20 container mx-auto px-6 max-w-7xl">
+        <div className="max-w-4xl border-l-2 border-gold-500/50 pl-8 md:pl-12 py-4 animate-in slide-in-from-left-4 duration-1000">
+          <h1 className="text-earth-100 text-5xl md:text-7xl lg:text-8xl font-display font-medium leading-[1.1] tracking-tight mb-8 drop-shadow-2xl" style={{ fontFamily: 'Trirong, serif' }}>
+            Designed to <br />
+            <span className="italic text-gold-500">Reduce Interference</span>
+          </h1>
+          <p className="text-earth-300/80 text-xl md:text-2xl font-light leading-relaxed max-w-2xl font-body">
+            The Silent Club exists to remove unnecessary signals so attention can settle and clarity can emerge.
+          </p>
         </div>
-        <h1 className="text-gold-500 text-5xl md:text-7xl font-display font-medium leading-tight tracking-tight mb-8 drop-shadow-xl" style={{ fontFamily: 'Trirong, serif' }}>
-          A Physical Environment Designed to <br className="hidden md:block"/>
-          <span className="italic">Reduce Interference</span>
-        </h1>
-        <p className="text-earth-300 text-xl md:text-2xl font-light leading-relaxed max-w-3xl mx-auto">
-          The Silent Club exists to remove unnecessary signals<br className="hidden md:block"/>
-          so attention can settle and clarity can emerge.
-        </p>
-        <div className="flex justify-center">
-          <span className="material-symbols-outlined text-earth-50/50 animate-bounce text-3xl">keyboard_arrow_down</span>
-        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-60 animate-bounce">
+        <span className="text-xs uppercase tracking-[0.2em] text-earth-300">Scroll</span>
+        <span className="material-symbols-outlined text-earth-300 text-2xl">arrow_downward</span>
       </div>
     </section>
   );

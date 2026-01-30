@@ -104,7 +104,7 @@ export default function WellnessPage() {
         <section className="px-4 md:px-10 pb-24 max-w-[1280px] mx-auto">
           <WellnessGrid practices={practices} />
         </section>
-        <WellnessCTA />
+       
       </div>
       <ClosingSection />
       <Footer />
