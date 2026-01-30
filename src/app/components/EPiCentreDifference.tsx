@@ -1,7 +1,7 @@
 export default function EPiCentreDifference() {
   return (
     <section className="py-20 bg-earth-900">
-      <div className="max-w-[1280px] mx-auto px-6">
+      <div className="max-w-full mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-earth-50 mb-4">The EPiCentre Difference</h2>
           <p className="text-earth-300 max-w-2xl mx-auto font-body">A curated environment designed to help you disconnect to reconnect.</p>

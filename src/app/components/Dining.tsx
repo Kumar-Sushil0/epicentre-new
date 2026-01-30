@@ -42,7 +42,7 @@ export default function Dining() {
 
   return (
     <section className="py-24 bg-earth-900" id="dining">
-      <div className="max-w-[1280px] mx-auto px-6">
+      <div className="max-w-full mx-auto px-6">
         <div className="text-center mb-16">
           <span className="text-gold-500 font-bold tracking-widest uppercase text-xs mb-2 block">Nourishment</span>
           <h2 className="text-3xl font-bold text-earth-50">Wholesome Dining</h2>
@@ -78,9 +78,8 @@ export default function Dining() {
             {items.map((item, index) => (
               <div
                 key={item.id}
-                className={`absolute inset-0 transition-opacity duration-700 ${
-                  index === currentSlide ? "opacity-100" : "opacity-0"
-                }`}
+                className={`absolute inset-0 transition-opacity duration-700 ${index === currentSlide ? "opacity-100" : "opacity-0"
+                  }`}
               >
                 <Image
                   alt={item.title}
@@ -101,9 +100,8 @@ export default function Dining() {
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    index === currentSlide ? "bg-gold-500 w-8" : "bg-earth-100/50 hover:bg-earth-100/75"
-                  }`}
+                  className={`w-2 h-2 rounded-full transition-all ${index === currentSlide ? "bg-gold-500 w-8" : "bg-earth-100/50 hover:bg-earth-100/75"
+                    }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
               ))}

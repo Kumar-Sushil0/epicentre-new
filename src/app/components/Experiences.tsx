@@ -136,7 +136,7 @@ export default function Experiences() {
 
   return (
     <section className="py-24 bg-earth-800 border-t border-earth-700" id="experiences">
-      <div className="max-w-[1280px] mx-auto px-6">
+      <div className="max-w-full mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>Experiences</h2>
           <p className="text-earth-300 max-w-2xl mx-auto mt-4 font-body">

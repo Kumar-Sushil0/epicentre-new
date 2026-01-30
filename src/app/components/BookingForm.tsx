@@ -27,7 +27,7 @@ export default function BookingForm() {
   return (
     <>
       <div className="bg-earth-800 border-b border-earth-700 shadow-xl">
-        <div className="max-w-[1280px] mx-auto px-4 py-8">
+        <div className="max-w-full mx-auto px-4 py-8">
           <form className="flex flex-col md:flex-row items-center gap-4 justify-center">
             <div className="relative" ref={dateInputRef}>
               <div
@@ -67,7 +67,7 @@ export default function BookingForm() {
               <select className="bg-transparent border-none text-sm focus:ring-0 text-earth-100 w-full md:w-40 font-body cursor-pointer">
                 <option className="bg-earth-900">Room Type</option>
                 <option className="bg-earth-900">Private Rooms</option>
-                
+
                 <option className="bg-earth-900">Dorms</option>
                 <option className="bg-earth-900">Community Hall</option>
                 <option className="bg-earth-900">Luxury Tents</option>

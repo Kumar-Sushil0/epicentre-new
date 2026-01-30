@@ -42,7 +42,7 @@ export default function DiningVariant() {
 
   return (
     <section className="py-24 bg-earth-900" id="dining">
-      <div className="max-w-[1280px] mx-auto px-6">
+      <div className="max-w-full mx-auto px-6">
         <div className="text-center mb-16">
 
           <h2 className="text-3xl font-bold text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>Food</h2>

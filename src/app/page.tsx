@@ -12,7 +12,7 @@ import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <main className="pt-[72px]">
+    <main >
       <Header />
       <Hero />
       <Philosophy />

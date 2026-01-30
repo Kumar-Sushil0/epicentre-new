@@ -1,6 +1,6 @@
 export default function Philosophy() {
   return (
-    <section className="py-24 min-h-[85vh] bg-earth-900 flex items-center" id="philosophy">
+    <section className="py-24 min-h-[85vh] bg-[#261B14] flex items-center" id="philosophy">
       <div className="max-w-5xl mx-auto px-6 text-center">
 
         <div className="relative py-8">

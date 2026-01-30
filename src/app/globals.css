@@ -18,7 +18,16 @@
   font-display: swap;
 }
 
-/* Trirong Font */
+/* Trirong mapped to Outfit */
+@font-face {
+  font-family: 'Trirong';
+  src: url('/Outfit/Outfit-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Trirong Font Original definitions removed for Outfit mapping */
 @font-face {
   font-family: 'Trirong';
   src: url('/Trirong/Trirong-Light.ttf') format('truetype');

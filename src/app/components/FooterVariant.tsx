@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function FooterVariant() {
   return (
     <footer className="bg-earth-950 text-earth-300 py-16 border-t border-earth-700">
-      <div className="max-w-[1280px] mx-auto px-6">
+      <div className="max-w-full mx-auto px-6">
         <div className="max-w-3xl mx-auto mb-16 pb-12 border-b border-earth-800">
           <h3 className="text-center text-earth-100/80 font-bold mb-8">Frequently Asked Questions</h3>
           <div className="space-y-4">
