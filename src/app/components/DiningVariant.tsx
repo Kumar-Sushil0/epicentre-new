@@ -1,113 +1,71 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function DiningVariant() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
   const items = [
     {
       id: 0,
       title: "Satvik Home Food",
-      description: "Locally sourced vegetarian meals. Light, steady, and uncomplicated.",
-      availability: "Daily",
-      thumbnail: "https://lh3.googleusercontent.com/aida-public/AB6AXuC7EqkXqQPU7fE4pLFU_Hk927TUqj83DfbTfUvPIihY2voNQvmPzkgFFvUowSJV8BeUmi3AK6_9d9MQPQBC_OXh3eBg9xIp_jNbcq4P1uQYXAH4udgKWxtFyRuenpPXcorX848v2tHHPWWYfK16iMhYDcmb9iw-JZ2WzgiEm9s4eNuGAgeRY8AMsVHC_k5fLfLYry5CbHdiz9uOsXZQFafe7IcPz2Ty17dsxEdLhomR6gW_ljYA7vJCFpBg4iyLqVjMKXTFWCffegD2",
+      description: "Locally sourced vegetarian meals. Light, steady, and uncomplicated. Available Daily.",
       image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC7EqkXqQPU7fE4pLFU_Hk927TUqj83DfbTfUvPIihY2voNQvmPzkgFFvUowSJV8BeUmi3AK6_9d9MQPQBC_OXh3eBg9xIp_jNbcq4P1uQYXAH4udgKWxtFyRuenpPXcorX848v2tHHPWWYfK16iMhYDcmb9iw-JZ2WzgiEm9s4eNuGAgeRY8AMsVHC_k5fLfLYry5CbHdiz9uOsXZQFafe7IcPz2Ty17dsxEdLhomR6gW_ljYA7vJCFpBg4iyLqVjMKXTFWCffegD2",
     },
     {
       id: 1,
-      title: "Smoothies, Shakes, Sandwiches & Salads",
-      description: "Freshly prepared, farm-led meals. Shared from kitchen to table without excess.",
-      availability: "Wed & Fri",
-      thumbnail: "https://lh3.googleusercontent.com/aida-public/AB6AXuBPPRi1KA1SSwhk_HwPBfDwwsAERrk2PJlQEBBT-t3vsDceOPFxRCmCS2hOSB75G50kN4biPj2O6wed6Y5WHy9QYxwfH8SnuPsoH85EkeBG2eWtd61u1kxzb7Hvo1aRqQz8Hw0fhpybRMYRkBpd0hO_yyjc9Cd8p7GUmT-FXalpznzlPS8i_pqPTP-dRL1gJP5yqyABEWDkhy7V7DJxmjQTkdmmZh4DIyIpX7FcKG1hcb2P7A7ZA6abK6NzUJeiJWEJAKb5pwvQZMa5",
+      title: "Fresh Harvest",
+      description: "Smoothies, Shakes, Sandwiches & Salads. Freshly prepared, farm-led meals shared without excess. (Wed & Fri)",
       image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBPPRi1KA1SSwhk_HwPBfDwwsAERrk2PJlQEBBT-t3vsDceOPFxRCmCS2hOSB75G50kN4biPj2O6wed6Y5WHy9QYxwfH8SnuPsoH85EkeBG2eWtd61u1kxzb7Hvo1aRqQz8Hw0fhpybRMYRkBpd0hO_yyjc9Cd8p7GUmT-FXalpznzlPS8i_pqPTP-dRL1gJP5yqyABEWDkhy7V7DJxmjQTkdmmZh4DIyIpX7FcKG1hcb2P7A7ZA6abK6NzUJeiJWEJAKb5pwvQZMa5",
     },
     {
       id: 2,
-      title: "Wood-Fired Pizza, Barbeque & Sushi",
-      description: "Occasional, restrained cooking practices. Minimal, balanced, and unhurried.",
-      availability: "Weekend Special",
-      thumbnail: "https://lh3.googleusercontent.com/aida-public/AB6AXuC72-qeY2eEUj-PVITTUo2cNBi448iUqzdHsoEipULmOX22vormapus2Ny-vkyznBYe1cCZEDjbvLIrW3GuSkIg8UG6cSQjorFd6SxJCSZjnFSUZunRVmsTumGnkttyCeI4bOc-hMIgYBiaqmhKgUJg4c3nVIhqa5238Nu7Cy11M88SVYJR3uvYHZhULleRmsgdg5DSXMHj_jRUCrX6fP_8TMxU7wgAkfOOrz1iU2VMvmW0E8_9TXF6oBAkhRYNTypjcCZ0XHF-AP5d",
+      title: "Weekend Specials",
+      description: "Wood-Fired Pizza, Barbeque & Sushi. Occasional, restrained cooking practices. Minimal, balanced, and unhurried.",
       image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC72-qeY2eEUj-PVITTUo2cNBi448iUqzdHsoEipULmOX22vormapus2Ny-vkyznBYe1cCZEDjbvLIrW3GuSkIg8UG6cSQjorFd6SxJCSZjnFSUZunRVmsTumGnkttyCeI4bOc-hMIgYBiaqmhKgUJg4c3nVIhqa5238Nu7Cy11M88SVYJR3uvYHZhULleRmsgdg5DSXMHj_jRUCrX6fP_8TMxU7wgAkfOOrz1iU2VMvmW0E8_9TXF6oBAkhRYNTypjcCZ0XHF-AP5d",
     },
   ];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % items.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [items.length]);
-
   return (
     <section className="py-24 bg-earth-900" id="dining">
       <div className="max-w-full mx-auto px-6">
-        <div className="text-center mb-16">
-
-          <h2 className="text-3xl font-bold text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>Food</h2>
-          <p className="text-earth-300 max-w-full mx-auto mt-4 font-body">
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold mb-4 text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>Food</h2>
+          <p className="text-earth-300 font-body text-lg max-w-full">
             Food here is designed to support steadiness and attention. It is familiar, seasonal, and shared.
           </p>
         </div>
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="order-2 md:order-1 space-y-8">
-            {items.map((item, index) => (
-              <div
-                key={item.id}
-                onClick={() => setCurrentSlide(index)}
-                className="flex gap-6 group cursor-pointer"
-              >
-                <div className="w-24 h-24 shrink-0 rounded-lg overflow-hidden border border-earth-700">
-                  <Image
-                    alt={item.title}
-                    src={item.thumbnail}
-                    width={96}
-                    height={96}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                  />
-                </div>
-                <div className="flex-1 py-1 border-b border-earth-800 group-hover:border-gold-500 transition-colors">
-                  <span className="text-gold-500 text-sm font-medium block mb-1">{item.availability}</span>
-                  <h3 className="text-xl font-bold mb-2 text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>{item.title}</h3>
-                  <p className="text-earth-300 text-sm font-body line-clamp-2">{item.description}</p>
-                </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {items.map((item) => (
+            <div
+              key={item.id}
+              className="group relative h-[450px] rounded-xl overflow-hidden bg-gold-500 border border-earth-800/50 shadow-xl"
+            >
+              {/* Background Content (Hidden behind image initially) */}
+              <div className="absolute inset-x-0 bottom-0 h-1/2 flex flex-col justify-end p-8 pb-10">
+                <h4 className="text-xl font-bold text-earth-950 mb-2 font-serif opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">{item.title}</h4>
+                <p className="text-earth-900 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150">
+                  {item.description}
+                </p>
               </div>
-            ))}
-          </div>
-          <div className="order-1 md:order-2 h-[400px] md:h-full min-h-[400px] rounded-2xl overflow-hidden relative shadow-2xl border border-earth-700 group">
-            {items.map((item, index) => (
-              <div
-                key={item.id}
-                className={`absolute inset-0 transition-opacity duration-700 ${index === currentSlide ? "opacity-100" : "opacity-0"
-                  }`}
-              >
+
+              {/* Foreground Image Layer */}
+              <div className="absolute inset-0 z-10 transition-transform duration-500 ease-in-out group-hover:-translate-y-[40%]">
                 <Image
-                  alt={item.title}
                   src={item.image}
+                  alt={item.title}
                   fill
-                  className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+                  className="object-cover"
                 />
-              </div>
-            ))}
-            <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-              <div className="text-center text-white p-6 backdrop-blur-sm bg-earth-900/40 rounded-xl border border-earth-100/10">
-                <h3 className="text-2xl font-bold mb-2 text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>Communal Dining</h3>
-                <p className="text-sm font-body text-earth-100">Meals are shared. Conversations are gentle.</p>
+                {/* Gradient Overlay on Image for text readability if needed */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-0 transition-opacity duration-300" />
+
+                {/* Title overlay on the image (Visible initially) */}
+                <div className="absolute bottom-8 left-8 right-8 transition-opacity duration-300 group-hover:opacity-0">
+                  <h4 className="text-2xl font-bold text-white font-serif drop-shadow-md">{item.title}</h4>
+                </div>
               </div>
             </div>
-            <div className="absolute bottom-6 right-6 z-20 flex gap-2">
-              {items.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`w-2 h-2 rounded-full transition-all ${index === currentSlide ? "bg-gold-500 w-8" : "bg-earth-100/50 hover:bg-earth-100/75"
-                    }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

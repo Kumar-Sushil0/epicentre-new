@@ -21,64 +21,54 @@ export default function BookingForm() {
     } else if (checkIn) {
       return `${formatDate(checkIn)} - Check-out`;
     }
-    return "Check-in - Check-out";
+    return "";
   };
 
   return (
     <>
-      <div className="bg-earth-800 border-b border-earth-700 shadow-xl">
-        <div className="max-w-full mx-auto px-4 py-8">
-          <form className="flex flex-col md:flex-row items-center gap-4 justify-center">
-            <div className="relative" ref={dateInputRef}>
+      <div className="bg-earth-800 border border-gold-500/20 rounded-xl shadow-xl relative z-40">
+        <div className="w-full mx-auto p-4 md:p-6">
+          <form className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center w-full">
+
+            {/* 1. Date Picker */}
+            <div className="relative w-full" ref={dateInputRef}>
               <div
                 data-date-input
-                className="flex items-center gap-2 w-full md:w-auto bg-earth-900 px-4 py-3 rounded-lg border border-earth-700 shadow-inner cursor-pointer hover:border-gold-500/50 transition-colors"
-                onClick={() => setShowDatePicker(true)}
+                className="flex items-center gap-3 w-full bg-earth-900 px-4 py-3 rounded-lg border border-earth-700 shadow-inner cursor-pointer hover:border-gold-500/50 transition-colors h-12"
+                onClick={() => setShowDatePicker(!showDatePicker)}
               >
-                <span className="material-symbols-outlined text-gold-500">calendar_month</span>
+                <span className="material-symbols-outlined text-gold-500 text-xl shrink-0">calendar_month</span>
                 <input
-                  className="bg-transparent border-none text-sm focus:ring-0 text-earth-100 placeholder-earth-600 w-full md:w-48 font-body cursor-pointer"
-                  placeholder="Check-in - Check-out"
+                  className="bg-transparent border-none text-sm focus:ring-0 text-earth-100 placeholder-earth-400 w-full font-body cursor-pointer truncate"
+                  placeholder="Selet Date.."
                   type="text"
                   value={getDisplayText()}
                   readOnly
                 />
               </div>
               {showDatePicker && (
-                <DatePicker
-                  checkIn={checkIn}
-                  checkOut={checkOut}
-                  onCheckInChange={setCheckIn}
-                  onCheckOutChange={setCheckOut}
-                  onClose={() => setShowDatePicker(false)}
-                />
+                <div className="absolute top-full left-0 mt-2 z-50">
+                  <DatePicker
+                    checkIn={checkIn}
+                    checkOut={checkOut}
+                    onCheckInChange={setCheckIn}
+                    onCheckOutChange={setCheckOut}
+                    onClose={() => setShowDatePicker(false)}
+                  />
+                </div>
               )}
             </div>
-            <div className="flex items-center gap-2 w-full md:w-auto bg-earth-900 px-4 py-3 rounded-lg border border-earth-700 shadow-inner">
-              <span className="material-symbols-outlined text-gold-500">group</span>
-              <select className="bg-transparent border-none text-sm focus:ring-0 text-earth-100 w-full md:w-32 font-body cursor-pointer">
+
+            {/* 2. Guests */}
+            <div className="flex items-center gap-3 w-full bg-earth-900 px-4 py-3 rounded-lg border border-earth-700 shadow-inner h-12">
+              <span className="material-symbols-outlined text-gold-500 text-xl shrink-0">group</span>
+              <select className="bg-transparent border-none text-sm focus:ring-0 text-earth-100 w-full font-body cursor-pointer appearance-none">
                 <option className="bg-earth-900">1 Guest</option>
                 <option className="bg-earth-900">2 Guests</option>
                 <option className="bg-earth-900">Group</option>
               </select>
             </div>
-            <div className="flex items-center gap-2 w-full md:w-auto bg-earth-900 px-4 py-3 rounded-lg border border-earth-700 shadow-inner">
-              <span className="material-symbols-outlined text-gold-500">bed</span>
-              <select className="bg-transparent border-none text-sm focus:ring-0 text-earth-100 w-full md:w-40 font-body cursor-pointer">
-                <option className="bg-earth-900">Room Type</option>
-                <option className="bg-earth-900">Private Rooms</option>
 
-                <option className="bg-earth-900">Dorms</option>
-                <option className="bg-earth-900">Community Hall</option>
-                <option className="bg-earth-900">Luxury Tents</option>
-              </select>
-            </div>
-            <button
-              className="w-full md:w-auto bg-gold-500 hover:bg-gold-400 text-earth-950 text-sm font-bold py-3.5 px-8 rounded-lg transition-colors shadow-sm whitespace-nowrap"
-              type="button"
-            >
-              Check Availability
-            </button>
           </form>
         </div>
       </div>
