@@ -10,24 +10,6 @@ export default function Hero() {
         }}
       />
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-
-        <p className="text-gold-500 text-3xl md:text-4xl font-bold leading-relaxed max-w-5xl mx-auto mb-4 font-body" style={{ fontFamily: 'Trirong, serif', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.5)' }}>
-          A quiet club designed to reduce noise,<br /> pressure, and performance.
-        </p>
-        <p className="text-earth-100/90 text-lg md:text-xl font-light tracking-wide max-w-2xl mx-auto mb-10 font-body" style={{ textShadow: '1px 1px 3px rgba(0, 0, 0, 0.8)' }}>
-          Not a hotel. Not a retreat. A shared space for those who value stillness.
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-
-          <a
-            href="/bookings"
-            className="bg-transparent border-2 border-earth-100 text-earth-100 px-8 py-4 rounded-lg font-bold text-sm uppercase tracking-wider hover:bg-earth-100/10 transition-all"
-          >
-            Book a Tour
-          </a>
-        </div>
-
       </div>
     </section>
   );

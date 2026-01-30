@@ -4,348 +4,297 @@ import { useState } from "react";
 import Image from "next/image";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import ClosingSection from "../components/ClosingSection";
+
+// --- Types ---
+type Category = "stay" | "solitude" | "expression";
+
+interface BookingItem {
+  id: string;
+  category: Category;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  priceDisplay: string;
+}
+
+// --- Data ---
+const BOOKING_ITEMS: BookingItem[] = [
+  // STAY
+  {
+    id: "private-suite",
+    category: "stay",
+    name: "Private Suite",
+    description: "A secluded haven with en-suite bath and meditation corner.",
+    price: 240,
+    priceDisplay: "$240 / night",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC4c2esblA2WTSLGnJggkH8HcbsHqpD55k1MjTL3IU0qt07Xs0eHzpHSY2LVkEaAPuI97qDKpLqA4S35v5t4riOcz3QjaMWKWwm_Lrmde8eomWn_XjRaF0H9R3mJPESdh4HFSBtryt57pIA642QoDopq0O4EtjIgjNtwHfy8aRJqVZgbCDEPiMlrTF9hHWA6Ffw1SHYiExGfLptuWMJVXRis9LVo6cHMlDBhiAXRteyM5LRVm1JpiAXW6leqTvko8i4EvPHqDuhVkCD",
+  },
+  {
+    id: "sanctuary-dorm",
+    category: "stay",
+    name: "Sanctuary Dorm",
+    description: "Shared space designed for community and quiet connection.",
+    price: 85,
+    priceDisplay: "$85 / night",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDK51VTYsLiSPPEo4h3qzXLiuZJfL0WpGzAgs0lcGxEaAbGIJkCJlwdwcjYEQ2HHIaoOmaykU0h5lKwRw3RDlKHlhILkWYmGHjigcVlYYKB9gMdR8r7DfkhlhAZA1sQ41_C0DrozY4AAXgSoYmt6kX_hXMKP5tOHqSKZ0G4BmaygCCZVXcLK7yBxZrkNpIeFWs1SSWfYm7yqQLXLglBkotXfEwUz0FBbEn86-fVtB2E3QxiBvdim_z8fjYJf8RRZVqFRtPGUCAPRqki",
+  },
+  {
+    id: "nature-tent",
+    category: "stay",
+    name: "Nature Tent",
+    description: "Immerse yourself in nature. Premium canvas tents.",
+    price: 120,
+    priceDisplay: "$120 / night",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAKiorJYxFK27x8_8uE97ChYGYGujzlbm6leUe4xRKRk9AdqfnEZydtKMvVGBwJSStOGlefCmx9Y6h_T4FmaRMyHubdNpGq0D7hGrw9-fW4OCbKj-SuwwwOIXbAo4fJRlyqqv0JHzK3GmV-KbdO_dK64qPUtxBEfiFD4Hxu0C7IskU4YbhBiaTRVhkWCF00NtchDafnvgiNYkTgriv4pXLiQkMnF0ThShROuc00riNixgOkVojPbKb7Fs2vD1ntD4FYjk0f8p0aGx7V",
+  },
+  // SOLITUDE
+  {
+    id: "silent-walk",
+    category: "solitude",
+    name: "Guided Silent Walk",
+    description: "A 2-hour guided walk through the bird sanctuary.",
+    price: 40,
+    priceDisplay: "$40 / session",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAhz0wWXU4xS6BdtUrmYdwyCzigduYrRYr-qCYXeK0zWlrvNOLsM3FMEGXX8kTmkhLnks7DhZDzfT0COpi6rQCM_50M_63Se2dqYtm2z5KZqH2e5PbTMNfNtN74k82J77cRkCQfiKirrMuhx6bzxc_e4GDhi0ZNhTobudsMGNM3bLJyFiXVsDOFZk5AyyP-hWPuyZoIAMhxXIkUZq3gxz5TS_aOMt8ZEVZ6t_6gP9caHyNF0-frTThfwxUiN5XqPvklltRv3_VRAtAx",
+  },
+  {
+    id: "meditation-cave",
+    category: "solitude",
+    name: "Meditation Cave Access",
+    description: "Exclusive 4-hour access to the underground chamber.",
+    price: 60,
+    priceDisplay: "$60 / block",
+    image: "/noise2.png",
+  },
+  {
+    id: "dark-retreat",
+    category: "solitude",
+    name: "Dark Retreat Experience",
+    description: "A profound experience of complete darkness for 24 hours.",
+    price: 150,
+    priceDisplay: "$150 / day",
+    image: "/noise.png",
+  },
+  // EXPRESSION
+  {
+    id: "clay-modeling",
+    category: "expression",
+    name: "Clay & Earth Workshop",
+    description: "Work with local soil and clay.",
+    price: 55,
+    priceDisplay: "$55 / session",
+    image: "/noise2.png",
+  },
+  {
+    id: "painting-silence",
+    category: "expression",
+    name: "Painting in Silence",
+    description: "Open-air painting session by the lake.",
+    price: 70,
+    priceDisplay: "$70 / session",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAgtoMMPZz88PXkDYrxvHVR6uCSwqNqDnob4jaoXODBFLGl2UsdhfJ4s__nqrXImhLMN4QUasNvlWzk9Yo_824P4d9lIvSn1WbjbbWb28HQs30tbEHbQGS_MuR1epNrsedDPULlE6AaZ45m5He654JaT49FOV-G_q2QjNTxPSVrimly9bjXTZ01TiOoTicoKoqMBOqEzGfSDPcspcYTtn2f9nvsAvItSPnGcZhvCVsFO9kjJPBy1OdqHj_PbY0RZq_5hkBecKLlEATa",
+  },
+  {
+    id: "voice-release",
+    category: "expression",
+    name: "Primal Voice Release",
+    description: "A guided session to use sound/voice as a tool.",
+    price: 45,
+    priceDisplay: "$45 / session",
+    image: "/noise.png",
+  },
+];
 
 export default function BookingsPage() {
-  const [selectedDates, setSelectedDates] = useState<{ start: number | null; end: number | null }>({ start: 12, end: 15 });
-  const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
-  const [currentMonth, setCurrentMonth] = useState("October 2023");
-  const [progress, setProgress] = useState(33);
+  const [cart, setCart] = useState<string[]>([]);
+  // Use a Record to track which categories are open. Default all open.
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>({
+    stay: true,
+    solitude: true,
+    expression: true,
+  });
 
-  const rooms = [
-    {
-      id: "private-suite",
-      name: "Private Suite",
-      description: "A secluded haven with en-suite bath and meditation corner. Perfect for deep solitary reflection.",
-      price: "$240 / night",
-      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC4c2esblA2WTSLGnJggkH8HcbsHqpD55k1MjTL3IU0qt07Xs0eHzpHSY2LVkEaAPuI97qDKpLqA4S35v5t4riOcz3QjaMWKWwm_Lrmde8eomWn_XjRaF0H9R3mJPESdh4HFSBtryt57pIA642QoDopq0O4EtjIgjNtwHfy8aRJqVZgbCDEPiMlrTF9hHWA6Ffw1SHYiExGfLptuWMJVXRis9LVo6cHMlDBhiAXRteyM5LRVm1JpiAXW6leqTvko8i4EvPHqDuhVkCD",
-      features: [
-        { icon: "king_bed", text: "King Size Bed" },
-        { icon: "bathtub", text: "Private Bath" },
-        { icon: "wifi", text: "High-Speed WiFi" },
-      ],
-    },
-    {
-      id: "sanctuary-dorm",
-      name: "Sanctuary Dorm",
-      description: "Shared space designed for community and quiet connection. Pod-style beds for privacy.",
-      price: "$85 / night",
-      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDK51VTYsLiSPPEo4h3qzXLiuZJfL0WpGzAgs0lcGxEaAbGIJkCJlwdwcjYEQ2HHIaoOmaykU0h5lKwRw3RDlKHlhILkWYmGHjigcVlYYKB9gMdR8r7DfkhlhAZA1sQ41_C0DrozY4AAXgSoYmt6kX_hXMKP5tOHqSKZ0G4BmaygCCZVXcLK7yBxZrkNpIeFWs1SSWfYm7yqQLXLglBkotXfEwUz0FBbEn86-fVtB2E3QxiBvdim_z8fjYJf8RRZVqFRtPGUCAPRqki",
-      features: [
-        { icon: "single_bed", text: "Single Pod Bed" },
-        { icon: "shower", text: "Shared Facilities" },
-        { icon: "groups", text: "Community Lounge" },
-      ],
-    },
-    {
-      id: "nature-tent",
-      name: "Nature Tent",
-      description: "Immerse yourself in nature. Premium canvas tents with real beds and electricity.",
-      price: "$120 / night",
-      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAKiorJYxFK27x8_8uE97ChYGYGujzlbm6leUe4xRKRk9AdqfnEZydtKMvVGBwJSStOGlefCmx9Y6h_T4FmaRMyHubdNpGq0D7hGrw9-fW4OCbKj-SuwwwOIXbAo4fJRlyqqv0JHzK3GmV-KbdO_dK64qPUtxBEfiFD4Hxu0C7IskU4YbhBiaTRVhkWCF00NtchDafnvgiNYkTgriv4pXLiQkMnF0ThShROuc00riNixgOkVojPbKb7Fs2vD1ntD4FYjk0f8p0aGx7V",
-      features: [
-        { icon: "bed", text: "Queen Bed" },
-        { icon: "forest", text: "Forest View" },
-        { icon: "lightbulb", text: "Electricity" },
-      ],
-    },
+  const toggleSection = (section: string) => {
+    setOpenSections(prev => ({ ...prev, [section]: !prev[section] }));
+  };
+
+  const isInCart = (id: string) => cart.includes(id);
+
+  const toggleItem = (id: string) => {
+    setCart((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
+
+  const calculateTotal = () => {
+    return cart.reduce((total, id) => {
+      const item = BOOKING_ITEMS.find((i) => i.id === id);
+      return total + (item ? item.price : 0);
+    }, 0);
+  };
+
+  const selectedItemsDetails = cart.map(id => BOOKING_ITEMS.find(i => i.id === id)).filter(Boolean) as BookingItem[];
+
+  // Group items
+  const sections = [
+    { id: "stay", title: "01. The Stay", subtitle: "Select your accommodation", items: BOOKING_ITEMS.filter(i => i.category === "stay") },
+    { id: "solitude", title: "02. Solitude", subtitle: "Quiet activities", items: BOOKING_ITEMS.filter(i => i.category === "solitude") },
+    { id: "expression", title: "03. Expression", subtitle: "Creative outlets", items: BOOKING_ITEMS.filter(i => i.category === "expression") },
   ];
 
-  const daysOfWeek = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
-  const calendarDays = Array.from({ length: 31 }, (_, i) => i + 1);
-
-  const handleDateClick = (day: number) => {
-    if (!selectedDates.start || day < selectedDates.start) {
-      setSelectedDates({ start: day, end: null });
-    } else if (selectedDates.start && !selectedDates.end) {
-      setSelectedDates({ start: selectedDates.start, end: day });
-    } else {
-      setSelectedDates({ start: day, end: null });
-    }
-  };
-
-  const isInRange = (day: number) => {
-    if (!selectedDates.start || !selectedDates.end) return false;
-    return day > selectedDates.start && day < selectedDates.end;
-  };
-
-  const handleRoomSelect = (roomId: string) => {
-    setSelectedRoom(roomId);
-    setProgress(66);
-  };
-
   return (
-    <main className="min-h-screen bg-earth-900 text-earth-100 pt-[72px]">
+    <main className="min-h-screen bg-earth-950 text-earth-100 flex flex-col">
       <Header />
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
-          {/* LEFT SIDEBAR (Summary) */}
-          <aside className="lg:col-span-4 lg:order-1 order-1">
-            <div className="lg:sticky lg:top-24 space-y-6">
-              {/* Progress Card */}
-              <div className="bg-earth-800 border border-earth-700 rounded-xl p-6 shadow-xl">
-                <div className="mb-6">
-                  <h2 className="text-2xl font-bold text-earth-50 mb-2">Your Retreat</h2>
-                  <p className="text-earth-300 text-sm font-body">Review your sanctuary details.</p>
-                </div>
-                {/* Progress Bar */}
-                <div className="mb-8">
-                  <div className="flex justify-between items-end mb-2">
-                    <span className="text-xs font-medium uppercase tracking-wider text-earth-300">Booking Progress</span>
-                    <span className="text-sm font-bold text-gold-500">{progress}%</span>
-                  </div>
-                  <div className="h-1.5 w-full bg-earth-700 rounded-full overflow-hidden">
-                    <div className="h-full bg-gold-500 rounded-full transition-all duration-500" style={{ width: `${progress}%` }}></div>
-                  </div>
-                </div>
-                {/* Description List */}
-                <div className="space-y-4 border-t border-earth-700 pt-5">
-                  <div className="grid grid-cols-[1fr_auto] gap-4 items-center group cursor-pointer hover:bg-white/5 p-2 rounded -mx-2 transition-colors">
-                    <div>
-                      <p className="text-xs text-earth-300 uppercase tracking-wide font-body">Dates</p>
-                      <p className="text-earth-100 font-medium">
-                        {selectedDates.start && selectedDates.end
-                          ? `Oct ${selectedDates.start} - Oct ${selectedDates.end}`
-                          : selectedDates.start
-                            ? `Oct ${selectedDates.start}`
-                            : "Select dates..."}
-                      </p>
-                    </div>
-                    <span className="material-symbols-outlined text-earth-300 text-sm group-hover:text-gold-500">edit</span>
-                  </div>
-                  <div className="grid grid-cols-[1fr_auto] gap-4 items-center group cursor-pointer hover:bg-white/5 p-2 rounded -mx-2 transition-colors">
-                    <div>
-                      <p className="text-xs text-earth-300 uppercase tracking-wide font-body">Sanctuary</p>
-                      <p className={`font-medium ${selectedRoom ? "text-earth-100" : "text-earth-100/50 italic"}`}>
-                        {selectedRoom ? rooms.find((r) => r.id === selectedRoom)?.name : "Select a room..."}
-                      </p>
-                    </div>
-                    <span className="material-symbols-outlined text-earth-300 text-sm group-hover:text-gold-500">edit</span>
-                  </div>
-                  <div className="grid grid-cols-[1fr_auto] gap-4 items-center group cursor-pointer hover:bg-white/5 p-2 rounded -mx-2 transition-colors">
-                    <div>
-                      <p className="text-xs text-earth-300 uppercase tracking-wide font-body">Guests</p>
-                      <p className="text-earth-100 font-medium">1 Adult</p>
-                    </div>
-                    <span className="material-symbols-outlined text-earth-300 text-sm group-hover:text-gold-500">edit</span>
-                  </div>
-                </div>
-                {/* Total */}
-                <div className="mt-8 pt-6 border-t border-earth-700 flex justify-between items-baseline">
-                  <span className="text-lg font-display text-earth-100">Total</span>
-                  <span className="text-2xl font-bold text-gold-500">$0.00</span>
-                </div>
+
+      <div className="flex-grow pt-[72px] flex flex-col lg:flex-row relative">
+
+        {/* LEFT SIDEBAR (Sticky Summary) */}
+        <aside className="lg:w-[380px] lg:h-[calc(100vh-72px)] lg:sticky lg:top-[72px] bg-earth-900 border-r border-earth-800 flex flex-col z-30 shadow-2xl shrink-0">
+          <div className="p-6 border-b border-earth-800 bg-earth-900 z-10">
+            <h2 className="text-xl font-serif text-gold-500 mb-1" style={{ fontFamily: 'Trirong, serif' }}>Your Retreat</h2>
+            <p className="text-earth-300/60 text-xs font-body">Review selected items.</p>
+          </div>
+
+          <div className="flex-grow overflow-y-auto p-4 space-y-3 custom-scrollbar-hide">
+            {cart.length === 0 ? (
+              <div className="text-center py-12 border border-dashed border-earth-800/50 rounded-lg">
+                <p className="text-earth-300/40 text-sm">No items selected.</p>
               </div>
-              {/* Help Box */}
-              <div className="bg-earth-800/50 rounded-xl p-4 flex gap-4 items-start border border-earth-700/50">
-                <span className="material-symbols-outlined text-earth-300">help</span>
-                <div>
-                  <p className="text-sm text-earth-100 font-medium mb-1">Need assistance?</p>
-                  <p className="text-xs text-earth-300 leading-relaxed font-body">
-                    Our concierge is available to help you plan your perfect stay.{" "}
-                    <a className="underline hover:text-gold-500" href="#">
-                      Contact us
-                    </a>
-                    .
-                  </p>
+            ) : (
+              // Sidebar Items
+              selectedItemsDetails.map((item) => (
+                <div key={item.id} className="group flex justify-between items-center bg-earth-950/50 border border-earth-800/50 rounded p-3 hover:border-gold-500/20 transition-all">
+                  <div className="flex items-center gap-3 overflow-hidden">
+                    <div className="relative w-8 h-8 rounded bg-earth-900 shrink-0">
+                      <Image src={item.image} alt={item.name} fill className="object-cover opacity-80" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-sm font-medium text-earth-100 truncate">{item.name}</p>
+                      <p className="text-xs text-earth-400">{item.category}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs font-medium text-gold-500">${item.price}</span>
+                    <button onClick={() => toggleItem(item.id)} className="text-earth-500 hover:text-red-400 transition-colors">
+                      <span className="material-symbols-outlined text-base">close</span>
+                    </button>
+                  </div>
                 </div>
-              </div>
+              ))
+            )}
+          </div>
+
+          <div className="p-6 border-t border-earth-800 bg-earth-900 mt-auto">
+            <div className="flex justify-between items-end mb-4">
+              <span className="text-earth-300 text-sm">Total</span>
+              <span className="text-2xl font-serif text-gold-500">${calculateTotal()}</span>
             </div>
-          </aside>
+            <button
+              className="w-full bg-gold-500 text-earth-950 font-bold py-3.5 rounded hover:bg-gold-400 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-widest text-xs"
+              disabled={cart.length === 0}
+            >
+              Proceed
+            </button>
+          </div>
+        </aside>
 
-          {/* RIGHT CONTENT (Steps) */}
-          <div className="lg:col-span-8 lg:order-2 order-2 space-y-16 pb-20">
-            {/* STEP 1: DATES */}
-            <section className="scroll-mt-28" id="step-dates">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gold-500 text-earth-950 font-bold text-sm">1</div>
-                <h2 className="text-2xl md:text-3xl font-bold text-earth-50">When will you arrive?</h2>
-              </div>
-              <div className="bg-earth-800 border border-earth-700 rounded-xl p-6 md:p-8">
-                <div className="flex justify-between items-center mb-6">
-                  <button className="text-earth-300 hover:text-earth-100 transition-colors">
-                    <span className="material-symbols-outlined">chevron_left</span>
-                  </button>
-                  <span className="text-lg font-medium tracking-wide text-earth-100">{currentMonth}</span>
-                  <button className="text-earth-300 hover:text-earth-100 transition-colors">
-                    <span className="material-symbols-outlined">chevron_right</span>
-                  </button>
-                </div>
-                <div className="grid grid-cols-7 gap-1 md:gap-2 mb-2 text-center">
-                  {daysOfWeek.map((day) => (
-                    <span key={day} className="text-xs text-earth-300 font-medium py-2 font-body">
-                      {day}
-                    </span>
-                  ))}
-                </div>
-                <div className="grid grid-cols-7 gap-1 md:gap-2 text-center text-sm">
-                  <div className="aspect-square"></div>
-                  <div className="aspect-square"></div>
-                  {calendarDays.map((day) => {
-                    const isStart = day === selectedDates.start;
-                    const isEnd = day === selectedDates.end;
-                    const inRange = isInRange(day);
-                    return (
-                      <button
-                        key={day}
-                        onClick={() => handleDateClick(day)}
-                        className={`aspect-square flex items-center justify-center rounded-full transition-colors ${isStart || isEnd
-                            ? "bg-gold-500 text-earth-950 font-bold shadow-[0_0_15px_rgba(197,160,101,0.3)]"
-                            : inRange
-                              ? "bg-gold-500/20 text-gold-500 font-medium"
-                              : "text-earth-300/50 hover:text-earth-100 hover:bg-white/5"
-                          }`}
-                      >
-                        {day}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            </section>
+        {/* RIGHT CONTENT (Minimal Table List) */}
+        <div className="flex-grow bg-earth-950">
+          <div className="max-w-4xl mx-auto px-6 py-12 lg:py-16">
 
-            {/* STEP 2: STAY TYPE */}
-            <section className="scroll-mt-28" id="step-stay">
-              <div className="flex items-center gap-4 mb-6">
-                <div className={`flex items-center justify-center w-8 h-8 rounded-full font-bold text-sm ${selectedRoom ? "bg-gold-500 text-earth-950" : "bg-earth-700 text-earth-300"}`}>
-                  2
-                </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-earth-50">Choose your sanctuary</h2>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {rooms.map((room) => (
-                  <div
-                    key={room.id}
-                    className={`group bg-earth-800 border rounded-xl overflow-hidden transition-all duration-300 flex flex-col ${selectedRoom === room.id ? "border-gold-500" : "border-earth-700 hover:border-gold-500/50"
-                      } ${room.id === "nature-tent" ? "md:col-span-2 lg:col-span-1" : ""}`}
-                  >
-                    <div className="relative h-48 overflow-hidden">
-                      <Image
-                        alt={room.name}
-                        src={room.image}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-earth-800 to-transparent"></div>
-                      <div className="absolute top-4 right-4 bg-earth-950/80 backdrop-blur text-earth-100 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                        {room.price}
+            <div className="mb-16">
+              <h1 className="text-3xl md:text-5xl text-earth-100 font-serif mb-4" style={{ fontFamily: 'Trirong, serif' }}>
+                Design Your <span className="italic text-gold-500">Silence</span>
+              </h1>
+              <p className="text-earth-300/60 font-body text-sm max-w-xl leading-relaxed">
+                Build your schedule efficiently. Select what calls to you.
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              {sections.map((section) => {
+                const isOpen = openSections[section.id];
+                return (
+                  <div key={section.id} className="border border-earth-800 rounded-lg bg-earth-900/20 overflow-hidden">
+                    {/* Accordion Header */}
+                    <button
+                      onClick={() => toggleSection(section.id)}
+                      className="w-full flex items-center justify-between p-6 hover:bg-earth-900/40 transition-colors text-left"
+                    >
+                      <div>
+                        <h2 className="text-xl font-serif text-earth-50" style={{ fontFamily: 'Trirong, serif' }}>{section.title}</h2>
+                        <p className="text-xs text-earth-300/50 mt-1 font-body">{section.subtitle}</p>
+                      </div>
+                      <span className={`material-symbols-outlined text-earth-300 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
+                        expand_more
+                      </span>
+                    </button>
+
+                    {/* Accordion Content (Table Rows) */}
+                    <div className={`transition-all duration-300 ease-in-out ${isOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                      <div className="border-t border-earth-800/50">
+                        {section.items.map((item) => {
+                          const isSelected = isInCart(item.id);
+                          return (
+                            <div
+                              key={item.id}
+                              onClick={() => toggleItem(item.id)} // Making whole row clickable for better UX
+                              className={`group flex items-center gap-4 p-4 border-b border-earth-800/30 last:border-0 hover:bg-earth-900/60 cursor-pointer transition-colors ${isSelected ? 'bg-earth-900/80' : ''}`}
+                            >
+                              {/* Image Thumbnail */}
+                              <div className="relative w-16 h-16 rounded overflow-hidden shrink-0 bg-earth-900 border border-earth-800/50">
+                                <Image
+                                  src={item.image}
+                                  alt={item.name}
+                                  fill
+                                  className={`object-cover transition-opacity ${isSelected ? 'opacity-100' : 'opacity-70 group-hover:opacity-100'}`}
+                                />
+                                {isSelected && (
+                                  <div className="absolute inset-0 bg-gold-500/20 flex items-center justify-center">
+                                    <span className="material-symbols-outlined text-gold-500 text-lg drop-shadow-md">check_circle</span>
+                                  </div>
+                                )}
+                              </div>
+
+                              {/* Info */}
+                              <div className="grow min-w-0 flex flex-col justify-center">
+                                <div className="flex items-baseline gap-3 mb-1">
+                                  <h3 className={`text-base font-medium truncate ${isSelected ? 'text-gold-500' : 'text-earth-100'}`}>{item.name}</h3>
+                                  <span className="text-xs text-earth-400 font-normal hidden sm:inline-block">{item.priceDisplay}</span>
+                                </div>
+                                {/* Optional: Tiny description or hiding it as per request "minimal" */}
+                                <p className="text-xs text-earth-300/50 truncate pr-4">{item.description}</p>
+                                <span className="text-xs text-earth-400 font-normal sm:hidden mt-1">{item.priceDisplay}</span>
+                              </div>
+
+                              {/* Action Button */}
+                              <div className="shrink-0 pl-2">
+                                <button
+                                  className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all ${isSelected
+                                      ? "bg-gold-500 border-gold-500 text-earth-950"
+                                      : "border-earth-600 text-earth-600 group-hover:border-gold-500 group-hover:text-gold-500"
+                                    }`}
+                                >
+                                  <span className="material-symbols-outlined text-sm font-bold">
+                                    {isSelected ? "check" : "add"}
+                                  </span>
+                                </button>
+                              </div>
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
-                    <div className="p-6 flex flex-col grow">
-                      <h3 className="text-xl font-bold text-earth-100 mb-2">{room.name}</h3>
-                      <p className="text-earth-300 text-sm mb-6 grow font-body">{room.description}</p>
-                      <ul className="text-xs text-earth-300/80 mb-6 space-y-2">
-                        {room.features.map((feature, idx) => (
-                          <li key={idx} className="flex items-center gap-2">
-                            <span className="material-symbols-outlined text-sm">{feature.icon}</span>
-                            {feature.text}
-                          </li>
-                        ))}
-                      </ul>
-                      <button
-                        onClick={() => handleRoomSelect(room.id)}
-                        className={`w-full py-3 border font-medium rounded-lg transition-colors duration-300 ${selectedRoom === room.id
-                            ? "border-gold-500 bg-gold-500 text-earth-950 hover:bg-gold-400"
-                            : "border-earth-700 text-earth-300 hover:border-earth-100 hover:text-earth-100"
-                          }`}
-                      >
-                        {selectedRoom === room.id ? "Selected" : `Select ${room.name.includes("Suite") ? "Room" : room.name.includes("Dorm") ? "Dorm" : "Tent"}`}
-                      </button>
-                    </div>
                   </div>
-                ))}
-              </div>
-            </section>
-
-            {/* STEP 3: GUEST DETAILS */}
-            <section className="scroll-mt-28" id="step-guest">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-earth-700 text-earth-300 font-bold text-sm">3</div>
-                <h2 className="text-2xl md:text-3xl font-bold text-earth-50">Guest Details</h2>
-              </div>
-              <div className="bg-earth-800 border border-earth-700 rounded-xl p-8">
-                <form className="space-y-8">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="space-y-2">
-                      <label className="block text-sm font-medium text-earth-300 font-body" htmlFor="firstName">
-                        First Name
-                      </label>
-                      <input
-                        className="w-full bg-transparent border-b border-earth-700 focus:border-gold-500 focus:ring-0 px-0 py-2 text-earth-100 placeholder-earth-100/20 transition-colors font-body"
-                        id="firstName"
-                        placeholder="e.g. Jane"
-                        type="text"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="block text-sm font-medium text-earth-300 font-body" htmlFor="lastName">
-                        Last Name
-                      </label>
-                      <input
-                        className="w-full bg-transparent border-b border-earth-700 focus:border-gold-500 focus:ring-0 px-0 py-2 text-earth-100 placeholder-earth-100/20 transition-colors font-body"
-                        id="lastName"
-                        placeholder="e.g. Doe"
-                        type="text"
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="block text-sm font-medium text-earth-300 font-body" htmlFor="email">
-                      Email Address
-                    </label>
-                    <input
-                      className="w-full bg-transparent border-b border-earth-700 focus:border-gold-500 focus:ring-0 px-0 py-2 text-earth-100 placeholder-earth-100/20 transition-colors font-body"
-                      id="email"
-                      placeholder="name@example.com"
-                      type="email"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="block text-sm font-medium text-earth-300 font-body" htmlFor="special">
-                      Dietary Requirements or Special Requests
-                    </label>
-                    <textarea
-                      className="w-full bg-earth-950 border border-earth-700 rounded-lg focus:border-gold-500 focus:ring-1 focus:ring-gold-500 p-3 text-earth-100 placeholder-earth-100/20 transition-colors font-body"
-                      id="special"
-                      placeholder="Let us know how we can make your stay comfortable..."
-                      rows={3}
-                    ></textarea>
-                  </div>
-                  <div className="flex items-center gap-3 pt-2">
-                    <input
-                      className="rounded border-earth-700 bg-earth-950 text-gold-500 focus:ring-offset-earth-900 focus:ring-gold-500"
-                      id="terms"
-                      type="checkbox"
-                    />
-                    <label className="text-sm text-earth-300 font-body" htmlFor="terms">
-                      I agree to the{" "}
-                      <a className="underline hover:text-earth-100" href="#">
-                        Sanctuary Rules
-                      </a>{" "}
-                      and{" "}
-                      <a className="underline hover:text-earth-100" href="#">
-                        Cancellation Policy
-                      </a>
-                      .
-                    </label>
-                  </div>
-                </form>
-              </div>
-            </section>
-
-            {/* BOTTOM ACTIONS */}
-            <div className="flex justify-end pt-6 border-t border-earth-700">
-              <button
-                onClick={() => setProgress(100)}
-                className="bg-gold-500 hover:bg-gold-400 text-earth-950 font-bold text-lg py-4 px-12 rounded-lg shadow-lg shadow-gold-500/20 transition-all duration-300 transform hover:-translate-y-1"
-              >
-                Confirm Booking
-              </button>
+                );
+              })}
             </div>
+
           </div>
         </div>
+
       </div>
-      <ClosingSection />
       <Footer />
     </main>
   );
