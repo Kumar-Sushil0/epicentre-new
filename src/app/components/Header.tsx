@@ -13,6 +13,7 @@ const navImages: Record<string, string> = {
   "/rooms": "/person1.jpg",
   "/venue": "/person2.jpg",
   "/blogs": "/person3.jpg",
+  "/faq": "/person4.jpg",
   "/wellness": "/person4.jpg",
   "/experiences": "/banner.jpg",
   "/solitude": "/foot.png",
@@ -24,7 +25,6 @@ export default function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isExperiencesOpen, setIsExperiencesOpen] = useState(false);
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
   const [displayedImage, setDisplayedImage] = useState<string | null>(null);
   const [imageOpacity, setImageOpacity] = useState(1);
@@ -41,7 +41,6 @@ export default function Header() {
   // Close menu on route change
   useEffect(() => {
     setIsMenuOpen(false);
-    setIsExperiencesOpen(false);
     setHoveredImage(null);
   }, [pathname]);
 
@@ -98,7 +97,7 @@ export default function Header() {
           {/* LEFT: Hamburger Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`w-10 h-10 flex items-center justify-start transition-colors z-50 relative ${isMenuOpen ? "text-gold-500" : "text-gold-500 hover:text-gold-400"}`}
+            className={`w-10 h-10 flex items-center justify-start transition-colors z-50 relative cursor-pointer ${isMenuOpen ? "text-gold-500" : "text-gold-500 hover:text-gold-400"}`}
             aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
           >
             <span className="material-symbols-outlined text-3xl">
@@ -121,7 +120,7 @@ export default function Header() {
           {/* RIGHT: Booking CTA */}
           <Link
             href="/bookings"
-            className="hidden md:inline-flex items-center justify-center bg-transparent text-gold-500 hover:bg-gold-500 hover:text-earth-950 font-bold py-2 rounded-full text-sm uppercase tracking-wider transition-all"
+            className="hidden md:inline-flex items-center justify-center bg-transparent text-gold-500 hover:text-gold-400 font-bold py-2 rounded-full text-sm uppercase tracking-wider transition-colors"
           >
             Book Now
           </Link>
@@ -257,62 +256,57 @@ export default function Header() {
                 </Link>
               </li>
 
-              {/* Experiences Expandable Section */}
+              {/* Experiences Section - 3 Column Grid */}
               <li>
-                <button
-                  onClick={() => setIsExperiencesOpen(!isExperiencesOpen)}
-                  className={`w-full flex items-center justify-between px-4 py-3 rounded-lg text-base font-medium transition-all ${
-                    isExperiencesActive
-                      ? "bg-gold-500/10 text-gold-500 border-l-4 border-gold-500"
-                      : "text-earth-200 hover:text-gold-500 hover:bg-earth-900/30"
-                  }`}
-                >
-                  <span>Experiences</span>
-                  <span className={`material-symbols-outlined text-xl transition-transform duration-200 ${isExperiencesOpen ? 'rotate-180' : ''}`}>
-                    expand_more
-                  </span>
-                </button>
-
-                {/* Experiences Submenu */}
-                <ul className={`mt-2 ml-4 space-y-1 overflow-hidden transition-all duration-200 ${isExperiencesOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-                  {[
-                    { name: "Wellness", path: "/wellness" },
-                    { name: "Activities", path: "/experiences" },
-                    { name: "Solitude", path: "/solitude" },
-                    { name: "Expression", path: "/expression" },
-                    { name: "Residency", path: "/residency" }
-                  ].map((item) => (
-                    <li key={item.name}>
+                <div className="px-4 py-3">
+                  <h3 className="text-base font-medium text-gold-500 mb-3" style={{ fontFamily: 'Quicksand, sans-serif' }}>
+                     Experiences :-
+                  </h3>
+                  <div className="grid grid-cols-3 gap-2">
+                    {[
+                      { name: "Wellness", path: "/wellness" },
+                      { name: "Activities", path: "/experiences" },
+                      { name: "Solitude", path: "/solitude" },
+                      { name: "Expression", path: "/expression" },
+                      { name: "Residency", path: "/residency" }
+                    ].map((item) => (
                       <Link
+                        key={item.name}
                         href={item.path}
                         onClick={() => setIsMenuOpen(false)}
                         onMouseEnter={() => setHoveredImage(item.path)}
                         onMouseLeave={() => setHoveredImage(null)}
-                        className={`block px-4 py-2 rounded-lg text-sm transition-all ${
+                        className={`block px-2 py-1 text-sm transition-all ${
                           isActive(item.path)
-                            ? "bg-earth-900/50 text-gold-500"
-                            : "text-earth-300 hover:text-gold-500 hover:bg-earth-900/30"
+                            ? "text-gold-500"
+                            : "text-earth-300 hover:text-gold-500"
                         }`}
                       >
                         {item.name}
                       </Link>
-                    </li>
-                  ))}
-                </ul>
+                    ))}
+                  </div>
+                </div>
+              </li>
+
+              {/* FAQ Section */}
+              <li>
+                <Link
+                  href="/faq"
+                  onClick={() => setIsMenuOpen(false)}
+                  onMouseEnter={() => setHoveredImage("/faq")}
+                  onMouseLeave={() => setHoveredImage(null)}
+                  className={`block px-4 py-3 rounded-lg text-base font-medium transition-all ${
+                    isActive("/faq")
+                      ? "bg-gold-500/10 text-gold-500 border-l-4 border-gold-500"
+                      : "text-earth-200 hover:text-gold-500 hover:bg-earth-900/30"
+                  }`}
+                >
+                  FAQ
+                </Link>
               </li>
             </ul>
           </nav>
-
-          {/* Sidebar Footer - Book Now CTA */}
-          <div className="px-8 py-6 border-t border-earth-800/50">
-            <Link
-              href="/bookings"
-              onClick={() => setIsMenuOpen(false)}
-              className="block w-full text-center bg-gold-500 text-earth-950 hover:bg-gold-400 font-bold py-3 rounded-lg text-sm uppercase tracking-wider transition-all"
-            >
-              Book Now
-            </Link>
-          </div>
         </div>
       </aside>
 

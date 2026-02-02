@@ -71,7 +71,7 @@ export default function VenueCategoryNav() {
   }, [categories]);
 
   return (
-    <nav className="sticky top-[72px] z-40 bg-earth-950/95 backdrop-blur border-b border-earth-700 shadow-xl overflow-x-auto">
+    <nav className="sticky top-[64px] z-40 bg-earth-950/95 backdrop-blur border-b border-earth-700 shadow-xl overflow-x-auto">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-10">
         <div className="flex whitespace-nowrap min-w-full sm:justify-center">
           {categories.map((category) => {

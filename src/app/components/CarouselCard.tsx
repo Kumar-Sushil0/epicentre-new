@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 export interface CarouselCardProps {
@@ -26,19 +26,48 @@ export default function CarouselCard({
 }: CarouselCardProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
+    const cardRef = useRef<HTMLDivElement>(null);
+    const [isForceHovered, setIsForceHovered] = useState(false);
 
     useEffect(() => {
-        if (isHovered) return; // Pause on hover
+        // Check if parent has force-hover class
+        const checkForceHover = () => {
+            if (cardRef.current?.parentElement?.classList.contains('force-hover')) {
+                setIsForceHovered(true);
+            } else {
+                setIsForceHovered(false);
+            }
+        };
+
+        checkForceHover();
+        
+        // Use MutationObserver to watch for class changes on parent
+        const observer = new MutationObserver(checkForceHover);
+        if (cardRef.current?.parentElement) {
+            observer.observe(cardRef.current.parentElement, {
+                attributes: true,
+                attributeFilter: ['class']
+            });
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
+    const shouldShowHoverState = isHovered || isForceHovered;
+
+    useEffect(() => {
+        if (shouldShowHoverState) return; // Pause on hover or force hover
         if (images.length <= 1) return;
 
         const interval = setInterval(() => {
             setCurrentIndex((prev) => (prev + 1) % images.length);
         }, 4000); // 4 seconds per slide
         return () => clearInterval(interval);
-    }, [isHovered, images.length]);
+    }, [shouldShowHoverState, images.length]);
 
     return (
         <div
+            ref={cardRef}
             className={`group relative aspect-[5/6] overflow-hidden bg-gold-500 border border-earth-800/50 shadow-xl ${className}`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
@@ -47,7 +76,7 @@ export default function CarouselCard({
             <div className="absolute inset-x-0 bottom-0 h-1/2 flex flex-col justify-end p-8 pb-10">
 
                 {/* Header: Icon/Category + Price/Count */}
-                <div className="flex items-center justify-between mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75 w-full text-earth-950">
+                <div className={`flex items-center justify-between mb-3 transition-opacity duration-300 delay-75 w-full text-earth-950 ${shouldShowHoverState ? 'opacity-100' : 'opacity-0'}`}>
                     {(icon || category) && (
                         <div className="flex items-center gap-2">
                             {icon && <span className="material-symbols-outlined text-lg">{icon}</span>}
@@ -68,16 +97,16 @@ export default function CarouselCard({
                     )}
                 </div>
 
-                <h4 className="text-xl font-bold text-earth-950 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100" style={{ fontFamily: 'Quicksand, sans-serif' }}>
+                <h4 className={`text-xl font-bold text-earth-950 mb-2 transition-opacity duration-300 delay-100 ${shouldShowHoverState ? 'opacity-100' : 'opacity-0'}`} style={{ fontFamily: 'Quicksand, sans-serif' }}>
                     {title}
                 </h4>
-                <p className="text-earth-900 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150 font-medium font-body whitespace-pre-line">
+                <p className={`text-earth-900 text-sm leading-relaxed transition-opacity duration-300 delay-150 font-medium font-body whitespace-pre-line ${shouldShowHoverState ? 'opacity-100' : 'opacity-0'}`}>
                     {description}
                 </p>
             </div>
 
             {/* Foreground Image Layer (Carousel) */}
-            <div className="absolute inset-0 z-10 transition-transform duration-500 ease-in-out group-hover:-translate-y-[40%] bg-earth-900">
+            <div className={`absolute inset-0 z-10 transition-transform duration-500 ease-in-out bg-earth-900 ${shouldShowHoverState ? '-translate-y-[40%]' : ''}`}>
                 {/* Images */}
                 {images.map((src, index) => (
                     <div
@@ -95,10 +124,10 @@ export default function CarouselCard({
                 ))}
 
                 {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none" />
+                <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-300 pointer-events-none ${shouldShowHoverState ? 'opacity-0' : ''}`} />
 
                 {/* Title Overlay (Initially Visible) */}
-                <div className="absolute bottom-8 left-8 right-8 transition-opacity duration-300 group-hover:opacity-0 pointer-events-none">
+                <div className={`absolute bottom-8 left-8 right-8 transition-opacity duration-300 pointer-events-none ${shouldShowHoverState ? 'opacity-0' : ''}`}>
 
                     {/* Header: Icon/Category + Price/Count (White/Gold) */}
                     <div className="flex items-center justify-between mb-2 w-full">
@@ -127,7 +156,7 @@ export default function CarouselCard({
 
                 {/* Dots */}
                 {images.length > 1 && (
-                    <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 transition-opacity duration-300 group-hover:opacity-0 z-20">
+                    <div className={`absolute bottom-4 left-0 right-0 flex justify-center gap-2 transition-opacity duration-300 z-20 ${shouldShowHoverState ? 'opacity-0' : ''}`}>
                         {images.map((_, idx) => (
                             <button
                                 key={idx}

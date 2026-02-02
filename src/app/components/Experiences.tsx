@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 import Link from "next/link";
+import CarouselCard from "./CarouselCard";
 
 interface ExperienceCardProps {
   title: string;
@@ -13,29 +13,15 @@ interface ExperienceCardProps {
   itemTitles?: string[];
 }
 
-function ExperienceCard({ title, description, href, images, imageAlt, itemTitles }: ExperienceCardProps) {
+function ExperienceCard({ title, description, href, images }: ExperienceCardProps) {
   return (
-    <Link href={href} className="group cursor-pointer block">
-      <div className="relative overflow-hidden rounded-lg mb-4 aspect-[5/6] border border-earth-700">
-        <Image
-          alt={imageAlt}
-          src={images[0]} // Use only the first image
-          fill
-          className="object-cover transform group-hover:scale-105 transition-transform duration-500"
-        />
-        {/* Title Overlay - shows main title */}
-        <div className="absolute inset-0 z-20 flex items-end pointer-events-none">
-          <div className="w-full bg-gradient-to-t from-earth-950/90 via-earth-950/70 to-transparent p-6">
-            <h3 className="text-2xl font-bold text-gold-500 group-hover:text-gold-400 transition-colors" style={{ fontFamily: 'Quicksand, sans-serif' }}>
-              {title}
-            </h3>
-          </div>
-        </div>
-      </div>
-      <h3 className="text-xl font-bold mb-2 text-gold-500 group-hover:text-gold-400 transition-colors" style={{ fontFamily: 'Quicksand, sans-serif' }}>
-        {title}
-      </h3>
-      <p className="text-sm text-earth-300 font-body">{description}</p>
+    <Link href={href} className="block">
+      <CarouselCard
+        title={title}
+        description={description}
+        images={[images[0]]} // Use only the first image, no carousel
+        className="rounded-lg"
+      />
     </Link>
   );
 }

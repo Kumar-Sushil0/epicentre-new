@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CarouselCard from "./CarouselCard";
 
 const ITEMS = [
@@ -37,8 +37,43 @@ const ITEMS = [
 ];
 
 export default function WhatThisIsNot() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const [forceHover, setForceHover] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setHasAnimated(true);
+            setForceHover(true);
+            
+            // Remove forced hover state after 1.5 seconds
+            setTimeout(() => {
+              setForceHover(false);
+            }, 1500);
+          }
+        });
+      },
+      {
+        threshold: 0.3, // Trigger when 30% of the section is visible
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [hasAnimated]);
+
   return (
-    <section className="py-8 min-h-[100vh] bg-earth-900 flex items-center">
+    <section ref={sectionRef} className="py-8 min-h-[100vh] bg-earth-900 flex items-center">
       <div className="w-full px-16">
         <div className="mb-8">
           <h3 className="text-3xl font-bold mb-2 text-gold-500" style={{ fontFamily: 'Quicksand, sans-serif' }}>Our Moat</h3>
@@ -49,13 +84,14 @@ export default function WhatThisIsNot() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {ITEMS.map((item) => (
-            <CarouselCard
-              key={item.id}
-              title={item.title}
-              description={item.description}
-              images={item.images}
-              className="rounded-lg"
-            />
+            <div key={item.id} className={forceHover ? 'force-hover' : ''}>
+              <CarouselCard
+                title={item.title}
+                description={item.description}
+                images={item.images}
+                className="rounded-lg"
+              />
+            </div>
           ))}
         </div>
       </div>

@@ -37,7 +37,6 @@ export default function RoomsPage() {
               featuresStyle="list"
               buttons={[
                 { text: "Check Availability", href: "/bookings", variant: "secondary" },
-                { text: "View Floorplan", href: "#", variant: "secondary" },
               ]}
             />
 

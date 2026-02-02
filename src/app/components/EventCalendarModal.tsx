@@ -66,11 +66,6 @@ export default function EventCalendarModal() {
                 <div className="w-full max-w-7xl mx-auto px-6">
                     {/* Header Section */}
                     <div className="text-center mb-12">
-                        <div className="inline-flex items-center gap-3 mb-6">
-                            <div className="w-12 h-px bg-gradient-to-r from-transparent via-gold-500 to-transparent"></div>
-                            <span className="material-symbols-outlined text-gold-500 text-2xl">event</span>
-                            <div className="w-12 h-px bg-gradient-to-r from-transparent via-gold-500 to-transparent"></div>
-                        </div>
                         
                         {/* Title with Navigation Arrows */}
                         <div className="flex items-center justify-center gap-8 mb-4">

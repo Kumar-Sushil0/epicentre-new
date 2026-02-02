@@ -62,7 +62,7 @@ export default function AboutPhilosophy() {
               <button
                 key={num}
                 onClick={() => setActiveTab(num as TabKey)}
-                className={`text-left group flex items-center gap-4 transition-all duration-300 min-w-max pb-2 lg:pb-0 ${activeTab === num ? 'opacity-100 translate-x-2' : 'opacity-40 hover:opacity-70'}`}
+                className={`text-left group flex items-center gap-4 transition-all duration-300 min-w-max pb-2 lg:pb-0 cursor-pointer ${activeTab === num ? 'opacity-100 translate-x-2' : 'opacity-40 hover:opacity-70'}`}
               >
                 <span className={`text-xl font-display ${activeTab === num ? 'text-gold-500' : 'text-earth-300'}`}>0{num}</span>
                 <span className={`text-2xl font-serif hidden lg:block ${activeTab === num ? 'text-earth-100' : 'text-earth-300'}`} style={{ fontFamily: 'Trirong, serif' }}>
