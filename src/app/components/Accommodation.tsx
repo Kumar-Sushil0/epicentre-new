@@ -38,9 +38,9 @@ export default function Accommodation() {
 
   return (
     <section className="py-24 min-h-[100vh] bg-[#261B14] border-t border-earth-700 flex items-center" id="accommodation">
-      <div className="w-full px-6">
+      <div className="w-full px-20">
         <div className="mb-16 text-center md:text-left">
-          <h2 className="text-4xl font-bold text-gold-500 mb-4" style={{ fontFamily: 'Trirong, serif' }}>Stays</h2>
+          <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Trirong, serif' }}>Stays</h2>
           <p className="text-earth-300 max-w-2xl font-body">
             Places to rest are part of the system. Each option offers a different degree of privacy.
           </p>
@@ -73,18 +73,18 @@ export default function Accommodation() {
               // Base absolute centering
               const baseTransform = "absolute top-1/2 left-1/2 -translate-y-1/2 transition-all duration-700 ease-in-out cursor-pointer shadow-2xl rounded-2xl overflow-hidden group";
 
-              // Increased width here
-              const cardSize = "w-[320px] md:w-[500px] h-[500px]";
+              // Vertical card size similar to CarouselCard
+              const cardSize = "w-[280px] md:w-[380px] h-[450px]";
 
               if (index === currentIndex) {
                 // ACTIVE CENTER: Centered (-50%)
                 positionClass = `z-30 ${cardSize} scale-100 opacity-100 -translate-x-1/2 border-2 border-gold-500/20`;
               } else if (index === (currentIndex - 1 + items.length) % items.length) {
                 // LEFT: Move left by (50% center + 100% width + gap) -> approx -160%
-                positionClass = `z-20 ${cardSize} scale-90 opacity-60 hover:opacity-90 -translate-x-[160%]`;
+                positionClass = `z-20 ${cardSize} scale-100 opacity-60 hover:opacity-90 -translate-x-[160%]`;
               } else if (index === (currentIndex + 1) % items.length) {
                 // RIGHT: Move right by (-50% center + 100% width + gap) -> approx 60%
-                positionClass = `z-20 ${cardSize} scale-90 opacity-60 hover:opacity-90 translate-x-[60%]`;
+                positionClass = `z-20 ${cardSize} scale-100 opacity-60 hover:opacity-90 translate-x-[60%]`;
               } else {
                 // HIDDEN
                 positionClass = `z-0 ${cardSize} opacity-0 scale-50 -translate-x-1/2 pointer-events-none`;

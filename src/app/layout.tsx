@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { EventCalendarProvider } from "./contexts/EventCalendarContext";
 import EventCalendarModal from "./components/EventCalendarModal";
+import SmoothScroll from "./components/SmoothScroll";
 
 export const metadata: Metadata = {
   title: "EPiCentre - Dark Earthy Home Page",
@@ -22,6 +23,7 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-earth-900 text-earth-100 antialiased">
+        <SmoothScroll />
         <EventCalendarProvider>
           {children}
           <EventCalendarModal />

@@ -136,10 +136,10 @@ export default function Experiences() {
 
   return (
     <section className="py-24 min-h-[100vh] bg-earth-800 border-t border-earth-700 flex items-center" id="experiences">
-      <div className="w-full px-6">
+      <div className="w-full px-20">
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>Experiences</h2>
-          <p className="text-earth-300 max-w-2xl mt-4 font-body">
+          <h2 className="text-3xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Trirong, serif' }}>Experiences</h2>
+          <p className="text-earth-300 max-w-2xl mt-2 font-body">
             Time here is not scheduled or directed. You engage with what’s available, when
           </p>
         </div>
