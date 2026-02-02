@@ -25,7 +25,7 @@ export default function DiningVariant() {
   ];
 
   return (
-    <section className="py-24 min-h-[100vh] bg-earth-900 flex items-center" id="dining">
+    <section className="py-8 min-h-[100vh] bg-earth-900 flex items-center" id="dining">
       <div className="w-full px-16">
         <div className="mb-12">
           <h2 className="text-3xl font-bold mb-2 text-gold-500" style={{ fontFamily: 'Quicksand, sans-serif' }}>Food</h2>
