@@ -272,25 +272,13 @@ export default function BookingsPage() {
             {/* Hover Glow Effect */}
             <div className="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
-            {/* Image Thumbnail */}
-            <div className="relative w-16 h-16 rounded-md overflow-hidden shrink-0 bg-earth-900 border border-earth-800/50 mr-5 shadow-lg group-hover:scale-105 transition-transform duration-300">
-              <Image
-                src={item.image}
-                alt={item.name}
-                fill
-                className={`object-cover transition-all duration-500 ${isSelected ? 'opacity-100 scale-100' : 'opacity-80 group-hover:opacity-100'}`}
-              />
-              {isSelected && (
-                <div className="absolute inset-0 bg-gold-500/20 flex items-center justify-center backdrop-blur-[2px] animate-fadeIn">
-                  <span className="material-symbols-outlined text-gold-500 text-xl drop-shadow-md font-bold">check_circle</span>
-                </div>
-              )}
-            </div>
-
             {/* Title & Price */}
-            <div className="flex-grow flex flex-col sm:flex-row sm:items-center justify-between min-w-0 mr-4 gap-1 sm:gap-4 relative z-10">
+            <div className="flex-grow flex flex-col sm:flex-row sm:items-center justify-between min-w-0 mr-4 gap-1 sm:gap-4 relative z-10 pl-2">
               <div className="min-w-0">
-                <h3 className={`text-base font-medium truncate transition-colors ${isSelected ? 'text-gold-500' : 'text-earth-100 group-hover:text-gold-200'}`}>{item.name}</h3>
+                <div className="flex items-center gap-2">
+                  {isSelected && <span className="material-symbols-outlined text-gold-500 text-sm">check_circle</span>}
+                  <h3 className={`text-base font-medium truncate transition-colors ${isSelected ? 'text-gold-500' : 'text-earth-100 group-hover:text-gold-200'}`}>{item.name}</h3>
+                </div>
                 {/* Re-introducing a tiny description for context if user wants "book shit" properly, they need info */}
                 <p className="text-xs text-earth-400 truncate max-w-[200px] sm:max-w-xs">{item.description}</p>
               </div>

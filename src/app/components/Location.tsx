@@ -2,12 +2,11 @@
 
 export default function Location() {
   return (
-    <section className="py-24 bg-earth-900" id="location">
-      <div className="max-w-full mx-auto px-6">
-        <div className="text-center mb-12">
-
+    <section className="py-24 min-h-[100vh] bg-earth-900 flex items-center" id="location">
+      <div className="w-full px-6">
+        <div className="mb-12">
           <h2 className="text-3xl font-bold text-gold-500 mb-6" style={{ fontFamily: 'Trirong, serif' }}>How to Get Here</h2>
-          <p className="text-earth-300 max-w-full mx-auto font-body">
+          <p className="text-earth-300 max-w-full font-body">
             Set away from speed, close enough to arrive. The journey marks the shift from movement to stillness.
           </p>
         </div>
