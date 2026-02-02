@@ -35,12 +35,12 @@ export default function Header() {
   return (
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isScrolled ? 'bg-[#111004]/90 backdrop-blur-sm border-b border-earth-800/50' : 'bg-transparent'}`}>
-        <div className="w-full px-4 py-8 h-[30px] flex items-center justify-between relative">
+        <div className="w-full px-16 py-8 h-[30px] flex items-center justify-between relative">
 
           {/* LEFT: Hamburger Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`w-10 h-10 flex items-center justify-center transition-colors z-50 relative ${isMenuOpen ? "text-gold-500" : "text-gold-500 hover:text-gold-400"}`}
+            className={`w-10 h-10 flex items-center justify-start transition-colors z-50 relative ${isMenuOpen ? "text-gold-500" : "text-gold-500 hover:text-gold-400"}`}
             aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
           >
             <span className="material-symbols-outlined text-3xl">
@@ -122,7 +122,7 @@ export default function Header() {
           {/* RIGHT: Booking CTA */}
           <Link
             href="/bookings"
-            className="hidden md:inline-flex items-center justify-center bg-transparent  text-gold-500 hover:bg-gold-500 hover:text-earth-950 font-bold px-6 py-2 rounded-full text-sm uppercase tracking-wider transition-all"
+            className="hidden md:inline-flex items-center justify-center bg-transparent  text-gold-500 hover:bg-gold-500 hover:text-earth-950 font-bold py-2 rounded-full text-sm uppercase tracking-wider transition-all"
           >
             Book Now
           </Link>

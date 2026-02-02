@@ -39,7 +39,7 @@ const ITEMS = [
 export default function WhatThisIsNot() {
   return (
     <section className="py-20 min-h-[100vh] bg-earth-900 flex items-center">
-      <div className="w-full px-[30px]">
+      <div className="w-full px-16">
         <div className="mb-12">
           <h3 className="text-3xl font-bold mb-2 text-gold-500" style={{ fontFamily: 'Quicksand, sans-serif' }}>Our Moat</h3>
           <p className="text-earth-300 font-body text-lg max-w-full">
