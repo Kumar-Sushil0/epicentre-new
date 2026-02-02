@@ -54,6 +54,7 @@ export default function WhatThisIsNot() {
               title={item.title}
               description={item.description}
               images={item.images}
+              className="rounded-lg"
             />
           ))}
         </div>

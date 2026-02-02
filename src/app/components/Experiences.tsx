@@ -16,7 +16,7 @@ interface ExperienceCardProps {
 function ExperienceCard({ title, description, href, images, imageAlt, itemTitles }: ExperienceCardProps) {
   return (
     <Link href={href} className="group cursor-pointer block">
-      <div className="relative overflow-hidden rounded-xl mb-4 aspect-[3/4] border border-earth-700">
+      <div className="relative overflow-hidden rounded-lg mb-4 aspect-[5/6] border border-earth-700">
         <Image
           alt={imageAlt}
           src={images[0]} // Use only the first image

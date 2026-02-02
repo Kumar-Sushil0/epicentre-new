@@ -66,7 +66,7 @@ export default function Accommodation() {
                   }}
                   onClick={() => setCurrentIndex(item.id)}
                 >
-                  <div className="relative aspect-[3/4] rounded-xl overflow-hidden shadow-2xl border border-earth-700">
+                  <div className="relative aspect-[5/6] rounded-lg overflow-hidden shadow-2xl border border-earth-700">
                     {/* Image */}
                     <div className="absolute inset-0">
                       <Image
@@ -124,12 +124,6 @@ export default function Accommodation() {
               />
             ))}
           </div>
-        </div>
-
-        <div className="mt-8 text-center">
-          <Link href="/rooms" className="inline-block text-gold-500 border-b border-gold-500 pb-1 hover:text-earth-100 hover:border-earth-100 transition-colors uppercase tracking-widest text-xs font-bold">
-            View All Options
-          </Link>
         </div>
       </div>
     </section>

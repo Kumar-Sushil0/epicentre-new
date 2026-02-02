@@ -38,7 +38,7 @@ export default function DiningVariant() {
           {items.map((item) => (
             <div
               key={item.id}
-              className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-gold-500 border border-earth-800/50 shadow-xl"
+              className="group relative aspect-[5/6] rounded-lg overflow-hidden bg-gold-500 border border-earth-800/50 shadow-xl"
             >
               {/* Background Content (Hidden behind image initially) */}
               <div className="absolute inset-x-0 bottom-0 h-1/2 flex flex-col justify-end p-8 pb-10">
