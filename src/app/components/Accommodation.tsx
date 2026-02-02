@@ -38,7 +38,7 @@ export default function Accommodation() {
 
   return (
     <section className="py-24 min-h-[100vh] bg-[#261B14] border-t border-earth-700 flex items-center" id="accommodation">
-      <div className="w-full px-20">
+      <div className="w-full px-[30px]">
         <div className="mb-16 text-center md:text-left">
           <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Quicksand, sans-serif' }}>Stays</h2>
           <p className="text-earth-300 max-w-2xl font-body">
@@ -66,7 +66,7 @@ export default function Accommodation() {
                   }}
                   onClick={() => setCurrentIndex(item.id)}
                 >
-                  <div className="relative h-[450px] rounded-xl overflow-hidden shadow-2xl border border-earth-700">
+                  <div className="relative aspect-[3/4] rounded-xl overflow-hidden shadow-2xl border border-earth-700">
                     {/* Image */}
                     <div className="absolute inset-0">
                       <Image

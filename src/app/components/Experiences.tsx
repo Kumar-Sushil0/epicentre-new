@@ -16,7 +16,7 @@ interface ExperienceCardProps {
 function ExperienceCard({ title, description, href, images, imageAlt, itemTitles }: ExperienceCardProps) {
   return (
     <Link href={href} className="group cursor-pointer block">
-      <div className="relative overflow-hidden rounded-xl mb-4 aspect-[4/3] border border-earth-700">
+      <div className="relative overflow-hidden rounded-xl mb-4 aspect-[3/4] border border-earth-700">
         <Image
           alt={imageAlt}
           src={images[0]} // Use only the first image
@@ -136,7 +136,7 @@ export default function Experiences() {
 
   return (
     <section className="py-24 min-h-[100vh] bg-earth-800 border-t border-earth-700 flex items-center" id="experiences">
-      <div className="w-full px-20">
+      <div className="w-full px-[30px]">
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Quicksand, sans-serif' }}>Experiences</h2>
           <p className="text-earth-300 max-w-2xl mt-2 font-body">

@@ -3,7 +3,7 @@
 export default function Location() {
   return (
     <section className="py-24 min-h-[100vh] bg-earth-900 flex items-center" id="location">
-      <div className="w-full px-20">
+      <div className="w-full px-[30px]">
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Quicksand, sans-serif' }}>How to Get Here</h2>
           <p className="text-earth-300 max-w-full font-body">

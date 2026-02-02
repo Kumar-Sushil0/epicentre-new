@@ -39,7 +39,7 @@ export default function CarouselCard({
 
     return (
         <div
-            className={`group relative h-[450px] rounded-xl overflow-hidden bg-gold-500 border border-earth-800/50 shadow-xl ${className}`}
+            className={`group relative aspect-[3/4] rounded-xl overflow-hidden bg-gold-500 border border-earth-800/50 shadow-xl ${className}`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
