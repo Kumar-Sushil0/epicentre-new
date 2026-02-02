@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Accommodation() {
-  const [currentIndex, setCurrentIndex] = useState(1);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const items = [
     {
@@ -46,85 +46,83 @@ export default function Accommodation() {
           </p>
         </div>
 
-        {/* Carousel Container */}
-        <div className="relative h-[600px] flex items-center justify-center overflow-hidden">
-
-          {/* Nav Buttons */}
-          <button
-            onClick={handlePrev}
-            className="absolute left-4 md:left-10 z-30 p-3 rounded-full bg-earth-950/80 text-gold-500 hover:bg-gold-500 hover:text-earth-950 transition-all border border-earth-700 backdrop-blur-sm"
-          >
-            <span className="material-symbols-outlined text-2xl">arrow_back_ios_new</span>
-          </button>
-
-          <button
-            onClick={handleNext}
-            className="absolute right-4 md:right-10 z-30 p-3 rounded-full bg-earth-950/80 text-gold-500 hover:bg-gold-500 hover:text-earth-950 transition-all border border-earth-700 backdrop-blur-sm"
-          >
-            <span className="material-symbols-outlined text-2xl">arrow_forward_ios</span>
-          </button>
-
-          {/* Cards */}
-          <div className="relative w-full h-full">
-            {items.map((item, index) => {
-              // Calculate position relative to active index
-              let positionClass = "";
-
-              // Base absolute centering
-              const baseTransform = "absolute top-1/2 left-1/2 -translate-y-1/2 transition-all duration-700 ease-in-out cursor-pointer shadow-2xl rounded-2xl overflow-hidden group";
-
-              // Vertical card size similar to CarouselCard
-              const cardSize = "w-[280px] md:w-[380px] h-[450px]";
-
-              if (index === currentIndex) {
-                // ACTIVE CENTER: Centered (-50%)
-                positionClass = `z-30 ${cardSize} scale-100 opacity-100 -translate-x-1/2 border-2 border-gold-500/20`;
-              } else if (index === (currentIndex - 1 + items.length) % items.length) {
-                // LEFT: Move left by (50% center + 100% width + gap) -> approx -160%
-                positionClass = `z-20 ${cardSize} scale-100 opacity-60 hover:opacity-90 -translate-x-[160%]`;
-              } else if (index === (currentIndex + 1) % items.length) {
-                // RIGHT: Move right by (-50% center + 100% width + gap) -> approx 60%
-                positionClass = `z-20 ${cardSize} scale-100 opacity-60 hover:opacity-90 translate-x-[60%]`;
-              } else {
-                // HIDDEN
-                positionClass = `z-0 ${cardSize} opacity-0 scale-50 -translate-x-1/2 pointer-events-none`;
-              }
-
-              return (
+        <div className="relative">
+          {/* Carousel Container */}
+          <div className="overflow-hidden w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            <div
+              className="flex gap-8 transition-transform duration-500 ease-in-out"
+              style={{
+                transform: `translateX(calc(-${currentIndex} * ((100% - 4rem) / 3 + 2rem)))`,
+                willChange: "transform",
+              }}
+            >
+              {items.map((item) => (
                 <div
                   key={item.id}
-                  onClick={() => {
-                    if (index !== currentIndex) setCurrentIndex(index);
+                  className="flex-shrink-0 group cursor-pointer"
+                  style={{
+                    width: `calc((100% - 4rem) / 3)`,
+                    flexShrink: 0,
                   }}
-                  className={`${baseTransform} ${positionClass} bg-earth-800`}
+                  onClick={() => setCurrentIndex(item.id)}
                 >
-                  {/* Image */}
-                  <div className="absolute inset-0">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-                  </div>
+                  <div className="relative h-[450px] rounded-xl overflow-hidden shadow-2xl border border-earth-700">
+                    {/* Image */}
+                    <div className="absolute inset-0">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                    </div>
 
-                  {/* Content */}
-                  <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                    <h3 className="text-2xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Quicksand, sans-serif' }}>{item.title}</h3>
+                    {/* Content */}
+                    <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                      <h3 className="text-2xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Quicksand, sans-serif' }}>{item.title}</h3>
 
-                    {/* Description - Revealed on Hover */}
-                    <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
-                      <div className="overflow-hidden">
-                        <p className="text-earth-100 text-sm md:text-base leading-relaxed mt-2 border-t border-gold-500/30 pt-4">
-                          {item.description}
-                        </p>
+                      {/* Description - Revealed on Hover */}
+                      <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
+                        <div className="overflow-hidden">
+                          <p className="text-earth-100 text-sm md:text-base leading-relaxed mt-2 border-t border-gold-500/30 pt-4">
+                            {item.description}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              );
-            })}
+              ))}
+            </div>
+          </div>
+
+          {/* Navigation Arrows */}
+          <button
+            onClick={handlePrev}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-earth-900/80 hover:bg-earth-900 text-gold-500 rounded-full w-12 h-12 flex items-center justify-center transition-all backdrop-blur-sm border border-gold-500/30 hover:border-gold-500"
+            aria-label="Previous"
+          >
+            <span className="material-symbols-outlined text-2xl">chevron_left</span>
+          </button>
+          <button
+            onClick={handleNext}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-earth-900/80 hover:bg-earth-900 text-gold-500 rounded-full w-12 h-12 flex items-center justify-center transition-all backdrop-blur-sm border border-gold-500/30 hover:border-gold-500"
+            aria-label="Next"
+          >
+            <span className="material-symbols-outlined text-2xl">chevron_right</span>
+          </button>
+
+          {/* Dots Indicator */}
+          <div className="flex justify-center gap-2 mt-8">
+            {items.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-2 h-2 rounded-full transition-all ${index === currentIndex ? "bg-gold-500 w-8" : "bg-earth-100/50 hover:bg-earth-100/75"}`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
           </div>
         </div>
 
@@ -133,7 +131,6 @@ export default function Accommodation() {
             View All Options
           </Link>
         </div>
-
       </div>
     </section>
   );
