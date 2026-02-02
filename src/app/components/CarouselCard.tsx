@@ -68,7 +68,7 @@ export default function CarouselCard({
                     )}
                 </div>
 
-                <h4 className="text-xl font-bold text-earth-950 mb-2 font-serif opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                <h4 className="text-xl font-bold text-earth-950 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100" style={{ fontFamily: 'Quicksand, sans-serif' }}>
                     {title}
                 </h4>
                 <p className="text-earth-900 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150 font-medium font-body whitespace-pre-line">
@@ -122,7 +122,7 @@ export default function CarouselCard({
                         )}
                     </div>
 
-                    <h4 className="text-2xl font-bold text-white font-serif drop-shadow-md">{title}</h4>
+                    <h4 className="text-2xl font-bold text-white drop-shadow-md" style={{ fontFamily: 'Quicksand, sans-serif' }}>{title}</h4>
                 </div>
 
                 {/* Dots */}

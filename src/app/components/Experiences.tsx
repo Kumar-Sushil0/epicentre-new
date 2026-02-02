@@ -26,13 +26,13 @@ function ExperienceCard({ title, description, href, images, imageAlt, itemTitles
         {/* Title Overlay - shows main title */}
         <div className="absolute inset-0 z-20 flex items-end pointer-events-none">
           <div className="w-full bg-gradient-to-t from-earth-950/90 via-earth-950/70 to-transparent p-6">
-            <h3 className="text-2xl font-bold text-gold-500 group-hover:text-gold-400 transition-colors" style={{ fontFamily: 'Trirong, serif' }}>
+            <h3 className="text-2xl font-bold text-gold-500 group-hover:text-gold-400 transition-colors" style={{ fontFamily: 'Quicksand, sans-serif' }}>
               {title}
             </h3>
           </div>
         </div>
       </div>
-      <h3 className="text-xl font-bold mb-2 text-gold-500 group-hover:text-gold-400 transition-colors" style={{ fontFamily: 'Trirong, serif' }}>
+      <h3 className="text-xl font-bold mb-2 text-gold-500 group-hover:text-gold-400 transition-colors" style={{ fontFamily: 'Quicksand, sans-serif' }}>
         {title}
       </h3>
       <p className="text-sm text-earth-300 font-body">{description}</p>
@@ -138,7 +138,7 @@ export default function Experiences() {
     <section className="py-24 min-h-[100vh] bg-earth-800 border-t border-earth-700 flex items-center" id="experiences">
       <div className="w-full px-20">
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Trirong, serif' }}>Experiences</h2>
+          <h2 className="text-3xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Quicksand, sans-serif' }}>Experiences</h2>
           <p className="text-earth-300 max-w-2xl mt-2 font-body">
             Time here is not scheduled or directed. You engage with what’s available, when
           </p>

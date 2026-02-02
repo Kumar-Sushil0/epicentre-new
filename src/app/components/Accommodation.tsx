@@ -40,7 +40,7 @@ export default function Accommodation() {
     <section className="py-24 min-h-[100vh] bg-[#261B14] border-t border-earth-700 flex items-center" id="accommodation">
       <div className="w-full px-20">
         <div className="mb-16 text-center md:text-left">
-          <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Trirong, serif' }}>Stays</h2>
+          <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Quicksand, sans-serif' }}>Stays</h2>
           <p className="text-earth-300 max-w-2xl font-body">
             Places to rest are part of the system. Each option offers a different degree of privacy.
           </p>
@@ -111,7 +111,7 @@ export default function Accommodation() {
 
                   {/* Content */}
                   <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                    <h3 className="text-2xl font-bold text-gold-500 mb-2 font-serif">{item.title}</h3>
+                    <h3 className="text-2xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Quicksand, sans-serif' }}>{item.title}</h3>
 
                     {/* Description - Revealed on Hover */}
                     <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">

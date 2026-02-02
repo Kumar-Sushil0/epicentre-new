@@ -28,7 +28,7 @@ export default function DiningVariant() {
     <section className="py-24 min-h-[100vh] bg-earth-900 flex items-center" id="dining">
       <div className="w-full px-20">
         <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-2 text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>Food</h2>
+          <h2 className="text-3xl font-bold mb-2 text-gold-500" style={{ fontFamily: 'Quicksand, sans-serif' }}>Food</h2>
           <p className="text-earth-300 font-body text-lg max-w-full">
             Food here is designed to support steadiness and attention. It is familiar, seasonal, and shared.
           </p>
@@ -42,7 +42,7 @@ export default function DiningVariant() {
             >
               {/* Background Content (Hidden behind image initially) */}
               <div className="absolute inset-x-0 bottom-0 h-1/2 flex flex-col justify-end p-8 pb-10">
-                <h4 className="text-xl font-bold text-earth-950 mb-2 font-serif opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">{item.title}</h4>
+                <h4 className="text-xl font-bold text-earth-950 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100" style={{ fontFamily: 'Quicksand, sans-serif' }}>{item.title}</h4>
                 <p className="text-earth-900 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150">
                   {item.description}
                 </p>
@@ -61,7 +61,7 @@ export default function DiningVariant() {
 
                 {/* Title overlay on the image (Visible initially) */}
                 <div className="absolute bottom-8 left-8 right-8 transition-opacity duration-300 group-hover:opacity-0">
-                  <h4 className="text-2xl font-bold text-white font-serif drop-shadow-md">{item.title}</h4>
+                  <h4 className="text-2xl font-bold text-white drop-shadow-md" style={{ fontFamily: 'Quicksand, sans-serif' }}>{item.title}</h4>
                 </div>
               </div>
             </div>

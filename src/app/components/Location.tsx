@@ -5,7 +5,7 @@ export default function Location() {
     <section className="py-24 min-h-[100vh] bg-earth-900 flex items-center" id="location">
       <div className="w-full px-20">
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Trirong, serif' }}>How to Get Here</h2>
+          <h2 className="text-3xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Quicksand, sans-serif' }}>How to Get Here</h2>
           <p className="text-earth-300 max-w-full font-body">
             Set away from speed, close enough to arrive. The journey marks the shift from movement to stillness.
           </p>
@@ -14,7 +14,7 @@ export default function Location() {
           <div className="bg-earth-800 p-8 rounded-2xl shadow-sm border border-earth-700">
             <div className="flex items-center gap-3 mb-6">
               <span className="material-symbols-outlined text-gold-500 text-3xl">location_on</span>
-              <h3 className="text-xl font-bold text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>From Mumbai</h3>
+              <h3 className="text-xl font-bold text-gold-500" style={{ fontFamily: 'Quicksand, sans-serif' }}>From Mumbai</h3>
             </div>
             <div className="space-y-4 font-body text-sm text-earth-300">
               <div className="flex items-center justify-between border-b border-earth-700 pb-2">
@@ -37,7 +37,7 @@ export default function Location() {
           <div className="bg-earth-800 p-8 rounded-2xl shadow-sm border border-earth-700">
             <div className="flex items-center gap-3 mb-6">
               <span className="material-symbols-outlined text-gold-500 text-3xl">location_on</span>
-              <h3 className="text-xl font-bold text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>From Pune</h3>
+              <h3 className="text-xl font-bold text-gold-500" style={{ fontFamily: 'Quicksand, sans-serif' }}>From Pune</h3>
             </div>
             <div className="space-y-4 font-body text-sm text-earth-300">
               <div className="flex items-center justify-between border-b border-earth-700 pb-2">
@@ -60,7 +60,7 @@ export default function Location() {
           <div className="bg-earth-800 p-8 rounded-2xl shadow-sm border border-earth-700">
             <div className="flex items-center gap-3 mb-6">
               <span className="material-symbols-outlined text-gold-500 text-3xl">location_on</span>
-              <h3 className="text-xl font-bold text-gold-500" style={{ fontFamily: 'Trirong, serif' }}>From Baramati</h3>
+              <h3 className="text-xl font-bold text-gold-500" style={{ fontFamily: 'Quicksand, sans-serif' }}>From Baramati</h3>
             </div>
             <div className="space-y-4 font-body text-sm text-earth-300">
               <div className="flex items-center justify-between border-b border-earth-700 pb-2">
