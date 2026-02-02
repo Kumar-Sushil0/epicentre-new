@@ -1,18 +1,36 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+
 export default function ExperiencesHero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.5; // Slow motion (0.5x speed)
+    }
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-end pb-20 overflow-hidden">
-      {/* Background Image with Parallax-like feel */}
-      <div className="absolute inset-0 z-0">
-        <div
-          className="w-full h-full bg-cover bg-center bg-no-repeat transform scale-105"
-          style={{
-            backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBzQUBgomUJe6e1OB_6dmTVcgR_GYt5k-UgoretbmfZ_izouiCOaK8YYEWLDt_QTV_ISyTECnULI_O5W2HYPqj6w163bSvDPTOBZHjRl7FljH8xAlUWQIAfo5Eosj0EPZTfwiMtkXcjRL7RThN1FokJa4gSqWamw681YNKmVWdMcKtTZpKktdALEho3axfgg38XvTVTyHnF8634k552ETsVCipetwOV8NQ9ujUeRJusTOeygeyE16mtVKBxnTDmtPIEduKGAtXfTURb')"
-          }}
-        ></div>
-        {/* Cinematic Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-earth-950 via-earth-950/40 to-transparent z-10 opacity-90"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-earth-950/80 via-transparent to-transparent z-10"></div>
-      </div>
+      {/* Video Background */}
+      <video
+        ref={videoRef}
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover z-0"
+        style={{
+          transform: 'translate(-50%, -50%) scale(1.2)',
+        }}
+      >
+        <source src="/boat.mp4" type="video/mp4" />
+      </video>
+
+      {/* Cinematic Gradient Overlays */}
+      <div className="absolute inset-0 bg-gradient-to-t from-earth-950 via-earth-950/40 to-transparent z-10 opacity-90"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-earth-950/80 via-transparent to-transparent z-10"></div>
 
       {/* Content */}
       <div className="relative z-20 container mx-auto px-6 max-w-7xl">

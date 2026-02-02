@@ -10,15 +10,15 @@ import { useEventCalendar } from "../contexts/EventCalendarContext";
 const navImages: Record<string, string> = {
   "/": "/banner.png",
   "/about-us": "/dd.jpeg",
-  "/rooms": "/person1.jpg",
-  "/venue": "/person2.jpg",
+  "/rooms": "https://lh3.googleusercontent.com/aida-public/AB6AXuDYw7zjjT1NTlSOYdFEp7-uHq0qYu0sfT6aUZMNM2ORSddAkOWotjiQuOXDlF61wyE24VSml-mENINPvgit4PMfWpZeH50NPc447sj25Lb9x3TaeBlPSU7wzYuj_9FCg7AibVjCYClPjUH2RnhsG5KEnMzj-HCgJ18Ml3AHQNFqX4nT-CvUDLtna6318BHSz60gSYsF_rolGCK_gpSLX0f4X7YWlq7PTgefwlFaLqlmddEb47Kk1ikXrmPgfcWjrQbX7yn5wzA--zcc",
+  "/venue": "https://lh3.googleusercontent.com/aida-public/AB6AXuDJ8TvSF_6qQYT0sf1Z3QeDGPpedh3fFfoLu0xYEOVs4B-3yAdulyHspPVbw5A_jiNj8YyH-fB6Zrd1At6C_Dpr10Dp0zkPKpZNISmKy6obJPax1cVlyk35I9Je4qtWZQN9XhH-VmJMZXXGgG8x64v4oy9B3vkjNJhb-RZNqem3OaDqxOhIf3z7_TF48J-Km9ipy9oDRORSuxs3foTCuPvAU45bY8Co7UAqKqkWMEFchPTcX2tPhut34xCRmtQ0oyIjX5NCUmxRAaI0",
   "/blogs": "/person3.jpg",
   "/faq": "/person4.jpg",
-  "/wellness": "/person4.jpg",
-  "/experiences": "/banner.jpg",
-  "/solitude": "/foot.png",
-  "/expression": "/logohor.png",
-  "/residency": "/logover.png",
+  "/wellness": "https://lh3.googleusercontent.com/aida-public/AB6AXuAG8sRV16GeDF6s3Aix4GpETZ3eauYTdeaL5IlWaBQHdmLaEUl8HwITF-icK7rBJH3rs4_eyRc0OnTyudHniz8NCe3oRC2k5_KcTRLReqJdws9zmY25stjYSrFvYvnbb4fxetbYlgcqCJDWwMaBr_6UB09wT864MpT6mLPkqnqxG3JPy_DNNFOMUqcmW8iZWOE4etCbj4TW4EEkBzJss4y7vWzlNmUWjLyUiZaka0GRqyef8OxRV6v8-KYfO5Y2EoBHFW0f3nVZFV6T",
+  "/experiences": "https://lh3.googleusercontent.com/aida-public/AB6AXuBzQUBgomUJe6e1OB_6dmTVcgR_GYt5k-UgoretbmfZ_izouiCOaK8YYEWLDt_QTV_ISyTECnULI_O5W2HYPqj6w163bSvDPTOBZHjRl7FljH8xAlUWQIAfo5Eosj0EPZTfwiMtkXcjRL7RThN1FokJa4gSqWamw681YNKmVWdMcKtTZpKktdALEho3axfgg38XvTVTyHnF8634k552ETsVCipetwOV8NQ9ujUeRJusTOeygeyE16mtVKBxnTDmtPIEduKGAtXfTURb",
+  "/solitude": "https://lh3.googleusercontent.com/aida-public/AB6AXuA66C5-27IzMig79x6lBr8ASU7hB4sRgfqstGXIOge10DYYCaZZqMYVKBGNXicWrl63SDlJmI3KBFlPkI49dbmujXej7YmxpX22Bva1Qh06b8JwOHykLDYMv5QCoop-QznsDT4Qx8ETJYUSeUwwp9qu9Dbd1eLJhuIs9eqLaxLtAZlwrLtkC0t55ZWgHILOGZzRJ4yko3UQuwIe1fshdVQQsw58pM0Tni9l-HxFU_tW4JQffp-JPUF4aRp2-eH-hn1fdpw3tMz613lW",
+  "/expression": "https://lh3.googleusercontent.com/aida-public/AB6AXuCo3MJhZ2Vq9-Ga2Ea74ot7K3svtpwhjBfDSCrXUYnFOYTuKa0AlDwQhdZ8BxihuYNAXOpSdB-tTtKdMZs3cGX8b9BvyVJ0f7v10BnyVYkQEHkFN4-JvUnOV3TtcfaasbCLOtA1FJ36Hww-91OBUlDJHTpWkvWgfKLGDdNvhDccKPCHKxSre2HqIJDUmAdVeuaFlpLJWz1rQnuz4k27-rXUV4Tm2jrPtpK6Sxr5anLKPzQwalZ-iwFuH6pQqNpaJADP6WWqN2Pu-Yd4",
+  "/residency": "https://lh3.googleusercontent.com/aida-public/AB6AXuAt8nAb96Exmu9QhCiRKqZU5CxnQDk3iDJqkw73Va-rbUXZBaBBnvTyr_8X9npg6Yn_5wIi69Dz69sf6mT479dvp0WNVf3LQfzJm3Kxbwc_HmgBXOA1XsRvHtLaBLc_tK6eOcug7ZaFeINjj6YvwfPR7D2-h2b9_YcgV5fig53664CLwWblDWeRmIb3M53NPs8mrHn-SgfqLwHoeBmfHUnlks9IPXg-3KFucSJ8xkj_HMuyqAZ0SnWgdK65Pkzlf72e6F38Wc899wJz",
 };
 
 export default function Header() {
@@ -164,22 +164,6 @@ export default function Header() {
           {/* Navigation Links */}
           <nav className="flex-1 overflow-y-auto px-8 py-6">
             <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/"
-                  onClick={() => setIsMenuOpen(false)}
-                  onMouseEnter={() => setHoveredImage("/")}
-                  onMouseLeave={() => setHoveredImage(null)}
-                  className={`block px-4 py-3 rounded-lg text-base font-medium transition-all ${
-                    isActive("/") && pathname === "/"
-                      ? "bg-gold-500/10 text-gold-500 border-l-4 border-gold-500"
-                      : "text-earth-200 hover:text-gold-500 hover:bg-earth-900/30"
-                  }`}
-                >
-                  Home
-                </Link>
-              </li>
-
               <li>
                 <Link
                   href="/about-us"
