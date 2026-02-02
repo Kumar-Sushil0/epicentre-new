@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Accommodation() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -39,7 +38,7 @@ export default function Accommodation() {
   return (
     <section className="py-8 min-h-[100vh] bg-[#261B14] border-t border-earth-700 flex items-center" id="accommodation">
       <div className="w-full px-16">
-        <div className="mb-16 text-center md:text-left">
+        <div className="mb-8 text-center md:text-left">
           <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Quicksand, sans-serif' }}>Stays</h2>
           <p className="text-earth-300 max-w-2xl font-body">
             Places to rest are part of the system. Each option offers a different degree of privacy.
