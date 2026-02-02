@@ -4,13 +4,12 @@ export default function Philosophy() {
       <div className="max-w-5xl mx-auto px-16 text-center">
 
         <div className="relative py-8">
-          <span className="material-symbols-outlined text-[#261B14]/10 text-6xl absolute top-0 left-0 -translate-x-4 -translate-y-4">
-            format_quote
-          </span>
           <p className="text-[15px] leading-loose text-[#261B14] relative z-10" style={{ fontFamily: 'Outfit, sans-serif' }}>
-            <span className="text-[#261B14]" style={{ fontFamily: 'Outfit, sans-serif' }}>"The Silent Club exists to reduce interference. In a world optimized for noise, speed, and performance, <br />this is a space designed for stillness, self-observation, and clarity.</span>
+            "In a world optimized for speed, effort, and output, this is a space designed for stillness, self-observation, and orientation.
             <br />
-            <span style={{ fontFamily: 'Outfit, sans-serif' }}>Nothing here is trying to improve you. The conditions make it easier to see."</span>
+            Nothing here tries to improve you. Nothing asks you to perform.
+            <br />
+            The conditions make it easier to see."
           </p>
         </div>
       </div>

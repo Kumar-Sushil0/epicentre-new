@@ -465,7 +465,7 @@ function ExpressionDetailsPageContent() {
   const practice = expressionPractices[practiceId] || expressionPractices["the-writer-says"];
 
   return (
-    <main className="min-h-screen bg-earth-900 text-earth-100 pt-[72px]">
+    <main className="min-h-screen bg-earth-900 text-earth-100  ">
       <Header />
       <ExpressionDetailsHero title={practice.title} subtitle={practice.subtitle} image={practice.image} />
       <section className="relative bg-earth-900 pb-24 -mt-20 z-30">

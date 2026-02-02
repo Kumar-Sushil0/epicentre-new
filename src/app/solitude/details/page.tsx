@@ -358,7 +358,7 @@ function SolitudeDetailsPageContent() {
   const practice = solitudePractices[practiceId] || solitudePractices.angling;
 
   return (
-    <main className="min-h-screen bg-earth-900 text-earth-100 pt-[72px]">
+    <main className="min-h-screen bg-earth-900 text-earth-100  ">
       <Header />
       <SolitudeDetailsHero title={practice.title} subtitle={practice.subtitle} image={practice.image} />
       <SolitudeDetailsPhilosophy />

@@ -12,7 +12,7 @@ import FooterVariant from "../components/FooterVariant";
 
 export default function HomeVariant() {
   return (
-    <main className="pt-[72px]">
+    <main className=" ">
       <Header />
       <HeroVariant />
       <PhilosophyVariant />

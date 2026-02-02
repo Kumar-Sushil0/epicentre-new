@@ -1,23 +1,36 @@
 export default function ResidencyHero() {
   return (
-    <section className="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden pt-20">
-      <div
-        className="absolute inset-0 z-0 bg-cover bg-center"
-        style={{
-          backgroundImage: `linear-gradient(rgba(26, 18, 11, 0.7), rgba(26, 18, 11, 0.85)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAt8nAb96Exmu9QhCiRKqZU5CxnQDk3iDJqkw73Va-rbUXZBaBBnvTyr_8X9npg6Yn_5wIi69Dz69sf6mT479dvp0WNVf3LQfzJm3Kxbwc_HmgBXOA1XsRvHtLaBLc_tK6eOcug7ZaFeINjj6YvwfPR7D2-h2b9_YcgV5fig53664CLwWblDWeRmIb3M53NPs8mrHn-SgfqLwHoeBmfHUnlks9IPXg-3KFucSJ8xkj_HMuyqAZ0SnWgdK65Pkzlf72e6F38Wc899wJz")`,
-        }}
-      />
-      <div className="relative z-10 text-center px-6 max-w-5xl">
-        <h1 className="text-gold-500 text-5xl md:text-7xl font-light tracking-tight mb-4" style={{ fontFamily: 'Trirong, serif' }}>
-          The Held Immersion
-        </h1>
-        <div className="w-24 h-1 bg-gold-500 rounded-full mx-auto mb-6"></div>
-        <p className="text-earth-50/90 text-lg md:text-xl font-bold tracking-widest uppercase mb-4 font-body">
-          THE SILENT CLUB RESIDENCY
-        </p>
-        <p className="text-earth-300 text-lg md:text-xl font-light tracking-wide max-w-2xl mx-auto italic font-display">
-          Multi-day immersions at <span className="text-gold-500">The Silent Club</span>
-        </p>
+    <section className="relative min-h-screen flex items-end pb-20 overflow-hidden">
+      {/* Background Image with Parallax-like feel */}
+      <div className="absolute inset-0 z-0">
+        <div
+          className="w-full h-full bg-cover bg-center bg-no-repeat transform scale-105"
+          style={{
+            backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAt8nAb96Exmu9QhCiRKqZU5CxnQDk3iDJqkw73Va-rbUXZBaBBnvTyr_8X9npg6Yn_5wIi69Dz69sf6mT479dvp0WNVf3LQfzJm3Kxbwc_HmgBXOA1XsRvHtLaBLc_tK6eOcug7ZaFeINjj6YvwfPR7D2-h2b9_YcgV5fig53664CLwWblDWeRmIb3M53NPs8mrHn-SgfqLwHoeBmfHUnlks9IPXg-3KFucSJ8xkj_HMuyqAZ0SnWgdK65Pkzlf72e6F38Wc899wJz')"
+          }}
+        ></div>
+        {/* Cinematic Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-earth-950 via-earth-950/40 to-transparent z-10 opacity-90"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-earth-950/80 via-transparent to-transparent z-10"></div>
+      </div>
+
+      {/* Content */}
+      <div className="relative z-20 container mx-auto px-6 max-w-7xl">
+        <div className="max-w-4xl border-l-2 border-gold-500/50 pl-8 md:pl-12 py-4 animate-in slide-in-from-left-4 duration-1000">
+          <h1 className="text-earth-100 text-5xl md:text-7xl lg:text-8xl font-display font-medium leading-[1.1] tracking-tight mb-8 drop-shadow-2xl" style={{ fontFamily: 'Trirong, serif' }}>
+            The Held <br />
+            <span className="italic text-gold-500">Immersion</span>
+          </h1>
+          <p className="text-earth-300/80 text-xl md:text-2xl font-light leading-relaxed max-w-2xl font-body">
+            Multi-day immersions at The Silent Club
+          </p>
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-60 animate-bounce">
+        <span className="text-xs uppercase tracking-[0.2em] text-earth-300">Scroll</span>
+        <span className="material-symbols-outlined text-earth-300 text-2xl">arrow_downward</span>
       </div>
     </section>
   );

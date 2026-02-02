@@ -29,7 +29,6 @@ export default function WellnessGrid({ practices }: WellnessGridProps) {
           images={practice.images}
           icon={practice.icon}
           category={practice.category}
-          className={practice.spanColumns === 2 ? "md:col-span-2" : practice.spanColumns === 3 ? "md:col-span-2 lg:col-span-3" : ""}
         />
       ))}
     </div>

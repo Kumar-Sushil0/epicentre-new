@@ -62,11 +62,13 @@ export default function BookingForm() {
             {/* 2. Guests */}
             <div className="flex items-center gap-3 w-full bg-earth-900 px-4 py-3 rounded-lg border border-earth-700 shadow-inner h-12">
               <span className="material-symbols-outlined text-gold-500 text-xl shrink-0">group</span>
-              <select className="bg-transparent border-none text-sm focus:ring-0 text-earth-100 w-full font-body cursor-pointer appearance-none">
-                <option className="bg-earth-900">1 Guest</option>
-                <option className="bg-earth-900">2 Guests</option>
-                <option className="bg-earth-900">Group</option>
-              </select>
+              <input
+                type="number"
+                min="1"
+                max="50"
+                placeholder="Number of Guests"
+                className="bg-transparent border-none text-sm focus:ring-0 text-earth-100 placeholder-earth-400 w-full font-body [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              />
             </div>
 
           </form>

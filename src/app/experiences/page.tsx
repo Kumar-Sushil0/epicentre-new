@@ -2,7 +2,7 @@
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import ExperiencesIntro from "../components/experiences/ExperiencesIntro";
+import ExperiencesHero from "../components/experiences/ExperiencesHero";
 import CarouselCard from "../components/CarouselCard";
 import ClosingSection from "../components/ClosingSection";
 
@@ -223,11 +223,9 @@ export default function ExperiencesPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-earth-900 text-earth-100 pt-[72px]">
+    <main className="min-h-screen bg-earth-900 text-earth-100  ">
       <Header />
-      <div className="flex-1 w-full max-w-[1280px] mx-auto px-6 lg:px-8 py-12 md:py-20">
-        <ExperiencesIntro />
-      </div>
+      <ExperiencesHero />
       <div className="flex-1 w-full max-w-[1400px] mx-auto px-6 lg:px-8 py-12 md:py-10 pb-32">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 align-top">
           {experiences.map((exp, index) => (

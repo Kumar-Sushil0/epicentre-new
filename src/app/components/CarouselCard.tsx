@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export interface CarouselCardProps {
     title: string;
@@ -12,6 +13,7 @@ export interface CarouselCardProps {
     category?: string;
     price?: string;
     userCount?: string | number;
+    href?: string;
 }
 
 export default function CarouselCard({
@@ -23,6 +25,7 @@ export default function CarouselCard({
     category,
     price,
     userCount,
+    href,
 }: CarouselCardProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
@@ -65,10 +68,10 @@ export default function CarouselCard({
         return () => clearInterval(interval);
     }, [shouldShowHoverState, images.length]);
 
-    return (
+    const CardContent = (
         <div
             ref={cardRef}
-            className={`group relative aspect-[5/6] overflow-hidden bg-gold-500 border border-earth-800/50 shadow-xl ${className}`}
+            className={`group relative aspect-[5/6] overflow-hidden bg-gold-500 border border-earth-800/50 shadow-xl rounded-[10px] ${className} ${href ? 'cursor-pointer' : ''}`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
@@ -174,4 +177,10 @@ export default function CarouselCard({
             </div>
         </div>
     );
+
+    if (href) {
+        return <Link href={href}>{CardContent}</Link>;
+    }
+
+    return CardContent;
 }

@@ -12,7 +12,7 @@ import ResidencyMobileBooking from "../../components/residency/details/Residency
 
 export default function ResidencyDetailsPage() {
   return (
-    <main className="bg-earth-900 text-earth-100 pt-[72px]">
+    <main className="bg-earth-900 text-earth-100  ">
       <Header />
       <ResidencyDetailsHero />
       <div className="bg-earth-900 min-h-screen">

@@ -25,7 +25,7 @@ export default function AboutVision() {
           href="/bookings"
           className="group relative inline-flex items-center gap-4 bg-transparent border border-gold-500 text-gold-500 px-12 py-5 rounded-full text-sm font-bold uppercase tracking-[0.2em] transition-all hover:bg-gold-500 hover:text-earth-950 hover:px-14"
         >
-          Begin The Journey
+          Book Now
           <span className="material-symbols-outlined text-xl transition-transform group-hover:translate-x-1">arrow_forward</span>
         </Link>
       </div>

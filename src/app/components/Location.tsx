@@ -5,9 +5,10 @@ export default function Location() {
     <section className="py-8 min-h-[100vh] bg-earth-900 flex items-center" id="location">
       <div className="w-full px-16">
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Quicksand, sans-serif' }}>How to Get Here</h2>
+          <h2 className="text-3xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Quicksand, sans-serif' }}>Location</h2>
           <p className="text-earth-300 max-w-full font-body">
-            Set away from speed, close enough to arrive. The journey marks the shift from movement to stillness.
+            Set away from speed, close enough to arrive.<br />
+            The journey marks the shift from movement to stillness.
           </p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">

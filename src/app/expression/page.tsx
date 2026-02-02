@@ -71,7 +71,7 @@ export default function ExpressionPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-earth-900 text-earth-100 pt-[72px]">
+    <main className="min-h-screen bg-earth-900 text-earth-100">
       <Header />
       <ExpressionHero />
       <div className="bg-earth-900 px-4 lg:px-20 py-10 pb-40">
@@ -83,6 +83,7 @@ export default function ExpressionPage() {
               description={pillar.description}
               images={pillar.images}
               icon={pillar.icon}
+              href={`/expression/details?id=${pillar.title.toLowerCase().replace(/\s+/g, '-')}`}
             />
           ))}
         </div>

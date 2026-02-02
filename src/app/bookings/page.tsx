@@ -21,99 +21,289 @@ interface BookingItem {
 
 // --- Data ---
 const BOOKING_ITEMS: BookingItem[] = [
+  // FREE TOUR
+  {
+    id: "free-tour",
+    category: "activities",
+    name: "Free Tour",
+    description: "Complimentary guided tour",
+    price: 0,
+    priceDisplay: "Free",
+    image: "/logo.png",
+  },
   // STAY
   {
-    id: "private-suite",
+    id: "private-room",
     category: "stay",
-    name: "Private Suite",
-    description: "A secluded haven with en-suite bath and meditation corner.",
+    name: "Private Room",
+    description: "A fully private space for withdrawal and rest. Designed to remove interruption and external signal.",
     price: 240,
     priceDisplay: "$240 / night",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC4c2esblA2WTSLGnJggkH8HcbsHqpD55k1MjTL3IU0qt07Xs0eHzpHSY2LVkEaAPuI97qDKpLqA4S35v5t4riOcz3QjaMWKWwm_Lrmde8eomWn_XjRaF0H9R3mJPESdh4HFSBtryt57pIA642QoDopq0O4EtjIgjNtwHfy8aRJqVZgbCDEPiMlrTF9hHWA6Ffw1SHYiExGfLptuWMJVXRis9LVo6cHMlDBhiAXRteyM5LRVm1JpiAXW6leqTvko8i4EvPHqDuhVkCD",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDYw7zjjT1NTlSOYdFEp7-uHq0qYu0sfT6aUZMNM2ORSddAkOWotjiQuOXDlF61wyE24VSml-mENINPvgit4PMfWpZeH50NPc447sj25Lb9x3TaeBlPSU7wzYuj_9FCg7AibVjCYClPjUH2RnhsG5KEnMzj-HCgJ18Ml3AHQNFqX4nT-CvUDLtna6318BHSz60gSYsF_rolGCK_gpSLX0f4X7YWlq7PTgefwlFaLqlmddEb47Kk1ikXrmPgfcWjrQbX7yn5wzA--zcc",
   },
   {
-    id: "sanctuary-dorm",
+    id: "dark-room",
     category: "stay",
-    name: "Sanctuary Dorm",
-    description: "Shared space designed for community and quiet connection.",
+    name: "Complete Darkness",
+    description: "A fully light-sealed space designed for extended stillness and sensory withdrawal.",
+    price: 200,
+    priceDisplay: "$200 / night",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDYw7zjjT1NTlSOYdFEp7-uHq0qYu0sfT6aUZMNM2ORSddAkOWotjiQuOXDlF61wyE24VSml-mENINPvgit4PMfWpZeH50NPc447sj25Lb9x3TaeBlPSU7wzYuj_9FCg7AibVjCYClPjUH2RnhsG5KEnMzj-HCgJ18Ml3AHQNFqX4nT-CvUDLtna6318BHSz60gSYsF_rolGCK_gpSLX0f4X7YWlq7PTgefwlFaLqlmddEb47Kk1ikXrmPgfcWjrQbX7yn5wzA--zcc",
+  },
+  {
+    id: "shared-dorm",
+    category: "stay",
+    name: "Shared Dorm",
+    description: "Shared sleeping with clear boundaries. Built for quiet coexistence rather than interaction.",
     price: 85,
     priceDisplay: "$85 / night",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDK51VTYsLiSPPEo4h3qzXLiuZJfL0WpGzAgs0lcGxEaAbGIJkCJlwdwcjYEQ2HHIaoOmaykU0h5lKwRw3RDlKHlhILkWYmGHjigcVlYYKB9gMdR8r7DfkhlhAZA1sQ41_C0DrozY4AAXgSoYmt6kX_hXMKP5tOHqSKZ0G4BmaygCCZVXcLK7yBxZrkNpIeFWs1SSWfYm7yqQLXLglBkotXfEwUz0FBbEn86-fVtB2E3QxiBvdim_z8fjYJf8RRZVqFRtPGUCAPRqki",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAd0MrUgxtI24ctYnNVK7t_0ipeTTqmWsJCLm5cpM9SR9eaqccitEqKNUHpiTcRy5_Reud0UU-OZvZFRwaKjCVFUxCCcr5x80ezOMsIk6ZYNAp5-rcQc65w_rIijqQ2xI_DTUrmhpSLXFkH-PJ7tC7F1e1CzGWzy00PXwmWLXC-UqJ9bg6TQfqN1eqg1OkF_v17JlAL4MB-EajLCUR26TuPjjyYiFzsiW8GD6zQrVwkgD66Kefyszm0kHtCfGkNkqLkrYKMViUchwie",
   },
   {
-    id: "nature-tent",
+    id: "minimalist-tent",
     category: "stay",
-    name: "Nature Tent",
-    description: "Immerse yourself in nature. Premium canvas tents.",
+    name: "Minimalist Tents",
+    description: "Sleeping closer to land and weather. Minimal shelter that prioritizes presence over comfort.",
     price: 120,
     priceDisplay: "$120 / night",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAKiorJYxFK27x8_8uE97ChYGYGujzlbm6leUe4xRKRk9AdqfnEZydtKMvVGBwJSStOGlefCmx9Y6h_T4FmaRMyHubdNpGq0D7hGrw9-fW4OCbKj-SuwwwOIXbAo4fJRlyqqv0JHzK3GmV-KbdO_dK64qPUtxBEfiFD4Hxu0C7IskU4YbhBiaTRVhkWCF00NtchDafnvgiNYkTgriv4pXLiQkMnF0ThShROuc00riNixgOkVojPbKb7Fs2vD1ntD4FYjk0f8p0aGx7V",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuATOA-7cEFkRwrPfO1Yi_GsWajtQm9kjP7vPcdoMkklExVYKXq1iHwHSN46TT9UzGXZ2GSvZNBTB1p-eMuuUvXuyuTueNOFBENS8jqs4my9pGxB5vcyr7x9voKTIRePCWmgmZr5a4WBdtkSTU9GmvHrQnQEscuZ9JMvgYXNAi22rrvPBBd93C8N_mao7s6WAkTydpuvYyx_ygEtCYiiCq2O0dMsBGO3LlMAosUfSCTq_BUAbUojIr8PTfDo-3Pec-w-I7ddy4UoeU12",
+  },
+  {
+    id: "community-hall",
+    category: "stay",
+    name: "Community Hall",
+    description: "A shared indoor space for reading, reflection, and quiet time. Not intended for sleeping.",
+    price: 50,
+    priceDisplay: "$50 / night",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB0W9yJw8axjF-kN3nS3rx2wcnSyZDgPPr4N6-dQHkur_vVcYF7VJDVWzdTVlXQINnv8OPubPGsP93vzoZSB1siyf5Dfyl4VbjsiDfThEFh4mCXDJb2-Q3XzsQ-yKSgt_d9eFJgNilz-sF-0wpPmMdd_1eUEJmyZqiPXLW-gBggW1zAzs7-S96DxPtCF5pg4bxnbJGHsTOiNtH_b3S1jWkXeIxnAOQavLlixwoNfkJe-ZzbvSK4qZMGzvYZFscIPgABiVcKzflo9wUo",
   },
   // WELLNESS
   {
-    id: "ayurveda-massage",
+    id: "physical-training",
     category: "wellness",
-    name: "Ayurvedic Massage",
-    description: "Traditional healing massage.",
-    price: 90,
-    priceDisplay: "$90 / session",
-    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1000&q=80",
-  },
-  {
-    id: "yoga-session",
-    category: "wellness",
-    name: "Private Yoga",
-    description: "One-on-one yoga alignment.",
+    name: "Self-Paced Physical Training",
+    description: "Quiet movement without mirrors or metrics. Strength and exertion on your own terms.",
     price: 50,
     priceDisplay: "$50 / session",
-    image: "https://images.unsplash.com/photo-1599447421416-64135deaa2fa?auto=format&fit=crop&w=1000&q=80",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAG8sRV16GeDF6s3Aix4GpETZ3eauYTdeaL5IlWaBQHdmLaEUl8HwITF-icK7rBJH3rs4_eyRc0OnTyudHniz8NCe3oRC2k5_KcTRLReqJdws9zmY25stjYSrFvYvnbb4fxetbYlgcqCJDWwMaBr_6UB09wT864MpT6mLPkqnqxG3JPy_DNNFOMUqcmW8iZWOE4etCbj4TW4EEkBzJss4y7vWzlNmUWjLyUiZaka0GRqyef8OxRV6v8-KYfO5Y2EoBHFW0f3nVZFV6T",
+  },
+  {
+    id: "kayaking-cycling",
+    category: "wellness",
+    name: "Outdoor Kayaking & Cycling",
+    description: "Movement through land and water. No routes, no destinations, no urgency.",
+    price: 75,
+    priceDisplay: "$75 / session",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBs-hb7o4jNTYxKGveJrfp7t9OjuheyFrl6975031WiGmob3tmuoKzo9e2Gi5gfjM2WmcObIeJRsPLgmRU5lBfL7W78uunGYn_oc94_vQrdsZ1BjmCDRi9ZxSTde7PluowM0B9IEifnGvy1rLS3ysNmjoRiMZS8YRu_xL2Xp4IpulOke15P3reMJbLN2dYFGAbVe9q8f6FFx6X_KZoJ7O_EJvbTRGc45bGfCOWnlsHH2_6uy6yvEum6rEOuMrf4jW3NfWk49g1EY9L5",
+  },
+  {
+    id: "yoga-meditation",
+    category: "wellness",
+    name: "Yoga & Meditation",
+    description: "Low-light spaces for stillness and breath. Self-led, informal, and unstructured.",
+    price: 40,
+    priceDisplay: "$40 / session",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBpZOvr0qjgBHYFzGTiTaPYUUfxtRTTng4Mwyz1Y1DWNZJ_1bIkfqJ3exaDYGFmGQH0kEFlJ--2x9K7P2_gWe-POWZpboure-tmEfUlOPBXEahy3y3fJM4Yf1VShZ5WCMnIOQRgohRnU1MHh9dBz_RMPXnR6lgAzzpCeWWqxfY1jj5rO29e1v-so6AiyI_-y3kx2qdK_n4hThx3ugUPOZty1UBFhhmRzm7Lds78A7DSjpxT19FH5wa-UqsVvRcWUBB5wtZ4-NGFFouA",
+  },
+  {
+    id: "board-games",
+    category: "wellness",
+    name: "Leisure & Board Games",
+    description: "Analog play without competition. Easy to begin, easy to leave.",
+    price: 20,
+    priceDisplay: "$20 / session",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDpLgNIXCBBA7cPpXwO9csLOqZrHsSadnHbb7Q-s24LEXvnrtHwATVxM-rgQthaw7HXT23Wv2Vj4M0QHf7vMXlnFxVR_3527JHh44DEYoHmp9RAiTjj5UKVQsSpgDXnPAtpKFwBRYkq1brPYGQAyalnn8lw1Ew3ezLh9zoRAIiS58I2gC8YpIP3e3Vx-QSnJvTJzmVneD0Kah0f9YnTcUovk_mk9mNLTdZ2PEgiloIzz1gOrdmvtvnxrXR2idxdg2P4IVZ0jM6IqpKT",
+  },
+  {
+    id: "pet-companionship",
+    category: "wellness",
+    name: "Companionship & Pet Friendly",
+    description: "Shared presence with animals. Calm, grounding, and uncomplicated.",
+    price: 30,
+    priceDisplay: "$30 / session",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA2Tpwiek3PonA5i87JcVQ0JysCYWwZeYKjPR00nuxAGlqkrb3Oc2Y76BPK5eoukMAJQpiiOpUXSye5KD7z0KrMUhR-VAei7QNfxuEafVCYyoPl2zI3KEil0UkwjxK_l6FhAUKIbZzxXgqDkWh-X6LW5Zh9V0fgppjnWfzsEE9CipCUk-lGo482Uh8fF2rqUczpWgg0hGFp7hIyQClItjfCzoXHDeU1kPzuo9ZBkjj7S1RucpxI27X9fAKm_lGvr_ZxX4o8cU_In7QQ",
+  },
+  {
+    id: "farm-day",
+    category: "wellness",
+    name: "Grounding, A Day at a Farm",
+    description: "Time spent with soil and routine. Hands-on, slow, and without theory.",
+    price: 60,
+    priceDisplay: "$60 / day",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAWhITh0xZYsAlerv6-wQYlJ2lGDb2fA_wBAeP-_GMQIbFan5_10uwImDJBEYxv89qG40jiKmPooOPAuK9VNy0byJTjkmF4qhQWNpG_rIZyaiWljPgYyplu6QhWi4ITpQrmDn--uGE-0y86G3XGlnTx0Szqsk_LMFKI1PoC37grwx7PFmwsXeweFG5cInow3VbwMtmjiHmOpbL1EBaeG9-Ix3LzkGgpXcwBPNvDZuavErPWW1u3mWa2a3qiqIcBhHnodWXLlg5povz0",
   },
   // ACTIVITIES (EXPERIENCES)
   {
-    id: "farm-tour",
+    id: "boat-safari",
     category: "activities",
-    name: "Organic Farm Tour",
-    description: "Learn about permaculture.",
-    price: 30,
-    priceDisplay: "$30 / tour",
-    image: "https://images.unsplash.com/photo-1625246333195-5512a125ff79?auto=format&fit=crop&w=1000&q=80",
+    name: "Boat Safari",
+    description: "Guided movement through water alongside bird life.",
+    price: 12,
+    priceDisplay: "$12 / session",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBzQUBgomUJe6e1OB_6dmTVcgR_GYt5k-UgoretbmfZ_izouiCOaK8YYEWLDt_QTV_ISyTECnULI_O5W2HYPqj6w163bSvDPTOBZHjRl7FljH8xAlUWQIAfo5Eosj0EPZTfwiMtkXcjRL7RThN1FokJa4gSqWamw681YNKmVWdMcKtTZpKktdALEho3axfgg38XvTVTyHnF8634k552ETsVCipetwOV8NQ9ujUeRJusTOeygeyE16mtVKBxnTDmtPIEduKGAtXfTURb",
   },
   {
-    id: "cooking-class",
+    id: "boat-night-safari",
     category: "activities",
-    name: "Satvik Cooking",
-    description: "Cook with fresh ingredients.",
-    price: 65,
-    priceDisplay: "$65 / class",
-    image: "https://images.unsplash.com/photo-1556910103-1c02745a30bf?auto=format&fit=crop&w=1000&q=80",
+    name: "Boat Night Safari",
+    description: "Float slowly under open sky.",
+    price: 12,
+    priceDisplay: "$12 / session",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDRDZ8o-JGgFjqHv3XthGLGz519OyZYTh_sWwcvBjdQQIzolyCXSsUjdTvivWDhmcltlTFvD71iGQr0I77PCKoXLuqGYJ22zlf__h8EMkv791VfiUJnEUc4ykgWQtr9O5EBzFF-MJ07jrYOwEkyg5xEl0X9ayH0rYcb9diiyN68oouAfDUUeOTFPIBjvnYN8xELQ9oCDNI2lBDINuvnt6NQPsVbvR-t4c4gZrshZ1RXGQrACrjJyPGfT62LIZeuaMXegi9fS2KKrZ35",
+  },
+  {
+    id: "grassland-safari",
+    category: "activities",
+    name: "Grassland Safari",
+    description: "Moving through open terrain near wildlife.",
+    price: 60,
+    priceDisplay: "$60 / session",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCL7r_EfdzJXByVkgj8b1NMj-ZAtICOd-7f0nIhoxkQIxwBXH598TGdlFxtN24GiUoEphwYF0zIlhdvgru9oSMfTu9oihv5xP2V32qk72jVhmmMD13Pcuc1s0mmIW9z0PwjwSoqpRfVVjN7zXydMqkaSSiGcvxYcCH0nmyLUFMqAU494-rLxIKe2FG8GvN3X8ki91b9auaQ6g5uK2zpi_NeVNIbCo2enuZdmqIXYer0VC9t9T7g6Bxyw44xX4oXh4-0yrKVSoFNsFSS",
+  },
+  {
+    id: "media-viewing",
+    category: "activities",
+    name: "Media Viewing",
+    description: "Content selected for the moment.",
+    price: 24,
+    priceDisplay: "$24 / session",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAp-yDz8bDOHDgf9xJbj0GvUszs0lHVc4U6p0TXmQLCdZ-dwhnDK6eTIt0Fqm27Qt4eJcpRYgZmPH5c2ok07pIZKm6EFwIWV2HAxf7PPO-nB4ILYwDvkk1P9LlQAzuHl9LHd8EZJz2i_O61QS8QyDfcRjadK3wfoZi1zAnSJMVmkFyGBWO4635QStA8dET3_wdgeBgosK141lBGk7iK8ELekhk349aDocnAmmMG1WCdYKBantBSw7VSeQfYK36scMVJCqV7mmfjDzkL",
+  },
+  {
+    id: "lake-camping",
+    category: "activities",
+    name: "Lake Camping",
+    description: "Staying close to water and weather.",
+    price: 24,
+    priceDisplay: "$24 / night",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDOdeEUhl309Gu2oZN0GhIAVH2l8s3vv94ApUE-B6IGCw9iIvASGUtpseKwR8a41lo7fnjVBtSoxTqXUEaEbfZJMPlRLjrsT3gZ6H_4EcN3OO9WdF-WcJQez51O2kEx4IAtenZ4GV4ZVZtFAjcFZWGtsWzbyB-IVweW31304V3gZAf1pYXeR6Ik-f66OZWQiNAnpe7OXRHn8xea79ZUVoSZNwFLGO46Y2NpGCDqWpP6jrw3m8vznKRCe9U6R2fqNdl40yZkOnKu2ZyL",
+  },
+  {
+    id: "night-safari",
+    category: "activities",
+    name: "Night Safari",
+    description: "Moving through active terrain near wild animals.",
+    price: 60,
+    priceDisplay: "$60 / session",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCE2S4t-k87o3wGZq3teUUbUFBfJH2qACr54qKouo5_6HZkMWtzALctFOFE8XD4ngpfjaOVjy88JHRs5cn_OBpTJsbQgMQSpx70TkgQPSZ7uCSpEXQLC6Qj_Q4jJp7O02aJYeaE3tbYiXEQjlabdBI-sbAVeNv0DGE4hsGS4WoL60uuSFbHq-iQNxF4nG2uTNe9Nqhhe6gw2MF9XcNedUQbzEBoagQm5_9Tkq73LLzuCxBQSIbFcgaF8I7-5JKhpyQa9NcydKPSXmoS",
+  },
+  {
+    id: "sound-immersion",
+    category: "activities",
+    name: "Sound Immersion",
+    description: "Sound held as an environment.",
+    price: 120,
+    priceDisplay: "$120 / session",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBzQUBgomUJe6e1OB_6dmTVcgR_GYt5k-UgoretbmfZ_izouiCOaK8YYEWLDt_QTV_ISyTECnULI_O5W2HYPqj6w163bSvDPTOBZHjRl7FljH8xAlUWQIAfo5Eosj0EPZTfwiMtkXcjRL7RThN1FokJa4gSqWamw681YNKmVWdMcKtTZpKktdALEho3axfgg38XvTVTyHnF8634k552ETsVCipetwOV8NQ9ujUeRJusTOeygeyE16mtVKBxnTDmtPIEduKGAtXfTURb",
+  },
+  {
+    id: "painting",
+    category: "activities",
+    name: "Painting",
+    description: "Bringing color into form without instruction.",
+    price: 6,
+    priceDisplay: "$6 / canvas",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCL7r_EfdzJXByVkgj8b1NMj-ZAtICOd-7f0nIhoxkQIxwBXH598TGdlFxtN24GiUoEphwYF0zIlhdvgru9oSMfTu9oihv5xP2V32qk72jVhmmMD13Pcuc1s0mmIW9z0PwjwSoqpRfVVjN7zXydMqkaSSiGcvxYcCH0nmyLUFMqAU494-rLxIKe2FG8GvN3X8ki91b9auaQ6g5uK2zpi_NeVNIbCo2enuZdmqIXYer0VC9t9T7g6Bxyw44xX4oXh4-0yrKVSoFNsFSS",
+  },
+  {
+    id: "calligraphy",
+    category: "activities",
+    name: "Calligraphy",
+    description: "Giving form to thought through words.",
+    price: 60,
+    priceDisplay: "$60 / session",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDRDZ8o-JGgFjqHv3XthGLGz519OyZYTh_sWwcvBjdQQIzolyCXSsUjdTvivWDhmcltlTFvD71iGQr0I77PCKoXLuqGYJ22zlf__h8EMkv791VfiUJnEUc4ykgWQtr9O5EBzFF-MJ07jrYOwEkyg5xEl0X9ayH0rYcb9diiyN68oouAfDUUeOTFPIBjvnYN8xELQ9oCDNI2lBDINuvnt6NQPsVbvR-t4c4gZrshZ1RXGQrACrjJyPGfT62LIZeuaMXegi9fS2KKrZ35",
+  },
+  {
+    id: "coffee-preparation",
+    category: "activities",
+    name: "Coffee Preparation",
+    description: "Roasting, grinding, and brewing with guided restraint.",
+    price: 60,
+    priceDisplay: "$60 / session",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBzQUBgomUJe6e1OB_6dmTVcgR_GYt5k-UgoretbmfZ_izouiCOaK8YYEWLDt_QTV_ISyTECnULI_O5W2HYPqj6w163bSvDPTOBZHjRl7FljH8xAlUWQIAfo5Eosj0EPZTfwiMtkXcjRL7RThN1FokJa4gSqWamw681YNKmVWdMcKtTZpKktdALEho3axfgg38XvTVTyHnF8634k552ETsVCipetwOV8NQ9ujUeRJusTOeygeyE16mtVKBxnTDmtPIEduKGAtXfTURb",
+  },
+  {
+    id: "pottery",
+    category: "activities",
+    name: "Pottery",
+    description: "Clay shaped under quiet guidance.",
+    price: 60,
+    priceDisplay: "$60 / session",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCL7r_EfdzJXByVkgj8b1NMj-ZAtICOd-7f0nIhoxkQIxwBXH598TGdlFxtN24GiUoEphwYF0zIlhdvgru9oSMfTu9oihv5xP2V32qk72jVhmmMD13Pcuc1s0mmIW9z0PwjwSoqpRfVVjN7zXydMqkaSSiGcvxYcCH0nmyLUFMqAU494-rLxIKe2FG8GvN3X8ki91b9auaQ6g5uK2zpi_NeVNIbCo2enuZdmqIXYer0VC9t9T7g6Bxyw44xX4oXh4-0yrKVSoFNsFSS",
+  },
+  {
+    id: "rock-balancing",
+    category: "activities",
+    name: "Rock Balancing",
+    description: "Guided balancing of stones without goal.",
+    price: 60,
+    priceDisplay: "$60 / session",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDOdeEUhl309Gu2oZN0GhIAVH2l8s3vv94ApUE-B6IGCw9iIvASGUtpseKwR8a41lo7fnjVBtSoxTqXUEaEbfZJMPlRLjrsT3gZ6H_4EcN3OO9WdF-WcJQez51O2kEx4IAtenZ4GV4ZVZtFAjcFZWGtsWzbyB-IVweW31304V3gZAf1pYXeR6Ik-f66OZWQiNAnpe7OXRHn8xea79ZUVoSZNwFLGO46Y2NpGCDqWpP6jrw3m8vznKRCe9U6R2fqNdl40yZkOnKu2ZyL",
   },
   // SOLITUDE
   {
-    id: "silent-walk",
+    id: "angling",
     category: "solitude",
-    name: "Guided Silent Walk",
-    description: "A 2-hour guided walk through the bird sanctuary.",
+    name: "Angling",
+    description: "Repetition and still attention. A meditative practice of patience and presence by the water's edge.",
+    price: 35,
+    priceDisplay: "$35 / session",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA0HsBN67MCfII7SFbyoe1CuEbEDrqaYf7kqJpp72tE8oPKovG1zztOo__0OQzzELS2oQ_DGIuO1KS_1IVBucK8qj3FwvhRqbMhDhMbqm1ocMzXlUZu5zJy0ltLGZMhF5nbdxBiOOkVb0CbxNMhe3JUOqBjg4wMOeojwjaZBLtOtIZGd0bfLsFeA9XysJv44KgWPDDw2dfGb8kuCIadFmbgCYe5XTjiZwGX0My_VA7VqMgybDzGRzIgV_DDxQrBvxv58qq8EQmUqBNd",
+  },
+  {
+    id: "bird-watching",
+    category: "solitude",
+    name: "Bird Watching",
+    description: "Looking without pursuit. Soft observation of local wildlife in their natural habitat.",
+    price: 30,
+    priceDisplay: "$30 / session",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDsP2PVMAnzEeQANwyaypvuhQWIt86oMF9re2yM2NG7_BzlSLrJN65CWOxusQWunAJmE3QFO5KI0y_wRzwx06Hf1pN5gjTvHjrhusUKu6KLAiYJdg5UqyuiV3Exg2Gx20sI1_BmDSyvmNahXSAiqdL9jtzB8c6xwHed0IyPo0Bs-jEZouWM4TARhZMON7EHMpCXGgxuD-xj1WpOkwIEH6Q_rSiGChRmBpn5iA7_qxdQcU6lzE12bqOVEBm59P0h2vHi_VoV3OLtsjnM",
+  },
+  {
+    id: "star-gazing",
+    category: "solitude",
+    name: "Star Gazing",
+    description: "Observation without urgency. Reconnecting with the cosmos under our clear, protected night skies.",
     price: 40,
     priceDisplay: "$40 / session",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAhz0wWXU4xS6BdtUrmYdwyCzigduYrRYr-qCYXeK0zWlrvNOLsM3FMEGXX8kTmkhLnks7DhZDzfT0COpi6rQCM_50M_63Se2dqYtm2z5KZqH2e5PbTMNfNtN74k82J77cRkCQfiKirrMuhx6bzxc_e4GDhi0ZNhTobudsMGNM3bLJyFiXVsDOFZk5AyyP-hWPuyZoIAMhxXIkUZq3gxz5TS_aOMt8ZEVZ6t_6gP9caHyNF0-frTThfwxUiN5XqPvklltRv3_VRAtAx",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAfUEFkuPsDcRrwomNpV_HwfuHf9O-A4L4U6MKLljPvLYJJwCUlXXxY2mjgE-er6h_jG_PklBuvKzJnEWMoUJTBEFnfYdbWj0UoS3cNXdzuBn3c88huWQsb9L1tETDwGKjEr-JXTFe2AZ17ij8blc4Ins9QdK95sIdIr8UwQdYwnWrcQj1lZakOp8Ym0eJLoProiY8a7Mgr0ih-iysVaPtnEnXgmXEjcYNY-jgM_8kZIOdBMKHtMR5R46CeAnA6rA3Z00VVJIJkJdLa",
   },
   {
-    id: "meditation-cave",
+    id: "forest-walks",
     category: "solitude",
-    name: "Meditation Cave Access",
-    description: "Exclusive 4-hour access to the underground chamber.",
-    price: 60,
-    priceDisplay: "$60 / block",
-    image: "/noise2.png",
+    name: "Forest Walks",
+    description: "Walking without destination or goal. Let your feet guide you through the ancient woods.",
+    price: 25,
+    priceDisplay: "$25 / session",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBS-7ETT0Y8bS144cz6202eGntk2MphbdlmHEt8WqWvWfiBzm80K29cumWX7SRpzNPBWVx2KCkjnZWjF6sj9NpVOCPtk688LcjR8EWa7w8VCQYsrQGbylEBhILeQ9KeZORxLzYKw_VlTgyoibONM9Epoo4FkKSfhEknTxMEh1F1TcoYX9LQ0WLW-IiFj1WOAwKKbs28Kmd6eLeVvQfDyupUltNoBBnP8j96m928ssFCgnjjZBtATZI7UDeYYqKukLbDQoQ68yqdfCCK",
   },
   {
-    id: "dark-retreat",
+    id: "triathlon-training",
     category: "solitude",
-    name: "Dark Retreat Experience",
-    description: "A profound experience of complete darkness for 24 hours.",
-    price: 150,
-    priceDisplay: "$150 / day",
-    image: "/noise.png",
+    name: "Triathlon Training",
+    description: "Push your limits across three disciplines. A comprehensive practice of swimming, cycling, and running.",
+    price: 80,
+    priceDisplay: "$80 / session",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBS-7ETT0Y8bS144cz6202eGntk2MphbdlmHEt8WqWvWfiBzm80K29cumWX7SRpzNPBWVx2KCkjnZWjF6sj9NpVOCPtk688LcjR8EWa7w8VCQYsrQGbylEBhILeQ9KeZORxLzYKw_VlTgyoibONM9Epoo4FkKSfhEknTxMEh1F1TcoYX9LQ0WLW-IiFj1WOAwKKbs28Kmd6eLeVvQfDyupUltNoBBnP8j96m928ssFCgnjjZBtATZI7UDeYYqKukLbDQoQ68yqdfCCK",
+  },
+  {
+    id: "awareness-of-breath",
+    category: "solitude",
+    name: "Awareness of Breath",
+    description: "Return to the most fundamental rhythm. A practice of conscious breathing that anchors you in the present.",
+    price: 20,
+    priceDisplay: "$20 / session",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA0HsBN67MCfII7SFbyoe1CuEbEDrqaYf7kqJpp72tE8oPKovG1zztOo__0OQzzELS2oQ_DGIuO1KS_1IVBucK8qj3FwvhRqbMhDhMbqm1ocMzXlUZu5zJy0ltLGZMhF5nbdxBiOOkVb0CbxNMhe3JUOqBjg4wMOeojwjaZBLtOtIZGd0bfLsFeA9XysJv44KgWPDDw2dfGb8kuCIadFmbgCYe5XTjiZwGX0My_VA7VqMgybDzGRzIgV_DDxQrBvxv58qq8EQmUqBNd",
+  },
+  {
+    id: "fascia-system",
+    category: "solitude",
+    name: "The Fascia System",
+    description: "Intense myofascial release through movement and pressure. A practice that targets deep connective tissue.",
+    price: 55,
+    priceDisplay: "$55 / session",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDsP2PVMAnzEeQANwyaypvuhQWIt86oMF9re2yM2NG7_BzlSLrJN65CWOxusQWunAJmE3QFO5KI0y_wRzwx06Hf1pN5gjTvHjrhusUKu6KLAiYJdg5UqyuiV3Exg2Gx20sI1_BmDSyvmNahXSAiqdL9jtzB8c6xwHed0IyPo0Bs-jEZouWM4TARhZMON7EHMpCXGgxuD-xj1WpOkwIEH6Q_rSiGChRmBpn5iA7_qxdQcU6lzE12bqOVEBm59P0h2vHi_VoV3OLtsjnM",
   },
   // EXPRESSION
   {
@@ -306,7 +496,7 @@ export default function BookingsPage() {
     <main className="min-h-screen bg-earth-950 text-earth-100 flex flex-col">
       <Header />
 
-      <div className="flex-grow pt-[72px] flex flex-col lg:flex-row-reverse relative">
+      <div className="flex-grow   flex flex-col lg:flex-row-reverse relative">
 
         {/* RIGHT SIDEBAR (Summary) */}
         <aside className="lg:w-[380px] lg:h-[calc(100vh-72px)] lg:sticky lg:top-[72px] bg-earth-900 border-b lg:border-b-0 lg:border-l border-earth-800 flex flex-col z-30 shadow-2xl shrink-0">
@@ -315,7 +505,7 @@ export default function BookingsPage() {
             <p className="text-earth-300/60 text-xs font-body">Review selected items.</p>
           </div>
 
-          <div className="flex-grow overflow-y-auto p-4 space-y-3 custom-scrollbar-hide">
+          <div className="flex-grow overflow-y-auto p-4 space-y-3 max-h-[calc(100vh-72px-140px-100px)]" style={{ scrollbarWidth: 'thin', scrollbarColor: '#3d3d2e #1a1a14' }} data-lenis-prevent>
             {cart.length === 0 ? (
               <div className="text-center py-12 border border-dashed border-earth-800/50 rounded-lg">
                 <p className="text-earth-300/40 text-sm">No items selected.</p>
@@ -372,6 +562,43 @@ export default function BookingsPage() {
 
             <div className="mb-12">
               <BookingForm />
+            </div>
+
+            {/* Book a Free Tour */}
+            <div className="mb-8">
+              <div className="border border-earth-800 rounded-lg bg-earth-900/20 overflow-hidden">
+                <div
+                  onClick={() => toggleItem('free-tour')}
+                  className={`group flex items-center justify-between p-6 hover:bg-earth-900/40 cursor-pointer transition-all duration-200 relative overflow-hidden ${isInCart('free-tour') ? 'bg-earth-900/90 border-l-[3px] border-l-gold-500' : 'border-l-[3px] border-l-transparent'}`}
+                >
+                  {/* Hover Glow Effect */}
+                  <div className="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+
+                  {/* Left: Title & Subtitle */}
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-2 mb-1">
+                      {isInCart('free-tour') && <span className="material-symbols-outlined text-gold-500 text-sm">check_circle</span>}
+                      <h2 className={`text-xl font-serif transition-colors ${isInCart('free-tour') ? 'text-gold-500' : 'text-earth-50'}`} style={{ fontFamily: 'Trirong, serif' }}>00. Free Tour</h2>
+                    </div>
+                    <p className="text-xs text-earth-300/50 font-body">Book a complimentary tour</p>
+                  </div>
+
+                  {/* Right: Price & Button */}
+                  <div className="flex items-center gap-4 relative z-10">
+                    <span className={`text-sm font-mono whitespace-nowrap transition-colors ${isInCart('free-tour') ? 'text-gold-500 font-bold' : 'text-earth-400 group-hover:text-gold-400'}`}>Free</span>
+                    <button
+                      className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all shrink-0 ${isInCart('free-tour')
+                        ? "bg-gold-500 border-gold-500 text-earth-950 shadow-[0_0_15px_rgba(197,160,101,0.4)] scale-105"
+                        : "border-earth-700 text-earth-500 group-hover:border-gold-500 group-hover:text-gold-500 bg-earth-950/50 hover:bg-earth-900"
+                        }`}
+                    >
+                      <span className="material-symbols-outlined text-lg font-bold">
+                        {isInCart('free-tour') ? "remove" : "add"}
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="space-y-6">

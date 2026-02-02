@@ -130,7 +130,7 @@ export default function SolitudePage() {
   ];
 
   return (
-    <main className="min-h-screen bg-earth-900 text-earth-100 pt-[72px]">
+    <main className="min-h-screen bg-earth-900 text-earth-100  ">
       <Header />
       <SolitudeHero />
       <div className="bg-earth-900 px-4 lg:px-20 py-10 pb-40">
@@ -143,6 +143,7 @@ export default function SolitudePage() {
               images={practice.images}
               category={practice.category}
               icon={practice.buttonIcon}
+              href={`/solitude/details?id=${practice.practiceId}`}
             />
           ))}
         </div>

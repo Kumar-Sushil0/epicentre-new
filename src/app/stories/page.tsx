@@ -133,7 +133,7 @@ export default function StoriesPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-earth-900 text-earth-100 pt-[72px]">
+    <main className="min-h-screen bg-earth-900 text-earth-100  ">
       <Header />
       <StoriesHero />
       <StoriesCategoryNav />
