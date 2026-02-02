@@ -6,10 +6,28 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEventCalendar } from "../contexts/EventCalendarContext";
 
+// Navigation images mapping
+const navImages: Record<string, string> = {
+  "/": "/banner.png",
+  "/about-us": "/dd.jpeg",
+  "/rooms": "/person1.jpg",
+  "/venue": "/person2.jpg",
+  "/blogs": "/person3.jpg",
+  "/wellness": "/person4.jpg",
+  "/experiences": "/banner.jpg",
+  "/solitude": "/foot.png",
+  "/expression": "/logohor.png",
+  "/residency": "/logover.png",
+};
+
 export default function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isExperiencesOpen, setIsExperiencesOpen] = useState(false);
+  const [hoveredImage, setHoveredImage] = useState<string | null>(null);
+  const [displayedImage, setDisplayedImage] = useState<string | null>(null);
+  const [imageOpacity, setImageOpacity] = useState(1);
   const { openCalendar } = useEventCalendar();
 
   // Detect scroll for background change
@@ -23,7 +41,47 @@ export default function Header() {
   // Close menu on route change
   useEffect(() => {
     setIsMenuOpen(false);
+    setIsExperiencesOpen(false);
+    setHoveredImage(null);
   }, [pathname]);
+
+  // Set initial image to current page when menu opens
+  useEffect(() => {
+    if (isMenuOpen) {
+      setDisplayedImage(pathname);
+      setImageOpacity(1);
+    }
+  }, [isMenuOpen, pathname]);
+
+  // Handle image transitions with fade effect
+  useEffect(() => {
+    const targetImage = hoveredImage || pathname;
+    
+    if (targetImage !== displayedImage) {
+      // Fade out
+      setImageOpacity(0);
+      
+      // Wait for fade out, then change image and fade in
+      const timer = setTimeout(() => {
+        setDisplayedImage(targetImage);
+        setImageOpacity(1);
+      }, 200); // 200ms fade out duration
+      
+      return () => clearTimeout(timer);
+    }
+  }, [hoveredImage, pathname, displayedImage]);
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMenuOpen]);
 
   const isActive = (path: string) => {
     if (path === "/") return pathname === "/";
@@ -48,65 +106,6 @@ export default function Header() {
             </span>
           </button>
 
-          {/* POPUP NAVIGATION MENU (Horizontal Row) */}
-          {isMenuOpen && (
-            <nav className="absolute top-1/2 -translate-y-1/2 left-[70px] bg-[#0a0a05]/90 backdrop-blur-xl border border-earth-800/60 rounded-full px-8 py-2 md:py-3 shadow-2xl z-50 flex items-center gap-6 md:gap-8 transform origin-left animate-in slide-in-from-left-4 fade-in duration-200">
-
-              <Link href="/" onClick={() => setIsMenuOpen(false)} className={`text-sm md:text-base font-medium transition-colors whitespace-nowrap ${isActive("/") && pathname === "/" ? "text-gold-500 font-bold" : "text-earth-200 hover:text-gold-500"}`}>
-                Home
-              </Link>
-
-              <Link href="/about-us" onClick={() => setIsMenuOpen(false)} className={`text-sm md:text-base font-medium transition-colors whitespace-nowrap ${isActive("/about-us") ? "text-gold-500 font-bold" : "text-earth-200 hover:text-gold-500"}`}>
-                About
-              </Link>
-
-              <button onClick={() => { openCalendar(); setIsMenuOpen(false); }} className="text-earth-200 hover:text-gold-500 text-sm md:text-base font-medium transition-colors whitespace-nowrap">
-                Events
-              </button>
-
-              <Link href="/rooms" onClick={() => setIsMenuOpen(false)} className={`text-sm md:text-base font-medium transition-colors whitespace-nowrap ${isActive("/rooms") ? "text-gold-500 font-bold" : "text-earth-200 hover:text-gold-500"}`}>
-                Stays
-              </Link>
-
-              <Link href="/venue" onClick={() => setIsMenuOpen(false)} className={`text-sm md:text-base font-medium transition-colors whitespace-nowrap ${isActive("/venue") ? "text-gold-500 font-bold" : "text-earth-200 hover:text-gold-500"}`}>
-                Venue
-              </Link>
-
-              <Link href="/blogs" onClick={() => setIsMenuOpen(false)} className={`text-sm md:text-base font-medium transition-colors whitespace-nowrap ${isActive("/blogs") ? "text-gold-500 font-bold" : "text-earth-200 hover:text-gold-500"}`}>
-                Blogs
-              </Link>
-
-              {/* Experiences Dropdown */}
-              <div className="relative group">
-                <button className={`flex items-center gap-1 text-sm md:text-base font-medium transition-colors whitespace-nowrap ${isExperiencesActive ? "text-gold-500" : "text-earth-200 group-hover:text-gold-500"}`}>
-                  Experiences
-                  <span className="material-symbols-outlined text-sm transition-transform group-hover:rotate-180">expand_more</span>
-                </button>
-
-                {/* Dropdown Menu */}
-                <div className="absolute top-full right-0 md:left-0 md:right-auto mt-4 w-48 bg-[#0a0a05]/95 backdrop-blur-xl border border-earth-800/60 rounded-xl p-2 hidden group-hover:block shadow-xl flex flex-col gap-1">
-                  {[
-                    { name: "Wellness", path: "/wellness" },
-                    { name: "Activities", path: "/experiences" },
-                    { name: "Solitude", path: "/solitude" },
-                    { name: "Expression", path: "/expression" },
-                    { name: "Residency", path: "/residency" }
-                  ].map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.path}
-                      onClick={() => setIsMenuOpen(false)}
-                      className={`px-3 py-2 rounded-lg text-sm block transition-all ${isActive(item.path) ? "bg-earth-900/50 text-gold-500" : "text-earth-300 hover:text-earth-100 hover:bg-earth-900/50"}`}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-            </nav>
-          )}
-
           {/* CENTER: Logo */}
           <Link href="/" className="absolute left-1/2 transform -translate-x-1/2 h-[56px] w-32 flex items-center justify-center">
             <Image
@@ -122,7 +121,7 @@ export default function Header() {
           {/* RIGHT: Booking CTA */}
           <Link
             href="/bookings"
-            className="hidden md:inline-flex items-center justify-center bg-transparent  text-gold-500 hover:bg-gold-500 hover:text-earth-950 font-bold py-2 rounded-full text-sm uppercase tracking-wider transition-all"
+            className="hidden md:inline-flex items-center justify-center bg-transparent text-gold-500 hover:bg-gold-500 hover:text-earth-950 font-bold py-2 rounded-full text-sm uppercase tracking-wider transition-all"
           >
             Book Now
           </Link>
@@ -136,13 +135,230 @@ export default function Header() {
         </div>
       </header>
 
-      {/* CLICK OUTSIDE OVERLAY (Invisible) */}
+      {/* SIDEBAR OVERLAY */}
       {isMenuOpen && (
         <div
-          className="fixed inset-0 z-40 bg-transparent"
+          className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300"
           onClick={() => setIsMenuOpen(false)}
         />
       )}
+
+      {/* LEFT SIDEBAR NAVIGATION */}
+      <aside
+        className={`fixed top-0 left-0 h-full w-[50vw] bg-[#0a0a05]/95 backdrop-blur-xl border-r border-earth-800/60 z-50 transform transition-transform duration-300 ease-in-out ${
+          isMenuOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        <div className="flex flex-col h-full">
+          {/* Sidebar Header */}
+          <div className="flex items-center justify-between px-8 py-8 border-b border-earth-800/50">
+            <h2 className="text-xl font-bold text-gold-500" style={{ fontFamily: 'Quicksand, sans-serif' }}>Menu</h2>
+            <button
+              onClick={() => setIsMenuOpen(false)}
+              className="w-10 h-10 flex items-center justify-center text-gold-500 hover:text-gold-400 transition-colors"
+              aria-label="Close Menu"
+            >
+              <span className="material-symbols-outlined text-3xl">close</span>
+            </button>
+          </div>
+
+          {/* Navigation Links */}
+          <nav className="flex-1 overflow-y-auto px-8 py-6">
+            <ul className="space-y-2">
+              <li>
+                <Link
+                  href="/"
+                  onClick={() => setIsMenuOpen(false)}
+                  onMouseEnter={() => setHoveredImage("/")}
+                  onMouseLeave={() => setHoveredImage(null)}
+                  className={`block px-4 py-3 rounded-lg text-base font-medium transition-all ${
+                    isActive("/") && pathname === "/"
+                      ? "bg-gold-500/10 text-gold-500 border-l-4 border-gold-500"
+                      : "text-earth-200 hover:text-gold-500 hover:bg-earth-900/30"
+                  }`}
+                >
+                  Home
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/about-us"
+                  onClick={() => setIsMenuOpen(false)}
+                  onMouseEnter={() => setHoveredImage("/about-us")}
+                  onMouseLeave={() => setHoveredImage(null)}
+                  className={`block px-4 py-3 rounded-lg text-base font-medium transition-all ${
+                    isActive("/about-us")
+                      ? "bg-gold-500/10 text-gold-500 border-l-4 border-gold-500"
+                      : "text-earth-200 hover:text-gold-500 hover:bg-earth-900/30"
+                  }`}
+                >
+                  About
+                </Link>
+              </li>
+
+              <li>
+                <button
+                  onClick={() => {
+                    openCalendar();
+                    setIsMenuOpen(false);
+                  }}
+                  className="w-full text-left block px-4 py-3 rounded-lg text-base font-medium text-earth-200 hover:text-gold-500 hover:bg-earth-900/30 transition-all"
+                >
+                  Events
+                </button>
+              </li>
+
+              <li>
+                <Link
+                  href="/rooms"
+                  onClick={() => setIsMenuOpen(false)}
+                  onMouseEnter={() => setHoveredImage("/rooms")}
+                  onMouseLeave={() => setHoveredImage(null)}
+                  className={`block px-4 py-3 rounded-lg text-base font-medium transition-all ${
+                    isActive("/rooms")
+                      ? "bg-gold-500/10 text-gold-500 border-l-4 border-gold-500"
+                      : "text-earth-200 hover:text-gold-500 hover:bg-earth-900/30"
+                  }`}
+                >
+                  Stays
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/venue"
+                  onClick={() => setIsMenuOpen(false)}
+                  onMouseEnter={() => setHoveredImage("/venue")}
+                  onMouseLeave={() => setHoveredImage(null)}
+                  className={`block px-4 py-3 rounded-lg text-base font-medium transition-all ${
+                    isActive("/venue")
+                      ? "bg-gold-500/10 text-gold-500 border-l-4 border-gold-500"
+                      : "text-earth-200 hover:text-gold-500 hover:bg-earth-900/30"
+                  }`}
+                >
+                  Venue
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/blogs"
+                  onClick={() => setIsMenuOpen(false)}
+                  onMouseEnter={() => setHoveredImage("/blogs")}
+                  onMouseLeave={() => setHoveredImage(null)}
+                  className={`block px-4 py-3 rounded-lg text-base font-medium transition-all ${
+                    isActive("/blogs")
+                      ? "bg-gold-500/10 text-gold-500 border-l-4 border-gold-500"
+                      : "text-earth-200 hover:text-gold-500 hover:bg-earth-900/30"
+                  }`}
+                >
+                  Blogs
+                </Link>
+              </li>
+
+              {/* Experiences Expandable Section */}
+              <li>
+                <button
+                  onClick={() => setIsExperiencesOpen(!isExperiencesOpen)}
+                  className={`w-full flex items-center justify-between px-4 py-3 rounded-lg text-base font-medium transition-all ${
+                    isExperiencesActive
+                      ? "bg-gold-500/10 text-gold-500 border-l-4 border-gold-500"
+                      : "text-earth-200 hover:text-gold-500 hover:bg-earth-900/30"
+                  }`}
+                >
+                  <span>Experiences</span>
+                  <span className={`material-symbols-outlined text-xl transition-transform duration-200 ${isExperiencesOpen ? 'rotate-180' : ''}`}>
+                    expand_more
+                  </span>
+                </button>
+
+                {/* Experiences Submenu */}
+                <ul className={`mt-2 ml-4 space-y-1 overflow-hidden transition-all duration-200 ${isExperiencesOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+                  {[
+                    { name: "Wellness", path: "/wellness" },
+                    { name: "Activities", path: "/experiences" },
+                    { name: "Solitude", path: "/solitude" },
+                    { name: "Expression", path: "/expression" },
+                    { name: "Residency", path: "/residency" }
+                  ].map((item) => (
+                    <li key={item.name}>
+                      <Link
+                        href={item.path}
+                        onClick={() => setIsMenuOpen(false)}
+                        onMouseEnter={() => setHoveredImage(item.path)}
+                        onMouseLeave={() => setHoveredImage(null)}
+                        className={`block px-4 py-2 rounded-lg text-sm transition-all ${
+                          isActive(item.path)
+                            ? "bg-earth-900/50 text-gold-500"
+                            : "text-earth-300 hover:text-gold-500 hover:bg-earth-900/30"
+                        }`}
+                      >
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            </ul>
+          </nav>
+
+          {/* Sidebar Footer - Book Now CTA */}
+          <div className="px-8 py-6 border-t border-earth-800/50">
+            <Link
+              href="/bookings"
+              onClick={() => setIsMenuOpen(false)}
+              className="block w-full text-center bg-gold-500 text-earth-950 hover:bg-gold-400 font-bold py-3 rounded-lg text-sm uppercase tracking-wider transition-all"
+            >
+              Book Now
+            </Link>
+          </div>
+        </div>
+      </aside>
+
+      {/* RIGHT SIDEBAR - IMAGE PREVIEW */}
+      <aside
+        className={`fixed top-0 right-0 h-full w-[50vw] bg-[#0a0a05]/95 backdrop-blur-xl border-l border-earth-800/60 z-50 transform transition-transform duration-300 ease-in-out ${
+          isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        <div className="flex flex-col h-full items-center justify-center p-8">
+          {displayedImage && navImages[displayedImage] ? (
+            <div className="relative w-full h-full flex items-center justify-center">
+              <div className="relative w-full h-[80vh] rounded-lg overflow-hidden shadow-2xl">
+                <Image
+                  src={navImages[displayedImage]}
+                  alt="Navigation preview"
+                  fill
+                  className="object-cover"
+                  style={{
+                    opacity: imageOpacity,
+                    transition: 'opacity 200ms ease-in-out'
+                  }}
+                  sizes="50vw"
+                  priority
+                />
+                <div 
+                  className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"
+                  style={{
+                    opacity: imageOpacity,
+                    transition: 'opacity 200ms ease-in-out'
+                  }}
+                />
+              </div>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center text-center space-y-4">
+              <div className="w-24 h-24 rounded-full bg-earth-900/50 flex items-center justify-center">
+                <span className="material-symbols-outlined text-5xl text-gold-500/50">image</span>
+              </div>
+              <p className="text-earth-400 text-lg" style={{ fontFamily: 'Quicksand, sans-serif' }}>
+                Hover over menu items to preview
+              </p>
+            </div>
+          )}
+        </div>
+      </aside>
     </>
   );
 }
