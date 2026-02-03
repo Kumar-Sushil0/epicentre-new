@@ -21,11 +21,11 @@ interface BookingItem {
 
 // --- Data ---
 const BOOKING_ITEMS: BookingItem[] = [
-  // FREE TOUR
+  // The Silent Club Tour
   {
     id: "free-tour",
     category: "activities",
-    name: "Free Tour",
+    name: "The Silent Club Tour",
     description: "Complimentary guided tour",
     price: 0,
     priceDisplay: "Free",
@@ -564,7 +564,7 @@ export default function BookingsPage() {
               <BookingForm />
             </div>
 
-            {/* Book a Free Tour */}
+            {/* Book a The Silent Club Tour */}
             <div className="mb-8">
               <div className="border border-earth-800 rounded-lg bg-earth-900/20 overflow-hidden">
                 <div
@@ -578,7 +578,7 @@ export default function BookingsPage() {
                   <div className="relative z-10">
                     <div className="flex items-center gap-2 mb-1">
                       {isInCart('free-tour') && <span className="material-symbols-outlined text-gold-500 text-sm">check_circle</span>}
-                      <h2 className={`text-xl font-serif transition-colors ${isInCart('free-tour') ? 'text-gold-500' : 'text-earth-50'}`} style={{ fontFamily: 'Outfit, sans-serif' }}>00. Free Tour</h2>
+                      <h2 className={`text-xl font-serif transition-colors ${isInCart('free-tour') ? 'text-gold-500' : 'text-earth-50'}`} style={{ fontFamily: 'Outfit, sans-serif' }}>00. The Silent Club Tour</h2>
                     </div>
                     <p className="text-xs text-earth-300/50 font-body">Book a complimentary tour</p>
                   </div>

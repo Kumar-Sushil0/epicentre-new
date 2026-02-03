@@ -2,36 +2,34 @@
 
 import { useState } from 'react';
 
-type TabKey = 1 | 2 | 3 | 4;
-
 interface ContentItem {
   title: string;
   items: string[];
 }
 
 export default function AboutPhilosophy() {
-  const [activeTab, setActiveTab] = useState<TabKey>(1);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const content: Record<TabKey, ContentItem> = {
-    1: {
+  const content: ContentItem[] = [
+    {
       title: "Why Silence",
       items: [
         "Silence is functional, not aesthetic",
-        "Fewer external signals reveal patterns",
+        "Fewer external signals reveal patterns", 
         "Thought slows, perception sharpens",
         "Decisions surface without pressure"
       ]
     },
-    2: {
+    {
       title: "Why Bhigwan",
       items: [
         "Open land with long horizons",
         "Seasonal rhythm shaped by water",
-        "Naturally low stimulation",
+        "Naturally low stimulation", 
         "Time moves slower here"
       ]
     },
-    3: {
+    {
       title: "Why a Club",
       items: [
         "Entry is voluntary and self-selected",
@@ -40,7 +38,7 @@ export default function AboutPhilosophy() {
         "Belonging is defined by how the space is held"
       ]
     },
-    4: {
+    {
       title: "Why We Experiment",
       items: [
         "The Silent Club is not a fixed model",
@@ -49,44 +47,63 @@ export default function AboutPhilosophy() {
         "Nothing stays unless it earns its place"
       ]
     }
-  };
+  ];
 
   return (
     <section className="relative py-32 px-6 md:px-12 bg-earth-950 border-b border-earth-800">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
-
-          {/* Navigation Column */}
-          <div className="lg:col-span-4 flex flex-row lg:flex-col justify-between lg:justify-start gap-4 lg:gap-8 border-b lg:border-b-0 lg:border-r border-earth-800 pb-8 lg:pb-0 lg:pr-8 overflow-x-auto lg:overflow-visible custom-scrollbar-hide">
-            {[1, 2, 3, 4].map((num) => (
-              <button
-                key={num}
-                onClick={() => setActiveTab(num as TabKey)}
-                className={`text-left group flex items-center gap-4 transition-all duration-300 min-w-max pb-2 lg:pb-0 cursor-pointer ${activeTab === num ? 'opacity-100 translate-x-2' : 'opacity-40 hover:opacity-70'}`}
+        {/* Banner Layout */}
+        <div className="flex flex-col lg:flex-row border border-earth-800 rounded-lg overflow-hidden bg-earth-900/30 relative">
+          
+          {/* Left Box - Titles */}
+          <div className="lg:w-1/2 border-b lg:border-b-0 relative z-10">
+            {content.map((item, index) => (
+              <div
+                key={index}
+                className={`p-4 cursor-pointer transition-all duration-300 ${
+                  index === content.length - 1 && activeIndex !== index ? 'border-b-0' : 'border-b border-earth-800'
+                } ${
+                  activeIndex === index 
+                    ? 'border-t-2 border-l-2 border-b-2 border-gold-500 bg-transparent relative z-20' 
+                    : 'hover:bg-earth-800/50'
+                }`}
+                onMouseEnter={() => setActiveIndex(index)}
+                style={{
+                  marginLeft: activeIndex === index ? '0' : '0',
+                }}
               >
-                <span className={`text-xl font-display ${activeTab === num ? 'text-gold-500' : 'text-earth-300'}`}>0{num}</span>
-                <span className={`text-2xl font-serif hidden lg:block ${activeTab === num ? 'text-earth-100' : 'text-earth-300'}`} style={{ fontFamily: 'Outfit, sans-serif' }}>
-                  {content[num as TabKey].title}
-                </span>
-                <span className={`h-px w-8 bg-gold-500 block lg:hidden ${activeTab === num ? 'opacity-100' : 'opacity-0'}`}></span>
-              </button>
+                <h3 className={`text-lg md:text-xl font-medium leading-tight transition-colors duration-300 ${
+                  activeIndex === index ? 'text-gold-500' : 'text-earth-200'
+                }`} style={{ fontFamily: 'Outfit, sans-serif' }}>
+                  {item.title}
+                </h3>
+              </div>
             ))}
           </div>
 
-          {/* Content Column */}
-          <div className="lg:col-span-8 min-h-[300px]">
-            <div className="animate-in fade-in slide-in-from-right-4 duration-500" key={activeTab}>
-              <h3 className="text-4xl md:text-5xl text-gold-500 font-serif italic mb-12 block lg:hidden" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                {content[activeTab].title}
-              </h3>
-
-              <ul className="space-y-6 mb-16">
-                {content[activeTab].items.map((item, index) => (
-                  <li key={index} className="flex items-start gap-5 group">
-                    {/* Diamond Bullet Point */}
-                    <span className="shrink-0 w-2.5 h-2.5 bg-gold-500 rotate-45 mt-3 group-hover:bg-gold-400 shadow-sm shadow-gold-500/20 transition-all duration-300"></span>
-                    <span className="text-xl md:text-2xl font-light text-earth-100 font-body leading-relaxed">
-                      {item}
+          {/* Right Box - Active Content */}
+          <div className="lg:w-1/2 py-4 pr-4 pl-6 border-t-2 border-r-2 border-b-2 border-gold-500 bg-transparent relative flex items-center">
+            {/* Custom left border with gap */}
+            <div 
+              className="absolute left-0 top-0 w-px bg-gold-500"
+              style={{
+                height: `${(activeIndex) * 25}%`,
+              }}
+            />
+            <div 
+              className="absolute left-0 bottom-0 w-px bg-gold-500"
+              style={{
+                height: `${(3 - activeIndex) * 25}%`,
+              }}
+            />
+            
+            <div className="animate-in fade-in slide-in-from-right-4 duration-300 w-full" key={activeIndex}>
+              <ul className="space-y-3">
+                {content[activeIndex].items.map((point, pointIndex) => (
+                  <li key={pointIndex} className="flex items-start gap-2 group">
+                    <span className="shrink-0 w-1.5 h-1.5 bg-gold-500 rotate-45 mt-1.5 transition-colors duration-300"></span>
+                    <span className="leading-relaxed font-light text-sm" style={{ color: '#e7dfd3' }}>
+                      {point}
                     </span>
                   </li>
                 ))}
