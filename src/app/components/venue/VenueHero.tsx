@@ -1,45 +1,36 @@
 export default function VenueHero() {
   return (
-    <section className="relative w-full h-[60vh] min-h-[500px] flex items-end pb-16 justify-center overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-fixed"
-        style={{
-          backgroundImage: `url("https://lh3.googleusercontent.com/aida-public/AB6AXuDJ8TvSF_6qQYT0sf1Z3QeDGPpedh3fFfoLu0xYEOVs4B-3yAdulyHspPVbw5A_jiNj8YyH-fB6Zrd1At6C_Dpr10Dp0zkPKpZNISmKy6obJPax1cVlyk35I9Je4qtWZQN9XhH-VmJMZXXGgG8x64v4oy9B3vkjNJhb-RZNqem3OaDqxOhIf3z7_TF48J-Km9ipy9oDRORSuxs3foTCuPvAU45bY8Co7UAqKqkWMEFchPTcX2tPhut34xCRmtQ0oyIjX5NCUmxRAaI0")`,
-        }}
-      ></div>
-      <div
-        className="absolute inset-0 z-10"
-        style={{
-          background: "linear-gradient(to bottom, rgba(33, 25, 17, 0.3) 0%, rgba(33, 25, 17, 0.8) 60%, rgba(33, 25, 17, 1) 100%)",
-        }}
-      ></div>
-      <div className="relative z-20 max-w-[960px] w-full px-4 sm:px-10 text-center sm:text-left">
-        <div className="flex flex-col gap-4">
-          <h1 className="text-gold-500 text-3xl md:text-4xl font-black leading-tight tracking-tighter drop-shadow-2xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
-            A setting for gatherings that require focus, quiet, and containment.
+    <section className="relative min-h-screen flex items-end pb-20 overflow-hidden">
+      {/* Background Image with Parallax-like feel */}
+      <div className="absolute inset-0 z-0">
+        <div
+          className="w-full h-full bg-cover bg-center bg-no-repeat transform scale-105"
+          style={{
+            backgroundImage: `url("https://lh3.googleusercontent.com/aida-public/AB6AXuDJ8TvSF_6qQYT0sf1Z3QeDGPpedh3fFfoLu0xYEOVs4B-3yAdulyHspPVbw5A_jiNj8YyH-fB6Zrd1At6C_Dpr10Dp0zkPKpZNISmKy6obJPax1cVlyk35I9Je4qtWZQN9XhH-VmJMZXXGgG8x64v4oy9B3vkjNJhb-RZNqem3OaDqxOhIf3z7_TF48J-Km9ipy9oDRORSuxs3foTCuPvAU45bY8Co7UAqKqkWMEFchPTcX2tPhut34xCRmtQ0oyIjX5NCUmxRAaI0")`,
+          }}
+        ></div>
+        {/* Cinematic Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-earth-950 via-earth-950/40 to-transparent z-10 opacity-90"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-earth-950/80 via-transparent to-transparent z-10"></div>
+      </div>
+
+      {/* Content */}
+      <div className="relative z-20 container mx-auto px-6 max-w-7xl">
+        <div className="max-w-4xl border-l-2 border-gold-500/50 pl-8 md:pl-12 py-4 animate-in slide-in-from-left-4 duration-1000">
+          <h1 className="text-earth-100 text-5xl md:text-7xl lg:text-8xl font-display font-medium leading-[1.1] tracking-tight mb-8 drop-shadow-2xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            A setting for <br />
+            <span className="italic text-gold-500">gatherings that require focus</span>
           </h1>
-          <p className="text-earth-300/80 text-lg font-body leading-relaxed max-w-2xl mt-4">
+          <p className="text-earth-300/80 text-xl md:text-2xl font-light leading-relaxed max-w-2xl font-body">
             The venue supports different group formats without imposing programming or performance.
           </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <a
-              href="#"
-              className="inline-flex items-center gap-3 bg-gold-500 text-earth-950 px-6 py-3 rounded-lg font-medium hover:bg-gold-400 transition-colors duration-300"
-            >
-              <span className="material-symbols-outlined">download</span>
-              Download Brochure
-            </a>
-            <a
-              href="https://maps.google.com/?q=Bird+Sanctuary+Kumbhargaon+Bhigwan+Maharashtra"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-transparent border-2 border-gold-500 text-gold-500 px-6 py-3 rounded-lg font-medium hover:bg-gold-500 hover:text-earth-950 transition-colors duration-300"
-            >
-              <span className="material-symbols-outlined">location_on</span>
-              View on Map
-            </a>
-          </div>
         </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-60 animate-bounce">
+        <span className="text-xs uppercase tracking-[0.2em] text-earth-300">Scroll</span>
+        <span className="material-symbols-outlined text-earth-300 text-2xl">arrow_downward</span>
       </div>
     </section>
   );

@@ -81,41 +81,8 @@ export default function CarouselCard({
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            {/* Background Content (Revealed on Hover) */}
-            <div className="absolute inset-x-0 bottom-0 h-1/2 flex flex-col justify-end p-6 pb-4">
-
-                {/* Header: Icon/Category + Price/Count */}
-                <div className={`flex items-center justify-between mb-3 transition-opacity duration-300 delay-75 w-full text-earth-950 ${shouldShowHoverState ? 'opacity-100' : 'opacity-0'}`}>
-                    {(icon || category) && (
-                        <div className="flex items-center gap-2">
-                            {icon && <span className="material-symbols-outlined text-lg">{icon}</span>}
-                            {category && <span className="text-xs uppercase tracking-widest font-body font-bold">{category}</span>}
-                        </div>
-                    )}
-
-                    {(price || userCount) && (
-                        <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-wider text-earth-900/80">
-                            {userCount && (
-                                <div className="flex items-center gap-1">
-                                    <span className="material-symbols-outlined text-sm">group</span>
-                                    <span>{userCount}</span>
-                                </div>
-                            )}
-                            {price && <span>{price}</span>}
-                        </div>
-                    )}
-                </div>
-
-                <h4 className={`text-[21px] font-normal mb-2 transition-opacity duration-300 delay-100 ${shouldShowHoverState ? 'opacity-100' : 'opacity-0'}`} style={{ fontFamily: 'Outfit, sans-serif', fontSize: titleSize, color: '#261b14' }}>
-                    {title}
-                </h4>
-                <p className={`text-earth-900 text-sm leading-relaxed transition-opacity duration-300 delay-150 font-medium font-body whitespace-pre-line ${shouldShowHoverState ? 'opacity-100' : 'opacity-0'}`}>
-                    {description}
-                </p>
-            </div>
-
             {/* Foreground Image Layer (Carousel) */}
-            <div className={`absolute inset-0 z-10 transition-transform duration-500 ease-in-out bg-earth-900 ${shouldShowHoverState ? '-translate-y-[40%]' : ''}`}>
+            <div className="absolute inset-0 z-10 bg-earth-900">
                 {/* Images */}
                 {images.map((src, index) => (
                     <div
@@ -132,18 +99,12 @@ export default function CarouselCard({
                     </div>
                 ))}
 
-                {/* Gradient Overlay */}
-                <div className={`absolute inset-0 transition-opacity duration-300 pointer-events-none ${shouldShowHoverState ? 'opacity-0' : ''} ${
-                    overlayColor === 'gold-gradient' 
-                        ? 'bg-gradient-to-t from-gold-500/70 via-gold-500/30 to-transparent' 
-                        : overlayColor === 'gold-solid'
-                        ? 'bg-gold-500/35'
-                        : 'bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60'
-                }`} />
+                {/* Gradient Overlay - Black like Accommodation cards */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
 
                 {/* Title Overlay (Initially Visible) */}
                 <div 
-                    className={`absolute transition-opacity duration-300 pointer-events-none ${shouldShowHoverState ? 'opacity-0' : ''}`}
+                    className="absolute pointer-events-none"
                     style={{
                         bottom: titlePosition?.bottom || '1.5rem',
                         left: titlePosition?.left || '2rem',
@@ -151,17 +112,16 @@ export default function CarouselCard({
                     }}
                 >
 
-                    {/* Header: Icon/Category + Price/Count (White/Gold) */}
+                    {/* Header: Price/Count only (no category here) */}
                     <div className="flex items-center justify-between mb-0 w-full">
-                        {(icon || category) && (
+                        {icon && (
                             <div className="flex items-center gap-2 text-gold-500">
-                                {icon && <span className="material-symbols-outlined text-lg drop-shadow-md">{icon}</span>}
-                                {category && <span className="text-xs uppercase tracking-widest font-body drop-shadow-md">{category}</span>}
+                                <span className="material-symbols-outlined text-lg" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)' }}>{icon}</span>
                             </div>
                         )}
 
                         {(price || userCount) && (
-                            <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-wider text-earth-300 drop-shadow-md">
+                            <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-wider text-earth-300" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)' }}>
                                 {userCount && (
                                     <div className="flex items-center gap-1">
                                         <span className="material-symbols-outlined text-sm">group</span>
@@ -173,7 +133,37 @@ export default function CarouselCard({
                         )}
                     </div>
 
-                    <h4 className="text-[21px] font-normal text-[#e7dfd3]" style={{ fontFamily: 'Outfit, sans-serif', fontSize: titleSize, textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)' }}>{title}</h4>
+                    <h4 className="text-[21px] font-normal text-[#e7dfd3] mb-2" style={{ fontFamily: 'Outfit, sans-serif', fontSize: titleSize, textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)' }}>{title}</h4>
+                    
+                    {/* Know More Button - Always visible if href is provided */}
+                    {href && (
+                        <div className="mb-3">
+                            <button className="inline-flex items-center gap-2 px-4 py-2 bg-transparent border border-gold-500 text-gold-500 rounded-lg text-sm font-medium hover:bg-gold-500 hover:text-earth-950 transition-colors duration-300">
+                                Know More
+                                <span className="material-symbols-outlined text-lg">arrow_forward</span>
+                            </button>
+                        </div>
+                    )}
+                    
+                    {/* Description and Category - Revealed on Hover using grid approach */}
+                    <div className={`grid transition-all duration-500 ease-in-out ${shouldShowHoverState ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+                        <div className="overflow-hidden">
+                            <div className="border-t border-gold-500/30 pt-4">
+                                {/* Category tag - appears on hover */}
+                                {category && (
+                                    <div className="mb-3">
+                                        <span className="text-xs uppercase tracking-widest font-body text-gold-500 font-bold" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)' }}>
+                                            {category}
+                                        </span>
+                                    </div>
+                                )}
+                                {/* Description */}
+                                <p className="text-[#e7dfd3] text-sm md:text-base leading-relaxed font-body" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)' }}>
+                                    {description}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 {/* Dots */}

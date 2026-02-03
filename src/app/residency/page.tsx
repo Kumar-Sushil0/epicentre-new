@@ -124,7 +124,7 @@ export default function ResidencyPage() {
       <ResidencyHero />
       <ResidencyPhilosophy />
       <ResidencyGrid residencies={residencies} />
-      <ResidencySelection />
+      
       <ClosingSection />
       <Footer />
     </main>

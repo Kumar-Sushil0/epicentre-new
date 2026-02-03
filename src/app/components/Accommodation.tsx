@@ -169,7 +169,7 @@ export default function Accommodation() {
 
                     {/* Content */}
                     <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                      <h3 className="text-2xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Quicksand, sans-serif' }}>{item.title}</h3>
+                      <h3 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Quicksand, sans-serif' }}>{item.title}</h3>
 
                       {/* Description - Revealed on Hover */}
                       <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">

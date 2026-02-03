@@ -29,7 +29,7 @@ export default function ExpressionPage() {
       icon: "construction",
     },
     {
-      title: "Residency Experiments",
+      title: "Movement experiments",
       description: "Testing unfinished work, not final output.\nDesigned for creators working with raw, incomplete, or unstable material.",
       images: [
         "https://lh3.googleusercontent.com/aida-public/AB6AXuAPAjtxSh87gIafkgIqTQA4_WlBoXdA8o_35G4VKBbVse1DMUWiZfJRKzPGjlrGI9zwVUe17OPdlAa9eDGJimduOzWhw3_NGmPSM-owaLiC0ZDzOZrYwRq6gzX8Uu1NxkBzYzHe0-Wm213bdlpPLadfY9I9heB0l5jHHYlkSKpnweFU8u8Os8ZU0oPWnswySRkwRHCEuWRJSQkWsiJi0KIugcnXUrIgi8mK3Lhpej9bLkfGjJANLbVri_x-pda8_oyarPiN1ILubRWR",
@@ -59,7 +59,7 @@ export default function ExpressionPage() {
       icon: "settings_suggest",
     },
     {
-      title: "The Writer Says",
+      title: "Writing experiments",
       description: "Channeling thoughts through the rhythm of keys.\nFocused sessions for drafting, editing, and finding flow.",
       images: [
         "https://lh3.googleusercontent.com/aida-public/AB6AXuDtAKzLVQHfKO6fVCwz_bbCF3sUZndGv5siIr8bEoBG89SMFxRE0TF5k1L_QJMRXIiNlj0-bkP0NEy5Dd40ZsQrG8Pz8IA3_FIH4-fUrU9kwhzYPpfkoeCi_cChlNmmX-UOo62Dpwf56h80orphiCxMzAb7h0S8XFPrFFU4kdVCTHQNNZLDYJhDYh1W0tvt4o4jr9VdvuTeuc0uJCPIko1WRGysJzvtzn4HG3S3c1p762-ustfuEvWZQvv1VAUjL8Wy-mRFFdTExKAu",

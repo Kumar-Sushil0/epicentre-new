@@ -104,14 +104,14 @@ const expressionPractices: Record<
     ],
   },
   "the-writer-says": {
-    title: "The Writer Says",
+    title: "Writing experiments",
     subtitle: "Listening for resonance, not feedback.",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuDtAKzLVQHfKO6fVCwz_bbCF3sUZndGv5siIr8bEoBG89SMFxRE0TF5k1L_QJMRXIiNlj0-bkP0NEy5Dd40ZsQrG8Pz8IA3_FIH4-fUrU9kwhzYPpfkoeCi_cChlNmmX-UOo62Dpwf56h80orphiCxMzAb7h0S8XFPrFFU4kdVCTHQNNZLDYJhDYh1W0tvt4o4jr9VdvuTeuc0uJCPIko1WRGysJzvtzn4HG3S3c1p762-ustfuEvWZQvv1VAUjL8Wy-mRFFdTExKAu",
     intro:
       "A dedicated circle for writers to vocalize their work-in-progress. We strip away the need to explain, defend, or polish. Here, the only goal is to hear how the words land in the air.",
     whatItIs:
-      '"The Writer Says" is a facilitated session where sharing evolving work is the primary act. It is not a workshop for critique. It is a sounding board—literally. Writers take turns reading aloud, allowing the rhythm, cadence, and stumble of their own voice to reveal what needs to happen next in the manuscript.',
+      '"Writing experiments" is a facilitated session where sharing evolving work is the primary act. It is not a workshop for critique. It is a sounding board—literally. Writers take turns reading aloud, allowing the rhythm, cadence, and stumble of their own voice to reveal what needs to happen next in the manuscript.',
     howItWorks: [
       {
         title: "The Block",

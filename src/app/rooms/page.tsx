@@ -117,7 +117,7 @@ export default function RoomsPage() {
                 { icon: "self_improvement", text: "Quiet contemplation area" },
               ]}
               featuresStyle="list"
-              buttons={[{ text: "View Schedule", href: "#", variant: "secondary" }]}
+              buttons={[{ text: " Check availability", href: "#", variant: "secondary" }]}
             />
 
 

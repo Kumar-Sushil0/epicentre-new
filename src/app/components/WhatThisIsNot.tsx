@@ -9,7 +9,7 @@ const ITEMS = [
     title: "Designed Silence",
     description: "Sound, movement, and activity are intentionally shaped so attention can settle.",
     images: [
-      "/room.webp"
+      "/moat.png"
     ]
   },
   {
@@ -17,7 +17,7 @@ const ITEMS = [
     title: "Non-Performative Space",
     description: "There is no pressure to speak, share, or present an identity. Presence is enough.",
     images: [
-      "/room2.webp"
+      "/moat2.png"
     ]
   },
   {
@@ -25,7 +25,7 @@ const ITEMS = [
     title: "Environment-Led Experience",
     description: "Architecture, land, and rhythm do the work. There is no programming layer.",
     images: [
-      "/room3.webp"
+      "/moat3.png"
     ]
   },
 ];
@@ -83,7 +83,7 @@ export default function WhatThisIsNot() {
                 title={item.title}
                 description={item.description}
                 images={item.images}
-                className="rounded-lg !aspect-[5/4]"
+                className="rounded-lg"
                 titlePosition={{ left: '1.5rem', bottom: '1rem' }}
                 overlayColor="gold-solid"
               />

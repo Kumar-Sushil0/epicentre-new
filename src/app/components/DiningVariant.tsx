@@ -42,7 +42,8 @@ export default function DiningVariant() {
   const items = [
     {
       id: 0,
-      title: "Daily — Satvik Home Food",
+      category: "Daily",
+      title: "Satvik Home Food",
       description: "everyday, uncomplicated vegetarian food",
       images: [
         "https://lh3.googleusercontent.com/aida-public/AB6AXuC7EqkXqQPU7fE4pLFU_Hk927TUqj83DfbTfUvPIihY2voNQvmPzkgFFvUowSJV8BeUmi3AK6_9d9MQPQBC_OXh3eBg9xIp_jNbcq4P1uQYXAH4udgKWxtFyRuenpPXcorX848v2tHHPWWYfK16iMhYDcmb9iw-JZ2WzgiEm9s4eNuGAgeRY8AMsVHC_k5fLfLYry5CbHdiz9uOsXZQFafe7IcPz2Ty17dsxEdLhomR6gW_ljYA7vJCFpBg4iyLqVjMKXTFWCffegD2"
@@ -50,7 +51,8 @@ export default function DiningVariant() {
     },
     {
       id: 1,
-      title: "Wed & Fri — Smoothies, Shakes, Sandwiches & Salads",
+      category: "Wed & Fri",
+      title: "Smoothies, Shakes, Sandwiches & Salads",
       description: "occasional lighter preparations",
       images: [
         "https://lh3.googleusercontent.com/aida-public/AB6AXuBPPRi1KA1SSwhk_HwPBfDwwsAERrk2PJlQEBBT-t3vsDceOPFxRCmCS2hOSB75G50kN4biPj2O6wed6Y5WHy9QYxwfH8SnuPsoH85EkeBG2eWtd61u1kxzb7Hvo1aRqQz8Hw0fhpybRMYRkBpd0hO_yyjc9Cd8p7GUmT-FXalpznzlPS8i_pqPTP-dRL1gJP5yqyABEWDkhy7V7DJxmjQTkdmmZh4DIyIpX7FcKG1hcb2P7A7ZA6abK6NzUJeiJWEJAKb5pwvQZMa5"
@@ -58,7 +60,8 @@ export default function DiningVariant() {
     },
     {
       id: 2,
-      title: "Weekend Special — Wood-Fired Pizza, Barbeque & Sushi",
+      category: "Weekend Special",
+      title: "Wood-Fired Pizza, Barbeque & Sushi",
       description: "Infrequent communal cooking, held without hurry",
       images: [
         "https://lh3.googleusercontent.com/aida-public/AB6AXuC72-qeY2eEUj-PVITTUo2cNBi448iUqzdHsoEipULmOX22vormapus2Ny-vkyznBYe1cCZEDjbvLIrW3GuSkIg8UG6cSQjorFd6SxJCSZjnFSUZunRVmsTumGnkttyCeI4bOc-hMIgYBiaqmhKgUJg4c3nVIhqa5238Nu7Cy11M88SVYJR3uvYHZhULleRmsgdg5DSXMHj_jRUCrX6fP_8TMxU7wgAkfOOrz1iU2VMvmW0E8_9TXF6oBAkhRYNTypjcCZ0XHF-AP5d"
@@ -81,10 +84,11 @@ export default function DiningVariant() {
           {items.map((item) => (
             <div key={item.id} className={forceHover ? 'force-hover' : ''}>
               <CarouselCard
+                category={item.category}
                 title={item.title}
                 description={item.description}
                 images={item.images}
-                className="rounded-lg !aspect-[5/4]"
+                className="rounded-lg"
                 titlePosition={{ left: '1.5rem', bottom: '1rem' }}
                 overlayColor="gold-solid"
               />
