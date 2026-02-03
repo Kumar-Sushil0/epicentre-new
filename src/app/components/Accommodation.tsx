@@ -132,7 +132,7 @@ export default function Accommodation() {
       <div className="w-full px-16">
         <div className="mb-8">
           <h3 className="text-3xl font-semibold mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Stay</h3>
-          <p className="text-earth-300 font-body text-[15px] max-w-full">
+          <p className="text-[#e7dfd3] font-body text-[15px] max-w-full">
              Rest here is functional, not indulgent.<br />
             Each stay option offers a different degree of privacy, proximity, and withdrawal.
           </p>
@@ -174,7 +174,7 @@ export default function Accommodation() {
                       {/* Description - Revealed on Hover */}
                       <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
                         <div className="overflow-hidden">
-                          <p className="text-earth-100 text-sm md:text-base leading-relaxed mt-2 border-t border-gold-500/30 pt-4">
+                          <p className="text-[#e7dfd3] text-sm md:text-base leading-relaxed mt-2 border-t border-gold-500/30 pt-4">
                             {item.description}
                           </p>
                         </div>

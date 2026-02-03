@@ -11,14 +11,14 @@ export default function Footer() {
         {/* FAQ Section */}
         <div className="grid md:grid-cols-12 gap-10 mb-20 pb-16 border-b border-earth-800/50">
           <div className="md:col-span-4">
-            <h3 className="text-2xl font-serif text-earth-100 mb-4 font-normal">Common Questions</h3>
+            <h3 className="text-2xl font-serif text-[#e7dfd3] mb-4 font-normal">Common Questions</h3>
             <p className="text-earth-300/60 font-body text-sm leading-relaxed">
               Curiosities about our way of life. If you have more, reach out.
             </p>
           </div>
           <div className="md:col-span-8 space-y-4">
             <details className="group bg-earth-900/50 rounded-lg border border-earth-800 open:bg-earth-900 transition-all duration-300">
-              <summary className="flex justify-between items-center cursor-pointer p-5 font-medium text-earth-100 hover:text-gold-500 transition-colors">
+              <summary className="flex justify-between items-center cursor-pointer p-5 font-medium text-[#e7dfd3] hover:text-gold-500 transition-colors">
                 Is there WiFi?
                 <span className="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-earth-300 group-hover:text-gold-500">expand_more</span>
               </summary>
@@ -27,7 +27,7 @@ export default function Footer() {
               </div>
             </details>
             <details className="group bg-earth-900/50 rounded-lg border border-earth-800 open:bg-earth-900 transition-all duration-300">
-              <summary className="flex justify-between items-center cursor-pointer p-5 font-medium text-earth-100 hover:text-gold-500 transition-colors">
+              <summary className="flex justify-between items-center cursor-pointer p-5 font-medium text-[#e7dfd3] hover:text-gold-500 transition-colors">
                 Can I bring my pet?
                 <span className="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-earth-300 group-hover:text-gold-500">expand_more</span>
               </summary>
@@ -36,7 +36,7 @@ export default function Footer() {
               </div>
             </details>
             <details className="group bg-earth-900/50 rounded-lg border border-earth-800 open:bg-earth-900 transition-all duration-300">
-              <summary className="flex justify-between items-center cursor-pointer p-5 font-medium text-earth-100 hover:text-gold-500 transition-colors">
+              <summary className="flex justify-between items-center cursor-pointer p-5 font-medium text-[#e7dfd3] hover:text-gold-500 transition-colors">
                 Is alcohol served?
                 <span className="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-earth-300 group-hover:text-gold-500">expand_more</span>
               </summary>
@@ -79,7 +79,7 @@ export default function Footer() {
 
           {/* Links Section 1: Explore */}
           <div className="lg:col-span-2">
-            <h4 className="text-earth-100 font-bold mb-6 text-sm tracking-wide uppercase">Explore</h4>
+            <h4 className="text-[#e7dfd3] font-bold mb-6 text-sm tracking-wide uppercase">Explore</h4>
             <ul className="space-y-4 text-sm text-earth-300/70 font-body">
               <li><Link href="/about-us" className="hover:text-gold-500 transition-colors block py-0.5">About Us</Link></li>
               <li><Link href="/rooms" className="hover:text-gold-500 transition-colors block py-0.5">Stays</Link></li>
@@ -90,7 +90,7 @@ export default function Footer() {
 
           {/* Links Section 2: Experiences */}
           <div className="lg:col-span-2">
-            <h4 className="text-earth-100 font-bold mb-6 text-sm tracking-wide uppercase">Experiences</h4>
+            <h4 className="text-[#e7dfd3] font-bold mb-6 text-sm tracking-wide uppercase">Experiences</h4>
             <ul className="space-y-4 text-sm text-earth-300/70 font-body">
               <li><Link href="/wellness" className="hover:text-gold-500 transition-colors block py-0.5">Wellness</Link></li>
               <li><Link href="/experiences" className="hover:text-gold-500 transition-colors block py-0.5">Activities</Link></li>
@@ -102,11 +102,11 @@ export default function Footer() {
 
           {/* Contact */}
           <div className="lg:col-span-2 lg:pl-4">
-            <h4 className="text-earth-100 font-bold mb-6 text-sm tracking-wide uppercase">Connect</h4>
+            <h4 className="text-[#e7dfd3] font-bold mb-6 text-sm tracking-wide uppercase">Connect</h4>
             <ul className="space-y-4 text-sm text-earth-300/70 font-body">
               <li className="flex items-center gap-3 group">
                 <span className="material-symbols-outlined text-lg text-earth-400 group-hover:text-gold-500 transition-colors">mail</span>
-                <a href="mailto:yodd@lifeidesign.games" className="hover:text-earth-100 transition-colors">yodd@lifeidesign.games</a>
+                <a href="mailto:yodd@lifeidesign.games" className="hover:text-[#e7dfd3] transition-colors">yodd@lifeidesign.games</a>
               </li>
               <li className="flex items-center gap-3 group">
                 <svg className="w-5 h-5 text-earth-400 group-hover:text-gold-500 transition-colors" fill="currentColor" viewBox="0 0 24 24">

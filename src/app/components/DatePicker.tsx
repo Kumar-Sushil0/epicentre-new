@@ -187,7 +187,7 @@ export default function DatePicker({ checkIn, checkOut, onCheckInChange, onCheck
                       : isCheckIn || isCheckOut
                       ? "bg-gold-500 text-earth-950 font-bold"
                       : inRange || isHovering
-                      ? "bg-gold-500/20 text-gold-500 font-medium"
+                      ? "bg-gold-500 text-gold-500 font-medium"
                       : "text-earth-300 hover:text-earth-100 hover:bg-earth-700/50"
                   }`}
                 >

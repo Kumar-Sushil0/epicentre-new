@@ -35,7 +35,7 @@ export default function Hero() {
         <h1 className="text-5xl md:text-7xl font-serif text-gold-500 mb-6" style={{ fontFamily: 'Trirong, serif' }}>
           Silence reveals direction.
         </h1>
-        <p className="text-lg md:text-xl text-earth-100 mb-8 leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: 'Outfit, sans-serif' }}>
+        <p className="text-lg md:text-xl text-[#e7dfd3] mb-8 leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: 'Outfit, sans-serif' }}>
           A physical environment designed to reduce interference<br />so attention can settle and clarity can emerge.
         </p>
         <button className="bg-transparent border-2 border-gold-500 text-gold-500 px-8 py-3 rounded-lg font-bold hover:bg-gold-500 hover:text-earth-950 transition-colors uppercase tracking-wider text-sm">

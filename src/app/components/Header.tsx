@@ -91,27 +91,27 @@ export default function Header() {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isScrolled ? 'bg-[#111004]/90 backdrop-blur-sm border-b border-earth-800/50' : 'bg-transparent'}`}>
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isScrolled ? 'bg-[#0f0b08] backdrop-blur-sm border-b border-earth-800/50' : 'bg-transparent'}`}>
         <div className="w-full px-16 py-8 h-[30px] flex items-center justify-between relative">
 
           {/* LEFT: Hamburger Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`w-10 h-10 flex items-center justify-start transition-colors z-50 relative cursor-pointer ${isMenuOpen ? "text-gold-500" : "text-gold-500 hover:text-gold-400"}`}
+            className={`w-12 h-12 flex items-center justify-center transition-colors z-50 relative cursor-pointer ${isMenuOpen ? "text-gold-500" : "text-gold-500 hover:text-[#e7dfd3]"}`}
             aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
           >
-            <span className="material-symbols-outlined text-3xl">
+            <span className="material-symbols-outlined" style={{ fontSize: '36px' }}>
               {isMenuOpen ? "close" : "menu"}
             </span>
           </button>
 
           {/* CENTER: Logo */}
-          <Link href="/" className="absolute left-1/2 transform -translate-x-1/2 h-[56px] w-32 flex items-center justify-center">
+          <Link href="/" className="absolute left-1/2 transform -translate-x-1/2 h-[56px] w-40 flex items-center justify-center">
             <Image
               src="/Untitled.png"
               alt="EPiCentre Logo"
-              width={160}
-              height={60}
+              width={200}
+              height={75}
               className="object-contain"
               priority
             />
@@ -120,7 +120,7 @@ export default function Header() {
           {/* RIGHT: Booking CTA */}
           <Link
             href="/bookings"
-            className="hidden md:inline-flex items-center justify-center bg-transparent text-gold-500 hover:text-gold-400 font-bold py-2 rounded-full text-sm uppercase tracking-wider transition-colors"
+            className="hidden md:inline-flex items-center justify-center bg-transparent text-gold-500 hover:text-[#e7dfd3] font-bold py-2 rounded-full text-sm uppercase tracking-wider transition-colors"
           >
             Book Now
           </Link>
@@ -172,7 +172,7 @@ export default function Header() {
                   onMouseLeave={() => setHoveredImage(null)}
                   className={`block px-4 py-3 rounded-lg text-base font-medium transition-all ${
                     isActive("/about-us")
-                      ? "bg-gold-500/10 text-gold-500 border-l-4 border-gold-500"
+                      ? "bg-gold-500 text-gold-500 border-l-4 border-gold-500"
                       : "text-earth-200 hover:text-gold-500 hover:bg-earth-900/30"
                   }`}
                 >
@@ -200,7 +200,7 @@ export default function Header() {
                   onMouseLeave={() => setHoveredImage(null)}
                   className={`block px-4 py-3 rounded-lg text-base font-medium transition-all ${
                     isActive("/rooms")
-                      ? "bg-gold-500/10 text-gold-500 border-l-4 border-gold-500"
+                      ? "bg-gold-500 text-gold-500 border-l-4 border-gold-500"
                       : "text-earth-200 hover:text-gold-500 hover:bg-earth-900/30"
                   }`}
                 >
@@ -216,7 +216,7 @@ export default function Header() {
                   onMouseLeave={() => setHoveredImage(null)}
                   className={`block px-4 py-3 rounded-lg text-base font-medium transition-all ${
                     isActive("/venue")
-                      ? "bg-gold-500/10 text-gold-500 border-l-4 border-gold-500"
+                      ? "bg-gold-500 text-gold-500 border-l-4 border-gold-500"
                       : "text-earth-200 hover:text-gold-500 hover:bg-earth-900/30"
                   }`}
                 >
@@ -232,7 +232,7 @@ export default function Header() {
                   onMouseLeave={() => setHoveredImage(null)}
                   className={`block px-4 py-3 rounded-lg text-base font-medium transition-all ${
                     isActive("/blogs")
-                      ? "bg-gold-500/10 text-gold-500 border-l-4 border-gold-500"
+                      ? "bg-gold-500 text-gold-500 border-l-4 border-gold-500"
                       : "text-earth-200 hover:text-gold-500 hover:bg-earth-900/30"
                   }`}
                 >
@@ -282,7 +282,7 @@ export default function Header() {
                   onMouseLeave={() => setHoveredImage(null)}
                   className={`block px-4 py-3 rounded-lg text-base font-medium transition-all ${
                     isActive("/faq")
-                      ? "bg-gold-500/10 text-gold-500 border-l-4 border-gold-500"
+                      ? "bg-gold-500 text-gold-500 border-l-4 border-gold-500"
                       : "text-earth-200 hover:text-gold-500 hover:bg-earth-900/30"
                   }`}
                 >

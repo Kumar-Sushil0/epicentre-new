@@ -71,7 +71,7 @@ export default function WhatThisIsNot() {
       <div className="w-full px-16">
         <div className="mb-8">
           <h3 className="text-3xl font-semibold mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Our Moat</h3>
-          <p className="text-earth-300 font-body text-[15px] max-w-full">
+          <p className="text-[#e7dfd3] font-body text-[15px] max-w-full">
             What makes The Silent Club distinct is not what happens here,<br/> but how the environment is held.
           </p>
         </div>

@@ -125,7 +125,7 @@ export default function Experiences() {
       <div className="w-full px-16">
         <div className="mb-8">
            <h3 className="text-3xl font-semibold mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Activities</h3>
-          <p className="text-earth-300 font-body text-[15px] max-w-full">
+           <p className="text-[#e7dfd3] font-body text-[15px] max-w-full">
             Time here is not scheduled or directed.<br/> You engage with what’s available, when
           </p>
         </div>

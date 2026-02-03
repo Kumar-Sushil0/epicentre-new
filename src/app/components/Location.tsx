@@ -23,14 +23,14 @@ export default function Location() {
                   <span className="material-symbols-outlined text-lg">directions_car</span>
                   <span>Private Car</span>
                 </div>
-                <span className="font-bold text-earth-100">4.5 Hours</span>
+                <span className="font-bold text-[#e7dfd3]">4.5 Hours</span>
               </div>
               <div className="flex items-center justify-between border-b border-earth-700 pb-2">
                 <div className="flex items-center gap-2">
                   <span className="material-symbols-outlined text-lg">train</span>
                   <span>Train to Pune</span>
                 </div>
-                <span className="font-bold text-earth-100">3 + 2.5 Hours</span>
+                <span className="font-bold text-[#e7dfd3]">3 + 2.5 Hours</span>
               </div>
               <p className="mt-4 italic text-xs text-earth-500">Closest Railway Station: Pune or Daund</p>
             </div>
@@ -46,14 +46,14 @@ export default function Location() {
                   <span className="material-symbols-outlined text-lg">directions_car</span>
                   <span>Private Car</span>
                 </div>
-                <span className="font-bold text-earth-100">2.5 Hours</span>
+                <span className="font-bold text-[#e7dfd3]">2.5 Hours</span>
               </div>
               <div className="flex items-center justify-between border-b border-earth-700 pb-2">
                 <div className="flex items-center gap-2">
                   <span className="material-symbols-outlined text-lg">directions_bus</span>
                   <span>State Bus</span>
                 </div>
-                <span className="font-bold text-earth-100">3.5 Hours</span>
+                <span className="font-bold text-[#e7dfd3]">3.5 Hours</span>
               </div>
               <p className="mt-4 italic text-xs text-earth-500">Scenic route via Saswad and Jejuri.</p>
             </div>
@@ -69,14 +69,14 @@ export default function Location() {
                   <span className="material-symbols-outlined text-lg">directions_car</span>
                   <span>Private Car</span>
                 </div>
-                <span className="font-bold text-earth-100">45 Mins</span>
+                <span className="font-bold text-[#e7dfd3]">45 Mins</span>
               </div>
               <div className="flex items-center justify-between border-b border-earth-700 pb-2">
                 <div className="flex items-center gap-2">
                   <span className="material-symbols-outlined text-lg">directions_bus</span>
                   <span>Local Bus</span>
                 </div>
-                <span className="font-bold text-earth-100">1 Hour</span>
+                <span className="font-bold text-[#e7dfd3]">1 Hour</span>
               </div>
               <p className="mt-4 italic text-xs text-earth-500">Easy access from the nearest railway station.</p>
             </div>

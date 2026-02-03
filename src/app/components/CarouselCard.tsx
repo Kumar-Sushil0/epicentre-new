@@ -173,7 +173,7 @@ export default function CarouselCard({
                         )}
                     </div>
 
-                    <h4 className="text-[21px] font-normal text-white" style={{ fontFamily: 'Outfit, sans-serif', fontSize: titleSize, textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)' }}>{title}</h4>
+                    <h4 className="text-[21px] font-normal text-[#e7dfd3]" style={{ fontFamily: 'Outfit, sans-serif', fontSize: titleSize, textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)' }}>{title}</h4>
                 </div>
 
                 {/* Dots */}
