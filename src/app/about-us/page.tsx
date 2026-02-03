@@ -4,8 +4,14 @@ import AboutHero from "../components/about/AboutHero";
 import AboutPhilosophy from "../components/about/AboutPhilosophy";
 import AboutFounder from "../components/about/AboutFounder";
 import PrinciplesAndEnvironment from "../components/about/PrinciplesAndEnvironment";
+import ClosingSection from "../components/ClosingSection";
 import AboutCollective from "../components/about/AboutCollective";
 import AboutVision from "../components/about/AboutVision";
+import AboutArchitecture from "../components/about/AboutArchitecture";
+import AboutPrinciples from "../components/about/AboutPrinciples";
+import AboutTriad from "../components/about/AboutTriad";
+import BuiltEnvironment from "../components/about/BuiltEnvironment";
+import WhoThisIsFor from "../components/about/WhoThisIsFor";
 
 export default function AboutUsPage() {
   return (
@@ -19,10 +25,17 @@ export default function AboutUsPage() {
       <Header />
       <AboutHero />
       <AboutPhilosophy />
+     
+      
       <AboutFounder />
+      <AboutPrinciples />
       <PrinciplesAndEnvironment />
+     
+      
+      
       <AboutCollective />
-      <AboutVision />
+      <ClosingSection/>
+
       <Footer />
     </main>
   );

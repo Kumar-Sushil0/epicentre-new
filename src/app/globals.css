@@ -17,6 +17,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 @theme {
   --color-earth-950: #0f0b08;
   --color-earth-900: #1A120B;
@@ -43,7 +44,8 @@ html {
   /* Firefox */
 }
 
-html.lenis, html.lenis body {
+html.lenis,
+html.lenis body {
   height: auto;
 }
 
@@ -90,4 +92,295 @@ body {
 ::selection {
   background: rgba(197, 160, 101, 0.3);
   color: white;
+}
+
+/* Animated Hamburger Menu */
+.hamburger-wrapper {
+  position: relative;
+}
+
+.hamburger-label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburger-svg {
+  height: 42px;
+  width: 42px;
+  transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hamburger-svg .line {
+  fill: none;
+  stroke: #C5A065;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3;
+  transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hamburger-svg .line-top-bottom {
+  stroke-dasharray: 12 63;
+}
+
+.hamburger-svg.checked {
+  transform: rotate(-45deg);
+}
+
+.hamburger-svg.checked .line-top-bottom {
+  stroke-dasharray: 20 300;
+  stroke-dashoffset: -32.42;
+}
+
+/* Desktop Horizontal Menu */
+.menu-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-left: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-50%) translateX(-10px) scale(0.7);
+  transform-origin: left center;
+  transition: all 0.3s ease;
+  z-index: 1004;
+}
+
+.menu-wrapper.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0) scale(0.7);
+}
+
+.menu-outline {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.menu-rect {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 0 40.9 9.1 40.9 9.1 0;
+  transition: 0.5s;
+  stroke: #C5A065;
+}
+
+.menu-nav {
+  position: relative;
+  width: 600px;
+  height: 60px;
+}
+
+.menu-container:hover .menu-outline .menu-rect {
+  transition: 999999s;
+  stroke-dashoffset: 1;
+  stroke-dasharray: 0;
+}
+
+.menu-container {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5em;
+}
+
+.menu-btn {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em 0;
+  color: #C5A065;
+  cursor: pointer;
+  transition: 0.1s;
+  font-family: 'Quicksand', sans-serif;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  background: transparent;
+  border: none;
+}
+
+.menu-btn:hover {
+  background: #C5A065;
+  color: #000;
+  border-radius: 10px;
+}
+
+/* Per-button SVG border animations - 7 buttons */
+/* Pattern: 0 [gap-before] [top-line] [middle-gap] [bottom-line] [gap-after] = 100 total */
+/* Line width: 6.5, Button spacing: ~14.29% each */
+
+/* About - Button 1 */
+.menu-btn:nth-child(1):hover~.menu-outline .menu-rect {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 0 1.0 6.5 79.0 6.5 7.0;
+}
+
+/* Events - Button 2 */
+.menu-btn:nth-child(2):hover~.menu-outline .menu-rect {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 0 8.3 6.5 65.4 6.5 13.3;
+}
+
+/* Stays - Button 3 */
+.menu-btn:nth-child(3):hover~.menu-outline .menu-rect {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 0 15.6 6.5 51.8 6.5 19.6;
+}
+
+/* Venue - Button 4 */
+.menu-btn:nth-child(4):hover~.menu-outline .menu-rect {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 0 22.9 6.5 38.2 6.5 25.9;
+}
+
+/* Blogs - Button 5 */
+.menu-btn:nth-child(5):hover~.menu-outline .menu-rect {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 0 30.2 6.5 24.6 6.5 32.2;
+}
+
+/* FAQ - Button 6 */
+.menu-btn:nth-child(6):hover~.menu-outline .menu-rect {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 0 37.5 6.5 11.0 6.5 38.5;
+}
+
+/* Experiences - Button 7 */
+.menu-btn:nth-child(7):hover~.menu-outline .menu-rect,
+.experiences-dropdown:hover~.menu-outline .menu-rect {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 0 44.8 6.5 0 6.5 42.2;
+}
+
+.menu-btn:hover~.menu-outline .menu-rect {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 0 0 10 40 10 40;
+  transition: 0.5s !important;
+}
+
+/* Experiences Dropdown */
+.experiences-dropdown {
+  position: relative;
+}
+
+.experiences-dropdown::after {
+  content: '';
+  display: inline-block;
+  margin-left: 8px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 7px solid currentColor;
+  vertical-align: middle;
+}
+
+.experiences-submenu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 12px;
+  background: rgba(16, 16, 16, 0.4);
+  backdrop-filter: blur(10px);
+  border-left: 1px solid #C5A065;
+  border-right: 1px solid #C5A065;
+  border-bottom: 1px solid #C5A065;
+  min-width: 150px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 1005;
+}
+
+.experiences-dropdown:hover .experiences-submenu {
+  opacity: 1;
+  visibility: visible;
+}
+
+.submenu-item {
+  display: block;
+  padding: 0.75em 1em;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+  white-space: nowrap;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.submenu-item:hover {
+  background: #C5A065;
+  color: #000;
+}
+
+
+/* Mobile Sidebar */
+.mobile-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 1002;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-backdrop.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 280px;
+  max-width: 85vw;
+  height: 100vh;
+  background: #000000;
+  border-left: 1px solid rgba(197, 160, 101, 0.2);
+  z-index: 1003;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.mobile-sidebar.visible {
+  transform: translateX(0);
+}
+
+/* Hide desktop menu on mobile */
+@media (max-width: 768px) {
+  .menu-wrapper {
+    display: none;
+  }
+}
+
+/* Hide mobile menu on desktop */
+@media (min-width: 769px) {
+
+  .mobile-sidebar,
+  .mobile-backdrop {
+    display: none;
+  }
 }

@@ -39,7 +39,7 @@ export default function EventCalendarModal() {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-[100] bg-gradient-to-br from-earth-950 via-earth-900 to-earth-800">
+        <div className="fixed inset-0 z-40 bg-gradient-to-br from-earth-950 via-earth-900 to-earth-800">
             {/* Subtle background pattern */}
             <div className="absolute inset-0 opacity-5">
                 <div className="absolute inset-0" style={{
@@ -65,7 +65,7 @@ export default function EventCalendarModal() {
                 {/* Main Content Container */}
                 <div className="w-full max-w-7xl mx-auto px-6">
                     {/* Header Section */}
-                    <div className="text-center mb-12">
+                    <div className="text-center mb-6">
                         
                         {/* Title with Navigation Arrows */}
                         <div className="flex items-center justify-center gap-8 mb-4">
@@ -132,7 +132,7 @@ export default function EventCalendarModal() {
                     {/* Timeline Container */}
                     <div className="relative">
                         <div className="absolute inset-0 bg-gradient-to-r from-earth-900/50 via-transparent to-earth-900/50 pointer-events-none z-10 rounded-2xl"></div>
-                        <div className="bg-earth-800/30 backdrop-blur-sm rounded-2xl border border-earth-700/50 shadow-2xl overflow-hidden min-h-[300px]">
+                        <div className="overflow-hidden min-h-[300px]">
                             <DevelopmentTimeline />
                         </div>
                     </div>

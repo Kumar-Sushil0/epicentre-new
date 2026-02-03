@@ -4,10 +4,10 @@ export default function PrinciplesAndEnvironment() {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
           
-          {/* Left Side - Our Principles */}
+          {/* Left Side - Sustainable Pratices */}
           <div className="lg:w-1/2">
             <h2 className="text-2xl md:text-3xl font-medium text-gold-500 mb-6 leading-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Our Principles
+              Sustainable Pratices
             </h2>
             <ul className="space-y-4">
               <li className="flex items-start gap-3 group">
@@ -37,10 +37,10 @@ export default function PrinciplesAndEnvironment() {
             </ul>
           </div>
 
-          {/* Right Side - Our Environment */}
+          {/* Right Side - Giving Back */}
           <div className="lg:w-1/2">
             <h2 className="text-2xl md:text-3xl font-medium text-gold-500 mb-6 leading-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Our Environment
+              Giving Back
             </h2>
             <ul className="space-y-4">
               <li className="flex items-start gap-3 group">

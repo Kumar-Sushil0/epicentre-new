@@ -228,7 +228,7 @@ export default function DevelopmentTimeline() {
             {timelineData.map((month, index) => (
               <div key={`${month.year}-${month.month}-${index}`} className="shrink-0 w-64">
                 {/* Month Header */}
-                <div className="sticky top-0 bg-earth-900/95 backdrop-blur-sm py-3 mb-4 border-b-2 border-gold-500">
+                <div className="sticky top-0 bg-transparent backdrop-blur-sm py-3 mb-4 border-b-2 border-gold-500">
                   <div className="flex items-center gap-3">
                     <h4 className="text-xl font-bold text-gold-500 font-display">
                       {month.month} {month.year}
@@ -264,10 +264,10 @@ export default function DevelopmentTimeline() {
                         {/* Timeline dot */}
                         <div className="absolute left-[-5px] top-0 w-2 h-2 rounded-full bg-gold-500 ring-4 ring-earth-900 transition-transform" />
                         {/* Zone Card */}
-                        <div className="bg-earth-800 rounded-lg border border-earth-700 overflow-hidden transition-all duration-300">
+                        <div className="bg-transparent rounded-lg border border-earth-700/30 overflow-hidden transition-all duration-300">
                           <button
                             onClick={() => toggleZone(zoneId)}
-                            className="w-full text-left p-3 hover:bg-earth-700/50 transition-colors"
+                            className="w-full text-left p-3 hover:bg-earth-700/20 transition-colors"
                           >
                             <div className="flex items-start justify-between gap-2">
                               <div className="flex-1">

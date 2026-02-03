@@ -7,7 +7,7 @@ import Footer from "../components/Footer";
 import BookingForm from "../components/BookingForm";
 
 // --- Types ---
-type Category = "stay" | "solitude" | "expression" | "wellness" | "activities" | "residency" | "dining";
+type Category = "stay" | "solitude" | "expression" | "wellness" | "activities" | "residency" | "dining" | "booking";
 
 interface BookingItem {
   id: string;
@@ -21,6 +21,43 @@ interface BookingItem {
 
 // --- Data ---
 const BOOKING_ITEMS: BookingItem[] = [
+  // BOOKING OPTIONS
+  {
+    id: "silent-club-tour",
+    category: "booking",
+    name: "The Silent Club Tour",
+    description: "Complimentary guided tour of our facilities and philosophy",
+    price: 0,
+    priceDisplay: "Free",
+    image: "/logo.png",
+  },
+  {
+    id: "half-place-booking",
+    category: "booking", 
+    name: "Half Place Booking",
+    description: "Partial venue booking for smaller groups and intimate gatherings",
+    price: 2500,
+    priceDisplay: "$2,500 / day",
+    image: "/moat.png",
+  },
+  {
+    id: "full-place-booking",
+    category: "booking",
+    name: "Full Place Booking",
+    description: "Complete venue exclusivity for your event or retreat",
+    price: 5000,
+    priceDisplay: "$5,000 / day", 
+    image: "/moat2.png",
+  },
+  {
+    id: "custom-retreat-package",
+    category: "booking",
+    name: "Custom Retreat Package",
+    description: "Tailored multi-day experience designed for your specific needs",
+    price: 1200,
+    priceDisplay: "$1,200 / person",
+    image: "/moat3.png",
+  },
   // The Silent Club Tour
   {
     id: "free-tour",
@@ -386,6 +423,7 @@ export default function BookingsPage() {
   const [cart, setCart] = useState<string[]>([]);
   // Open states for all accordions (top level and nested)
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({
+    booking: true,
     stay: true,
     experiences: true,
     dining: true,
@@ -397,7 +435,12 @@ export default function BookingsPage() {
   });
 
   const toggleSection = (id: string) => {
-    setOpenSections(prev => ({ ...prev, [id]: !prev[id] }));
+    console.log(`Toggling section: ${id}`);
+    setOpenSections(prev => {
+      const newState = { ...prev, [id]: !prev[id] };
+      console.log('New state:', newState);
+      return newState;
+    });
   };
 
   const isInCart = (id: string) => cart.includes(id);
@@ -419,6 +462,13 @@ export default function BookingsPage() {
 
   // Structure Definition
   const structure = [
+    {
+      id: "booking",
+      title: "00. Booking Options",
+      subtitle: "Choose your booking type",
+      type: "flat",
+      items: BOOKING_ITEMS.filter(i => i.category === "booking")
+    },
     {
       id: "stay",
       title: "01. The Stay",
@@ -456,8 +506,7 @@ export default function BookingsPage() {
         return (
           <div
             key={item.id}
-            onClick={() => toggleItem(item.id)}
-            className={`group flex items-center p-4 border-b border-earth-800/30 last:border-0 hover:bg-earth-900/60 cursor-pointer transition-all duration-200 relative overflow-hidden ${isSelected ? 'bg-earth-900/90 border-l-[3px] border-l-gold-500' : 'border-l-[3px] border-l-transparent'}`}
+            className={`group flex items-center p-4 border-b border-earth-800/30 last:border-0 hover:bg-earth-900/60 transition-all duration-200 relative overflow-hidden ${isSelected ? 'bg-earth-900/90 border-l-[3px] border-l-gold-500' : 'border-l-[3px] border-l-transparent'}`}
           >
             {/* Hover Glow Effect */}
             <div className="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
@@ -477,6 +526,11 @@ export default function BookingsPage() {
 
             {/* Action Button */}
             <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleItem(item.id);
+              }}
               className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all shrink-0 relative z-10 ${isSelected
                 ? "bg-gold-500 border-gold-500 text-earth-950 shadow-[0_0_15px_rgba(197,160,101,0.4)] scale-105"
                 : "border-earth-700 text-earth-500 group-hover:border-gold-500 group-hover:text-gold-500 bg-earth-950/50 hover:bg-earth-900"
@@ -564,43 +618,6 @@ export default function BookingsPage() {
               <BookingForm />
             </div>
 
-            {/* Book a The Silent Club Tour */}
-            <div className="mb-8">
-              <div className="border border-earth-800 rounded-lg bg-earth-900/20 overflow-hidden">
-                <div
-                  onClick={() => toggleItem('free-tour')}
-                  className={`group flex items-center justify-between p-6 hover:bg-earth-900/40 cursor-pointer transition-all duration-200 relative overflow-hidden ${isInCart('free-tour') ? 'bg-earth-900/90 border-l-[3px] border-l-gold-500' : 'border-l-[3px] border-l-transparent'}`}
-                >
-                  {/* Hover Glow Effect */}
-                  <div className="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-
-                  {/* Left: Title & Subtitle */}
-                  <div className="relative z-10">
-                    <div className="flex items-center gap-2 mb-1">
-                      {isInCart('free-tour') && <span className="material-symbols-outlined text-gold-500 text-sm">check_circle</span>}
-                      <h2 className={`text-xl font-serif transition-colors ${isInCart('free-tour') ? 'text-gold-500' : 'text-earth-50'}`} style={{ fontFamily: 'Outfit, sans-serif' }}>00. The Silent Club Tour</h2>
-                    </div>
-                    <p className="text-xs text-earth-300/50 font-body">Book a complimentary tour</p>
-                  </div>
-
-                  {/* Right: Price & Button */}
-                  <div className="flex items-center gap-4 relative z-10">
-                    <span className={`text-sm font-mono whitespace-nowrap transition-colors ${isInCart('free-tour') ? 'text-gold-500 font-bold' : 'text-earth-400 group-hover:text-gold-400'}`}>Free</span>
-                    <button
-                      className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all shrink-0 ${isInCart('free-tour')
-                        ? "bg-gold-500 border-gold-500 text-earth-950 shadow-[0_0_15px_rgba(197,160,101,0.4)] scale-105"
-                        : "border-earth-700 text-earth-500 group-hover:border-gold-500 group-hover:text-gold-500 bg-earth-950/50 hover:bg-earth-900"
-                        }`}
-                    >
-                      <span className="material-symbols-outlined text-lg font-bold">
-                        {isInCart('free-tour') ? "remove" : "add"}
-                      </span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <div className="space-y-6">
               {structure.map((section) => {
                 const isOpen = openSections[section.id];
@@ -608,7 +625,11 @@ export default function BookingsPage() {
                   <div key={section.id} className="border border-earth-800 rounded-lg bg-earth-900/20 overflow-hidden">
                     {/* Top Section Header */}
                     <button
-                      onClick={() => toggleSection(section.id)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        toggleSection(section.id);
+                      }}
                       className="w-full flex items-center justify-between p-6 hover:bg-earth-900/40 transition-colors text-left"
                     >
                       <div>
@@ -634,7 +655,11 @@ export default function BookingsPage() {
                             return (
                               <div key={sub.id} className={`border-b border-earth-800/30 last:border-0`}>
                                 <button
-                                  onClick={() => toggleSection(sub.id)}
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    toggleSection(sub.id);
+                                  }}
                                   className="w-full flex items-center justify-between py-4 px-6 hover:bg-earth-900/40 transition-colors"
                                 >
                                   <span className="text-base text-earth-200 font-medium">{sub.title}</span>
@@ -642,7 +667,7 @@ export default function BookingsPage() {
                                     expand_more
                                   </span>
                                 </button>
-                                <div className={`transition-all duration-300 ease-in-out ${isSubOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                                <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isSubOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}`}>
                                   {renderItems(sub.items)}
                                 </div>
                               </div>
