@@ -133,7 +133,7 @@ export default function Accommodation() {
         <div className="mb-8">
           <h3 className="text-3xl font-semibold mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Stay</h3>
           <p className="text-earth-300 font-body text-[15px] max-w-full">
-            Rest here is functional, not indulgent.<br />
+             Rest here is functional, not indulgent.<br />
             Each stay option offers a different degree of privacy, proximity, and withdrawal.
           </p>
         </div>

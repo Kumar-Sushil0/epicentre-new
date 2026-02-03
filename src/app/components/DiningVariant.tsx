@@ -28,9 +28,9 @@ export default function DiningVariant() {
     <section className="py-8 min-h-[100vh] bg-earth-900 flex items-center" id="dining">
       <div className="w-full px-16">
         <div className="mb-8">
-          <h2 className="text-3xl font-bold mb-2 text-gold-500" style={{ fontFamily: 'Quicksand, sans-serif' }}>Food</h2>
-          <p className="text-earth-300 font-body text-lg max-w-full">
-            Food here supports steadiness and attention.<br />
+           <h3 className="text-3xl font-semibold mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Food</h3>
+          <p className="text-earth-300 font-body text-[15px] max-w-full">
+           Food here supports steadiness and attention.<br />
             Meals follow a simple rhythm:
           </p>
         </div>
