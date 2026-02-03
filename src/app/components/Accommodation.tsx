@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 export default function Accommodation() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(2); // Start at first real item (after clones)
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   const items = [
     {
@@ -33,20 +35,104 @@ export default function Accommodation() {
     },
   ];
 
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1));
+  // Create infinite items: [clone-end, clone-end, ...real items..., clone-start, clone-start]
+  const infiniteItems = [
+    ...items.slice(-2), // Last 2 items as clones at start
+    ...items,           // Real items
+    ...items.slice(0, 2) // First 2 items as clones at end
+  ];
+
+  const totalItems = items.length;
+  const cardWidth = 55; // 55% width
+  const gap = 8; // 2rem gap
+
+  // Auto-advance carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!isTransitioning) {
+        handleNext();
+      }
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [isTransitioning]);
+
+  // Handle transition end for seamless infinite loop
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    const handleTransitionEnd = () => {
+      setIsTransitioning(false);
+      
+      // Reset position for infinite loop
+      if (currentIndex >= totalItems + 2) {
+        // At end clones, jump to real start
+        setCurrentIndex(2);
+        carousel.style.transition = 'none';
+        carousel.style.transform = getTransform(2);
+        // Force reflow
+        carousel.offsetHeight;
+        carousel.style.transition = 'transform 0.5s ease';
+      } else if (currentIndex < 2) {
+        // At start clones, jump to real end
+        setCurrentIndex(totalItems + 1);
+        carousel.style.transition = 'none';
+        carousel.style.transform = getTransform(totalItems + 1);
+        // Force reflow
+        carousel.offsetHeight;
+        carousel.style.transition = 'transform 0.5s ease';
+      }
+    };
+
+    carousel.addEventListener('transitionend', handleTransitionEnd);
+    return () => carousel.removeEventListener('transitionend', handleTransitionEnd);
+  }, [currentIndex, totalItems]);
+
+  const getTransform = (index = currentIndex) => {
+    // Simple centering: move each slide by its full width + gap, then offset to center
+    const slideWidth = 55; // 55% width
+    const gapRem = 2; // 2rem gap (gap-8 = 2rem)
+    
+    // Move by index slides, then center the current slide
+    const slideOffset = index * slideWidth; // Move by slide widths
+    const gapOffset = index * gapRem; // Account for gaps in rem
+    const centerOffset = 50 - (slideWidth / 2); // Center the 55% width slide (50% - 27.5% = 22.5%)
+    
+    return `translateX(calc(-${slideOffset}% - ${gapOffset}rem + ${centerOffset}%))`;
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex(prev => prev + 1);
+  };
+
+  const handlePrev = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex(prev => prev - 1);
+  };
+
+  const handleDotClick = (dotIndex: number) => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex(dotIndex + 2); // +2 because real items start at index 2
+  };
+
+  // Get current real item index for dots
+  const getCurrentRealIndex = () => {
+    if (currentIndex < 2) return totalItems + currentIndex - 2;
+    if (currentIndex >= totalItems + 2) return currentIndex - totalItems - 2;
+    return currentIndex - 2;
   };
 
   return (
     <section className="py-8 min-h-[100vh] bg-[#261B14] border-t border-earth-700 flex items-center" id="accommodation">
       <div className="w-full px-16">
-        <div className="mb-8 text-center md:text-left">
-          <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Quicksand, sans-serif' }}>Stay</h2>
-          <p className="text-earth-300 max-w-2xl font-body">
+        <div className="mb-8">
+          <h3 className="text-3xl font-semibold mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Stay</h3>
+          <p className="text-earth-300 font-body text-[15px] max-w-full">
             Rest here is functional, not indulgent.<br />
             Each stay option offers a different degree of privacy, proximity, and withdrawal.
           </p>
@@ -56,23 +142,20 @@ export default function Accommodation() {
           {/* Carousel Container */}
           <div className="overflow-hidden w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             <div
+              ref={carouselRef}
               className="flex gap-8 transition-transform duration-500 ease-in-out"
               style={{
-                transform: `translateX(calc(-${currentIndex} * ((100% - 6rem) / 4 + 2rem)))`,
+                transform: getTransform(),
                 willChange: "transform",
               }}
             >
-              {items.map((item) => (
+              {infiniteItems.map((item, index) => (
                 <div
-                  key={item.id}
-                  className="flex-shrink-0 group cursor-pointer"
-                  style={{
-                    width: `calc((100% - 6rem) / 4)`,
-                    flexShrink: 0,
-                  }}
-                  onClick={() => setCurrentIndex(item.id)}
+                  key={`${item.id}-${index}`}
+                  className="flex-shrink-0 w-[55%] group cursor-pointer"
+                  onClick={() => handleDotClick(item.id)}
                 >
-                  <div className="relative aspect-[5/6] rounded-lg overflow-hidden shadow-2xl border border-earth-700">
+                  <div className="relative aspect-[16/9] rounded-lg overflow-hidden shadow-2xl border border-earth-700">
                     {/* Image */}
                     <div className="absolute inset-0">
                       <Image
@@ -124,8 +207,8 @@ export default function Accommodation() {
             {items.map((_, index) => (
               <button
                 key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all ${index === currentIndex ? "bg-gold-500 w-8" : "bg-earth-100/50 hover:bg-earth-100/75"}`}
+                onClick={() => handleDotClick(index)}
+                className={`w-2 h-2 rounded-full transition-all ${index === getCurrentRealIndex() ? "bg-gold-500 w-8" : "bg-earth-100/50 hover:bg-earth-100/75"}`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}

@@ -14,6 +14,9 @@ export interface CarouselCardProps {
     price?: string;
     userCount?: string | number;
     href?: string;
+    titleSize?: string;
+    titlePosition?: { left?: string; bottom?: string; right?: string };
+    overlayColor?: 'gold-gradient' | 'gold-solid' | 'default';
 }
 
 export default function CarouselCard({
@@ -26,6 +29,9 @@ export default function CarouselCard({
     price,
     userCount,
     href,
+    titleSize,
+    titlePosition,
+    overlayColor = 'default',
 }: CarouselCardProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
@@ -76,7 +82,7 @@ export default function CarouselCard({
             onMouseLeave={() => setIsHovered(false)}
         >
             {/* Background Content (Revealed on Hover) */}
-            <div className="absolute inset-x-0 bottom-0 h-1/2 flex flex-col justify-end p-8 pb-10">
+            <div className="absolute inset-x-0 bottom-0 h-1/2 flex flex-col justify-end p-6 pb-4">
 
                 {/* Header: Icon/Category + Price/Count */}
                 <div className={`flex items-center justify-between mb-3 transition-opacity duration-300 delay-75 w-full text-earth-950 ${shouldShowHoverState ? 'opacity-100' : 'opacity-0'}`}>
@@ -100,7 +106,7 @@ export default function CarouselCard({
                     )}
                 </div>
 
-                <h4 className={`text-xl font-bold text-earth-950 mb-2 transition-opacity duration-300 delay-100 ${shouldShowHoverState ? 'opacity-100' : 'opacity-0'}`} style={{ fontFamily: 'Quicksand, sans-serif' }}>
+                <h4 className={`text-[21px] font-normal mb-2 transition-opacity duration-300 delay-100 ${shouldShowHoverState ? 'opacity-100' : 'opacity-0'}`} style={{ fontFamily: 'Outfit, sans-serif', fontSize: titleSize, color: '#261b14' }}>
                     {title}
                 </h4>
                 <p className={`text-earth-900 text-sm leading-relaxed transition-opacity duration-300 delay-150 font-medium font-body whitespace-pre-line ${shouldShowHoverState ? 'opacity-100' : 'opacity-0'}`}>
@@ -127,13 +133,26 @@ export default function CarouselCard({
                 ))}
 
                 {/* Gradient Overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-300 pointer-events-none ${shouldShowHoverState ? 'opacity-0' : ''}`} />
+                <div className={`absolute inset-0 transition-opacity duration-300 pointer-events-none ${shouldShowHoverState ? 'opacity-0' : ''} ${
+                    overlayColor === 'gold-gradient' 
+                        ? 'bg-gradient-to-t from-gold-500/70 via-gold-500/30 to-transparent' 
+                        : overlayColor === 'gold-solid'
+                        ? 'bg-gold-500/35'
+                        : 'bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60'
+                }`} />
 
                 {/* Title Overlay (Initially Visible) */}
-                <div className={`absolute bottom-8 left-8 right-8 transition-opacity duration-300 pointer-events-none ${shouldShowHoverState ? 'opacity-0' : ''}`}>
+                <div 
+                    className={`absolute transition-opacity duration-300 pointer-events-none ${shouldShowHoverState ? 'opacity-0' : ''}`}
+                    style={{
+                        bottom: titlePosition?.bottom || '1.5rem',
+                        left: titlePosition?.left || '2rem',
+                        right: titlePosition?.right || '2rem'
+                    }}
+                >
 
                     {/* Header: Icon/Category + Price/Count (White/Gold) */}
-                    <div className="flex items-center justify-between mb-2 w-full">
+                    <div className="flex items-center justify-between mb-0 w-full">
                         {(icon || category) && (
                             <div className="flex items-center gap-2 text-gold-500">
                                 {icon && <span className="material-symbols-outlined text-lg drop-shadow-md">{icon}</span>}
@@ -154,7 +173,7 @@ export default function CarouselCard({
                         )}
                     </div>
 
-                    <h4 className="text-2xl font-bold text-white drop-shadow-md" style={{ fontFamily: 'Quicksand, sans-serif' }}>{title}</h4>
+                    <h4 className="text-[21px] font-normal text-white" style={{ fontFamily: 'Outfit, sans-serif', fontSize: titleSize, textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)' }}>{title}</h4>
                 </div>
 
                 {/* Dots */}
