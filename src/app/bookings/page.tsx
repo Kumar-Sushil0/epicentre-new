@@ -501,7 +501,7 @@ export default function BookingsPage() {
         {/* RIGHT SIDEBAR (Summary) */}
         <aside className="lg:w-[380px] lg:h-[calc(100vh-72px)] lg:sticky lg:top-[72px] bg-earth-900 border-b lg:border-b-0 lg:border-l border-earth-800 flex flex-col z-30 shadow-2xl shrink-0">
           <div className="p-6 border-b border-earth-800 bg-earth-900 z-10">
-            <h2 className="text-xl font-serif text-gold-500 mb-1" style={{ fontFamily: 'Trirong, serif' }}>Your Retreat</h2>
+            <h2 className="text-xl font-serif text-gold-500 mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>Your Retreat</h2>
             <p className="text-earth-300/60 text-xs font-body">Review selected items.</p>
           </div>
 
@@ -552,7 +552,7 @@ export default function BookingsPage() {
           <div className="max-w-4xl mx-auto px-6 py-12 lg:py-16">
 
             <div className="mb-16">
-              <h1 className="text-3xl md:text-5xl text-earth-100 font-serif mb-4" style={{ fontFamily: 'Trirong, serif' }}>
+              <h1 className="text-3xl md:text-5xl text-earth-100 font-serif mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
                 Design Your <span className="italic text-gold-500">Silence</span>
               </h1>
               <p className="text-earth-300/60 font-body text-sm max-w-xl leading-relaxed">
@@ -578,7 +578,7 @@ export default function BookingsPage() {
                   <div className="relative z-10">
                     <div className="flex items-center gap-2 mb-1">
                       {isInCart('free-tour') && <span className="material-symbols-outlined text-gold-500 text-sm">check_circle</span>}
-                      <h2 className={`text-xl font-serif transition-colors ${isInCart('free-tour') ? 'text-gold-500' : 'text-earth-50'}`} style={{ fontFamily: 'Trirong, serif' }}>00. Free Tour</h2>
+                      <h2 className={`text-xl font-serif transition-colors ${isInCart('free-tour') ? 'text-gold-500' : 'text-earth-50'}`} style={{ fontFamily: 'Outfit, sans-serif' }}>00. Free Tour</h2>
                     </div>
                     <p className="text-xs text-earth-300/50 font-body">Book a complimentary tour</p>
                   </div>
@@ -612,7 +612,7 @@ export default function BookingsPage() {
                       className="w-full flex items-center justify-between p-6 hover:bg-earth-900/40 transition-colors text-left"
                     >
                       <div>
-                        <h2 className="text-xl font-serif text-earth-50" style={{ fontFamily: 'Trirong, serif' }}>{section.title}</h2>
+                        <h2 className="text-xl font-serif text-earth-50" style={{ fontFamily: 'Outfit, sans-serif' }}>{section.title}</h2>
                         <p className="text-xs text-earth-300/50 mt-1 font-body">{section.subtitle}</p>
                       </div>
                       <span className={`material-symbols-outlined text-earth-300 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>

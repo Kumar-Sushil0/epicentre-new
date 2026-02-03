@@ -36,7 +36,7 @@ export default function PrinciplesAndEnvironment() {
     <section className="relative py-32 px-6 md:px-12 bg-earth-950">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-24 border-b border-earth-800 pb-12">
-          <h2 className="text-gold-500 text-5xl md:text-6xl font-medium font-serif leading-none" style={{ fontFamily: 'Trirong, serif' }}>
+          <h2 className="text-gold-500 text-5xl md:text-6xl font-medium font-serif leading-none" style={{ fontFamily: 'Outfit, sans-serif' }}>
             Operating <br />
             <span className="italic text-earth-100">Principles</span>
           </h2>

@@ -25,7 +25,7 @@ export default function ResidencyCard({ category, title, description, speakers, 
         </div>
       )}
 
-      <h3 className="text-2xl text-gold-500 mb-3" style={{ fontFamily: 'Trirong, serif' }}>{title}</h3>
+      <h3 className="text-2xl text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>{title}</h3>
 
       <p className="text-earth-300 mb-4 font-light leading-relaxed font-body flex-grow">{description}</p>
 

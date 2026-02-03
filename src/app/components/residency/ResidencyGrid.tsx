@@ -19,7 +19,7 @@ export default function ResidencyGrid({ residencies }: ResidencyGridProps) {
     <section className="py-24 bg-earth-950">
       <div className="max-w-[1280px] mx-auto px-6">
         <div className="mb-16">
-          <h2 className="text-gold-500 text-3xl font-medium mb-2" style={{ fontFamily: 'Trirong, serif' }}>Available Immersions</h2>
+          <h2 className="text-gold-500 text-3xl font-medium mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Available Immersions</h2>
           <p className="text-earth-300 font-body">Choose your path of inquiry.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -15,7 +15,7 @@ export default function VenueBookingDetails() {
         <div className="border border-earth-700 rounded-lg overflow-hidden mb-8">
           {/* Title */}
           <div className="border-b border-earth-700 py-4 px-6 bg-earth-800">
-            <h2 className="text-gold-500 text-xl md:text-2xl font-bold uppercase tracking-wide text-center font-display" style={{ fontFamily: 'Trirong, serif' }}>
+            <h2 className="text-gold-500 text-xl md:text-2xl font-bold uppercase tracking-wide text-center font-display" style={{ fontFamily: 'Outfit, sans-serif' }}>
               VENUE BOOKING DETAILS
             </h2>
           </div>
@@ -49,7 +49,7 @@ export default function VenueBookingDetails() {
         {/* Things to Remember */}
         <div className="border border-earth-700 rounded-lg overflow-hidden">
           <div className="border-b border-earth-700 py-4 px-6 bg-earth-800">
-            <h3 className="text-gold-500 text-xl font-bold uppercase tracking-wide text-center font-display" style={{ fontFamily: 'Trirong, serif' }}>
+            <h3 className="text-gold-500 text-xl font-bold uppercase tracking-wide text-center font-display" style={{ fontFamily: 'Outfit, sans-serif' }}>
               THINGS TO REMEMBER
             </h3>
           </div>

@@ -17,7 +17,7 @@ export default function AboutFounder() {
             </div>
             {/* Name Overlay - positioned absolutely for magazine feel */}
             <div className="absolute -bottom-6 -right-6 lg:-right-12 bg-earth-950 p-8 border border-earth-800 max-w-xs shadow-2xl">
-              <h2 className="text-gold-500 text-3xl font-medium mb-2 font-serif" style={{ fontFamily: 'Trirong, serif' }}>Digen Varma</h2>
+              <h2 className="text-gold-500 text-3xl font-medium mb-2 font-serif" style={{ fontFamily: 'Outfit, sans-serif' }}>Digen Varma</h2>
               <p className="text-earth-300/60 text-xs font-bold tracking-widest uppercase">Founder & Architect</p>
             </div>
           </div>

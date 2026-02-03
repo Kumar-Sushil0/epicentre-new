@@ -109,7 +109,7 @@ export default function SolitudePractice({
             <span className="text-gold-500 text-xs font-bold tracking-[0.15em] uppercase">
               {number}. {category}
             </span>
-            <h2 className="text-gold-500 text-4xl font-bold leading-tight" style={{ fontFamily: 'Trirong, serif' }}>{title}</h2>
+            <h2 className="text-gold-500 text-4xl font-bold leading-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>{title}</h2>
             <p className="text-earth-50/70 text-lg font-light leading-relaxed font-body">{description}</p>
           </div>
           <div className="pl-6">

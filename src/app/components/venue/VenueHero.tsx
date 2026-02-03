@@ -15,7 +15,7 @@ export default function VenueHero() {
       ></div>
       <div className="relative z-20 max-w-[960px] w-full px-4 sm:px-10 text-center sm:text-left">
         <div className="flex flex-col gap-4">
-          <h1 className="text-gold-500 text-3xl md:text-4xl font-black leading-tight tracking-tighter drop-shadow-2xl" style={{ fontFamily: 'Trirong, serif' }}>
+          <h1 className="text-gold-500 text-3xl md:text-4xl font-black leading-tight tracking-tighter drop-shadow-2xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
             A setting for gatherings that require focus, quiet, and containment.
           </h1>
           <p className="text-earth-300/80 text-lg font-body leading-relaxed max-w-2xl mt-4">

@@ -65,7 +65,7 @@ export default function AboutPhilosophy() {
                 className={`text-left group flex items-center gap-4 transition-all duration-300 min-w-max pb-2 lg:pb-0 cursor-pointer ${activeTab === num ? 'opacity-100 translate-x-2' : 'opacity-40 hover:opacity-70'}`}
               >
                 <span className={`text-xl font-display ${activeTab === num ? 'text-gold-500' : 'text-earth-300'}`}>0{num}</span>
-                <span className={`text-2xl font-serif hidden lg:block ${activeTab === num ? 'text-earth-100' : 'text-earth-300'}`} style={{ fontFamily: 'Trirong, serif' }}>
+                <span className={`text-2xl font-serif hidden lg:block ${activeTab === num ? 'text-earth-100' : 'text-earth-300'}`} style={{ fontFamily: 'Outfit, sans-serif' }}>
                   {content[num as TabKey].title}
                 </span>
                 <span className={`h-px w-8 bg-gold-500 block lg:hidden ${activeTab === num ? 'opacity-100' : 'opacity-0'}`}></span>
@@ -76,7 +76,7 @@ export default function AboutPhilosophy() {
           {/* Content Column */}
           <div className="lg:col-span-8 min-h-[300px]">
             <div className="animate-in fade-in slide-in-from-right-4 duration-500" key={activeTab}>
-              <h3 className="text-4xl md:text-5xl text-gold-500 font-serif italic mb-12 block lg:hidden" style={{ fontFamily: 'Trirong, serif' }}>
+              <h3 className="text-4xl md:text-5xl text-gold-500 font-serif italic mb-12 block lg:hidden" style={{ fontFamily: 'Outfit, sans-serif' }}>
                 {content[activeTab].title}
               </h3>
 

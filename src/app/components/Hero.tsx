@@ -32,7 +32,7 @@ export default function Hero() {
       <div className="absolute inset-0 z-[1] bg-gradient-to-b from-earth-950/60 via-earth-950/50 to-earth-950/70" />
       
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto hidden">
-        <h1 className="text-5xl md:text-7xl font-serif text-gold-500 mb-6" style={{ fontFamily: 'Trirong, serif' }}>
+        <h1 className="text-5xl md:text-7xl font-serif text-gold-500 mb-6" style={{ fontFamily: 'Outfit, sans-serif' }}>
           Silence reveals direction.
         </h1>
         <p className="text-lg md:text-xl text-[#e7dfd3] mb-8 leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: 'Outfit, sans-serif' }}>

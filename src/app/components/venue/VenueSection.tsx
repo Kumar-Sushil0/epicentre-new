@@ -22,7 +22,7 @@ export default function VenueSection({ id, title, icon, venues }: VenueSectionPr
   return (
     <section className="scroll-mt-32" id={id}>
       <div className="flex items-center gap-4 mb-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-gold-500 tracking-tight" style={{ fontFamily: 'Trirong, serif' }}>{title}</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-gold-500 tracking-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>{title}</h2>
         <div className="h-[1px] bg-earth-700 flex-grow"></div>
         <span className="material-symbols-outlined text-gold-500 text-3xl">{icon}</span>
       </div>

@@ -12,7 +12,7 @@ export default function AboutVision() {
       ></div>
 
       <div className="relative z-10 max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-5xl lg:text-6xl text-earth-100 font-serif font-medium leading-tight mb-8" style={{ fontFamily: 'Trirong, serif' }}>
+        <h2 className="text-3xl md:text-5xl lg:text-6xl text-earth-100 font-serif font-medium leading-tight mb-8" style={{ fontFamily: 'Outfit, sans-serif' }}>
           Silence acts as a mirror.<br />
           <span className="text-earth-300/50 italic">Come see what it reflects.</span>
         </h2>

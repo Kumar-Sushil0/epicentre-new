@@ -12,7 +12,7 @@ export default function AboutTriad() {
                 }}
               ></div>
             </div>
-            <h3 className="text-gold-500 text-2xl font-display" style={{ fontFamily: 'Trirong, serif' }}>Why Bhigwan</h3>
+            <h3 className="text-gold-500 text-2xl font-display" style={{ fontFamily: 'Outfit, sans-serif' }}>Why Bhigwan</h3>
             <ul className="space-y-3 text-earth-50/60 font-body text-sm leading-relaxed">
               <li className="flex items-start gap-2">
                 <span className="text-gold-500 text-xs mt-1">•</span>
@@ -45,7 +45,7 @@ export default function AboutTriad() {
                 }}
               ></div>
             </div>
-            <h3 className="text-gold-500 text-2xl font-display" style={{ fontFamily: 'Trirong, serif' }}>Why a Club</h3>
+            <h3 className="text-gold-500 text-2xl font-display" style={{ fontFamily: 'Outfit, sans-serif' }}>Why a Club</h3>
             <ul className="space-y-3 text-earth-50/60 font-body text-sm leading-relaxed">
               <li className="flex items-start gap-2">
                 <span className="text-gold-500 text-xs mt-1">•</span>
@@ -78,7 +78,7 @@ export default function AboutTriad() {
                 }}
               ></div>
             </div>
-            <h3 className="text-gold-500 text-2xl font-display" style={{ fontFamily: 'Trirong, serif' }}>Why We Experiment</h3>
+            <h3 className="text-gold-500 text-2xl font-display" style={{ fontFamily: 'Outfit, sans-serif' }}>Why We Experiment</h3>
             <ul className="space-y-3 text-earth-50/60 font-body text-sm leading-relaxed">
               <li className="flex items-start gap-2">
                 <span className="text-gold-500 text-xs mt-1">•</span>

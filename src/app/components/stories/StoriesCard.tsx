@@ -30,7 +30,7 @@ export default function StoriesCard({ title, description, image, imageAlt, autho
             {badge}
           </div>
         )}
-        <h3 className="text-2xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Trirong, serif' }}>{title}</h3>
+        <h3 className="text-2xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>{title}</h3>
         {(author || date) && (
           <div className="flex items-center gap-4 text-earth-300 text-xs font-mono mb-4">
             {author && (

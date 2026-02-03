@@ -93,7 +93,7 @@ export default function BlogsPage() {
 
             {/* Hero Section */}
             <section className="relative px-6 py-24 md:py-32 max-w-[1400px] mx-auto flex flex-col items-center text-center">
-                <h1 className="text-4xl md:text-6xl font-serif text-gold-500 mb-6 font-bold" style={{ fontFamily: 'Trirong, serif' }}>
+                <h1 className="text-4xl md:text-6xl font-serif text-gold-500 mb-6 font-bold" style={{ fontFamily: 'Outfit, sans-serif' }}>
                     Journal
                 </h1>
                 <p className="text-earth-300 max-w-2xl text-lg font-body leading-relaxed">

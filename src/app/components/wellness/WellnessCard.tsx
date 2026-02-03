@@ -125,7 +125,7 @@ export default function WellnessCard({
             <span className="material-symbols-outlined text-lg">{icon}</span>
             <span className="text-xs uppercase tracking-widest font-body">{category}</span>
           </div>
-          <h3 className="text-3xl lg:text-4xl text-gold-500 font-medium" style={{ fontFamily: 'Trirong, serif' }}>{title}</h3>
+          <h3 className="text-3xl lg:text-4xl text-gold-500 font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>{title}</h3>
           <p className="text-earth-300/60 leading-relaxed text-base max-w-md font-body whitespace-pre-line">{description}</p>
         </div>
       </div>
@@ -212,7 +212,7 @@ export default function WellnessCard({
           <span className="material-symbols-outlined text-lg">{icon}</span>
           <span className="text-xs uppercase tracking-widest font-body">{category}</span>
         </div>
-        <h3 className="text-2xl text-gold-500 font-medium" style={{ fontFamily: 'Trirong, serif' }}>{title}</h3>
+        <h3 className="text-2xl text-gold-500 font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>{title}</h3>
         <p className="text-earth-300/60 leading-relaxed text-sm font-body whitespace-pre-line">{description}</p>
       </div>
     </div>
