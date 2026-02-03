@@ -35,7 +35,7 @@ export default function AboutUsPage() {
       
       <AboutCollective />
       <ClosingSection/>
-
+ 
       <Footer />
     </main>
   );
