@@ -31,7 +31,7 @@ export default function Hero() {
       {/* Overlay */}
       <div className="absolute inset-0 z-[1] bg-gradient-to-b from-earth-950/60 via-earth-950/50 to-earth-950/70" />
       
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto hidden">
         <h1 className="text-5xl md:text-7xl font-serif text-gold-500 mb-6" style={{ fontFamily: 'Trirong, serif' }}>
           Silence reveals direction.
         </h1>
