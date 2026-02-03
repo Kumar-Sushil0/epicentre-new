@@ -91,13 +91,13 @@ export default function Accommodation() {
 
   const getTransform = (index = currentIndex) => {
     // Simple centering: move each slide by its full width + gap, then offset to center
-    const slideWidth = 55; // 55% width
+    const slideWidth = 65; // 65% width
     const gapRem = 2; // 2rem gap (gap-8 = 2rem)
     
     // Move by index slides, then center the current slide
     const slideOffset = index * slideWidth; // Move by slide widths
     const gapOffset = index * gapRem; // Account for gaps in rem
-    const centerOffset = 50 - (slideWidth / 2); // Center the 55% width slide (50% - 27.5% = 22.5%)
+    const centerOffset = 50 - (slideWidth / 2); // Center the 65% width slide (50% - 32.5% = 17.5%)
     
     return `translateX(calc(-${slideOffset}% - ${gapOffset}rem + ${centerOffset}%))`;
   };
@@ -152,7 +152,7 @@ export default function Accommodation() {
               {infiniteItems.map((item, index) => (
                 <div
                   key={`${item.id}-${index}`}
-                  className="flex-shrink-0 w-[55%] group cursor-pointer"
+                  className="flex-shrink-0 w-[65%] group cursor-pointer"
                   onClick={() => handleDotClick(item.id)}
                 >
                   <div className="relative aspect-[16/9] rounded-lg overflow-hidden shadow-2xl border border-earth-700">
