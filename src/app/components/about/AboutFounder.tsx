@@ -1,7 +1,7 @@
 export default function AboutFounder() {
   return (
-    <section className="py-32 px-6 bg-earth-900 border-b border-earth-800">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-32 px-16 bg-earth-900 border-b border-earth-800">
+      <div className="max-w-7xl">
         <div className="flex flex-col lg:flex-row items-stretch gap-16 lg:gap-24">
 
           {/* Image Side */}

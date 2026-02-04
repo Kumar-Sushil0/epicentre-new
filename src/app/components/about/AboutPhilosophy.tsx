@@ -50,8 +50,8 @@ export default function AboutPhilosophy() {
   ];
 
   return (
-    <section className="relative py-32 px-6 md:px-12 bg-earth-950 border-b border-earth-800">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative py-32 px-16 bg-earth-950 border-b border-earth-800">
+      <div className="max-w-7xl">
         {/* Banner Layout */}
         <div className="flex flex-col lg:flex-row border border-earth-800 rounded-lg overflow-hidden bg-earth-900/30 relative">
           

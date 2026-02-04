@@ -4,7 +4,6 @@ import RoomsSidebar from "../components/rooms/RoomsSidebar";
 import RoomsHero from "../components/rooms/RoomsHero";
 import RoomSection from "../components/rooms/RoomSection";
 import RoomsCTA from "../components/rooms/RoomsCTA";
-import ClosingSection from "../components/ClosingSection";
 
 export default function RoomsPage() {
   return (
@@ -124,7 +123,6 @@ export default function RoomsPage() {
           </main>
         </div>
       </div>
-      <ClosingSection />
       <Footer />
     </main>
   );

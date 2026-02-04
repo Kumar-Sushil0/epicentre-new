@@ -4,7 +4,6 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SolitudeHero from "../components/solitude/SolitudeHero";
 import CarouselCard from "../components/CarouselCard"; // Import CarouselCard
-import ClosingSection from "../components/ClosingSection";
 
 export default function SolitudePage() {
   const practices = [
@@ -131,7 +130,6 @@ export default function SolitudePage() {
           ))}
         </div>
       </div>
-      <ClosingSection />
       <Footer />
     </main>
   );

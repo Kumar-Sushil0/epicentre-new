@@ -1,7 +1,7 @@
 export default function PrinciplesAndEnvironment() {
   return (
-    <section className="relative py-16 px-6 md:px-12 bg-earth-950 border-b border-earth-800">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative py-16 px-16 bg-earth-950 border-b border-earth-800">
+      <div className="max-w-7xl">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
           
           {/* Left Side - Sustainable Pratices */}

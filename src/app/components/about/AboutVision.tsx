@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function AboutVision() {
   return (
-    <section className="py-40 px-6 flex flex-col items-center justify-center text-center bg-earth-950 relative overflow-hidden">
+    <section className="py-40 px-16 flex flex-col items-center justify-center text-center bg-earth-950 relative overflow-hidden">
       <div
         className="absolute inset-0 opacity-5 pointer-events-none"
         style={{
@@ -11,7 +11,7 @@ export default function AboutVision() {
         }}
       ></div>
 
-      <div className="relative z-10 max-w-4xl mx-auto">
+      <div className="relative z-10 max-w-4xl">
         <h2 className="text-3xl md:text-5xl lg:text-6xl text-earth-100 font-serif font-medium leading-tight mb-8" style={{ fontFamily: 'Outfit, sans-serif' }}>
           Silence acts as a mirror.<br />
           <span className="text-earth-300/50 italic">Come see what it reflects.</span>

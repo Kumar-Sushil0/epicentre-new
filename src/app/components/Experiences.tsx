@@ -33,7 +33,7 @@ export default function Experiences() {
   const experiences = [
     {
       title: "Wellness",
-      description: "Practices that support the body and nervous system.",
+      description: " Always-available practices that support the body and nervous system. Unscheduled and untracked.",
       href: "/wellness",
       images: [
         "https://lh3.googleusercontent.com/aida-public/AB6AXuAG8sRV16GeDF6s3Aix4GpETZ3eauYTdeaL5IlWaBQHdmLaEUl8HwITF-icK7rBJH3rs4_eyRc0OnTyudHniz8NCe3oRC2k5_KcTRLReqJdws9zmY25stjYSrFvYvnbb4fxetbYlgcqCJDWwMaBr_6UB09wT864MpT6mLPkqnqxG3JPy_DNNFOMUqcmW8iZWOE4etCbj4TW4EEkBzJss4y7vWzlNmUWjLyUiZaka0GRqyef8OxRV6v8-KYfO5Y2EoBHFW0f3nVZFV6T",
@@ -44,7 +44,7 @@ export default function Experiences() {
     },
     {
       title: "Experiences",
-      description: "Context-dependent moments shaped by place and time.",
+      description: "Guided sessions led by experienced practitioners. Offered by booking, individually or in small groups. Each session stands on its own.",
       href: "/experiences",
       images: [
         "https://lh3.googleusercontent.com/aida-public/AB6AXuBzQUBgomUJe6e1OB_6dmTVcgR_GYt5k-UgoretbmfZ_izouiCOaK8YYEWLDt_QTV_ISyTECnULI_O5W2HYPqj6w163bSvDPTOBZHjRl7FljH8xAlUWQIAfo5Eosj0EPZTfwiMtkXcjRL7RThN1FokJa4gSqWamw681YNKmVWdMcKtTZpKktdALEho3axfgg38XvTVTyHnF8634k552ETsVCipetwOV8NQ9ujUeRJusTOeygeyE16mtVKBxnTDmtPIEduKGAtXfTURb",
@@ -56,7 +56,7 @@ export default function Experiences() {
     },
     {
       title: "Solitude",
-      description: "Time alone without tasks or expectations.",
+      description: " Self-led, nature-based engagement.Resources are provided. Time is spent alone, without instruction or expectation.",
       href: "/solitude",
       images: [
         "https://lh3.googleusercontent.com/aida-public/AB6AXuA0HsBN67MCfII7SFbyoe1CuEbEDrqaYf7kqJpp72tE8oPKovG1zztOo__0OQzzELS2oQ_DGIuO1KS_1IVBucK8qj3FwvhRqbMhDhMbqm1ocMzXlUZu5zJy0ltLGZMhF5nbdxBiOOkVb0CbxNMhe3JUOqBjg4wMOeojwjaZBLtOtIZGd0bfLsFeA9XysJv44KgWPDDw2dfGb8kuCIadFmbgCYe5XTjiZwGX0My_VA7VqMgybDzGRzIgV_DDxQrBvxv58qq8EQmUqBNd",
@@ -68,7 +68,7 @@ export default function Experiences() {
     },
     {
       title: "Expression",
-      description: "Shared containers for unfinished work.",
+      description: " Temporary containers for leaders and small groups testing ideas. Used for quiet iteration before public release. Nothing needs to be finished or shared.",
       href: "/expression",
       images: [
         "https://lh3.googleusercontent.com/aida-public/AB6AXuAPAjtxSh87gIafkgIqTQA4_WlBoXdA8o_35G4VKBbVse1DMUWiZfJRKzPGjlrGI9zwVUe17OPdlAa9eDGJimduOzWhw3_NGmPSM-owaLiC0ZDzOZrYwRq6gzX8Uu1NxkBzYzHe0-Wm213bdlpPLadfY9I9heB0l5jHHYlkSKpnweFU8u8Os8ZU0oPWnswySRkwRHCEuWRJSQkWsiJi0KIugcnXUrIgi8mK3Lhpej9bLkfGjJANLbVri_x-pda8_oyarPiN1ILubRWR",
@@ -80,7 +80,7 @@ export default function Experiences() {
     },
     {
       title: "Residency",
-      description: "Multi-day immersions around a single question.",
+      description: " Multi-day immersions around a single question. Hosted by opinion leaders with a selective group. Designed for sustained inquiry and deeper conversation.",
       href: "/residency",
       images: [
         "https://lh3.googleusercontent.com/aida-public/AB6AXuBnwCob9OLts6qzhSrAp3eGecAESNXcyBepcvKiD43IYeSQeZnKWVuCMxf2Em1PtMNEYmxk31bHbccgtnM7PlImtP3GGqHD8EkAwnRQ-0xJaDkpbAZlq87zjDkcVEyia-I8Qof9KGapcrL8UBqCCp5MUlsZ_xwtnbC3yH02WXO6nOH4VaPmqgUhGy5ji8U2Kd_cROe0lJLPalg7mRvnccU_ZlrTAQuU9IuFXmr4DuqqLNotB-Ey-0kbqiReB8HUzw2-yYrArpRYEVc-",

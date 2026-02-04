@@ -6,24 +6,24 @@ import CarouselCard from "./CarouselCard";
 const ITEMS = [
   {
     id: 0,
-    title: "Designed Silence",
-    description: "Sound, movement, and activity are intentionally shaped so attention can settle.",
+    title: "Held Silence",
+    description: "Silence is not suggested or symbolic. It is structurally and culturally held.",
     images: [
       "/moat.png"
     ]
   },
   {
     id: 1,
-    title: "Non-Performative Space",
-    description: "There is no pressure to speak, share, or present an identity. Presence is enough.",
+    title: "Anonymity by Design",
+    description: "Identity is optional. Guests may choose to remain unseen, unengaged, and uninterrupted.",
     images: [
       "/moat2.png"
     ]
   },
   {
     id: 2,
-    title: "Environment-Led Experience",
-    description: "Architecture, land, and rhythm do the work. There is no programming layer.",
+    title: "Deep Sensory Withdrawal",
+    description: "Dark rooms offer total light isolation with no facilitation or narrative. Only conditions. Only time.",
     images: [
       "/moat3.png"
     ]
@@ -72,7 +72,7 @@ export default function WhatThisIsNot() {
         <div className="mb-8">
           <h3 className="text-3xl font-semibold mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Our Moat</h3>
           <p className="text-[#e7dfd3] font-body text-[15px] max-w-full">
-            What makes The Silent Club distinct is not what happens here,<br/> but how the environment is held.
+            The Silent Club is difficult to replicate because it removes what most places rely on.
           </p>
         </div>
 

@@ -14,7 +14,7 @@ export default function ExpressionDetailsHero({ title, subtitle, image }: Expres
           style={{ backgroundImage: `url("${image}")` }}
         ></div>
       </div>
-      <div className="relative z-20 container mx-auto px-6 text-center max-w-4xl pt-10">
+      <div className="relative z-20 container px-16 text-center max-w-4xl pt-10">
         <div className="flex flex-col items-center gap-6">
           <span className="px-3 py-1 border border-gold-500/40 rounded-full text-xs font-body tracking-widest text-gold-500 uppercase bg-earth-950/50 backdrop-blur-sm">
             Expression Practice

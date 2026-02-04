@@ -3,7 +3,6 @@ import Footer from "../components/Footer";
 import VenueHero from "../components/venue/VenueHero";
 import VenueCategoryNav from "../components/venue/VenueCategoryNav";
 import VenueSection from "../components/venue/VenueSection";
-import ClosingSection from "../components/ClosingSection";
 
 export default function VenuePage() {
   const venueCategories = [
@@ -311,7 +310,6 @@ export default function VenuePage() {
           <VenueSection key={category.id} {...category} />
         ))}
       </div>
-      <ClosingSection />
       <Footer />
     </main>
   );

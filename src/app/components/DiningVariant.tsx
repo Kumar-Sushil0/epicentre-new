@@ -42,27 +42,27 @@ export default function DiningVariant() {
   const items = [
     {
       id: 0,
-      category: "Daily",
+      category: "",
       title: "Satvik Home Food",
-      description: "everyday, uncomplicated vegetarian food",
+      description: "Uncomplicated vegetarian meals prepared for ease.",
       images: [
         "https://lh3.googleusercontent.com/aida-public/AB6AXuC7EqkXqQPU7fE4pLFU_Hk927TUqj83DfbTfUvPIihY2voNQvmPzkgFFvUowSJV8BeUmi3AK6_9d9MQPQBC_OXh3eBg9xIp_jNbcq4P1uQYXAH4udgKWxtFyRuenpPXcorX848v2tHHPWWYfK16iMhYDcmb9iw-JZ2WzgiEm9s4eNuGAgeRY8AMsVHC_k5fLfLYry5CbHdiz9uOsXZQFafe7IcPz2Ty17dsxEdLhomR6gW_ljYA7vJCFpBg4iyLqVjMKXTFWCffegD2"
       ],
     },
     {
       id: 1,
-      category: "Wed & Fri",
-      title: "Smoothies, Shakes, Sandwiches & Salads",
-      description: "occasional lighter preparations",
+      category: "",
+      title: "Smoothies, Sandwiches & Salads",
+      description: "Occasional lighter preparations",
       images: [
         "https://lh3.googleusercontent.com/aida-public/AB6AXuBPPRi1KA1SSwhk_HwPBfDwwsAERrk2PJlQEBBT-t3vsDceOPFxRCmCS2hOSB75G50kN4biPj2O6wed6Y5WHy9QYxwfH8SnuPsoH85EkeBG2eWtd61u1kxzb7Hvo1aRqQz8Hw0fhpybRMYRkBpd0hO_yyjc9Cd8p7GUmT-FXalpznzlPS8i_pqPTP-dRL1gJP5yqyABEWDkhy7V7DJxmjQTkdmmZh4DIyIpX7FcKG1hcb2P7A7ZA6abK6NzUJeiJWEJAKb5pwvQZMa5"
       ],
     },
     {
       id: 2,
-      category: "Weekend Special",
+      category: "",
       title: "Wood-Fired Pizza, Barbeque & Sushi",
-      description: "Infrequent communal cooking, held without hurry",
+      description: "Infrequent communal cooking, unhurried and shared.",
       images: [
         "https://lh3.googleusercontent.com/aida-public/AB6AXuC72-qeY2eEUj-PVITTUo2cNBi448iUqzdHsoEipULmOX22vormapus2Ny-vkyznBYe1cCZEDjbvLIrW3GuSkIg8UG6cSQjorFd6SxJCSZjnFSUZunRVmsTumGnkttyCeI4bOc-hMIgYBiaqmhKgUJg4c3nVIhqa5238Nu7Cy11M88SVYJR3uvYHZhULleRmsgdg5DSXMHj_jRUCrX6fP_8TMxU7wgAkfOOrz1iU2VMvmW0E8_9TXF6oBAkhRYNTypjcCZ0XHF-AP5d"
       ],
@@ -75,8 +75,7 @@ export default function DiningVariant() {
         <div className="mb-8">
           <h3 className="text-3xl font-bold mb-2 text-gold-500" style={{ fontFamily: 'Quicksand, sans-serif' }}>Food</h3>
           <p className="text-[#e7dfd3] font-body text-lg max-w-full">
-            Food here supports steadiness and attention.<br />
-            Meals follow a simple rhythm:
+            Food is structured to support steadiness and attention.
           </p>
         </div>
 

@@ -35,8 +35,8 @@ export default function AboutCollective() {
   ];
 
   return (
-    <section className="relative py-32 px-6 md:px-12 bg-earth-900 border-b border-earth-800">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative py-32 px-16 bg-earth-900 border-b border-earth-800">
+      <div className="max-w-7xl">
         <div className="flex flex-col md:flex-row gap-12 mb-20">
           <div className="md:w-1/3">
             <h2 className="text-gold-500 text-4xl font-medium font-serif" style={{ fontFamily: 'Outfit, sans-serif' }}>

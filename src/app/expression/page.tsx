@@ -4,7 +4,6 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ExpressionHero from "../components/expression/ExpressionHero";
 import CarouselCard from "../components/CarouselCard";
-import ClosingSection from "../components/ClosingSection";
 
 export default function ExpressionPage() {
   const pillars = [
@@ -88,7 +87,6 @@ export default function ExpressionPage() {
           ))}
         </div>
       </div>
-      <ClosingSection />
       <Footer />
     </main>
   );

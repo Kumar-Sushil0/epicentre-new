@@ -3,7 +3,6 @@ import Footer from "../components/Footer";
 import WellnessHero from "../components/wellness/WellnessHero";
 import WellnessGrid from "../components/wellness/WellnessGrid";
 import WellnessCTA from "../components/wellness/WellnessCTA";
-import ClosingSection from "../components/ClosingSection";
 
 export default function WellnessPage() {
   const practices = [
@@ -106,7 +105,6 @@ export default function WellnessPage() {
         </section>
        
       </div>
-      <ClosingSection />
       <Footer />
     </main>
   );

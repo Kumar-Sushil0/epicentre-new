@@ -4,7 +4,6 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ExperiencesHero from "../components/experiences/ExperiencesHero";
 import CarouselCard from "../components/CarouselCard";
-import ClosingSection from "../components/ClosingSection";
 
 // Helper function to generate a slug from title
 function generateId(title: string): string {
@@ -241,7 +240,6 @@ export default function ExperiencesPage() {
           ))}
         </div>
       </div>
-      <ClosingSection />
       <Footer />
     </main>
   );

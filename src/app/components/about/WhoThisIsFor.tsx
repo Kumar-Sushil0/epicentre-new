@@ -1,7 +1,7 @@
 export default function WhoThisIsFor() {
   return (
-    <section className="py-24 px-6 bg-earth-950 border-t border-earth-700">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-24 px-16 bg-earth-950 border-t border-earth-700">
+      <div className="max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-earth-700">
           <div className="bg-earth-950 p-12 md:p-20">
             <h3 className="text-gold-500 text-2xl mb-10 border-b border-gold-500/20 pb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>Who This Is For</h3>

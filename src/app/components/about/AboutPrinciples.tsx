@@ -1,7 +1,7 @@
 export default function AboutPrinciples() {
   return (
-    <section className="py-24 px-6 bg-earth-900 relative">
-      <div className="max-w-7xl mx-auto relative z-10">
+    <section className="py-24 px-16 bg-earth-900 relative">
+      <div className="max-w-7xl relative z-10">
         <div className="mb-16">
           <h2 className="text-gold-500 text-3xl md:text-4xl font-display" style={{ fontFamily: 'Outfit, sans-serif' }}>Operating Principles</h2>
           <p className="text-earth-50/60 text-lg mt-2">These are constraints, not values.</p>

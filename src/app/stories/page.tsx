@@ -3,7 +3,6 @@ import Footer from "../components/Footer";
 import StoriesHero from "../components/stories/StoriesHero";
 import StoriesCategoryNav from "../components/stories/StoriesCategoryNav";
 import StoriesSection from "../components/stories/StoriesSection";
-import ClosingSection from "../components/ClosingSection";
 
 export default function StoriesPage() {
   const storyCategories = [
@@ -142,7 +141,6 @@ export default function StoriesPage() {
           <StoriesSection key={category.id} {...category} />
         ))}
       </div>
-      <ClosingSection />
       <Footer />
     </main>
   );

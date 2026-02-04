@@ -25,6 +25,8 @@ export default function Footer() {
               <div className="text-sm text-earth-300/70 font-body leading-loose">
                 <p>Silence reveals direction.</p>
                 <p>Action comes later.</p>
+                <p>Bhigwan, Maharashtra</p>
+                <p>The Silent Club</p>   
               </div>
               <a
                 href="https://maps.google.com/?q=Bird+Sanctuary+Kumbhargaon+Bhigwan+Maharashtra"

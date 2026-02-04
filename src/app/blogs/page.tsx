@@ -4,7 +4,6 @@ import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CarouselCard from "../components/CarouselCard";
-import ClosingSection from "../components/ClosingSection";
 
 export default function BlogsPage() {
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
@@ -217,7 +216,6 @@ export default function BlogsPage() {
                 </div>
             </section>
 
-            <ClosingSection />
             <Footer />
         </main>
     );

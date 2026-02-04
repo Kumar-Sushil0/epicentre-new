@@ -4,7 +4,6 @@ import AboutHero from "../components/about/AboutHero";
 import AboutPhilosophy from "../components/about/AboutPhilosophy";
 import AboutFounder from "../components/about/AboutFounder";
 import PrinciplesAndEnvironment from "../components/about/PrinciplesAndEnvironment";
-import ClosingSection from "../components/ClosingSection";
 import AboutCollective from "../components/about/AboutCollective";
 import AboutVision from "../components/about/AboutVision";
 import AboutArchitecture from "../components/about/AboutArchitecture";
@@ -34,7 +33,6 @@ export default function AboutUsPage() {
       
       
       <AboutCollective />
-      <ClosingSection/>
  
       <Footer />
     </main>

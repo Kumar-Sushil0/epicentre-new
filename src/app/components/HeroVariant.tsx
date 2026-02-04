@@ -9,7 +9,7 @@ export default function HeroVariant() {
           backgroundImage: `linear-gradient(rgba(26, 18, 11, 0.4), rgba(26, 18, 11, 0.6)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAt8nAb96Exmu9QhCiRKqZU5CxnQDk3iDJqkw73Va-rbUXZBaBBnvTyr_8X9npg6Yn_5wIi69Dz69sf6mT479dvp0WNVf3LQfzJm3Kxbwc_HmgBXOA1XsRvHtLaBLc_tK6eOcug7ZaFeINjj6YvwfPR7D2-h2b9_YcgV5fig53664CLwWblDWeRmIb3M53NPs8mrHn-SgfqLwHoeBmfHUnlks9IPXg-3KFucSJ8xkj_HMuyqAZ0SnWgdK65Pkzlf72e6F38Wc899wJz")`,
         }}
       />
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+      <div className="relative z-10 text-center px-16 max-w-4xl">
         <div className="inline-flex items-center justify-center p-3 mb-6 rounded-full bg-earth-900/30 backdrop-blur-sm border border-earth-100/20">
           <span className="material-symbols-outlined text-earth-100 text-2xl">nature</span>
         </div>

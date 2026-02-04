@@ -13,7 +13,7 @@ export default function StoriesHero() {
           background: "linear-gradient(to bottom, rgba(33, 25, 17, 0.3) 0%, rgba(33, 25, 17, 0.8) 60%, rgba(33, 25, 17, 1) 100%)",
         }}
       ></div>
-      <div className="relative z-20 max-w-[960px] w-full px-4 sm:px-10 text-center sm:text-left">
+      <div className="relative z-20 max-w-[960px] w-full px-16 text-center sm:text-left">
         <div className="flex flex-col gap-4">
           <h1 className="text-gold-500 text-5xl md:text-7xl font-black leading-tight tracking-tighter drop-shadow-2xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
             Stories at <span className="italic">The Silent Club</span>
