@@ -3,6 +3,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ExperiencesHero from "../components/experiences/ExperiencesHero";
+import ExperiencesPhilosophy from "../components/experiences/ExperiencesPhilosophy";
 import CarouselCard from "../components/CarouselCard";
 
 // Helper function to generate a slug from title
@@ -225,6 +226,7 @@ export default function ExperiencesPage() {
     <main className="min-h-screen bg-earth-900 text-earth-100  ">
       <Header />
       <ExperiencesHero />
+      <ExperiencesPhilosophy />
       <div className="flex-1 w-full max-w-[1400px] mx-auto px-6 lg:px-8 py-12 md:py-10 pb-32">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 align-top">
           {experiences.map((exp, index) => (

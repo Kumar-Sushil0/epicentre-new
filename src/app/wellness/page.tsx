@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import WellnessHero from "../components/wellness/WellnessHero";
+import WellnessPhilosophy from "../components/wellness/WellnessPhilosophy";
 import WellnessGrid from "../components/wellness/WellnessGrid";
 import WellnessCTA from "../components/wellness/WellnessCTA";
 
@@ -99,6 +100,7 @@ export default function WellnessPage() {
     <main className="min-h-screen bg-earth-900 text-earth-100  ">
       <Header />
       <WellnessHero />
+      <WellnessPhilosophy />
       <div className="flex-grow">
         <section className="px-4 md:px-10 pb-24 max-w-[1280px] mx-auto">
           <WellnessGrid practices={practices} />

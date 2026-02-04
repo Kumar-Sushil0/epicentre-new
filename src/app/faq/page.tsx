@@ -4,6 +4,8 @@ import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import FAQItem from "../components/FAQItem";
+import FAQHero from "../components/faq/FAQHero";
+import FAQPhilosophy from "../components/faq/FAQPhilosophy";
 
 interface FAQItem {
   id: string;
@@ -484,19 +486,9 @@ export default function FAQPage() {
   return (
     <div className="min-h-screen bg-earth-950">
       <Header />
+      <FAQHero />
+      <FAQPhilosophy />
       
-      {/* Hero Section */}
-      <section className="relative py-24 md:py-32 px-4 md:px-10 bg-gradient-to-b from-earth-900 to-earth-950">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium text-gold-500 mb-6 leading-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>
-            Frequently Asked Questions
-          </h1>
-          <p className="text-xl md:text-2xl text-earth-300 font-light leading-relaxed max-w-3xl mx-auto">
-            Curiosities about our way of life. If you have more questions, reach out to us.
-          </p>
-        </div>
-      </section>
-
       {/* Category Filter */}
       <section className="py-12 px-4 md:px-10 border-b border-earth-800">
         <div className="max-w-6xl mx-auto">

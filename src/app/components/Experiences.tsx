@@ -21,6 +21,9 @@ function ExperienceCard({ title, description, href, images }: ExperienceCardProp
         description={description}
         images={[images[0]]} // Use only the first image, no carousel
         className="rounded-lg"
+        overlayColor="gold-solid"
+        overlayHeight={40}
+        showBorderLine={false}
       />
     </Link>
   );
@@ -43,7 +46,7 @@ export default function Experiences() {
       imageAlt: "Wellness practice images",
     },
     {
-      title: "Experiences",
+      title: "Activities",
       description: "Guided sessions led by experienced practitioners. Offered by booking, individually or in small groups. Each session stands on its own.",
       href: "/experiences",
       images: [
@@ -67,7 +70,7 @@ export default function Experiences() {
       itemTitles: ["Angling", "Bird Watching", "Star Gazing"],
     },
     {
-      title: "Expression",
+      title: "Experiment",
       description: " Temporary containers for leaders and small groups testing ideas. Used for quiet iteration before public release. Nothing needs to be finished or shared.",
       href: "/expression",
       images: [
@@ -124,9 +127,9 @@ export default function Experiences() {
     <section className="py-8 min-h-[100vh] bg-earth-800 border-t border-earth-700 flex items-center" id="experiences">
       <div className="w-full px-16">
         <div className="mb-8">
-           <h3 className="text-3xl font-semibold mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Activities</h3>
-           <p className="text-[#e7dfd3] font-body text-[15px] max-w-full">
-            Time here is not scheduled or directed.<br/> You engage with what’s available, when
+          <h3 className="text-3xl font-semibold mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Experiences</h3>
+          <p className="text-[#e7dfd3] font-body text-[15px] max-w-full">
+            Time here is not scheduled or directed.<br /> You engage with what’s available, when
           </p>
         </div>
         <div className="relative">
@@ -186,8 +189,7 @@ export default function Experiences() {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-2 h-2 rounded-full transition-all ${index === currentIndex ? "bg-gold-500 w-8" : "bg-earth-100/50 hover:bg-earth-100/75"
-                  }`}
+                className={`w-2 h-1 rounded-full transition-all ${index === currentIndex ? "bg-gold-500 w-8" : "bg-earth-100/50 hover:bg-earth-100/75"}`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}

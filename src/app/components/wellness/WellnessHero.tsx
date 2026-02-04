@@ -33,14 +33,15 @@ export default function WellnessHero() {
       <div className="absolute inset-0 bg-gradient-to-r from-earth-950/80 via-transparent to-transparent z-10"></div>
 
       {/* Content */}
-      <div className="relative z-20 container px-16 max-w-7xl">
-        <div className="max-w-4xl border-l-2 border-gold-500/50 pl-8 md:pl-12 py-4 animate-in slide-in-from-left-4 duration-1000">
+      <div className="relative z-20 w-full px-16">
+        <div className="w-full border-l-2 border-gold-500/50 pl-8 md:pl-12 py-4 animate-in slide-in-from-left-4 duration-1000">
           <h1 className="text-earth-100 text-5xl md:text-7xl lg:text-8xl font-display font-medium leading-[1.1] tracking-tight mb-8 drop-shadow-2xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
-            Practices that Support <br />
-            <span className="italic text-gold-500">Body & Nervous System</span>
+           
+            <span className="italic text-gold-500"> Stability Before Insight</span>
           </h1>
-          <p className="text-earth-300/80 text-xl md:text-2xl font-light leading-relaxed max-w-2xl font-body">
-            No instruction. No goals. Movement, rest, and recovery happen at your own pace.
+          <p className="text-earth-300/80 text-xl md:text-2xl font-light leading-relaxed font-body">
+            Always-available practices that support the body and nervous system.<br />
+            Unscheduled. Untracked.
           </p>
         </div>
       </div>

@@ -4,13 +4,11 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEventCalendar } from "../contexts/EventCalendarContext";
 
 export default function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { openCalendar } = useEventCalendar();
 
   // Detect scroll for background change
   useEffect(() => {
@@ -67,9 +65,9 @@ export default function Header() {
                   <Link href="/about-us" onClick={() => setIsMenuOpen(false)} className="menu-btn">
                     About
                   </Link>
-                  <button onClick={() => { openCalendar(); setIsMenuOpen(false); }} className="menu-btn">
+                  <Link href="/events" className="menu-btn" onClick={() => setIsMenuOpen(false)}>
                     Events
-                  </button>
+                  </Link>
                   <Link href="/rooms" onClick={() => setIsMenuOpen(false)} className="menu-btn">
                     Stays
                   </Link>
@@ -150,7 +148,7 @@ export default function Header() {
       {/* Mobile Menu - Sidebar from right */}
       <aside className={`mobile-sidebar ${isMenuOpen ? 'visible' : ''}`}>
         <div className="flex items-center justify-between px-6 py-6 border-b border-gold-500/20">
-          <h3 className="text-sm font-medium text-gold-500 uppercase tracking-wider" style={{ fontFamily: 'Quicksand, sans-serif' }}>
+          <h3 className="text-sm font-medium text-gold-500 uppercase tracking-wider" style={{ fontFamily: 'Outfit, sans-serif' }}>
             Menu
           </h3>
           <button
@@ -169,40 +167,41 @@ export default function Header() {
             <Link
               href="/about-us"
               onClick={() => setIsMenuOpen(false)}
-              className="block px-4 py-3 text-base text-white hover:text-gold-500 hover:bg-gold-500/10 rounded-lg transition-all"
+              className="block px-4 py-3 text-base text-[#e7dfd3] hover:text-gold-500 hover:bg-gold-500/10 rounded-lg transition-all"
             >
               About
             </Link>
-            <button
-              onClick={() => { openCalendar(); setIsMenuOpen(false); }}
-              className="w-full text-left block px-4 py-3 text-base text-white hover:text-gold-500 hover:bg-gold-500/10 rounded-lg transition-all"
+            <Link
+              href="/events"
+              onClick={() => setIsMenuOpen(false)}
+              className="w-full text-left block px-4 py-3 text-base text-[#e7dfd3] hover:text-gold-500 hover:bg-gold-500/10 rounded-lg transition-all"
             >
               Events
-            </button>
+            </Link>
             <Link
               href="/rooms"
               onClick={() => setIsMenuOpen(false)}
-              className="block px-4 py-3 text-base text-white hover:text-gold-500 hover:bg-gold-500/10 rounded-lg transition-all"
+              className="block px-4 py-3 text-base text-[#e7dfd3] hover:text-gold-500 hover:bg-gold-500/10 rounded-lg transition-all"
             >
               Stays
             </Link>
             <Link
               href="/venue"
               onClick={() => setIsMenuOpen(false)}
-              className="block px-4 py-3 text-base text-white hover:text-gold-500 hover:bg-gold-500/10 rounded-lg transition-all"
+              className="block px-4 py-3 text-base text-[#e7dfd3] hover:text-gold-500 hover:bg-gold-500/10 rounded-lg transition-all"
             >
               Venue
             </Link>
             <Link
               href="/blogs"
               onClick={() => setIsMenuOpen(false)}
-              className="block px-4 py-3 text-base text-white hover:text-gold-500 hover:bg-gold-500/10 rounded-lg transition-all"
+              className="block px-4 py-3 text-base text-[#e7dfd3] hover:text-gold-500 hover:bg-gold-500/10 rounded-lg transition-all"
             >
               Blogs
             </Link>
 
             <div className="px-4 py-3">
-              <h4 className="text-xs font-medium text-gold-500 uppercase tracking-wider mb-2" style={{ fontFamily: 'Quicksand, sans-serif' }}>
+              <h4 className="text-xs font-medium text-gold-500 uppercase tracking-wider mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
                 Experiences
               </h4>
               <div className="space-y-1">
@@ -228,7 +227,7 @@ export default function Header() {
             <Link
               href="/faq"
               onClick={() => setIsMenuOpen(false)}
-              className="block px-4 py-3 text-base text-white hover:text-gold-500 hover:bg-gold-500/10 rounded-lg transition-all"
+              className="block px-4 py-3 text-base text-[#e7dfd3] hover:text-gold-500 hover:bg-gold-500/10 rounded-lg transition-all"
             >
               FAQ
             </Link>

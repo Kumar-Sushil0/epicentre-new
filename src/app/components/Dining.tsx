@@ -90,7 +90,7 @@ export default function Dining() {
               </div>
             ))}
             <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-              <div className="text-center text-white p-6 backdrop-blur-sm bg-earth-900/40 rounded-xl border border-earth-100/10">
+              <div className="text-center text-[#e7dfd3] p-6 backdrop-blur-sm bg-earth-900/40 rounded-xl border border-earth-100/10">
                 <h3 className="text-2xl font-bold mb-2 text-earth-50">Communal Dining</h3>
                 <p className="text-sm font-body text-earth-100">Meals are shared. Conversations are gentle.</p>
               </div>

@@ -4,6 +4,8 @@ import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CarouselCard from "../components/CarouselCard";
+import BlogHero from "../components/blogs/BlogHero";
+import BlogPhilosophy from "../components/blogs/BlogPhilosophy";
 
 export default function BlogsPage() {
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
@@ -116,9 +118,9 @@ export default function BlogsPage() {
                             <span className="text-xs px-3 py-1 bg-gold-500/20 backdrop-blur-sm text-gold-500 rounded-full font-medium border border-gold-500/30">
                                 {blog.category}
                             </span>
-                            <span className="text-[#e7dfd3]/80 text-sm">{blog.date}</span>
-                            <span className="text-[#e7dfd3]/80 text-sm">•</span>
-                            <span className="text-[#e7dfd3]/80 text-sm">{blog.readTime}</span>
+                            <span className="text-[#e7dfd3] text-sm">{blog.date}</span>
+                            <span className="text-[#e7dfd3] text-sm">•</span>
+                            <span className="text-[#e7dfd3] text-sm">{blog.readTime}</span>
                         </div>
                         
                         {/* Title */}
@@ -147,16 +149,8 @@ export default function BlogsPage() {
     return (
         <main className="min-h-screen bg-earth-900 text-earth-100  ">
             <Header />
-
-            {/* Hero Section */}
-            <section className="relative px-6 py-24 md:py-32 max-w-[1400px] mx-auto flex flex-col items-center text-center">
-                <h1 className="text-4xl md:text-6xl font-serif text-gold-500 mb-6 font-bold" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                    Journal
-                </h1>
-                <p className="text-earth-300 max-w-2xl text-lg font-body leading-relaxed">
-                    Reflections on silence, design, and the art of slowing down.
-                </p>
-            </section>
+            <BlogHero />
+            <BlogPhilosophy />
 
             {/* View Toggle */}
             <section className="px-4 lg:px-20 mb-8">

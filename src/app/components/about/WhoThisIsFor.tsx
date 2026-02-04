@@ -36,25 +36,25 @@ export default function WhoThisIsFor() {
             <h3 className="text-gold-500 text-2xl mb-10 border-b border-white/5 pb-4 opacity-70" style={{ fontFamily: 'Outfit, sans-serif' }}>Who This Is Not For</h3>
             <ul className="space-y-6">
               <li className="flex gap-4">
-                <span className="material-symbols-outlined text-white/20">cancel</span>
+                <span className="material-symbols-outlined text-[#e7dfd3]">cancel</span>
                 <div>
                   <p className="text-earth-50/50 text-sm font-body">Entertainment or escape</p>
                 </div>
               </li>
               <li className="flex gap-4">
-                <span className="material-symbols-outlined text-white/20">cancel</span>
+                <span className="material-symbols-outlined text-[#e7dfd3]">cancel</span>
                 <div>
                   <p className="text-earth-50/50 text-sm font-body">High-energy social use</p>
                 </div>
               </li>
               <li className="flex gap-4">
-                <span className="material-symbols-outlined text-white/20">cancel</span>
+                <span className="material-symbols-outlined text-[#e7dfd3]">cancel</span>
                 <div>
                   <p className="text-earth-50/50 text-sm font-body">Transformation programs</p>
                 </div>
               </li>
               <li className="flex gap-4">
-                <span className="material-symbols-outlined text-white/20">cancel</span>
+                <span className="material-symbols-outlined text-[#e7dfd3]">cancel</span>
                 <div>
                   <p className="text-earth-50/50 text-sm font-body">Scheduled outcomes</p>
                 </div>

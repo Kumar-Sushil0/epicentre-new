@@ -3,6 +3,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SolitudeHero from "../components/solitude/SolitudeHero";
+import SolitudePhilosophy from "../components/solitude/SolitudePhilosophy";
 import CarouselCard from "../components/CarouselCard"; // Import CarouselCard
 
 export default function SolitudePage() {
@@ -115,6 +116,7 @@ export default function SolitudePage() {
     <main className="min-h-screen bg-earth-900 text-earth-100  ">
       <Header />
       <SolitudeHero />
+      <SolitudePhilosophy />
       <div className="bg-earth-900 px-4 lg:px-20 py-10 pb-40">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1400px] mx-auto">
           {practices.map((practice, index) => (

@@ -17,6 +17,8 @@ export interface CarouselCardProps {
     titleSize?: string;
     titlePosition?: { left?: string; bottom?: string; right?: string };
     overlayColor?: 'gold-gradient' | 'gold-solid' | 'default';
+    overlayHeight?: number;
+    showBorderLine?: boolean;
 }
 
 export default function CarouselCard({
@@ -32,6 +34,8 @@ export default function CarouselCard({
     titleSize,
     titlePosition,
     overlayColor = 'default',
+    overlayHeight = 30,
+    showBorderLine = true,
 }: CarouselCardProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
@@ -49,7 +53,7 @@ export default function CarouselCard({
         };
 
         checkForceHover();
-        
+
         // Use MutationObserver to watch for class changes on parent
         const observer = new MutationObserver(checkForceHover);
         if (cardRef.current?.parentElement) {
@@ -77,7 +81,7 @@ export default function CarouselCard({
     const CardContent = (
         <div
             ref={cardRef}
-            className={`group relative aspect-[5/6] overflow-hidden bg-gold-500 border border-earth-800/50 shadow-xl rounded-[10px] ${className} ${href ? 'cursor-pointer' : ''}`}
+            className={`group relative aspect-[25/24] overflow-hidden bg-gold-500 border border-earth-800/50 shadow-xl rounded-[10px] ${className} ${href ? 'cursor-pointer' : ''}`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
@@ -102,13 +106,26 @@ export default function CarouselCard({
                 {/* Gradient Overlay - Black like Accommodation cards */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
 
+                {/* Gold Background Overlay - Bottom portion only, full coverage on sides and bottom */}
+                {overlayColor === 'gold-solid' && (
+                    <div
+                        className={`absolute left-0 right-0 bottom-0 bg-gold-500 rounded-b-[10px] transition-all duration-700 ease-in-out ${shouldShowHoverState ? 'opacity-100' : 'opacity-0'}`}
+                        style={{
+                            zIndex: 15,
+                            top: 'auto',
+                            minHeight: shouldShowHoverState ? `${overlayHeight}%` : '0%'
+                        }}
+                    />
+                )}
+
                 {/* Title Overlay (Initially Visible) */}
-                <div 
+                <div
                     className="absolute pointer-events-none"
                     style={{
                         bottom: titlePosition?.bottom || '1.5rem',
                         left: titlePosition?.left || '2rem',
-                        right: titlePosition?.right || '2rem'
+                        right: titlePosition?.right || '2rem',
+                        zIndex: 20
                     }}
                 >
 
@@ -133,8 +150,8 @@ export default function CarouselCard({
                         )}
                     </div>
 
-                    <h4 className="text-[21px] font-normal text-[#e7dfd3] mb-2" style={{ fontFamily: 'Outfit, sans-serif', fontSize: titleSize, textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)' }}>{title}</h4>
-                    
+                    <h4 className={`text-[21px] font-normal mb-2 ${overlayColor === 'gold-solid' && shouldShowHoverState ? 'opacity-0' : 'text-[#e7dfd3]'}`} style={{ fontFamily: 'Outfit, sans-serif', fontSize: titleSize, textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)' }}>{title}</h4>
+
                     {/* Know More Button - Always visible if href is provided */}
                     {href && (
                         <div className="mb-3">
@@ -144,21 +161,25 @@ export default function CarouselCard({
                             </button>
                         </div>
                     )}
-                    
+
                     {/* Description and Category - Revealed on Hover using grid approach */}
-                    <div className={`grid transition-all duration-500 ease-in-out ${shouldShowHoverState ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+                    <div className={`grid transition-all duration-700 ease-in-out ${shouldShowHoverState ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
                         <div className="overflow-hidden">
-                            <div className="border-t border-gold-500/30 pt-4">
+                            <div className={`${showBorderLine ? 'border-t border-gold-500/30' : ''} pt-4`}>
+                                {/* Title - appears on hover for gold-solid cards */}
+                                {overlayColor === 'gold-solid' && (
+                                    <h4 className="text-[21px] font-normal text-earth-900 mb-4" style={{ fontFamily: 'Outfit, sans-serif', fontSize: titleSize }}>{title}</h4>
+                                )}
                                 {/* Category tag - appears on hover */}
                                 {category && (
                                     <div className="mb-3">
-                                        <span className="text-xs uppercase tracking-widest font-body text-gold-500 font-bold" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)' }}>
+                                        <span className={`text-xs uppercase tracking-widest font-body font-bold ${overlayColor === 'gold-solid' ? 'text-earth-900' : 'text-gold-500'}`} style={{ textShadow: overlayColor === 'gold-solid' ? 'none' : '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)' }}>
                                             {category}
                                         </span>
                                     </div>
                                 )}
                                 {/* Description */}
-                                <p className="text-[#e7dfd3] text-sm md:text-base leading-relaxed font-body" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)' }}>
+                                <p className={`text-sm md:text-base leading-relaxed font-body ${overlayColor === 'gold-solid' ? 'text-earth-800' : 'text-[#e7dfd3]'}`} style={{ textShadow: overlayColor === 'gold-solid' ? 'none' : '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)', whiteSpace: 'pre-line' }}>
                                     {description}
                                 </p>
                             </div>

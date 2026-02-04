@@ -69,14 +69,13 @@ export default function RoomSection({
 
         {/* Content Overlay */}
         <div className={`absolute inset-0 p-8 flex ${imagePosition === "right" ? "justify-end" : "justify-start"} items-center`}>
-          <div className={`flex flex-col gap-6 max-w-lg ${imagePosition === "right" ? "text-right" : "text-left"}`}>
+          <div className={`flex flex-col gap-6 max-w-2xl ${imagePosition === "right" ? "text-right" : "text-left"}`}>
             {/* Header */}
             <div className="flex flex-col gap-2">
-              <div className={`flex items-center gap-2 text-gold-500/80 uppercase tracking-widest text-xs font-bold ${imagePosition === "right" ? "justify-end" : "justify-start"}`}>
-                {number} / {category}
-              </div>
-              <h2 className="text-gold-500 text-4xl font-bold leading-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>{title}</h2>
-              <p className="text-[#e7dfd3] text-base leading-relaxed font-light font-body">{description}</p>
+              <h2 className="text-gold-500 text-4xl font-bold leading-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                {number}/ {title}
+              </h2>
+              <p className="text-[#e7dfd3] text-base leading-relaxed font-light font-body" dangerouslySetInnerHTML={{ __html: description }}></p>
             </div>
 
             {/* Features */}
@@ -134,7 +133,7 @@ export default function RoomSection({
                         <>
                           <div className="text-right">
                             <h4 className="text-[#e7dfd3] text-sm font-bold">{feature.title}</h4>
-                            <p className="text-xs text-[#e7dfd3]/80 mt-1 font-body">{feature.description}</p>
+                            <p className="text-xs text-[#e7dfd3] mt-1 font-body">{feature.description}</p>
                           </div>
                           <span className="material-symbols-outlined text-gold-500 mt-0.5">{feature.icon}</span>
                         </>
@@ -143,7 +142,7 @@ export default function RoomSection({
                           <span className="material-symbols-outlined text-gold-500 mt-0.5">{feature.icon}</span>
                           <div>
                             <h4 className="text-[#e7dfd3] text-sm font-bold">{feature.title}</h4>
-                            <p className="text-xs text-[#e7dfd3]/80 mt-1 font-body">{feature.description}</p>
+                            <p className="text-xs text-[#e7dfd3] mt-1 font-body">{feature.description}</p>
                           </div>
                         </>
                       )}
@@ -157,7 +156,7 @@ export default function RoomSection({
             {highlightBox && (
               <div className="relative p-4 bg-black/50 backdrop-blur-sm rounded-lg border border-gold-500/30">
                 <h4 className="text-[#e7dfd3] font-bold text-lg mb-2">{highlightBox.title}</h4>
-                <p className="text-[#e7dfd3]/80 text-sm mb-3 font-body">{highlightBox.description}</p>
+                <p className="text-[#e7dfd3] text-sm mb-3 font-body">{highlightBox.description}</p>
                 {highlightBox.linkText && highlightBox.linkHref && (
                   <Link
                     href={highlightBox.linkHref}

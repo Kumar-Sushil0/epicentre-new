@@ -1,79 +1,167 @@
-"use client";
+'use client';
 
-import Image from "next/image";
+import { useState, useEffect, useRef } from 'react';
+import CarouselCard from '../CarouselCard';
+
+interface CollectiveMember {
+  id: number;
+  quarter: string;
+  name: string;
+  image: string;
+  focus: string;
+  approach: string;
+}
+
+function MemberCard({ member }: { member: CollectiveMember }) {
+  const formattedDescription = `${member.focus}\n${member.approach}`;
+
+  return (
+    <div className="block">
+      <CarouselCard
+        title={member.name}
+        description={formattedDescription}
+        images={[member.image]}
+        category={member.quarter}
+        className="rounded-lg"
+        overlayColor="gold-solid"
+        overlayHeight={50}
+        showBorderLine={false}
+      />
+    </div>
+  );
+}
 
 export default function AboutCollective() {
-  const teamMembers = [
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const collectiveMembers: CollectiveMember[] = [
     {
       id: 1,
-      name: "Team Member 1",
-      role: "Role Title",
+      quarter: "Q 1",
+      name: "Abhishek Banerjee",
       image: "/person1.jpg",
-      description: "Brief description about this team member."
+      focus: "Exploring how reduced input reshapes creative decision-making.",
+      approach: "Hosting closed experiments in silence, material, and time."
     },
     {
       id: 2,
-      name: "Team Member 2",
-      role: "Role Title",
+      quarter: "Q 2",
+      name: "Nikhita Tribewal",
       image: "/person2.jpg",
-      description: "Brief description about this team member."
+      focus: "Exploring how reduced input reshapes creative decision-making.",
+      approach: "Hosting closed experiments in silence, material, and time."
     },
     {
       id: 3,
-      name: "Team Member 3",
-      role: "Role Title",
+      quarter: "Q 3",
+      name: "Mohsin Memon",
       image: "/person3.jpg",
-      description: "Brief description about this team member."
+      focus: "Investigating how limits shape decision-making.",
+      approach: "Using spatial restriction, time boxes, and rule subtraction as creative tools."
     },
     {
       id: 4,
-      name: "Team Member 4",
-      role: "Role Title",
+      quarter: "Q 4",
+      name: "Keatan Jadhav",
       image: "/person4.jpg",
-      description: "Brief description about this team member."
+      focus: "Exploring what remains when expression is slowed.",
+      approach: "Holding small, invitation-only sessions around writing, form, and restraint."
     }
   ];
 
+  // Create infinite loop by duplicating items
+  const duplicatedMembers = [...collectiveMembers, ...collectiveMembers];
+
+  // Auto-scroll
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => {
+        const next = prev + 1;
+        // Reset to 0 when we reach the original array length (for infinite effect)
+        return next >= collectiveMembers.length ? 0 : next;
+      });
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [collectiveMembers.length]);
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+  };
+
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev === 0 ? collectiveMembers.length - 1 : prev - 1));
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev === collectiveMembers.length - 1 ? 0 : prev + 1));
+  };
+
   return (
-    <section className="relative py-32 px-16 bg-earth-900 border-b border-earth-800">
-      <div className="max-w-7xl">
-        <div className="flex flex-col md:flex-row gap-12 mb-20">
-          <div className="md:w-1/3">
-            <h2 className="text-gold-500 text-4xl font-medium font-serif" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              The Team
-            </h2>
-          </div>
-          <div className="md:w-2/3">
-            <p className="text-earth-100 text-xl md:text-2xl font-light font-body leading-relaxed">
-              The individuals who steward this environment and maintain the conditions that allow silence and clarity to emerge.
-            </p>
+    <section className="py-8 min-h-[100vh] bg-earth-900 border-b border-earth-800 flex items-center" id="collective">
+      <div className="w-full px-16">
+        <div className="mb-8">
+          <h3 className="text-3xl font-semibold mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Collective #001</h3>
+          <div className="text-[#e7dfd3] font-body text-[15px] max-w-full space-y-3">
+            <p>A rotating group of four creatives who steward the space across one year.Each quarter is held by one voice. The collective shapes the theme, rhythm, and experiments of that time.Each member holds one quarter. During that period, they are given full access, logistical support, and a protected sandbox to explore a shared theme.The Silent Club supports execution. The Collective defines direction.</p>
           </div>
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {teamMembers.map((member) => (
-            <div key={member.id} className="group">
-              <div className="relative overflow-hidden aspect-[3/4] bg-earth-950 mb-6 border border-earth-800 group-hover:border-gold-500/30 transition-colors">
-                <Image
-                  alt={member.name}
-                  src={member.image}
-                  fill
-                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 opacity-60 group-hover:opacity-100 scale-100 group-hover:scale-105"
-                />
-              </div>
-              <div>
-                <h3 className="text-earth-50 text-lg font-bold mb-1 font-serif group-hover:text-gold-500 transition-colors">
-                  {member.name}
-                </h3>
-                <p className="text-earth-400 text-xs font-bold uppercase tracking-widest mb-3">
-                  {member.role}
-                </p>
-                <p className="text-earth-300/50 text-sm font-body leading-relaxed">
-                  {member.description}
-                </p>
-              </div>
+        <div className="relative">
+          {/* Carousel Container */}
+          <div
+            ref={carouselRef}
+            className="overflow-hidden w-full mx-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+          >
+            <div
+              className="flex gap-8 transition-transform duration-500 ease-in-out"
+              style={{
+                transform: `translateX(calc(-${currentIndex} * ((100% - 4rem) / 3 + 2rem)))`,
+                willChange: "transform",
+              }}
+            >
+              {duplicatedMembers.map((member, index) => (
+                <div
+                  key={`${member.id}-${index}`}
+                  className="flex-shrink-0"
+                  style={{
+                    width: `calc((100% - 4rem) / 3)`,
+                    flexShrink: 0,
+                  }}
+                >
+                  <MemberCard member={member} />
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Navigation Arrows */}
+          <button
+            onClick={goToPrevious}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-earth-900/80 hover:bg-earth-900 text-gold-500 rounded-full w-12 h-12 flex items-center justify-center transition-all backdrop-blur-sm border border-gold-500/30 hover:border-gold-500"
+            aria-label="Previous"
+          >
+            <span className="material-symbols-outlined text-2xl">chevron_left</span>
+          </button>
+          <button
+            onClick={goToNext}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-earth-900/80 hover:bg-earth-900 text-gold-500 rounded-full w-12 h-12 flex items-center justify-center transition-all backdrop-blur-sm border border-gold-500/30 hover:border-gold-500"
+            aria-label="Next"
+          >
+            <span className="material-symbols-outlined text-2xl">chevron_right</span>
+          </button>
+
+          {/* Dots Indicator */}
+          <div className="flex justify-center gap-2 mt-8">
+            {collectiveMembers.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-2 h-1 rounded-full transition-all ${index === currentIndex ? "bg-gold-500 w-8" : "bg-earth-100/50 hover:bg-earth-100/75"}`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

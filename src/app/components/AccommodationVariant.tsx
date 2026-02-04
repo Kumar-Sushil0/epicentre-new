@@ -24,7 +24,7 @@ export default function AccommodationVariant() {
               className="object-cover transform group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute bottom-6 left-6 z-20">
-              <h3 className="text-white text-2xl font-bold mb-1">Private Rooms</h3>
+              <h3 className="text-[#e7dfd3] text-2xl font-bold mb-1">Private Rooms</h3>
               <p className="text-earth-200 text-sm font-body">Full seclusion with en-suite facilities</p>
             </div>
           </Link>
@@ -37,7 +37,7 @@ export default function AccommodationVariant() {
               className="object-cover transform group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute bottom-6 left-6 z-20">
-              <h3 className="text-white text-xl font-bold mb-1">Dorm</h3>
+              <h3 className="text-[#e7dfd3] text-xl font-bold mb-1">Dorm</h3>
               <p className="text-earth-200 text-sm font-body">Shared simplicity</p>
             </div>
           </Link>
@@ -50,7 +50,7 @@ export default function AccommodationVariant() {
               className="object-cover transform group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute bottom-6 left-6 z-20">
-              <h3 className="text-white text-lg font-bold">Community Hall</h3>
+              <h3 className="text-[#e7dfd3] text-lg font-bold">Community Hall</h3>
               <p className="text-earth-200 text-xs font-body">For collective use and group presence</p>
             </div>
           </Link>
@@ -63,7 +63,7 @@ export default function AccommodationVariant() {
               className="object-cover transform group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute bottom-6 left-6 z-20">
-              <h3 className="text-white text-lg font-bold">Luxury Tents</h3>
+              <h3 className="text-[#e7dfd3] text-lg font-bold">Luxury Tents</h3>
               <p className="text-earth-200 text-xs font-body">Near nature, without unnecessary comforts</p>
             </div>
           </Link>

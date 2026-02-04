@@ -1,6 +1,6 @@
 "use client";
 
-import { useEventCalendar } from "../contexts/EventCalendarContext";
+import Link from "next/link";
 
 interface VerticalStickyButtonProps {
   text: string;
@@ -15,7 +15,6 @@ export default function VerticalStickyButton({
   href,
   className = "",
 }: VerticalStickyButtonProps) {
-  const { openCalendar } = useEventCalendar();
 
   const handleButtonClick = () => {
     if (onClick) {
@@ -24,8 +23,8 @@ export default function VerticalStickyButton({
       // If href is provided, navigate normally
       window.location.href = href;
     } else {
-      // Default: open timeline modal using context
-      openCalendar();
+      // Default: navigate to events page
+      window.location.href = "/events";
     }
   };
 
@@ -48,6 +47,20 @@ export default function VerticalStickyButton({
     writingMode: "vertical-rl" as const,
     textOrientation: "mixed" as const,
   };
+
+  // If it's just a link without custom onClick, use Link component
+  if (!onClick && (href || !href)) {
+    const linkHref = href || "/events";
+    return (
+      <Link href={linkHref}>
+        <div className={buttonClasses} style={buttonStyle}>
+          <span className="font-medium tracking-wider text-[10px] uppercase whitespace-nowrap">
+            {text}
+          </span>
+        </div>
+      </Link>
+    );
+  }
 
   return (
     <div className={buttonClasses} style={buttonStyle} onClick={handleButtonClick}>

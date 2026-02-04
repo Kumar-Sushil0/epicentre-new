@@ -169,12 +169,12 @@ export default function Accommodation() {
 
                     {/* Content */}
                     <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                      <h3 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Quicksand, sans-serif' }}>{item.title}</h3>
+                      <h3 className="text-2xl font-normal text-[#e7dfd3] group-hover:text-gold-500 -mb-2 leading-tight transition-all duration-500 group-hover:-translate-y-2" style={{ fontFamily: 'Outfit, sans-serif' }}>{item.title}</h3>
 
                       {/* Description - Revealed on Hover */}
                       <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
                         <div className="overflow-hidden">
-                          <p className="text-[#e7dfd3] text-sm md:text-base leading-relaxed mt-2 border-t border-gold-500/30 pt-4">
+                          <p className="text-[#e7dfd3] text-sm md:text-base leading-relaxed mt-4 border-t border-gold-500/30 pt-4">
                             {item.description}
                           </p>
                         </div>
@@ -208,7 +208,7 @@ export default function Accommodation() {
               <button
                 key={index}
                 onClick={() => handleDotClick(index)}
-                className={`w-2 h-2 rounded-full transition-all ${index === getCurrentRealIndex() ? "bg-gold-500 w-8" : "bg-earth-100/50 hover:bg-earth-100/75"}`}
+                className={`w-2 h-1 rounded-full transition-all ${index === getCurrentRealIndex() ? "bg-gold-500 w-8" : "bg-earth-100/50 hover:bg-earth-100/75"}`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}

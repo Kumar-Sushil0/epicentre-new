@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import AboutHero from "../components/about/AboutHero";
+import AboutPhilosophyQuote from "../components/about/AboutPhilosophyQuote";
 import AboutPhilosophy from "../components/about/AboutPhilosophy";
 import AboutFounder from "../components/about/AboutFounder";
 import PrinciplesAndEnvironment from "../components/about/PrinciplesAndEnvironment";
@@ -23,13 +24,13 @@ export default function AboutUsPage() {
     >
       <Header />
       <AboutHero />
+      
       <AboutPhilosophy />
      
       
       <AboutFounder />
       <AboutPrinciples />
-      <PrinciplesAndEnvironment />
-     
+      
       
       
       <AboutCollective />

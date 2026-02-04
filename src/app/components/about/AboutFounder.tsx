@@ -1,10 +1,12 @@
+"use client";
+
 export default function AboutFounder() {
   return (
     <section className="py-32 px-16 bg-earth-900 border-b border-earth-800">
       <div className="max-w-7xl">
         <div className="flex flex-col lg:flex-row items-stretch gap-16 lg:gap-24">
 
-          {/* Image Side */}
+          {/* Image Side - Now with CarouselCard behavior */}
           <div className="w-full lg:w-5/12 relative group">
             <div className="relative h-full min-h-[500px] w-full overflow-hidden rounded-sm">
               <div
@@ -13,36 +15,79 @@ export default function AboutFounder() {
                   backgroundImage: "url('/dd.jpeg')"
                 }}
               ></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-earth-950/60 to-transparent"></div>
-            </div>
-            {/* Name Overlay - positioned absolutely for magazine feel */}
-            <div className="absolute -bottom-6 -right-6 lg:-right-12 bg-earth-950 p-8 border border-earth-800 max-w-xs shadow-2xl">
-              <h2 className="text-gold-500 text-3xl font-medium mb-2 font-serif" style={{ fontFamily: 'Outfit, sans-serif' }}>Digen Varma</h2>
-              <p className="text-earth-300/60 text-xs font-bold tracking-widest uppercase">Founder & Architect</p>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+              
+              {/* Gold Background Overlay - Slides up from bottom like CarouselCard */}
+              <div className="absolute left-0 right-0 bottom-0 bg-gold-500 h-[20%] transition-all duration-700 ease-in-out translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100" style={{ zIndex: 15 }}>
+              </div>
+
+              {/* Social Icons - Extreme right of image, side by side */}
+              <div className="absolute bottom-6 right-6 z-20 flex gap-3 transition-all duration-700 opacity-0 group-hover:opacity-100">
+                <a 
+                  href="#" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-black hover:text-earth-700 transition-colors"
+                  aria-label="LinkedIn Profile"
+                >
+                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
+                </a>
+                <a 
+                  href="#" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-black hover:text-earth-700 transition-colors"
+                  aria-label="Personal Website"
+                >
+                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                  </svg>
+                </a>
+              </div>
+
+              {/* Name and Designation - Name always visible, designation only on hover */}
+              <div className="absolute bottom-6 left-6 z-20">
+                <h2 className="text-3xl font-medium mb-2 transition-colors duration-700 group-hover:text-earth-900 text-[#e7dfd3]" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                  D.D
+                </h2>
+                <p className="text-xs font-bold tracking-widest uppercase transition-all duration-700 opacity-0 group-hover:opacity-100 group-hover:text-earth-900 text-earth-300">
+                  Founder & Architect
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Text Side */}
+          {/* Text Side - Updated content */}
           <div className="w-full lg:w-7/12 flex flex-col justify-center pt-8 lg:pt-0">
-            <blockquote className="text-3xl md:text-4xl text-earth-100 font-serif italic leading-tight mb-12">
-              "We encourage a digital detox to fully experience the retreat."
-            </blockquote>
-
             <div className="space-y-6 text-earth-300/80 font-body text-lg leading-relaxed max-w-2xl">
               <p>
-                Across two decades of work spanning fitness, holistic health, retail, product design, and strategy, Digen kept returning to the same question: <span className="text-earth-100">why do capable people feel stuck inside lives they never consciously designed?</span>
+                <span className="text-earth-100">D.D designs liberation as a system, not a belief.</span>
               </p>
 
               <p>
-                Not because they lack motivation. But because their environments constantly direct attention outward, leaving no structure for clarity to emerge.
+                Over years of personal experimentation, one pattern became clear: clarity does not arrive through effort, insight, or instruction. It emerges when interference is removed.
               </p>
 
               <p>
-                His work focuses on designing conditions rather than offering advice. Instead of coaching outcomes, he builds environments—physical, psychological, and systemic—where unnecessary signals are removed and self-observation becomes possible.
+                Silence was not adopted as a philosophy. It was tested as a condition.
+              </p>
+
+              <p>
+                By withdrawing stimulation — noise, performance, constant response — attention settled. Direction followed.
+              </p>
+
+              <p>
+                The Silent Club is a physical expression of that discovery. A space where environment does the work that advice cannot.
               </p>
 
               <p className="pt-4 border-t border-earth-800 mt-8">
-                The Silent Club is a physical expression of this approach. A place where space, pace, and constraint quietly do the work. Digen's role here is not to guide or instruct. It is to protect the integrity of the system.
+                D.D's role here is not to teach, guide, or interpret. It is to protect the integrity of the conditions.
+              </p>
+
+              <p className="text-earth-100 font-medium">
+                Not a guide. A steward.
               </p>
             </div>
           </div>
