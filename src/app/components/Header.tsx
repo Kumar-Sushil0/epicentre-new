@@ -62,46 +62,46 @@ export default function Header() {
             <div className={`menu-wrapper ${isMenuOpen ? 'visible' : ''}`}>
               <div className="menu-nav">
                 <div className="menu-container">
-                  <Link href="/about-us" onClick={() => setIsMenuOpen(false)} className="menu-btn">
-                    About
-                  </Link>
-                  <Link href="/events" className="menu-btn" onClick={() => setIsMenuOpen(false)}>
-                    Events
-                  </Link>
-                  <Link href="/rooms" onClick={() => setIsMenuOpen(false)} className="menu-btn">
+                  <Link href="/rooms" onClick={() => setIsMenuOpen(false)} className="menu-btn" style={isActive("/rooms") ? { color: 'white' } : {}}>
                     Stays
                   </Link>
-                  <Link href="/venue" onClick={() => setIsMenuOpen(false)} className="menu-btn">
+                  <Link href="/venue" onClick={() => setIsMenuOpen(false)} className="menu-btn" style={isActive("/venue") ? { color: 'white' } : {}}>
                     Venue
                   </Link>
-                  <Link href="/blogs" onClick={() => setIsMenuOpen(false)} className="menu-btn">
-                    Blogs
-                  </Link>
-                  <Link href="/faq" onClick={() => setIsMenuOpen(false)} className="menu-btn">
-                    FAQ
-                  </Link>
-                  <div className="menu-btn experiences-dropdown">
+                  <div className="menu-btn experiences-dropdown" style={isExperiencesActive ? { color: 'white' } : {}}>
                     Experiences
                     <div className="experiences-submenu">
-                      <Link href="/wellness" onClick={() => setIsMenuOpen(false)} className="submenu-item">
+                      <Link href="/wellness" onClick={() => setIsMenuOpen(false)} className="submenu-item" style={isActive("/wellness") ? { color: 'white' } : {}}>
                         Wellness
                       </Link>
-                      <Link href="/experiences" onClick={() => setIsMenuOpen(false)} className="submenu-item">
+                      <Link href="/experiences" onClick={() => setIsMenuOpen(false)} className="submenu-item" style={isActive("/experiences") ? { color: 'white' } : {}}>
                         Activities
                       </Link>
-                      <Link href="/solitude" onClick={() => setIsMenuOpen(false)} className="submenu-item">
+                      <Link href="/solitude" onClick={() => setIsMenuOpen(false)} className="submenu-item" style={isActive("/solitude") ? { color: 'white' } : {}}>
                         Solitude
                       </Link>
-                      <Link href="/expression" onClick={() => setIsMenuOpen(false)} className="submenu-item">
+                      <Link href="/expression" onClick={() => setIsMenuOpen(false)} className="submenu-item" style={isActive("/expression") ? { color: 'white' } : {}}>
                         Expression
                       </Link>
-                      <Link href="/residency" onClick={() => setIsMenuOpen(false)} className="submenu-item">
+                      <Link href="/residency" onClick={() => setIsMenuOpen(false)} className="submenu-item" style={isActive("/residency") ? { color: 'white' } : {}}>
                         Residency
                       </Link>
                     </div>
                   </div>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 60" height={60} width={600} overflow="visible" className="menu-outline">
-                    <rect strokeWidth={2} fill="transparent" height={60} width={600} y={0} x={0} pathLength={100} className="menu-rect" />
+                  <Link href="/events" className="menu-btn" onClick={() => setIsMenuOpen(false)} style={isActive("/events") ? { color: 'white' } : {}}>
+                    Events
+                  </Link>
+                  <Link href="/about-us" onClick={() => setIsMenuOpen(false)} className="menu-btn" style={isActive("/about-us") ? { color: 'white' } : {}}>
+                    About
+                  </Link>
+                  <Link href="/blogs" onClick={() => setIsMenuOpen(false)} className="menu-btn" style={isActive("/blogs") ? { color: 'white' } : {}}>
+                    Blogs
+                  </Link>
+                  <Link href="/faq" onClick={() => setIsMenuOpen(false)} className="menu-btn" style={isActive("/faq") ? { color: 'white' } : {}}>
+                    FAQ
+                  </Link>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 60" height={60} width={750} overflow="visible" className="menu-outline">
+                    <rect strokeWidth={2} fill="transparent" height={60} width={750} y={0} x={0} pathLength={100} className="menu-rect" />
                   </svg>
                 </div>
               </div>
@@ -163,48 +163,34 @@ export default function Header() {
         </div>
 
         <div className="flex-1 overflow-y-auto px-6 py-4">
-          <nav className="space-y-1">
-            <Link
-              href="/about-us"
-              onClick={() => setIsMenuOpen(false)}
-              className="block px-4 py-3 text-base text-[#e7dfd3] hover:text-gold-500 hover:bg-gold-500/10 rounded-lg transition-all"
-            >
-              About
-            </Link>
-            <Link
-              href="/events"
-              onClick={() => setIsMenuOpen(false)}
-              className="w-full text-left block px-4 py-3 text-base text-[#e7dfd3] hover:text-gold-500 hover:bg-gold-500/10 rounded-lg transition-all"
-            >
-              Events
-            </Link>
+          <nav>
             <Link
               href="/rooms"
               onClick={() => setIsMenuOpen(false)}
-              className="block px-4 py-3 text-base text-[#e7dfd3] hover:text-gold-500 hover:bg-gold-500/10 rounded-lg transition-all"
+              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
+                isActive("/rooms") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+              }`}
             >
               Stays
             </Link>
             <Link
               href="/venue"
               onClick={() => setIsMenuOpen(false)}
-              className="block px-4 py-3 text-base text-[#e7dfd3] hover:text-gold-500 hover:bg-gold-500/10 rounded-lg transition-all"
+              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
+                isActive("/venue") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+              }`}
             >
               Venue
             </Link>
-            <Link
-              href="/blogs"
-              onClick={() => setIsMenuOpen(false)}
-              className="block px-4 py-3 text-base text-[#e7dfd3] hover:text-gold-500 hover:bg-gold-500/10 rounded-lg transition-all"
-            >
-              Blogs
-            </Link>
-
-            <div className="px-4 py-3">
-              <h4 className="text-xs font-medium text-gold-500 uppercase tracking-wider mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                Experiences
-              </h4>
-              <div className="space-y-1">
+            <div className="mb-1">
+              <div className={`block px-4 py-3 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
+                isExperiencesActive ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+              }`}>
+                <h4 className="text-xs font-medium text-gold-500 uppercase tracking-wider" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                  Experiences
+                </h4>
+              </div>
+              <div className="ml-4 mt-1">
                 {[
                   { name: "Wellness", path: "/wellness" },
                   { name: "Activities", path: "/experiences" },
@@ -216,18 +202,48 @@ export default function Header() {
                     key={item.name}
                     href={item.path}
                     onClick={() => setIsMenuOpen(false)}
-                    className="block px-3 py-2 text-sm text-earth-300 hover:text-gold-500 transition-all"
+                    className={`block px-3 py-1 text-sm transition-all ${
+                      isActive(item.path) ? "text-white" : "text-earth-300 hover:text-gold-500"
+                    }`}
                   >
                     {item.name}
                   </Link>
                 ))}
               </div>
             </div>
-
+            <Link
+              href="/events"
+              onClick={() => setIsMenuOpen(false)}
+              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
+                isActive("/events") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+              }`}
+            >
+              Events
+            </Link>
+            <Link
+              href="/about-us"
+              onClick={() => setIsMenuOpen(false)}
+              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
+                isActive("/about-us") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+              }`}
+            >
+              About
+            </Link>
+            <Link
+              href="/blogs"
+              onClick={() => setIsMenuOpen(false)}
+              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
+                isActive("/blogs") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+              }`}
+            >
+              Blogs
+            </Link>
             <Link
               href="/faq"
               onClick={() => setIsMenuOpen(false)}
-              className="block px-4 py-3 text-base text-[#e7dfd3] hover:text-gold-500 hover:bg-gold-500/10 rounded-lg transition-all"
+              className={`block px-4 py-3 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
+                isActive("/faq") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+              }`}
             >
               FAQ
             </Link>

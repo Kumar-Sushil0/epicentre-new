@@ -150,8 +150,7 @@ export default function BlogsPage() {
         <main className="min-h-screen bg-earth-900 text-earth-100  ">
             <Header />
             <BlogHero />
-            <BlogPhilosophy />
-
+           
             {/* View Toggle */}
             <section className="px-4 lg:px-20 mb-8">
                 <div className="max-w-[1400px] mx-auto flex justify-end">

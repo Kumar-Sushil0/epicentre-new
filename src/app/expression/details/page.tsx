@@ -368,12 +368,12 @@ const expressionPractices: Record<
     ],
   },
   "system-experiments": {
-    title: "System Experiments",
+    title: "Audio Visual Experiments",
     subtitle: "Testing conditions, not individuals.",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuABDtELNVZFlmNhezKAvfaFfbvOYFwMzeiLScpWnRzmifqd-QuQRWU1RZ2D4QNv2Uk_wl5jaZF-YAkvAk0_gh2fJSys3XF90IKlYUpHYOuW6ppEjRBhWDPVJCScTGuZ5SPQA6R5ZYDrGuCw1kvgNrHXWZW6e67U1QWhvc6TkRDxQkWoM79vuQ7ka0Xm8UsR3uczDJj_-FGcqA7r_1uIUoVI0fxKKvYX0broLqXmM0S74MHkHML23rj6FjUVaFEDDtSNY6qqvynhexYk",
     intro:
-      "System Experiments are designed for people exploring rules, structures, environments, and constraints rather than personal performance. The focus is not behavior change. It is understanding how conditions shape behavior. Nothing here is personal.",
+      "Audio Visual Experiments are designed for people exploring rules, structures, environments, and constraints rather than personal performance. The focus is not behavior change. It is understanding how conditions shape behavior. Nothing here is personal.",
     whatItIs:
       "A System Experiment is a temporary container where variables such as space, rhythm, rules, and absence are adjusted to observe their effects. The system is the subject. People move inside it. You are not here to improve anyone. You are here to observe what emerges.",
     howItWorks: [
@@ -440,7 +440,7 @@ const expressionPractices: Record<
       {
         quote:
           "This is not a training program. Not a retreat. Not a group therapy space. Not a personal development intervention. If the goal is self-improvement, this is not the right container.",
-        author: "System Experiments Guide",
+        author: "Audio Visual Experiments Guide",
         role: "Facilitator",
       },
     ],

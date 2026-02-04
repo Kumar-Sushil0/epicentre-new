@@ -215,15 +215,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     priceDisplay: "$24 / night",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDOdeEUhl309Gu2oZN0GhIAVH2l8s3vv94ApUE-B6IGCw9iIvASGUtpseKwR8a41lo7fnjVBtSoxTqXUEaEbfZJMPlRLjrsT3gZ6H_4EcN3OO9WdF-WcJQez51O2kEx4IAtenZ4GV4ZVZtFAjcFZWGtsWzbyB-IVweW31304V3gZAf1pYXeR6Ik-f66OZWQiNAnpe7OXRHn8xea79ZUVoSZNwFLGO46Y2NpGCDqWpP6jrw3m8vznKRCe9U6R2fqNdl40yZkOnKu2ZyL",
   },
-  {
-    id: "night-safari",
-    category: "activities",
-    name: "Night Safari",
-    description: "Moving through active terrain near wild animals.",
-    price: 60,
-    priceDisplay: "$60 / session",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCE2S4t-k87o3wGZq3teUUbUFBfJH2qACr54qKouo5_6HZkMWtzALctFOFE8XD4ngpfjaOVjy88JHRs5cn_OBpTJsbQgMQSpx70TkgQPSZ7uCSpEXQLC6Qj_Q4jJp7O02aJYeaE3tbYiXEQjlabdBI-sbAVeNv0DGE4hsGS4WoL60uuSFbHq-iQNxF4nG2uTNe9Nqhhe6gw2MF9XcNedUQbzEBoagQm5_9Tkq73LLzuCxBQSIbFcgaF8I7-5JKhpyQa9NcydKPSXmoS",
-  },
+  
   {
     id: "sound-immersion",
     category: "activities",
@@ -612,6 +604,10 @@ export default function BookingsPage() {
               <p className="text-earth-300/60 font-body text-sm max-w-xl leading-relaxed">
                 Build your schedule efficiently. Select what calls to you.
               </p>
+              <div className="flex gap-6 mt-4">
+                <span className="text-gold-500 cursor-pointer hover:text-gold-400 transition-colors">Download Brochure</span>
+                <span className="text-gold-500 cursor-pointer hover:text-gold-400 transition-colors">Google Maps</span>
+              </div>
             </div>
 
             <div className="mb-12">

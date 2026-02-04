@@ -487,8 +487,7 @@ export default function FAQPage() {
     <div className="min-h-screen bg-earth-950">
       <Header />
       <FAQHero />
-      <FAQPhilosophy />
-      
+     
       {/* Category Filter */}
       <section className="py-12 px-4 md:px-10 border-b border-earth-800">
         <div className="max-w-6xl mx-auto">
