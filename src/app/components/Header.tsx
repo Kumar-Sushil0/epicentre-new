@@ -5,10 +5,37 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+// Global state to persist menu across page changes
+let globalMenuState = false;
+const menuStateListeners: ((state: boolean) => void)[] = [];
+
+const setGlobalMenuState = (state: boolean) => {
+  globalMenuState = state;
+  menuStateListeners.forEach(listener => listener(state));
+};
+
 export default function Header() {
   const pathname = usePathname();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(globalMenuState);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  // Sync with global menu state
+  useEffect(() => {
+    const listener = (state: boolean) => setIsMenuOpen(state);
+    menuStateListeners.push(listener);
+    
+    return () => {
+      const index = menuStateListeners.indexOf(listener);
+      if (index > -1) {
+        menuStateListeners.splice(index, 1);
+      }
+    };
+  }, []);
+
+  // Update global state when local state changes
+  useEffect(() => {
+    setGlobalMenuState(isMenuOpen);
+  }, [isMenuOpen]);
 
   // Detect scroll for background change
   useEffect(() => {
@@ -17,11 +44,6 @@ export default function Header() {
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // Close menu on route change
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [pathname]);
 
 
 
@@ -42,8 +64,6 @@ export default function Header() {
     return pathname.startsWith(path);
   };
 
-  const isExperiencesActive = isActive("/wellness") || isActive("/experiences") || isActive("/solitude") || isActive("/expression") || isActive("/residency");
-
   return (
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isScrolled ? 'bg-[#0f0b08] backdrop-blur-sm border-b border-earth-800/50' : 'bg-transparent'}`}>
@@ -62,42 +82,28 @@ export default function Header() {
             <div className={`menu-wrapper ${isMenuOpen ? 'visible' : ''}`}>
               <div className="menu-nav">
                 <div className="menu-container">
-                  <Link href="/rooms" onClick={() => setIsMenuOpen(false)} className="menu-btn" style={isActive("/rooms") ? { color: 'white' } : {}}>
+                  <Link href="/rooms" className="menu-btn" style={isActive("/rooms") ? { color: 'white' } : {}}>
                     Stays
                   </Link>
-                  <Link href="/venue" onClick={() => setIsMenuOpen(false)} className="menu-btn" style={isActive("/venue") ? { color: 'white' } : {}}>
+                  <Link href="/venue" className="menu-btn" style={isActive("/venue") ? { color: 'white' } : {}}>
                     Venue
                   </Link>
-                  <div className="menu-btn experiences-dropdown" style={isExperiencesActive ? { color: 'white' } : {}}>
+                  <Link href="/test" className="menu-btn" style={isActive("/test") ? { color: 'white' } : {}}>
                     Experiences
-                    <div className="experiences-submenu">
-                      <Link href="/wellness" onClick={() => setIsMenuOpen(false)} className="submenu-item" style={isActive("/wellness") ? { color: 'white' } : {}}>
-                        Wellness
-                      </Link>
-                      <Link href="/experiences" onClick={() => setIsMenuOpen(false)} className="submenu-item" style={isActive("/experiences") ? { color: 'white' } : {}}>
-                        Activities
-                      </Link>
-                      <Link href="/solitude" onClick={() => setIsMenuOpen(false)} className="submenu-item" style={isActive("/solitude") ? { color: 'white' } : {}}>
-                        Solitude
-                      </Link>
-                      <Link href="/expression" onClick={() => setIsMenuOpen(false)} className="submenu-item" style={isActive("/expression") ? { color: 'white' } : {}}>
-                        Expression
-                      </Link>
-                      <Link href="/residency" onClick={() => setIsMenuOpen(false)} className="submenu-item" style={isActive("/residency") ? { color: 'white' } : {}}>
-                        Residency
-                      </Link>
-                    </div>
-                  </div>
-                  <Link href="/events" className="menu-btn" onClick={() => setIsMenuOpen(false)} style={isActive("/events") ? { color: 'white' } : {}}>
+                  </Link>
+                  <Link href="/stories" className="menu-btn" style={isActive("/stories") ? { color: 'white' } : {}}>
+                    Stories
+                  </Link>
+                  <Link href="/events" className="menu-btn" style={isActive("/events") ? { color: 'white' } : {}}>
                     Events
                   </Link>
-                  <Link href="/about-us" onClick={() => setIsMenuOpen(false)} className="menu-btn" style={isActive("/about-us") ? { color: 'white' } : {}}>
+                  <Link href="/about-us" className="menu-btn" style={isActive("/about-us") ? { color: 'white' } : {}}>
                     About
                   </Link>
-                  <Link href="/blogs" onClick={() => setIsMenuOpen(false)} className="menu-btn" style={isActive("/blogs") ? { color: 'white' } : {}}>
+                  <Link href="/blogs" className="menu-btn" style={isActive("/blogs") ? { color: 'white' } : {}}>
                     Blogs
                   </Link>
-                  <Link href="/faq" onClick={() => setIsMenuOpen(false)} className="menu-btn" style={isActive("/faq") ? { color: 'white' } : {}}>
+                  <Link href="/faq" className="menu-btn" style={isActive("/faq") ? { color: 'white' } : {}}>
                     FAQ
                   </Link>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 60" height={60} width={750} overflow="visible" className="menu-outline">
@@ -166,7 +172,6 @@ export default function Header() {
           <nav>
             <Link
               href="/rooms"
-              onClick={() => setIsMenuOpen(false)}
               className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
                 isActive("/rooms") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
               }`}
@@ -175,45 +180,30 @@ export default function Header() {
             </Link>
             <Link
               href="/venue"
-              onClick={() => setIsMenuOpen(false)}
               className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
                 isActive("/venue") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
               }`}
             >
               Venue
             </Link>
-            <div className="mb-1">
-              <div className={`block px-4 py-3 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
-                isExperiencesActive ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
-              }`}>
-                <h4 className="text-xs font-medium text-gold-500 uppercase tracking-wider" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                  Experiences
-                </h4>
-              </div>
-              <div className="ml-4 mt-1">
-                {[
-                  { name: "Wellness", path: "/wellness" },
-                  { name: "Activities", path: "/experiences" },
-                  { name: "Solitude", path: "/solitude" },
-                  { name: "Expression", path: "/expression" },
-                  { name: "Residency", path: "/residency" }
-                ].map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.path}
-                    onClick={() => setIsMenuOpen(false)}
-                    className={`block px-3 py-1 text-sm transition-all ${
-                      isActive(item.path) ? "text-white" : "text-earth-300 hover:text-gold-500"
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
+            <Link
+              href="/test"
+              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
+                isActive("/test") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+              }`}
+            >
+              Experiences
+            </Link>
+            <Link
+              href="/stories"
+              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
+                isActive("/stories") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+              }`}
+            >
+              Stories
+            </Link>
             <Link
               href="/events"
-              onClick={() => setIsMenuOpen(false)}
               className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
                 isActive("/events") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
               }`}
@@ -222,7 +212,6 @@ export default function Header() {
             </Link>
             <Link
               href="/about-us"
-              onClick={() => setIsMenuOpen(false)}
               className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
                 isActive("/about-us") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
               }`}
@@ -231,7 +220,6 @@ export default function Header() {
             </Link>
             <Link
               href="/blogs"
-              onClick={() => setIsMenuOpen(false)}
               className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
                 isActive("/blogs") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
               }`}
@@ -240,7 +228,6 @@ export default function Header() {
             </Link>
             <Link
               href="/faq"
-              onClick={() => setIsMenuOpen(false)}
               className={`block px-4 py-3 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
                 isActive("/faq") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
               }`}

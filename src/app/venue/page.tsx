@@ -305,7 +305,7 @@ export default function VenuePage() {
       <Header />
       <VenueHero />
       <VenueCategoryNav />
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-10 py-12 flex flex-col gap-24">
+      <div className="w-full px-16 py-12 flex flex-col gap-24">
         {venueCategories.map((category) => (
           <VenueSection key={category.id} {...category} />
         ))}

@@ -26,7 +26,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "silent-club-tour",
     category: "booking",
     name: "The Silent Club Tour",
-    description: "Complimentary guided tour of our facilities and philosophy",
+    description: "",
     price: 0,
     priceDisplay: "Free",
     image: "/logo.png",
@@ -35,7 +35,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "half-place-booking",
     category: "booking", 
     name: "Half Place Booking",
-    description: "Partial venue booking for smaller groups and intimate gatherings",
+    description: "",
     price: 2500,
     priceDisplay: "$2,500 / day",
     image: "/moat.png",
@@ -44,7 +44,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "full-place-booking",
     category: "booking",
     name: "Full Place Booking",
-    description: "Complete venue exclusivity for your event or retreat",
+    description: "",
     price: 5000,
     priceDisplay: "$5,000 / day", 
     image: "/moat2.png",
@@ -53,7 +53,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "custom-retreat-package",
     category: "booking",
     name: "Custom Retreat Package",
-    description: "Tailored multi-day experience designed for your specific needs",
+    description: "",
     price: 1200,
     priceDisplay: "$1,200 / person",
     image: "/moat3.png",
@@ -63,7 +63,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "free-tour",
     category: "activities",
     name: "The Silent Club Tour",
-    description: "Complimentary guided tour",
+    description: "",
     price: 0,
     priceDisplay: "Free",
     image: "/logo.png",
@@ -73,7 +73,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "private-room",
     category: "stay",
     name: "Private Room",
-    description: "A fully private space for withdrawal and rest. Designed to remove interruption and external signal.",
+    description: "",
     price: 240,
     priceDisplay: "$240 / night",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDYw7zjjT1NTlSOYdFEp7-uHq0qYu0sfT6aUZMNM2ORSddAkOWotjiQuOXDlF61wyE24VSml-mENINPvgit4PMfWpZeH50NPc447sj25Lb9x3TaeBlPSU7wzYuj_9FCg7AibVjCYClPjUH2RnhsG5KEnMzj-HCgJ18Ml3AHQNFqX4nT-CvUDLtna6318BHSz60gSYsF_rolGCK_gpSLX0f4X7YWlq7PTgefwlFaLqlmddEb47Kk1ikXrmPgfcWjrQbX7yn5wzA--zcc",
@@ -82,7 +82,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "dark-room",
     category: "stay",
     name: "Complete Darkness",
-    description: "A fully light-sealed space designed for extended stillness and sensory withdrawal.",
+    description: "",
     price: 200,
     priceDisplay: "$200 / night",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDYw7zjjT1NTlSOYdFEp7-uHq0qYu0sfT6aUZMNM2ORSddAkOWotjiQuOXDlF61wyE24VSml-mENINPvgit4PMfWpZeH50NPc447sj25Lb9x3TaeBlPSU7wzYuj_9FCg7AibVjCYClPjUH2RnhsG5KEnMzj-HCgJ18Ml3AHQNFqX4nT-CvUDLtna6318BHSz60gSYsF_rolGCK_gpSLX0f4X7YWlq7PTgefwlFaLqlmddEb47Kk1ikXrmPgfcWjrQbX7yn5wzA--zcc",
@@ -91,7 +91,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "shared-dorm",
     category: "stay",
     name: "Shared Dorm",
-    description: "Shared sleeping with clear boundaries. Built for quiet coexistence rather than interaction.",
+    description: "",
     price: 85,
     priceDisplay: "$85 / night",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAd0MrUgxtI24ctYnNVK7t_0ipeTTqmWsJCLm5cpM9SR9eaqccitEqKNUHpiTcRy5_Reud0UU-OZvZFRwaKjCVFUxCCcr5x80ezOMsIk6ZYNAp5-rcQc65w_rIijqQ2xI_DTUrmhpSLXFkH-PJ7tC7F1e1CzGWzy00PXwmWLXC-UqJ9bg6TQfqN1eqg1OkF_v17JlAL4MB-EajLCUR26TuPjjyYiFzsiW8GD6zQrVwkgD66Kefyszm0kHtCfGkNkqLkrYKMViUchwie",
@@ -100,7 +100,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "minimalist-tent",
     category: "stay",
     name: "Minimalist Tents",
-    description: "Sleeping closer to land and weather. Minimal shelter that prioritizes presence over comfort.",
+    description: "",
     price: 120,
     priceDisplay: "$120 / night",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuATOA-7cEFkRwrPfO1Yi_GsWajtQm9kjP7vPcdoMkklExVYKXq1iHwHSN46TT9UzGXZ2GSvZNBTB1p-eMuuUvXuyuTueNOFBENS8jqs4my9pGxB5vcyr7x9voKTIRePCWmgmZr5a4WBdtkSTU9GmvHrQnQEscuZ9JMvgYXNAi22rrvPBBd93C8N_mao7s6WAkTydpuvYyx_ygEtCYiiCq2O0dMsBGO3LlMAosUfSCTq_BUAbUojIr8PTfDo-3Pec-w-I7ddy4UoeU12",
@@ -109,7 +109,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "community-hall",
     category: "stay",
     name: "Community Hall",
-    description: "A shared indoor space for reading, reflection, and quiet time. Not intended for sleeping.",
+    description: "",
     price: 50,
     priceDisplay: "$50 / night",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB0W9yJw8axjF-kN3nS3rx2wcnSyZDgPPr4N6-dQHkur_vVcYF7VJDVWzdTVlXQINnv8OPubPGsP93vzoZSB1siyf5Dfyl4VbjsiDfThEFh4mCXDJb2-Q3XzsQ-yKSgt_d9eFJgNilz-sF-0wpPmMdd_1eUEJmyZqiPXLW-gBggW1zAzs7-S96DxPtCF5pg4bxnbJGHsTOiNtH_b3S1jWkXeIxnAOQavLlixwoNfkJe-ZzbvSK4qZMGzvYZFscIPgABiVcKzflo9wUo",
@@ -119,7 +119,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "physical-training",
     category: "wellness",
     name: "Self-Paced Physical Training",
-    description: "Quiet movement without mirrors or metrics. Strength and exertion on your own terms.",
+    description: "",
     price: 50,
     priceDisplay: "$50 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAG8sRV16GeDF6s3Aix4GpETZ3eauYTdeaL5IlWaBQHdmLaEUl8HwITF-icK7rBJH3rs4_eyRc0OnTyudHniz8NCe3oRC2k5_KcTRLReqJdws9zmY25stjYSrFvYvnbb4fxetbYlgcqCJDWwMaBr_6UB09wT864MpT6mLPkqnqxG3JPy_DNNFOMUqcmW8iZWOE4etCbj4TW4EEkBzJss4y7vWzlNmUWjLyUiZaka0GRqyef8OxRV6v8-KYfO5Y2EoBHFW0f3nVZFV6T",
@@ -128,7 +128,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "kayaking-cycling",
     category: "wellness",
     name: "Outdoor Kayaking & Cycling",
-    description: "Movement through land and water. No routes, no destinations, no urgency.",
+    description: "",
     price: 75,
     priceDisplay: "$75 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBs-hb7o4jNTYxKGveJrfp7t9OjuheyFrl6975031WiGmob3tmuoKzo9e2Gi5gfjM2WmcObIeJRsPLgmRU5lBfL7W78uunGYn_oc94_vQrdsZ1BjmCDRi9ZxSTde7PluowM0B9IEifnGvy1rLS3ysNmjoRiMZS8YRu_xL2Xp4IpulOke15P3reMJbLN2dYFGAbVe9q8f6FFx6X_KZoJ7O_EJvbTRGc45bGfCOWnlsHH2_6uy6yvEum6rEOuMrf4jW3NfWk49g1EY9L5",
@@ -137,7 +137,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "yoga-meditation",
     category: "wellness",
     name: "Yoga & Meditation",
-    description: "Low-light spaces for stillness and breath. Self-led, informal, and unstructured.",
+    description: "",
     price: 40,
     priceDisplay: "$40 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBpZOvr0qjgBHYFzGTiTaPYUUfxtRTTng4Mwyz1Y1DWNZJ_1bIkfqJ3exaDYGFmGQH0kEFlJ--2x9K7P2_gWe-POWZpboure-tmEfUlOPBXEahy3y3fJM4Yf1VShZ5WCMnIOQRgohRnU1MHh9dBz_RMPXnR6lgAzzpCeWWqxfY1jj5rO29e1v-so6AiyI_-y3kx2qdK_n4hThx3ugUPOZty1UBFhhmRzm7Lds78A7DSjpxT19FH5wa-UqsVvRcWUBB5wtZ4-NGFFouA",
@@ -146,7 +146,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "board-games",
     category: "wellness",
     name: "Leisure & Board Games",
-    description: "Analog play without competition. Easy to begin, easy to leave.",
+    description: "",
     price: 20,
     priceDisplay: "$20 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDpLgNIXCBBA7cPpXwO9csLOqZrHsSadnHbb7Q-s24LEXvnrtHwATVxM-rgQthaw7HXT23Wv2Vj4M0QHf7vMXlnFxVR_3527JHh44DEYoHmp9RAiTjj5UKVQsSpgDXnPAtpKFwBRYkq1brPYGQAyalnn8lw1Ew3ezLh9zoRAIiS58I2gC8YpIP3e3Vx-QSnJvTJzmVneD0Kah0f9YnTcUovk_mk9mNLTdZ2PEgiloIzz1gOrdmvtvnxrXR2idxdg2P4IVZ0jM6IqpKT",
@@ -155,7 +155,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "pet-companionship",
     category: "wellness",
     name: "Companionship & Pet Friendly",
-    description: "Shared presence with animals. Calm, grounding, and uncomplicated.",
+    description: "",
     price: 30,
     priceDisplay: "$30 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA2Tpwiek3PonA5i87JcVQ0JysCYWwZeYKjPR00nuxAGlqkrb3Oc2Y76BPK5eoukMAJQpiiOpUXSye5KD7z0KrMUhR-VAei7QNfxuEafVCYyoPl2zI3KEil0UkwjxK_l6FhAUKIbZzxXgqDkWh-X6LW5Zh9V0fgppjnWfzsEE9CipCUk-lGo482Uh8fF2rqUczpWgg0hGFp7hIyQClItjfCzoXHDeU1kPzuo9ZBkjj7S1RucpxI27X9fAKm_lGvr_ZxX4o8cU_In7QQ",
@@ -164,7 +164,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "farm-day",
     category: "wellness",
     name: "Grounding, A Day at a Farm",
-    description: "Time spent with soil and routine. Hands-on, slow, and without theory.",
+    description: "",
     price: 60,
     priceDisplay: "$60 / day",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAWhITh0xZYsAlerv6-wQYlJ2lGDb2fA_wBAeP-_GMQIbFan5_10uwImDJBEYxv89qG40jiKmPooOPAuK9VNy0byJTjkmF4qhQWNpG_rIZyaiWljPgYyplu6QhWi4ITpQrmDn--uGE-0y86G3XGlnTx0Szqsk_LMFKI1PoC37grwx7PFmwsXeweFG5cInow3VbwMtmjiHmOpbL1EBaeG9-Ix3LzkGgpXcwBPNvDZuavErPWW1u3mWa2a3qiqIcBhHnodWXLlg5povz0",
@@ -174,7 +174,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "boat-safari",
     category: "activities",
     name: "Boat Safari",
-    description: "Guided movement through water alongside birds.",
+    description: "",
     price: 12,
     priceDisplay: "$12 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBzQUBgomUJe6e1OB_6dmTVcgR_GYt5k-UgoretbmfZ_izouiCOaK8YYEWLDt_QTV_ISyTECnULI_O5W2HYPqj6w163bSvDPTOBZHjRl7FljH8xAlUWQIAfo5Eosj0EPZTfwiMtkXcjRL7RThN1FokJa4gSqWamw681YNKmVWdMcKtTZpKktdALEho3axfgg38XvTVTyHnF8634k552ETsVCipetwOV8NQ9ujUeRJusTOeygeyE16mtVKBxnTDmtPIEduKGAtXfTURb",
@@ -183,7 +183,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "boat-night-safari",
     category: "activities",
     name: "Boat Night Safari",
-    description: "Float slowly under open sky.",
+    description: "",
     price: 12,
     priceDisplay: "$12 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDRDZ8o-JGgFjqHv3XthGLGz519OyZYTh_sWwcvBjdQQIzolyCXSsUjdTvivWDhmcltlTFvD71iGQr0I77PCKoXLuqGYJ22zlf__h8EMkv791VfiUJnEUc4ykgWQtr9O5EBzFF-MJ07jrYOwEkyg5xEl0X9ayH0rYcb9diiyN68oouAfDUUeOTFPIBjvnYN8xELQ9oCDNI2lBDINuvnt6NQPsVbvR-t4c4gZrshZ1RXGQrACrjJyPGfT62LIZeuaMXegi9fS2KKrZ35",
@@ -192,7 +192,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "grassland-safari",
     category: "activities",
     name: "Grassland Safari",
-    description: "Moving through open terrain near wildlife.",
+    description: "",
     price: 60,
     priceDisplay: "$60 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCL7r_EfdzJXByVkgj8b1NMj-ZAtICOd-7f0nIhoxkQIxwBXH598TGdlFxtN24GiUoEphwYF0zIlhdvgru9oSMfTu9oihv5xP2V32qk72jVhmmMD13Pcuc1s0mmIW9z0PwjwSoqpRfVVjN7zXydMqkaSSiGcvxYcCH0nmyLUFMqAU494-rLxIKe2FG8GvN3X8ki91b9auaQ6g5uK2zpi_NeVNIbCo2enuZdmqIXYer0VC9t9T7g6Bxyw44xX4oXh4-0yrKVSoFNsFSS",
@@ -201,7 +201,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "media-viewing",
     category: "activities",
     name: "Media Viewing",
-    description: "Content selected for the moment.",
+    description: "",
     price: 24,
     priceDisplay: "$24 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAp-yDz8bDOHDgf9xJbj0GvUszs0lHVc4U6p0TXmQLCdZ-dwhnDK6eTIt0Fqm27Qt4eJcpRYgZmPH5c2ok07pIZKm6EFwIWV2HAxf7PPO-nB4ILYwDvkk1P9LlQAzuHl9LHd8EZJz2i_O61QS8QyDfcRjadK3wfoZi1zAnSJMVmkFyGBWO4635QStA8dET3_wdgeBgosK141lBGk7iK8ELekhk349aDocnAmmMG1WCdYKBantBSw7VSeQfYK36scMVJCqV7mmfjDzkL",
@@ -210,7 +210,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "lake-camping",
     category: "activities",
     name: "Lake Camping",
-    description: "Staying close to water and weather.",
+    description: "",
     price: 24,
     priceDisplay: "$24 / night",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDOdeEUhl309Gu2oZN0GhIAVH2l8s3vv94ApUE-B6IGCw9iIvASGUtpseKwR8a41lo7fnjVBtSoxTqXUEaEbfZJMPlRLjrsT3gZ6H_4EcN3OO9WdF-WcJQez51O2kEx4IAtenZ4GV4ZVZtFAjcFZWGtsWzbyB-IVweW31304V3gZAf1pYXeR6Ik-f66OZWQiNAnpe7OXRHn8xea79ZUVoSZNwFLGO46Y2NpGCDqWpP6jrw3m8vznKRCe9U6R2fqNdl40yZkOnKu2ZyL",
@@ -220,7 +220,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "sound-immersion",
     category: "activities",
     name: "Sound Immersion",
-    description: "Sound held as an environment.",
+    description: "",
     price: 120,
     priceDisplay: "$120 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBzQUBgomUJe6e1OB_6dmTVcgR_GYt5k-UgoretbmfZ_izouiCOaK8YYEWLDt_QTV_ISyTECnULI_O5W2HYPqj6w163bSvDPTOBZHjRl7FljH8xAlUWQIAfo5Eosj0EPZTfwiMtkXcjRL7RThN1FokJa4gSqWamw681YNKmVWdMcKtTZpKktdALEho3axfgg38XvTVTyHnF8634k552ETsVCipetwOV8NQ9ujUeRJusTOeygeyE16mtVKBxnTDmtPIEduKGAtXfTURb",
@@ -229,7 +229,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "painting",
     category: "activities",
     name: "Painting",
-    description: "Bringing color into form without instruction.",
+    description: "",
     price: 6,
     priceDisplay: "$6 / canvas",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCL7r_EfdzJXByVkgj8b1NMj-ZAtICOd-7f0nIhoxkQIxwBXH598TGdlFxtN24GiUoEphwYF0zIlhdvgru9oSMfTu9oihv5xP2V32qk72jVhmmMD13Pcuc1s0mmIW9z0PwjwSoqpRfVVjN7zXydMqkaSSiGcvxYcCH0nmyLUFMqAU494-rLxIKe2FG8GvN3X8ki91b9auaQ6g5uK2zpi_NeVNIbCo2enuZdmqIXYer0VC9t9T7g6Bxyw44xX4oXh4-0yrKVSoFNsFSS",
@@ -238,7 +238,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "calligraphy",
     category: "activities",
     name: "Calligraphy",
-    description: "Giving form to thought through words.",
+    description: "",
     price: 60,
     priceDisplay: "$60 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDRDZ8o-JGgFjqHv3XthGLGz519OyZYTh_sWwcvBjdQQIzolyCXSsUjdTvivWDhmcltlTFvD71iGQr0I77PCKoXLuqGYJ22zlf__h8EMkv791VfiUJnEUc4ykgWQtr9O5EBzFF-MJ07jrYOwEkyg5xEl0X9ayH0rYcb9diiyN68oouAfDUUeOTFPIBjvnYN8xELQ9oCDNI2lBDINuvnt6NQPsVbvR-t4c4gZrshZ1RXGQrACrjJyPGfT62LIZeuaMXegi9fS2KKrZ35",
@@ -247,7 +247,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "coffee-preparation",
     category: "activities",
     name: "Coffee Preparation",
-    description: "Roasting, grinding, and brewing with guided restraint.",
+    description: "",
     price: 60,
     priceDisplay: "$60 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBzQUBgomUJe6e1OB_6dmTVcgR_GYt5k-UgoretbmfZ_izouiCOaK8YYEWLDt_QTV_ISyTECnULI_O5W2HYPqj6w163bSvDPTOBZHjRl7FljH8xAlUWQIAfo5Eosj0EPZTfwiMtkXcjRL7RThN1FokJa4gSqWamw681YNKmVWdMcKtTZpKktdALEho3axfgg38XvTVTyHnF8634k552ETsVCipetwOV8NQ9ujUeRJusTOeygeyE16mtVKBxnTDmtPIEduKGAtXfTURb",
@@ -256,7 +256,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "pottery",
     category: "activities",
     name: "Pottery",
-    description: "Clay shaped under quiet guidance.",
+    description: "",
     price: 60,
     priceDisplay: "$60 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCL7r_EfdzJXByVkgj8b1NMj-ZAtICOd-7f0nIhoxkQIxwBXH598TGdlFxtN24GiUoEphwYF0zIlhdvgru9oSMfTu9oihv5xP2V32qk72jVhmmMD13Pcuc1s0mmIW9z0PwjwSoqpRfVVjN7zXydMqkaSSiGcvxYcCH0nmyLUFMqAU494-rLxIKe2FG8GvN3X8ki91b9auaQ6g5uK2zpi_NeVNIbCo2enuZdmqIXYer0VC9t9T7g6Bxyw44xX4oXh4-0yrKVSoFNsFSS",
@@ -265,7 +265,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "rock-balancing",
     category: "activities",
     name: "Rock Balancing",
-    description: "Guided balancing of stones without goal.",
+    description: "",
     price: 60,
     priceDisplay: "$60 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDOdeEUhl309Gu2oZN0GhIAVH2l8s3vv94ApUE-B6IGCw9iIvASGUtpseKwR8a41lo7fnjVBtSoxTqXUEaEbfZJMPlRLjrsT3gZ6H_4EcN3OO9WdF-WcJQez51O2kEx4IAtenZ4GV4ZVZtFAjcFZWGtsWzbyB-IVweW31304V3gZAf1pYXeR6Ik-f66OZWQiNAnpe7OXRHn8xea79ZUVoSZNwFLGO46Y2NpGCDqWpP6jrw3m8vznKRCe9U6R2fqNdl40yZkOnKu2ZyL",
@@ -275,7 +275,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "angling",
     category: "solitude",
     name: "Angling",
-    description: "Repetition and still attention. A meditative practice of patience and presence by the water's edge.",
+    description: "",
     price: 35,
     priceDisplay: "$35 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA0HsBN67MCfII7SFbyoe1CuEbEDrqaYf7kqJpp72tE8oPKovG1zztOo__0OQzzELS2oQ_DGIuO1KS_1IVBucK8qj3FwvhRqbMhDhMbqm1ocMzXlUZu5zJy0ltLGZMhF5nbdxBiOOkVb0CbxNMhe3JUOqBjg4wMOeojwjaZBLtOtIZGd0bfLsFeA9XysJv44KgWPDDw2dfGb8kuCIadFmbgCYe5XTjiZwGX0My_VA7VqMgybDzGRzIgV_DDxQrBvxv58qq8EQmUqBNd",
@@ -284,7 +284,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "bird-watching",
     category: "solitude",
     name: "Bird Watching",
-    description: "Looking without pursuit. Soft observation of local wildlife in their natural habitat.",
+    description: "",
     price: 30,
     priceDisplay: "$30 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDsP2PVMAnzEeQANwyaypvuhQWIt86oMF9re2yM2NG7_BzlSLrJN65CWOxusQWunAJmE3QFO5KI0y_wRzwx06Hf1pN5gjTvHjrhusUKu6KLAiYJdg5UqyuiV3Exg2Gx20sI1_BmDSyvmNahXSAiqdL9jtzB8c6xwHed0IyPo0Bs-jEZouWM4TARhZMON7EHMpCXGgxuD-xj1WpOkwIEH6Q_rSiGChRmBpn5iA7_qxdQcU6lzE12bqOVEBm59P0h2vHi_VoV3OLtsjnM",
@@ -293,7 +293,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "star-gazing",
     category: "solitude",
     name: "Star Gazing",
-    description: "Observation without urgency. Reconnecting with the cosmos under our clear, protected night skies.",
+    description: "",
     price: 40,
     priceDisplay: "$40 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAfUEFkuPsDcRrwomNpV_HwfuHf9O-A4L4U6MKLljPvLYJJwCUlXXxY2mjgE-er6h_jG_PklBuvKzJnEWMoUJTBEFnfYdbWj0UoS3cNXdzuBn3c88huWQsb9L1tETDwGKjEr-JXTFe2AZ17ij8blc4Ins9QdK95sIdIr8UwQdYwnWrcQj1lZakOp8Ym0eJLoProiY8a7Mgr0ih-iysVaPtnEnXgmXEjcYNY-jgM_8kZIOdBMKHtMR5R46CeAnA6rA3Z00VVJIJkJdLa",
@@ -302,7 +302,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "forest-walks",
     category: "solitude",
     name: "Forest Walks",
-    description: "Walking without destination or goal. Let your feet guide you through the ancient woods.",
+    description: "",
     price: 25,
     priceDisplay: "$25 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBS-7ETT0Y8bS144cz6202eGntk2MphbdlmHEt8WqWvWfiBzm80K29cumWX7SRpzNPBWVx2KCkjnZWjF6sj9NpVOCPtk688LcjR8EWa7w8VCQYsrQGbylEBhILeQ9KeZORxLzYKw_VlTgyoibONM9Epoo4FkKSfhEknTxMEh1F1TcoYX9LQ0WLW-IiFj1WOAwKKbs28Kmd6eLeVvQfDyupUltNoBBnP8j96m928ssFCgnjjZBtATZI7UDeYYqKukLbDQoQ68yqdfCCK",
@@ -311,7 +311,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "triathlon-training",
     category: "solitude",
     name: "Triathlon Training",
-    description: "Push your limits across three disciplines. A comprehensive practice of swimming, cycling, and running.",
+    description: "",
     price: 80,
     priceDisplay: "$80 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBS-7ETT0Y8bS144cz6202eGntk2MphbdlmHEt8WqWvWfiBzm80K29cumWX7SRpzNPBWVx2KCkjnZWjF6sj9NpVOCPtk688LcjR8EWa7w8VCQYsrQGbylEBhILeQ9KeZORxLzYKw_VlTgyoibONM9Epoo4FkKSfhEknTxMEh1F1TcoYX9LQ0WLW-IiFj1WOAwKKbs28Kmd6eLeVvQfDyupUltNoBBnP8j96m928ssFCgnjjZBtATZI7UDeYYqKukLbDQoQ68yqdfCCK",
@@ -320,7 +320,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "awareness-of-breath",
     category: "solitude",
     name: "Awareness of Breath",
-    description: "Return to the most fundamental rhythm. A practice of conscious breathing that anchors you in the present.",
+    description: "",
     price: 20,
     priceDisplay: "$20 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA0HsBN67MCfII7SFbyoe1CuEbEDrqaYf7kqJpp72tE8oPKovG1zztOo__0OQzzELS2oQ_DGIuO1KS_1IVBucK8qj3FwvhRqbMhDhMbqm1ocMzXlUZu5zJy0ltLGZMhF5nbdxBiOOkVb0CbxNMhe3JUOqBjg4wMOeojwjaZBLtOtIZGd0bfLsFeA9XysJv44KgWPDDw2dfGb8kuCIadFmbgCYe5XTjiZwGX0My_VA7VqMgybDzGRzIgV_DDxQrBvxv58qq8EQmUqBNd",
@@ -329,7 +329,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "fascia-system",
     category: "solitude",
     name: "The Fascia System",
-    description: "Intense myofascial release through movement and pressure. A practice that targets deep connective tissue.",
+    description: "",
     price: 55,
     priceDisplay: "$55 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDsP2PVMAnzEeQANwyaypvuhQWIt86oMF9re2yM2NG7_BzlSLrJN65CWOxusQWunAJmE3QFO5KI0y_wRzwx06Hf1pN5gjTvHjrhusUKu6KLAiYJdg5UqyuiV3Exg2Gx20sI1_BmDSyvmNahXSAiqdL9jtzB8c6xwHed0IyPo0Bs-jEZouWM4TARhZMON7EHMpCXGgxuD-xj1WpOkwIEH6Q_rSiGChRmBpn5iA7_qxdQcU6lzE12bqOVEBm59P0h2vHi_VoV3OLtsjnM",
@@ -339,7 +339,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "clay-modeling",
     category: "expression",
     name: "Clay & Earth Workshop",
-    description: "Work with local soil and clay.",
+    description: "",
     price: 55,
     priceDisplay: "$55 / session",
     image: "/noise2.png",
@@ -348,7 +348,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "painting-silence",
     category: "expression",
     name: "Painting in Silence",
-    description: "Open-air painting session by the lake.",
+    description: "",
     price: 70,
     priceDisplay: "$70 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAgtoMMPZz88PXkDYrxvHVR6uCSwqNqDnob4jaoXODBFLGl2UsdhfJ4s__nqrXImhLMN4QUasNvlWzk9Yo_824P4d9lIvSn1WbjbbWb28HQs30tbEHbQGS_MuR1epNrsedDPULlE6AaZ45m5He654JaT49FOV-G_q2QjNTxPSVrimly9bjXTZ01TiOoTicoKoqMBOqEzGfSDPcspcYTtn2f9nvsAvItSPnGcZhvCVsFO9kjJPBy1OdqHj_PbY0RZq_5hkBecKLlEATa",
@@ -357,7 +357,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "voice-release",
     category: "expression",
     name: "Primal Voice Release",
-    description: "A guided session to use sound/voice as a tool.",
+    description: "",
     price: 45,
     priceDisplay: "$45 / session",
     image: "/noise.png",
@@ -367,7 +367,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "writers-residency",
     category: "residency",
     name: "Writer's Residency",
-    description: "7-day package for writers.",
+    description: "",
     price: 800,
     priceDisplay: "$800 / week",
     image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1000&q=80",
@@ -376,7 +376,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "artist-residency",
     category: "residency",
     name: "Artist's Studio",
-    description: "Studio space and stay.",
+    description: "",
     price: 850,
     priceDisplay: "$850 / week",
     image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1000&q=80",
@@ -386,7 +386,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "satvik-meal",
     category: "dining",
     name: "Satvik Home Meals",
-    description: "Daily vegetarian plans.",
+    description: "",
     price: 25,
     priceDisplay: "$25 / day",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC7EqkXqQPU7fE4pLFU_Hk927TUqj83DfbTfUvPIihY2voNQvmPzkgFFvUowSJV8BeUmi3AK6_9d9MQPQBC_OXh3eBg9xIp_jNbcq4P1uQYXAH4udgKWxtFyRuenpPXcorX848v2tHHPWWYfK16iMhYDcmb9iw-JZ2WzgiEm9s4eNuGAgeRY8AMsVHC_k5fLfLYry5CbHdiz9uOsXZQFafe7IcPz2Ty17dsxEdLhomR6gW_ljYA7vJCFpBg4iyLqVjMKXTFWCffegD2",
@@ -395,7 +395,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "fresh-juice-pass",
     category: "dining",
     name: "Fresh Juice Pass",
-    description: "Access to fresh juices daily.",
+    description: "",
     price: 15,
     priceDisplay: "$15 / day",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBPPRi1KA1SSwhk_HwPBfDwwsAERrk2PJlQEBBT-t3vsDceOPFxRCmCS2hOSB75G50kN4biPj2O6wed6Y5WHy9QYxwfH8SnuPsoH85EkeBG2eWtd61u1kxzb7Hvo1aRqQz8Hw0fhpybRMYRkBpd0hO_yyjc9Cd8p7GUmT-FXalpznzlPS8i_pqPTP-dRL1gJP5yqyABEWDkhy7V7DJxmjQTkdmmZh4DIyIpX7FcKG1hcb2P7A7ZA6abK6NzUJeiJWEJAKb5pwvQZMa5",
@@ -404,7 +404,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "weekend-bbq",
     category: "dining",
     name: "Weekend Barbeque",
-    description: "Special event access.",
+    description: "",
     price: 40,
     priceDisplay: "$40 / event",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC72-qeY2eEUj-PVITTUo2cNBi448iUqzdHsoEipULmOX22vormapus2Ny-vkyznBYe1cCZEDjbvLIrW3GuSkIg8UG6cSQjorFd6SxJCSZjnFSUZunRVmsTumGnkttyCeI4bOc-hMIgYBiaqmhKgUJg4c3nVIhqa5238Nu7Cy11M88SVYJR3uvYHZhULleRmsgdg5DSXMHj_jRUCrX6fP_8TMxU7wgAkfOOrz1iU2VMvmW0E8_9TXF6oBAkhRYNTypjcCZ0XHF-AP5d",
@@ -413,6 +413,7 @@ const BOOKING_ITEMS: BookingItem[] = [
 
 export default function BookingsPage() {
   const [cart, setCart] = useState<string[]>([]);
+  const [quantities, setQuantities] = useState<Record<string, number>>({});
   // Open states for all accordions (top level and nested)
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({
     booking: true,
@@ -437,16 +438,35 @@ export default function BookingsPage() {
 
   const isInCart = (id: string) => cart.includes(id);
 
+  const getQuantity = (id: string) => quantities[id] || 1;
+
+  const setQuantity = (id: string, quantity: number) => {
+    setQuantities(prev => ({ ...prev, [id]: quantity }));
+  };
+
   const toggleItem = (id: string) => {
-    setCart((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
+    setCart((prev) => {
+      if (prev.includes(id)) {
+        // Remove from cart and reset quantity
+        setQuantities(prevQty => {
+          const newQty = { ...prevQty };
+          delete newQty[id];
+          return newQty;
+        });
+        return prev.filter((item) => item !== id);
+      } else {
+        // Add to cart with default quantity of 1
+        setQuantities(prevQty => ({ ...prevQty, [id]: 1 }));
+        return [...prev, id];
+      }
+    });
   };
 
   const calculateTotal = () => {
     return cart.reduce((total, id) => {
       const item = BOOKING_ITEMS.find((i) => i.id === id);
-      return total + (item ? item.price : 0);
+      const quantity = getQuantity(id);
+      return total + (item ? item.price * quantity : 0);
     }, 0);
   };
 
@@ -469,8 +489,15 @@ export default function BookingsPage() {
       items: BOOKING_ITEMS.filter(i => i.category === "stay")
     },
     {
+      id: "dining",
+      title: "02. Food",
+      subtitle: "Nourishment plans",
+      type: "flat",
+      items: BOOKING_ITEMS.filter(i => i.category === "dining")
+    },
+    {
       id: "experiences",
-      title: "02. Experiences",
+      title: "03. Experiences",
       subtitle: "Curate your journey",
       type: "nested",
       subSections: [
@@ -480,13 +507,6 @@ export default function BookingsPage() {
         { id: "expression", title: "Expression", items: BOOKING_ITEMS.filter(i => i.category === "expression") },
         { id: "residency", title: "Residency", items: BOOKING_ITEMS.filter(i => i.category === "residency") },
       ]
-    }, // Add Dining here
-    {
-      id: "dining",
-      title: "03. Dining",
-      subtitle: "Nourishment plans",
-      type: "flat",
-      items: BOOKING_ITEMS.filter(i => i.category === "dining")
     }
   ];
 
@@ -495,6 +515,7 @@ export default function BookingsPage() {
     <div className="border-t border-earth-800/50">
       {items.map((item) => {
         const isSelected = isInCart(item.id);
+        const quantity = getQuantity(item.id);
         return (
           <div
             key={item.id}
@@ -515,6 +536,22 @@ export default function BookingsPage() {
               </div>
               <span className={`text-sm font-mono whitespace-nowrap transition-colors ${isSelected ? 'text-gold-500 font-bold' : 'text-earth-400 group-hover:text-gold-400'}`}>{item.priceDisplay}</span>
             </div>
+
+            {/* Quantity Dropdown (only show when selected) */}
+            {isSelected && (
+              <div className="relative z-10 mr-3">
+                <select
+                  value={quantity}
+                  onChange={(e) => setQuantity(item.id, parseInt(e.target.value))}
+                  className="bg-earth-800 border border-earth-700 text-earth-100 text-sm rounded px-2 py-1 focus:outline-none focus:border-gold-500 transition-colors"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
+                    <option key={num} value={num}>{num}</option>
+                  ))}
+                </select>
+              </div>
+            )}
 
             {/* Action Button */}
             <button
@@ -557,7 +594,9 @@ export default function BookingsPage() {
                 <p className="text-earth-300/40 text-sm">No items selected.</p>
               </div>
             ) : (
-              selectedItemsDetails.map((item) => (
+              selectedItemsDetails.map((item) => {
+                const quantity = getQuantity(item.id);
+                return (
                 <div key={item.id} className="group flex justify-between items-center bg-earth-950/50 border border-earth-800/50 rounded p-3 hover:border-gold-500/20 transition-all">
                   <div className="flex items-center gap-3 overflow-hidden">
                     <div className="relative w-8 h-8 rounded bg-earth-900 shrink-0">
@@ -565,17 +604,17 @@ export default function BookingsPage() {
                     </div>
                     <div className="min-w-0">
                       <p className="text-sm font-medium text-earth-100 truncate">{item.name}</p>
-                      <p className="text-xs text-earth-400">{item.category}</p>
+                      <p className="text-xs text-earth-400">{item.category} {quantity > 1 && `× ${quantity}`}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-xs font-medium text-gold-500">${item.price}</span>
+                    <span className="text-xs font-medium text-gold-500">${item.price * quantity}</span>
                     <button onClick={() => toggleItem(item.id)} className="text-earth-500 hover:text-red-400 transition-colors">
                       <span className="material-symbols-outlined text-base">close</span>
                     </button>
                   </div>
                 </div>
-              ))
+              )})
             )}
           </div>
 
@@ -605,7 +644,13 @@ export default function BookingsPage() {
                 Build your schedule efficiently. Select what calls to you.
               </p>
               <div className="flex gap-6 mt-4">
-                <span className="text-gold-500 cursor-pointer hover:text-gold-400 transition-colors">Download Brochure</span>
+                <a 
+                  href="/The_Silent_Club_2_Page_Brochure.pdf" 
+                  download="The_Silent_Club_2_Page_Brochure.pdf"
+                  className="text-gold-500 cursor-pointer hover:text-gold-400 transition-colors"
+                >
+                  Download Brochure
+                </a>
                 <span className="text-gold-500 cursor-pointer hover:text-gold-400 transition-colors">Google Maps</span>
               </div>
             </div>
