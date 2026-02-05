@@ -40,16 +40,17 @@ export default function RoomsHero() {
             <span className="italic text-gold-500"> Stay by Design</span>
           </h1>
           <p className="text-earth-300/80 text-xl md:text-2xl font-light leading-relaxed font-body">
-            Rest here is functional, not indulgent.<br />
-            Spaces are shaped to reduce stimulation and support uninterrupted rest.
+           Rest here is functional, not indulgent.<br/>
+Availability varies by duration, alignment, and current use of the space.
           </p>
         </div>
       </div>
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-60 animate-bounce">
-        <span className="text-xs uppercase tracking-[0.2em] text-earth-300">Scroll</span>
-        <span className="material-symbols-outlined text-earth-300 text-2xl">arrow_downward</span>
+        <div className="w-12 h-12 rounded-full border-2 border-earth-300 flex items-center justify-center">
+          <span className="material-symbols-outlined text-earth-300 text-2xl">arrow_downward</span>
+        </div>
       </div>
     </section>
   );

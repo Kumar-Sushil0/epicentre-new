@@ -174,7 +174,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     id: "boat-safari",
     category: "activities",
     name: "Boat Safari",
-    description: "Guided movement through water alongside bird life.",
+    description: "Guided movement through water alongside birds.",
     price: 12,
     priceDisplay: "$12 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBzQUBgomUJe6e1OB_6dmTVcgR_GYt5k-UgoretbmfZ_izouiCOaK8YYEWLDt_QTV_ISyTECnULI_O5W2HYPqj6w163bSvDPTOBZHjRl7FljH8xAlUWQIAfo5Eosj0EPZTfwiMtkXcjRL7RThN1FokJa4gSqWamw681YNKmVWdMcKtTZpKktdALEho3axfgg38XvTVTyHnF8634k552ETsVCipetwOV8NQ9ujUeRJusTOeygeyE16mtVKBxnTDmtPIEduKGAtXfTURb",

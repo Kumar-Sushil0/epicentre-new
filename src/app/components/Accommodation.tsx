@@ -64,7 +64,7 @@ export default function Accommodation() {
 
     const handleTransitionEnd = () => {
       setIsTransitioning(false);
-      
+
       // Reset position for infinite loop
       if (currentIndex >= totalItems + 2) {
         // At end clones, jump to real start
@@ -93,12 +93,12 @@ export default function Accommodation() {
     // Simple centering: move each slide by its full width + gap, then offset to center
     const slideWidth = 65; // 65% width
     const gapRem = 2; // 2rem gap (gap-8 = 2rem)
-    
+
     // Move by index slides, then center the current slide
     const slideOffset = index * slideWidth; // Move by slide widths
     const gapOffset = index * gapRem; // Account for gaps in rem
     const centerOffset = 50 - (slideWidth / 2); // Center the 65% width slide (50% - 32.5% = 17.5%)
-    
+
     return `translateX(calc(-${slideOffset}% - ${gapOffset}rem + ${centerOffset}%))`;
   };
 
@@ -133,7 +133,7 @@ export default function Accommodation() {
         <div className="mb-8">
           <h3 className="text-3xl font-semibold mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Stay</h3>
           <p className="text-[#e7dfd3] font-body text-[15px] max-w-full">
-             Rest here is functional, not indulgent.<br />
+            Rest here is functional, not indulgent.<br />
             Each stay option offers a different degree of privacy, proximity, and withdrawal.
           </p>
         </div>
@@ -174,7 +174,7 @@ export default function Accommodation() {
                       {/* Description - Revealed on Hover */}
                       <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
                         <div className="overflow-hidden">
-                          <p className="text-[#e7dfd3] text-sm md:text-base leading-relaxed mt-4 border-t border-gold-500/30 pt-4">
+                          <p className="text-[#e7dfd3] text-sm md:text-base leading-relaxed mt-2 border-t border-gold-500/30 pt-4">
                             {item.description}
                           </p>
                         </div>

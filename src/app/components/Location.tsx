@@ -2,7 +2,7 @@
 
 export default function Location() {
   return (
-    <section className="py-8 min-h-[100vh] bg-earth-900 flex items-center" id="location">
+    <section className="py-8 bg-earth-900 flex items-center" id="location">
       <div className="w-full px-16">
         <div className="mb-8">
            <h3 className="text-3xl font-semibold mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Location</h3>

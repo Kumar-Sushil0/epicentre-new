@@ -101,8 +101,8 @@ export default function WellnessPage() {
       <Header />
       <WellnessHero />
       <WellnessPhilosophy />
-      <div className="flex-grow">
-        <section className="px-4 md:px-10 pb-24 max-w-[1280px] mx-auto">
+      <div className="grow">
+        <section className="px-16 py-10 w-full">
           <WellnessGrid practices={practices} />
         </section>
        

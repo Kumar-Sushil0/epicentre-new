@@ -19,7 +19,7 @@ export default function ExperiencesPage() {
     {
       id: generateId("Boat Safari"),
       title: "Boat Safari",
-      description: "Guided movement through water alongside bird life.\nExperience: Observation, rhythm, quiet.",
+      description: "Guided movement through water alongside \n bird life. Experience: Observation, rhythm, quiet.",
       time: "2–5",
       icon: "sailing",
       images: [
@@ -228,7 +228,7 @@ export default function ExperiencesPage() {
       <Header />
       <ExperiencesHero />
       <ExperiencesPhilosophy />
-      <div className="flex-1 w-full max-w-[1400px] mx-auto px-6 lg:px-8 py-12 md:py-10 pb-32">
+      <div className="flex-1 w-full px-16 py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 align-top">
           {experiences.map((exp, index) => (
             <CarouselCard

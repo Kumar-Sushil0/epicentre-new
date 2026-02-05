@@ -14,18 +14,34 @@ interface CollectiveMember {
 
 function MemberCard({ member }: { member: CollectiveMember }) {
   const formattedDescription = `${member.focus}\n${member.approach}`;
+  const titleWithQuarter = `${member.name} ${member.quarter}`;
+
+  const socialIcons = [
+    {
+      href: "#",
+      icon: 'linkedin' as const,
+      label: "LinkedIn Profile"
+    },
+    {
+      href: "#",
+      icon: 'website' as const,
+      label: "Personal Website"
+    }
+  ];
 
   return (
     <div className="block">
       <CarouselCard
         title={member.name}
+        hoverTitle={titleWithQuarter}
         description={formattedDescription}
         images={[member.image]}
-        category={member.quarter}
         className="rounded-lg"
         overlayColor="gold-solid"
         overlayHeight={50}
         showBorderLine={false}
+        titleSize="24px"
+        socialIcons={socialIcons}
       />
     </div>
   );
@@ -33,6 +49,7 @@ function MemberCard({ member }: { member: CollectiveMember }) {
 
 export default function AboutCollective() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const collectiveMembers: CollectiveMember[] = [
@@ -41,16 +58,16 @@ export default function AboutCollective() {
       quarter: "Q 1",
       name: "Abhishek Banerjee",
       image: "/person1.jpg",
-      focus: "Exploring how reduced input reshapes creative decision-making.",
-      approach: "Hosting closed experiments in silence, material, and time."
+      focus: "Exploring how reduced input reshapes creative decision-making. Hosting closed experiments in silence, material, and time.",
+      approach: ""
     },
     {
       id: 2,
       quarter: "Q 2",
       name: "Nikhita Tribewal",
       image: "/person2.jpg",
-      focus: "Exploring how reduced input reshapes creative decision-making.",
-      approach: "Hosting closed experiments in silence, material, and time."
+      focus: "Exploring how reduced input reshapes creative decision-making. Hosting closed experiments in silence, material, and time.",
+      approach: ""
     },
     {
       id: 3,
@@ -75,6 +92,8 @@ export default function AboutCollective() {
 
   // Auto-scroll
   useEffect(() => {
+    if (isHovered) return; // Pause when hovered
+    
     const interval = setInterval(() => {
       setCurrentIndex((prev) => {
         const next = prev + 1;
@@ -84,7 +103,7 @@ export default function AboutCollective() {
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [collectiveMembers.length]);
+  }, [collectiveMembers.length, isHovered]);
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
@@ -112,6 +131,8 @@ export default function AboutCollective() {
           <div
             ref={carouselRef}
             className="overflow-hidden w-full mx-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
             <div
               className="flex gap-8 transition-transform duration-500 ease-in-out"

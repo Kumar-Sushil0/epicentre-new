@@ -31,6 +31,7 @@ function ExperienceCard({ title, description, href, images }: ExperienceCardProp
 
 export default function Experiences() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const experiences = [
@@ -100,6 +101,8 @@ export default function Experiences() {
 
   // Auto-scroll
   useEffect(() => {
+    if (isHovered) return; // Pause when hovered
+    
     const interval = setInterval(() => {
       setCurrentIndex((prev) => {
         const next = prev + 1;
@@ -109,7 +112,7 @@ export default function Experiences() {
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [experiences.length]);
+  }, [experiences.length, isHovered]);
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
@@ -137,6 +140,8 @@ export default function Experiences() {
           <div
             ref={carouselRef}
             className="overflow-hidden w-full mx-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
             <div
               className="flex gap-8 transition-transform duration-500 ease-in-out"

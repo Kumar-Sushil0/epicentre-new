@@ -6,6 +6,41 @@ export default function AboutFounder() {
       <div className="max-w-7xl">
         <div className="flex flex-col lg:flex-row items-stretch gap-16 lg:gap-24">
 
+          {/* Text Side - Updated content */}
+          <div className="w-full lg:w-7/12 flex flex-col justify-center pt-8 lg:pt-0">
+            <div className="space-y-6 text-earth-300/80 font-body text-lg leading-relaxed max-w-2xl">
+              <p>
+                <span className="text-earth-100">D.D designs liberation as a system, not a belief.</span>
+              </p>
+
+              <p>
+                Over years of personal experimentation, one pattern became clear: clarity does not arrive through effort, insight, or instruction. It emerges when interference is removed.
+              </p>
+
+              <p>
+                Silence was not adopted as a philosophy. It was tested as a condition.
+              </p>
+
+              <p>
+                By withdrawing stimulation noise, performance, constant response — attention settled. Direction followed.
+              </p>
+
+              <p>
+                The Silent Club is a physical expression of that discovery. A space where environment does the work that advice cannot.
+              </p>
+
+              <p>Though space does not require identification, authorship is declared only where accountability is necessary.</p>
+
+              <p className="pt-4 border-t border-earth-800 ">
+                D.D's role here is not to teach, guide, or interpret. It is to protect the integrity of the conditions.
+              </p>
+
+              <p className="text-earth-100 font-medium">
+                Not a guide. A steward.
+              </p>
+            </div>
+          </div>
+
           {/* Image Side - Now with CarouselCard behavior */}
           <div className="w-full lg:w-5/12 relative group">
             <div className="relative h-full min-h-[500px] w-full overflow-hidden rounded-sm">
@@ -56,39 +91,6 @@ export default function AboutFounder() {
                   Founder & Architect
                 </p>
               </div>
-            </div>
-          </div>
-
-          {/* Text Side - Updated content */}
-          <div className="w-full lg:w-7/12 flex flex-col justify-center pt-8 lg:pt-0">
-            <div className="space-y-6 text-earth-300/80 font-body text-lg leading-relaxed max-w-2xl">
-              <p>
-                <span className="text-earth-100">D.D designs liberation as a system, not a belief.</span>
-              </p>
-
-              <p>
-                Over years of personal experimentation, one pattern became clear: clarity does not arrive through effort, insight, or instruction. It emerges when interference is removed.
-              </p>
-
-              <p>
-                Silence was not adopted as a philosophy. It was tested as a condition.
-              </p>
-
-              <p>
-                By withdrawing stimulation — noise, performance, constant response — attention settled. Direction followed.
-              </p>
-
-              <p>
-                The Silent Club is a physical expression of that discovery. A space where environment does the work that advice cannot.
-              </p>
-
-              <p className="pt-4 border-t border-earth-800 mt-8">
-                D.D's role here is not to teach, guide, or interpret. It is to protect the integrity of the conditions.
-              </p>
-
-              <p className="text-earth-100 font-medium">
-                Not a guide. A steward.
-              </p>
             </div>
           </div>
 

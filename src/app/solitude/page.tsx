@@ -117,8 +117,8 @@ export default function SolitudePage() {
       <Header />
       <SolitudeHero />
       <SolitudePhilosophy />
-      <div className="bg-earth-900 px-4 lg:px-20 py-10 pb-40">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1400px] mx-auto">
+      <div className="bg-earth-900 px-16 py-10 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {practices.map((practice, index) => (
             <CarouselCard
               key={index}

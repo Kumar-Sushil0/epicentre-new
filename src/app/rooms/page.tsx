@@ -10,12 +10,12 @@ export default function RoomsPage() {
     <main className="min-h-screen bg-earth-900 text-earth-100  ">
       <Header />
       <RoomsHero />
-      <div className="layout-container flex h-full grow flex-col px-4 py-8 lg:px-12 lg:py-16 max-w-[1440px] mx-auto w-full">
+      <div className="px-16 py-8 lg:py-16 w-full mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 relative">
           <RoomsSidebar />
 
           {/* Main Scrollable Content */}
-          <main className="lg:col-span-9 flex flex-col gap-24 lg:gap-40 pb-20">
+          <main className="lg:col-span-9 flex flex-col gap-24 lg:gap-40 pb-20 pl-8 md:pl-12">
 
             {/* Private Rooms */}
             <RoomSection
