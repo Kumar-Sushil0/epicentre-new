@@ -3,8 +3,8 @@ import "./globals.css";
 import SmoothScroll from "./components/SmoothScroll";
 
 export const metadata: Metadata = {
-  title: "EPiCentre - Dark Earthy Home Page",
-  description: "A sanctuary designed for silence, introspection, and a return to basics.",
+  title: "The Silent Club",
+  description: "Silence Reveals Direction",
 };
 
 export default function RootLayout({
