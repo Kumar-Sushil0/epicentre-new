@@ -18,7 +18,9 @@ interface VenueCardProps {
 export default function VenueCard({ title, description, image, imageAlt, area, capacity, badge, href }: VenueCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const [isForceHovered, setIsForceHovered] = useState(false);
+  const [contentHeight, setContentHeight] = useState(0);
 
   useEffect(() => {
     // Check if parent has force-hover class
@@ -43,6 +45,19 @@ export default function VenueCard({ title, description, image, imageAlt, area, c
 
     return () => observer.disconnect();
   }, []);
+
+  // Measure content height when hover state changes
+  useEffect(() => {
+    if (contentRef.current && shouldShowHoverState) {
+      // Small delay to ensure DOM is updated
+      const timer = setTimeout(() => {
+        if (contentRef.current) {
+          setContentHeight(contentRef.current.scrollHeight);
+        }
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [isHovered, isForceHovered, description, badge]);
 
   const shouldShowHoverState = isHovered || isForceHovered;
 
@@ -69,13 +84,13 @@ export default function VenueCard({ title, description, image, imageAlt, area, c
         {/* Gradient Overlay - Black like Accommodation cards */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
 
-        {/* Gold Background Overlay - Bottom portion only, full coverage on sides and bottom */}
+        {/* Gold Background Overlay - Dynamic height based on content */}
         <div
           className={`absolute left-0 right-0 bottom-0 bg-gold-500 rounded-b-[10px] transition-all duration-700 ease-in-out ${shouldShowHoverState ? 'opacity-100' : 'opacity-0'}`}
           style={{
             zIndex: 15,
             top: 'auto',
-            minHeight: shouldShowHoverState ? '65%' : '0%'
+            height: shouldShowHoverState ? `${contentHeight + 32}px` : '0px', // +32px for top/bottom padding
           }}
         />
 
@@ -89,23 +104,28 @@ export default function VenueCard({ title, description, image, imageAlt, area, c
             zIndex: 20
           }}
         >
-          {/* Badge */}
-          {badge && !shouldShowHoverState && (
-            <div className="mb-3">
-              <span className="inline-block bg-gold-500/90 text-earth-950 text-xs font-bold px-3 py-1 rounded-full backdrop-blur">
-                {badge}
-              </span>
-            </div>
-          )}
+          {/* Non-hover content */}
+          {!shouldShowHoverState && (
+            <>
+              {/* Badge */}
+              {badge && (
+                <div className="mb-3">
+                  <span className="inline-block bg-gold-500/90 text-earth-950 text-xs font-bold px-3 py-1 rounded-full backdrop-blur">
+                    {badge}
+                  </span>
+                </div>
+              )}
 
-          <h4 className={`text-[21px] font-normal mb-2 ${shouldShowHoverState ? 'opacity-0' : 'text-[#e7dfd3]'}`} style={{ fontFamily: 'Outfit, sans-serif', textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)' }}>
-            {title}
-          </h4>
+              <h4 className="text-[21px] font-normal mb-2 text-[#e7dfd3]" style={{ fontFamily: 'Outfit, sans-serif', textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)' }}>
+                {title}
+              </h4>
+            </>
+          )}
 
           {/* Description - Revealed on Hover using grid approach */}
           <div className={`grid transition-all duration-700 ease-in-out ${shouldShowHoverState ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
             <div className="overflow-hidden">
-              <div className="border-t border-gold-500/30 pt-4">
+              <div ref={contentRef}>
                 {/* Title with hover state - appears on hover for gold background */}
                 <div className="flex items-center justify-between mb-4">
                   <h4 className="text-[21px] font-normal text-earth-900" style={{ fontFamily: 'Outfit, sans-serif' }}>

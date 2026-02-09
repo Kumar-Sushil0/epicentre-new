@@ -90,6 +90,7 @@ export default function DiningVariant() {
                 className="rounded-lg"
                 titlePosition={{ left: '1.5rem', bottom: '1rem' }}
                 overlayColor="gold-solid"
+                overlayHeight={45}
               />
             </div>
           ))}

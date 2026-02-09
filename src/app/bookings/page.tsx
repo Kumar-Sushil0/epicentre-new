@@ -411,30 +411,13 @@ const BOOKING_ITEMS: BookingItem[] = [
   },
 ];
 
+type TabId = "booking" | "stay" | "dining" | "experiences";
+
 export default function BookingsPage() {
   const [cart, setCart] = useState<string[]>([]);
   const [quantities, setQuantities] = useState<Record<string, number>>({});
-  // Open states for all accordions (top level and nested)
-  const [openSections, setOpenSections] = useState<Record<string, boolean>>({
-    booking: true,
-    stay: true,
-    experiences: true,
-    dining: true,
-    wellness: false,
-    activities: false,
-    solitude: false,
-    expression: false,
-    residency: false,
-  });
-
-  const toggleSection = (id: string) => {
-    console.log(`Toggling section: ${id}`);
-    setOpenSections(prev => {
-      const newState = { ...prev, [id]: !prev[id] };
-      console.log('New state:', newState);
-      return newState;
-    });
-  };
+  const [activeTab, setActiveTab] = useState<TabId>("booking");
+  const [activeExperienceTab, setActiveExperienceTab] = useState<"wellness" | "activities" | "solitude" | "expression" | "residency">("wellness");
 
   const isInCart = (id: string) => cart.includes(id);
 
@@ -472,47 +455,9 @@ export default function BookingsPage() {
 
   const selectedItemsDetails = cart.map(id => BOOKING_ITEMS.find(i => i.id === id)).filter(Boolean) as BookingItem[];
 
-  // Structure Definition
-  const structure = [
-    {
-      id: "booking",
-      title: "00. Booking Options",
-      subtitle: "Choose your booking type",
-      type: "flat",
-      items: BOOKING_ITEMS.filter(i => i.category === "booking")
-    },
-    {
-      id: "stay",
-      title: "01. The Stay",
-      subtitle: "Select your accommodation",
-      type: "flat",
-      items: BOOKING_ITEMS.filter(i => i.category === "stay")
-    },
-    {
-      id: "dining",
-      title: "02. Food",
-      subtitle: "Nourishment plans",
-      type: "flat",
-      items: BOOKING_ITEMS.filter(i => i.category === "dining")
-    },
-    {
-      id: "experiences",
-      title: "03. Experiences",
-      subtitle: "Curate your journey",
-      type: "nested",
-      subSections: [
-        { id: "wellness", title: "Wellness", items: BOOKING_ITEMS.filter(i => i.category === "wellness") },
-        { id: "activities", title: "Activities", items: BOOKING_ITEMS.filter(i => i.category === "activities") },
-        { id: "solitude", title: "Solitude", items: BOOKING_ITEMS.filter(i => i.category === "solitude") },
-        { id: "expression", title: "Expression", items: BOOKING_ITEMS.filter(i => i.category === "expression") },
-        { id: "residency", title: "Residency", items: BOOKING_ITEMS.filter(i => i.category === "residency") },
-      ]
-    }
-  ];
-
   // Helper to render a list of items
   const renderItems = (items: BookingItem[]) => (
-    <div className="border-t border-earth-800/50">
+    <div className="space-y-0">
       {items.map((item) => {
         const isSelected = isInCart(item.id);
         const quantity = getQuantity(item.id);
@@ -531,8 +476,7 @@ export default function BookingsPage() {
                   {isSelected && <span className="material-symbols-outlined text-gold-500 text-sm">check_circle</span>}
                   <h3 className={`text-base font-medium truncate transition-colors ${isSelected ? 'text-gold-500' : 'text-earth-100 group-hover:text-gold-200'}`}>{item.name}</h3>
                 </div>
-                {/* Re-introducing a tiny description for context if user wants "book shit" properly, they need info */}
-                <p className="text-xs text-earth-400 truncate max-w-[200px] sm:max-w-xs">{item.description}</p>
+                {item.description && <p className="text-xs text-earth-400 truncate max-w-[200px] sm:max-w-xs">{item.description}</p>}
               </div>
               <span className={`text-sm font-mono whitespace-nowrap transition-colors ${isSelected ? 'text-gold-500 font-bold' : 'text-earth-400 group-hover:text-gold-400'}`}>{item.priceDisplay}</span>
             </div>
@@ -575,11 +519,26 @@ export default function BookingsPage() {
     </div>
   );
 
+  const tabs = [
+    { id: "booking" as TabId, label: "00. Booking", subtitle: "Choose your booking type" },
+    { id: "stay" as TabId, label: "01. Stay", subtitle: "Select accommodation" },
+    { id: "dining" as TabId, label: "02. Food", subtitle: "Nourishment plans" },
+    { id: "experiences" as TabId, label: "03. Experiences", subtitle: "Curate your journey" },
+  ];
+
+  const experienceTabs = [
+    { id: "wellness" as const, label: "Wellness" },
+    { id: "activities" as const, label: "Activities" },
+    { id: "solitude" as const, label: "Solitude" },
+    { id: "expression" as const, label: "Expression" },
+    { id: "residency" as const, label: "Residency" },
+  ];
+
   return (
     <main className="min-h-screen bg-earth-950 text-earth-100 flex flex-col">
       <Header />
 
-      <div className="flex-grow   flex flex-col lg:flex-row-reverse relative">
+      <div className="flex-grow flex flex-col lg:flex-row-reverse relative">
 
         {/* RIGHT SIDEBAR (Summary) */}
         <aside className="lg:w-[380px] lg:h-[calc(100vh-72px)] lg:sticky lg:top-[72px] bg-earth-900 border-b lg:border-b-0 lg:border-l border-earth-800 flex flex-col z-30 shadow-2xl shrink-0">
@@ -659,68 +618,68 @@ export default function BookingsPage() {
               <BookingForm />
             </div>
 
-            <div className="space-y-6">
-              {structure.map((section) => {
-                const isOpen = openSections[section.id];
-                return (
-                  <div key={section.id} className="border border-earth-800 rounded-lg bg-earth-900/20 overflow-hidden">
-                    {/* Top Section Header */}
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        toggleSection(section.id);
-                      }}
-                      className="w-full flex items-center justify-between p-6 hover:bg-earth-900/40 transition-colors text-left"
-                    >
-                      <div>
-                        <h2 className="text-xl font-serif text-earth-50" style={{ fontFamily: 'Outfit, sans-serif' }}>{section.title}</h2>
-                        <p className="text-xs text-earth-300/50 mt-1 font-body">{section.subtitle}</p>
-                      </div>
-                      <span className={`material-symbols-outlined text-earth-300 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
-                        expand_more
-                      </span>
-                    </button>
+            {/* TABS */}
+            <div className="border border-earth-800 rounded-lg bg-earth-900/20 overflow-hidden">
+              {/* Tab Headers */}
+              <div className="flex border-b border-earth-800 overflow-x-auto w-full" style={{ scrollbarWidth: 'thin' }}>
+                {tabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`flex-1 w-full px-6 py-4 text-left transition-all relative ${
+                      activeTab === tab.id
+                        ? 'bg-earth-900/60 text-gold-500'
+                        : 'text-earth-300 hover:bg-earth-900/30 hover:text-earth-100'
+                    }`}
+                  >
+                    <div className="text-sm font-serif" style={{ fontFamily: 'Outfit, sans-serif' }}>{tab.label}</div>
+                    <div className="text-xs text-earth-400 mt-0.5">{tab.subtitle}</div>
+                    {activeTab === tab.id && (
+                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gold-500" />
+                    )}
+                  </button>
+                ))}
+              </div>
 
-                    {/* Top Section Content */}
-                    <div className={`transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
-
-                      {/* FLAT LIST */}
-                      {section.type === 'flat' && section.items && renderItems(section.items)}
-
-                      {/* NESTED LIST */}
-                      {section.type === 'nested' && section.subSections && (
-                        <div className="border-t border-earth-800/50 bg-earth-950/20">
-                          {section.subSections.map((sub, idx) => {
-                            const isSubOpen = openSections[sub.id];
-                            return (
-                              <div key={sub.id} className={`border-b border-earth-800/30 last:border-0`}>
-                                <button
-                                  onClick={(e) => {
-                                    e.preventDefault();
-                                    e.stopPropagation();
-                                    toggleSection(sub.id);
-                                  }}
-                                  className="w-full flex items-center justify-between py-4 px-6 hover:bg-earth-900/40 transition-colors"
-                                >
-                                  <span className="text-base text-earth-200 font-medium">{sub.title}</span>
-                                  <span className={`material-symbols-outlined text-earth-500 text-sm transition-transform duration-300 ${isSubOpen ? 'rotate-180' : ''}`}>
-                                    expand_more
-                                  </span>
-                                </button>
-                                <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isSubOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                                  {renderItems(sub.items)}
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      )}
-
+              {/* Tab Content */}
+              <div className="min-h-[400px]">
+                {activeTab === "booking" && renderItems(BOOKING_ITEMS.filter(i => i.category === "booking"))}
+                {activeTab === "stay" && renderItems(BOOKING_ITEMS.filter(i => i.category === "stay"))}
+                {activeTab === "dining" && renderItems(BOOKING_ITEMS.filter(i => i.category === "dining"))}
+                
+                {activeTab === "experiences" && (
+                  <div>
+                    {/* Nested Experience Tabs */}
+                    <div className="flex border-b border-earth-800/50 bg-earth-950/30 overflow-x-auto" style={{ scrollbarWidth: 'thin' }}>
+                      {experienceTabs.map((tab) => (
+                        <button
+                          key={tab.id}
+                          onClick={() => setActiveExperienceTab(tab.id)}
+                          className={`flex-shrink-0 px-4 py-3 text-sm transition-all relative ${
+                            activeExperienceTab === tab.id
+                              ? 'bg-earth-900/40 text-gold-400'
+                              : 'text-earth-300 hover:bg-earth-900/20 hover:text-earth-100'
+                          }`}
+                        >
+                          {tab.label}
+                          {activeExperienceTab === tab.id && (
+                            <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gold-400" />
+                          )}
+                        </button>
+                      ))}
+                    </div>
+                    
+                    {/* Experience Content */}
+                    <div>
+                      {activeExperienceTab === "wellness" && renderItems(BOOKING_ITEMS.filter(i => i.category === "wellness"))}
+                      {activeExperienceTab === "activities" && renderItems(BOOKING_ITEMS.filter(i => i.category === "activities"))}
+                      {activeExperienceTab === "solitude" && renderItems(BOOKING_ITEMS.filter(i => i.category === "solitude"))}
+                      {activeExperienceTab === "expression" && renderItems(BOOKING_ITEMS.filter(i => i.category === "expression"))}
+                      {activeExperienceTab === "residency" && renderItems(BOOKING_ITEMS.filter(i => i.category === "residency"))}
                     </div>
                   </div>
-                );
-              })}
+                )}
+              </div>
             </div>
 
           </div>

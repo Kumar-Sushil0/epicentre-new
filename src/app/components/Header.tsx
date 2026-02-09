@@ -91,9 +91,6 @@ export default function Header() {
                   <Link href="/test" className="menu-btn" style={isActive("/test") ? { color: 'white' } : {}}>
                     Experiences
                   </Link>
-                  <Link href="/stories" className="menu-btn" style={isActive("/stories") ? { color: 'white' } : {}}>
-                    Stories
-                  </Link>
                   <Link href="/events" className="menu-btn" style={isActive("/events") ? { color: 'white' } : {}}>
                     Events
                   </Link>
@@ -103,11 +100,8 @@ export default function Header() {
                   <Link href="/blogs" className="menu-btn" style={isActive("/blogs") ? { color: 'white' } : {}}>
                     Blogs
                   </Link>
-                  <Link href="/faq" className="menu-btn" style={isActive("/faq") ? { color: 'white' } : {}}>
-                    FAQ
-                  </Link>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 60" height={60} width={750} overflow="visible" className="menu-outline">
-                    <rect strokeWidth={2} fill="transparent" height={60} width={750} y={0} x={0} pathLength={100} className="menu-rect" />
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 60" height={60} width="100%" overflow="visible" className="menu-outline">
+                    <rect strokeWidth={2} fill="transparent" height={60} width="100%" y={0} x={0} pathLength={100} className="menu-rect" />
                   </svg>
                 </div>
               </div>
@@ -153,7 +147,7 @@ export default function Header() {
 
       {/* Mobile Menu - Sidebar from right */}
       <aside className={`mobile-sidebar ${isMenuOpen ? 'visible' : ''}`}>
-        <div className="flex items-center justify-between px-6 py-6 border-b border-gold-500/20">
+        <div className="flex items-center justify-between px-4 py-6 border-b border-gold-500/20">
           <h3 className="text-sm font-medium text-gold-500 uppercase tracking-wider" style={{ fontFamily: 'Outfit, sans-serif' }}>
             Menu
           </h3>
@@ -168,7 +162,7 @@ export default function Header() {
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-6 py-4">
+        <div className="flex-1 overflow-y-auto px-4 py-4">
           <nav>
             <Link
               href="/rooms"
@@ -195,14 +189,6 @@ export default function Header() {
               Experiences
             </Link>
             <Link
-              href="/stories"
-              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
-                isActive("/stories") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
-              }`}
-            >
-              Stories
-            </Link>
-            <Link
               href="/events"
               className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
                 isActive("/events") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
@@ -225,14 +211,6 @@ export default function Header() {
               }`}
             >
               Blogs
-            </Link>
-            <Link
-              href="/faq"
-              className={`block px-4 py-3 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
-                isActive("/faq") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
-              }`}
-            >
-              FAQ
             </Link>
           </nav>
         </div>

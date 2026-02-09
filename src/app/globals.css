@@ -170,7 +170,8 @@ body {
 
 .menu-nav {
   position: relative;
-  width: 750px;
+  width: auto;
+  min-width: 0;
   height: 60px;
 }
 
@@ -181,8 +182,7 @@ body {
 }
 
 .menu-container {
-  position: absolute;
-  inset: 0;
+  position: relative;
   background: transparent;
   backdrop-filter: blur(10px);
   display: flex;

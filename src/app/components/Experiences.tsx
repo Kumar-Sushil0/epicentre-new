@@ -22,7 +22,7 @@ function ExperienceCard({ title, description, href, images }: ExperienceCardProp
         images={[images[0]]} // Use only the first image, no carousel
         className="rounded-lg"
         overlayColor="gold-solid"
-        overlayHeight={40}
+        overlayHeight={65}
         showBorderLine={false}
       />
     </Link>
