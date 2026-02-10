@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ShopProvider } from "./context/ShopContext";
 import SmoothScroll from "./components/SmoothScroll";
+import FloatingWhatsApp from "./components/FloatingWhatsApp";
 
 export const metadata: Metadata = {
   title: "The Silent Club",
@@ -21,8 +23,11 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-earth-900 text-earth-100 antialiased">
-        <SmoothScroll />
-        {children}
+        <ShopProvider>
+          <SmoothScroll />
+          {children}
+          <FloatingWhatsApp />
+        </ShopProvider>
       </body>
     </html>
   );

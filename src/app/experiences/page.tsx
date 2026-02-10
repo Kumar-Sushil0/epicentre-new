@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ExperiencesHero from "../components/experiences/ExperiencesHero";
@@ -15,6 +16,32 @@ function generateId(title: string): string {
 }
 
 export default function ExperiencesPage() {
+  const [showActions, setShowActions] = useState(false);
+  const [wishlist, setWishlist] = useState<Set<string>>(new Set());
+  const [cart, setCart] = useState<Set<string>>(new Set());
+
+  const toggleWishlist = (id: string) => {
+    setWishlist(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(id)) {
+        newSet.delete(id);
+      } else {
+        newSet.add(id);
+      }
+      return newSet;
+    });
+  };
+
+  const addToCart = (id: string) => {
+    setCart(prev => {
+      const newSet = new Set(prev);
+      newSet.add(id);
+      return newSet;
+    });
+    // Optional: Show a toast notification
+    alert(`Added to cart!`);
+  };
+
   const experiences = [
     {
       id: generateId("Boat Safari"),
@@ -228,6 +255,44 @@ export default function ExperiencesPage() {
       <Header />
       <ExperiencesHero />
       <ExperiencesPhilosophy />
+      
+      {/* Actions Toggle Section */}
+      <div className="w-full px-16 py-6">
+        <div className="flex items-center justify-between max-w-7xl mx-auto">
+          <div className="flex items-center gap-4">
+            <h3 className="text-xl font-semibold text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>
+              All Experiences
+            </h3>
+            {showActions && (
+              <div className="flex items-center gap-4 text-sm text-earth-300">
+                <div className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-gold-500">favorite</span>
+                  <span>Wishlist: {wishlist.size}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-gold-500">shopping_cart</span>
+                  <span>Cart: {cart.size}</span>
+                </div>
+              </div>
+            )}
+          </div>
+          
+          <button
+            onClick={() => setShowActions(!showActions)}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
+              showActions 
+                ? 'bg-gold-500 text-earth-950' 
+                : 'bg-earth-800 text-earth-300 hover:bg-earth-700'
+            }`}
+          >
+            <span className="material-symbols-outlined">
+              {showActions ? 'shopping_cart_checkout' : 'add_shopping_cart'}
+            </span>
+            {showActions ? 'Shopping Enabled' : 'Enable Shopping'}
+          </button>
+        </div>
+      </div>
+
       <div className="flex-1 w-full px-16 py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 align-top">
           {experiences.map((exp, index) => (
@@ -239,6 +304,10 @@ export default function ExperiencesPage() {
               icon={exp.icon}
               price={exp.price}
               userCount={exp.minimumGuests}
+              showActions={showActions}
+              onAddToCart={() => addToCart(exp.id)}
+              onToggleWishlist={() => toggleWishlist(exp.id)}
+              isInWishlist={wishlist.has(exp.id)}
             />
           ))}
         </div>

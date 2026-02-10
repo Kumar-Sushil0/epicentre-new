@@ -25,6 +25,10 @@ export interface CarouselCardProps {
         icon: 'linkedin' | 'website';
         label: string;
     }>;
+    showActions?: boolean;
+    onAddToCart?: () => void;
+    onToggleWishlist?: () => void;
+    isInWishlist?: boolean;
 }
 
 export default function CarouselCard({
@@ -44,6 +48,10 @@ export default function CarouselCard({
     overlayHeight = 30,
     showBorderLine = true,
     socialIcons,
+    showActions = false,
+    onAddToCart,
+    onToggleWishlist,
+    isInWishlist = false,
 }: CarouselCardProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
@@ -128,6 +136,40 @@ export default function CarouselCard({
 
                 {/* Gradient Overlay - Black like Accommodation cards */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
+
+                {/* Action Buttons - Top Right */}
+                {showActions && (
+                    <div className="absolute top-4 right-4 z-30 flex gap-2">
+                        <button
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                onToggleWishlist?.();
+                            }}
+                            className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+                                isInWishlist 
+                                    ? 'bg-gold-500 text-earth-950' 
+                                    : 'bg-black/50 text-white hover:bg-black/70'
+                            }`}
+                            aria-label={isInWishlist ? "Remove from wishlist" : "Add to wishlist"}
+                        >
+                            <span className={`material-symbols-outlined text-2xl ${isInWishlist ? 'filled' : ''}`}>
+                                {isInWishlist ? 'favorite' : 'favorite_border'}
+                            </span>
+                        </button>
+                        <button
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                onAddToCart?.();
+                            }}
+                            className="w-10 h-10 bg-black/50 text-white hover:bg-black/70 rounded-full flex items-center justify-center transition-all duration-300"
+                            aria-label="Add to cart"
+                        >
+                            <span className="material-symbols-outlined text-2xl">shopping_cart</span>
+                        </button>
+                    </div>
+                )}
 
                 {/* Gold Background Overlay - Dynamic height based on content */}
                 {overlayColor === 'gold-solid' && (

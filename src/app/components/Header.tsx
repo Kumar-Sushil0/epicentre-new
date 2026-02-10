@@ -67,7 +67,7 @@ export default function Header() {
   return (
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isScrolled ? 'bg-[#0f0b08] backdrop-blur-sm border-b border-earth-800/50' : 'bg-transparent'}`}>
-        <div className="w-full px-16 py-8 h-[30px] flex items-center justify-between relative">
+        <div className="w-full px-4 md:px-16 py-8 h-[30px] flex items-center justify-between relative">
 
           {/* LEFT: Animated Hamburger Button */}
           <div className="hamburger-wrapper z-50 relative">
@@ -120,20 +120,38 @@ export default function Header() {
             />
           </Link>
 
-          {/* RIGHT: Booking CTA */}
-          <Link
-            href="/bookings"
-            className="hidden md:inline-flex items-center justify-center bg-transparent text-gold-500 hover:text-[#e7dfd3] font-bold py-2 rounded-full text-sm uppercase tracking-wider transition-colors"
-          >
-            Book Now
-          </Link>
-          {/* Mobile Booking Icon */}
-          <Link
-            href="/bookings"
-            className="md:hidden flex items-center justify-center w-10 h-10 text-gold-500 border border-gold-500 rounded-full"
-          >
-            <span className="material-symbols-outlined text-xl">calendar_month</span>
-          </Link>
+          {/* RIGHT: Booking & Wishlist CTA */}
+          <div className="flex items-center gap-4">
+            <Link
+              href="/wishlist"
+              className="hidden md:inline-flex items-center justify-center w-10 h-10 text-gold-500 border border-gold-500 rounded-full hover:bg-gold-500/10 transition-colors"
+              aria-label="Wishlist"
+            >
+              <span className="material-symbols-outlined text-xl">favorite</span>
+            </Link>
+            <Link
+              href="/bookings"
+              className="hidden md:inline-flex items-center justify-center bg-transparent text-gold-500 hover:text-[#e7dfd3] font-bold py-2 rounded-full text-sm uppercase tracking-wider transition-colors"
+            >
+              Book Now
+            </Link>
+          </div>
+          {/* Mobile Booking & Wishlist Icons */}
+          <div className="md:hidden flex items-center gap-2">
+            <Link
+              href="/wishlist"
+              className="flex items-center justify-center w-10 h-10 text-gold-500 border border-gold-500 rounded-full"
+              aria-label="Wishlist"
+            >
+              <span className="material-symbols-outlined text-xl">favorite</span>
+            </Link>
+            <Link
+              href="/bookings"
+              className="flex items-center justify-center w-10 h-10 text-gold-500 border border-gold-500 rounded-full"
+            >
+              <span className="material-symbols-outlined text-xl">calendar_month</span>
+            </Link>
+          </div>
         </div>
       </header>
 

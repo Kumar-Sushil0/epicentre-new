@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import CarouselCard from "../components/CarouselCard";
+import BlogCard from "../components/blogs/BlogCard";
 import BlogHero from "../components/blogs/BlogHero";
 import BlogPhilosophy from "../components/blogs/BlogPhilosophy";
 
@@ -187,15 +187,14 @@ export default function BlogsPage() {
                     {viewMode === 'grid' ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {blogs.map((blog, index) => (
-                                <CarouselCard
+                                <BlogCard
                                     key={index}
                                     title={blog.title}
-                                    description={blog.excerpt}
-                                    images={blog.images}
+                                    excerpt={blog.excerpt}
+                                    date={blog.date}
+                                    readTime={blog.readTime}
                                     category={blog.category}
-                                    price={blog.date} // Using price prop for Date
-                                    userCount={blog.readTime} // Using userCount prop for Read time
-                                    icon="edit_note"
+                                    image={blog.images[0]}
                                 />
                             ))}
                         </div>

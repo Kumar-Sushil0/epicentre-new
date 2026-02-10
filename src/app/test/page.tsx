@@ -14,6 +14,30 @@ import { solitudePractices } from "../content/solitude";
 import { residencies } from "../content/residency";
 
 export default function TestPage() {
+    const [wishlist, setWishlist] = useState<Set<string>>(new Set());
+    const [cart, setCart] = useState<Set<string>>(new Set());
+
+    const toggleWishlist = (id: string) => {
+        setWishlist(prev => {
+            const newSet = new Set(prev);
+            if (newSet.has(id)) {
+                newSet.delete(id);
+            } else {
+                newSet.add(id);
+            }
+            return newSet;
+        });
+    };
+
+    const addToCart = (id: string) => {
+        setCart(prev => {
+            const newSet = new Set(prev);
+            newSet.add(id);
+            return newSet;
+        });
+        alert(`Added to cart!`);
+    };
+
     const [wellnessViewMode, setWellnessViewMode] = useState<'grid' | 'carousel'>('carousel');
     const [wellnessCarouselIndex, setWellnessCarouselIndex] = useState(0);
     const wellnessCarouselRef = useRef<HTMLDivElement>(null);
@@ -96,6 +120,10 @@ export default function TestPage() {
                                     images={practice.images}
                                     icon={practice.icon}
                                     category={practice.category}
+                                    showActions={true}
+                                    onAddToCart={() => addToCart(`wellness-${index}`)}
+                                    onToggleWishlist={() => toggleWishlist(`wellness-${index}`)}
+                                    isInWishlist={wishlist.has(`wellness-${index}`)}
                                 />
                             ))}
                         </div>
@@ -132,6 +160,10 @@ export default function TestPage() {
                                                 images={practice.images}
                                                 icon={practice.icon}
                                                 category={practice.category}
+                                                showActions={true}
+                                                onAddToCart={() => addToCart(`wellness-${index}`)}
+                                                onToggleWishlist={() => toggleWishlist(`wellness-${index}`)}
+                                                isInWishlist={wishlist.has(`wellness-${index}`)}
                                             />
                                         </div>
                                     ))}
@@ -224,6 +256,10 @@ export default function TestPage() {
                                     icon={exp.icon}
                                     price={exp.price}
                                     userCount={exp.userCount}
+                                    showActions={true}
+                                    onAddToCart={() => addToCart(`experience-${index}`)}
+                                    onToggleWishlist={() => toggleWishlist(`experience-${index}`)}
+                                    isInWishlist={wishlist.has(`experience-${index}`)}
                                 />
                             ))}
                         </div>
@@ -261,6 +297,10 @@ export default function TestPage() {
                                                 icon={exp.icon}
                                                 price={exp.price}
                                                 userCount={exp.userCount}
+                                                showActions={true}
+                                                onAddToCart={() => addToCart(`experience-${index}`)}
+                                                onToggleWishlist={() => toggleWishlist(`experience-${index}`)}
+                                                isInWishlist={wishlist.has(`experience-${index}`)}
                                             />
                                         </div>
                                     ))}
@@ -352,6 +392,10 @@ export default function TestPage() {
                                     images={pillar.images}
                                     icon={pillar.icon}
                                     href="/expression/details"
+                                    showActions={true}
+                                    onAddToCart={() => addToCart(`expression-${index}`)}
+                                    onToggleWishlist={() => toggleWishlist(`expression-${index}`)}
+                                    isInWishlist={wishlist.has(`expression-${index}`)}
                                 />
                             ))}
                         </div>
@@ -388,6 +432,10 @@ export default function TestPage() {
                                                 images={pillar.images}
                                                 icon={pillar.icon}
                                                 href="/expression/details"
+                                                showActions={true}
+                                                onAddToCart={() => addToCart(`expression-${index}`)}
+                                                onToggleWishlist={() => toggleWishlist(`expression-${index}`)}
+                                                isInWishlist={wishlist.has(`expression-${index}`)}
                                             />
                                         </div>
                                     ))}
@@ -480,6 +528,10 @@ export default function TestPage() {
                                     icon={practice.icon}
                                     category={practice.category}
                                     href="/solitude/details"
+                                    showActions={true}
+                                    onAddToCart={() => addToCart(`solitude-${index}`)}
+                                    onToggleWishlist={() => toggleWishlist(`solitude-${index}`)}
+                                    isInWishlist={wishlist.has(`solitude-${index}`)}
                                 />
                             ))}
                         </div>
@@ -517,6 +569,10 @@ export default function TestPage() {
                                                 icon={practice.icon}
                                                 category={practice.category}
                                                 href="/solitude/details"
+                                                showActions={true}
+                                                onAddToCart={() => addToCart(`solitude-${index}`)}
+                                                onToggleWishlist={() => toggleWishlist(`solitude-${index}`)}
+                                                isInWishlist={wishlist.has(`solitude-${index}`)}
                                             />
                                         </div>
                                     ))}
@@ -609,6 +665,10 @@ export default function TestPage() {
                                     icon={residency.icon}
                                     category={residency.category}
                                     href="/residency/details"
+                                    showActions={true}
+                                    onAddToCart={() => addToCart(`residency-${index}`)}
+                                    onToggleWishlist={() => toggleWishlist(`residency-${index}`)}
+                                    isInWishlist={wishlist.has(`residency-${index}`)}
                                 />
                             ))}
                         </div>
@@ -646,6 +706,10 @@ export default function TestPage() {
                                                 icon={residency.icon}
                                                 category={residency.category}
                                                 href="/residency/details"
+                                                showActions={true}
+                                                onAddToCart={() => addToCart(`residency-${index}`)}
+                                                onToggleWishlist={() => toggleWishlist(`residency-${index}`)}
+                                                isInWishlist={wishlist.has(`residency-${index}`)}
                                             />
                                         </div>
                                     ))}

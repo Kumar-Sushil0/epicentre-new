@@ -26,21 +26,40 @@ export default function BookingForm() {
 
   return (
     <>
-      <div className="bg-earth-800 border border-gold-500/20 rounded-xl shadow-xl relative z-40">
-        <div className="w-full mx-auto p-4 md:p-6">
-          <form className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center w-full">
 
+      <div className="bg-transparent rounded-lg shadow-xl relative z-40 w-full">
+        <div className="w-full mx-auto p-0">
+          <form className="grid grid-cols-1 md:grid-cols-4 gap-2 items-center w-full">
+            {/* Download Brochure Button */}
+            <a 
+              href="/The_Silent_Club_2_Page_Brochure.pdf" 
+              download="The_Silent_Club_2_Page_Brochure.pdf"
+              className="flex items-center justify-center w-full h-9 bg-earth-900 px-2 py-2 rounded border border-earth-700 shadow-inner cursor-pointer hover:border-gold-500/50 transition-colors text-xs text-gold-500 font-medium hover:text-gold-400"
+              style={{ minWidth: 0 }}
+            >
+              Download Brochure
+            </a>
+            {/* Google Maps Button */}
+            <a
+              href="https://maps.google.com" /* Replace with actual map link if needed */
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-full h-9 bg-earth-900 px-2 py-2 rounded border border-earth-700 shadow-inner cursor-pointer hover:border-gold-500/50 transition-colors text-xs text-gold-500 font-medium hover:text-gold-400"
+              style={{ minWidth: 0 }}
+            >
+              Google Maps
+            </a>
             {/* 1. Date Picker */}
             <div className="relative w-full" ref={dateInputRef}>
               <div
                 data-date-input
-                className="flex items-center gap-3 w-full bg-earth-900 px-4 py-3 rounded-lg border border-earth-700 shadow-inner cursor-pointer hover:border-gold-500/50 transition-colors h-12"
+                className="flex items-center gap-2 w-full bg-earth-900 px-2 py-2 rounded border border-earth-700 shadow-inner cursor-pointer hover:border-gold-500/50 transition-colors h-9"
                 onClick={() => setShowDatePicker(!showDatePicker)}
               >
-                <span className="material-symbols-outlined text-gold-500 text-xl shrink-0">calendar_month</span>
+                <span className="material-symbols-outlined text-gold-500 text-base shrink-0">calendar_month</span>
                 <input
-                  className="bg-transparent border-none text-sm focus:ring-0 text-earth-100 placeholder-earth-400 w-full font-body cursor-pointer truncate"
-                  placeholder="Selet Date.."
+                  className="bg-transparent border-none text-xs focus:ring-0 text-earth-100 placeholder-earth-400 w-full font-body cursor-pointer truncate"
+                  placeholder="Select Date.."
                   type="text"
                   value={getDisplayText()}
                   readOnly
@@ -58,19 +77,17 @@ export default function BookingForm() {
                 </div>
               )}
             </div>
-
             {/* 2. Guests */}
-            <div className="flex items-center gap-3 w-full bg-earth-900 px-4 py-3 rounded-lg border border-earth-700 shadow-inner h-12">
-              <span className="material-symbols-outlined text-gold-500 text-xl shrink-0">group</span>
+            <div className="flex items-center gap-2 w-full bg-earth-900 px-2 py-2 rounded border border-earth-700 shadow-inner h-9">
+              <span className="material-symbols-outlined text-gold-500 text-base shrink-0">group</span>
               <input
                 type="number"
                 min="1"
                 max="50"
-                placeholder="Number of Guests"
-                className="bg-transparent border-none text-sm focus:ring-0 text-earth-100 placeholder-earth-400 w-full font-body [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                placeholder="Guests"
+                className="bg-transparent border-none text-xs focus:ring-0 text-earth-100 placeholder-earth-400 w-full font-body [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               />
             </div>
-
           </form>
         </div>
       </div>

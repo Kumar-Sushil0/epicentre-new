@@ -1,12 +1,193 @@
 "use client";
-
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
+
+type FAQCategory = "all" | "booking" | "accommodation" | "experiences" | "policies";
+
+interface FAQ {
+  id: string;
+  category: FAQCategory;
+  question: string;
+  answer: string;
+}
+
+const FAQS: FAQ[] = [
+  {
+    id: "1",
+    category: "booking",
+    question: "How do I make a booking?",
+    answer: "You can make a booking through our online booking system or by contacting us directly via WhatsApp or email. We recommend booking at least 2 weeks in advance for the best availability."
+  },
+  {
+    id: "2",
+    category: "booking",
+    question: "What is your cancellation policy?",
+    answer: "Cancellations made 7 days before arrival receive a full refund. Cancellations within 7 days are subject to a 50% charge. No-shows will be charged the full amount."
+  },
+  {
+    id: "3",
+    category: "accommodation",
+    question: "What amenities are included in the rooms?",
+    answer: "All rooms include comfortable bedding, toiletries, and access to common areas. Private rooms have ensuite bathrooms, while shared accommodations have shared facilities."
+  },
+  {
+    id: "4",
+    category: "accommodation",
+    question: "Is WiFi available?",
+    answer: "Limited WiFi is available in common areas. We encourage guests to disconnect and embrace the silence, but we understand connectivity needs."
+  },
+  {
+    id: "5",
+    category: "experiences",
+    question: "Are experiences included in the room rate?",
+    answer: "Basic amenities and access to grounds are included. Most experiences like yoga, kayaking, and workshops are available for an additional fee. Check our experiences page for pricing."
+  },
+  {
+    id: "6",
+    category: "experiences",
+    question: "Do I need to book experiences in advance?",
+    answer: "We recommend booking experiences when you make your reservation to ensure availability, especially for guided activities and workshops with limited capacity."
+  },
+  {
+    id: "7",
+    category: "policies",
+    question: "Is The Silent Club suitable for children?",
+    answer: "The Silent Club is designed for adults seeking quiet reflection. We welcome guests 16 years and older. For family retreats, please contact us to discuss custom arrangements."
+  },
+  {
+    id: "8",
+    category: "policies",
+    question: "What should I bring?",
+    answer: "Comfortable clothing, walking shoes, reusable water bottle, sunscreen, and insect repellent. For specific activities, we'll provide a detailed packing list upon booking confirmation."
+  },
+  {
+    id: "9",
+    category: "accommodation",
+    question: "Are pets allowed?",
+    answer: "We have a pet companionship program for certain accommodations. Please contact us in advance to discuss bringing your pet and any associated fees."
+  },
+  {
+    id: "10",
+    category: "booking",
+    question: "Do you offer group bookings or corporate retreats?",
+    answer: "Yes! We offer half-place and full-place bookings for groups and corporate retreats. Contact us for custom packages and group rates."
+  }
+];
 
 export default function Footer() {
+  const [selectedCategory, setSelectedCategory] = useState<FAQCategory>("all");
+  const [openFAQ, setOpenFAQ] = useState<string | null>(null);
+
+  const categories = [
+    { id: "all" as FAQCategory, label: "All" },
+    { id: "booking" as FAQCategory, label: "Booking" },
+    { id: "accommodation" as FAQCategory, label: "Accommodation" },
+    { id: "experiences" as FAQCategory, label: "Experiences" },
+    { id: "policies" as FAQCategory, label: "Policies" },
+  ];
+
+  const filteredFAQs = selectedCategory === "all" 
+    ? FAQS 
+    : FAQS.filter(faq => faq.category === selectedCategory);
+
+  const toggleFAQ = (id: string) => {
+    setOpenFAQ(openFAQ === id ? null : id);
+  };
+
   return (
     <footer className="bg-earth-950 text-earth-300 border-t border-earth-800">
-      <div className="w-full px-16 pt-20 pb-12">
+      <div className="w-full px-4 md:px-16 pt-20 pb-12">
+
+        {/* FAQ Section */}
+        <div className="mb-20">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-serif text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+              Frequently Asked Questions
+            </h3>
+            <p className="text-earth-400 text-sm font-body">Find answers to common questions about your stay</p>
+          </div>
+
+          {/* Category Filter */}
+          <div className="flex flex-wrap justify-center gap-3 mb-10">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setSelectedCategory(category.id)}
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
+                  selectedCategory === category.id
+                    ? "bg-gold-500 text-earth-950 shadow-lg shadow-gold-500/20"
+                    : "bg-earth-900 text-earth-300 border border-earth-800 hover:border-gold-500/50 hover:text-gold-400"
+                }`}
+              >
+                {category.label}
+              </button>
+            ))}
+          </div>
+
+          {/* FAQ Accordion */}
+          <div className="max-w-4xl mx-auto space-y-3">
+            {filteredFAQs.map((faq) => {
+              const isOpen = openFAQ === faq.id;
+              return (
+                <div
+                  key={faq.id}
+                  className="bg-earth-900/30 border border-earth-800 rounded-lg overflow-hidden transition-all hover:border-gold-500/30"
+                >
+                  <button
+                    onClick={() => toggleFAQ(faq.id)}
+                    className="w-full flex items-center justify-between p-5 text-left group"
+                  >
+                    <div className="flex-1 pr-4">
+                      <div className="flex items-center gap-3 mb-1">
+                        <span className="text-xs uppercase tracking-wider font-bold text-gold-500/60">
+                          {faq.category}
+                        </span>
+                      </div>
+                      <h4 className="text-base font-medium text-earth-100 group-hover:text-gold-400 transition-colors">
+                        {faq.question}
+                      </h4>
+                    </div>
+                    <span
+                      className={`material-symbols-outlined text-gold-500 transition-transform duration-300 ${
+                        isOpen ? "rotate-180" : ""
+                      }`}
+                    >
+                      expand_more
+                    </span>
+                  </button>
+                  <div
+                    className={`grid transition-all duration-300 ease-in-out ${
+                      isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="px-5 pb-5 pt-0">
+                        <div className="border-t border-earth-800/50 pt-4">
+                          <p className="text-sm text-earth-300 leading-relaxed font-body">
+                            {faq.answer}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* More Questions CTA */}
+          <div className="text-center mt-10">
+            <p className="text-sm text-earth-400 mb-3">Still have questions?</p>
+            <Link
+              href="/faq"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-earth-900 border border-earth-800 rounded-lg text-sm font-medium text-gold-500 hover:bg-earth-800 hover:border-gold-500/50 transition-all"
+            >
+              View All FAQs
+              <span className="material-symbols-outlined text-lg">arrow_forward</span>
+            </Link>
+          </div>
+        </div>
 
         {/* Main Footer Navigation */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-11 gap-12 lg:gap-6 mb-8">
@@ -25,7 +206,6 @@ export default function Footer() {
               <span className="text-gold-500"> Bhigwan, Maharashtra </span>
               <p>Silence reveals direction.</p>
               <p>Action comes later.</p>
-            
             </div>
           </div>
 
@@ -84,7 +264,6 @@ export default function Footer() {
 
             {/* Newsletter Section */}
             <div>
-              
               <div className="flex gap-2">
                 <input
                   className="bg-earth-950 border border-earth-800 rounded px-4 py-3 text-sm text-earth-100 focus:outline-none focus:border-gold-500/50 flex-1 placeholder-gold-500/50 transition-colors"

@@ -71,7 +71,7 @@ export default function DiningVariant() {
 
   return (
     <section ref={sectionRef} className="py-8 min-h-[100vh] bg-earth-900 flex items-center" id="dining">
-      <div className="w-full px-16">
+      <div className="w-full px-4 md:px-16">
         <div className="mb-8">
           <h3 className="text-3xl font-bold mb-2 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Food</h3>
           <p className="text-[#e7dfd3] font-body text-lg max-w-full">

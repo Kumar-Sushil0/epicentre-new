@@ -12,6 +12,7 @@ import AboutPrinciples from "../components/about/AboutPrinciples";
 import AboutTriad from "../components/about/AboutTriad";
 import BuiltEnvironment from "../components/about/BuiltEnvironment";
 import WhoThisIsFor from "../components/about/WhoThisIsFor";
+import TeamSection from "../components/TeamSection";
 
 export default function AboutUsPage() {
   return (
@@ -34,6 +35,7 @@ export default function AboutUsPage() {
       
       
       <AboutCollective />
+      <TeamSection />
  
       <Footer />
     </main>

@@ -129,7 +129,7 @@ export default function Accommodation() {
 
   return (
     <section className="py-8 min-h-[100vh] bg-[#261B14] border-t border-earth-700 flex items-center" id="accommodation">
-      <div className="w-full px-16">
+      <div className="w-full px-4 md:px-16">
         <div className="mb-8">
           <h3 className="text-3xl font-semibold mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Stay</h3>
           <p className="text-[#e7dfd3] font-body text-[15px] max-w-full">

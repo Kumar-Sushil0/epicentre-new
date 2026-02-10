@@ -417,7 +417,7 @@ export default function BookingsPage() {
   const [cart, setCart] = useState<string[]>([]);
   const [quantities, setQuantities] = useState<Record<string, number>>({});
   const [activeTab, setActiveTab] = useState<TabId>("booking");
-  const [activeExperienceTab, setActiveExperienceTab] = useState<"wellness" | "activities" | "solitude" | "expression" | "residency">("wellness");
+  const [activeExperienceTab, setActiveExperienceTab] = useState<"activities" | "solitude" | "expression" | "residency">("activities");
 
   const isInCart = (id: string) => cart.includes(id);
 
@@ -527,7 +527,6 @@ export default function BookingsPage() {
   ];
 
   const experienceTabs = [
-    { id: "wellness" as const, label: "Wellness" },
     { id: "activities" as const, label: "Activities" },
     { id: "solitude" as const, label: "Solitude" },
     { id: "expression" as const, label: "Expression" },
@@ -595,27 +594,19 @@ export default function BookingsPage() {
         <div className="flex-grow bg-earth-950">
           <div className="max-w-4xl mx-auto px-6 py-12 lg:py-16">
 
-            <div className="mb-16">
-              <h1 className="text-3xl md:text-5xl text-earth-100 font-serif mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            {/* HEADER SECTION: Title/Subtitle full width, then row with actions and booking form */}
+            <div className="mb-4">
+              <h1 className="text-3xl md:text-5xl text-earth-100 font-serif mb-4 w-full" style={{ fontFamily: 'Outfit, sans-serif' }}>
                 Design Your <span className="italic text-gold-500">Silence</span>
               </h1>
-              <p className="text-earth-300/60 font-body text-sm max-w-xl leading-relaxed">
+              <p className="text-earth-300/60 font-body text-sm max-w-xl leading-relaxed w-full">
                 Build your schedule efficiently. Select what calls to you.
               </p>
-              <div className="flex gap-6 mt-4">
-                <a 
-                  href="/The_Silent_Club_2_Page_Brochure.pdf" 
-                  download="The_Silent_Club_2_Page_Brochure.pdf"
-                  className="text-gold-500 cursor-pointer hover:text-gold-400 transition-colors"
-                >
-                  Download Brochure
-                </a>
-                <span className="text-gold-500 cursor-pointer hover:text-gold-400 transition-colors">Google Maps</span>
-              </div>
             </div>
-
-            <div className="mb-12">
-              <BookingForm />
+            <div className="mb-4 flex flex-col md:flex-row md:items-start md:gap-6 w-full">
+              <div className="w-full">
+                <BookingForm />
+              </div>
             </div>
 
             {/* TABS */}
@@ -671,7 +662,6 @@ export default function BookingsPage() {
                     
                     {/* Experience Content */}
                     <div>
-                      {activeExperienceTab === "wellness" && renderItems(BOOKING_ITEMS.filter(i => i.category === "wellness"))}
                       {activeExperienceTab === "activities" && renderItems(BOOKING_ITEMS.filter(i => i.category === "activities"))}
                       {activeExperienceTab === "solitude" && renderItems(BOOKING_ITEMS.filter(i => i.category === "solitude"))}
                       {activeExperienceTab === "expression" && renderItems(BOOKING_ITEMS.filter(i => i.category === "expression"))}
