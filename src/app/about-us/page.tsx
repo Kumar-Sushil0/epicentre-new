@@ -28,13 +28,14 @@ export default function AboutUsPage() {
       <Header />
       <AboutHero />
       <OurPhilosophy />
+      <AboutPrinciples />
       <LivingRoom />
       
       <AboutPhilosophy />
      
       
       <AboutFounder />
-      <AboutPrinciples />
+      
       
       
       

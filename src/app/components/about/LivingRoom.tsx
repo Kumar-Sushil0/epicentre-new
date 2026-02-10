@@ -43,7 +43,7 @@ const LivingRoom = () => {
                     {features.map((feature, index) => {
                         const percentageMatch = feature.percentage.match(/(\d+%)/);
                         const number = percentageMatch ? percentageMatch[0] : '';
-                        const text = feature.percentage.replace(/(\d+%\s)/, '');
+                        const text = feature.percentage.replace(/\d+%\s*/, '');
 
                         return (
                             <div key={index} className="flex flex-col items-center text-center">
