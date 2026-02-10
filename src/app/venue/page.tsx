@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import VenueHero from "../components/venue/VenueHero";
@@ -5,6 +8,19 @@ import VenueCategoryNav from "../components/venue/VenueCategoryNav";
 import VenueSection from "../components/venue/VenueSection";
 
 export default function VenuePage() {
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
+    collective: true,
+    intimate: false,
+    physical: false,
+    creative: false,
+    living: false,
+    nature: false,
+  });
+
+  const toggleSection = (id: string) => {
+    setExpandedSections(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
   const venueCategories = [
     {
       id: "collective",
@@ -305,9 +321,18 @@ export default function VenuePage() {
       <Header />
       <VenueHero />
       <VenueCategoryNav />
-      <div className="w-full px-16 py-12 flex flex-col gap-24">
+      <div className="w-full px-16 py-12">
         {venueCategories.map((category) => (
-          <VenueSection key={category.id} {...category} />
+          <section 
+            key={category.id} 
+            className={`transition-all duration-300 ${expandedSections[category.id] ? 'mb-24' : 'mb-6'}`}
+          >
+            <VenueSection 
+              {...category} 
+              expanded={expandedSections[category.id]}
+              onToggle={() => toggleSection(category.id)}
+            />
+          </section>
         ))}
       </div>
       <Footer />

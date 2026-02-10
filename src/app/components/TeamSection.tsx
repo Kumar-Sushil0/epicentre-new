@@ -1,4 +1,26 @@
+"use client";
+
+import { useState } from 'react';
+
+const teamImages = [
+  "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80",
+  "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80",
+  "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&q=80",
+  "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&q=80",
+  "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80",
+];
+
 export default function TeamSection() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % teamImages.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + teamImages.length) % teamImages.length);
+  };
+
   return (
     <section className="py-16 bg-earth-900">
       <div className="max-w-7xl mx-auto px-4 md:px-16">
@@ -18,46 +40,46 @@ export default function TeamSection() {
               Each member contributes their unique perspective to creating a sanctuary where meaningful conversations emerge from shared silence.
             </p>
             
-            <div className="pt-4">
-              <button className="px-6 py-3 bg-gold-500 text-earth-950 rounded-lg font-semibold hover:bg-gold-600 transition-colors flex items-center gap-2">
-                Learn More About Us
-                <span className="material-symbols-outlined">arrow_forward</span>
-              </button>
-            </div>
+            
           </div>
 
-          {/* Right Side - Flower Shaped Image */}
-          <div className="flex justify-center items-center">
-            <div className="relative w-full max-w-md aspect-square">
-              {/* Flower Shape Container */}
-              <svg viewBox="0 0 500 500" className="w-full h-full">
-                <defs>
-                  <clipPath id="flowerShape">
-                    {/* Center circle */}
-                    <circle cx="250" cy="250" r="80" />
-                    {/* Top petal */}
-                    <ellipse cx="250" cy="140" rx="70" ry="90" />
-                    {/* Top-right petal */}
-                    <ellipse cx="340" cy="180" rx="70" ry="90" transform="rotate(60 340 180)" />
-                    {/* Bottom-right petal */}
-                    <ellipse cx="340" cy="320" rx="70" ry="90" transform="rotate(120 340 320)" />
-                    {/* Bottom petal */}
-                    <ellipse cx="250" cy="360" rx="70" ry="90" />
-                    {/* Bottom-left petal */}
-                    <ellipse cx="160" cy="320" rx="70" ry="90" transform="rotate(240 160 320)" />
-                    {/* Top-left petal */}
-                    <ellipse cx="160" cy="180" rx="70" ry="90" transform="rotate(300 160 180)" />
-                  </clipPath>
-                </defs>
-                <image
-                  href="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"
-                  width="500"
-                  height="500"
-                  clipPath="url(#flowerShape)"
-                  className="object-cover"
-                  style={{ filter: 'drop-shadow(0 10px 30px rgba(0,0,0,0.4))' }}
-                />
-              </svg>
+          {/* Right Side - Image Slider */}
+          <div className="flex justify-center items-center relative">
+            <div className="relative w-full aspect-square overflow-hidden rounded-2xl">
+              {/* Image */}
+              <img
+                src={teamImages[currentSlide]}
+                alt={`Team member ${currentSlide + 1}`}
+                className="w-full h-full object-cover transition-opacity duration-500"
+                style={{ filter: 'drop-shadow(0 10px 30px rgba(0,0,0,0.4))' }}
+              />
+
+              {/* Navigation Buttons */}
+              <button
+                onClick={prevSlide}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-gold-500 hover:bg-gold-600 rounded-full flex items-center justify-center text-earth-950 transition-colors shadow-lg"
+              >
+                <span className="material-symbols-outlined">chevron_left</span>
+              </button>
+              <button
+                onClick={nextSlide}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-gold-500 hover:bg-gold-600 rounded-full flex items-center justify-center text-earth-950 transition-colors shadow-lg"
+              >
+                <span className="material-symbols-outlined">chevron_right</span>
+              </button>
+
+              {/* Dots Indicator */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                {teamImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`w-2 h-2 rounded-full transition-all ${
+                      currentSlide === index ? 'bg-gold-500 w-6' : 'bg-white/50'
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>

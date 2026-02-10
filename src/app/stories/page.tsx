@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import StoriesHero from "../components/stories/StoriesHero";
@@ -5,6 +8,19 @@ import StoriesCategoryNav from "../components/stories/StoriesCategoryNav";
 import StoriesSection from "../components/stories/StoriesSection";
 
 export default function StoriesPage() {
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
+    personal: true,
+    collective: false,
+    transformation: false,
+    insights: false,
+    moments: false,
+    reflections: false,
+  });
+
+  const toggleSection = (id: string) => {
+    setExpandedSections(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
   const storyCategories = [
     {
       id: "personal",
@@ -136,9 +152,18 @@ export default function StoriesPage() {
       <Header />
       <StoriesHero />
       <StoriesCategoryNav />
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-10 py-12 flex flex-col gap-24">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-10 py-12">
         {storyCategories.map((category) => (
-          <StoriesSection key={category.id} {...category} />
+          <section 
+            key={category.id} 
+            className={`transition-all duration-300 ${expandedSections[category.id] ? 'mb-24' : 'mb-6'}`}
+          >
+            <StoriesSection 
+              {...category} 
+              expanded={expandedSections[category.id]}
+              onToggle={() => toggleSection(category.id)}
+            />
+          </section>
         ))}
       </div>
       <Footer />

@@ -20,13 +20,13 @@ export default function Home() {
       <Header />
       <Hero />
       <Philosophy />
-      <OurPhilosophy />
-      <PathOfLove />
+      <ImageCarousel />
+      
 
       <WhatThisIsNot />
 
       <Accommodation />
-      <ImageCarousel />
+      
 
       <DiningVariant />
       <Experiences />

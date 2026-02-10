@@ -16,6 +16,13 @@ import { residencies } from "../content/residency";
 export default function TestPage() {
     const [wishlist, setWishlist] = useState<Set<string>>(new Set());
     const [cart, setCart] = useState<Set<string>>(new Set());
+    
+    // Collapsible section states
+    const [wellnessExpanded, setWellnessExpanded] = useState(true);
+    const [experiencesExpanded, setExperiencesExpanded] = useState(false);
+    const [expressionExpanded, setExpressionExpanded] = useState(false);
+    const [solitudeExpanded, setSolitudeExpanded] = useState(false);
+    const [residencyExpanded, setResidencyExpanded] = useState(false);
 
     const toggleWishlist = (id: string) => {
         setWishlist(prev => {
@@ -68,9 +75,9 @@ export default function TestPage() {
 
             {/* Wellness Section */}
             
-            <section className="w-full px-16 py-16">
+            <section className={`w-full px-16 transition-all duration-300 ${wellnessExpanded ? 'py-16' : 'py-6'}`}>
                 
-                <div className="mb-12 flex justify-between items-end">
+                <div className={`flex justify-between items-end cursor-pointer ${wellnessExpanded ? 'mb-12' : ''}`} onClick={() => setWellnessExpanded(!wellnessExpanded)}>
                     <div>
                         <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             Wellness
@@ -78,15 +85,16 @@ export default function TestPage() {
                         <h3 className="text-2xl text-gold-500 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             Stability Before Insight
                         </h3>
-                        <p className="text-earth-300 text-lg font-body">
+                        {wellnessExpanded && <p className="text-earth-300 text-lg font-body">
                             Always-available practices that support the body and nervous system.<br />
                             Unscheduled. Untracked.
-                        </p>
+                        </p>}
                     </div>
+                    <div className="flex items-center gap-4">
                     {/* View Toggle Button */}
-                    <div className="flex gap-2 bg-earth-800 p-1 rounded-lg border border-earth-700">
+                    {wellnessExpanded && <div className="flex gap-2 bg-earth-800 p-1 rounded-lg border border-earth-700">
                         <button
-                            onClick={() => setWellnessViewMode('carousel')}
+                            onClick={(e) => { e.stopPropagation(); setWellnessViewMode('carousel'); }}
                             className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${wellnessViewMode === 'carousel'
                                     ? 'bg-gold-500 text-earth-900'
                                     : 'text-earth-300 hover:text-gold-500'
@@ -96,7 +104,7 @@ export default function TestPage() {
                             <span className="text-sm font-medium">Carousel</span>
                         </button>
                         <button
-                            onClick={() => setWellnessViewMode('grid')}
+                            onClick={(e) => { e.stopPropagation(); setWellnessViewMode('grid'); }}
                             className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${wellnessViewMode === 'grid'
                                     ? 'bg-gold-500 text-earth-900'
                                     : 'text-earth-300 hover:text-gold-500'
@@ -105,12 +113,19 @@ export default function TestPage() {
                             <span className="material-symbols-outlined text-xl">grid_view</span>
                             <span className="text-sm font-medium">Grid</span>
                         </button>
+                    </div>}
+                    {/* Expand/Collapse Icon */}
+                    <button className="text-gold-500 hover:text-gold-400 transition-colors">
+                        <span className="material-symbols-outlined text-3xl">
+                            {wellnessExpanded ? 'expand_less' : 'expand_more'}
+                        </span>
+                    </button>
                     </div>
                 </div>
 
                 {/* Grid View */}
                 {
-                    wellnessViewMode === 'grid' && (
+                    wellnessExpanded && wellnessViewMode === 'grid' && (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {wellnessPractices.map((practice, index) => (
                                 <CarouselCard
@@ -132,7 +147,7 @@ export default function TestPage() {
 
                 {/* Carousel View */}
                 {
-                    wellnessViewMode === 'carousel' && (
+                    wellnessExpanded && wellnessViewMode === 'carousel' && (
                         <div className="relative">
                             <div
                                 ref={wellnessCarouselRef}
@@ -204,8 +219,8 @@ export default function TestPage() {
             </section >
 
             {/* Experiences Section */}
-            < section className="w-full px-16 py-16" >
-                <div className="mb-12 flex justify-between items-end">
+            <section className={`w-full px-16 transition-all duration-300 ${experiencesExpanded ? 'py-16' : 'py-6'}`}>
+                <div className={`flex justify-between items-end cursor-pointer ${experiencesExpanded ? 'mb-12' : ''}`} onClick={() => setExperiencesExpanded(!experiencesExpanded)}>
                     <div>
                         <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             Experiences
@@ -213,15 +228,16 @@ export default function TestPage() {
                         <h3 className="text-2xl text-gold-500 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             Guided Not Continuous
                         </h3>
-                        <p className="text-earth-300 text-lg font-body">
+                        {experiencesExpanded && <p className="text-earth-300 text-lg font-body">
                             Guided sessions led by experienced practitioners.<br />
                             Offered by booking. Each stands alone.
-                        </p>
+                        </p>}
                     </div>
+                    <div className="flex items-center gap-4">
                     {/* View Toggle Button */}
-                    <div className="flex gap-2 bg-earth-800 p-1 rounded-lg border border-earth-700">
+                    {experiencesExpanded && <div className="flex gap-2 bg-earth-800 p-1 rounded-lg border border-earth-700">
                         <button
-                            onClick={() => setExperiencesViewMode('carousel')}
+                            onClick={(e) => { e.stopPropagation(); setExperiencesViewMode('carousel'); }}
                             className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${experiencesViewMode === 'carousel'
                                 ? 'bg-gold-500 text-earth-900'
                                 : 'text-earth-300 hover:text-gold-500'
@@ -231,7 +247,7 @@ export default function TestPage() {
                             <span className="text-sm font-medium">Carousel</span>
                         </button>
                         <button
-                            onClick={() => setExperiencesViewMode('grid')}
+                            onClick={(e) => { e.stopPropagation(); setExperiencesViewMode('grid'); }}
                             className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${experiencesViewMode === 'grid'
                                 ? 'bg-gold-500 text-earth-900'
                                 : 'text-earth-300 hover:text-gold-500'
@@ -240,12 +256,19 @@ export default function TestPage() {
                             <span className="material-symbols-outlined text-xl">grid_view</span>
                             <span className="text-sm font-medium">Grid</span>
                         </button>
+                    </div>}
+                    {/* Expand/Collapse Icon */}
+                    <button className="text-gold-500 hover:text-gold-400 transition-colors">
+                        <span className="material-symbols-outlined text-3xl">
+                            {experiencesExpanded ? 'expand_less' : 'expand_more'}
+                        </span>
+                    </button>
                     </div>
                 </div>
 
                 {/* Grid View */}
                 {
-                    experiencesViewMode === 'grid' && (
+                    experiencesExpanded && experiencesViewMode === 'grid' && (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {experiences.map((exp, index) => (
                                 <CarouselCard
@@ -268,7 +291,7 @@ export default function TestPage() {
 
                 {/* Carousel View */}
                 {
-                    experiencesViewMode === 'carousel' && (
+                    experiencesExpanded && experiencesViewMode === 'carousel' && (
                         <div className="relative">
                             <div
                                 ref={experiencesCarouselRef}
@@ -341,8 +364,8 @@ export default function TestPage() {
             </section >
 
             {/* Expression Section */}
-            < section className="w-full px-16 py-16" >
-                <div className="mb-12 flex justify-between items-end">
+            <section className={`w-full px-16 transition-all duration-300 ${expressionExpanded ? 'py-16' : 'py-6'}`}>
+                <div className={`flex justify-between items-end cursor-pointer ${expressionExpanded ? 'mb-12' : ''}`} onClick={() => setExpressionExpanded(!expressionExpanded)}>
                     <div>
                         <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             Expression
@@ -350,15 +373,16 @@ export default function TestPage() {
                         <h3 className="text-2xl  text-gold-500 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             Unfinished by Design
                         </h3>
-                        <p className="text-earth-300 text-lg font-body">
+                        {expressionExpanded && <p className="text-earth-300 text-lg font-body">
                             Temporary sandboxes for individuals or groups exploring unfinished ideas.<br />
                             Built for testing, not presentation.
-                        </p>
+                        </p>}
                     </div>
+                    <div className="flex items-center gap-4">
                     {/* View Toggle Button */}
-                    <div className="flex gap-2 bg-earth-800 p-1 rounded-lg border border-earth-700">
+                    {expressionExpanded && <div className="flex gap-2 bg-earth-800 p-1 rounded-lg border border-earth-700">
                         <button
-                            onClick={() => setExpressionViewMode('carousel')}
+                            onClick={(e) => { e.stopPropagation(); setExpressionViewMode('carousel'); }}
                             className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${expressionViewMode === 'carousel'
                                 ? 'bg-gold-500 text-earth-900'
                                 : 'text-earth-300 hover:text-gold-500'
@@ -368,7 +392,7 @@ export default function TestPage() {
                             <span className="text-sm font-medium">Carousel</span>
                         </button>
                         <button
-                            onClick={() => setExpressionViewMode('grid')}
+                            onClick={(e) => { e.stopPropagation(); setExpressionViewMode('grid'); }}
                             className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${expressionViewMode === 'grid'
                                 ? 'bg-gold-500 text-earth-900'
                                 : 'text-earth-300 hover:text-gold-500'
@@ -377,12 +401,19 @@ export default function TestPage() {
                             <span className="material-symbols-outlined text-xl">grid_view</span>
                             <span className="text-sm font-medium">Grid</span>
                         </button>
+                    </div>}
+                    {/* Expand/Collapse Icon */}
+                    <button className="text-gold-500 hover:text-gold-400 transition-colors">
+                        <span className="material-symbols-outlined text-3xl">
+                            {expressionExpanded ? 'expand_less' : 'expand_more'}
+                        </span>
+                    </button>
                     </div>
                 </div>
 
                 {/* Grid View */}
                 {
-                    expressionViewMode === 'grid' && (
+                    expressionExpanded && expressionViewMode === 'grid' && (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {expressionPillars.map((pillar, index) => (
                                 <CarouselCard
@@ -404,7 +435,7 @@ export default function TestPage() {
 
                 {/* Carousel View */}
                 {
-                    expressionViewMode === 'carousel' && (
+                    expressionExpanded && expressionViewMode === 'carousel' && (
                         <div className="relative">
                             <div
                                 ref={expressionCarouselRef}
@@ -476,8 +507,8 @@ export default function TestPage() {
             </section >
 
             {/* Solitude Section */}
-            < section className="w-full px-16 py-16" >
-                <div className="mb-12 flex justify-between items-end">
+            <section className={`w-full px-16 transition-all duration-300 ${solitudeExpanded ? 'py-16' : 'py-6'}`}>
+                <div className={`flex justify-between items-end cursor-pointer ${solitudeExpanded ? 'mb-12' : ''}`} onClick={() => setSolitudeExpanded(!solitudeExpanded)}>
                     <div>
                         <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             Solitude
@@ -485,15 +516,16 @@ export default function TestPage() {
                         <h3 className="text-2xl text-gold-500 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             Time Without Instruction
                         </h3>
-                        <p className="text-earth-300 text-lg font-body">
+                        {solitudeExpanded && <p className="text-earth-300 text-lg font-body">
                             Self-led time using simple, nature-based resources.<br />
                             No instruction. No outcome.
-                        </p>
+                        </p>}
                     </div>
+                    <div className="flex items-center gap-4">
                     {/* View Toggle Button */}
-                    <div className="flex gap-2 bg-earth-800 p-1 rounded-lg border border-earth-700">
+                    {solitudeExpanded && <div className="flex gap-2 bg-earth-800 p-1 rounded-lg border border-earth-700">
                         <button
-                            onClick={() => setSolitudeViewMode('carousel')}
+                            onClick={(e) => { e.stopPropagation(); setSolitudeViewMode('carousel'); }}
                             className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${solitudeViewMode === 'carousel'
                                 ? 'bg-gold-500 text-earth-900'
                                 : 'text-earth-300 hover:text-gold-500'
@@ -503,7 +535,7 @@ export default function TestPage() {
                             <span className="text-sm font-medium">Carousel</span>
                         </button>
                         <button
-                            onClick={() => setSolitudeViewMode('grid')}
+                            onClick={(e) => { e.stopPropagation(); setSolitudeViewMode('grid'); }}
                             className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${solitudeViewMode === 'grid'
                                 ? 'bg-gold-500 text-earth-900'
                                 : 'text-earth-300 hover:text-gold-500'
@@ -512,12 +544,19 @@ export default function TestPage() {
                             <span className="material-symbols-outlined text-xl">grid_view</span>
                             <span className="text-sm font-medium">Grid</span>
                         </button>
+                    </div>}
+                    {/* Expand/Collapse Icon */}
+                    <button className="text-gold-500 hover:text-gold-400 transition-colors">
+                        <span className="material-symbols-outlined text-3xl">
+                            {solitudeExpanded ? 'expand_less' : 'expand_more'}
+                        </span>
+                    </button>
                     </div>
                 </div>
 
                 {/* Grid View */}
                 {
-                    solitudeViewMode === 'grid' && (
+                    solitudeExpanded && solitudeViewMode === 'grid' && (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {solitudePractices.map((practice, index) => (
                                 <CarouselCard
@@ -540,7 +579,7 @@ export default function TestPage() {
 
                 {/* Carousel View */}
                 {
-                    solitudeViewMode === 'carousel' && (
+                    solitudeExpanded && solitudeViewMode === 'carousel' && (
                         <div className="relative">
                             <div
                                 ref={solitudeCarouselRef}
@@ -613,8 +652,8 @@ export default function TestPage() {
             </section >
 
             {/* Residency Section */}
-            < section className="w-full px-16 py-16" >
-                <div className="mb-12 flex justify-between items-end">
+            <section className={`w-full px-16 transition-all duration-300 ${residencyExpanded ? 'py-16' : 'py-6'}`}>
+                <div className={`flex justify-between items-end cursor-pointer ${residencyExpanded ? 'mb-12' : ''}`} onClick={() => setResidencyExpanded(!residencyExpanded)}>
                     <div>
                         <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             Residency
@@ -622,15 +661,16 @@ export default function TestPage() {
                         <h3 className="text-2xl text-gold-500 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             One Question Held Fully
                         </h3>
-                        <p className="text-earth-300 text-lg font-body">
+                        {residencyExpanded && <p className="text-earth-300 text-lg font-body">
                             Multi-day immersions centered around a single inquiry.<br />
                             Hosted with a selective group for sustained exploration.
-                        </p>
+                        </p>}
                     </div>
+                    <div className="flex items-center gap-4">
                     {/* View Toggle Button */}
-                    <div className="flex gap-2 bg-earth-800 p-1 rounded-lg border border-earth-700">
+                    {residencyExpanded && <div className="flex gap-2 bg-earth-800 p-1 rounded-lg border border-earth-700">
                         <button
-                            onClick={() => setResidencyViewMode('carousel')}
+                            onClick={(e) => { e.stopPropagation(); setResidencyViewMode('carousel'); }}
                             className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${residencyViewMode === 'carousel'
                                 ? 'bg-gold-500 text-earth-900'
                                 : 'text-earth-300 hover:text-gold-500'
@@ -640,7 +680,7 @@ export default function TestPage() {
                             <span className="text-sm font-medium">Carousel</span>
                         </button>
                         <button
-                            onClick={() => setResidencyViewMode('grid')}
+                            onClick={(e) => { e.stopPropagation(); setResidencyViewMode('grid'); }}
                             className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${residencyViewMode === 'grid'
                                 ? 'bg-gold-500 text-earth-900'
                                 : 'text-earth-300 hover:text-gold-500'
@@ -649,12 +689,19 @@ export default function TestPage() {
                             <span className="material-symbols-outlined text-xl">grid_view</span>
                             <span className="text-sm font-medium">Grid</span>
                         </button>
+                    </div>}
+                    {/* Expand/Collapse Icon */}
+                    <button className="text-gold-500 hover:text-gold-400 transition-colors">
+                        <span className="material-symbols-outlined text-3xl">
+                            {residencyExpanded ? 'expand_less' : 'expand_more'}
+                        </span>
+                    </button>
                     </div>
                 </div>
 
                 {/* Grid View */}
                 {
-                    residencyViewMode === 'grid' && (
+                    residencyExpanded && residencyViewMode === 'grid' && (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {residencies.map((residency, index) => (
                                 <CarouselCard
@@ -677,7 +724,7 @@ export default function TestPage() {
 
                 {/* Carousel View */}
                 {
-                    residencyViewMode === 'carousel' && (
+                    residencyExpanded && residencyViewMode === 'carousel' && (
                         <div className="relative">
                             <div
                                 ref={residencyCarouselRef}

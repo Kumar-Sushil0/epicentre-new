@@ -16,21 +16,33 @@ interface VenueSectionProps {
   title: string;
   icon: string;
   venues: Venue[];
+  expanded: boolean;
+  onToggle: () => void;
 }
 
-export default function VenueSection({ id, title, icon, venues }: VenueSectionProps) {
+export default function VenueSection({ id, title, icon, venues, expanded, onToggle }: VenueSectionProps) {
   return (
     <section className="scroll-mt-32" id={id}>
-      <div className="flex items-center gap-4 mb-8">
+      <div 
+        className={`flex items-center gap-4 cursor-pointer ${expanded ? 'mb-8' : ''}`} 
+        onClick={onToggle}
+      >
         <h2 className="text-3xl md:text-4xl font-bold text-gold-500 tracking-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>{title}</h2>
         <div className="h-[1px] bg-earth-700 flex-grow"></div>
         <span className="material-symbols-outlined text-gold-500 text-3xl">{icon}</span>
+        <button className="text-gold-500 hover:text-gold-400 transition-colors">
+          <span className="material-symbols-outlined text-3xl">
+            {expanded ? 'expand_less' : 'expand_more'}
+          </span>
+        </button>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {venues.map((venue, index) => (
-          <VenueCard key={index} {...venue} />
-        ))}
-      </div>
+      {expanded && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {venues.map((venue, index) => (
+            <VenueCard key={index} {...venue} />
+          ))}
+        </div>
+      )}
     </section>
   );
 }

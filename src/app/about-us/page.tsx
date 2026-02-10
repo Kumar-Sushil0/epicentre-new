@@ -13,6 +13,8 @@ import AboutTriad from "../components/about/AboutTriad";
 import BuiltEnvironment from "../components/about/BuiltEnvironment";
 import WhoThisIsFor from "../components/about/WhoThisIsFor";
 import TeamSection from "../components/TeamSection";
+import OurPhilosophy from "../components/OurPhilosophy";
+import LivingRoom from '../components/about/LivingRoom';
 
 export default function AboutUsPage() {
   return (
@@ -25,6 +27,8 @@ export default function AboutUsPage() {
     >
       <Header />
       <AboutHero />
+      <OurPhilosophy />
+      <LivingRoom />
       
       <AboutPhilosophy />
      
@@ -34,7 +38,7 @@ export default function AboutUsPage() {
       
       
       
-      <AboutCollective />
+      
       <TeamSection />
  
       <Footer />
