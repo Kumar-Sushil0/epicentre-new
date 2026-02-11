@@ -135,6 +135,12 @@ export default function Header() {
             >
               Book Now
             </Link>
+            <Link
+              href="/login"
+              className="hidden md:inline-flex items-center justify-center bg-transparent text-gold-500 hover:text-[#e7dfd3] font-bold py-2 rounded-full text-sm uppercase tracking-wider transition-colors"
+            >
+              Login
+            </Link>
           </div>
           {/* Mobile Booking & Wishlist Icons */}
           <div className="md:hidden flex items-center gap-2">
@@ -150,6 +156,12 @@ export default function Header() {
               className="flex items-center justify-center w-10 h-10 text-gold-500 border border-gold-500 rounded-full"
             >
               <span className="material-symbols-outlined text-xl">calendar_month</span>
+            </Link>
+            <Link
+              href="/login"
+              className="flex items-center justify-center w-10 h-10 text-gold-500 border border-gold-500 rounded-full"
+            >
+              <span className="material-symbols-outlined text-xl">person</span>
             </Link>
           </div>
         </div>
