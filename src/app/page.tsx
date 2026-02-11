@@ -21,6 +21,7 @@ export default function Home() {
       <Hero />
       <Philosophy />
       <ImageCarousel />
+      <Reviews />
       
 
       <WhatThisIsNot />
@@ -31,7 +32,7 @@ export default function Home() {
       <DiningVariant />
       <Experiences />
       <Location />
-      <Reviews />
+     
       <Footer />
     </main>
   );

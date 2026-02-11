@@ -82,6 +82,9 @@ export default function Header() {
             <div className={`menu-wrapper ${isMenuOpen ? 'visible' : ''}`}>
               <div className="menu-nav">
                 <div className="menu-container">
+                  <Link href="/" className="menu-btn" style={isActive("/") ? { color: 'white' } : {}}>
+                    Home
+                  </Link>
                   <Link href="/rooms" className="menu-btn" style={isActive("/rooms") ? { color: 'white' } : {}}>
                     Stays
                   </Link>
@@ -96,9 +99,6 @@ export default function Header() {
                   </Link>
                   <Link href="/about-us" className="menu-btn" style={isActive("/about-us") ? { color: 'white' } : {}}>
                     About
-                  </Link>
-                  <Link href="/blogs" className="menu-btn" style={isActive("/blogs") ? { color: 'white' } : {}}>
-                    Blogs
                   </Link>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 60" height={60} width="100%" overflow="visible" className="menu-outline">
                     <rect strokeWidth={2} fill="transparent" height={60} width="100%" y={0} x={0} pathLength={100} className="menu-rect" />
@@ -183,6 +183,14 @@ export default function Header() {
         <div className="flex-1 overflow-y-auto px-4 py-4">
           <nav>
             <Link
+              href="/"
+              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
+                isActive("/") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+              }`}
+            >
+              Home
+            </Link>
+            <Link
               href="/rooms"
               className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
                 isActive("/rooms") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
@@ -221,14 +229,6 @@ export default function Header() {
               }`}
             >
               About
-            </Link>
-            <Link
-              href="/blogs"
-              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
-                isActive("/blogs") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
-              }`}
-            >
-              Blogs
             </Link>
           </nav>
         </div>

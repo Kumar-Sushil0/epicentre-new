@@ -219,11 +219,11 @@ export default function TestPage() {
             </section >
 
             {/* Experiences Section */}
-            <section className={`w-full px-16 transition-all duration-300 ${experiencesExpanded ? 'py-16' : 'py-6'}`}>
+            {/* <section className={`w-full px-16 transition-all duration-300 ${experiencesExpanded ? 'py-16' : 'py-6'}`}>
                 <div className={`flex justify-between items-end cursor-pointer ${experiencesExpanded ? 'mb-12' : ''}`} onClick={() => setExperiencesExpanded(!experiencesExpanded)}>
                     <div>
                         <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                            Experiences
+                            Activities
                         </h2>
                         <h3 className="text-2xl text-gold-500 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             Guided Not Continuous
@@ -235,7 +235,7 @@ export default function TestPage() {
                     </div>
                     <div className="flex items-center gap-4">
                     {/* View Toggle Button */}
-                    {experiencesExpanded && <div className="flex gap-2 bg-earth-800 p-1 rounded-lg border border-earth-700">
+                    {/* {experiencesExpanded && <div className="flex gap-2 bg-earth-800 p-1 rounded-lg border border-earth-700">
                         <button
                             onClick={(e) => { e.stopPropagation(); setExperiencesViewMode('carousel'); }}
                             className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${experiencesViewMode === 'carousel'
@@ -258,7 +258,7 @@ export default function TestPage() {
                         </button>
                     </div>}
                     {/* Expand/Collapse Icon */}
-                    <button className="text-gold-500 hover:text-gold-400 transition-colors">
+                    {/* <button className="text-gold-500 hover:text-gold-400 transition-colors">
                         <span className="material-symbols-outlined text-3xl">
                             {experiencesExpanded ? 'expand_less' : 'expand_more'}
                         </span>
@@ -267,7 +267,7 @@ export default function TestPage() {
                 </div>
 
                 {/* Grid View */}
-                {
+                {/* {
                     experiencesExpanded && experiencesViewMode === 'grid' && (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {experiences.map((exp, index) => (
@@ -290,7 +290,7 @@ export default function TestPage() {
                 }
 
                 {/* Carousel View */}
-                {
+                {/* {
                     experiencesExpanded && experiencesViewMode === 'carousel' && (
                         <div className="relative">
                             <div
@@ -331,7 +331,7 @@ export default function TestPage() {
                             </div>
 
                             {/* Navigation Arrows */}
-                            <button
+                            {/* <button
                                 onClick={() => setExperiencesCarouselIndex(prev => prev === 0 ? experiences.length - 3 : prev - 1)}
                                 className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-earth-900/80 hover:bg-earth-900 text-gold-500 rounded-full w-12 h-12 flex items-center justify-center transition-all backdrop-blur-sm border border-gold-500/30 hover:border-gold-500"
                                 aria-label="Previous"
@@ -347,7 +347,7 @@ export default function TestPage() {
                             </button>
 
                             {/* Dots Indicator */}
-                            <div className="flex justify-center gap-2 mt-8">
+                            {/* <div className="flex justify-center gap-2 mt-8">
                                 {Array.from({ length: experiences.length - 2 }).map((_, index) => (
                                     <button
                                         key={index}
@@ -361,14 +361,14 @@ export default function TestPage() {
                         </div>
                     )
                 }
-            </section >
+            </section > */}
 
             {/* Expression Section */}
             <section className={`w-full px-16 transition-all duration-300 ${expressionExpanded ? 'py-16' : 'py-6'}`}>
                 <div className={`flex justify-between items-end cursor-pointer ${expressionExpanded ? 'mb-12' : ''}`} onClick={() => setExpressionExpanded(!expressionExpanded)}>
                     <div>
                         <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                            Expression
+                            Experiments
                         </h2>
                         <h3 className="text-2xl  text-gold-500 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             Unfinished by Design

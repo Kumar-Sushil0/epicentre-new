@@ -16,6 +16,8 @@ import TeamSection from "../components/TeamSection";
 import OurPhilosophy from "../components/OurPhilosophy";
 import LivingRoom from '../components/about/LivingRoom';
 
+import IconStrip from "../components/IconStrip";
+
 export default function AboutUsPage() {
   return (
     <main
@@ -42,6 +44,7 @@ export default function AboutUsPage() {
       
       <TeamSection />
  
+      
       <Footer />
     </main>
   );
