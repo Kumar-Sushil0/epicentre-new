@@ -23,7 +23,7 @@ export default function Header() {
   useEffect(() => {
     const listener = (state: boolean) => setIsMenuOpen(state);
     menuStateListeners.push(listener);
-    
+
     return () => {
       const index = menuStateListeners.indexOf(listener);
       if (index > -1) {
@@ -67,45 +67,76 @@ export default function Header() {
   return (
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isScrolled ? 'bg-[#0f0b08] backdrop-blur-sm border-b border-earth-800/50' : 'bg-transparent'}`}>
-        <div className="w-full px-4 md:px-16 py-8 h-[30px] flex items-center justify-between relative">
+        <div className="w-full px-16 py-8 h-[30px] flex items-center justify-between relative">
 
-          {/* LEFT: Animated Hamburger Button */}
-          <div className="hamburger-wrapper z-50 relative">
+          {/* LEFT: Desktop Navigation - Always Visible */}
+          <nav className="hidden lg:flex items-center gap-6">
+            <Link 
+              href="/venue" 
+              className={`text-sm uppercase tracking-wider transition-colors ${
+                isActive("/venue") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
+              }`}
+            >
+              Venue
+            </Link>
+            <Link 
+              href="/test" 
+              className={`text-sm uppercase tracking-wider transition-colors ${
+                isActive("/test") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
+              }`}
+            >
+              Services
+            </Link>
+            <Link 
+              href="/stories" 
+              className={`text-sm uppercase tracking-wider transition-colors ${
+                isActive("/stories") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
+              }`}
+            >
+              Stories
+            </Link>
+            <Link 
+              href="/events" 
+              className={`text-sm uppercase tracking-wider transition-colors ${
+                isActive("/events") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
+              }`}
+            >
+              Events
+            </Link>
+            <Link 
+              href="/about-us" 
+              className={`text-sm uppercase tracking-wider transition-colors ${
+                isActive("/about-us") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
+              }`}
+            >
+              About
+            </Link>
+            <Link 
+              href="/blogs" 
+              className={`text-sm uppercase tracking-wider transition-colors ${
+                isActive("/blogs") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
+              }`}
+            >
+              Blogs
+            </Link>
+            <Link 
+              href="/faq" 
+              className={`text-sm uppercase tracking-wider transition-colors ${
+                isActive("/faq") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
+              }`}
+            >
+              FAQ
+            </Link>
+          </nav>
+
+          {/* Mobile Hamburger Button */}
+          <div className="hamburger-wrapper z-50 relative lg:hidden">
             <label className="hamburger-label" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               <svg viewBox="0 0 32 32" className={`hamburger-svg ${isMenuOpen ? 'checked' : ''}`}>
                 <path d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22" className="line line-top-bottom" />
                 <path d="M7 16 27 16" className="line" />
               </svg>
             </label>
-
-            {/* Desktop Menu - Horizontal bar to the left of hamburger */}
-            <div className={`menu-wrapper ${isMenuOpen ? 'visible' : ''}`}>
-              <div className="menu-nav">
-                <div className="menu-container">
-                  <Link href="/" className="menu-btn" style={isActive("/") ? { color: 'white' } : {}}>
-                    Home
-                  </Link>
-                  <Link href="/rooms" className="menu-btn" style={isActive("/rooms") ? { color: 'white' } : {}}>
-                    Stays
-                  </Link>
-                  <Link href="/venue" className="menu-btn" style={isActive("/venue") ? { color: 'white' } : {}}>
-                    Venue
-                  </Link>
-                  <Link href="/test" className="menu-btn" style={isActive("/test") ? { color: 'white' } : {}}>
-                    Experiences
-                  </Link>
-                  <Link href="/events" className="menu-btn" style={isActive("/events") ? { color: 'white' } : {}}>
-                    Events
-                  </Link>
-                  <Link href="/about-us" className="menu-btn" style={isActive("/about-us") ? { color: 'white' } : {}}>
-                    About
-                  </Link>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 60" height={60} width="100%" overflow="visible" className="menu-outline">
-                    <rect strokeWidth={2} fill="transparent" height={60} width="100%" y={0} x={0} pathLength={100} className="menu-rect" />
-                  </svg>
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* CENTER: Logo */}
@@ -120,50 +151,20 @@ export default function Header() {
             />
           </Link>
 
-          {/* RIGHT: Booking & Wishlist CTA */}
-          <div className="flex items-center gap-4">
-            <Link
-              href="/wishlist"
-              className="hidden md:inline-flex items-center justify-center w-10 h-10 text-gold-500 border border-gold-500 rounded-full hover:bg-gold-500/10 transition-colors"
-              aria-label="Wishlist"
-            >
-              <span className="material-symbols-outlined text-xl">favorite</span>
-            </Link>
-            <Link
-              href="/bookings"
-              className="hidden md:inline-flex items-center justify-center bg-transparent text-gold-500 hover:text-[#e7dfd3] font-bold py-2 rounded-full text-sm uppercase tracking-wider transition-colors"
-            >
-              Book Now
-            </Link>
-            <Link
-              href="/login"
-              className="hidden md:inline-flex items-center justify-center bg-transparent text-gold-500 hover:text-[#e7dfd3] font-bold py-2 rounded-full text-sm uppercase tracking-wider transition-colors"
-            >
-              Login
-            </Link>
-          </div>
-          {/* Mobile Booking & Wishlist Icons */}
-          <div className="md:hidden flex items-center gap-2">
-            <Link
-              href="/wishlist"
-              className="flex items-center justify-center w-10 h-10 text-gold-500 border border-gold-500 rounded-full"
-              aria-label="Wishlist"
-            >
-              <span className="material-symbols-outlined text-xl">favorite</span>
-            </Link>
-            <Link
-              href="/bookings"
-              className="flex items-center justify-center w-10 h-10 text-gold-500 border border-gold-500 rounded-full"
-            >
-              <span className="material-symbols-outlined text-xl">calendar_month</span>
-            </Link>
-            <Link
-              href="/login"
-              className="flex items-center justify-center w-10 h-10 text-gold-500 border border-gold-500 rounded-full"
-            >
-              <span className="material-symbols-outlined text-xl">person</span>
-            </Link>
-          </div>
+          {/* RIGHT: Booking CTA */}
+          <Link
+            href="/bookings"
+            className="hidden md:inline-flex items-center justify-center bg-transparent text-gold-500 hover:text-[#e7dfd3] font-bold py-2 rounded-full text-sm uppercase tracking-wider transition-colors"
+          >
+            Book Now
+          </Link>
+          {/* Mobile Booking Icon */}
+          <Link
+            href="/bookings"
+            className="md:hidden flex items-center justify-center w-10 h-10 text-gold-500 border border-gold-500 rounded-full"
+          >
+            <span className="material-symbols-outlined text-xl">calendar_month</span>
+          </Link>
         </div>
       </header>
 
@@ -177,7 +178,7 @@ export default function Header() {
 
       {/* Mobile Menu - Sidebar from right */}
       <aside className={`mobile-sidebar ${isMenuOpen ? 'visible' : ''}`}>
-        <div className="flex items-center justify-between px-4 py-6 border-b border-gold-500/20">
+        <div className="flex items-center justify-between px-6 py-6 border-b border-gold-500/20">
           <h3 className="text-sm font-medium text-gold-500 uppercase tracking-wider" style={{ fontFamily: 'Outfit, sans-serif' }}>
             Menu
           </h3>
@@ -192,55 +193,56 @@ export default function Header() {
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-4 py-4">
+        <div className="flex-1 overflow-y-auto px-6 py-4">
           <nav>
             <Link
-              href="/"
-              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
-                isActive("/") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
-              }`}
-            >
-              Home
-            </Link>
-            <Link
-              href="/rooms"
-              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
-                isActive("/rooms") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
-              }`}
-            >
-              Stays
-            </Link>
-            <Link
               href="/venue"
-              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
-                isActive("/venue") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
-              }`}
+              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/venue") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+                }`}
             >
               Venue
             </Link>
             <Link
               href="/test"
-              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
-                isActive("/test") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
-              }`}
+              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/test") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+                }`}
             >
-              Experiences
+              Services
+            </Link>
+            <Link
+              href="/stories"
+              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/stories") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+                }`}
+            >
+              Stories
             </Link>
             <Link
               href="/events"
-              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
-                isActive("/events") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
-              }`}
+              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/events") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+                }`}
             >
               Events
             </Link>
             <Link
               href="/about-us"
-              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
-                isActive("/about-us") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
-              }`}
+              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/about-us") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+                }`}
             >
               About
+            </Link>
+            <Link
+              href="/blogs"
+              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/blogs") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+                }`}
+            >
+              Blogs
+            </Link>
+            <Link
+              href="/faq"
+              className={`block px-4 py-3 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/faq") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+                }`}
+            >
+              FAQ
             </Link>
           </nav>
         </div>

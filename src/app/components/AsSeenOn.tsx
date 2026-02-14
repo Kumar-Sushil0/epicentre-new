@@ -16,9 +16,9 @@ const logos = [
 
 const AsSeenOn = () => {
   return (
-    <section className="py-16 bg-gold-500">
+    <section className="py-16 bg-earth-700">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-center text-2xl font-semibold text-earth-950 mb-12" style={{ fontFamily: 'Outfit, sans-serif' }}>
+        <h2 className="text-center text-2xl font-semibold text-gold-500 mb-12" style={{ fontFamily: 'Outfit, sans-serif' }}>
           Featured In
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-x-8 gap-y-12 items-center">

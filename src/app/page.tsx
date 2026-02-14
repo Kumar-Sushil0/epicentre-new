@@ -9,6 +9,7 @@ import Accommodation from "./components/Accommodation";
 import ImageCarousel from "./components/ImageCarousel";
 import DiningVariant from "./components/DiningVariant";
 import Experiences from "./components/Experiences";
+import ServicesOffering from "./components/ServicesOffering";
 import Location from "./components/Location";
 import Footer from "./components/Footer";
 import PathOfLove from "./components/PathOfLove";
@@ -20,18 +21,18 @@ export default function Home() {
       <Header />
       <Hero />
       <Philosophy />
-      <ImageCarousel />
-      <Reviews />
       
 
       <WhatThisIsNot />
 
-      <Accommodation />
-      
-
       <DiningVariant />
-      <Experiences />
       <Location />
+      <ServicesOffering />
+
+     
+
+     
+      
      
       <Footer />
     </main>
