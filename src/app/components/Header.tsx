@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useAuth } from "../context/AuthContext";
 
 // Global state to persist menu across page changes
 let globalMenuState = false;
@@ -19,7 +18,6 @@ export default function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(globalMenuState);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { isAuthenticated, logout, user } = useAuth();
 
   // Sync with global menu state
   useEffect(() => {
@@ -153,7 +151,6 @@ export default function Header() {
             />
           </Link>
 
-<<<<<<< HEAD
           {/* RIGHT: Booking CTA */}
           <Link
             href="/bookings"
@@ -168,80 +165,6 @@ export default function Header() {
           >
             <span className="material-symbols-outlined text-xl">calendar_month</span>
           </Link>
-=======
-          {/* RIGHT: Booking & Wishlist CTA */}
-          <div className="flex items-center gap-4">
-            <Link
-              href="/wishlist"
-              className="hidden md:inline-flex items-center justify-center w-10 h-10 text-gold-500 border border-gold-500 rounded-full hover:bg-gold-500/10 transition-colors"
-              aria-label="Wishlist"
-            >
-              <span className="material-symbols-outlined text-xl">favorite</span>
-            </Link>
-            <Link
-              href="/bookings"
-              className="hidden md:inline-flex items-center justify-center bg-transparent text-gold-500 hover:text-[#e7dfd3] font-bold py-2 rounded-full text-sm uppercase tracking-wider transition-colors"
-            >
-              Book Now
-            </Link>
-            {isAuthenticated ? (
-              <>
-                <Link
-                  href="/dashboard"
-                  className="hidden md:inline-flex items-center justify-center bg-transparent text-gold-500 hover:text-[#e7dfd3] font-bold py-2 rounded-full text-sm uppercase tracking-wider transition-colors"
-                  title={user?.name || 'Dashboard'}
-                >
-                  Dashboard
-                </Link>
-                <button
-                  onClick={logout}
-                  className="hidden md:inline-flex items-center justify-center bg-transparent text-gold-500 hover:text-[#e7dfd3] font-bold py-2 rounded-full text-sm uppercase tracking-wider transition-colors"
-                >
-                  Logout
-                </button>
-              </>
-            ) : (
-              <Link
-                href="/login"
-                className="hidden md:inline-flex items-center justify-center bg-transparent text-gold-500 hover:text-[#e7dfd3] font-bold py-2 rounded-full text-sm uppercase tracking-wider transition-colors"
-              >
-                Login
-              </Link>
-            )}
-          </div>
-          {/* Mobile Booking & Wishlist Icons */}
-          <div className="md:hidden flex items-center gap-2">
-            <Link
-              href="/wishlist"
-              className="flex items-center justify-center w-10 h-10 text-gold-500 border border-gold-500 rounded-full"
-              aria-label="Wishlist"
-            >
-              <span className="material-symbols-outlined text-xl">favorite</span>
-            </Link>
-            <Link
-              href="/bookings"
-              className="flex items-center justify-center w-10 h-10 text-gold-500 border border-gold-500 rounded-full"
-            >
-              <span className="material-symbols-outlined text-xl">calendar_month</span>
-            </Link>
-            {isAuthenticated ? (
-              <Link
-                href="/dashboard"
-                className="flex items-center justify-center w-10 h-10 text-gold-500 border border-gold-500 rounded-full"
-                title="Dashboard"
-              >
-                <span className="material-symbols-outlined text-xl">dashboard</span>
-              </Link>
-            ) : (
-              <Link
-                href="/login"
-                className="flex items-center justify-center w-10 h-10 text-gold-500 border border-gold-500 rounded-full"
-              >
-                <span className="material-symbols-outlined text-xl">person</span>
-              </Link>
-            )}
-          </div>
->>>>>>> 0f11bc8 (git push origin main)
         </div>
       </header>
 
@@ -307,7 +230,6 @@ export default function Header() {
             >
               About
             </Link>
-<<<<<<< HEAD
             <Link
               href="/blogs"
               className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/blogs") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
@@ -322,40 +244,6 @@ export default function Header() {
             >
               FAQ
             </Link>
-=======
-            
-            {/* Auth-related links */}
-            {isAuthenticated ? (
-              <>
-                <Link
-                  href="/dashboard"
-                  className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
-                    isActive("/dashboard") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
-                  }`}
-                >
-                  Dashboard
-                </Link>
-                <button
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    logout();
-                  }}
-                  className="w-full text-left block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all text-[#e7dfd3] hover:text-gold-500"
-                >
-                  Logout
-                </button>
-              </>
-            ) : (
-              <Link
-                href="/login"
-                className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${
-                  isActive("/login") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
-                }`}
-              >
-                Login
-              </Link>
-            )}
->>>>>>> 0f11bc8 (git push origin main)
           </nav>
         </div>
       </aside>
