@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ShopProvider } from "./context/ShopContext";
+import { AuthProvider } from "./context/AuthContext";
 import SmoothScroll from "./components/SmoothScroll";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 
@@ -23,11 +24,13 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-earth-900 text-earth-100 antialiased">
-        <ShopProvider>
-          <SmoothScroll />
-          {children}
-          <FloatingWhatsApp />
-        </ShopProvider>
+        <AuthProvider>
+          <ShopProvider>
+            <SmoothScroll />
+            {children}
+            <FloatingWhatsApp />
+          </ShopProvider>
+        </AuthProvider>
       </body>
     </html>
   );

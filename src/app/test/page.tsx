@@ -6,8 +6,6 @@ import Footer from "../components/Footer";
 import CarouselCard from "../components/CarouselCard";
 import TestHero from "../components/test/TestHero";
 import TestPhilosophy from "../components/test/TestPhilosophy";
-import WellnessHero from "../components/wellness/WellnessHero";
-import { wellnessPractices } from "../content/wellness";
 import { experiences } from "../content/experiences";
 import { expressionPillars } from "../content/expression";
 import { solitudePractices } from "../content/solitude";
@@ -18,7 +16,6 @@ export default function TestPage() {
     const [cart, setCart] = useState<Set<string>>(new Set());
     
     // Collapsible section states
-    const [wellnessExpanded, setWellnessExpanded] = useState(true);
     const [experiencesExpanded, setExperiencesExpanded] = useState(false);
     const [expressionExpanded, setExpressionExpanded] = useState(false);
     const [solitudeExpanded, setSolitudeExpanded] = useState(false);
@@ -45,10 +42,6 @@ export default function TestPage() {
         alert(`Added to cart!`);
     };
 
-    const [wellnessViewMode, setWellnessViewMode] = useState<'grid' | 'carousel'>('carousel');
-    const [wellnessCarouselIndex, setWellnessCarouselIndex] = useState(0);
-    const wellnessCarouselRef = useRef<HTMLDivElement>(null);
-
     const [experiencesViewMode, setExperiencesViewMode] = useState<'grid' | 'carousel'>('carousel');
     const [experiencesCarouselIndex, setExperiencesCarouselIndex] = useState(0);
     const experiencesCarouselRef = useRef<HTMLDivElement>(null);
@@ -64,159 +57,12 @@ export default function TestPage() {
     const [residencyViewMode, setResidencyViewMode] = useState<'grid' | 'carousel'>('carousel');
     const [residencyCarouselIndex, setResidencyCarouselIndex] = useState(0);
     const residencyCarouselRef = useRef<HTMLDivElement>(null);
-    // Wellness Section Data - All 6 cards from wellness page
-    
 
     return (
         <main className="min-h-screen bg-earth-900 text-earth-100">
             <Header />
             <TestHero />
             <TestPhilosophy />
-
-            {/* Wellness Section */}
-            
-            <section className={`w-full px-16 transition-all duration-300 ${wellnessExpanded ? 'py-16' : 'py-6'}`}>
-                
-                <div className={`flex justify-between items-end cursor-pointer ${wellnessExpanded ? 'mb-12' : ''}`} onClick={() => setWellnessExpanded(!wellnessExpanded)}>
-                    <div>
-                        <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                            Wellness
-                        </h2>
-                        <h3 className="text-2xl text-gold-500 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                            Stability Before Insight
-                        </h3>
-                        {wellnessExpanded && <p className="text-earth-300 text-lg font-body">
-                            Always-available practices that support the body and nervous system.<br />
-                            Unscheduled. Untracked.
-                        </p>}
-                    </div>
-                    <div className="flex items-center gap-4">
-                    {/* View Toggle Button */}
-                    {wellnessExpanded && <div className="flex gap-2 bg-earth-800 p-1 rounded-lg border border-earth-700">
-                        <button
-                            onClick={(e) => { e.stopPropagation(); setWellnessViewMode('carousel'); }}
-                            className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${wellnessViewMode === 'carousel'
-                                    ? 'bg-gold-500 text-earth-900'
-                                    : 'text-earth-300 hover:text-gold-500'
-                                }`}
-                        >
-                            <span className="material-symbols-outlined text-xl">view_carousel</span>
-                            <span className="text-sm font-medium">Carousel</span>
-                        </button>
-                        <button
-                            onClick={(e) => { e.stopPropagation(); setWellnessViewMode('grid'); }}
-                            className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${wellnessViewMode === 'grid'
-                                    ? 'bg-gold-500 text-earth-900'
-                                    : 'text-earth-300 hover:text-gold-500'
-                                }`}
-                        >
-                            <span className="material-symbols-outlined text-xl">grid_view</span>
-                            <span className="text-sm font-medium">Grid</span>
-                        </button>
-                    </div>}
-                    {/* Expand/Collapse Icon */}
-                    <button className="text-gold-500 hover:text-gold-400 transition-colors">
-                        <span className="material-symbols-outlined text-3xl">
-                            {wellnessExpanded ? 'expand_less' : 'expand_more'}
-                        </span>
-                    </button>
-                    </div>
-                </div>
-
-                {/* Grid View */}
-                {
-                    wellnessExpanded && wellnessViewMode === 'grid' && (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {wellnessPractices.map((practice, index) => (
-                                <CarouselCard
-                                    key={index}
-                                    title={practice.title}
-                                    description={practice.description}
-                                    images={practice.images}
-                                    icon={practice.icon}
-                                    category={practice.category}
-                                    showActions={true}
-                                    onAddToCart={() => addToCart(`wellness-${index}`)}
-                                    onToggleWishlist={() => toggleWishlist(`wellness-${index}`)}
-                                    isInWishlist={wishlist.has(`wellness-${index}`)}
-                                />
-                            ))}
-                        </div>
-                    )
-                }
-
-                {/* Carousel View */}
-                {
-                    wellnessExpanded && wellnessViewMode === 'carousel' && (
-                        <div className="relative">
-                            <div
-                                ref={wellnessCarouselRef}
-                                className="overflow-hidden w-full mx-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
-                            >
-                                <div
-                                    className="flex gap-8 transition-transform duration-500 ease-in-out"
-                                    style={{
-                                        transform: `translateX(calc(-${wellnessCarouselIndex} * ((100% - 4rem) / 3 + 2rem)))`,
-                                        willChange: "transform",
-                                    }}
-                                >
-                                    {wellnessPractices.map((practice, index) => (
-                                        <div
-                                            key={index}
-                                            className="flex-shrink-0"
-                                            style={{
-                                                width: `calc((100% - 4rem) / 3)`,
-                                                flexShrink: 0,
-                                            }}
-                                        >
-                                            <CarouselCard
-                                                title={practice.title}
-                                                description={practice.description}
-                                                images={practice.images}
-                                                icon={practice.icon}
-                                                category={practice.category}
-                                                showActions={true}
-                                                onAddToCart={() => addToCart(`wellness-${index}`)}
-                                                onToggleWishlist={() => toggleWishlist(`wellness-${index}`)}
-                                                isInWishlist={wishlist.has(`wellness-${index}`)}
-                                            />
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Navigation Arrows */}
-                            <button
-                                onClick={() => setWellnessCarouselIndex(prev => prev === 0 ? wellnessPractices.length - 3 : prev - 1)}
-                                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-earth-900/80 hover:bg-earth-900 text-gold-500 rounded-full w-12 h-12 flex items-center justify-center transition-all backdrop-blur-sm border border-gold-500/30 hover:border-gold-500"
-                                aria-label="Previous"
-                            >
-                                <span className="material-symbols-outlined text-2xl">chevron_left</span>
-                            </button>
-                            <button
-                                onClick={() => setWellnessCarouselIndex(prev => prev === wellnessPractices.length - 3 ? 0 : prev + 1)}
-                                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-earth-900/80 hover:bg-earth-900 text-gold-500 rounded-full w-12 h-12 flex items-center justify-center transition-all backdrop-blur-sm border border-gold-500/30 hover:border-gold-500"
-                                aria-label="Next"
-                            >
-                                <span className="material-symbols-outlined text-2xl">chevron_right</span>
-                            </button>
-
-                            {/* Dots Indicator */}
-                            <div className="flex justify-center gap-2 mt-8">
-                                {Array.from({ length: wellnessPractices.length - 2 }).map((_, index) => (
-                                    <button
-                                        key={index}
-                                        onClick={() => setWellnessCarouselIndex(index)}
-                                        className={`w-2 h-1 rounded-full transition-all ${index === wellnessCarouselIndex ? "bg-gold-500 w-8" : "bg-earth-100/50 hover:bg-earth-100/75"
-                                            }`}
-                                        aria-label={`Go to slide ${index + 1}`}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    )
-                }
-            </section >
 
             {/* Experiences Section */}
             {/* <section className={`w-full px-16 transition-all duration-300 ${experiencesExpanded ? 'py-16' : 'py-6'}`}>

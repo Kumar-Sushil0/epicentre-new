@@ -1,29 +1,60 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "../context/AuthContext";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [view, setView] = useState("login"); // 'login', 'signup', or 'forgot'
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { login, signup } = useAuth();
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (view === "login") {
-      // Handle login logic here
-      console.log("Email:", email, "Password:", password);
-    } else if (view === "signup") {
-      // Handle signup logic here
-      console.log("Name:", name, "Email:", email, "Password:", password);
-    } else {
-      // Handle forgot password logic here
-      console.log("Email for password reset:", email);
+    setError("");
+    setLoading(true);
+
+    try {
+      if (view === "login") {
+        const success = await login(email, password);
+        if (success) {
+          router.push("/dashboard");
+        } else {
+          setError("Invalid email or password");
+        }
+      } else if (view === "signup") {
+        if (!name.trim()) {
+          setError("Name is required");
+          setLoading(false);
+          return;
+        }
+        const success = await signup(email, password, name);
+        if (success) {
+          router.push("/dashboard");
+        } else {
+          setError("Signup failed. Please try again.");
+        }
+      } else {
+        // Handle forgot password logic here
+        console.log("Email for password reset:", email);
+        alert("Password reset link sent to your email!");
+        setView("login");
+      }
+    } catch (err) {
+      setError("An error occurred. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   const toggleView = (newView: string) => {
     setView(newView);
+    setError("");
   };
 
   return (
@@ -33,6 +64,13 @@ const LoginForm = () => {
         {view === "signup" && "Sign Up"}
         {view === "forgot" && "Forgot Password"}
       </h2>
+      
+      {error && (
+        <div className="p-3 bg-red-900/50 border border-red-500 rounded-md text-red-200 text-sm">
+          {error}
+        </div>
+      )}
+
       <form onSubmit={handleSubmit} className="space-y-6">
         {view === "signup" && (
           <div>
@@ -54,7 +92,7 @@ const LoginForm = () => {
             />
           </div>
         )}
-        {view !== "login" ? null : (
+        {(view === "login" || view === "signup") && (
           <>
             <div>
               <label
@@ -148,11 +186,16 @@ const LoginForm = () => {
         </div>
         <button
           type="submit"
-          className="w-full px-4 py-2 text-lg font-semibold text-white bg-gold-600 rounded-md hover:bg-gold-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gold-500"
+          disabled={loading}
+          className="w-full px-4 py-2 text-lg font-semibold text-white bg-gold-600 rounded-md hover:bg-gold-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {view === "login" && "Login"}
-          {view === "signup" && "Sign Up"}
-          {view === "forgot" && "Send Password Reset Link"}
+          {loading ? "Loading..." : (
+            <>
+              {view === "login" && "Login"}
+              {view === "signup" && "Sign Up"}
+              {view === "forgot" && "Send Password Reset Link"}
+            </>
+          )}
         </button>
       </form>
       <p className="text-sm text-center text-gold-500">

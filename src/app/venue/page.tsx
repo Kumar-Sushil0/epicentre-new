@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import VenueHero from "../components/venue/VenueHero";
 import VenueCategoryNav from "../components/venue/VenueCategoryNav";
 import VenueSection from "../components/venue/VenueSection";
+import CarouselCard from "../components/CarouselCard";
+import { wellnessPractices } from "../content/wellness";
 
 export default function VenuePage() {
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
@@ -15,10 +17,40 @@ export default function VenuePage() {
     creative: false,
     living: false,
     nature: false,
+    stayOptions: false,
   });
 
   const toggleSection = (id: string) => {
     setExpandedSections(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  // Wellness section state
+  const [wellnessExpanded, setWellnessExpanded] = useState(true);
+  const [wellnessViewMode, setWellnessViewMode] = useState<'grid' | 'carousel'>('carousel');
+  const [wellnessCarouselIndex, setWellnessCarouselIndex] = useState(0);
+  const wellnessCarouselRef = useRef<HTMLDivElement>(null);
+  const [wishlist, setWishlist] = useState<Set<string>>(new Set());
+  const [cart, setCart] = useState<Set<string>>(new Set());
+
+  const toggleWishlist = (id: string) => {
+    setWishlist(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(id)) {
+        newSet.delete(id);
+      } else {
+        newSet.add(id);
+      }
+      return newSet;
+    });
+  };
+
+  const addToCart = (id: string) => {
+    setCart(prev => {
+      const newSet = new Set(prev);
+      newSet.add(id);
+      return newSet;
+    });
+    alert(`Added to cart!`);
   };
 
   const venueCategories = [
@@ -314,6 +346,58 @@ export default function VenuePage() {
         },
       ],
     },
+    {
+      id: "stayOptions",
+      title: "Stay Options",
+      icon: "hotel",
+      venues: [
+        {
+          title: "Private Room",
+          description: "A fully private space for withdrawal and rest. Designed to reduce interruption and external signal.",
+          image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDYw7zjjT1NTlSOYdFEp7-uHq0qYu0sfT6aUZMNM2ORSddAkOWotjiQuOXDlF61wyE24VSml-mENINPvgit4PMfWpZeH50NPc447sj25Lb9x3TaeBlPSU7wzYuj_9FCg7AibVjCYClPjUH2RnhsG5KEnMzj-HCgJ18Ml3AHQNFqX4nT-CvUDLtna6318BHSz60gSYsF_rolGCK_gpSLX0f4X7YWlq7PTgefwlFaLqlmddEb47Kk1ikXrmPgfcWjrQbX7yn5wzA--zcc",
+          imageAlt: "Luxury dark bedroom with large window overlooking misty forest",
+          area: "King-size bed",
+          capacity: "1-2 ppl",
+          href: "/bookings",
+        },
+        {
+          title: "Dark Room",
+          description: "A fully light-sealed space for extended stillness and sensory withdrawal. Used for rest, introspection, and uninterrupted self-observation.",
+          image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDYw7zjjT1NTlSOYdFEp7-uHq0qYu0sfT6aUZMNM2ORSddAkOWotjiQuOXDlF61wyE24VSml-mENINPvgit4PMfWpZeH50NPc447sj25Lb9x3TaeBlPSU7wzYuj_9FCg7AibVjCYClPjUH2RnhsG5KEnMzj-HCgJ18Ml3AHQNFqX4nT-CvUDLtna6318BHSz60gSYsF_rolGCK_gpSLX0f4X7YWlq7PTgefwlFaLqlmddEb47Kk1ikXrmPgfcWjrQbX7yn5wzA--zcc",
+          imageAlt: "Completely dark room with no light sources",
+          area: "Total isolation",
+          capacity: "1 ppl",
+          href: "/bookings",
+        },
+        {
+          title: "Shared Dorm",
+          description: "A quiet, shared sleeping space with clear personal boundaries. Designed for rest without social obligation.",
+          image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAd0MrUgxtI24ctYnNVK7t_0ipeTTqmWsJCLm5cpM9SR9eaqccitEqKNUHpiTcRy5_Reud0UU-OZvZFRwaKjCVFUxCCcr5x80ezOMsIk6ZYNAp5-rcQc65w_rIijqQ2xI_DTUrmhpSLXFkH-PJ7tC7F1e1CzGWzy00PXwmWLXC-UqJ9bg6TQfqN1eqg1OkF_v17JlAL4MB-EajLCUR26TuPjjyYiFzsiW8GD6zQrVwkgD66Kefyszm0kHtCfGkNkqLkrYKMViUchwie",
+          imageAlt: "Cozy wooden bunk beds in a dimly lit rustic room",
+          area: "Shared space",
+          capacity: "4-6 ppl",
+          href: "/bookings",
+        },
+        {
+          title: "Community Hall",
+          description: "A shared indoor space for rest, reading, and unstructured time together. Used collectively. Held without programming.",
+          image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB0W9yJw8axjF-kN3nS3rx2wcnSyZDgPPr4N6-dQHkur_vVcYF7VJDVWzdTVlXQINnv8OPubPGsP93vzoZSB1siyf5Dfyl4VbjsiDfThEFh4mCXDJb2-Q3XzsQ-yKSgt_d9eFJgNilz-sF-0wpPmMdd_1eUEJmyZqiPXLW-gBggW1zAzs7-S96DxPtCF5pg4bxnbJGHsTOiNtH_b3S1jWkXeIxnAOQavLlixwoNfkJe-ZzbvSK4qZMGzvYZFscIPgABiVcKzflo9wUo",
+          imageAlt: "Warm interior with fireplace and comfortable armchairs",
+          area: "2,800 sqft",
+          capacity: "25 ppl",
+          href: "/bookings",
+        },
+        {
+          title: "Minimalist Tents",
+          description: "Sleep closer to land and weather. Minimal shelter that prioritizes presence over insulation.",
+          image: "https://lh3.googleusercontent.com/aida-public/AB6AXuATOA-7cEFkRwrPfO1Yi_GsWajtQm9kjP7vPcdoMkklExVYKXq1iHwHSN46TT9UzGXZ2GSvZNBTB1p-eMuuUvXuyuTueNOFBENS8jqs4my9pGxB5vcyr7x9voKTIRePCWmgmZr5a4WBdtkSTU9GmvHrQnQEscuZ9JMvgYXNAi22rrvPBBd93C8N_mao7s6WAkTydpuvYyx_ygEtCYiiCq2O0dMsBGO3LlMAosUfSCTq_BUAbUojIr8PTfDo-3Pec-w-I7ddy4UoeU12",
+          imageAlt: "Illuminated tent camping under a starry night sky in forest",
+          area: "Canvas tent",
+          capacity: "2 ppl",
+          href: "/bookings",
+        },
+      ],
+    },
   ];
 
   return (
@@ -321,6 +405,144 @@ export default function VenuePage() {
       <Header />
       <VenueHero />
       <VenueCategoryNav />
+      
+      {/* Wellness Section */}
+      <section className={`w-full px-16 transition-all duration-300 ${wellnessExpanded ? 'py-16' : 'py-6'}`}>
+        <div className={`flex justify-between items-end cursor-pointer ${wellnessExpanded ? 'mb-12' : ''}`} onClick={() => setWellnessExpanded(!wellnessExpanded)}>
+          <div>
+            <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
+              Wellness
+            </h2>
+            <h3 className="text-2xl text-gold-500 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
+              Stability Before Insight
+            </h3>
+            {wellnessExpanded && <p className="text-earth-300 text-lg font-body">
+              Always-available practices that support the body and nervous system.<br />
+              Unscheduled. Untracked.
+            </p>}
+          </div>
+          <div className="flex items-center gap-4">
+            {wellnessExpanded && <div className="flex gap-2 bg-earth-800 p-1 rounded-lg border border-earth-700">
+              <button
+                onClick={(e) => { e.stopPropagation(); setWellnessViewMode('carousel'); }}
+                className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${wellnessViewMode === 'carousel'
+                  ? 'bg-gold-500 text-earth-900'
+                  : 'text-earth-300 hover:text-gold-500'
+                }`}
+              >
+                <span className="material-symbols-outlined text-xl">view_carousel</span>
+                <span className="text-sm font-medium">Carousel</span>
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); setWellnessViewMode('grid'); }}
+                className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${wellnessViewMode === 'grid'
+                  ? 'bg-gold-500 text-earth-900'
+                  : 'text-earth-300 hover:text-gold-500'
+                }`}
+              >
+                <span className="material-symbols-outlined text-xl">grid_view</span>
+                <span className="text-sm font-medium">Grid</span>
+              </button>
+            </div>}
+            <button className="text-gold-500 hover:text-gold-400 transition-colors">
+              <span className="material-symbols-outlined text-3xl">
+                {wellnessExpanded ? 'expand_less' : 'expand_more'}
+              </span>
+            </button>
+          </div>
+        </div>
+
+        {/* Grid View */}
+        {wellnessExpanded && wellnessViewMode === 'grid' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {wellnessPractices.map((practice, index) => (
+              <CarouselCard
+                key={index}
+                title={practice.title}
+                description={practice.description}
+                images={practice.images}
+                icon={practice.icon}
+                category={practice.category}
+                showActions={true}
+                onAddToCart={() => addToCart(`wellness-${index}`)}
+                onToggleWishlist={() => toggleWishlist(`wellness-${index}`)}
+                isInWishlist={wishlist.has(`wellness-${index}`)}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Carousel View */}
+        {wellnessExpanded && wellnessViewMode === 'carousel' && (
+          <div className="relative">
+            <div
+              ref={wellnessCarouselRef}
+              className="overflow-hidden w-full mx-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+            >
+              <div
+                className="flex gap-8 transition-transform duration-500 ease-in-out"
+                style={{
+                  transform: `translateX(calc(-${wellnessCarouselIndex} * ((100% - 4rem) / 3 + 2rem)))`,
+                  willChange: "transform",
+                }}
+              >
+                {wellnessPractices.map((practice, index) => (
+                  <div
+                    key={index}
+                    className="flex-shrink-0"
+                    style={{
+                      width: `calc((100% - 4rem) / 3)`,
+                      flexShrink: 0,
+                    }}
+                  >
+                    <CarouselCard
+                      title={practice.title}
+                      description={practice.description}
+                      images={practice.images}
+                      icon={practice.icon}
+                      category={practice.category}
+                      showActions={true}
+                      onAddToCart={() => addToCart(`wellness-${index}`)}
+                      onToggleWishlist={() => toggleWishlist(`wellness-${index}`)}
+                      isInWishlist={wishlist.has(`wellness-${index}`)}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Navigation Arrows */}
+            <button
+              onClick={() => setWellnessCarouselIndex(prev => prev === 0 ? wellnessPractices.length - 3 : prev - 1)}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-earth-900/80 hover:bg-earth-900 text-gold-500 rounded-full w-12 h-12 flex items-center justify-center transition-all backdrop-blur-sm border border-gold-500/30 hover:border-gold-500"
+              aria-label="Previous"
+            >
+              <span className="material-symbols-outlined text-2xl">chevron_left</span>
+            </button>
+            <button
+              onClick={() => setWellnessCarouselIndex(prev => prev === wellnessPractices.length - 3 ? 0 : prev + 1)}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-earth-900/80 hover:bg-earth-900 text-gold-500 rounded-full w-12 h-12 flex items-center justify-center transition-all backdrop-blur-sm border border-gold-500/30 hover:border-gold-500"
+              aria-label="Next"
+            >
+              <span className="material-symbols-outlined text-2xl">chevron_right</span>
+            </button>
+
+            {/* Dots Indicator */}
+            <div className="flex justify-center gap-2 mt-8">
+              {Array.from({ length: wellnessPractices.length - 2 }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setWellnessCarouselIndex(index)}
+                  className={`w-2 h-1 rounded-full transition-all ${index === wellnessCarouselIndex ? "bg-gold-500 w-8" : "bg-earth-100/50 hover:bg-earth-100/75"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
+
       <div className="w-full px-16 py-12">
         {venueCategories.map((category) => (
           <section 
