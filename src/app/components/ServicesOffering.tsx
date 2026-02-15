@@ -5,8 +5,7 @@ import Link from "next/link";
 export default function ServicesOffering() {
   return (
     <section className="relative py-24 px-6 md:px-16 bg-earth-950">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
           {/* For Individuals Card */}
           <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-8 flex flex-col">
@@ -240,7 +239,6 @@ export default function ServicesOffering() {
           </div>
 
         </div>
-      </div>
     </section>
   );
 }
