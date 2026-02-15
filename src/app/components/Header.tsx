@@ -151,19 +151,19 @@ export default function Header() {
             />
           </Link>
 
-          {/* RIGHT: Booking CTA */}
+          {/* RIGHT: Login CTA */}
           <Link
-            href="/bookings"
+            href="/login"
             className="hidden md:inline-flex items-center justify-center bg-transparent text-gold-500 hover:text-[#e7dfd3] font-bold py-2 rounded-full text-sm uppercase tracking-wider transition-colors"
           >
-            Book Now
+            Login
           </Link>
-          {/* Mobile Booking Icon */}
+          {/* Mobile Login Icon */}
           <Link
-            href="/bookings"
+            href="/login"
             className="md:hidden flex items-center justify-center w-10 h-10 text-gold-500 border border-gold-500 rounded-full"
           >
-            <span className="material-symbols-outlined text-xl">calendar_month</span>
+            <span className="material-symbols-outlined text-xl">person</span>
           </Link>
         </div>
       </header>
