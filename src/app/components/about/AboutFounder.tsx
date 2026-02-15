@@ -8,35 +8,31 @@ export default function AboutFounder() {
 
           {/* Text Side - Updated content */}
           <div className="w-full lg:w-7/12 flex flex-col justify-center pt-8 lg:pt-0">
+            <h2 className="text-3xl font-semibold mb-8 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>
+              The Conductor
+            </h2>
             <div className="space-y-6 text-earth-300/80 font-body text-lg leading-relaxed max-w-2xl">
-              <p>
-                <span className="text-earth-100">D.D designs liberation as a system, not a belief.</span>
-              </p>
+            
 
               <p>
-                Over years of personal experimentation, one pattern became clear: clarity does not arrive through effort, insight, or instruction. It emerges when interference is removed.
+                Clarity emerges through subtraction.
               </p>
 
               <p>
-                Silence was not adopted as a philosophy. It was tested as a condition.
+                Autonomy requires structure.
               </p>
 
               <p>
-                By withdrawing stimulation noise, performance, constant response attention settled. Direction followed.
+                Identity should be designed, not inherited.
               </p>
 
               <p>
-                The Silent Club is a physical expression of that discovery. A space where environment does the work that advice cannot.
+                Sovereignty begins with uninterrupted attention.
               </p>
 
-              <p>Though space does not require identification, authorship is declared only where accountability is necessary.</p>
-
-              <p className="pt-4">
-                D.D's role here is not to teach, guide, or interpret. It is to protect the integrity of the conditions.
-              </p>
-
-              <p className="text-earth-100 font-medium">
-                Not a guide. A steward.
+              <p className="text-earth-100 font-medium pt-4">
+                Not a guide.<br />
+                A steward.
               </p>
             </div>
           </div>
@@ -88,7 +84,9 @@ export default function AboutFounder() {
                   D.D
                 </h2>
                 <p className="text-xs font-bold tracking-widest uppercase transition-all duration-700 opacity-0 group-hover:opacity-100 group-hover:text-earth-900 text-earth-300">
-                  Founder & Architect
+                
+                Conductor of Conditions<br />
+                Liberation Designer
                 </p>
               </div>
             </div>

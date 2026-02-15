@@ -29,12 +29,14 @@ export default function AboutUsPage() {
     >
       <Header />
       <AboutHero />
+      <AboutPhilosophyQuote />
       <OurPhilosophy />
       <AboutPrinciples />
+      <AboutPhilosophy />
       <LivingRoom />
       
-      <AboutPhilosophy />
-     
+      
+      <AboutCollective />
       
       <AboutFounder />
       
@@ -42,7 +44,7 @@ export default function AboutUsPage() {
       
       
       
-      <TeamSection />
+      
  
       
       <Footer />

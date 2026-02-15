@@ -8,23 +8,19 @@ export default function Philosophy() {
         <div className="max-w-5xl mx-auto px-4 md:px-16 text-center">
           <div className="relative py-8">
             <p className="text-[15px] leading-loose text-[#261B14] relative z-10" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              "This is not a place for change.
-              It is a place for clarity.<br />
-              Nothing here tries to improve you.
-              Nothing asks you to perform.<br />
-              Designed to reduce interference.
-              So attention can settle naturally."
+              Most people do not lack answers.
+              They lack uninterrupted attention.<br />
+              Noise is default.
+              Performance is constant.<br />
+              Stimulation is engineered.
+              This environment removes it.
             </p>
           </div>
         </div>
       </section>
 
       {/* As Seen On Section */}
-      <section className="py-12 bg-earth-700 flex items-center">
-        <div className="max-w-5xl mx-auto px-4 md:px-16 w-full">
-          <AsSeenOn />
-        </div>
-      </section>
+    
     </>
   );
 }

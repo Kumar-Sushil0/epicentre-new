@@ -1,13 +1,21 @@
 export default function AboutPhilosophyQuote() {
   return (
-    <section className="py-8 min-h-[85vh] bg-gold-500 flex items-center">
-      <div className="max-w-5xl mx-auto px-16 text-center">
+    <section className="py-16 bg-gold-500 flex items-center">
+      <div className="max-w-5xl mx-auto px-4 md:px-16 text-center">
         <div className="relative py-8">
           <p className="text-[15px] leading-loose text-[#261B14] relative z-10" style={{ fontFamily: 'Outfit, sans-serif' }}>
-            "The Silent Club is the result of deliberate subtraction, one layer at a time.<br />
-            Every rule, surface, rhythm, and boundary exists for one reason:<br />
-            to remove what pulls attention outward.<br />
-            What remains is a space where attention can settle."
+            Modern life is saturated with input.<br />
+            Noise is constant.
+            Performance is rewarded.<br />
+            Stimulation is engineered.
+            Most people do not lack intelligence or intuition.<br />
+            They lack uninterrupted attention.
+            The Silent Club exists as a calibration chamber.<br />
+            External identities are temporarily suspended.
+            Relational and professional roles pause.<br />
+            Only first names remain.
+            You do not leave life here.<br />
+            You prepare to re-enter it deliberately.
           </p>
         </div>
       </div>

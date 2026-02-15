@@ -18,11 +18,15 @@ export default function AboutHero() {
       <div className="relative z-20 container px-16 max-w-7xl">
         <div className="max-w-6xl border-l-2 border-gold-500/50 pl-8 md:pl-12 py-4 animate-in slide-in-from-left-4 duration-1000">
           <h1 className="text-earth-100 text-5xl md:text-7xl lg:text-8xl font-display font-medium leading-[1.1] tracking-tight mb-8 drop-shadow-2xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
-           
-            <span className="italic text-gold-500"> Designed Deliberately</span>
+            <span className="italic text-gold-500">Designed Deliberately.</span>
           </h1>
           <p className="text-earth-300/80 text-xl md:text-2xl font-light leading-relaxed w-full font-body">
-            An environment designed to reduce interference.<br/> Clarity follows.
+            The Silent Club is an environment structured to reduce interference.<br />
+            Silence here is not aesthetic.
+            It is functional.
+            When external signals reduce, <br />attention stabilizes.
+            When attention stabilizes, direction surfaces.
+            Clarity follows structure.
           </p>
         </div>
       </div>

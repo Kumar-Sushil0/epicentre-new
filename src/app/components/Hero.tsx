@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -56,12 +57,34 @@ export default function Hero() {
       <div className="relative z-20 container px-4 md:px-16 max-w-7xl">
         <div className="max-w-6xl border-l-2 border-gold-500/50 pl-8 md:pl-12 py-4 animate-in slide-in-from-left-4 duration-1000">
           <h1 className="text-earth-100 text-5xl md:text-7xl lg:text-8xl font-display font-medium leading-[1.1] tracking-tight mb-8 drop-shadow-2xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
-            
-            <span className="italic text-gold-500">Silence reveals  direction</span>
+            <span className="italic text-gold-500">Silence as a Service.</span>
           </h1>
-          <p className="text-earth-300/80 text-xl md:text-2xl font-light leading-relaxed w-full font-body">
-            A void designed for introspection.
+          <p className="text-earth-300/80 text-xl md:text-2xl font-light leading-relaxed w-full font-body mb-8">
+            A structured void where external identities are temporarily suspended.<br />
+            Interference reduces.
+            Attention settles.
+            Clarity follows.
           </p>
+          
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 mt-8">
+            <Link
+              href="/test"
+              className="inline-flex items-center justify-center gap-2 bg-gold-600 hover:bg-gold-500 text-earth-950 px-8 py-4 rounded-md font-semibold transition-all duration-300 uppercase tracking-wider text-sm"
+              style={{ fontFamily: 'Outfit, sans-serif' }}
+            >
+              Explore Cycles
+              <span className="text-lg">→</span>
+            </Link>
+            <Link
+              href="/venue"
+              className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-gold-500 hover:bg-gold-500/10 text-gold-500 hover:text-gold-400 px-8 py-4 rounded-md font-semibold transition-all duration-300 uppercase tracking-wider text-sm"
+              style={{ fontFamily: 'Outfit, sans-serif' }}
+            >
+              Explore Estate
+              <span className="text-lg">→</span>
+            </Link>
+          </div>
         </div>
       </div>
 

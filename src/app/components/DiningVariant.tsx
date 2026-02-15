@@ -66,28 +66,28 @@ export default function DiningVariant() {
     {
       id: 0,
       category: "",
-      title: "Satvik Home Food",
-      description: "Uncomplicated vegetarian meals prepared for ease.",
+      title: "Private Rooms",
+      description: "Complete withdrawal and uninterrupted rest.",
       images: [
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuC7EqkXqQPU7fE4pLFU_Hk927TUqj83DfbTfUvPIihY2voNQvmPzkgFFvUowSJV8BeUmi3AK6_9d9MQPQBC_OXh3eBg9xIp_jNbcq4P1uQYXAH4udgKWxtFyRuenpPXcorX848v2tHHPWWYfK16iMhYDcmb9iw-JZ2WzgiEm9s4eNuGAgeRY8AMsVHC_k5fLfLYry5CbHdiz9uOsXZQFafe7IcPz2Ty17dsxEdLhomR6gW_ljYA7vJCFpBg4iyLqVjMKXTFWCffegD2"
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuAVMEXUIh--EZP5fQBMot7ipsmQCI4w60rUmtgCRCv8ONulpWU6j4OW3PA4o0KwMtwDejXpiV3FqTXgT7nqoXoF607AHGqURe06tVE0AJJHiBNB4j2SnpOgEZPJF0pxIiDKFCMCXMgJNvaxTOEUvwCFdufEX0U71Q97lChwn8BYapAJ7AhXcZyouXA-0N-z17ZVe2XJLlN_HlI52GtQDyehXMU8BVLZgXkkHX6im_VJfSbOxCGyWsr8TyrlTTsuVxyxPSqfBw9r4Y8h"
       ],
     },
     {
       id: 1,
       category: "",
-      title: "Smoothies, Sandwiches & Salads",
-      description: "Occasional lighter preparations",
+      title: "Shared Dorm",
+      description: "Quiet coexistence with clear boundaries.",
       images: [
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuBPPRi1KA1SSwhk_HwPBfDwwsAERrk2PJlQEBBT-t3vsDceOPFxRCmCS2hOSB75G50kN4biPj2O6wed6Y5WHy9QYxwfH8SnuPsoH85EkeBG2eWtd61u1kxzb7Hvo1aRqQz8Hw0fhpybRMYRkBpd0hO_yyjc9Cd8p7GUmT-FXalpznzlPS8i_pqPTP-dRL1gJP5yqyABEWDkhy7V7DJxmjQTkdmmZh4DIyIpX7FcKG1hcb2P7A7ZA6abK6NzUJeiJWEJAKb5pwvQZMa5"
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuB_dFvHyP31JXbQRtNiZIUI94-8e_c0QShxJv1rmygbtridAA9K46Xa3QhUDB7a44eMqsv-s9HFVkx-o6wpN6WzGZo0WpEzDa285WmpQTAGbCzD1Tp-F9gThsXPoSRToC8oFd7uJnGoyIN_Sjm91MvJl0esPwg3ZmjulH3thRT0IQP81wmV2KshhQQAGu7dlmLU4FCvPYpIMWQcOHr_ot6fmFNikZK7soyC-7hY7XhmrrJeGaYljsrGvN5Ph4Zg71ul-P1-OCwhmPEl"
       ],
     },
     {
       id: 2,
       category: "",
-      title: "Wood-Fired Pizza, Barbeque & Sushi",
-      description: "Infrequent communal cooking, unhurried and shared.",
+      title: "Minimal Tents",
+      description: "Minimal shelter close to land and weather.",
       images: [
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuC72-qeY2eEUj-PVITTUo2cNBi448iUqzdHsoEipULmOX22vormapus2Ny-vkyznBYe1cCZEDjbvLIrW3GuSkIg8UG6cSQjorFd6SxJCSZjnFSUZunRVmsTumGnkttyCeI4bOc-hMIgYBiaqmhKgUJg4c3nVIhqa5238Nu7Cy11M88SVYJR3uvYHZhULleRmsgdg5DSXMHj_jRUCrX6fP_8TMxU7wgAkfOOrz1iU2VMvmW0E8_9TXF6oBAkhRYNTypjcCZ0XHF-AP5d"
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuA6cp533rD2hQD7h4B-RpKKREBmm3s8x90hpO9pcXHR7Jj_t5Irxlyz92Hrm5LmCpp-_4wiRrD2igTCEBlSvWz9ZSIXh9rLXb5yANk7rWHOHLz7TfkkJfecRmovPUNnrruP-zbpoMFSueAEVvahR4K9I0KbmDplWZyocDTz6ebvHgdNgJ00Jidrk0zs5VuMdNEcRv3opfOO2ADL-3hlSX4BDN7SxBx8qQ3cpIgZhFKbikP7rtaljp_bYwXVa4ZIQrkl0QVmO7YJ4Dfg"
       ],
     },
   ];
@@ -96,37 +96,19 @@ export default function DiningVariant() {
     {
       id: 0,
       category: "",
-      title: "Private Rooms",
-      description: "For complete withdrawal and uninterrupted rest. No shared space. No external interruption.",
+      title: "Simple, Intentional Meals",
+      description: "Uncomplicated vegetarian meals prepared for ease.",
       images: [
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuAVMEXUIh--EZP5fQBMot7ipsmQCI4w60rUmtgCRCv8ONulpWU6j4OW3PA4o0KwMtwDejXpiV3FqTXgT7nqoXoF607AHGqURe06tVE0AJJHiBNB4j2SnpOgEZPJF0pxIiDKFCMCXMgJNvaxTOEUvwCFdufEX0U71Q97lChwn8BYapAJ7AhXcZyouXA-0N-z17ZVe2XJLlN_HlI52GtQDyehXMU8BVLZgXkkHX6im_VJfSbOxCGyWsr8TyrlTTsuVxyxPSqfBw9r4Y8h"
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuC7EqkXqQPU7fE4pLFU_Hk927TUqj83DfbTfUvPIihY2voNQvmPzkgFFvUowSJV8BeUmi3AK6_9d9MQPQBC_OXh3eBg9xIp_jNbcq4P1uQYXAH4udgKWxtFyRuenpPXcorX848v2tHHPWWYfK16iMhYDcmb9iw-JZ2WzgiEm9s4eNuGAgeRY8AMsVHC_k5fLfLYry5CbHdiz9uOsXZQFafe7IcPz2Ty17dsxEdLhomR6gW_ljYA7vJCFpBg4iyLqVjMKXTFWCffegD2"
       ],
     },
     {
       id: 1,
       category: "",
-      title: "Dorms",
-      description: "Quiet coexistence with clear boundaries. No expectation of interaction or engagement.",
+      title: "Self-Serve Options",
+      description: "Occasional lighter preparations available anytime.",
       images: [
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuB_dFvHyP31JXbQRtNiZIUI94-8e_c0QShxJv1rmygbtridAA9K46Xa3QhUDB7a44eMqsv-s9HFVkx-o6wpN6WzGZo0WpEzDa285WmpQTAGbCzD1Tp-F9gThsXPoSRToC8oFd7uJnGoyIN_Sjm91MvJl0esPwg3ZmjulH3thRT0IQP81wmV2KshhQQAGu7dlmLU4FCvPYpIMWQcOHr_ot6fmFNikZK7soyC-7hY7XhmrrJeGaYljsrGvN5Ph4Zg71ul-P1-OCwhmPEl"
-      ],
-    },
-    {
-      id: 2,
-      category: "",
-      title: "Community Hall",
-      description: "A transformable indoor space for co-living and stillness. Used collectively. Held in common.",
-      images: [
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuB0W9yJw8axjF-kN3nS3rx2wcnSyZDgPPr4N6-dQHkur_vVcYF7VJDVWzdTVlXQINnv8OPubPGsP93vzoZSB1siyf5Dfyl4VbjsiDfThEFh4mCXDJb2-Q3XzsQ-yKSgt_d9eFJgNilz-sF-0wpPmMdd_1eUEJmyZqiPXLW-gBggW1zAzs7-S96DxPtCF5pg4bxnbJGHsTOiNtH_b3S1jWkXeIxnAOQavLlixwoNfkJe-ZzbvSK4qZMGzvYZFscIPgABiVcKzflo9wUo"
-      ],
-    },
-    {
-      id: 3,
-      category: "",
-      title: "Tents",
-      description: "Minimal shelter close to land and weather. Exposure over insulation.",
-      images: [
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuA6cp533rD2hQD7h4B-RpKKREBmm3s8x90hpO9pcXHR7Jj_t5Irxlyz92Hrm5LmCpp-_4wiRrD2igTCEBlSvWz9ZSIXh9rLXb5yANk7rWHOHLz7TfkkJfecRmovPUNnrruP-zbpoMFSueAEVvahR4K9I0KbmDplWZyocDTz6ebvHgdNgJ00Jidrk0zs5VuMdNEcRv3opfOO2ADL-3hlSX4BDN7SxBx8qQ3cpIgZhFKbikP7rtaljp_bYwXVa4ZIQrkl0QVmO7YJ4Dfg"
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuBPPRi1KA1SSwhk_HwPBfDwwsAERrk2PJlQEBBT-t3vsDceOPFxRCmCS2hOSB75G50kN4biPj2O6wed6Y5WHy9QYxwfH8SnuPsoH85EkeBG2eWtd61u1kxzb7Hvo1aRqQz8Hw0fhpybRMYRkBpd0hO_yyjc9Cd8p7GUmT-FXalpznzlPS8i_pqPTP-dRL1gJP5yqyABEWDkhy7V7DJxmjQTkdmmZh4DIyIpX7FcKG1hcb2P7A7ZA6abK6NzUJeiJWEJAKb5pwvQZMa5"
       ],
     },
   ];
@@ -135,8 +117,8 @@ export default function DiningVariant() {
     {
       id: 0,
       category: "",
-      title: "Wellness",
-      description: "Always-available practices that support the body and nervous system. Unscheduled and untracked.",
+      title: "Outdoor Gym",
+      description: "Always-available practices that support the body.",
       images: [
         "https://lh3.googleusercontent.com/aida-public/AB6AXuAG8sRV16GeDF6s3Aix4GpETZ3eauYTdeaL5IlWaBQHdmLaEUl8HwITF-icK7rBJH3rs4_eyRc0OnTyudHniz8NCe3oRC2k5_KcTRLReqJdws9zmY25stjYSrFvYvnbb4fxetbYlgcqCJDWwMaBr_6UB09wT864MpT6mLPkqnqxG3JPy_DNNFOMUqcmW8iZWOE4etCbj4TW4EEkBzJss4y7vWzlNmUWjLyUiZaka0GRqyef8OxRV6v8-KYfO5Y2EoBHFW0f3nVZFV6T"
       ],
@@ -144,8 +126,8 @@ export default function DiningVariant() {
     {
       id: 1,
       category: "",
-      title: "Activities",
-      description: "Guided sessions led by experienced practitioners. Offered by booking, individually or in small groups. Each session stands on its own.",
+      title: "Contrast Recovery",
+      description: "Hot and cold therapy for nervous system regulation.",
       images: [
         "https://lh3.googleusercontent.com/aida-public/AB6AXuBzQUBgomUJe6e1OB_6dmTVcgR_GYt5k-UgoretbmfZ_izouiCOaK8YYEWLDt_QTV_ISyTECnULI_O5W2HYPqj6w163bSvDPTOBZHjRl7FljH8xAlUWQIAfo5Eosj0EPZTfwiMtkXcjRL7RThN1FokJa4gSqWamw681YNKmVWdMcKtTZpKktdALEho3axfgg38XvTVTyHnF8634k552ETsVCipetwOV8NQ9ujUeRJusTOeygeyE16mtVKBxnTDmtPIEduKGAtXfTURb"
       ],
@@ -153,28 +135,10 @@ export default function DiningVariant() {
     {
       id: 2,
       category: "",
-      title: "Solitude",
-      description: "Self-led, nature-based engagement. Resources are provided. Time is spent alone, without instruction or expectation.",
+      title: "Open Land Movement",
+      description: "Self-led, nature-based engagement without instruction.",
       images: [
         "https://lh3.googleusercontent.com/aida-public/AB6AXuA0HsBN67MCfII7SFbyoe1CuEbEDrqaYf7kqJpp72tE8oPKovG1zztOo__0OQzzELS2oQ_DGIuO1KS_1IVBucK8qj3FwvhRqbMhDhMbqm1ocMzXlUZu5zJy0ltLGZMhF5nbdxBiOOkVb0CbxNMhe3JUOqBjg4wMOeojwjaZBLtOtIZGd0bfLsFeA9XysJv44KgWPDDw2dfGb8kuCIadFmbgCYe5XTjiZwGX0My_VA7VqMgybDzGRzIgV_DDxQrBvxv58qq8EQmUqBNd"
-      ],
-    },
-    {
-      id: 3,
-      category: "",
-      title: "Experiment",
-      description: "Temporary containers for leaders and small groups testing ideas. Used for quiet iteration before public release. Nothing needs to be finished or shared.",
-      images: [
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuAPAjtxSh87gIafkgIqTQA4_WlBoXdA8o_35G4VKBbVse1DMUWiZfJRKzPGjlrGI9zwVUe17OPdlAa9eDGJimduOzWhw3_NGmPSM-owaLiC0ZDzOZrYwRq6gzX8Uu1NxkBzYzHe0-Wm213bdlpPLadfY9I9heB0l5jHHYlkSKpnweFU8u8Os8ZU0oPWnswySRkwRHCEuWRJSQkWsiJi0KIugcnXUrIgi8mK3Lhpej9bLkfGjJANLbVri_x-pda8_oyarPiN1ILubRWR"
-      ],
-    },
-    {
-      id: 4,
-      category: "",
-      title: "Residency",
-      description: "Multi-day immersions around a single question. Hosted by opinion leaders with a selective group. Designed for sustained inquiry and deeper conversation.",
-      images: [
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuBnwCob9OLts6qzhSrAp3eGecAESNXcyBepcvKiD43IYeSQeZnKWVuCMxf2Em1PtMNEYmxk31bHbccgtnM7PlImtP3GGqHD8EkAwnRQ-0xJaDkpbAZlq87zjDkcVEyia-I8Qof9KGapcrL8UBqCCp5MUlsZ_xwtnbC3yH02WXO6nOH4VaPmqgUhGy5ji8U2Kd_cROe0lJLPalg7mRvnccU_ZlrTAQuU9IuFXmr4DuqqLNotB-Ey-0kbqiReB8HUzw2-yYrArpRYEVc-"
       ],
     },
   ];
@@ -207,14 +171,14 @@ export default function DiningVariant() {
     <section ref={sectionRef} className="py-24 min-h-[100vh] bg-earth-900 flex items-center" id="dining">
       <div className="w-full px-6 md:px-16">
         <div className="mb-8">
-          <h3 className="text-3xl font-bold mb-2 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Food</h3>
+          <h3 className="text-3xl font-bold mb-2 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>The Club Includes</h3>
           <p className="text-[#e7dfd3] font-body text-lg max-w-full">
-            Food is structured to support steadiness and attention.
+            Accommodations, Food, and Practice & Recovery
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Food Carousel */}
+          {/* Accommodations Carousel */}
           <div className="relative">
             <div className="relative">
               {items.map((item, index) => (
@@ -275,7 +239,7 @@ export default function DiningVariant() {
             </div>
           </div>
 
-          {/* Accommodation Carousel */}
+          {/* Food Carousel */}
           <div className="relative">
             <div className="relative">
               {accommodationItems.map((item, index) => (
@@ -336,7 +300,7 @@ export default function DiningVariant() {
             </div>
           </div>
 
-          {/* Experiences Carousel */}
+          {/* Practice & Recovery Carousel */}
           <div className="relative">
             <div className="relative">
               {experienceItems.map((item, index) => (

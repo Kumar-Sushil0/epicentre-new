@@ -14,6 +14,9 @@ import Location from "./components/Location";
 import Footer from "./components/Footer";
 import PathOfLove from "./components/PathOfLove";
 import Reviews from "./components/Reviews";
+import DesignedDeliberately from "./components/DesignedDeliberately";
+import VoidAndFormats from "./components/VoidAndFormats";
+import CycleInquiryForm from "./components/CycleInquiryForm";
 
 export default function Home() {
   return (
@@ -21,18 +24,14 @@ export default function Home() {
       <Header />
       <Hero />
       <Philosophy />
+      <DesignedDeliberately />
+      <VoidAndFormats />
       
-
       <WhatThisIsNot />
-
       <DiningVariant />
       <Location />
       <ServicesOffering />
-
-     
-
-     
-      
+      <CycleInquiryForm />
      
       <Footer />
     </main>
