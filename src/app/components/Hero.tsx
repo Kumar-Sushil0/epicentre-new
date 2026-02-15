@@ -23,6 +23,9 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-end pb-20 overflow-hidden">
+      {/* Top Shadow for Header Visibility */}
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-earth-950/80 to-transparent z-10"></div>
+      
       {/* Video Background with Crossfade */}
       <div className="absolute inset-0 z-0">
         {videos.map((src, index) => (

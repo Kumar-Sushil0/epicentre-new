@@ -4,6 +4,7 @@ import { ShopProvider } from "./context/ShopContext";
 import { AuthProvider } from "./context/AuthContext";
 import SmoothScroll from "./components/SmoothScroll";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
+import VerticalBookNow from "./components/VerticalBookNow";
 
 export const metadata: Metadata = {
   title: "The Silent Club",
@@ -29,6 +30,7 @@ export default function RootLayout({
             <SmoothScroll />
             {children}
             <FloatingWhatsApp />
+            <VerticalBookNow />
           </ShopProvider>
         </AuthProvider>
       </body>

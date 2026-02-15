@@ -14,7 +14,6 @@ import Location from "./components/Location";
 import Footer from "./components/Footer";
 import PathOfLove from "./components/PathOfLove";
 import Reviews from "./components/Reviews";
-import VerticalBookNow from "./components/VerticalBookNow";
 
 export default function Home() {
   return (
@@ -36,7 +35,6 @@ export default function Home() {
       
      
       <Footer />
-      <VerticalBookNow />
     </main>
   );
 }
