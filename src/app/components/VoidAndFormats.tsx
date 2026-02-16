@@ -29,10 +29,10 @@ export default function VoidAndFormats() {
             </div>
           </div>
 
-          {/* Formats of Use - Right Side */}
+          {/* Modes - Right Side */}
           <div>
             <h2 className="text-4xl md:text-5xl font-semibold text-gold-500 mb-8 text-center lg:text-left" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Formats of Use
+              Modes
             </h2>
 
             <div className="space-y-6">

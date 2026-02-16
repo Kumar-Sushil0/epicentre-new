@@ -199,11 +199,11 @@ export default function StoriesPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-earth-900 text-earth-100  ">
+    <main className="min-h-screen bg-earth-900 text-earth-100">
       <Header />
       <StoriesHero />
       <StoriesCategoryNav />
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-10 py-12">
+      <div className="w-full px-16 py-12">
         {storyCategories.map((category) => (
           <section
             key={category.id}

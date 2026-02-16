@@ -3,7 +3,7 @@ export default function FormatsOfUse() {
     <section className="py-24 px-6 md:px-16 bg-earth-900">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-semibold text-gold-500 mb-16 text-center" style={{ fontFamily: 'Outfit, sans-serif' }}>
-          Formats of Use
+          Modes
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
