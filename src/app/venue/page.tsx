@@ -10,10 +10,12 @@ import VenueSection from "../components/venue/VenueSection";
 export default function VenuePage() {
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
     collective: true,
+    food: false,
     intimate: false,
     physical: false,
     creative: false,
     living: false,
+    wildlife: false,
   });
 
   const toggleSection = (id: string) => {
@@ -68,6 +70,66 @@ export default function VenuePage() {
           area: "Canvas tent",
           capacity: "2 ppl",
           href: "/venue#collective",
+        },
+      ],
+    },
+    {
+      id: "food",
+      title: "Food",
+      icon: "restaurant",
+      introText: "Dining spaces and culinary experiences.",
+      usedFor: "Shared meals. Mindful eating. Culinary workshops. Nutritional awareness.",
+      closingText: "Food is prepared with intention. Meals are consumed in silence or conversation.",
+      venues: [
+        {
+          title: "Main Dining Hall",
+          description: "Dining spaces and culinary experiences.\n\nUsed for: Shared meals. Mindful eating. Culinary workshops. Nutritional awareness.\n\nFood is prepared with intention. Meals are consumed in silence or conversation.",
+          image:
+            "https://lh3.googleusercontent.com/aida-public/AB6AXuDmYE7uQzqCPEUSx1PzSQvaNJcQur_MMIW0hlWNehK-OFDueDgUN7lYbLrTKCcFHpwgAgnc1VWNFhHTq7N4UITYxKAY3BjPsfNFQ8jxpqM0WaY0-2XQWEkef1LVUzXK83qSQa-FlCnmdCMui0DUfT7mqUeme6SDTsdQjp30zLpzdY2kJ9oMfEa6grHmfNxFPNz31Mt-_im9r1Li8DG-T0vHYjL48QPNl9dFL4STTKEs-C-hDp9lugle-UDaVx5AhapFJFnFBBWHVh_P",
+          imageAlt: "Main dining hall",
+          area: "1,500 sqft",
+          capacity: "60 ppl",
+          href: "/venue#food",
+        },
+        {
+          title: "Outdoor Dining Terrace",
+          description: "Dining spaces and culinary experiences.\n\nUsed for: Shared meals. Mindful eating. Culinary workshops. Nutritional awareness.\n\nFood is prepared with intention. Meals are consumed in silence or conversation.",
+          image:
+            "https://lh3.googleusercontent.com/aida-public/AB6AXuAZvB7dROLa44DAlcGJoRtqzbbwxWyyCNe3fUBZfM8D6c5CKq0WdORTws7ezr9vbFawAbXzrE-ZZSWYt3CHMyZq8l2blVHLd26TEQEzP4EVqAcZpKA39A84XoD9heaUCra8vcMxPcZJ9mOC5sCQpEkOd5L-H39YTm7hAH7kI0aiNS69razeZ3jCiDSmfFZ2v1_VJ34aTIw6bRX6MSvShGkI0mC3TUfjQ2ABus_MXRX_adQiqDmsLBTmQOyBVgvdnPeJWO5uCKQXJXqO",
+          imageAlt: "Outdoor dining terrace",
+          area: "800 sqft",
+          capacity: "30 ppl",
+          href: "/venue#food",
+        },
+        {
+          title: "Community Kitchen",
+          description: "Dining spaces and culinary experiences.\n\nUsed for: Shared meals. Mindful eating. Culinary workshops. Nutritional awareness.\n\nFood is prepared with intention. Meals are consumed in silence or conversation.",
+          image:
+            "https://lh3.googleusercontent.com/aida-public/AB6AXuCqvrjbiNk16kuSjOdYFpXtempYrXm89EALbe3XqRvFXP-BVXZZ0QkKKO0gQDRqUVh5-YEmfUm0OlduKC5QSXRss6wVYioG8pDrHONJXmskFVQGB2irQ8UQxme2xhF2OZpnsOXmPVqNzONG7VwP7WO39Qv6Es_HlHnrBgvQ6g0X9cH3g8wbjKLvr8HV1-Md_re2ianXRvgviiPJukMIOWmjIIT_Ymw48XJieYgEQvGfNDxo_QUZjknlWvaLkih4WkYK55Cd3UHhwyiR",
+          imageAlt: "Community kitchen",
+          area: "600 sqft",
+          capacity: "12 ppl",
+          href: "/venue#food",
+        },
+        {
+          title: "Tea Garden",
+          description: "Dining spaces and culinary experiences.\n\nUsed for: Shared meals. Mindful eating. Culinary workshops. Nutritional awareness.\n\nFood is prepared with intention. Meals are consumed in silence or conversation.",
+          image:
+            "https://lh3.googleusercontent.com/aida-public/AB6AXuCCrs3CWaQXPNPCzn-2Yu6zw3_BhwMdFIZ3V6lL8vKk_YXGKO3hGxPc7NzGcZU8MniT56_7aDMKLp8a3UlZjiZ0qqfBBBqi7AfWcDKlssA9PsirRmLIkbz5Cjz2vzwlerlVc1PKWOC7D3L68AjvDABGMpGYKfnUbMMbqpi5e_Z4tu0NBqrm7APkJgbLU7-23jUHGR2F0uSNWUE0XjXpEX1HWiQKE0a4IhN81qOs-cgFvTWhCofrZrGUKz90lh7sfbRzy5NgB6xLmGLc",
+          imageAlt: "Tea garden",
+          area: "400 sqft",
+          capacity: "15 ppl",
+          href: "/venue#food",
+        },
+        {
+          title: "Private Dining Room",
+          description: "Dining spaces and culinary experiences.\n\nUsed for: Shared meals. Mindful eating. Culinary workshops. Nutritional awareness.\n\nFood is prepared with intention. Meals are consumed in silence or conversation.",
+          image:
+            "https://lh3.googleusercontent.com/aida-public/AB6AXuDmYE7uQzqCPEUSx1PzSQvaNJcQur_MMIW0hlWNehK-OFDueDgUN7lYbLrTKCcFHpwgAgnc1VWNFhHTq7N4UITYxKAY3BjPsfNFQ8jxpqM0WaY0-2XQWEkef1LVUzXK83qSQa-FlCnmdCMui0DUfT7mqUeme6SDTsdQjp30zLpzdY2kJ9oMfEa6grHmfNxFPNz31Mt-_im9r1Li8DG-T0vHYjL48QPNl9dFL4STTKEs-C-hDp9lugle-UDaVx5AhapFJFnFBBWHVh_P",
+          imageAlt: "Private dining room",
+          area: "300 sqft",
+          capacity: "8 ppl",
+          href: "/venue#food",
         },
       ],
     },
@@ -318,6 +380,56 @@ export default function VenuePage() {
           area: "N/A",
           capacity: "1 ppl",
           href: "/venue#living",
+        },
+      ],
+    },
+    {
+      id: "wildlife",
+      title: "Wildlife & Nature",
+      icon: "nature",
+      introText: "Natural environments and wildlife observation areas.",
+      usedFor: "Bird watching. Nature walks. Wildlife photography. Ecological observation.",
+      closingText: "Respect the habitat. Observe without disturbing.",
+      venues: [
+        {
+          title: "Bird Sanctuary Trail",
+          description: "Natural environments and wildlife observation areas.\n\nUsed for: Bird watching. Nature walks. Wildlife photography. Ecological observation.\n\nRespect the habitat. Observe without disturbing.",
+          image:
+            "https://lh3.googleusercontent.com/aida-public/AB6AXuDmYE7uQzqCPEUSx1PzSQvaNJcQur_MMIW0hlWNehK-OFDueDgUN7lYbLrTKCcFHpwgAgnc1VWNFhHTq7N4UITYxKAY3BjPsfNFQ8jxpqM0WaY0-2XQWEkef1LVUzXK83qSQa-FlCnmdCMui0DUfT7mqUeme6SDTsdQjp30zLpzdY2kJ9oMfEa6grHmfNxFPNz31Mt-_im9r1Li8DG-T0vHYjL48QPNl9dFL4STTKEs-C-hDp9lugle-UDaVx5AhapFJFnFBBWHVh_P",
+          imageAlt: "Bird sanctuary trail",
+          area: "3 km trail",
+          capacity: "20 ppl",
+          href: "/venue#wildlife",
+        },
+        {
+          title: "Lakeside Observation Deck",
+          description: "Natural environments and wildlife observation areas.\n\nUsed for: Bird watching. Nature walks. Wildlife photography. Ecological observation.\n\nRespect the habitat. Observe without disturbing.",
+          image:
+            "https://lh3.googleusercontent.com/aida-public/AB6AXuAZvB7dROLa44DAlcGJoRtqzbbwxWyyCNe3fUBZfM8D6c5CKq0WdORTws7ezr9vbFawAbXzrE-ZZSWYt3CHMyZq8l2blVHLd26TEQEzP4EVqAcZpKA39A84XoD9heaUCra8vcMxPcZJ9mOC5sCQpEkOd5L-H39YTm7hAH7kI0aiNS69razeZ3jCiDSmfFZ2v1_VJ34aTIw6bRX6MSvShGkI0mC3TUfjQ2ABus_MXRX_adQiqDmsLBTmQOyBVgvdnPeJWO5uCKQXJXqO",
+          imageAlt: "Lakeside observation deck",
+          area: "500 sqft",
+          capacity: "15 ppl",
+          href: "/venue#wildlife",
+        },
+        {
+          title: "Forest Walking Path",
+          description: "Natural environments and wildlife observation areas.\n\nUsed for: Bird watching. Nature walks. Wildlife photography. Ecological observation.\n\nRespect the habitat. Observe without disturbing.",
+          image:
+            "https://lh3.googleusercontent.com/aida-public/AB6AXuCqvrjbiNk16kuSjOdYFpXtempYrXm89EALbe3XqRvFXP-BVXZZ0QkKKO0gQDRqUVh5-YEmfUm0OlduKC5QSXRss6wVYioG8pDrHONJXmskFVQGB2irQ8UQxme2xhF2OZpnsOXmPVqNzONG7VwP7WO39Qv6Es_HlHnrBgvQ6g0X9cH3g8wbjKLvr8HV1-Md_re2ianXRvgviiPJukMIOWmjIIT_Ymw48XJieYgEQvGfNDxo_QUZjknlWvaLkih4WkYK55Cd3UHhwyiR",
+          imageAlt: "Forest walking path",
+          area: "2 km trail",
+          capacity: "25 ppl",
+          href: "/venue#wildlife",
+        },
+        {
+          title: "Wetland Viewing Point",
+          description: "Natural environments and wildlife observation areas.\n\nUsed for: Bird watching. Nature walks. Wildlife photography. Ecological observation.\n\nRespect the habitat. Observe without disturbing.",
+          image:
+            "https://lh3.googleusercontent.com/aida-public/AB6AXuCCrs3CWaQXPNPCzn-2Yu6zw3_BhwMdFIZ3V6lL8vKk_YXGKO3hGxPc7NzGcZU8MniT56_7aDMKLp8a3UlZjiZ0qqfBBBqi7AfWcDKlssA9PsirRmLIkbz5Cjz2vzwlerlVc1PKWOC7D3L68AjvDABGMpGYKfnUbMMbqpi5e_Z4tu0NBqrm7APkJgbLU7-23jUHGR2F0uSNWUE0XjXpEX1HWiQKE0a4IhN81qOs-cgFvTWhCofrZrGUKz90lh7sfbRzy5NgB6xLmGLc",
+          imageAlt: "Wetland viewing point",
+          area: "300 sqft",
+          capacity: "10 ppl",
+          href: "/venue#wildlife",
         },
       ],
     },

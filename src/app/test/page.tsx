@@ -216,9 +216,7 @@ export default function TestPage() {
                         <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             Experiments
                         </h2>
-                        <h3 className="text-2xl  text-gold-500 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                            Unfinished by Design
-                        </h3>
+                        
                         {expressionExpanded && (
                             <div className="space-y-6">
                                 <p className="text-earth-300 text-base leading-relaxed">
@@ -388,9 +386,7 @@ export default function TestPage() {
                         <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             Solitude
                         </h2>
-                        <h3 className="text-2xl text-gold-500 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                            Time Without Instruction
-                        </h3>
+                        
                         {solitudeExpanded && (
                             <div className="space-y-6">
                                 <p className="text-earth-300 text-base leading-relaxed">
@@ -562,9 +558,7 @@ export default function TestPage() {
                         <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             Clarity Residency
                         </h2>
-                        <h3 className="text-2xl text-gold-500 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                            Rare. Limited. Question-Centered.
-                        </h3>
+                        
                         {residencyExpanded && (
                             <div className="space-y-6">
                                 <p className="text-earth-300 text-base leading-relaxed">

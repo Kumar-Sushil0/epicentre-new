@@ -1,0 +1,250 @@
+export interface BlogPostDetail {
+  title: string;
+  subtitle: string;
+  category: string;
+  author: string;
+  date: string;
+  image: string;
+  content: string[];
+}
+
+export const blogPosts: Record<string, BlogPostDetail> = {
+  "lack-attention": {
+    title: "You Don't Lack Answers. You Lack Attention.",
+    subtitle: "Why clarity is not intelligence — it's continuity.",
+    category: "Silence & Attention",
+    author: "The Silent Club",
+    date: "2024",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBzQUBgomUJe6e1OB_6dmTVcgR_GYt5k-UgoretbmfZ_izouiCOaK8YYEWLDt_QTV_ISyTECnULI_O5W2HYPqj6w163bSvDPTOBZHjRl7FljH8xAlUWQIAfo5Eosj0EPZTfwiMtkXcjRL7RThN1FokJa4gSqWamw681YNKmVWdMcKtTZpKktdALEho3axfgg38XvTVTyHnF8634k552ETsVCipetwOV8NQ9ujUeRJusTOeygeyE16mtVKBxnTDmtPIEduKGAtXfTURb",
+    content: [
+      "Most people assume clarity requires more information. Another framework. Another conversation. Another opinion.",
+      "But clarity rarely fails because of missing input. It fails because thinking is interrupted before it completes itself.",
+      "Attention requires continuity. Continuity requires reduced interruption probability.",
+      "This is why the Tree House at The Silent Club exists. It is elevated and positioned away from shared pathways. Not for aesthetics. For signal reduction.",
+      "When you sit there, peripheral movement drops. Spontaneous conversation decreases. Environmental noise thins.",
+      "Inside, there is a desk. A canvas holder. A chair that folds into a makeshift bed. A small lamp. A fan. A single plug point. Nothing more.",
+      "The design is deliberate. You can read without distraction. Journal without interruption. Paint without commentary. Write fictional narratives about an alter ego you have never voiced. Meditate without someone timing you. Finish a piece of work you have postponed for months. Or take a nap when your thinking exhausts itself.",
+      "No one instructs you what to do. The space does not dictate activity. It only reduces interference.",
+      "There are many ways to experiment with silence. Some people sit still. Some write. Some sketch. Some stare at open land until their thinking reorganizes.",
+      "The Tree House is one step deeper in silence. It is not isolation. It is controlled distance.",
+      "You climb up with an unfinished thought. You come down only after it completes.",
+      "Clarity is not delivered there. It stabilizes there.",
+      "The Silent Club does not give you answers. It adjusts environmental variables. What you do inside them is your authorship.",
+      "When was the last time your thinking completed without interruption?"
+    ]
+  },
+  "stimulation-default": {
+    title: "Why Stimulation Is the Default Setting of Modern Life",
+    subtitle: "How engineered noise fragments thinking.",
+    category: "Silence & Attention",
+    author: "The Silent Club",
+    date: "2024",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDRDZ8o-JGgFjqHv3XthGLGz519OyZYTh_sWwcvBjdQQIzolyCXSsUjdTvivWDhmcltlTFvD71iGQr0I77PCKoXLuqGYJ22zlf__h8EMkv791VfiUJnEUc4ykgWQtr9O5EBzFF-MJ07jrYOwEkyg5xEl0X9ayH0rYcb9diiyN68oouAfDUUeOTFPIBjvnYN8xELQ9oCDNI2lBDINuvnt6NQPsVbvR-t4c4gZrshZ1RXGQrACrjJyPGfT62LIZeuaMXegi9fS2KKrZ35",
+    content: [
+      "Silence is often framed as spiritual. Meditative. Sacred. Mystical.",
+      "But silence does not require belief. It requires structure.",
+      "Most people experience silence accidentally in traffic, late at night, during a power cut. But accidental silence does not stabilize attention. Structured silence does.",
+      "The Dark Room at The Silent Club exists for this reason. It is not symbolic. It is fully light-sealed. No ambient glow. No visual outline. No shifting shadows.",
+      "Inside, visual stimulus drops to near zero. When vision disappears, cognitive load shifts. The brain no longer tracks movement, color, or spatial edges. Attention begins to turn inward. Not because it is instructed to. Because it has fewer external anchors.",
+      "There are no prompts inside the Dark Room. No guided meditation. No timer. No soundtrack. Only a minimal sleeping surface and seated space.",
+      "Some people rest. Some sit upright. Some simply observe the discomfort of reduced stimulus.",
+      "The experience is not dramatic. In fact, the first reaction is often agitation. Without visual input, unresolved thoughts surface. Internal narratives amplify. Silence exposes unfinished processing.",
+      "This is why silence is uncomfortable for many people. It is not empty. It is unbuffered.",
+      "The Dark Room is not intended to induce revelation. It is designed to remove interference. There is no philosophy inside the room. Only reduced input.",
+      "Silence, when structured, becomes a tool. It allows attention to stabilize long enough for cognition to reorganize.",
+      "The Silent Club does not frame silence as sacred. It frames silence as functional.",
+      "When stimulus drops, thought completes. What happens after that depends on the person.",
+      "Silence does not teach. It reveals what was already unresolved.",
+      "The question is not whether silence works. The question is whether you are willing to remain with it."
+    ]
+  },
+  "silence-design-tool": {
+    title: "Silence Is a Design Tool, Not a Spiritual Practice",
+    subtitle: "Reframing silence as infrastructure.",
+    category: "Silence & Attention",
+    author: "The Silent Club",
+    date: "2024",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCL7r_EfdzJXByVkgj8b1NMj-ZAtICOd-7f0nIhoxkQIxwBXH598TGdlFxtN24GiUoEphwYF0zIlhdvgru9oSMfTu9oihv5xP2V32qk72jVhmmMD13Pcuc1s0mmIW9z0PwjwSoqpRfVVjN7zXydMqkaSSiGcvxYcCH0nmyLUFMqAU494-rLxIKe2FG8GvN3X8ki91b9auaQ6g5uK2zpi_NeVNIbCo2enuZdmqIXYer0VC9t9T7g6Bxyw44xX4oXh4-0yrKVSoFNsFSS",
+    content: [
+      "Most people think behavior is personal. It isn't. It is heavily environmental.",
+      "Walk into a courtroom — you lower your voice. Walk into a nightclub — you raise it. Walk into a temple — you slow down. Walk into a boardroom — you perform.",
+      "Architecture carries instruction. Lighting carries instruction. Seating arrangement carries instruction. Stage placement carries instruction. Even subtle hierarchy cues shape how people behave.",
+      "Most modern spaces are optimized for a single dominant behavior. Produce. Consume. Perform. Display.",
+      "Very few spaces allow behavioral flexibility without identity assignment.",
+      "The Design Dome at The Silent Club was built without fixed behavioral scripts. There is no permanent stage. No dominant focal point. No fixed layout.",
+      "In the morning, it can hold silent meditation. In the afternoon, it can hold quiet co-working. In the evening, it can become an art gallery. At night, it can hold a writers' workshop. Same structure. Different mode.",
+      "The architecture does not force identity. It adapts.",
+      "This matters more than it appears. When a space does not dictate your role, you begin to observe your own default patterns.",
+      "Do you take charge? Withdraw? Speak first? Stay silent? Wait for instruction?",
+      "Without environmental pressure, behavior becomes visible. And when behavior becomes visible, authorship becomes possible.",
+      "The Design Dome is not about silence alone. It is about non-programmed use. A container without role enforcement.",
+      "Modern life assigns roles constantly. Founder. Parent. Expert. Performer. Follower.",
+      "Inside the Dome, those roles are not activated by design. Only first names remain. The environment removes the script. What you enact then is your own pattern.",
+      "The Silent Club is not interested in controlling behavior. It removes cues that usually do.",
+      "The question is: Without a script, who are you?"
+    ]
+  },
+  "roles-pause": {
+    title: "What Remains When Your Roles Pause?",
+    subtitle: "On suspending external identity.",
+    category: "Identity & Sovereignty",
+    author: "The Silent Club",
+    date: "2024",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBzQUBgomUJe6e1OB_6dmTVcgR_GYt5k-UgoretbmfZ_izouiCOaK8YYEWLDt_QTV_ISyTECnULI_O5W2HYPqj6w163bSvDPTOBZHjRl7FljH8xAlUWQIAfo5Eosj0EPZTfwiMtkXcjRL7RThN1FokJa4gSqWamw681YNKmVWdMcKtTZpKktdALEho3axfgg38XvTVTyHnF8634k552ETsVCipetwOV8NQ9ujUeRJusTOeygeyE16mtVKBxnTDmtPIEduKGAtXfTURb",
+    content: [
+      "Most identities are relational. Parent. Founder. Partner. Leader. Expert. Employee.",
+      "These roles are not false. But they are contextual. They exist in response to systems. Work systems. Family systems. Social systems. Economic systems.",
+      "When those systems are removed temporarily, something subtle happens. Reaction slows. Performance drops. Posture changes.",
+      "The Silent Club calls this state the Void. The Void is not absence. It is suspension.",
+      "External identity markers are paused. You are not introduced by profession. You are not defined by achievements. You are not contextualized by biography. The environment does not activate your roles.",
+      "This can feel destabilizing at first. Many people are accustomed to being addressed through utility. What do you do? Where are you from? Who are you connected to?",
+      "When those questions disappear, something else surfaces. Without relational reinforcement, identity becomes quieter. Patterns emerge.",
+      "How you sit. How you react. Whether you fill silence. Whether you wait. Whether you dominate or withdraw.",
+      "Without role-based expectation, behavior becomes visible without justification.",
+      "The Void is not spiritual. It is diagnostic. It removes external mirrors.",
+      "When no one is responding to your title, your authority, or your narrative — what remains?",
+      "This is not about abandoning responsibility. You return to your roles after leaving. But you return to them having observed yourself without reinforcement.",
+      "Modern life rarely provides this contrast. Most people move from one identity-triggering environment to another. The Void interrupts that cycle.",
+      "It is temporary. Deliberate. Controlled.",
+      "The question is not who you are in your roles. The question is who you are without them.",
+      "Few people test that."
+    ]
+  },
+  "identity-designed": {
+    title: "Identity Is Usually Inherited. It Can Be Designed.",
+    subtitle: "Introducing authorship without preaching.",
+    category: "Identity & Sovereignty",
+    author: "The Silent Club",
+    date: "2024",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDRDZ8o-JGgFjqHv3XthGLGz519OyZYTh_sWwcvBjdQQIzolyCXSsUjdTvivWDhmcltlTFvD71iGQr0I77PCKoXLuqGYJ22zlf__h8EMkv791VfiUJnEUc4ykgWQtr9O5EBzFF-MJ07jrYOwEkyg5xEl0X9ayH0rYcb9diiyN68oouAfDUUeOTFPIBjvnYN8xELQ9oCDNI2lBDINuvnt6NQPsVbvR-t4c4gZrshZ1RXGQrACrjJyPGfT62LIZeuaMXegi9fS2KKrZ35",
+    content: [
+      "Most identity is inherited. Not consciously chosen.",
+      "You inherit a surname before you understand language. You inherit belief before you inherit doubt. You inherit expectation before you inherit autonomy.",
+      "Family scripts. Cultural narratives. Professional pathways. Moral frameworks. Layered gradually. Rarely examined.",
+      "By the time you begin making 'independent' decisions, the architecture is already built.",
+      "At the entrance of The Silent Club stands the Identity Cemetery. It is not symbolic décor. It is positioned deliberately at arrival. You see it before you enter.",
+      "Rows of stone markers. Blank. Weathered. Final.",
+      "The structure forces a quiet question: Which identity are you still carrying because it once worked?",
+      "Most growth models focus on addition. Add discipline. Add habits. Add frameworks. Add confidence. Very few question the base identity underneath.",
+      "Subtraction is more destabilizing than improvement.",
+      "The Cemetery exists because identity rarely dissolves on its own. People cling to versions of themselves long after those versions have expired.",
+      "The high-performer who is now exhausted. The rebel who is now defensive. The caretaker who is now resentful. The visionary who is now afraid.",
+      "We keep roles that once protected us. We keep labels that once gave us belonging. But identity that is never audited becomes inherited authority.",
+      "And inherited authority feels natural — even when it is misaligned.",
+      "The Cemetery is unsettling because burial implies closure. Not reinvention. Not rebranding. Closure.",
+      "No ceremony is conducted here. No one tells you what to let go of. There are no instructions. You decide whether a former version of you is complete.",
+      "If identity is never examined, it remains inherited. If it remains inherited, your authority remains borrowed.",
+      "Designing identity does not mean becoming someone new. It means consciously choosing what continues. And what ends.",
+      "The Cemetery stands at the entrance for a reason. Before you enter the Void, you are confronted with a possibility: Not everything you have been must continue.",
+      "And no one else can decide what you bury."
+    ]
+  },
+  "authority-authored": {
+    title: "Authority Is Not Borrowed. It Is Authored.",
+    subtitle: "The psychological basis of sovereignty.",
+    category: "Identity & Sovereignty",
+    author: "The Silent Club",
+    date: "2024",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCL7r_EfdzJXByVkgj8b1NMj-ZAtICOd-7f0nIhoxkQIxwBXH598TGdlFxtN24GiUoEphwYF0zIlhdvgru9oSMfTu9oihv5xP2V32qk72jVhmmMD13Pcuc1s0mmIW9z0PwjwSoqpRfVVjN7zXydMqkaSSiGcvxYcCH0nmyLUFMqAU494-rLxIKe2FG8GvN3X8ki91b9auaQ6g5uK2zpi_NeVNIbCo2enuZdmqIXYer0VC9t9T7g6Bxyw44xX4oXh4-0yrKVSoFNsFSS",
+    content: [
+      "Most buildings have entrances. Few have thresholds.",
+      "At The Silent Club, the entrance is architectural intent. Before you reach the main structure, you encounter three elements in sequence: The Identity Cemetery. A two-way staircase. A circular Moon Arch framing the lawn beyond.",
+      "This is not aesthetic layering. It is psychological sequencing.",
+      "The Cemetery confronts you first. It introduces subtraction.",
+      "The staircase follows. Two opposing paths. One for entry. One for exit. Same structure. Different direction.",
+      "It is a reminder that movement is not symmetrical. The person who walks in and the person who walks out are not identical — not because something was added, but because something was observed.",
+      "Between the two staircases stands the Moon Arch. A circular frame. No door. No gate. No barrier. You pass through an opening, not an obstruction.",
+      "The circle is deliberate. A square defines boundary. A circle defines continuity. You are not entering a new identity. You are stepping through a transition.",
+      "The Void is not inside the building. It begins at the threshold.",
+      "Modern environments rush you past transitions. Airport to car. Car to office. Office to meeting. Meeting to notification. No pause. No recalibration.",
+      "The entrance here slows sequence. You see before you step. You ascend before you cross. You pass through before you arrive.",
+      "This is not ritual. It is pacing.",
+      "Architecture shapes cognition. When movement slows, perception sharpens. When perception sharpens, internal dialogue becomes audible.",
+      "By the time you cross the arch, something subtle has already shifted. Not transformed. Shifted.",
+      "The estate does not claim rebirth. It does not promise reinvention. It creates contrast.",
+      "You leave with the same name. But if you were attentive, you do not leave with the same orientation.",
+      "The entrance is not decorative. It is structural interruption.",
+      "And interruption is the beginning of authorship."
+    ]
+  },
+  "environment-shapes-behavior": {
+    title: "Why Environment Shapes Behavior More Than Intention",
+    subtitle: "Architecture > motivation.",
+    category: "Environment & Structure",
+    author: "The Silent Club",
+    date: "2024",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBzQUBgomUJe6e1OB_6dmTVcgR_GYt5k-UgoretbmfZ_izouiCOaK8YYEWLDt_QTV_ISyTECnULI_O5W2HYPqj6w163bSvDPTOBZHjRl7FljH8xAlUWQIAfo5Eosj0EPZTfwiMtkXcjRL7RThN1FokJa4gSqWamw681YNKmVWdMcKtTZpKktdALEho3axfgg38XvTVTyHnF8634k552ETsVCipetwOV8NQ9ujUeRJusTOeygeyE16mtVKBxnTDmtPIEduKGAtXfTURb",
+    content: [
+      "Most people believe behavior changes through motivation. They wait for discipline. Clarity. Inspiration.",
+      "But behavior is rarely governed by intention alone. It is governed by environment.",
+      "Lighting alters pace. Noise alters cognition. Spatial density alters posture. Layout alters interaction.",
+      "You do not act independently of your surroundings. You adapt to them.",
+      "A crowded room accelerates speech. A silent room slows it. An open-plan office encourages reaction. A closed door encourages completion.",
+      "The Silent Club is built on a simple premise: Architecture precedes psychology.",
+      "This is why silence here is structural, not requested. Rooms are spaced to reduce auditory bleed. Movement corridors are open but not compressed.",
+      "There are no televisions in common areas. There are no ambient soundtracks. Lighting is warm and minimal at night. Conversations have designated zones.",
+      "The Design Dome can host meditation in the morning, quiet co-working in the afternoon, and structured dialogue in the evening — because its scale absorbs noise rather than amplifying it.",
+      "No one is instructed to behave differently. The space makes certain behaviors easier and others unnecessary.",
+      "When friction for distraction increases, attention stabilizes. When stimulation decreases, thought extends.",
+      "Most people attempt self-regulation in environments designed for interruption. They blame themselves when they fail.",
+      "But the environment was stronger than their intention.",
+      "The Silent Club does not rely on motivation. It relies on layout.",
+      "The goal is not to make you stronger than distraction. It is to make distraction structurally weaker than you.",
+      "Behavior then follows. Not through discipline. Through design."
+    ]
+  },
+  "fewer-choices-clarity": {
+    title: "Why Fewer Choices Create More Clarity",
+    subtitle: "Decision fatigue & structural reduction.",
+    category: "Environment & Structure",
+    author: "The Silent Club",
+    date: "2024",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDRDZ8o-JGgFjqHv3XthGLGz519OyZYTh_sWwcvBjdQQIzolyCXSsUjdTvivWDhmcltlTFvD71iGQr0I77PCKoXLuqGYJ22zlf__h8EMkv791VfiUJnEUc4ykgWQtr9O5EBzFF-MJ07jrYOwEkyg5xEl0X9ayH0rYcb9diiyN68oouAfDUUeOTFPIBjvnYN8xELQ9oCDNI2lBDINuvnt6NQPsVbvR-t4c4gZrshZ1RXGQrACrjJyPGfT62LIZeuaMXegi9fS2KKrZ35",
+    content: [
+      "Modern life celebrates abundance. More options. More customization. More upgrades. More flexibility.",
+      "But every choice consumes cognitive energy. What to eat. Where to sit. When to respond. Which version to choose.",
+      "Even trivial decisions fragment attention.",
+      "Decision-making is not free. It draws from the same executive resources required for deep thinking.",
+      "When small decisions accumulate, mental fatigue increases. Clarity suffers not because questions are difficult — but because attention is depleted.",
+      "The Silent Club reduces optionality deliberately. There are defined Cycles. Defined meal windows. Limited accommodation formats. No infinite menu. No excessive programming.",
+      "The goal is not restriction. It is preservation.",
+      "When food is simple, you stop negotiating preferences. When schedules are structured, you stop managing micro-choices. When options narrow, attention stabilizes.",
+      "Reduction increases depth.",
+      "Most environments attempt to attract through variety. Variety signals hospitality. But variety increases cognitive overhead.",
+      "Here, the opposite approach is taken. Choice is edited. Not eliminated. Edited.",
+      "You are free within structure. But you are not burdened with excess.",
+      "Clarity does not emerge from abundance. It emerges from subtraction.",
+      "When fewer decisions compete for bandwidth, consequential questions receive more space.",
+      "The Silent Club is not designed to impress through options. It is designed to protect attention.",
+      "Fewer variables. Longer thoughts. That is the trade."
+    ]
+  },
+  "agreement-enforcement": {
+    title: "Agreement Is Stronger Than Enforcement",
+    subtitle: "Why the Club model works.",
+    category: "Environment & Structure",
+    author: "The Silent Club",
+    date: "2024",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCL7r_EfdzJXByVkgj8b1NMj-ZAtICOd-7f0nIhoxkQIxwBXH598TGdlFxtN24GiUoEphwYF0zIlhdvgru9oSMfTu9oihv5xP2V32qk72jVhmmMD13Pcuc1s0mmIW9z0PwjwSoqpRfVVjN7zXydMqkaSSiGcvxYcCH0nmyLUFMqAU494-rLxIKe2FG8GvN3X8ki91b9auaQ6g5uK2zpi_NeVNIbCo2enuZdmqIXYer0VC9t9T7g6Bxyw44xX4oXh4-0yrKVSoFNsFSS",
+    content: [
+      "Most spaces rely on rules. Rules are written. Displayed. Enforced. They exist because alignment is assumed to be fragile.",
+      "But rules alone do not create culture. They create compliance.",
+      "Compliance functions only when monitored.",
+      "The Silent Club operates differently. It is structured as a Club.",
+      "Entry is not automatic. It is conversational. Expectation is clarified before arrival. Silence is not imposed. It is agreed upon.",
+      "This distinction matters. When behavior is externally enforced, resistance increases. When behavior is voluntarily adopted, stability increases.",
+      "The Club model reduces the need for correction. Guests understand the pace before they arrive.",
+      "They understand that the estate is not suited for high-stimulus gatherings. They understand that silence is structural, not optional.",
+      "Because access is conditional, enforcement becomes minimal.",
+      "Staff do not patrol silence. Architecture supports it. Shared understanding protects it.",
+      "Agreement creates internal regulation. Internal regulation requires less external control.",
+      "Most modern environments are open-access. They rely on signage and supervision to maintain order.",
+      "The Silent Club relies on alignment. Not everyone is suited for it. That is intentional.",
+      "Scale is secondary to coherence.",
+      "Culture does not scale through enforcement. It stabilizes through agreement.",
+      "When participants choose the conditions, the conditions hold.",
+      "The Club is not exclusive for prestige. It is selective for integrity.",
+      "Agreement is stronger than enforcement because it does not require constant correction. It requires clarity."
+    ]
+  }
+};

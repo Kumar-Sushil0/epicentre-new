@@ -6,10 +6,12 @@ export default function VenueCategoryNav() {
   const categories = useMemo(
     () => [
       { id: "collective", label: "Quarters" },
+      { id: "food", label: "Food" },
       { id: "intimate", label: "Practice" },
       { id: "physical", label: "Solitude" },
       { id: "creative", label: "Assembly" },
       { id: "living", label: "Symbols" },
+      { id: "wildlife", label: "Wildlife & Nature" },
     ],
     []
   );
