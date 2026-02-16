@@ -91,7 +91,7 @@ export default function Header() {
             </label>
           </div>
 
-          {/* RIGHT: Desktop Navigation + Login */}
+          {/* RIGHT: Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6">
             <nav className="flex items-center gap-6">
               <Link 
@@ -151,23 +151,7 @@ export default function Header() {
                 FAQ
               </Link>
             </nav>
-            
-            {/* Login Button */}
-            <Link
-              href="/login"
-              className="inline-flex items-center justify-center bg-transparent text-gold-500 hover:text-[#e7dfd3] font-bold py-2 rounded-full text-sm uppercase tracking-wider transition-colors"
-            >
-              Login
-            </Link>
           </div>
-
-          {/* Mobile Login Icon */}
-          <Link
-            href="/login"
-            className="md:hidden flex items-center justify-center w-10 h-10 text-gold-500 border border-gold-500 rounded-full"
-          >
-            <span className="material-symbols-outlined text-xl">person</span>
-          </Link>
         </div>
       </header>
 

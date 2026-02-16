@@ -1,11 +1,11 @@
 import nodemailer from "nodemailer";
 
-const emailUser = process.env.EMAIL_USER;
-const emailPass = process.env.EMAIL_PASS;
+const emailUser = process.env.LIDEMAIL;
+const emailPass = process.env.LIDEMAIL_SECRET;
 
 // Temporarily commented out to allow build without env variables
 // if (!emailUser || !emailPass) {
-//   throw new Error("Please define EMAIL_USER and EMAIL_PASS in your environment variables");
+//   throw new Error("Please define LIDEMAIL and LIDEMAIL_SECRET in your environment variables");
 // }
 
 export const transporter = emailUser && emailPass ? nodemailer.createTransport({
