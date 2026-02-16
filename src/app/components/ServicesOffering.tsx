@@ -1,14 +1,45 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 
 export default function ServicesOffering() {
+  const [accommodationType, setAccommodationType] = useState<'dorm' | 'room'>('dorm');
+
   return (
-    <section className="relative py-24 px-6 md:px-16 bg-earth-950">
+    <section id="cycles-section" className="relative py-24 px-6 md:px-16 bg-earth-950">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-semibold text-gold-500 mb-16 text-center" style={{ fontFamily: 'Outfit, sans-serif' }}>
+        <h2 className="text-4xl md:text-5xl font-semibold text-gold-500 mb-8 text-center" style={{ fontFamily: 'Outfit, sans-serif' }}>
           Cycles
         </h2>
+
+        {/* Toggle Switch */}
+        <div className="flex justify-center mb-12">
+          <div className="inline-flex items-center gap-2 bg-earth-800/50 rounded-lg p-1 border border-earth-700/50">
+            <button
+              onClick={() => setAccommodationType('dorm')}
+              className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${
+                accommodationType === 'dorm'
+                  ? 'bg-gold-500 text-earth-950'
+                  : 'text-earth-300 hover:text-gold-500'
+              }`}
+              style={{ fontFamily: 'Outfit, sans-serif' }}
+            >
+              Dorm
+            </button>
+            <button
+              onClick={() => setAccommodationType('room')}
+              className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${
+                accommodationType === 'room'
+                  ? 'bg-gold-500 text-earth-950'
+                  : 'text-earth-300 hover:text-gold-500'
+              }`}
+              style={{ fontFamily: 'Outfit, sans-serif' }}
+            >
+              Private Room
+            </button>
+          </div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           
@@ -55,17 +86,16 @@ export default function ServicesOffering() {
               </div>
               <div className="flex items-center gap-3">
                 <span className="text-gold-500">•</span>
+                <span className="text-earth-300 text-sm">Meals Included </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-gold-500">•</span>
                 <span className="text-earth-300 text-sm">Full access</span>
               </div>
             </div>
 
-            <div className="space-y-2 mt-auto">
-              <div className="text-gold-500 text-base font-semibold">
-                Dorm — ₹10,000
-              </div>
-              <div className="text-gold-500 text-base font-semibold">
-                Private Room — ₹15,000
-              </div>
+            <div className="text-gold-500 text-lg font-semibold mt-auto">
+              {accommodationType === 'dorm' ? '₹10,000' : '₹15,000'}
             </div>
           </div>
 
@@ -86,7 +116,7 @@ export default function ServicesOffering() {
               </div>
               <div className="flex items-center gap-3">
                 <span className="text-gold-500">•</span>
-                <span className="text-earth-300 text-sm">Sacred silence</span>
+                <span className="text-earth-300 text-sm">Meals Included</span>
               </div>
               <div className="flex items-center gap-3">
                 <span className="text-gold-500">•</span>
@@ -98,13 +128,8 @@ export default function ServicesOffering() {
               </div>
             </div>
 
-            <div className="space-y-2 mt-auto">
-              <div className="text-gold-500 text-base font-semibold">
-                Dorm — ₹20,000
-              </div>
-              <div className="text-gold-500 text-base font-semibold">
-                Private Room — ₹30,000
-              </div>
+            <div className="text-gold-500 text-lg font-semibold mt-auto">
+              {accommodationType === 'dorm' ? '₹20,000' : '₹30,000'}
             </div>
           </div>
 
@@ -112,9 +137,9 @@ export default function ServicesOffering() {
 
         {/* Bottom Notice */}
         <div className="text-center space-y-4 mb-8">
-          <p className="text-earth-300 text-sm leading-relaxed max-w-3xl mx-auto">
-            This space is not suited for high-stimulus gatherings.<br />
-            Access depends on alignment with the nature of the estate.<br />
+          <p className="text-earth-300 text-sm leading-relaxed max-w-full mx-auto">
+            This space is not suited for high-stimulus gatherings.
+            Access depends on alignment with the nature of the estate.
             Scale, urgency, or money do not override intent.
           </p>
         </div>

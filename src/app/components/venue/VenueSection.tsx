@@ -18,9 +18,12 @@ interface VenueSectionProps {
   venues: Venue[];
   expanded: boolean;
   onToggle: () => void;
+  introText?: string;
+  usedFor?: string;
+  closingText?: string;
 }
 
-export default function VenueSection({ id, title, icon, venues, expanded, onToggle }: VenueSectionProps) {
+export default function VenueSection({ id, title, icon, venues, expanded, onToggle, introText, usedFor, closingText }: VenueSectionProps) {
   return (
     <section className="scroll-mt-32" id={id}>
       <div 
@@ -37,11 +40,35 @@ export default function VenueSection({ id, title, icon, venues, expanded, onTogg
         </button>
       </div>
       {expanded && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {venues.map((venue, index) => (
-            <VenueCard key={index} {...venue} />
-          ))}
-        </div>
+        <>
+          {/* Introductory Text */}
+          {(introText || usedFor || closingText) && (
+            <div className="mb-8 space-y-4">
+              {introText && (
+                <p className="text-earth-300 text-base leading-relaxed">
+                  {introText}
+                </p>
+              )}
+              {usedFor && (
+                <p className="text-earth-300 text-base leading-relaxed">
+                  <span className="text-gold-500">Used for:</span> {usedFor}
+                </p>
+              )}
+              {closingText && (
+                <p className="text-earth-300 text-base italic border-t border-earth-700 pt-4 mt-4">
+                  {closingText}
+                </p>
+              )}
+            </div>
+          )}
+          
+          {/* Venue Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {venues.map((venue, index) => (
+              <VenueCard key={index} {...venue} />
+            ))}
+          </div>
+        </>
       )}
     </section>
   );

@@ -69,65 +69,17 @@ export default function Header() {
       <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isScrolled ? 'bg-[#0f0b08] backdrop-blur-sm border-b border-earth-800/50' : 'bg-transparent'}`}>
         <div className="w-full px-16 py-8 h-[30px] flex items-center justify-between relative">
 
-          {/* LEFT: Desktop Navigation - Always Visible */}
-          <nav className="hidden lg:flex items-center gap-6">
-            <Link 
-              href="/venue" 
-              className={`text-sm uppercase tracking-wider transition-colors ${
-                isActive("/venue") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
-              }`}
-            >
-              Venue
-            </Link>
-            <Link 
-              href="/test" 
-              className={`text-sm uppercase tracking-wider transition-colors ${
-                isActive("/test") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
-              }`}
-            >
-              Services
-            </Link>
-            <Link 
-              href="/stories" 
-              className={`text-sm uppercase tracking-wider transition-colors ${
-                isActive("/stories") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
-              }`}
-            >
-              Stories
-            </Link>
-            <Link 
-              href="/events" 
-              className={`text-sm uppercase tracking-wider transition-colors ${
-                isActive("/events") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
-              }`}
-            >
-              Events
-            </Link>
-            <Link 
-              href="/about-us" 
-              className={`text-sm uppercase tracking-wider transition-colors ${
-                isActive("/about-us") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
-              }`}
-            >
-              About
-            </Link>
-            <Link 
-              href="/blogs" 
-              className={`text-sm uppercase tracking-wider transition-colors ${
-                isActive("/blogs") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
-              }`}
-            >
-              Blogs
-            </Link>
-            <Link 
-              href="/faq" 
-              className={`text-sm uppercase tracking-wider transition-colors ${
-                isActive("/faq") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
-              }`}
-            >
-              FAQ
-            </Link>
-          </nav>
+          {/* LEFT: Logo */}
+          <Link href="/" className="h-[56px] w-40 flex items-center justify-center z-10">
+            <Image
+              src="/Untitled.png"
+              alt="EPiCentre Logo"
+              width={200}
+              height={75}
+              className="object-contain"
+              priority
+            />
+          </Link>
 
           {/* Mobile Hamburger Button */}
           <div className="hamburger-wrapper z-50 relative lg:hidden">
@@ -139,25 +91,76 @@ export default function Header() {
             </label>
           </div>
 
-          {/* CENTER: Logo */}
-          <Link href="/" className="absolute left-1/2 transform -translate-x-1/2 h-[56px] w-40 flex items-center justify-center">
-            <Image
-              src="/Untitled.png"
-              alt="EPiCentre Logo"
-              width={200}
-              height={75}
-              className="object-contain"
-              priority
-            />
-          </Link>
+          {/* RIGHT: Desktop Navigation + Login */}
+          <div className="hidden lg:flex items-center gap-6">
+            <nav className="flex items-center gap-6">
+              <Link 
+                href="/venue" 
+                className={`text-sm uppercase tracking-wider transition-colors ${
+                  isActive("/venue") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
+                }`}
+              >
+                Estate
+              </Link>
+              <Link 
+                href="/test" 
+                className={`text-sm uppercase tracking-wider transition-colors ${
+                  isActive("/test") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
+                }`}
+              >
+                Modes
+              </Link>
+              <Link 
+                href="/stories" 
+                className={`text-sm uppercase tracking-wider transition-colors ${
+                  isActive("/stories") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
+                }`}
+              >
+                Stories
+              </Link>
+              <Link 
+                href="/events" 
+                className={`text-sm uppercase tracking-wider transition-colors ${
+                  isActive("/events") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
+                }`}
+              >
+                Events
+              </Link>
+              <Link 
+                href="/about-us" 
+                className={`text-sm uppercase tracking-wider transition-colors ${
+                  isActive("/about-us") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
+                }`}
+              >
+                About
+              </Link>
+              <Link 
+                href="/blogs" 
+                className={`text-sm uppercase tracking-wider transition-colors ${
+                  isActive("/blogs") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
+                }`}
+              >
+                Blogs
+              </Link>
+              <Link 
+                href="/faq" 
+                className={`text-sm uppercase tracking-wider transition-colors ${
+                  isActive("/faq") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
+                }`}
+              >
+                FAQ
+              </Link>
+            </nav>
+            
+            {/* Login Button */}
+            <Link
+              href="/login"
+              className="inline-flex items-center justify-center bg-transparent text-gold-500 hover:text-[#e7dfd3] font-bold py-2 rounded-full text-sm uppercase tracking-wider transition-colors"
+            >
+              Login
+            </Link>
+          </div>
 
-          {/* RIGHT: Login CTA */}
-          <Link
-            href="/login"
-            className="hidden md:inline-flex items-center justify-center bg-transparent text-gold-500 hover:text-[#e7dfd3] font-bold py-2 rounded-full text-sm uppercase tracking-wider transition-colors"
-          >
-            Login
-          </Link>
           {/* Mobile Login Icon */}
           <Link
             href="/login"

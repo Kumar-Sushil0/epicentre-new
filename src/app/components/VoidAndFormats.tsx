@@ -35,14 +35,14 @@ export default function VoidAndFormats() {
               Formats of Use
             </h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="space-y-6">
               {/* Solitude */}
               <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
                 <h3 className="text-xl font-semibold text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
                   Solitude
                 </h3>
                 <p className="text-earth-300 text-sm leading-relaxed">
-                  Self-led time without instruction.
+                  Unfacilitated withdrawal designed for deep work and decision space.
                 </p>
               </div>
 
@@ -52,27 +52,17 @@ export default function VoidAndFormats() {
                   Experiments
                 </h3>
                 <p className="text-earth-300 text-sm leading-relaxed">
-                  Controlled conditions for unfinished work.
+                  Controlled sandboxes for testing ideas before public exposure.
                 </p>
               </div>
 
-              {/* Clarity Immersions */}
+              {/* Clarity Residency */}
               <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
                 <h3 className="text-xl font-semibold text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                  Clarity Immersions
+                  Clarity Residency
                 </h3>
                 <p className="text-earth-300 text-sm leading-relaxed">
-                  Multi-day focus around a single question.
-                </p>
-              </div>
-
-              {/* Residencies */}
-              <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
-                <h3 className="text-xl font-semibold text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                  Residencies
-                </h3>
-                <p className="text-earth-300 text-sm leading-relaxed">
-                  Extended withdrawal for sustained attention.
+                  Limited, question-centered residencies for resolving high-stakes life decisions.
                 </p>
               </div>
             </div>

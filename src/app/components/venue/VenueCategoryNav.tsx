@@ -5,12 +5,11 @@ import { useEffect, useMemo, useState } from "react";
 export default function VenueCategoryNav() {
   const categories = useMemo(
     () => [
-      { id: "collective", label: "Collective" },
-      { id: "intimate", label: "Intimate" },
-      { id: "physical", label: "Physical" },
-      { id: "creative", label: "Creative" },
-      { id: "living", label: "Living" },
-      { id: "nature", label: "Nature" },
+      { id: "collective", label: "Quarters" },
+      { id: "intimate", label: "Practice" },
+      { id: "physical", label: "Solitude" },
+      { id: "creative", label: "Assembly" },
+      { id: "living", label: "Symbols" },
     ],
     []
   );

@@ -14,7 +14,7 @@ import { residencies } from "../content/residency";
 export default function TestPage() {
     const [wishlist, setWishlist] = useState<Set<string>>(new Set());
     const [cart, setCart] = useState<Set<string>>(new Set());
-    
+
     // Collapsible section states
     const [experiencesExpanded, setExperiencesExpanded] = useState(false);
     const [expressionExpanded, setExpressionExpanded] = useState(false);
@@ -81,7 +81,7 @@ export default function TestPage() {
                     </div>
                     <div className="flex items-center gap-4">
                     {/* View Toggle Button */}
-                    {/* {experiencesExpanded && <div className="flex gap-2 bg-earth-800 p-1 rounded-lg border border-earth-700">
+            {/* {experiencesExpanded && <div className="flex gap-2 bg-earth-800 p-1 rounded-lg border border-earth-700">
                         <button
                             onClick={(e) => { e.stopPropagation(); setExperiencesViewMode('carousel'); }}
                             className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${experiencesViewMode === 'carousel'
@@ -104,7 +104,7 @@ export default function TestPage() {
                         </button>
                     </div>}
                     {/* Expand/Collapse Icon */}
-                    {/* <button className="text-gold-500 hover:text-gold-400 transition-colors">
+            {/* <button className="text-gold-500 hover:text-gold-400 transition-colors">
                         <span className="material-symbols-outlined text-3xl">
                             {experiencesExpanded ? 'expand_less' : 'expand_more'}
                         </span>
@@ -113,7 +113,7 @@ export default function TestPage() {
                 </div>
 
                 {/* Grid View */}
-                {/* {
+            {/* {
                     experiencesExpanded && experiencesViewMode === 'grid' && (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {experiences.map((exp, index) => (
@@ -136,7 +136,7 @@ export default function TestPage() {
                 }
 
                 {/* Carousel View */}
-                {/* {
+            {/* {
                     experiencesExpanded && experiencesViewMode === 'carousel' && (
                         <div className="relative">
                             <div
@@ -177,7 +177,7 @@ export default function TestPage() {
                             </div>
 
                             {/* Navigation Arrows */}
-                            {/* <button
+            {/* <button
                                 onClick={() => setExperiencesCarouselIndex(prev => prev === 0 ? experiences.length - 3 : prev - 1)}
                                 className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-earth-900/80 hover:bg-earth-900 text-gold-500 rounded-full w-12 h-12 flex items-center justify-center transition-all backdrop-blur-sm border border-gold-500/30 hover:border-gold-500"
                                 aria-label="Previous"
@@ -193,7 +193,7 @@ export default function TestPage() {
                             </button>
 
                             {/* Dots Indicator */}
-                            {/* <div className="flex justify-center gap-2 mt-8">
+            {/* <div className="flex justify-center gap-2 mt-8">
                                 {Array.from({ length: experiences.length - 2 }).map((_, index) => (
                                     <button
                                         key={index}
@@ -212,48 +212,85 @@ export default function TestPage() {
             {/* Expression Section */}
             <section className={`w-full px-16 transition-all duration-300 ${expressionExpanded ? 'py-16' : 'py-6'}`}>
                 <div className={`flex justify-between items-end cursor-pointer ${expressionExpanded ? 'mb-12' : ''}`} onClick={() => setExpressionExpanded(!expressionExpanded)}>
-                    <div>
+                    <div className="max-w-full">
                         <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             Experiments
                         </h2>
                         <h3 className="text-2xl  text-gold-500 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             Unfinished by Design
                         </h3>
-                        {expressionExpanded && <p className="text-earth-300 text-lg font-body">
-                            Temporary sandboxes for individuals or groups exploring unfinished ideas.<br />
-                            Built for testing, not presentation.
-                        </p>}
+                        {expressionExpanded && (
+                            <div className="space-y-6">
+                                <p className="text-earth-300 text-base leading-relaxed">
+                                    Temporary sandboxes for testing ideas, formats, and frameworks.
+                                </p>
+
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                    <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
+                                        <h4 className="text-gold-500 font-semibold mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                            What It Is
+                                        </h4>
+                                        <p className="text-earth-300 text-sm leading-relaxed">
+                                            Time-bound inquiry sessions. Small group or individual.<br />
+                                            Anyone may host — including D.D. No performance pressure.
+                                        </p>
+                                    </div>
+
+                                    <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
+                                        <h4 className="text-gold-500 font-semibold mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                            What It Is Not
+                                        </h4>
+                                        <p className="text-earth-300 text-sm leading-relaxed">
+                                            Not a launch stage. Not a personal brand platform. Not a permanent program.
+                                        </p>
+                                    </div>
+
+                                    <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
+                                        <h4 className="text-gold-500 font-semibold mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                            Used For
+                                        </h4>
+                                        <p className="text-earth-300 text-sm leading-relaxed">
+                                            Testing unfinished work. Refining systems. Observing friction. Validating direction.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <p className="text-earth-300 text-sm italic pt-2 border-t border-earth-700">
+                                    Nothing here is final. Everything is exploratory.
+                                </p>
+                            </div>
+                        )}
                     </div>
                     <div className="flex items-center gap-4">
-                    {/* View Toggle Button */}
-                    {expressionExpanded && <div className="flex gap-2 bg-earth-800 p-1 rounded-lg border border-earth-700">
-                        <button
-                            onClick={(e) => { e.stopPropagation(); setExpressionViewMode('carousel'); }}
-                            className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${expressionViewMode === 'carousel'
-                                ? 'bg-gold-500 text-earth-900'
-                                : 'text-earth-300 hover:text-gold-500'
-                                }`}
-                        >
-                            <span className="material-symbols-outlined text-xl">view_carousel</span>
-                            <span className="text-sm font-medium">Carousel</span>
+                        {/* View Toggle Button */}
+                        {expressionExpanded && <div className="flex gap-2 bg-earth-800 p-1 rounded-lg border border-earth-700">
+                            <button
+                                onClick={(e) => { e.stopPropagation(); setExpressionViewMode('carousel'); }}
+                                className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${expressionViewMode === 'carousel'
+                                    ? 'bg-gold-500 text-earth-900'
+                                    : 'text-earth-300 hover:text-gold-500'
+                                    }`}
+                            >
+                                <span className="material-symbols-outlined text-xl">view_carousel</span>
+                                <span className="text-sm font-medium">Carousel</span>
+                            </button>
+                            <button
+                                onClick={(e) => { e.stopPropagation(); setExpressionViewMode('grid'); }}
+                                className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${expressionViewMode === 'grid'
+                                    ? 'bg-gold-500 text-earth-900'
+                                    : 'text-earth-300 hover:text-gold-500'
+                                    }`}
+                            >
+                                <span className="material-symbols-outlined text-xl">grid_view</span>
+                                <span className="text-sm font-medium">Grid</span>
+                            </button>
+                        </div>}
+                        {/* Expand/Collapse Icon */}
+                        <button className="text-gold-500 hover:text-gold-400 transition-colors">
+                            <span className="material-symbols-outlined text-3xl">
+                                {expressionExpanded ? 'expand_less' : 'expand_more'}
+                            </span>
                         </button>
-                        <button
-                            onClick={(e) => { e.stopPropagation(); setExpressionViewMode('grid'); }}
-                            className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${expressionViewMode === 'grid'
-                                ? 'bg-gold-500 text-earth-900'
-                                : 'text-earth-300 hover:text-gold-500'
-                                }`}
-                        >
-                            <span className="material-symbols-outlined text-xl">grid_view</span>
-                            <span className="text-sm font-medium">Grid</span>
-                        </button>
-                    </div>}
-                    {/* Expand/Collapse Icon */}
-                    <button className="text-gold-500 hover:text-gold-400 transition-colors">
-                        <span className="material-symbols-outlined text-3xl">
-                            {expressionExpanded ? 'expand_less' : 'expand_more'}
-                        </span>
-                    </button>
                     </div>
                 </div>
 
@@ -269,10 +306,6 @@ export default function TestPage() {
                                     images={pillar.images}
                                     icon={pillar.icon}
                                     href="/expression/details"
-                                    showActions={true}
-                                    onAddToCart={() => addToCart(`expression-${index}`)}
-                                    onToggleWishlist={() => toggleWishlist(`expression-${index}`)}
-                                    isInWishlist={wishlist.has(`expression-${index}`)}
                                 />
                             ))}
                         </div>
@@ -309,10 +342,6 @@ export default function TestPage() {
                                                 images={pillar.images}
                                                 icon={pillar.icon}
                                                 href="/expression/details"
-                                                showActions={true}
-                                                onAddToCart={() => addToCart(`expression-${index}`)}
-                                                onToggleWishlist={() => toggleWishlist(`expression-${index}`)}
-                                                isInWishlist={wishlist.has(`expression-${index}`)}
                                             />
                                         </div>
                                     ))}
@@ -355,48 +384,85 @@ export default function TestPage() {
             {/* Solitude Section */}
             <section className={`w-full px-16 transition-all duration-300 ${solitudeExpanded ? 'py-16' : 'py-6'}`}>
                 <div className={`flex justify-between items-end cursor-pointer ${solitudeExpanded ? 'mb-12' : ''}`} onClick={() => setSolitudeExpanded(!solitudeExpanded)}>
-                    <div>
+                    <div className="max-w-full">
                         <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             Solitude
                         </h2>
                         <h3 className="text-2xl text-gold-500 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             Time Without Instruction
                         </h3>
-                        {solitudeExpanded && <p className="text-earth-300 text-lg font-body">
-                            Self-led time using simple, nature-based resources.<br />
-                            No instruction. No outcome.
-                        </p>}
+                        {solitudeExpanded && (
+                            <div className="space-y-6">
+                                <p className="text-earth-300 text-base leading-relaxed">
+                                    Self-directed withdrawal within a structured environment.
+                                </p>
+
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                    <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
+                                        <h4 className="text-gold-500 font-semibold mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                            What It Is
+                                        </h4>
+                                        <p className="text-earth-300 text-sm leading-relaxed">
+                                            Independent time inside the estate.<br />
+                                            No facilitation. No prompts. No required interaction.
+                                        </p>
+                                    </div>
+
+                                    <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
+                                        <h4 className="text-gold-500 font-semibold mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                            What It Is Not
+                                        </h4>
+                                        <p className="text-earth-300 text-sm leading-relaxed">
+                                            Not guided. Not curated. Not outcome-driven.
+                                        </p>
+                                    </div>
+
+                                    <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
+                                        <h4 className="text-gold-500 font-semibold mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                            Used For
+                                        </h4>
+                                        <p className="text-earth-300 text-sm leading-relaxed">
+                                            Attention stabilization. Deep work. Personal recalibration. Decision space.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <p className="text-earth-300 text-sm italic pt-2 border-t border-earth-700">
+                                    Silence holds. You navigate.
+                                </p>
+                            </div>
+                        )}
                     </div>
                     <div className="flex items-center gap-4">
-                    {/* View Toggle Button */}
-                    {solitudeExpanded && <div className="flex gap-2 bg-earth-800 p-1 rounded-lg border border-earth-700">
-                        <button
-                            onClick={(e) => { e.stopPropagation(); setSolitudeViewMode('carousel'); }}
-                            className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${solitudeViewMode === 'carousel'
-                                ? 'bg-gold-500 text-earth-900'
-                                : 'text-earth-300 hover:text-gold-500'
-                                }`}
-                        >
-                            <span className="material-symbols-outlined text-xl">view_carousel</span>
-                            <span className="text-sm font-medium">Carousel</span>
+                        {/* View Toggle Button */}
+                        {solitudeExpanded && <div className="flex gap-2 bg-earth-800 p-1 rounded-lg border border-earth-700">
+                            <button
+                                onClick={(e) => { e.stopPropagation(); setSolitudeViewMode('carousel'); }}
+                                className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${solitudeViewMode === 'carousel'
+                                    ? 'bg-gold-500 text-earth-900'
+                                    : 'text-earth-300 hover:text-gold-500'
+                                    }`}
+                            >
+                                <span className="material-symbols-outlined text-xl">view_carousel</span>
+                                <span className="text-sm font-medium">Carousel</span>
+                            </button>
+                            <button
+                                onClick={(e) => { e.stopPropagation(); setSolitudeViewMode('grid'); }}
+                                className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${solitudeViewMode === 'grid'
+                                    ? 'bg-gold-500 text-earth-900'
+                                    : 'text-earth-300 hover:text-gold-500'
+                                    }`}
+                            >
+                                <span className="material-symbols-outlined text-xl">grid_view</span>
+                                <span className="text-sm font-medium">Grid</span>
+                            </button>
+                        </div>}
+                        {/* Expand/Collapse Icon */}
+                        <button className="text-gold-500 hover:text-gold-400 transition-colors">
+                            <span className="material-symbols-outlined text-3xl">
+                                {solitudeExpanded ? 'expand_less' : 'expand_more'}
+                            </span>
                         </button>
-                        <button
-                            onClick={(e) => { e.stopPropagation(); setSolitudeViewMode('grid'); }}
-                            className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${solitudeViewMode === 'grid'
-                                ? 'bg-gold-500 text-earth-900'
-                                : 'text-earth-300 hover:text-gold-500'
-                                }`}
-                        >
-                            <span className="material-symbols-outlined text-xl">grid_view</span>
-                            <span className="text-sm font-medium">Grid</span>
-                        </button>
-                    </div>}
-                    {/* Expand/Collapse Icon */}
-                    <button className="text-gold-500 hover:text-gold-400 transition-colors">
-                        <span className="material-symbols-outlined text-3xl">
-                            {solitudeExpanded ? 'expand_less' : 'expand_more'}
-                        </span>
-                    </button>
                     </div>
                 </div>
 
@@ -413,10 +479,6 @@ export default function TestPage() {
                                     icon={practice.icon}
                                     category={practice.category}
                                     href="/solitude/details"
-                                    showActions={true}
-                                    onAddToCart={() => addToCart(`solitude-${index}`)}
-                                    onToggleWishlist={() => toggleWishlist(`solitude-${index}`)}
-                                    isInWishlist={wishlist.has(`solitude-${index}`)}
                                 />
                             ))}
                         </div>
@@ -454,10 +516,6 @@ export default function TestPage() {
                                                 icon={practice.icon}
                                                 category={practice.category}
                                                 href="/solitude/details"
-                                                showActions={true}
-                                                onAddToCart={() => addToCart(`solitude-${index}`)}
-                                                onToggleWishlist={() => toggleWishlist(`solitude-${index}`)}
-                                                isInWishlist={wishlist.has(`solitude-${index}`)}
                                             />
                                         </div>
                                     ))}
@@ -500,48 +558,89 @@ export default function TestPage() {
             {/* Residency Section */}
             <section className={`w-full px-16 transition-all duration-300 ${residencyExpanded ? 'py-16' : 'py-6'}`}>
                 <div className={`flex justify-between items-end cursor-pointer ${residencyExpanded ? 'mb-12' : ''}`} onClick={() => setResidencyExpanded(!residencyExpanded)}>
-                    <div>
+                    <div className="max-w-full">
                         <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                            Residency
+                            Clarity Residency
                         </h2>
                         <h3 className="text-2xl text-gold-500 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                            One Question Held Fully
+                            Rare. Limited. Question-Centered.
                         </h3>
-                        {residencyExpanded && <p className="text-earth-300 text-lg font-body">
-                            Multi-day immersions centered around a single inquiry.<br />
-                            Hosted with a selective group for sustained exploration.
-                        </p>}
+                        {residencyExpanded && (
+                            <div className="space-y-6">
+                                <p className="text-earth-300 text-base leading-relaxed">
+                                    A small-group, multi-day inquiry around a consequential life question.
+                                </p>
+
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                    <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
+                                        <h4 className="text-gold-500 font-semibold mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                            What It Is
+                                        </h4>
+                                        <p className="text-earth-300 text-sm leading-relaxed">
+                                            2–3 day residency. Curated practitioners with 10–15+ years applied experience.<br />
+                                            Silence-framed dialogue. Direct cross-examination.<br />
+                                            No recordings. No audience.
+                                        </p>
+                                    </div>
+
+                                    <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
+                                        <h4 className="text-gold-500 font-semibold mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                            What It Is Not
+                                        </h4>
+                                        <p className="text-earth-300 text-sm leading-relaxed">
+                                            Not a seminar. Not a motivational event. Not ideological alignment.<br />
+                                            Not recurring content. Not therapy.
+                                        </p>
+                                    </div>
+
+                                    <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
+                                        <h4 className="text-gold-500 font-semibold mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                            Used For
+                                        </h4>
+                                        <p className="text-earth-300 text-sm leading-relaxed">
+                                            Reducing ambiguity around major life decisions. Examining consequences in depth.<br />
+                                            Testing assumptions. Strengthening independent judgment.<br />
+                                            Designing the life you intend to live.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <p className="text-earth-300 text-sm italic pt-2 border-t border-earth-700">
+                                    Experts provide perspective. You retain authorship.
+                                </p>
+                            </div>
+                        )}
                     </div>
                     <div className="flex items-center gap-4">
-                    {/* View Toggle Button */}
-                    {residencyExpanded && <div className="flex gap-2 bg-earth-800 p-1 rounded-lg border border-earth-700">
-                        <button
-                            onClick={(e) => { e.stopPropagation(); setResidencyViewMode('carousel'); }}
-                            className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${residencyViewMode === 'carousel'
-                                ? 'bg-gold-500 text-earth-900'
-                                : 'text-earth-300 hover:text-gold-500'
-                                }`}
-                        >
-                            <span className="material-symbols-outlined text-xl">view_carousel</span>
-                            <span className="text-sm font-medium">Carousel</span>
+                        {/* View Toggle Button */}
+                        {residencyExpanded && <div className="flex gap-2 bg-earth-800 p-1 rounded-lg border border-earth-700">
+                            <button
+                                onClick={(e) => { e.stopPropagation(); setResidencyViewMode('carousel'); }}
+                                className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${residencyViewMode === 'carousel'
+                                    ? 'bg-gold-500 text-earth-900'
+                                    : 'text-earth-300 hover:text-gold-500'
+                                    }`}
+                            >
+                                <span className="material-symbols-outlined text-xl">view_carousel</span>
+                                <span className="text-sm font-medium">Carousel</span>
+                            </button>
+                            <button
+                                onClick={(e) => { e.stopPropagation(); setResidencyViewMode('grid'); }}
+                                className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${residencyViewMode === 'grid'
+                                    ? 'bg-gold-500 text-earth-900'
+                                    : 'text-earth-300 hover:text-gold-500'
+                                    }`}
+                            >
+                                <span className="material-symbols-outlined text-xl">grid_view</span>
+                                <span className="text-sm font-medium">Grid</span>
+                            </button>
+                        </div>}
+                        {/* Expand/Collapse Icon */}
+                        <button className="text-gold-500 hover:text-gold-400 transition-colors">
+                            <span className="material-symbols-outlined text-3xl">
+                                {residencyExpanded ? 'expand_less' : 'expand_more'}
+                            </span>
                         </button>
-                        <button
-                            onClick={(e) => { e.stopPropagation(); setResidencyViewMode('grid'); }}
-                            className={`px-4 py-2 rounded-md transition-all flex items-center gap-2 ${residencyViewMode === 'grid'
-                                ? 'bg-gold-500 text-earth-900'
-                                : 'text-earth-300 hover:text-gold-500'
-                                }`}
-                        >
-                            <span className="material-symbols-outlined text-xl">grid_view</span>
-                            <span className="text-sm font-medium">Grid</span>
-                        </button>
-                    </div>}
-                    {/* Expand/Collapse Icon */}
-                    <button className="text-gold-500 hover:text-gold-400 transition-colors">
-                        <span className="material-symbols-outlined text-3xl">
-                            {residencyExpanded ? 'expand_less' : 'expand_more'}
-                        </span>
-                    </button>
                     </div>
                 </div>
 
@@ -558,10 +657,6 @@ export default function TestPage() {
                                     icon={residency.icon}
                                     category={residency.category}
                                     href="/residency/details"
-                                    showActions={true}
-                                    onAddToCart={() => addToCart(`residency-${index}`)}
-                                    onToggleWishlist={() => toggleWishlist(`residency-${index}`)}
-                                    isInWishlist={wishlist.has(`residency-${index}`)}
                                 />
                             ))}
                         </div>
@@ -599,10 +694,6 @@ export default function TestPage() {
                                                 icon={residency.icon}
                                                 category={residency.category}
                                                 href="/residency/details"
-                                                showActions={true}
-                                                onAddToCart={() => addToCart(`residency-${index}`)}
-                                                onToggleWishlist={() => toggleWishlist(`residency-${index}`)}
-                                                isInWishlist={wishlist.has(`residency-${index}`)}
                                             />
                                         </div>
                                     ))}

@@ -215,20 +215,15 @@ export default function CarouselCard({
                         )}
                     </div>
 
-                    {/* Non-hover title and button */}
+                    {/* Non-hover title and arrow */}
                     {!shouldShowHoverState && (
                         <>
-                            <h4 className="text-[21px] font-normal mb-2 text-[#e7dfd3]" style={{ fontFamily: 'Outfit, sans-serif', fontSize: titleSize, textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)' }}>{title}</h4>
-
-                            {/* Know More Button - Always visible if href is provided */}
-                            {href && (
-                                <div className="mb-3">
-                                    <button className="inline-flex items-center gap-2 px-4 py-2 bg-transparent border border-gold-500 text-gold-500 rounded-lg text-sm font-medium hover:bg-gold-500 hover:text-earth-950 transition-colors duration-300">
-                                        Know More
-                                        <span className="material-symbols-outlined text-lg">arrow_forward</span>
-                                    </button>
-                                </div>
-                            )}
+                            <div className="flex items-center gap-2 mb-2">
+                                <h4 className="text-[21px] font-normal text-[#e7dfd3]" style={{ fontFamily: 'Outfit, sans-serif', fontSize: titleSize, textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)' }}>{title}</h4>
+                                {href && (
+                                    <span className="material-symbols-outlined text-gold-500 text-xl">arrow_forward</span>
+                                )}
+                            </div>
                         </>
                     )}
 

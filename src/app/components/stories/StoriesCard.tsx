@@ -100,6 +100,11 @@ export default function StoriesCard({ title, description, image, imageAlt, autho
 
           <h4 className={`text-[21px] font-normal mb-2 ${shouldShowHoverState ? 'opacity-0' : 'text-[#e7dfd3]'}`} style={{ fontFamily: 'Outfit, sans-serif', textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)' }}>
             {title}
+            {href && (
+              <span className="material-symbols-outlined text-gold-500 text-xl inline-block align-middle ml-1">
+                arrow_forward
+              </span>
+            )}
           </h4>
 
           {/* Description - Revealed on Hover using grid approach */}
@@ -110,6 +115,11 @@ export default function StoriesCard({ title, description, image, imageAlt, autho
                 <div className="flex items-center justify-between mb-4">
                   <h4 className="text-[21px] font-normal text-earth-900" style={{ fontFamily: 'Outfit, sans-serif' }}>
                     {title}
+                    {href && (
+                      <span className="material-symbols-outlined text-gold-600 text-xl inline-block align-middle ml-1">
+                        arrow_forward
+                      </span>
+                    )}
                   </h4>
                 </div>
 

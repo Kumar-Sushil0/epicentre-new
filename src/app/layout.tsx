@@ -30,7 +30,7 @@ export default function RootLayout({
             <SmoothScroll />
             {children}
             <FloatingWhatsApp />
-            <VerticalBookNow />
+            
           </ShopProvider>
         </AuthProvider>
       </body>

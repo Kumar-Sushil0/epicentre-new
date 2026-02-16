@@ -34,7 +34,7 @@ export default function StoriesPage() {
           imageAlt: "Personal reflection",
           author: "Anonymous",
           date: "2024",
-          href: "/stories",
+          href: "/stories/personal-1",
         },
         {
           title: "Note",
@@ -43,7 +43,7 @@ export default function StoriesPage() {
           imageAlt: "Self-realization",
           author: "Anonymous",
           date: "2024",
-          href: "/stories",
+          href: "/stories/personal-2",
         },
         {
           title: "Note",
@@ -52,7 +52,7 @@ export default function StoriesPage() {
           imageAlt: "Quiet confidence",
           author: "Anonymous",
           date: "2024",
-          href: "/stories",
+          href: "/stories/personal-3",
         },
       ],
     },
@@ -205,12 +205,12 @@ export default function StoriesPage() {
       <StoriesCategoryNav />
       <div className="max-w-[1200px] mx-auto px-4 sm:px-10 py-12">
         {storyCategories.map((category) => (
-          <section 
-            key={category.id} 
+          <section
+            key={category.id}
             className={`transition-all duration-300 ${expandedSections[category.id] ? 'mb-24' : 'mb-6'}`}
           >
-            <StoriesSection 
-              {...category} 
+            <StoriesSection
+              {...category}
               expanded={expandedSections[category.id]}
               onToggle={() => toggleSection(category.id)}
             />
