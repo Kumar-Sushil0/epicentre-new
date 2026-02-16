@@ -6,7 +6,7 @@ export default function DesignedDeliberately() {
           Designed Deliberately
         </h2>
         <p className="text-earth-300 text-lg text-center mb-16 max-w-3xl mx-auto">
-          Silence here is structural, not aesthetic.
+          Every constraint here protects your attention.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -16,7 +16,7 @@ export default function DesignedDeliberately() {
               Designed Silence
             </h3>
             <p className="text-earth-300 text-base leading-relaxed">
-              Sound, pace, and signal are intentionally shaped.
+              Sound, pace, and signal are shaped to reduce distraction.
             </p>
           </div>
 
@@ -26,7 +26,7 @@ export default function DesignedDeliberately() {
               Designed Anonymity
             </h3>
             <p className="text-earth-300 text-base leading-relaxed">
-              Relational and professional identities are paused. Only first names remain.
+              External roles pause. Only first names remain.
             </p>
           </div>
 

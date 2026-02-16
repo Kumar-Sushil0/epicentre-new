@@ -21,6 +21,14 @@ export default function TestPage() {
     const [solitudeExpanded, setSolitudeExpanded] = useState(false);
     const [residencyExpanded, setResidencyExpanded] = useState(false);
 
+    // Collapsible box states for each section
+    const [expressionBox1Expanded, setExpressionBox1Expanded] = useState(false);
+    const [expressionBox2Expanded, setExpressionBox2Expanded] = useState(false);
+    const [solitudeBox1Expanded, setSolitudeBox1Expanded] = useState(false);
+    const [solitudeBox2Expanded, setSolitudeBox2Expanded] = useState(false);
+    const [residencyBox1Expanded, setResidencyBox1Expanded] = useState(false);
+    const [residencyBox2Expanded, setResidencyBox2Expanded] = useState(false);
+
     const toggleWishlist = (id: string) => {
         setWishlist(prev => {
             const newSet = new Set(prev);
@@ -211,53 +219,16 @@ export default function TestPage() {
 
             {/* Expression Section */}
             <section className={`w-full px-16 transition-all duration-300 ${expressionExpanded ? 'py-16' : 'py-6'}`}>
-                <div className={`flex justify-between items-end cursor-pointer ${expressionExpanded ? 'mb-12' : ''}`} onClick={() => setExpressionExpanded(!expressionExpanded)}>
-                    <div className="max-w-full">
-                        <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                <div className="flex justify-between items-start mb-6">
+                    <div className="flex items-center gap-4 cursor-pointer" onClick={() => setExpressionExpanded(!expressionExpanded)}>
+                        <h2 className="text-4xl font-bold text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             Experiments
                         </h2>
-                        
-                        {expressionExpanded && (
-                            <div className="space-y-6">
-                                <p className="text-earth-300 text-base leading-relaxed">
-                                    Temporary sandboxes for testing ideas, formats, and frameworks.
-                                </p>
-
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                                    <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
-                                        <h4 className="text-gold-500 font-semibold mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                            What It Is
-                                        </h4>
-                                        <p className="text-earth-300 text-sm leading-relaxed">
-                                            Time-bound inquiry sessions. Small group or individual.<br />
-                                            Anyone may host — including D.D. No performance pressure.
-                                        </p>
-                                    </div>
-
-                                    <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
-                                        <h4 className="text-gold-500 font-semibold mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                            What It Is Not
-                                        </h4>
-                                        <p className="text-earth-300 text-sm leading-relaxed">
-                                            Not a launch stage. Not a personal brand platform. Not a permanent program.
-                                        </p>
-                                    </div>
-
-                                    <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
-                                        <h4 className="text-gold-500 font-semibold mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                            Used For
-                                        </h4>
-                                        <p className="text-earth-300 text-sm leading-relaxed">
-                                            Testing unfinished work. Refining systems. Observing friction. Validating direction.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <p className="text-earth-300 text-sm italic pt-2 border-t border-earth-700">
-                                    Nothing here is final. Everything is exploratory.
-                                </p>
-                            </div>
-                        )}
+                        <button className="text-gold-500 hover:text-gold-400 transition-colors">
+                            <span className="material-symbols-outlined text-3xl">
+                                {expressionExpanded ? 'expand_less' : 'expand_more'}
+                            </span>
+                        </button>
                     </div>
                     <div className="flex items-center gap-4">
                         {/* View Toggle Button */}
@@ -283,14 +254,63 @@ export default function TestPage() {
                                 <span className="text-sm font-medium">Grid</span>
                             </button>
                         </div>}
-                        {/* Expand/Collapse Icon */}
-                        <button className="text-gold-500 hover:text-gold-400 transition-colors">
-                            <span className="material-symbols-outlined text-3xl">
-                                {expressionExpanded ? 'expand_less' : 'expand_more'}
-                            </span>
-                        </button>
                     </div>
                 </div>
+
+                {expressionExpanded && (
+                    <div className="space-y-6">
+                        <p className="text-earth-300 text-base leading-relaxed">
+                            Temporary sandboxes for testing ideas, formats, and frameworks.
+                        </p>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg overflow-hidden">
+                                <div
+                                    className="flex justify-between items-center p-6 cursor-pointer hover:bg-earth-700/30 transition-colors"
+                                    onClick={() => setExpressionBox1Expanded(!expressionBox1Expanded)}
+                                >
+                                    <h4 className="text-gold-500 font-semibold" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                        What It Is
+                                    </h4>
+                                    <span className="material-symbols-outlined text-gold-500">
+                                        {expressionBox1Expanded ? 'expand_less' : 'expand_more'}
+                                    </span>
+                                </div>
+                                {expressionBox1Expanded && (
+                                    <div className="px-6 pb-6">
+                                        <p className="text-earth-300 text-sm leading-relaxed">
+                                            Time-bound inquiry sessions. Small group or individual.<br />
+                                            Anyone may host — including D.D. No performance pressure.
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg overflow-hidden">
+                                <div
+                                    className="flex justify-between items-center p-6 cursor-pointer hover:bg-earth-700/30 transition-colors"
+                                    onClick={() => setExpressionBox2Expanded(!expressionBox2Expanded)}
+                                >
+                                    <h4 className="text-gold-500 font-semibold" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                        What It Is Not
+                                    </h4>
+                                    <span className="material-symbols-outlined text-gold-500">
+                                        {expressionBox2Expanded ? 'expand_less' : 'expand_more'}
+                                    </span>
+                                </div>
+                                {expressionBox2Expanded && (
+                                    <div className="px-6 pb-6">
+                                        <p className="text-earth-300 text-sm leading-relaxed">
+                                            Not a launch stage. Not a personal brand platform. Not a permanent program.
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
+                       
+                    </div>
+                )}
 
                 {/* Grid View */}
                 {
@@ -381,53 +401,16 @@ export default function TestPage() {
 
             {/* Solitude Section */}
             <section className={`w-full px-16 transition-all duration-300 ${solitudeExpanded ? 'py-16' : 'py-6'}`}>
-                <div className={`flex justify-between items-end cursor-pointer ${solitudeExpanded ? 'mb-12' : ''}`} onClick={() => setSolitudeExpanded(!solitudeExpanded)}>
-                    <div className="max-w-full">
-                        <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                <div className="flex justify-between items-start mb-6">
+                    <div className="flex items-center gap-4 cursor-pointer" onClick={() => setSolitudeExpanded(!solitudeExpanded)}>
+                        <h2 className="text-4xl font-bold text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             Solitude
                         </h2>
-                        
-                        {solitudeExpanded && (
-                            <div className="space-y-6">
-                                <p className="text-earth-300 text-base leading-relaxed">
-                                    Self-directed withdrawal within a structured environment.
-                                </p>
-
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                                    <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
-                                        <h4 className="text-gold-500 font-semibold mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                            What It Is
-                                        </h4>
-                                        <p className="text-earth-300 text-sm leading-relaxed">
-                                            Independent time inside the estate.<br />
-                                            No facilitation. No prompts. No required interaction.
-                                        </p>
-                                    </div>
-
-                                    <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
-                                        <h4 className="text-gold-500 font-semibold mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                            What It Is Not
-                                        </h4>
-                                        <p className="text-earth-300 text-sm leading-relaxed">
-                                            Not guided. Not curated. Not outcome-driven.
-                                        </p>
-                                    </div>
-
-                                    <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
-                                        <h4 className="text-gold-500 font-semibold mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                            Used For
-                                        </h4>
-                                        <p className="text-earth-300 text-sm leading-relaxed">
-                                            Attention stabilization. Deep work. Personal recalibration. Decision space.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <p className="text-earth-300 text-sm italic pt-2 border-t border-earth-700">
-                                    Silence holds. You navigate.
-                                </p>
-                            </div>
-                        )}
+                        <button className="text-gold-500 hover:text-gold-400 transition-colors">
+                            <span className="material-symbols-outlined text-3xl">
+                                {solitudeExpanded ? 'expand_less' : 'expand_more'}
+                            </span>
+                        </button>
                     </div>
                     <div className="flex items-center gap-4">
                         {/* View Toggle Button */}
@@ -453,14 +436,63 @@ export default function TestPage() {
                                 <span className="text-sm font-medium">Grid</span>
                             </button>
                         </div>}
-                        {/* Expand/Collapse Icon */}
-                        <button className="text-gold-500 hover:text-gold-400 transition-colors">
-                            <span className="material-symbols-outlined text-3xl">
-                                {solitudeExpanded ? 'expand_less' : 'expand_more'}
-                            </span>
-                        </button>
                     </div>
                 </div>
+
+                {solitudeExpanded && (
+                    <div className="space-y-6">
+                        <p className="text-earth-300 text-base leading-relaxed">
+                            Self-directed withdrawal within a structured environment.
+                        </p>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg overflow-hidden">
+                                <div
+                                    className="flex justify-between items-center p-6 cursor-pointer hover:bg-earth-700/30 transition-colors"
+                                    onClick={() => setSolitudeBox1Expanded(!solitudeBox1Expanded)}
+                                >
+                                    <h4 className="text-gold-500 font-semibold" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                        What It Is
+                                    </h4>
+                                    <span className="material-symbols-outlined text-gold-500">
+                                        {solitudeBox1Expanded ? 'expand_less' : 'expand_more'}
+                                    </span>
+                                </div>
+                                {solitudeBox1Expanded && (
+                                    <div className="px-6 pb-6">
+                                        <p className="text-earth-300 text-sm leading-relaxed">
+                                            Independent time inside the estate.<br />
+                                            No facilitation. No prompts. No required interaction.
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg overflow-hidden">
+                                <div
+                                    className="flex justify-between items-center p-6 cursor-pointer hover:bg-earth-700/30 transition-colors"
+                                    onClick={() => setSolitudeBox2Expanded(!solitudeBox2Expanded)}
+                                >
+                                    <h4 className="text-gold-500 font-semibold" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                        What It Is Not
+                                    </h4>
+                                    <span className="material-symbols-outlined text-gold-500">
+                                        {solitudeBox2Expanded ? 'expand_less' : 'expand_more'}
+                                    </span>
+                                </div>
+                                {solitudeBox2Expanded && (
+                                    <div className="px-6 pb-6">
+                                        <p className="text-earth-300 text-sm leading-relaxed">
+                                            Not guided. Not curated. Not outcome-driven.
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                )}
 
                 {/* Grid View */}
                 {
@@ -553,57 +585,16 @@ export default function TestPage() {
 
             {/* Residency Section */}
             <section className={`w-full px-16 transition-all duration-300 ${residencyExpanded ? 'py-16' : 'py-6'}`}>
-                <div className={`flex justify-between items-end cursor-pointer ${residencyExpanded ? 'mb-12' : ''}`} onClick={() => setResidencyExpanded(!residencyExpanded)}>
-                    <div className="max-w-full">
-                        <h2 className="text-4xl font-bold text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                <div className="flex justify-between items-start mb-6">
+                    <div className="flex items-center gap-4 cursor-pointer" onClick={() => setResidencyExpanded(!residencyExpanded)}>
+                        <h2 className="text-4xl font-bold text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             Clarity Residency
                         </h2>
-                        
-                        {residencyExpanded && (
-                            <div className="space-y-6">
-                                <p className="text-earth-300 text-base leading-relaxed">
-                                    A small-group, multi-day inquiry around a consequential life question.
-                                </p>
-
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                                    <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
-                                        <h4 className="text-gold-500 font-semibold mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                            What It Is
-                                        </h4>
-                                        <p className="text-earth-300 text-sm leading-relaxed">
-                                            2–3 day residency. Curated practitioners with 10–15+ years applied experience.<br />
-                                            Silence-framed dialogue. Direct cross-examination.<br />
-                                            No recordings. No audience.
-                                        </p>
-                                    </div>
-
-                                    <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
-                                        <h4 className="text-gold-500 font-semibold mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                            What It Is Not
-                                        </h4>
-                                        <p className="text-earth-300 text-sm leading-relaxed">
-                                            Not a seminar. Not a motivational event. Not ideological alignment.<br />
-                                            Not recurring content. Not therapy.
-                                        </p>
-                                    </div>
-
-                                    <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
-                                        <h4 className="text-gold-500 font-semibold mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                            Used For
-                                        </h4>
-                                        <p className="text-earth-300 text-sm leading-relaxed">
-                                            Reducing ambiguity around major life decisions. Examining consequences in depth.<br />
-                                            Testing assumptions. Strengthening independent judgment.<br />
-                                            Designing the life you intend to live.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <p className="text-earth-300 text-sm italic pt-2 border-t border-earth-700">
-                                    Experts provide perspective. You retain authorship.
-                                </p>
-                            </div>
-                        )}
+                        <button className="text-gold-500 hover:text-gold-400 transition-colors">
+                            <span className="material-symbols-outlined text-3xl">
+                                {residencyExpanded ? 'expand_less' : 'expand_more'}
+                            </span>
+                        </button>
                     </div>
                     <div className="flex items-center gap-4">
                         {/* View Toggle Button */}
@@ -629,14 +620,65 @@ export default function TestPage() {
                                 <span className="text-sm font-medium">Grid</span>
                             </button>
                         </div>}
-                        {/* Expand/Collapse Icon */}
-                        <button className="text-gold-500 hover:text-gold-400 transition-colors">
-                            <span className="material-symbols-outlined text-3xl">
-                                {residencyExpanded ? 'expand_less' : 'expand_more'}
-                            </span>
-                        </button>
                     </div>
                 </div>
+
+                {residencyExpanded && (
+                    <div className="space-y-6">
+                        <p className="text-earth-300 text-base leading-relaxed">
+                            A small-group, multi-day inquiry around a consequential life question.
+                        </p>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg overflow-hidden">
+                                <div
+                                    className="flex justify-between items-center p-6 cursor-pointer hover:bg-earth-700/30 transition-colors"
+                                    onClick={() => setResidencyBox1Expanded(!residencyBox1Expanded)}
+                                >
+                                    <h4 className="text-gold-500 font-semibold" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                        What It Is
+                                    </h4>
+                                    <span className="material-symbols-outlined text-gold-500">
+                                        {residencyBox1Expanded ? 'expand_less' : 'expand_more'}
+                                    </span>
+                                </div>
+                                {residencyBox1Expanded && (
+                                    <div className="px-6 pb-6">
+                                        <p className="text-earth-300 text-sm leading-relaxed">
+                                            2–3 day residency. Curated practitioners with 10–15+ years applied experience.<br />
+                                            Silence-framed dialogue. Direct cross-examination.<br />
+                                            No recordings. No audience.
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className="bg-earth-800/50 backdrop-blur-sm border border-earth-700/50 rounded-lg overflow-hidden">
+                                <div
+                                    className="flex justify-between items-center p-6 cursor-pointer hover:bg-earth-700/30 transition-colors"
+                                    onClick={() => setResidencyBox2Expanded(!residencyBox2Expanded)}
+                                >
+                                    <h4 className="text-gold-500 font-semibold" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                        What It Is Not
+                                    </h4>
+                                    <span className="material-symbols-outlined text-gold-500">
+                                        {residencyBox2Expanded ? 'expand_less' : 'expand_more'}
+                                    </span>
+                                </div>
+                                {residencyBox2Expanded && (
+                                    <div className="px-6 pb-6">
+                                        <p className="text-earth-300 text-sm leading-relaxed">
+                                            Not a seminar. Not a motivational event. Not ideological alignment.<br />
+                                            Not recurring content. Not therapy.
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
+                       
+                    </div>
+                )}
 
                 {/* Grid View */}
                 {

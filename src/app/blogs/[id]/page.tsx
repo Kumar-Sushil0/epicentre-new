@@ -16,7 +16,7 @@ export default function BlogDetailPage() {
         return (
             <main className="min-h-screen bg-earth-900 text-earth-100">
                 <Header />
-                <div className="max-w-4xl mx-auto px-6 py-32 text-center">
+                <div className="w-full px-16 py-32 text-center">
                     <h1 className="text-4xl font-bold text-gold-500 mb-4">Blog Not Found</h1>
                     <p className="text-earth-300">The blog post you're looking for doesn't exist.</p>
                     <Link href="/blogs" className="inline-block mt-6 text-gold-500 hover:text-gold-400">
@@ -42,7 +42,7 @@ export default function BlogDetailPage() {
                 </div>
                 
                 <div className="relative h-full flex items-end">
-                    <div className="max-w-4xl mx-auto px-6 pb-16 w-full">
+                    <div className="w-full px-16 pb-16">
                         <div className="mb-4">
                             <Link href="/blogs" className="text-gold-500 hover:text-gold-400 text-sm">
                                 ← Back to Blogs
@@ -67,10 +67,10 @@ export default function BlogDetailPage() {
             </section>
 
             {/* Content Section */}
-            <article className="max-w-3xl mx-auto px-6 py-16">
+            <article className="w-full px-16 py-16">
                 <div className="prose prose-invert prose-lg max-w-none">
                     {blog.content.map((paragraph, index) => (
-                        <p key={index} className="text-earth-200 leading-relaxed mb-6 text-lg">
+                        <p key={index} className="text-earth-200 leading-relaxed mb-4 text-lg">
                             {paragraph}
                         </p>
                     ))}

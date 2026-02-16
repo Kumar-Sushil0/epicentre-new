@@ -108,7 +108,7 @@ export default function Header() {
                   isActive("/test") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
                 }`}
               >
-                Modes
+               Experiences
               </Link>
               <Link 
                 href="/stories" 

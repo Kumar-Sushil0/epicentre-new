@@ -60,11 +60,11 @@ I didn't need more time. I needed less interference.`,
                 <div className="absolute inset-0 bg-gradient-to-t from-earth-900 via-earth-900/60 to-transparent" />
 
                 {/* Breadcrumb and Category */}
-                <div className="absolute top-24 left-0 right-0 px-8 md:px-16">
-                    <div className="max-w-4xl mx-auto">
+                <div className="absolute top-24 left-0 right-0 px-16">
+                    <div className="mb-4">
                         <Link
                             href="/stories"
-                            className="inline-flex items-center gap-2 text-gold-500 hover:text-gold-400 transition-colors mb-4"
+                            className="inline-flex items-center gap-2 text-gold-500 hover:text-gold-400 transition-colors"
                         >
                             <span className="material-symbols-outlined text-xl">arrow_back</span>
                             <span className="text-sm font-medium">Back to Stories</span>
@@ -80,8 +80,8 @@ I didn't need more time. I needed less interference.`,
                 </div>
 
                 {/* Title */}
-                <div className="absolute bottom-0 left-0 right-0 px-8 md:px-16 pb-12">
-                    <div className="max-w-4xl mx-auto">
+                <div className="absolute bottom-0 left-0 right-0 px-16 pb-12">
+                    <div>
                         <h1 className="text-4xl md:text-6xl font-bold text-earth-100 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             {story.title}
                         </h1>
@@ -106,11 +106,11 @@ I didn't need more time. I needed less interference.`,
             </section>
 
             {/* Content Section */}
-            <section className="py-16 px-8 md:px-16">
-                <div className="max-w-4xl mx-auto">
+            <section className="py-16 px-16">
+                <div>
                     {/* Initial Description */}
                     <div className="mb-12">
-                        <p className="text-xl md:text-2xl leading-relaxed text-earth-200 font-light" style={{ whiteSpace: 'pre-line' }}>
+                        <p className="text-xl md:text-2xl leading-normal text-earth-200 font-light" style={{ whiteSpace: 'pre-line' }}>
                             {story.description}
                         </p>
                     </div>
@@ -120,7 +120,7 @@ I didn't need more time. I needed less interference.`,
 
                     {/* Full Content */}
                     <div className="prose prose-invert prose-lg max-w-none">
-                        <div className="text-base md:text-lg leading-relaxed text-earth-300 space-y-6" style={{ whiteSpace: 'pre-line' }}>
+                        <div className="text-base md:text-lg leading-normal text-earth-300 space-y-4" style={{ whiteSpace: 'pre-line' }}>
                             {story.fullContent}
                         </div>
                     </div>
@@ -136,7 +136,7 @@ I didn't need more time. I needed less interference.`,
                                     {story.insights.map((insight, index) => (
                                         <li key={index} className="flex items-start gap-3 text-earth-300">
                                             <span className="material-symbols-outlined text-gold-500 text-xl mt-1">check_circle</span>
-                                            <span className="text-base leading-relaxed">{insight}</span>
+                                            <span className="text-base leading-normal">{insight}</span>
                                         </li>
                                     ))}
                                 </ul>
@@ -146,7 +146,7 @@ I didn't need more time. I needed less interference.`,
 
                     {/* Quote/Reflection */}
                     <div className="mt-12">
-                        <blockquote className="border-l-4 border-gold-500/50 pl-6 py-4 italic text-earth-300 text-lg">
+                        <blockquote className="border-l-4 border-gold-500/50 pl-6 py-4 italic text-earth-300 text-lg leading-normal">
                             "Silence does not force insight. It allows it."
                         </blockquote>
                     </div>

@@ -60,32 +60,27 @@ export default function Hero() {
             <span className="italic text-gold-500">Silence as a Service.</span>
           </h1>
           <p className="text-earth-300/80 text-xl md:text-2xl font-light leading-relaxed w-full font-body mb-8">
-            A structured void where external identities are temporarily suspended.<br />
-            Interference reduces.
-            Attention settles.
-            Clarity follows.
+            A private estate designed for structured silence, deep work, and decision clarity.
           </p>
           
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-8">
+          <div className="flex flex-col gap-3 mt-8 items-start">
             <button
               onClick={() => {
                 const section = document.getElementById('cycles-section');
                 section?.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }}
-              className="inline-flex items-center justify-center gap-2 bg-gold-600 hover:bg-gold-500 text-earth-950 px-8 py-4 rounded-md font-semibold transition-all duration-300 uppercase tracking-wider text-sm"
+              className="inline-flex items-center gap-2 text-gold-500 hover:text-gold-400 transition-colors duration-300 text-xl font-bold"
               style={{ fontFamily: 'Outfit, sans-serif' }}
             >
-              Explore Cycles
-              <span className="text-lg">→</span>
+              → Explore Cycles
             </button>
             <Link
               href="/venue"
-              className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-gold-500 hover:bg-gold-500/10 text-gold-500 hover:text-gold-400 px-8 py-4 rounded-md font-semibold transition-all duration-300 uppercase tracking-wider text-sm"
+              className="inline-flex items-center gap-2 text-gold-500 hover:text-gold-400 transition-colors duration-300 text-base font-bold"
               style={{ fontFamily: 'Outfit, sans-serif' }}
             >
-              Explore Estate
-              <span className="text-lg">→</span>
+              → View Estate
             </Link>
           </div>
         </div>

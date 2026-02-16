@@ -36,22 +36,23 @@ export default function Footer() {
             <h4 className="text-[#e7dfd3] font-bold mb-6 text-sm tracking-wide uppercase">Explore</h4>
             <ul className="space-y-4 text-sm text-[#e7dfd3] font-body">
               <li><Link href="/about-us" className="hover:text-gold-500 transition-colors block py-0.5">About Us</Link></li>
-              <li><Link href="/rooms" className="hover:text-gold-500 transition-colors block py-0.5">Stays</Link></li>
-              <li><Link href="/venue" className="hover:text-gold-500 transition-colors block py-0.5">Venue</Link></li>
+              
+              <li><Link href="/venue" className="hover:text-gold-500 transition-colors block py-0.5">Estate</Link></li>
+              <li><Link href="/test" className="hover:text-gold-500 transition-colors block py-0.5">Modes</Link></li>
+              
               <li><Link href="/stories" className="hover:text-gold-500 transition-colors block py-0.5">Stories</Link></li>
-              <li><Link href="/faq" className="hover:text-gold-500 transition-colors block py-0.5">FAQ</Link></li>
             </ul>
           </div>
 
-          {/* Links Section 2: Experiences */}
+          {/* Links Section 2: Have Questions? */}
           <div className="lg:col-span-2">
-            <h4 className="text-[#e7dfd3] font-bold mb-6 text-sm tracking-wide uppercase">Experiences</h4>
+            <h4 className="text-[#e7dfd3] font-bold mb-6 text-sm tracking-wide uppercase">Have Questions?</h4>
             <ul className="space-y-4 text-sm text-[#e7dfd3] font-body">
-              <li><Link href="/wellness" className="hover:text-gold-500 transition-colors block py-0.5">Wellness</Link></li>
-              <li><Link href="/experiences" className="hover:text-gold-500 transition-colors block py-0.5">Activities</Link></li>
-              <li><Link href="/solitude" className="hover:text-gold-500 transition-colors block py-0.5">Solitude</Link></li>
-              <li><Link href="/expression" className="hover:text-gold-500 transition-colors block py-0.5">Expression</Link></li>
-              <li><Link href="/residency" className="hover:text-gold-500 transition-colors block py-0.5">Residency</Link></li>
+              <li><Link href="/blogs" className="hover:text-gold-500 transition-colors block py-0.5">Blogs</Link></li>
+              <li><Link href="/events" className="hover:text-gold-500 transition-colors block py-0.5">Events</Link></li>
+             
+              <li><Link href="/faq" className="hover:text-gold-500 transition-colors block py-0.5">FAQ</Link></li>
+              <li><Link href="/contact" className="hover:text-gold-500 transition-colors block py-0.5">Contact Us</Link></li>
             </ul>
           </div>
 
@@ -102,7 +103,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center text-xs text-[#e7dfd3] font-body gap-4">
-          <div>© {new Date().getFullYear()} EPiCentre Retreats. All rights reserved.</div>
+          <div>© {new Date().getFullYear()} The Silent Club. All rights reserved.</div>
           <div className="flex gap-6">
             <a className="hover:text-gold-500 transition-colors" href="#">Privacy Policy</a>
             <a className="hover:text-gold-500 transition-colors" href="#">Terms of Service</a>

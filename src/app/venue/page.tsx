@@ -32,7 +32,7 @@ export default function VenuePage() {
       closingText: "Sleep is protected. Interruption is minimized.",
       venues: [
         {
-          title: "Private Room — Sanctuary",
+          title: "Private Room",
           description: "Living environments for restoration and sleep.\n\nUsed for: Deep rest. Extended silence. Sensory withdrawal. Private integration.\n\nSleep is protected. Interruption is minimized.",
           image:
             "https://lh3.googleusercontent.com/aida-public/AB6AXuBZLscLeqaXM3WeLLKdo4n6I_KPLwimBzpxj6FfWhA0Tj1nnnNlUWpcX2O5r_A_Znd9KQKhJl4MmgBBlrnwhBV6OyALMYwVuWNx2_apOvsOeDznh9p1N6BXQvYnHbaGcQ6QpaDXxBUrpQbPtjMMsENDJEf1p9sOXdl4NJSmjGH0P5bovB_Tqkca_-lxSw1eQYDCYob6sCjcK3pC77zVRDrj9az7_buyOh-Od1xhkayKnENL_0B5Jr_9nk4OBnZJuBdJjJDliAp0Fgiu",
@@ -42,7 +42,7 @@ export default function VenuePage() {
           href: "/venue#collective",
         },
         {
-          title: "Dark Room — Complete Darkness",
+          title: "Dark Room",
           description: "Living environments for restoration and sleep.\n\nUsed for: Deep rest. Extended silence. Sensory withdrawal. Private integration.\n\nSleep is protected. Interruption is minimized.",
           image:
             "https://lh3.googleusercontent.com/aida-public/AB6AXuDihuxI523H6STIOJTiusyX823EQRHnvGdgm92Oy3HeVG1rev-PWuFIVtRhFzrIx-Iv2iQYjDzhZWjoJdtvf3rJ1jA4iQzvRD3mongIDOtMmi5Kwm3Q4MKRqr7WQH3zKIZpyiKKy3sKokFdJJBoK3z15gz53cpyFE85NnKrpg7XLsWKLELWgbnpyPP7nTAKt8Ten5QZhlUTKPRpi3G6i-cM1bVOxi6YPhrz4ECpxLkHU4RWjYCb7Az6gqLPaK006r-vCMKZgJHbIT1z",
@@ -82,53 +82,33 @@ export default function VenuePage() {
       closingText: "Food is prepared with intention. Meals are consumed in silence or conversation.",
       venues: [
         {
-          title: "Main Dining Hall",
-          description: "Dining spaces and culinary experiences.\n\nUsed for: Shared meals. Mindful eating. Culinary workshops. Nutritional awareness.\n\nFood is prepared with intention. Meals are consumed in silence or conversation.",
+          title: "Satvik Indian Home Food",
+          description: "Traditional Indian home-style cooking prepared with satvik principles.\n\nAvailable: Daily\n\nAuthentic, wholesome meals that nourish body and mind.",
           image:
             "https://lh3.googleusercontent.com/aida-public/AB6AXuDmYE7uQzqCPEUSx1PzSQvaNJcQur_MMIW0hlWNehK-OFDueDgUN7lYbLrTKCcFHpwgAgnc1VWNFhHTq7N4UITYxKAY3BjPsfNFQ8jxpqM0WaY0-2XQWEkef1LVUzXK83qSQa-FlCnmdCMui0DUfT7mqUeme6SDTsdQjp30zLpzdY2kJ9oMfEa6grHmfNxFPNz31Mt-_im9r1Li8DG-T0vHYjL48QPNl9dFL4STTKEs-C-hDp9lugle-UDaVx5AhapFJFnFBBWHVh_P",
-          imageAlt: "Main dining hall",
-          area: "1,500 sqft",
-          capacity: "60 ppl",
+          imageAlt: "Satvik Indian home food",
+          area: "Daily",
+          capacity: "All guests",
           href: "/venue#food",
         },
         {
-          title: "Outdoor Dining Terrace",
-          description: "Dining spaces and culinary experiences.\n\nUsed for: Shared meals. Mindful eating. Culinary workshops. Nutritional awareness.\n\nFood is prepared with intention. Meals are consumed in silence or conversation.",
+          title: "Salad Smoothies & Sandwiches",
+          description: "Fresh, healthy options for light meals and refreshments.\n\nAvailable: Wednesday & Friday\n\nNutritious choices for sustained energy.",
           image:
             "https://lh3.googleusercontent.com/aida-public/AB6AXuAZvB7dROLa44DAlcGJoRtqzbbwxWyyCNe3fUBZfM8D6c5CKq0WdORTws7ezr9vbFawAbXzrE-ZZSWYt3CHMyZq8l2blVHLd26TEQEzP4EVqAcZpKA39A84XoD9heaUCra8vcMxPcZJ9mOC5sCQpEkOd5L-H39YTm7hAH7kI0aiNS69razeZ3jCiDSmfFZ2v1_VJ34aTIw6bRX6MSvShGkI0mC3TUfjQ2ABus_MXRX_adQiqDmsLBTmQOyBVgvdnPeJWO5uCKQXJXqO",
-          imageAlt: "Outdoor dining terrace",
-          area: "800 sqft",
-          capacity: "30 ppl",
+          imageAlt: "Salads, smoothies and sandwiches",
+          area: "Wed & Fri",
+          capacity: "All guests",
           href: "/venue#food",
         },
         {
-          title: "Community Kitchen",
-          description: "Dining spaces and culinary experiences.\n\nUsed for: Shared meals. Mindful eating. Culinary workshops. Nutritional awareness.\n\nFood is prepared with intention. Meals are consumed in silence or conversation.",
+          title: "Barbecue Pizza and Sushi",
+          description: "Wood-fired pizzas, barbecue specialties, and fresh sushi.\n\nAvailable: Sunday\n\nSpecial Sunday gathering with diverse culinary experiences.",
           image:
             "https://lh3.googleusercontent.com/aida-public/AB6AXuCqvrjbiNk16kuSjOdYFpXtempYrXm89EALbe3XqRvFXP-BVXZZ0QkKKO0gQDRqUVh5-YEmfUm0OlduKC5QSXRss6wVYioG8pDrHONJXmskFVQGB2irQ8UQxme2xhF2OZpnsOXmPVqNzONG7VwP7WO39Qv6Es_HlHnrBgvQ6g0X9cH3g8wbjKLvr8HV1-Md_re2ianXRvgviiPJukMIOWmjIIT_Ymw48XJieYgEQvGfNDxo_QUZjknlWvaLkih4WkYK55Cd3UHhwyiR",
-          imageAlt: "Community kitchen",
-          area: "600 sqft",
-          capacity: "12 ppl",
-          href: "/venue#food",
-        },
-        {
-          title: "Tea Garden",
-          description: "Dining spaces and culinary experiences.\n\nUsed for: Shared meals. Mindful eating. Culinary workshops. Nutritional awareness.\n\nFood is prepared with intention. Meals are consumed in silence or conversation.",
-          image:
-            "https://lh3.googleusercontent.com/aida-public/AB6AXuCCrs3CWaQXPNPCzn-2Yu6zw3_BhwMdFIZ3V6lL8vKk_YXGKO3hGxPc7NzGcZU8MniT56_7aDMKLp8a3UlZjiZ0qqfBBBqi7AfWcDKlssA9PsirRmLIkbz5Cjz2vzwlerlVc1PKWOC7D3L68AjvDABGMpGYKfnUbMMbqpi5e_Z4tu0NBqrm7APkJgbLU7-23jUHGR2F0uSNWUE0XjXpEX1HWiQKE0a4IhN81qOs-cgFvTWhCofrZrGUKz90lh7sfbRzy5NgB6xLmGLc",
-          imageAlt: "Tea garden",
-          area: "400 sqft",
-          capacity: "15 ppl",
-          href: "/venue#food",
-        },
-        {
-          title: "Private Dining Room",
-          description: "Dining spaces and culinary experiences.\n\nUsed for: Shared meals. Mindful eating. Culinary workshops. Nutritional awareness.\n\nFood is prepared with intention. Meals are consumed in silence or conversation.",
-          image:
-            "https://lh3.googleusercontent.com/aida-public/AB6AXuDmYE7uQzqCPEUSx1PzSQvaNJcQur_MMIW0hlWNehK-OFDueDgUN7lYbLrTKCcFHpwgAgnc1VWNFhHTq7N4UITYxKAY3BjPsfNFQ8jxpqM0WaY0-2XQWEkef1LVUzXK83qSQa-FlCnmdCMui0DUfT7mqUeme6SDTsdQjp30zLpzdY2kJ9oMfEa6grHmfNxFPNz31Mt-_im9r1Li8DG-T0vHYjL48QPNl9dFL4STTKEs-C-hDp9lugle-UDaVx5AhapFJFnFBBWHVh_P",
-          imageAlt: "Private dining room",
-          area: "300 sqft",
-          capacity: "8 ppl",
+          imageAlt: "Barbecue, pizza and sushi",
+          area: "Sunday",
+          capacity: "All guests",
           href: "/venue#food",
         },
       ],
@@ -191,16 +171,7 @@ export default function VenuePage() {
           capacity: "Multiple",
           href: "/venue#intimate",
         },
-        {
-          title: "Gym",
-          description: "Movement, recovery, and regulation.\n\nUsed for: Physical reset. Stress discharge. Endurance training. Body recalibration.\n\nMovement is self-paced. No coaching required.",
-          image:
-            "https://lh3.googleusercontent.com/aida-public/AB6AXuA5OVdnhPpsRfB3RpMuYF5je8gUD4m4rTcw4MUPI4UenAZxNfGlntk6Wdn3X6nomlCoHUe15ry529-UeZWczD1MgLfGckKf-pomE8gWaRAwGvAjsGEqAezgkR2BU9J1fTIR3B8q1m1r3QKi9JK4pZ4__3tokNCXaP7vZ9K920OjqyhtTB-AV5FfSvQyek79kmeBsnVfasZEEg7zPY84AHyLbMoSiD7GO-xBcqNRRDcfTAIgxu3eDDOX8kLx7jsPzoLSKkzRNnGvxCxs",
-          imageAlt: "Indoor gym",
-          area: "1,500 sqft",
-          capacity: "20 ppl",
-          href: "/venue#intimate",
-        },
+       
         {
           title: "Yoga & Meditation Hall",
           description: "Movement, recovery, and regulation.\n\nUsed for: Physical reset. Stress discharge. Endurance training. Body recalibration.\n\nMovement is self-paced. No coaching required.",
@@ -215,7 +186,7 @@ export default function VenuePage() {
     },
     {
       id: "physical",
-      title: "Solitude",
+      title: "Solo",
       icon: "self_improvement",
       introText: "Spaces designed for withdrawal and reflection.",
       usedFor: "Writing. Focused thought. Personal reset. Quiet dialogue.",
@@ -301,16 +272,7 @@ export default function VenuePage() {
           capacity: "20 ppl",
           href: "/venue#creative",
         },
-        {
-          title: "Community Hall",
-          description: "Primary collective environments for structured or unstructured gathering.\n\nUsed for: Inquiry sessions. Intentional dialogue. Quiet collaboration. Shared silence.\n\nNo performance required. No audience expected.",
-          image:
-            "https://lh3.googleusercontent.com/aida-public/AB6AXuDLkKCbOoNiCh5GCaXKpDhhE61EuBWVMqfoDx1x_wyCJoA7PPkZmboVTkSD_1yjEjKPL0U6yCi1y95lu8MpShSApYpvBa-kH7le5gEg7sscNGWNucdUgeA-mCHvnuQyiiaKm7_dWnjuEJGruUnNYnReX02GjXcgpvs3zQENCaOm-XM1ooU-KamYXeXfrToETA6qvjaBp6TU6CG9s4sapxcYre2RGmVKISe7fG490J8Ru1kUvmvnvTo5WV1WDN6BWR-ijXSNkFgNnIM9",
-          imageAlt: "Community hall",
-          area: "2,800 sqft",
-          capacity: "25 ppl",
-          href: "/venue#creative",
-        },
+        
         {
           title: "Front Lawn",
           description: "Primary collective environments for structured or unstructured gathering.\n\nUsed for: Inquiry sessions. Intentional dialogue. Quiet collaboration. Shared silence.\n\nNo performance required. No audience expected.",
@@ -392,7 +354,7 @@ export default function VenuePage() {
       closingText: "Respect the habitat. Observe without disturbing.",
       venues: [
         {
-          title: "Bird Sanctuary Trail",
+          title: "Forest Safari",
           description: "Natural environments and wildlife observation areas.\n\nUsed for: Bird watching. Nature walks. Wildlife photography. Ecological observation.\n\nRespect the habitat. Observe without disturbing.",
           image:
             "https://lh3.googleusercontent.com/aida-public/AB6AXuDmYE7uQzqCPEUSx1PzSQvaNJcQur_MMIW0hlWNehK-OFDueDgUN7lYbLrTKCcFHpwgAgnc1VWNFhHTq7N4UITYxKAY3BjPsfNFQ8jxpqM0WaY0-2XQWEkef1LVUzXK83qSQa-FlCnmdCMui0DUfT7mqUeme6SDTsdQjp30zLpzdY2kJ9oMfEa6grHmfNxFPNz31Mt-_im9r1Li8DG-T0vHYjL48QPNl9dFL4STTKEs-C-hDp9lugle-UDaVx5AhapFJFnFBBWHVh_P",
@@ -402,7 +364,7 @@ export default function VenuePage() {
           href: "/venue#wildlife",
         },
         {
-          title: "Lakeside Observation Deck",
+          title: "Bird Watching",
           description: "Natural environments and wildlife observation areas.\n\nUsed for: Bird watching. Nature walks. Wildlife photography. Ecological observation.\n\nRespect the habitat. Observe without disturbing.",
           image:
             "https://lh3.googleusercontent.com/aida-public/AB6AXuAZvB7dROLa44DAlcGJoRtqzbbwxWyyCNe3fUBZfM8D6c5CKq0WdORTws7ezr9vbFawAbXzrE-ZZSWYt3CHMyZq8l2blVHLd26TEQEzP4EVqAcZpKA39A84XoD9heaUCra8vcMxPcZJ9mOC5sCQpEkOd5L-H39YTm7hAH7kI0aiNS69razeZ3jCiDSmfFZ2v1_VJ34aTIw6bRX6MSvShGkI0mC3TUfjQ2ABus_MXRX_adQiqDmsLBTmQOyBVgvdnPeJWO5uCKQXJXqO",
@@ -412,7 +374,7 @@ export default function VenuePage() {
           href: "/venue#wildlife",
         },
         {
-          title: "Forest Walking Path",
+          title: "Night Boat Safari",
           description: "Natural environments and wildlife observation areas.\n\nUsed for: Bird watching. Nature walks. Wildlife photography. Ecological observation.\n\nRespect the habitat. Observe without disturbing.",
           image:
             "https://lh3.googleusercontent.com/aida-public/AB6AXuCqvrjbiNk16kuSjOdYFpXtempYrXm89EALbe3XqRvFXP-BVXZZ0QkKKO0gQDRqUVh5-YEmfUm0OlduKC5QSXRss6wVYioG8pDrHONJXmskFVQGB2irQ8UQxme2xhF2OZpnsOXmPVqNzONG7VwP7WO39Qv6Es_HlHnrBgvQ6g0X9cH3g8wbjKLvr8HV1-Md_re2ianXRvgviiPJukMIOWmjIIT_Ymw48XJieYgEQvGfNDxo_QUZjknlWvaLkih4WkYK55Cd3UHhwyiR",
@@ -422,7 +384,7 @@ export default function VenuePage() {
           href: "/venue#wildlife",
         },
         {
-          title: "Wetland Viewing Point",
+          title: "Grassland Safari",
           description: "Natural environments and wildlife observation areas.\n\nUsed for: Bird watching. Nature walks. Wildlife photography. Ecological observation.\n\nRespect the habitat. Observe without disturbing.",
           image:
             "https://lh3.googleusercontent.com/aida-public/AB6AXuCCrs3CWaQXPNPCzn-2Yu6zw3_BhwMdFIZ3V6lL8vKk_YXGKO3hGxPc7NzGcZU8MniT56_7aDMKLp8a3UlZjiZ0qqfBBBqi7AfWcDKlssA9PsirRmLIkbz5Cjz2vzwlerlVc1PKWOC7D3L68AjvDABGMpGYKfnUbMMbqpi5e_Z4tu0NBqrm7APkJgbLU7-23jUHGR2F0uSNWUE0XjXpEX1HWiQKE0a4IhN81qOs-cgFvTWhCofrZrGUKz90lh7sfbRzy5NgB6xLmGLc",
