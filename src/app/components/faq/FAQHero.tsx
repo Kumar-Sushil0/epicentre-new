@@ -25,8 +25,8 @@ export default function FAQHero() {
             <span className="italic text-gold-500">Questions Answered</span>
           </h1>
           <p className="text-earth-300/80 text-xl md:text-2xl font-light leading-relaxed w-full font-body">
-            Curiosities about our way of life.<br />
-            If you have more questions, reach out to us.
+            Clarity before arrival prevents friction during stay.<br />
+            If your question is not answered here, write to: hello@thesilent.club
           </p>
         </div>
       </div>

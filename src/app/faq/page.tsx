@@ -15,457 +15,240 @@ interface FAQItem {
 }
 
 const faqData: FAQItem[] = [
-  // STAY, BOOKING & DAILY LIVING
-  // Booking & Payments
+  // BEFORE YOU BOOK
+  {
+    id: "is-for-me",
+    question: "Is The Silent Club for me?",
+    answer: "If you are seeking guidance, therapy, social immersion, or constant interaction — no.\n\nIf you are capable of remaining self-directed in silence — likely yes.",
+    category: "BEFORE YOU BOOK"
+  },
+  {
+    id: "prior-experience",
+    question: "Do I need prior experience with meditation or retreats?",
+    answer: "No.\n\nYou need only the ability to manage your own time without instruction.",
+    category: "BEFORE YOU BOOK"
+  },
+  {
+    id: "guidance",
+    question: "Will someone guide me during my stay?",
+    answer: "No.\n\nThe environment is structured. You navigate it.",
+    category: "BEFORE YOU BOOK"
+  },
+  {
+    id: "social-experience",
+    question: "Is this a social experience?",
+    answer: "Silence is the default condition.\n\nConversation is minimal and intentional.",
+    category: "BEFORE YOU BOOK"
+  },
   {
     id: "minimum-stay",
     question: "What is the minimum stay?",
-    answer: "You can book a day stay (no overnight) or stay up to 3 months. Tent stays may be adjusted if events require relocation.",
-    category: "STAY, BOOKING & DAILY LIVING"
+    answer: "You may book a Day Cycle (no overnight) or stay up to three months, subject to availability.",
+    category: "BEFORE YOU BOOK"
   },
+
+  // BOOKING & PAYMENTS
   {
     id: "payments",
     question: "How do payments work?",
-    answer: "50% advance is required at booking. The remaining 50% must be paid before check-in, on arrival.",
-    category: "STAY, BOOKING & DAILY LIVING"
+    answer: "50% advance confirms your booking.\n\nRemaining 50% is due before or at check-in.",
+    category: "BOOKING & PAYMENTS"
   },
   {
     id: "price-changes",
-    question: "Will price changes affect my booking?",
-    answer: "No. Confirmed bookings are not affected by future price changes.",
-    category: "STAY, BOOKING & DAILY LIVING"
+    question: "Will future price changes affect my booking?",
+    answer: "No. Confirmed bookings are protected.",
+    category: "BOOKING & PAYMENTS"
+  },
+  {
+    id: "cancellation",
+    question: "What is the cancellation policy?",
+    answer: "Cancellations are non-refundable.\n\nRescheduling may be allowed depending on notice and availability.",
+    category: "BOOKING & PAYMENTS"
   },
   {
     id: "floods-restrictions",
     question: "What happens during floods or government restrictions?",
-    answer: "No refunds are issued. Rescheduling is allowed. The Silent Club assumes no liability.",
-    category: "STAY, BOOKING & DAILY LIVING"
+    answer: "No refunds are issued.\n\nRescheduling may be accommodated.\n\nThe Silent Club assumes no liability for external events.",
+    category: "BOOKING & PAYMENTS"
   },
-  
-  // Check-in, Check-out & Arrival
+
+  // ARRIVAL & ORIENTATION
   {
     id: "checkin-checkout",
-    question: "What are the check-in and check-out times?",
+    question: "What are check-in and check-out times?",
     answer: "Check-in: 12:00 PM\nCheck-out: 11:00 AM",
-    category: "STAY, BOOKING & DAILY LIVING"
+    category: "ARRIVAL & ORIENTATION"
   },
   {
     id: "early-late",
     question: "Is early check-in or late check-out allowed?",
-    answer: "Yes, subject to availability and charged extra.",
-    category: "STAY, BOOKING & DAILY LIVING"
-  },
-  {
-    id: "latest-arrival",
-    question: "What is the latest arrival time?",
-    answer: "10:00 PM. Late arrivals require prior coordination with the property manager.",
-    category: "STAY, BOOKING & DAILY LIVING"
+    answer: "Subject to availability and additional charges.",
+    category: "ARRIVAL & ORIENTATION"
   },
   {
     id: "orientation",
-    question: "Is there an arrival orientation?",
-    answer: "Yes. A mandatory 10-minute orientation at check-in.",
-    category: "STAY, BOOKING & DAILY LIVING"
+    question: "Is there an orientation?",
+    answer: "Yes.\n\nA mandatory 10-minute orientation at check-in to explain structure and boundaries.",
+    category: "ARRIVAL & ORIENTATION"
   },
-  
-  // Accommodation Options
+
+  // DURING YOUR STAY
+  {
+    id: "silence-mandatory",
+    question: "Is silence mandatory?",
+    answer: "Silence is not enforced.\n\nQuiet behavior is expected.\n\nWeekdays (Mon–Thu):\nInteraction is limited to a 10 PM – 11 PM window.\n\nWeekends / Event Days:\nConversation is permitted but must remain slow and considerate.",
+    category: "DURING YOUR STAY"
+  },
+  {
+    id: "phones-allowed",
+    question: "Can I use my phone?",
+    answer: "Yes.\n\nPhones are allowed, including in dorms.\n\nCalls must be taken in designated areas and kept brief.\n\nSpeakers are not allowed.\n\nHeadphones are permitted.",
+    category: "DURING YOUR STAY"
+  },
+  {
+    id: "laptops",
+    question: "Is laptop use allowed?",
+    answer: "Yes, but it is discouraged unless essential.\n\nWi-Fi speed: approximately 30 Mbps.",
+    category: "DURING YOUR STAY"
+  },
+  {
+    id: "meals-included",
+    question: "Are meals included?",
+    answer: "Food packages may be included depending on your cycle.\n\nMeal times are fixed.\n\nKitchen access is permitted. Guests must clean all utensils used.",
+    category: "DURING YOUR STAY"
+  },
+  {
+    id: "alcohol-smoking",
+    question: "Is alcohol or smoking allowed?",
+    answer: "Alcohol and drugs are strictly prohibited.\n\nSmoking is allowed only in designated areas.\n\nGuests under the influence will be asked to leave without refund.",
+    category: "DURING YOUR STAY"
+  },
+  {
+    id: "what-to-bring",
+    question: "What should I bring?",
+    answer: "Comfortable clothing.\n\nMinimal belongings.\n\nEssential medication.\n\nAvoid strong perfumes or fragrances.",
+    category: "DURING YOUR STAY"
+  },
+
+  // ACCOMMODATION & FACILITIES
   {
     id: "accommodation-types",
     question: "What types of accommodation are available?",
-    answer: "Private rooms, shared dorms, tents, and common indoor spaces.",
-    category: "STAY, BOOKING & DAILY LIVING"
-  },
-  {
-    id: "mixed-dorms",
-    question: "Are dorms mixed-gender?",
-    answer: "Yes. Dorms are mixed-gender.",
-    category: "STAY, BOOKING & DAILY LIVING"
-  },
-  {
-    id: "women-dorms",
-    question: "Are women-only dorms available?",
-    answer: "Yes, on request and subject to availability.",
-    category: "STAY, BOOKING & DAILY LIVING"
-  },
-  
-  // Dorm Rules & Shared Spaces
-  {
-    id: "dorm-quiet-hours",
-    question: "What are dorm quiet hours?",
-    answer: "5:00 AM – 11:00 AM\n2:00 PM – 6:00 PM\nOutside these hours, only polite, low-volume conversation is allowed.",
-    category: "STAY, BOOKING & DAILY LIVING"
+    answer: "Private rooms, shared dorms, minimalist tents, and common indoor spaces.\n\nDorms are mixed-gender unless otherwise requested and available.",
+    category: "ACCOMMODATION & FACILITIES"
   },
   {
     id: "lockers",
     question: "Are lockers provided?",
-    answer: "Yes. The Silent Club is not responsible for loss or damage.",
-    category: "STAY, BOOKING & DAILY LIVING"
+    answer: "Yes.\n\nThe Silent Club is not responsible for loss or damage.",
+    category: "ACCOMMODATION & FACILITIES"
   },
-  {
-    id: "lights-off",
-    question: "Is there a fixed lights-off time?",
-    answer: "Yes. Personal reading lights are allowed.",
-    category: "STAY, BOOKING & DAILY LIVING"
-  },
-  
-  // Food, Meals & Kitchen Use
-  {
-    id: "food-included",
-    question: "Is food included in the stay price?",
-    answer: "No. Food packages are charged separately.",
-    category: "STAY, BOOKING & DAILY LIVING"
-  },
-  {
-    id: "meal-times",
-    question: "Are meal times fixed?",
-    answer: "Yes. Meals are served at fixed times.",
-    category: "STAY, BOOKING & DAILY LIVING"
-  },
-  {
-    id: "cooking",
-    question: "Can I cook my own food?",
-    answer: "Yes. Kitchen access is allowed.",
-    category: "STAY, BOOKING & DAILY LIVING"
-  },
-  {
-    id: "cleaning",
-    question: "Do I need to clean after cooking or eating?",
-    answer: "Yes. Guests must clean all utensils, plates, cups, and glasses they use.",
-    category: "STAY, BOOKING & DAILY LIVING"
-  },
-  
-  // Facilities & Utilities
   {
     id: "hot-water",
     question: "Is hot water available?",
     answer: "Yes.",
-    category: "STAY, BOOKING & DAILY LIVING"
+    category: "ACCOMMODATION & FACILITIES"
   },
   {
     id: "power-backup",
     question: "Is there power backup?",
     answer: "Yes. Inverter backup for up to 2 hours.",
-    category: "STAY, BOOKING & DAILY LIVING"
+    category: "ACCOMMODATION & FACILITIES"
   },
-  {
-    id: "laundry",
-    question: "Is laundry service available?",
-    answer: "Yes, at an additional cost.",
-    category: "STAY, BOOKING & DAILY LIVING"
-  },
-  
-  // Clothing, Fragrance & Comfort
-  {
-    id: "clothing-guidelines",
-    question: "Is there a clothing guideline?",
-    answer: "Solid colors preferred. No branding or prints. Maximum: 5 outfits, 1 pair of shoes, 1 pair of chappals.",
-    category: "STAY, BOOKING & DAILY LIVING"
-  },
-  {
-    id: "fragrances",
-    question: "Are perfumes or strong fragrances allowed?",
-    answer: "No. Avoid strong perfumes, soaps, or shampoos.",
-    category: "STAY, BOOKING & DAILY LIVING"
-  },
-  
-  // Parking & Vehicle Safety
   {
     id: "parking",
     question: "Is parking available?",
-    answer: "Yes, on-site parking is available.",
-    category: "STAY, BOOKING & DAILY LIVING"
-  },
-  {
-    id: "vehicle-safety",
-    question: "Who is responsible for vehicle safety?",
-    answer: "Vehicle safety is the owner's responsibility.",
-    category: "STAY, BOOKING & DAILY LIVING"
+    answer: "Yes.\n\nVehicle safety remains the owner's responsibility.",
+    category: "ACCOMMODATION & FACILITIES"
   },
 
-  // SILENCE, CONDUCT & SAFETY
-  // Silence & Quiet Hours
-  {
-    id: "silence-mandatory",
-    question: "Is silence mandatory?",
-    answer: "Silence is not enforced, but quiet behaviour is expected.",
-    category: "SILENCE, CONDUCT & SAFETY"
-  },
-  {
-    id: "weekday-silence",
-    question: "What are the silence rules during the week?",
-    answer: "Monday–Thursday: Quiet all day. Interaction allowed only 10:00 PM – 11:00 PM.",
-    category: "SILENCE, CONDUCT & SAFETY"
-  },
-  {
-    id: "weekend-silence",
-    question: "What about weekends or event days?",
-    answer: "Friday–Sunday / Events: Talking is allowed but must be slow and considerate.",
-    category: "SILENCE, CONDUCT & SAFETY"
-  },
-  
-  // Phone, Calls & Music Use
-  {
-    id: "phones-allowed",
-    question: "Are phones allowed?",
-    answer: "Yes, including in dorms.",
-    category: "SILENCE, CONDUCT & SAFETY"
-  },
-  {
-    id: "calls-where",
-    question: "Where are calls allowed?",
-    answer: "Only on discussion decks and tree houses. Calls must be short, quiet, and essential.",
-    category: "SILENCE, CONDUCT & SAFETY"
-  },
-  {
-    id: "work-calls",
-    question: "Are work calls or meetings allowed?",
-    answer: "Only if essential, and only in designated areas.",
-    category: "SILENCE, CONDUCT & SAFETY"
-  },
-  {
-    id: "speakers",
-    question: "Are speakers allowed?",
-    answer: "No.",
-    category: "SILENCE, CONDUCT & SAFETY"
-  },
-  {
-    id: "headphones",
-    question: "Are headphones allowed?",
-    answer: "Yes.",
-    category: "SILENCE, CONDUCT & SAFETY"
-  },
-  
-  // Work, Laptops & Internet
-  {
-    id: "laptops",
-    question: "Is laptop use allowed?",
-    answer: "Yes, but discouraged.",
-    category: "SILENCE, CONDUCT & SAFETY"
-  },
-  {
-    id: "internet-speed",
-    question: "What is the internet speed?",
-    answer: "30 Mbps (Jio).",
-    category: "SILENCE, CONDUCT & SAFETY"
-  },
-  
-  // Guest Behaviour & Enforcement
-  {
-    id: "disturbance",
-    question: "What happens if someone disturbs the environment?",
-    answer: "A warning is issued first. Repeated disturbance results in removal with no refund.",
-    category: "SILENCE, CONDUCT & SAFETY"
-  },
-  
-  // Staff Presence & On-Site Support
-  {
-    id: "staff-availability",
-    question: "Is staff available on-site?",
-    answer: "Yes. Staff is present 24/7.",
-    category: "SILENCE, CONDUCT & SAFETY"
-  },
-  {
-    id: "night-staff",
-    question: "How do I reach staff at night?",
-    answer: "Via the provided contact number or at the servant quarters.",
-    category: "SILENCE, CONDUCT & SAFETY"
-  },
-  
-  // Security & Surveillance
+  // SAFETY & SECURITY
   {
     id: "property-security",
     question: "Is the property secured?",
-    answer: "Yes. The property is gated.",
-    category: "SILENCE, CONDUCT & SAFETY"
+    answer: "Yes. The estate is gated.\n\nCCTV operates in common areas only.",
+    category: "SAFETY & SECURITY"
   },
   {
-    id: "cctv",
-    question: "Is CCTV installed?",
-    answer: "Yes. CCTV with motion detectors in all common areas.",
-    category: "SILENCE, CONDUCT & SAFETY"
-  },
-  
-  // Medical Support & Emergency Care
-  {
-    id: "medical-support",
-    question: "Is medical support available?",
-    answer: "Basic first aid only.",
-    category: "SILENCE, CONDUCT & SAFETY"
+    id: "staff-availability",
+    question: "Is staff available?",
+    answer: "Yes. On-site 24/7.\n\nEmergency contact details are provided at check-in.",
+    category: "SAFETY & SECURITY"
   },
   {
-    id: "hospitals",
-    question: "Nearest hospitals?",
-    answer: "Bhigwan – 10 km\nBaramati – 30 km\nPune – 100 km",
-    category: "SILENCE, CONDUCT & SAFETY"
+    id: "medical-facilities",
+    question: "Are medical facilities nearby?",
+    answer: "Basic first aid is available.\n\nNearest hospitals:\nBhigwan — 10 km\nBaramati — 30 km\nPune — 100 km",
+    category: "SAFETY & SECURITY"
   },
-  
-  // Identity, Age & Visitor Access
   {
     id: "government-id",
     question: "Is government ID required?",
-    answer: "Yes. ID is verified and digitally retained.",
-    category: "SILENCE, CONDUCT & SAFETY"
-  },
-  {
-    id: "minimum-age",
-    question: "Minimum age to stay?",
-    answer: "16 years. Minors allowed only with guardians.",
-    category: "SILENCE, CONDUCT & SAFETY"
-  },
-  {
-    id: "day-visitors",
-    question: "Can visitors come during the day?",
-    answer: "Yes. Maximum 2–4 hours, common areas only.",
-    category: "SILENCE, CONDUCT & SAFETY"
-  },
-  
-  // Environment, Weather & Wildlife
-  {
-    id: "dangerous-animals",
-    question: "Are there dangerous animals on-site?",
-    answer: "No. Only domestic animals (cats, dogs, cows, buffaloes, sheep). No snakes. Active agriculture for 10+ years.",
-    category: "SILENCE, CONDUCT & SAFETY"
-  },
-  {
-    id: "restricted-areas",
-    question: "Are there restricted areas?",
-    answer: "Yes. D.D's Den is strictly off-limits.",
-    category: "SILENCE, CONDUCT & SAFETY"
-  },
-  {
-    id: "monsoon-restrictions",
-    question: "Are there monsoon movement restrictions?",
-    answer: "No. Temporary tents may be relocated if required.",
-    category: "SILENCE, CONDUCT & SAFETY"
+    answer: "Yes. ID verification is mandatory.\n\nMinimum age: 16 years.\n\nMinors must be accompanied by guardians.",
+    category: "SAFETY & SECURITY"
   },
 
-  // EVENTS, GROUPS & LONG STAYS
-  // Group Stays & Event Booking
+  // EVENTS & GROUP USE
   {
     id: "group-events",
-    question: "Can I host an event or group stay?",
-    answer: "Yes. Group size allowed: 2 to 50 people.",
-    category: "EVENTS, GROUPS & LONG STAYS"
+    question: "Can I host a group or event?",
+    answer: "Yes.\n\nAll events are screened for alignment.\n\nThe Silent Club reserves the right to decline based on intent.",
+    category: "EVENTS & GROUP USE"
   },
-  {
-    id: "booking-options",
-    question: "What can be booked?",
-    answer: "One room, one building, or the entire property.",
-    category: "EVENTS, GROUPS & LONG STAYS"
-  },
-  
-  // Event Eligibility & Screening
-  {
-    id: "event-screening",
-    question: "Are events screened?",
-    answer: "Yes. All events are reviewed.",
-    category: "EVENTS, GROUPS & LONG STAYS"
-  },
-  {
-    id: "event-decline",
-    question: "Can the club decline an event?",
-    answer: "Yes, based on intent.",
-    category: "EVENTS, GROUPS & LONG STAYS"
-  },
-  
-  // Security Deposit & Noise Limits
   {
     id: "security-deposit",
     question: "Is a security deposit required?",
-    answer: "₹25,000 for half-day events\n₹50,000 for overnight events",
-    category: "EVENTS, GROUPS & LONG STAYS"
+    answer: "Yes.\n\n₹25,000 for half-day events.\n₹50,000 for overnight events.",
+    category: "EVENTS & GROUP USE"
   },
   {
     id: "noise-cutoff",
     question: "What is the noise cutoff time?",
-    answer: "10:00 PM, as per government regulations.",
-    category: "EVENTS, GROUPS & LONG STAYS"
-  },
-  
-  // External Participants & Branding
-  {
-    id: "external-participants",
-    question: "Can non-staying participants attend events?",
-    answer: "Yes.",
-    category: "EVENTS, GROUPS & LONG STAYS"
-  },
-  {
-    id: "same-rules",
-    question: "Do they follow the same rules?",
-    answer: "Yes.",
-    category: "EVENTS, GROUPS & LONG STAYS"
-  },
-  {
-    id: "event-branding",
-    question: "Is event branding allowed?",
-    answer: "Only after confirmation.",
-    category: "EVENTS, GROUPS & LONG STAYS"
-  },
-  
-  // Photography, Recording & Content Use
-  {
-    id: "content-ownership",
-    question: "Who owns event photos and videos?",
-    answer: "The event host owns all content.",
-    category: "EVENTS, GROUPS & LONG STAYS"
-  },
-  {
-    id: "club-documentation",
-    question: "Can The Silent Club document events?",
-    answer: "Yes, with prior notification (permission not required).",
-    category: "EVENTS, GROUPS & LONG STAYS"
-  },
-  
-  // Liability, Risk & Waivers
-  {
-    id: "liability-waiver",
-    question: "Do guests sign a liability waiver?",
-    answer: "Yes.",
-    category: "EVENTS, GROUPS & LONG STAYS"
+    answer: "10:00 PM, as per local regulations.",
+    category: "EVENTS & GROUP USE"
   },
   {
     id: "activity-supervision",
     question: "Are physical activities supervised?",
-    answer: "No supervision. Waiver and self-declared fitness are mandatory.",
-    category: "EVENTS, GROUPS & LONG STAYS"
+    answer: "No.\n\nGuests sign a liability waiver.\n\nSelf-declared fitness is mandatory.",
+    category: "EVENTS & GROUP USE"
   },
-  
-  // Long Stays & Repeat Visits
+  {
+    id: "disturbance",
+    question: "What happens if someone disturbs the environment?",
+    answer: "A warning is issued.\n\nRepeated disturbance results in removal without refund.",
+    category: "EVENTS & GROUP USE"
+  },
+
+  // LONG STAYS & EXTENSIONS
   {
     id: "long-stay-discounts",
     question: "Are long-stay discounts available?",
-    answer: "Yes.",
-    category: "EVENTS, GROUPS & LONG STAYS"
+    answer: "Yes, subject to discussion.",
+    category: "LONG STAYS & EXTENSIONS"
   },
   {
-    id: "periodic-review",
-    question: "Is there a periodic review during long stays?",
-    answer: "No.",
-    category: "EVENTS, GROUPS & LONG STAYS"
+    id: "extend-stay",
+    question: "Can I extend my stay?",
+    answer: "If capacity allows.",
+    category: "LONG STAYS & EXTENSIONS"
   },
-  {
-    id: "belongings-storage",
-    question: "Can belongings be left on-site during breaks?",
-    answer: "Yes.",
-    category: "EVENTS, GROUPS & LONG STAYS"
-  },
-  
-  // Early Exit, Damage & Rule Breach
   {
     id: "early-departure",
     question: "Is there a refund for early departure?",
     answer: "No.",
-    category: "EVENTS, GROUPS & LONG STAYS"
+    category: "LONG STAYS & EXTENSIONS"
   },
   {
     id: "property-damage",
     question: "How is property damage handled?",
     answer: "Charged at full replacement cost.",
-    category: "EVENTS, GROUPS & LONG STAYS"
+    category: "LONG STAYS & EXTENSIONS"
   }
 ];
 
-const categories = ["All", "STAY, BOOKING & DAILY LIVING", "SILENCE, CONDUCT & SAFETY", "EVENTS, GROUPS & LONG STAYS"];
+const categories = ["All", "BEFORE YOU BOOK", "BOOKING & PAYMENTS", "ARRIVAL & ORIENTATION", "DURING YOUR STAY", "ACCOMMODATION & FACILITIES", "SAFETY & SECURITY", "EVENTS & GROUP USE", "LONG STAYS & EXTENSIONS"];
 
 export default function FAQPage() {
   const [activeCategory, setActiveCategory] = useState("All");

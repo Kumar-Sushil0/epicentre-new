@@ -32,7 +32,7 @@ export default function BlogsPage() {
                     imageAlt: "Attention clarity",
                     author: "The Silent Club",
                     date: "2024",
-                    href: "/blogs",
+                    href: "/blogs/lack-attention",
                 },
                 {
                     title: "Why Stimulation Is the Default Setting of Modern Life",
@@ -41,7 +41,7 @@ export default function BlogsPage() {
                     imageAlt: "Modern stimulation",
                     author: "The Silent Club",
                     date: "2024",
-                    href: "/blogs",
+                    href: "/blogs/stimulation-default",
                 },
                 {
                     title: "Silence Is a Design Tool, Not a Spiritual Practice",
@@ -50,7 +50,7 @@ export default function BlogsPage() {
                     imageAlt: "Silence as design",
                     author: "The Silent Club",
                     date: "2024",
-                    href: "/blogs",
+                    href: "/blogs/silence-design-tool",
                 },
             ],
         },
@@ -67,7 +67,7 @@ export default function BlogsPage() {
                     imageAlt: "Identity pause",
                     author: "The Silent Club",
                     date: "2024",
-                    href: "/blogs",
+                    href: "/blogs/roles-pause",
                 },
                 {
                     title: "Identity Is Usually Inherited. It Can Be Designed.",
@@ -76,7 +76,7 @@ export default function BlogsPage() {
                     imageAlt: "Designed identity",
                     author: "The Silent Club",
                     date: "2024",
-                    href: "/blogs",
+                    href: "/blogs/identity-designed",
                 },
                 {
                     title: "Authority Is Not Borrowed. It Is Authored.",
@@ -85,7 +85,7 @@ export default function BlogsPage() {
                     imageAlt: "Authored authority",
                     author: "The Silent Club",
                     date: "2024",
-                    href: "/blogs",
+                    href: "/blogs/authority-authored",
                 },
             ],
         },
@@ -102,7 +102,7 @@ export default function BlogsPage() {
                     imageAlt: "Environment shapes behavior",
                     author: "The Silent Club",
                     date: "2024",
-                    href: "/blogs",
+                    href: "/blogs/environment-shapes-behavior",
                 },
                 {
                     title: "Why Fewer Choices Create More Clarity",
@@ -111,7 +111,7 @@ export default function BlogsPage() {
                     imageAlt: "Fewer choices",
                     author: "The Silent Club",
                     date: "2024",
-                    href: "/blogs",
+                    href: "/blogs/fewer-choices-clarity",
                 },
                 {
                     title: "Agreement Is Stronger Than Enforcement",
@@ -120,7 +120,7 @@ export default function BlogsPage() {
                     imageAlt: "Agreement over enforcement",
                     author: "The Silent Club",
                     date: "2024",
-                    href: "/blogs",
+                    href: "/blogs/agreement-enforcement",
                 },
             ],
         },
@@ -137,7 +137,7 @@ export default function BlogsPage() {
                     imageAlt: "Clarity through subtraction",
                     author: "The Silent Club",
                     date: "2024",
-                    href: "/blogs",
+                    href: "/blogs/clarity-subtraction",
                 },
                 {
                     title: "Why Most Big Decisions Are Delayed, Not Difficult",
@@ -146,7 +146,7 @@ export default function BlogsPage() {
                     imageAlt: "Delayed decisions",
                     author: "The Silent Club",
                     date: "2024",
-                    href: "/blogs",
+                    href: "/blogs/decisions-delayed",
                 },
                 {
                     title: "Silence Does Not Change You. It Reveals You.",
@@ -155,7 +155,7 @@ export default function BlogsPage() {
                     imageAlt: "Silence reveals",
                     author: "The Silent Club",
                     date: "2024",
-                    href: "/blogs",
+                    href: "/blogs/silence-reveals",
                 },
             ],
         },
@@ -167,12 +167,12 @@ export default function BlogsPage() {
             <BlogHero />
             <div className="max-w-[1200px] mx-auto px-4 sm:px-10 py-12">
                 {blogCategories.map((category) => (
-                    <section 
-                        key={category.id} 
+                    <section
+                        key={category.id}
                         className={`transition-all duration-300 ${expandedSections[category.id] ? 'mb-24' : 'mb-6'}`}
                     >
-                        <StoriesSection 
-                            {...category} 
+                        <StoriesSection
+                            {...category}
                             expanded={expandedSections[category.id]}
                             onToggle={() => toggleSection(category.id)}
                         />
