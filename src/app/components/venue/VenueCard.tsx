@@ -9,18 +9,43 @@ interface VenueCardProps {
   description: string;
   image: string;
   imageAlt: string;
-  area: string;
-  capacity: string;
   badge?: string;
   href?: string;
 }
 
-export default function VenueCard({ title, description, image, imageAlt, area, capacity, badge, href }: VenueCardProps) {
+// Helper function to parse description and extract tags
+function parseDescription(description: string): { tags: string[], mainDescription: string } {
+  const lines = description.split('\n\n');
+  const tags: string[] = [];
+  let mainDescription = '';
+  
+  lines.forEach((line, index) => {
+    // Check for various tag patterns
+    if (line.startsWith('Used for:') || line.startsWith('Everyday:') || 
+        line.startsWith('Wed & Fri') || line.startsWith('As required:')) {
+      // Extract tags from the line
+      const tagText = line.replace(/^(Used for:|Everyday:|Wed & Fri\s*:|As required:)\s*/i, '').trim();
+      const extractedTags = tagText.split('.').map(t => t.trim()).filter(t => t.length > 0);
+      tags.push(...extractedTags);
+    } else if (index === 0 || index === lines.length - 1) {
+      // Keep first line and last line as main description with space separator
+      if (mainDescription) mainDescription += ' ';
+      mainDescription += line;
+    }
+  });
+  
+  return { tags, mainDescription };
+}
+
+export default function VenueCard({ title, description, image, imageAlt, badge, href }: VenueCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [isForceHovered, setIsForceHovered] = useState(false);
   const [contentHeight, setContentHeight] = useState(0);
+
+  // Parse description to extract tags
+  const { tags, mainDescription } = parseDescription(description);
 
   useEffect(() => {
     // Check if parent has force-hover class
@@ -57,7 +82,7 @@ export default function VenueCard({ title, description, image, imageAlt, area, c
       }, 50);
       return () => clearTimeout(timer);
     }
-  }, [isHovered, isForceHovered, description, badge]);
+  }, [isHovered, isForceHovered, mainDescription, badge, tags]);
 
   const shouldShowHoverState = isHovered || isForceHovered;
 
@@ -127,10 +152,24 @@ export default function VenueCard({ title, description, image, imageAlt, area, c
             <div className="overflow-hidden">
               <div ref={contentRef}>
                 {/* Title with hover state - appears on hover for gold background */}
-                <div className="flex items-center justify-between mb-4">
-                  <h4 className="text-[21px] font-normal text-earth-900" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                <div className="mb-3">
+                  <h4 className="text-[21px] font-normal text-earth-900 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
                     {title}
                   </h4>
+                  
+                  {/* Tags below title */}
+                  {tags.length > 0 && (
+                    <div className="flex flex-wrap gap-1">
+                      {tags.map((tag, index) => (
+                        <span 
+                          key={index}
+                          className="px-1.5 py-0.5 bg-earth-900/10 border border-earth-900/20 rounded-full text-[10px] text-earth-800 whitespace-nowrap"
+                        >
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 {/* Badge on hover */}
@@ -142,19 +181,9 @@ export default function VenueCard({ title, description, image, imageAlt, area, c
                   </div>
                 )}
 
-                {/* Area/Capacity info on hover */}
-                <div className="flex items-center gap-4 text-earth-800 text-xs font-mono mb-4">
-                  <span className="flex items-center gap-1">
-                    <span className="material-symbols-outlined text-base">square_foot</span> {area}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <span className="material-symbols-outlined text-base">person</span> {capacity}
-                  </span>
-                </div>
-
                 {/* Description */}
-                <p className="text-sm md:text-base leading-relaxed font-body text-earth-800" style={{ whiteSpace: 'pre-line' }}>
-                  {description}
+                <p className="text-sm md:text-base leading-snug font-body text-earth-800">
+                  {mainDescription}
                 </p>
               </div>
             </div>

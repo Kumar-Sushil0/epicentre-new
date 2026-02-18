@@ -5,18 +5,17 @@ import { useEffect, useMemo, useState } from "react";
 export default function VenueCategoryNav() {
   const categories = useMemo(
     () => [
-      { id: "collective", label: "Quarters" },
+      { id: "wildlife", label: "Wildlife & Nature" },
+      { id: "collective", label: "Accommodation" },
       { id: "food", label: "Food" },
       { id: "intimate", label: "Practice" },
-      { id: "physical", label: "Solitude" },
       { id: "creative", label: "Assembly" },
-      { id: "living", label: "Symbols" },
-      { id: "wildlife", label: "Wildlife & Nature" },
+      { id: "living", label: "Symbolic" },
     ],
     []
   );
 
-  const [activeId, setActiveId] = useState(categories[0]?.id ?? "collective");
+  const [activeId, setActiveId] = useState(categories[0]?.id ?? "wildlife");
 
   useEffect(() => {
     const ids = new Set(categories.map((c) => c.id));

@@ -25,10 +25,12 @@ export default function VenueHero() {
             <span className="italic text-gold-500">Held, Not Hired</span>
           </h1>
           <p className="text-earth-300/80 text-xl md:text-2xl font-light leading-relaxed w-full font-body">
-             Designed to hold attention without effort.<br/> 
- 
- Use is available by inquiry and alignment, not membership alone.
-
+            A private estate structured to support long-duration silence.<br/>
+            Sleep is protected.<br/>
+            Food is stable.<br/>
+            Movement is available.<br/>
+            Interaction is intentional.<br/>
+            Access is by alignment.
           </p>
         </div>
       </div>
