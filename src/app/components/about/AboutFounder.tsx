@@ -12,27 +12,53 @@ export default function AboutFounder() {
               The Conductor
             </h2>
             <div className="space-y-6 text-earth-300/80 font-body text-lg leading-relaxed max-w-2xl">
-            
-
               <p>
-                Clarity emerges through subtraction.
+                I did not build this to teach silence.
               </p>
 
               <p>
-                Autonomy requires structure.
+                I built it because I couldn't think clearly in the environments I was succeeding in.
               </p>
 
               <p>
-                Identity should be designed, not inherited.
+                Too much input. Too much performance. Too many inherited roles.
               </p>
 
               <p>
-                Sovereignty begins with uninterrupted attention.
+                At some point I realized clarity does not come from more strategy.
+              </p>
+
+              <p>
+                It comes from subtracting interference.
+              </p>
+
+              <p>
+                So I began designing environments instead of chasing motivation.
+              </p>
+
+              <p>
+                The Silent Club is the result.
+              </p>
+
+              <p>
+                My role is not to advise you.
+              </p>
+
+              <p>
+                It is to protect the conditions where you can hear yourself think.
+              </p>
+
+              <p>
+                I am not a guide. I am not a guru.
+              </p>
+
+              <p>
+                I maintain structure. You do the deciding.
               </p>
 
               <p className="text-earth-100 font-normal pt-4">
-                Not a guide.<br />
-                A steward.
+                If this idea unsettles you, good.<br />
+                We should talk.
               </p>
             </div>
           </div>

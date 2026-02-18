@@ -3,11 +3,11 @@ export default function OurPhilosophy() {
     <section className="py-16 bg-earth-900">
       <div className="w-full px-16">
         <h2 className="text-3xl font-normal mb-12 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>
-          Our Philosophy
+          Philosophy
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Clarity emerges through subtraction */}
+          {/* Clarity is a product of subtraction */}
           <div className="flex flex-col items-start text-center md:text-left bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
             <div className="mb-4">
               <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -16,11 +16,11 @@ export default function OurPhilosophy() {
               </svg>
             </div>
             <p className="text-earth-300 text-sm font-body">
-              Clarity emerges through subtraction.
+              Clarity is a product of subtraction.
             </p>
           </div>
 
-          {/* Autonomy requires structure */}
+          {/* Autonomy requires constraint */}
           <div className="flex flex-col items-start text-center md:text-left bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
             <div className="mb-4">
               <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -29,11 +29,11 @@ export default function OurPhilosophy() {
               </svg>
             </div>
             <p className="text-earth-300 text-sm font-body">
-              Autonomy requires structure.
+              Autonomy requires constraint.
             </p>
           </div>
 
-          {/* Identity should be designed */}
+          {/* Identity is authored, not inherited */}
           <div className="flex flex-col items-start text-center md:text-left bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
             <div className="mb-4">
               <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,11 +42,11 @@ export default function OurPhilosophy() {
               </svg>
             </div>
             <p className="text-earth-300 text-sm font-body">
-              Identity should be designed, not inherited.
+              Identity is authored, not inherited.
             </p>
           </div>
 
-          {/* Sovereignty begins with attention */}
+          {/* Sovereignty begins with protected attention */}
           <div className="flex flex-col items-start text-center md:text-left bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
             <div className="mb-4">
               <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,7 +56,7 @@ export default function OurPhilosophy() {
               </svg>
             </div>
             <p className="text-earth-300 text-sm font-body">
-              Sovereignty begins with uninterrupted attention.
+              Sovereignty begins with protected attention.
             </p>
           </div>
         </div>

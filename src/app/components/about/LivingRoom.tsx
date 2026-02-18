@@ -109,7 +109,8 @@ const LivingRoom = () => {
                         Evidence
                     </h2>
                     <p className="text-xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                        The Silent Club is informed by established research in cognitive science and psychology.
+                        This is not ideology.<br />
+                        It is informed by research in cognitive science and psychology.
                     </p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">

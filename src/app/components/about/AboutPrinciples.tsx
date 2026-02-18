@@ -11,12 +11,12 @@ export default function AboutPrinciples() {
           <div className="p-8 border border-earth-700 bg-earth-950/50">
             <span className="text-gold-500 font-display text-4xl mb-6 block opacity-30">01</span>
             <h4 className="text-gold-500 font-normal mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>Silence Is Designed</h4>
-            <p className="text-earth-50/60 text-sm leading-relaxed">Sound, movement, and stimulation are intentionally shaped.</p>
+            <p className="text-earth-50/60 text-sm leading-relaxed">Sound, movement, and stimulation are shaped</p>
           </div>
           <div className="p-8 border border-earth-700 bg-earth-950/50">
             <span className="text-gold-500 font-display text-4xl mb-6 block opacity-30">02</span>
             <h4 className="text-gold-500 font-normal mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>Nothing Demands Performance</h4>
-            <p className="text-earth-50/60 text-sm leading-relaxed">There is no obligation to speak, share, or explain.</p>
+            <p className="text-earth-50/60 text-sm leading-relaxed">There is no obligation to perform.</p>
           </div>
           <div className="p-8 border border-earth-700 bg-earth-950/50">
             <span className="text-gold-500 font-display text-4xl mb-6 block opacity-30">03</span>
@@ -36,7 +36,7 @@ export default function AboutPrinciples() {
           <div className="p-8 border border-earth-700 bg-earth-950/50">
             <span className="text-gold-500 font-display text-4xl mb-6 block opacity-30">06</span>
             <h4 className="text-gold-500 font-normal mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>Pace Is Protected</h4>
-            <p className="text-earth-50/60 text-sm leading-relaxed">Nothing is rushed. Time is structural.</p>
+            <p className="text-earth-50/60 text-sm leading-relaxed">Nothing is rushed. Time is deliberate.</p>
           </div>
         </div>
       </div>

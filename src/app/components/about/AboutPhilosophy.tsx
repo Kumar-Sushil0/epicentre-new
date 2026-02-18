@@ -36,47 +36,26 @@ export default function AboutPhilosophy() {
   const philosophies: PhilosophyItem[] = [
     {
       title: "Why Silence",
-      description: "Silence reduces external signals so internal patterns can surface",
-      items: [
-        
-        "Thought slows",
-        "Decisions emerge without pressure",
-        "Silence is used as a design material"
-      ],
+      description: "Silence reduces signal.\nWhen signal reduces, perception sharpens.\nDecisions surface without pressure.\nSilence is not decoration.\nIt is a tool.",
+      items: [],
       image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAG8sRV16GeDF6s3Aix4GpETZ3eauYTdeaL5IlWaBQHdmLaEUl8HwITF-icK7rBJH3rs4_eyRc0OnTyudHniz8NCe3oRC2k5_KcTRLReqJdws9zmY25stjYSrFvYvnbb4fxetbYlgcqCJDWwMaBr_6UB09wT864MpT6mLPkqnqxG3JPy_DNNFOMUqcmW8iZWOE4etCbj4TW4EEkBzJss4y7vWzlNmUWjLyUiZaka0GRqyef8OxRV6v8-KYfO5Y2EoBHFW0f3nVZFV6T"
     },
     {
       title: "Why a Club",
-      description: "Entry is voluntary and self-selected",
-      items: [
-        
-        "Shared norms protect the space",
-        "No audiences.",
-        "No performance.",
-        "A club operates through agreement, not enforcement"
-      ],
+      description: "Entry is voluntary.\nShared norms protect the space.\nAgreement replaces enforcement.\nNo audience.\nNo performance.",
+      items: [],
       image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBzQUBgomUJe6e1OB_6dmTVcgR_GYt5k-UgoretbmfZ_izouiCOaK8YYEWLDt_QTV_ISyTECnULI_O5W2HYPqj6w163bSvDPTOBZHjRl7FljH8xAlUWQIAfo5Eosj0EPZTfwiMtkXcjRL7RThN1FokJa4gSqWamw681YNKmVWdMcKtTZpKktdALEho3axfgg38XvTVTyHnF8634k552ETsVCipetwOV8NQ9ujUeRJusTOeygeyE16mtVKBxnTDmtPIEduKGAtXfTURb"
     },
     {
       title: "Why Bhigwan",
-      description: "",
-      items: [
-        "Open land.",
-        " Long horizons.",
-        " Low signal density",
-        "The landscape supports silence before policy does"
-      ],
+      description: "Open land.\nLong horizons.\nLow signal density.\nThe landscape quiets you before policy does.",
+      items: [],
       image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA0HsBN67MCfII7SFbyoe1CuEbEDrqaYf7kqJpp72tE8oPKovG1zztOo__0OQzzELS2oQ_DGIuO1KS_1IVBucK8qj3FwvhRqbMhDhMbqm1ocMzXlUZu5zJy0ltLGZMhF5nbdxBiOOkVb0CbxNMhe3JUOqBjg4wMOeojwjaZBLtOtIZGd0bfLsFeA9XysJv44KgWPDDw2dfGb8kuCIadFmbgCYe5XTjiZwGX0My_VA7VqMgybDzGRzIgV_DDxQrBvxv58qq8EQmUqBNd"
     },
     {
       title: "Why We Experiment",
-      description: "The Silent Club is not fixed.",
-      items: [
-        "Spaces and formats are tested carefully.",
-        " Anything that increases noise is removed.",
-        " Testing is environmental, not personal.",
-        
-      ],
+      description: "Nothing here is fixed.\nFormats are tested.\nNoise is removed.\nTesting is structural, not personal.",
+      items: [],
       image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA0HsBN67MCfII7SFbyoe1CuEbEDrqaYf7kqJpp72tE8oPKovG1zztOo__0OQzzELS2oQ_DGIuO1KS_1IVBucK8qj3FwvhRqbMhDhMbqm1ocMzXlUZu5zJy0ltLGZMhF5nbdxBiOOkVb0CbxNMhe3JUOqBjg4wMOeojwjaZBLtOtIZGd0bfLsFeA9XysJv44KgWPDDw2dfGb8kuCIadFmbgCYe5XTjiZwGX0My_VA7VqMgybDzGRzIgV_DDxQrBvxv58qq8EQmUqBNd"
     }
   ];
@@ -115,7 +94,7 @@ export default function AboutPhilosophy() {
         <div className="mb-8">
           <h3 className="text-3xl font-normal mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Why This Structure</h3>
           <p className="text-[#e7dfd3] font-body text-[15px] max-w-full">
-            These choices were not symbolic.<br/>They were made to protect attention.
+            These choices are not aesthetic.<br/>They protect attention.
           </p>
         </div>
         <div className="relative">
