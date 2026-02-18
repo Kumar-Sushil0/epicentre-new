@@ -65,7 +65,7 @@ const ResearchItem = ({ item, index }: { item: typeof research[0], index: number
                 onClick={() => setIsOpen(!isOpen)}
                 className="w-full flex items-center justify-between p-4 text-left hover:bg-earth-900/5 transition-colors"
             >
-                <h3 className="text-lg font-semibold pr-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                <h3 className="text-lg font-normal pr-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
                     {formatTitle(item.title)}
                 </h3>
                 <span className="material-symbols-outlined text-2xl flex-shrink-0 transition-transform duration-300" style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
@@ -90,7 +90,7 @@ const ResearchItem = ({ item, index }: { item: typeof research[0], index: number
                         href={item.link} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="inline-block text-sm font-semibold underline hover:no-underline transition-all"
+                        className="inline-block text-sm font-normal underline hover:no-underline transition-all"
                     >
                         Click here
                     </a>
@@ -105,7 +105,7 @@ const LivingRoom = () => {
         <section className="bg-gold-500 py-20 text-earth-900">
             <div className="container mx-auto px-4 md:px-16">
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl font-semibold mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                    <h2 className="text-3xl font-normal mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
                         Evidence
                     </h2>
                     <p className="text-xl" style={{ fontFamily: 'Outfit, sans-serif' }}>

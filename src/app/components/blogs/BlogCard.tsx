@@ -16,7 +16,7 @@ export default function BlogCard({
   return (
     <div className="bg-earth-800 rounded-2xl overflow-hidden border border-earth-700 shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer">
       {/* Image */}
-      <div className="relative h-56 overflow-hidden">
+      <div className="relative aspect-[25/20] overflow-hidden">
         <img
           src={image}
           alt={title}
@@ -26,7 +26,7 @@ export default function BlogCard({
         
         {/* Category Badge */}
         <div className="absolute top-4 left-4">
-          <span className="px-3 py-1 bg-gold-500/90 backdrop-blur-sm text-earth-950 rounded-full text-xs font-semibold">
+          <span className="px-3 py-1 bg-gold-500/90 backdrop-blur-sm text-earth-950 rounded-full text-xs font-normal">
             {category}
           </span>
         </div>
@@ -48,7 +48,7 @@ export default function BlogCard({
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-bold text-gold-500 mb-3 leading-tight group-hover:text-gold-400 transition-colors line-clamp-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
+        <h3 className="text-xl font-normal text-gold-500 mb-3 leading-tight group-hover:text-gold-400 transition-colors line-clamp-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
           {title}
         </h3>
 
@@ -58,7 +58,7 @@ export default function BlogCard({
         </p>
 
         {/* Read More Link */}
-        <div className="flex items-center gap-2 text-gold-500 text-sm font-medium group-hover:gap-3 transition-all">
+        <div className="flex items-center gap-2 text-gold-500 text-sm font-normal group-hover:gap-3 transition-all">
           <span>Read More</span>
           <span className="material-symbols-outlined text-lg">arrow_forward</span>
         </div>

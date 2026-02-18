@@ -113,7 +113,7 @@ export default function AboutPhilosophy() {
     <section className="py-8 min-h-[100vh] bg-earth-950 border-b border-earth-800 flex items-center" id="philosophy">
       <div className="w-full px-16">
         <div className="mb-8">
-          <h3 className="text-3xl font-semibold mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Why This Structure</h3>
+          <h3 className="text-3xl font-normal mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Why This Structure</h3>
           <p className="text-[#e7dfd3] font-body text-[15px] max-w-full">
             These choices were not symbolic.<br/>They were made to protect attention.
           </p>

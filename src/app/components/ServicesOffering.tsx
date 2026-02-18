@@ -12,7 +12,7 @@ export default function ServicesOffering() {
   return (
     <section id="cycles-section" className="relative py-24 px-6 md:px-16 bg-earth-950">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-semibold text-gold-500 mb-4 text-center" style={{ fontFamily: 'Outfit, sans-serif' }}>
+        <h2 className="text-3xl font-normal text-gold-500 mb-4 text-center uppercase" style={{ fontFamily: 'Outfit, sans-serif' }}>
            Silent Cycles
         </h2>
         <p className="text-earth-300 text-lg text-center mb-12">
@@ -51,7 +51,7 @@ export default function ServicesOffering() {
           
           {/* Day Cycle Card */}
           <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-8 flex flex-col">
-            <h3 className="text-2xl font-semibold text-gold-500 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            <h3 className="text-2xl font-normal text-gold-500 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Day Cycle
             </h3>
             
@@ -70,14 +70,14 @@ export default function ServicesOffering() {
               </div>
             </div>
 
-            <div className="text-gold-500 text-lg font-semibold mt-auto">
+            <div className="text-gold-500 text-lg font-normal mt-auto">
               ₹1,000
             </div>
           </div>
 
           {/* Weekend Cycle Card */}
           <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-8 flex flex-col">
-            <h3 className="text-2xl font-semibold text-gold-500 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            <h3 className="text-2xl font-normal text-gold-500 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Weekend Cycle
             </h3>
             
@@ -96,14 +96,14 @@ export default function ServicesOffering() {
               </div>
             </div>
 
-            <div className="text-gold-500 text-lg font-semibold mt-auto">
+            <div className="text-gold-500 text-lg font-normal mt-auto">
               {accommodationType === 'dorm' ? '₹10,000' : '₹15,000'}
             </div>
           </div>
 
           {/* Weekday Cycle Card */}
           <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-8 flex flex-col">
-            <h3 className="text-2xl font-semibold text-gold-500 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            <h3 className="text-2xl font-normal text-gold-500 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Weekday Cycle
             </h3>
             
@@ -130,7 +130,7 @@ export default function ServicesOffering() {
               </div>
             </div>
 
-            <div className="text-gold-500 text-lg font-semibold mt-auto">
+            <div className="text-gold-500 text-lg font-normal mt-auto">
               {accommodationType === 'dorm' ? '₹20,000' : '₹30,000'}
             </div>
           </div>
@@ -159,7 +159,7 @@ export default function ServicesOffering() {
             href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block text-lg font-semibold text-gold-500 hover:text-gold-400 hover:border-gold-400 transition-colors cursor-pointer border-2 border-gold-500 rounded-lg px-6 py-3"
+            className="inline-block text-lg font-normal text-gold-500 hover:text-gold-400 hover:border-gold-400 transition-colors cursor-pointer border-2 border-gold-500 rounded-lg px-6 py-3"
             style={{ fontFamily: 'Outfit, sans-serif' }}
           >
             Request Conversation

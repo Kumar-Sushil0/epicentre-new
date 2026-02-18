@@ -17,7 +17,7 @@ export default function BlogHero() {
       {/* Content */}
       <div className="relative z-20 container px-16 max-w-7xl">
         <div className="max-w-6xl border-l-2 border-gold-500/50 pl-8 md:pl-12 py-4 animate-in slide-in-from-left-4 duration-1000">
-          <h1 className="text-earth-100 text-5xl md:text-7xl lg:text-8xl font-display font-medium leading-[1.1] tracking-tight mb-8 drop-shadow-2xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
+          <h1 className="text-earth-100 text-5xl md:text-7xl lg:text-8xl font-display font-normal leading-[1.1] tracking-tight mb-8 drop-shadow-2xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
            
             <span className="italic text-gold-500"> Written in Silence</span>
           </h1>
@@ -31,7 +31,7 @@ export default function BlogHero() {
       {/* Scroll Indicator */}
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-60 animate-bounce">
         <div className="w-12 h-12 rounded-full border-2 border-earth-300 flex items-center justify-center">
-          <span className="material-symbols-outlined text-earth-300 text-2xl">arrow_downward</span>
+          <span className="material-symbols-outlined text-earth-300 text-2xl">expand_more</span>
         </div>
       </div>
     </section>

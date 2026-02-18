@@ -3,7 +3,7 @@ export default function BuiltEnvironment() {
     <section className="py-24 px-6 bg-earth-900">
       <div className="max-w-7xl mx-auto">
         <div className="text-center max-w-4xl mx-auto">
-          <h2 className="text-earth-50 text-4xl md:text-5xl font-display font-medium mb-8">Built Environment</h2>
+          <h2 className="text-earth-50 text-3xl font-display font-normal mb-8">Built Environment</h2>
           <div className="space-y-4 text-earth-50/70 font-body text-lg leading-relaxed mb-8">
             <p>Architecture designed to recede</p>
             <p>Local materials, simple forms</p>

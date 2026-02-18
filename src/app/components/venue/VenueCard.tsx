@@ -89,7 +89,7 @@ export default function VenueCard({ title, description, image, imageAlt, badge, 
   const CardContent = (
     <div
       ref={cardRef}
-      className={`group relative aspect-[25/24] overflow-hidden bg-gold-500 border border-earth-800/50 shadow-xl rounded-[10px] ${href ? 'cursor-pointer' : ''}`}
+      className={`group relative aspect-[25/20] overflow-hidden bg-gold-500 border border-earth-800/50 shadow-xl rounded-[10px] ${href ? 'cursor-pointer' : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -135,7 +135,7 @@ export default function VenueCard({ title, description, image, imageAlt, badge, 
               {/* Badge */}
               {badge && (
                 <div className="mb-3">
-                  <span className="inline-block bg-gold-500/90 text-earth-950 text-xs font-bold px-3 py-1 rounded-full backdrop-blur">
+                  <span className="inline-block bg-gold-500/90 text-earth-950 text-xs font-normal px-3 py-1 rounded-full backdrop-blur">
                     {badge}
                   </span>
                 </div>
@@ -175,7 +175,7 @@ export default function VenueCard({ title, description, image, imageAlt, badge, 
                 {/* Badge on hover */}
                 {badge && (
                   <div className="mb-3">
-                    <span className="inline-block bg-earth-900/20 text-earth-900 text-xs font-bold px-3 py-1 rounded-full">
+                    <span className="inline-block bg-earth-900/20 text-earth-900 text-xs font-normal px-3 py-1 rounded-full">
                       {badge}
                     </span>
                   </div>

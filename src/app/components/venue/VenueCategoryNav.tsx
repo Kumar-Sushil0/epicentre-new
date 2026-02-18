@@ -88,7 +88,7 @@ export default function VenueCategoryNav() {
                 onClick={() => setActiveId(category.id)}
               >
                 <span
-                  className={`text-sm font-bold tracking-wide font-body transition-colors ${
+                  className={`text-sm font-normal tracking-wide font-body transition-colors ${
                     isActive
                       ? "text-gold-500"
                       : "text-earth-300 group-hover:text-earth-50"

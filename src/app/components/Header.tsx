@@ -110,14 +110,7 @@ export default function Header() {
               >
                Services
               </Link>
-              <Link 
-                href="/stories" 
-                className={`text-sm uppercase tracking-wider transition-colors ${
-                  isActive("/stories") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
-                }`}
-              >
-                Stories
-              </Link>
+             
               <Link 
                 href="/events" 
                 className={`text-sm uppercase tracking-wider transition-colors ${

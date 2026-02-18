@@ -10,10 +10,10 @@ export default function Location() {
   };
 
   return (
-    <section className="py-8 bg-earth-900 flex items-center" id="location">
+    <section className="py-8 bg-gold-500 flex items-center" id="location">
       <div className="w-full px-4 md:px-16">
         <div className="mb-8">
-           <h3 className="text-3xl font-semibold mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Location</h3>
+           <h3 className="text-3xl font-normal mb-3 text-earth-900 uppercase" style={{ fontFamily: 'Outfit, sans-serif' }}>Location</h3>
         </div>
 
         <div className="flex flex-col md:flex-row gap-8">
@@ -36,19 +36,19 @@ export default function Location() {
 
           {/* Location Info Section */}
           <div className="w-full md:w-1/2 flex items-center h-[300px]">
-            <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-8 w-full h-full flex items-center">
-              <div className="space-y-6 text-earth-200">
-                <p className="text-2xl font-semibold text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Bhigwan, Maharashtra.</p>
+            <div className="border border-earth-900/30 rounded-lg p-8 w-full h-full flex items-center">
+              <div className="space-y-6 text-earth-900">
+                <p className="text-2xl font-normal text-earth-900" style={{ fontFamily: 'Outfit, sans-serif' }}>Bhigwan, Maharashtra.</p>
                 <div className="space-y-3 text-lg">
                   <div className="flex items-center gap-3">
-                    <span className="text-gold-500">•</span>
+                    <span className="text-earth-900">•</span>
                     <p>2.5 hours from Pune.</p>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-gold-500">•</span>
+                    <span className="text-earth-900">•</span>
                     <p>5.5 hours from Mumbai.</p>
                   </div>
-                  <p className="pt-3 border-t border-earth-700/50">Accessed by Taxi, Bus & Train - From Mumbai, Pune, Baramati</p>
+                  <p className="pt-3 border-t border-earth-900/30">Accessed by Taxi, Bus & Train - From Mumbai, Pune, Baramati</p>
                 </div>
               </div>
             </div>
@@ -57,7 +57,7 @@ export default function Location() {
 
         {/* Postal Address & Phone */}
         <div className="mt-8 text-center">
-          <p className="text-gold-500 font-body text-sm">
+          <p className="text-earth-900 font-body text-sm">
             The Silent Club, Kumbhar Goan, Bird Sanctuary, Bhigwan, Maharashtra 413104. | Phone: +91 98903 22494
           </p>
         </div>

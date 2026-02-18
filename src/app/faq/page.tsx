@@ -269,17 +269,18 @@ export default function FAQPage() {
   return (
     <div className="min-h-screen bg-earth-950">
       <Header />
-      <FAQHero />
+     
+     
      
       {/* Category Filter */}
-      <section className="py-12 px-4 md:px-10 border-b border-earth-800">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-wrap gap-3 justify-center">
+      <section className="py-8 px-4 md:px-16 border-b border-earth-800 ">
+        <div className="w-full mt-16">
+          <div className="flex flex-wrap gap-2 justify-center">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-4 py-3 rounded-full text-xs md:text-sm font-medium transition-all duration-300 whitespace-nowrap ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 whitespace-nowrap ${
                   activeCategory === category
                     ? 'bg-gold-500 text-earth-950'
                     : 'bg-earth-900 text-earth-300 hover:bg-earth-800 hover:text-gold-500'
@@ -293,8 +294,8 @@ export default function FAQPage() {
       </section>
 
       {/* FAQ Content */}
-      <section className="py-16 px-4 md:px-10">
-        <div className="max-w-4xl mx-auto">
+      <section className="py-16 px-4 md:px-16">
+        <div className="w-full">
           <div className="space-y-4">
             {filteredFAQs.map((faq) => (
               <FAQItem

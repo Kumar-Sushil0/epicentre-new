@@ -78,7 +78,7 @@ export default function AboutCollective() {
     <section className="py-16 bg-earth-900 border-b border-earth-800" id="collective">
       <div className="w-full px-16">
         <div className="mb-8">
-          <h3 className="text-3xl font-semibold mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Our Team</h3>
+          <h3 className="text-3xl font-normal mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Our Team</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {collectiveMembers.map((member) => (

@@ -49,7 +49,7 @@ export default function EventsPage() {
                                     </svg>
                                 </button>
                                 
-                                <h1 className="text-4xl md:text-5xl font-bold text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                <h1 className="text-4xl md:text-5xl font-normal text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>
                                     Event Calendar
                                 </h1>
                                 

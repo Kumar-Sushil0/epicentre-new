@@ -15,7 +15,7 @@ export default function VenueBookingDetails() {
         <div className="border border-earth-700 rounded-lg overflow-hidden mb-8">
           {/* Title */}
           <div className="border-b border-earth-700 py-4 px-6 bg-earth-800">
-            <h2 className="text-gold-500 text-xl md:text-2xl font-bold uppercase tracking-wide text-center font-display" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            <h2 className="text-gold-500 text-xl md:text-2xl font-normal uppercase tracking-wide text-center font-display" style={{ fontFamily: 'Outfit, sans-serif' }}>
               VENUE BOOKING DETAILS
             </h2>
           </div>
@@ -23,13 +23,13 @@ export default function VenueBookingDetails() {
           {/* Half Day Section */}
           <div className="border-b border-earth-700">
             <div className="py-3 px-6 border-b border-earth-700 bg-earth-800">
-              <p className="text-gold-500 text-base font-semibold text-center font-display uppercase tracking-wide">Half Day Booking</p>
+              <p className="text-gold-500 text-base font-normal text-center font-display uppercase tracking-wide">Half Day Booking</p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 divide-x divide-earth-700">
               {halfDayPricing.map((item, index) => (
                 <div key={index} className="py-4 px-3 text-center hover:bg-earth-800 transition-colors">
                   <p className="text-earth-200 text-xs font-body leading-tight mb-2">{item.range}</p>
-                  <p className="text-gold-500 text-sm font-bold font-body">{item.price}</p>
+                  <p className="text-gold-500 text-sm font-normal font-body">{item.price}</p>
                 </div>
               ))}
             </div>
@@ -38,10 +38,10 @@ export default function VenueBookingDetails() {
           {/* Entire Day Section */}
           <div>
             <div className="py-3 px-6 border-b border-earth-700 bg-earth-800">
-              <p className="text-gold-500 text-base font-semibold text-center font-display uppercase tracking-wide">Full Day Booking</p>
+              <p className="text-gold-500 text-base font-normal text-center font-display uppercase tracking-wide">Full Day Booking</p>
             </div>
             <div className="py-4 px-6 text-center hover:bg-earth-800 transition-colors">
-              <p className="text-gold-500 text-xl font-bold font-body">₹2,20,000</p>
+              <p className="text-gold-500 text-xl font-normal font-body">₹2,20,000</p>
             </div>
           </div>
         </div>
@@ -49,7 +49,7 @@ export default function VenueBookingDetails() {
         {/* Things to Remember */}
         <div className="border border-earth-700 rounded-lg overflow-hidden">
           <div className="border-b border-earth-700 py-4 px-6 bg-earth-800">
-            <h3 className="text-gold-500 text-xl font-bold uppercase tracking-wide text-center font-display" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            <h3 className="text-gold-500 text-xl font-normal uppercase tracking-wide text-center font-display" style={{ fontFamily: 'Outfit, sans-serif' }}>
               THINGS TO REMEMBER
             </h3>
           </div>
@@ -58,7 +58,7 @@ export default function VenueBookingDetails() {
             {/* Security Deposit */}
             <div className="text-center mb-6 pb-6 border-b border-earth-700">
               <p className="text-earth-300 text-sm font-body">
-                Security deposit of <span className="text-gold-500 font-semibold">₹50,000</span> applicable to all venue rentals
+                Security deposit of <span className="text-gold-500 font-normal">₹50,000</span> applicable to all venue rentals
               </p>
             </div>
 

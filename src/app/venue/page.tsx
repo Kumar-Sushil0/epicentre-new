@@ -8,6 +8,22 @@ import VenueSection from "../components/venue/VenueSection";
 
 export default function VenuePage() {
   const [expandedSection, setExpandedSection] = useState<string>("wildlife");
+  const [viewModes, setViewModes] = useState<Record<string, 'grid' | 'carousel'>>({
+    wildlife: 'grid',
+    collective: 'grid',
+    food: 'grid',
+    intimate: 'grid',
+    creative: 'grid',
+    living: 'grid',
+  });
+  const [carouselIndices, setCarouselIndices] = useState<Record<string, number>>({
+    wildlife: 0,
+    collective: 0,
+    food: 0,
+    intimate: 0,
+    creative: 0,
+    living: 0,
+  });
 
   const toggleSection = (id: string) => {
     const newSection = expandedSection === id ? "" : id;
@@ -29,6 +45,14 @@ export default function VenuePage() {
         }
       }, 50);
     }
+  };
+
+  const setViewMode = (id: string, mode: 'grid' | 'carousel') => {
+    setViewModes(prev => ({ ...prev, [id]: mode }));
+  };
+
+  const setCarouselIndex = (id: string, index: number) => {
+    setCarouselIndices(prev => ({ ...prev, [id]: index }));
   };
 
   const venueCategories = [
@@ -441,6 +465,10 @@ export default function VenuePage() {
               {...category} 
               expanded={expandedSection === category.id}
               onToggle={() => toggleSection(category.id)}
+              viewMode={viewModes[category.id]}
+              onViewModeChange={(mode) => setViewMode(category.id, mode)}
+              carouselIndex={carouselIndices[category.id]}
+              onCarouselIndexChange={(index) => setCarouselIndex(category.id, index)}
             />
           </section>
         ))}

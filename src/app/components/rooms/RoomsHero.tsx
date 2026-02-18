@@ -52,7 +52,7 @@ Availability varies by duration, alignment, and current use of the space.
       {/* Scroll Indicator */}
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-60 animate-bounce">
         <div className="w-12 h-12 rounded-full border-2 border-earth-300 flex items-center justify-center">
-          <span className="material-symbols-outlined text-earth-300 text-2xl">arrow_downward</span>
+          <span className="material-symbols-outlined text-earth-300 text-2xl">expand_more</span>
         </div>
       </div>
     </section>

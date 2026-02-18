@@ -70,7 +70,7 @@ export default function WhatThisIsNot() {
     <section ref={sectionRef} className="py-24 min-h-[100vh] bg-earth-900 flex items-center">
       <div className="w-full px-6 md:px-16">
         <div className="mb-8">
-          <h3 className="text-3xl font-semibold mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Our Moat</h3>
+          <h3 className="text-3xl font-normal mb-3 text-gold-500 uppercase" style={{ fontFamily: 'Outfit, sans-serif' }}>Our Moat</h3>
           <p className="text-[#e7dfd3] font-body text-[15px] max-w-full">
             The Silent Club optional experiences are difficult to<br/> replicate because it removes what most places rely on.
           </p>

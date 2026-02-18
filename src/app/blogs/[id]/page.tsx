@@ -17,7 +17,7 @@ export default function BlogDetailPage() {
             <main className="min-h-screen bg-earth-900 text-earth-100">
                 <Header />
                 <div className="w-full px-16 py-32 text-center">
-                    <h1 className="text-4xl font-bold text-gold-500 mb-4">Blog Not Found</h1>
+                    <h1 className="text-3xl font-normal text-gold-500 mb-4">Blog Not Found</h1>
                     <p className="text-earth-300">The blog post you're looking for doesn't exist.</p>
                     <Link href="/blogs" className="inline-block mt-6 text-gold-500 hover:text-gold-400">
                         ← Back to Blogs
@@ -51,7 +51,7 @@ export default function BlogDetailPage() {
                         <div className="mb-4">
                             <span className="text-gold-500 text-sm font-medium">{blog.category}</span>
                         </div>
-                        <h1 className="text-4xl md:text-5xl font-bold text-earth-100 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                        <h1 className="text-3xl font-normal text-earth-100 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             {blog.title}
                         </h1>
                         <p className="text-xl text-earth-300 mb-6">

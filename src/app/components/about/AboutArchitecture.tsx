@@ -4,7 +4,7 @@ export default function AboutArchitecture() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div className="max-w-xl">
-            <h2 className="text-earth-50 text-3xl md:text-5xl font-bold mb-6">Built to Recede</h2>
+            <h2 className="text-earth-50 text-3xl font-normal mb-6">Built to Recede</h2>
             <p className="text-earth-50/70 font-body text-lg">
               The structures at The Silent Club are meant to disappear into the landscape.
             </p>

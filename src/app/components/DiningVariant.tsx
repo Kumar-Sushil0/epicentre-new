@@ -170,7 +170,7 @@ export default function DiningVariant() {
     <section ref={sectionRef} className="py-24 min-h-[100vh] bg-earth-900 flex items-center" id="dining">
       <div className="w-full px-6 md:px-16">
         <div className="mb-8">
-          <h3 className="text-3xl font-bold mb-2 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>The Club Includes</h3>
+          <h3 className="text-3xl font-normal mb-2 text-gold-500 uppercase" style={{ fontFamily: 'Outfit, sans-serif' }}>The Club Includes</h3>
           <p className="text-[#e7dfd3] font-body text-lg max-w-full">
             Accommodations, Food, and Practice & Recovery
           </p>
@@ -187,7 +187,7 @@ export default function DiningVariant() {
                     index === currentIndex ? 'opacity-100 relative z-10' : 'opacity-0 absolute inset-0 z-0 pointer-events-none'
                   }`}
                 >
-                  <div className="relative aspect-[25/24] rounded-lg overflow-hidden shadow-2xl border border-earth-700 group cursor-pointer">
+                  <div className="relative aspect-[25/20] rounded-lg overflow-hidden shadow-2xl border border-earth-700 group cursor-pointer">
                     {/* Image */}
                     <div className="absolute inset-0">
                       <img
@@ -263,7 +263,7 @@ export default function DiningVariant() {
                     index === currentAccommodationIndex ? 'opacity-100 relative z-10' : 'opacity-0 absolute inset-0 z-0 pointer-events-none'
                   }`}
                 >
-                  <div className="relative aspect-[25/24] rounded-lg overflow-hidden shadow-2xl border border-earth-700 group cursor-pointer">
+                  <div className="relative aspect-[25/20] rounded-lg overflow-hidden shadow-2xl border border-earth-700 group cursor-pointer">
                     {/* Image */}
                     <div className="absolute inset-0">
                       <img
@@ -339,7 +339,7 @@ export default function DiningVariant() {
                     index === currentExperienceIndex ? 'opacity-100 relative z-10' : 'opacity-0 absolute inset-0 z-0 pointer-events-none'
                   }`}
                 >
-                  <div className="relative aspect-[25/24] rounded-lg overflow-hidden shadow-2xl border border-earth-700 group cursor-pointer">
+                  <div className="relative aspect-[25/20] rounded-lg overflow-hidden shadow-2xl border border-earth-700 group cursor-pointer">
                     {/* Image */}
                     <div className="absolute inset-0">
                       <img
