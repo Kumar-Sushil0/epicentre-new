@@ -59,24 +59,12 @@ export default function VenueSection({
       {expanded && (
         <>
           {/* Introductory Text */}
-          {(introText || usedFor || closingText) && (
+          {(introText || closingText) && (
             <div className="mb-8 space-y-4">
               {introText && (
                 <p className="text-earth-300 text-base leading-relaxed">
                   {introText}
                 </p>
-              )}
-              {usedFor && usedFor.length > 0 && (
-                <div className="flex flex-wrap gap-2">
-                  {usedFor.map((item, index) => (
-                    <span 
-                      key={index}
-                      className="px-3 py-1 bg-earth-800/50 border border-earth-700/50 rounded-full text-earth-300 text-sm"
-                    >
-                      #{item}
-                    </span>
-                  ))}
-                </div>
               )}
               {closingText && (
                 <p className="text-earth-300 text-base italic border-t border-earth-700 pt-4 mt-4">

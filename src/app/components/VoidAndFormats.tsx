@@ -31,6 +31,7 @@ export default function VoidAndFormats() {
             {/* Solitude */}
             <Link href="/test" className="block">
               <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6 hover:border-gold-500 transition-colors cursor-pointer h-full">
+                <span className="material-symbols-outlined text-gold-500 text-4xl mb-4 block">self_improvement</span>
                 <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
                   Solitude as a Service
                 </h3>
@@ -43,6 +44,7 @@ export default function VoidAndFormats() {
             {/* Experiments */}
             <Link href="/test" className="block">
               <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6 hover:border-gold-500 transition-colors cursor-pointer h-full">
+                <span className="material-symbols-outlined text-gold-500 text-4xl mb-4 block">science</span>
                 <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
                   Experiments as a Service
                 </h3>
@@ -55,6 +57,7 @@ export default function VoidAndFormats() {
             {/* Clarity Residency */}
             <Link href="/test" className="block">
               <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6 hover:border-gold-500 transition-colors cursor-pointer h-full">
+                <span className="material-symbols-outlined text-gold-500 text-4xl mb-4 block">school</span>
                 <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
                   Residency as a Service
                 </h3>

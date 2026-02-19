@@ -64,7 +64,7 @@ export default function Hero() {
           </p>
           
           {/* CTA Buttons */}
-          <div className="flex flex-col gap-4 mt-8 items-start">
+          <div className="flex flex-row gap-4 mt-8 items-start">
             <button
               onClick={() => {
                 const section = document.getElementById('cycles-section');

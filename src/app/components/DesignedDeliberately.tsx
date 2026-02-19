@@ -21,6 +21,7 @@ export default function DesignedDeliberately() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Designed Silence */}
             <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6 h-full">
+              <span className="material-symbols-outlined text-gold-500 text-4xl mb-4 block">volume_off</span>
               <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
                 Designed Silence
               </h3>
@@ -31,6 +32,7 @@ export default function DesignedDeliberately() {
 
             {/* Designed Anonymity */}
             <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6 h-full">
+              <span className="material-symbols-outlined text-gold-500 text-4xl mb-4 block">person_off</span>
               <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
                 Designed Anonymity
               </h3>
@@ -41,6 +43,7 @@ export default function DesignedDeliberately() {
 
             {/* Designed Withdrawal */}
             <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6 h-full">
+              <span className="material-symbols-outlined text-gold-500 text-4xl mb-4 block">logout</span>
               <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
                 Designed Withdrawal
               </h3>

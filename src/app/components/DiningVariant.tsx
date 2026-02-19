@@ -68,7 +68,7 @@ export default function DiningVariant() {
       title: "Accommodations",
       description: "Complete withdrawal and uninterrupted rest.",
       images: [
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuAVMEXUIh--EZP5fQBMot7ipsmQCI4w60rUmtgCRCv8ONulpWU6j4OW3PA4o0KwMtwDejXpiV3FqTXgT7nqoXoF607AHGqURe06tVE0AJJHiBNB4j2SnpOgEZPJF0pxIiDKFCMCXMgJNvaxTOEUvwCFdufEX0U71Q97lChwn8BYapAJ7AhXcZyouXA-0N-z17ZVe2XJLlN_HlI52GtQDyehXMU8BVLZgXkkHX6im_VJfSbOxCGyWsr8TyrlTTsuVxyxPSqfBw9r4Y8h"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/privateroom.jpeg"
       ],
     },
     {
@@ -77,7 +77,7 @@ export default function DiningVariant() {
       title: "Accommodations",
       description: "Quiet coexistence with clear boundaries.",
       images: [
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuB_dFvHyP31JXbQRtNiZIUI94-8e_c0QShxJv1rmygbtridAA9K46Xa3QhUDB7a44eMqsv-s9HFVkx-o6wpN6WzGZo0WpEzDa285WmpQTAGbCzD1Tp-F9gThsXPoSRToC8oFd7uJnGoyIN_Sjm91MvJl0esPwg3ZmjulH3thRT0IQP81wmV2KshhQQAGu7dlmLU4FCvPYpIMWQcOHr_ot6fmFNikZK7soyC-7hY7XhmrrJeGaYljsrGvN5Ph4Zg71ul-P1-OCwhmPEl"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/dorms.png"
       ],
     },
     {
@@ -86,7 +86,16 @@ export default function DiningVariant() {
       title: "Accommodations",
       description: "Minimal shelter close to land and weather.",
       images: [
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuA6cp533rD2hQD7h4B-RpKKREBmm3s8x90hpO9pcXHR7Jj_t5Irxlyz92Hrm5LmCpp-_4wiRrD2igTCEBlSvWz9ZSIXh9rLXb5yANk7rWHOHLz7TfkkJfecRmovPUNnrruP-zbpoMFSueAEVvahR4K9I0KbmDplWZyocDTz6ebvHgdNgJ00Jidrk0zs5VuMdNEcRv3opfOO2ADL-3hlSX4BDN7SxBx8qQ3cpIgZhFKbikP7rtaljp_bYwXVa4ZIQrkl0QVmO7YJ4Dfg"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/tents.png"
+      ],
+    },
+    {
+      id: 3,
+      category: "",
+      title: "Accommodations",
+      description: "Total sensory isolation for deep rest.",
+      images: [
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/darkroom.png"
       ],
     },
   ];
@@ -98,7 +107,7 @@ export default function DiningVariant() {
       title: "Food",
       description: "Uncomplicated vegetarian meals prepared for ease.",
       images: [
-        "https://lh3.googleusercontent.com/aida-public/iAB6AXuC7EqkXqQPU7fE4pLFU_Hk927TUqj83DfbTfUvPIihY2voNQvmPzkgFFvUowSJV8BeUmi3AK6_9d9MQPQBC_OXh3eBg9xIp_jNbcq4P1uQYXAH4udgKWxtFyRuenpPXcorX848v2tHHPWWYfK16iMhYDcmb9iw-JZ2WzgiEm9s4eNuGAgeRY8AMsVHC_k5fLfLYry5CbHdiz9uOsXZQFafe7IcPz2Ty17dsxEdLhomR6gW_ljYA7vJCFpBg4iyLqVjMKXTFWCffegD2"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/homefood.png"
       ],
     },
     {
@@ -107,7 +116,16 @@ export default function DiningVariant() {
       title: "Food",
       description: "Occasional lighter preparations available anytime.",
       images: [
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuBPPRi1KA1SSwhk_HwPBfDwwsAERrk2PJlQEBBT-t3vsDceOPFxRCmCS2hOSB75G50kN4biPj2O6wed6Y5WHy9QYxwfH8SnuPsoH85EkeBG2eWtd61u1kxzb7Hvo1aRqQz8Hw0fhpybRMYRkBpd0hO_yyjc9Cd8p7GUmT-FXalpznzlPS8i_pqPTP-dRL1gJP5yqyABEWDkhy7V7DJxmjQTkdmmZh4DIyIpX7FcKG1hcb2P7A7ZA6abK6NzUJeiJWEJAKb5pwvQZMa5"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/somthiessaladsandwiches.png"
+      ],
+    },
+    {
+      id: 2,
+      category: "",
+      title: "Food",
+      description: "Occasional communal meals prepared intentionally.",
+      images: [
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/pizzasushi.png"
       ],
     },
   ];
@@ -119,7 +137,7 @@ export default function DiningVariant() {
       title: "Practice & Recovery",
       description: "Always-available practices that support the body.",
       images: [
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuAG8sRV16GeDF6s3Aix4GpETZ3eauYTdeaL5IlWaBQHdmLaEUl8HwITF-icK7rBJH3rs4_eyRc0OnTyudHniz8NCe3oRC2k5_KcTRLReqJdws9zmY25stjYSrFvYvnbb4fxetbYlgcqCJDWwMaBr_6UB09wT864MpT6mLPkqnqxG3JPy_DNNFOMUqcmW8iZWOE4etCbj4TW4EEkBzJss4y7vWzlNmUWjLyUiZaka0GRqyef8OxRV6v8-KYfO5Y2EoBHFW0f3nVZFV6T"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/gym.png"
       ],
     },
     {
@@ -128,7 +146,7 @@ export default function DiningVariant() {
       title: "Practice & Recovery",
       description: "Hot and cold therapy for nervous system regulation.",
       images: [
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuBzQUBgomUJe6e1OB_6dmTVcgR_GYt5k-UgoretbmfZ_izouiCOaK8YYEWLDt_QTV_ISyTECnULI_O5W2HYPqj6w163bSvDPTOBZHjRl7FljH8xAlUWQIAfo5Eosj0EPZTfwiMtkXcjRL7RThN1FokJa4gSqWamw681YNKmVWdMcKtTZpKktdALEho3axfgg38XvTVTyHnF8634k552ETsVCipetwOV8NQ9ujUeRJusTOeygeyE16mtVKBxnTDmtPIEduKGAtXfTURb"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/hottub.png"
       ],
     },
     {
@@ -137,7 +155,16 @@ export default function DiningVariant() {
       title: "Practice & Recovery",
       description: "Self-led, nature-based engagement without instruction.",
       images: [
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuA0HsBN67MCfII7SFbyoe1CuEbEDrqaYf7kqJpp72tE8oPKovG1zztOo__0OQzzELS2oQ_DGIuO1KS_1IVBucK8qj3FwvhRqbMhDhMbqm1ocMzXlUZu5zJy0ltLGZMhF5nbdxBiOOkVb0CbxNMhe3JUOqBjg4wMOeojwjaZBLtOtIZGd0bfLsFeA9XysJv44KgWPDDw2dfGb8kuCIadFmbgCYe5XTjiZwGX0My_VA7VqMgybDzGRzIgV_DDxQrBvxv58qq8EQmUqBNd"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/yoga.png"
+      ],
+    },
+    {
+      id: 3,
+      category: "",
+      title: "Practice & Recovery",
+      description: "Manual movement for cardio and reflection.",
+      images: [
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/cycle.png"
       ],
     },
   ];

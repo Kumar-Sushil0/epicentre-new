@@ -28,7 +28,7 @@ const research = [
         link: "https://doi.org/10.1037/0003-066X.55.1.68"
     },
     {
-        title: "Directed Attention & Self-Regulation",
+        title: "Self-Regulation Theory— Directed Attention & Behavioral Control",
         author: "Kaplan, S., & Berman, M. G. (2010). Directed Attention as a Common Resource for Executive Functioning and Self-Regulation. Perspectives on Psychological Science.",
         description: "Shows that restoring directed attention improves executive control and self-regulatory capacity.",
         link: "https://doi.org/10.1177/1745691610385554"

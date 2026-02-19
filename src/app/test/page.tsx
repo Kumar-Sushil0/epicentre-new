@@ -46,23 +46,6 @@ export default function TestPage() {
                 {solitudeExpanded && (
                     <div className="space-y-6">
                         <div className="space-y-4 mb-8">
-                            <div className="flex flex-wrap gap-2">
-                                <span className="px-3 py-1 bg-earth-800/50 border border-earth-700/50 rounded-full text-earth-300 text-sm">
-                                    #Deep work
-                                </span>
-                                <span className="px-3 py-1 bg-earth-800/50 border border-earth-700/50 rounded-full text-earth-300 text-sm">
-                                    #Decision space
-                                </span>
-                                <span className="px-3 py-1 bg-earth-800/50 border border-earth-700/50 rounded-full text-earth-300 text-sm">
-                                    #Writing
-                                </span>
-                                <span className="px-3 py-1 bg-earth-800/50 border border-earth-700/50 rounded-full text-earth-300 text-sm">
-                                    #Cognitive reset
-                                </span>
-                                <span className="px-3 py-1 bg-earth-800/50 border border-earth-700/50 rounded-full text-earth-300 text-sm">
-                                    #Personal recalibration
-                                </span>
-                            </div>
                             <p className="text-earth-300 text-base leading-relaxed">
                                 Self-directed silence within protected conditions.
                             </p>
@@ -104,20 +87,6 @@ export default function TestPage() {
                 {expressionExpanded && (
                     <div className="space-y-6">
                         <div className="space-y-4 mb-8">
-                            <div className="flex flex-wrap gap-2">
-                                <span className="px-3 py-1 bg-earth-800/50 border border-earth-700/50 rounded-full text-earth-300 text-sm">
-                                    #Prototyping thoughts
-                                </span>
-                                <span className="px-3 py-1 bg-earth-800/50 border border-earth-700/50 rounded-full text-earth-300 text-sm">
-                                    #Concept validation
-                                </span>
-                                <span className="px-3 py-1 bg-earth-800/50 border border-earth-700/50 rounded-full text-earth-300 text-sm">
-                                    #Controlled interaction
-                                </span>
-                                <span className="px-3 py-1 bg-earth-800/50 border border-earth-700/50 rounded-full text-earth-300 text-sm">
-                                    #Strategic exploration
-                                </span>
-                            </div>
                             <p className="text-earth-300 text-base leading-relaxed">
                                 Structured environments for testing ideas without performance pressure.
                             </p>
@@ -160,20 +129,6 @@ export default function TestPage() {
                 {residencyExpanded && (
                     <div className="space-y-6">
                         <div className="space-y-4 mb-8">
-                            <div className="flex flex-wrap gap-2">
-                                <span className="px-3 py-1 bg-earth-800/50 border border-earth-700/50 rounded-full text-earth-300 text-sm">
-                                    #Life direction shifts
-                                </span>
-                                <span className="px-3 py-1 bg-earth-800/50 border border-earth-700/50 rounded-full text-earth-300 text-sm">
-                                    #Complex decision clarity
-                                </span>
-                                <span className="px-3 py-1 bg-earth-800/50 border border-earth-700/50 rounded-full text-earth-300 text-sm">
-                                    #Cross-examination of ideas
-                                </span>
-                                <span className="px-3 py-1 bg-earth-800/50 border border-earth-700/50 rounded-full text-earth-300 text-sm">
-                                    #Applied insight
-                                </span>
-                            </div>
                             <p className="text-earth-300 text-base leading-relaxed">
                                 Multi-day immersion around a single high-stakes question.
                             </p>

@@ -9,9 +9,9 @@ export default function AboutFounder() {
           {/* Text Side - Updated content */}
           <div className="w-full lg:w-7/12 flex flex-col justify-center pt-8 lg:pt-0">
             <h2 className="text-3xl font-normal mb-8 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              The Conductor
+              The Conductor of Conditions
             </h2>
-            <div className="space-y-6 text-earth-300/80 font-body text-lg leading-relaxed max-w-2xl">
+            <div className=" text-earth-300/80 font-body text-lg leading-relaxed max-w-2xl">
               <p>
                 I did not build this to teach silence.
               </p>
@@ -111,8 +111,7 @@ export default function AboutFounder() {
                 </h2>
                 <p className="text-xs font-normal tracking-widest uppercase transition-all duration-700 opacity-0 group-hover:opacity-100 group-hover:text-earth-900 text-earth-300">
                 
-                Conductor of Conditions<br />
-                Liberation Designer
+                Founder & Liberation Designer
                 </p>
               </div>
             </div>
