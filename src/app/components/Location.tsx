@@ -36,19 +36,19 @@ export default function Location() {
 
           {/* Location Info Section */}
           <div className="w-full md:w-1/2 flex items-center h-[300px]">
-            <div className="border border-earth-900/30 rounded-lg p-8 w-full h-full flex items-center">
-              <div className="space-y-6 text-earth-900">
-                <p className="text-2xl font-normal text-earth-900" style={{ fontFamily: 'Outfit, sans-serif' }}>Bhigwan, Maharashtra.</p>
+            <div className="bg-earth-900 border border-earth-900/30 rounded-lg p-8 w-full h-full flex items-center">
+              <div className="space-y-6 text-gold-500">
+                <p className="text-2xl font-normal text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Bhigwan, Maharashtra.</p>
                 <div className="space-y-3 text-lg">
                   <div className="flex items-center gap-3">
-                    <span className="text-earth-900">•</span>
+                    <span className="text-gold-500">•</span>
                     <p>2.5 hours from Pune.</p>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-earth-900">•</span>
+                    <span className="text-gold-500">•</span>
                     <p>5.5 hours from Mumbai.</p>
                   </div>
-                  <p className="pt-3 border-t border-earth-900/30">Accessed by Taxi, Bus & Train - From Mumbai, Pune, Baramati</p>
+                  <p className="pt-3 border-t border-gold-500/30">Accessed by Taxi, Bus & Train - From Mumbai, Pune, Baramati</p>
                 </div>
               </div>
             </div>

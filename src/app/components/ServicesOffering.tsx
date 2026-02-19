@@ -10,8 +10,8 @@ export default function ServicesOffering() {
   const [accommodationType, setAccommodationType] = useState<'dorm' | 'room'>('dorm');
 
   return (
-    <section id="cycles-section" className="relative py-24 px-6 md:px-16 bg-earth-950">
-      <div className="max-w-7xl mx-auto">
+    <section id="cycles-section" className="relative py-24 px-4 md:px-16 bg-earth-950">
+      <div className="w-full">
         <h2 className="text-3xl font-normal text-gold-500 mb-4 text-center uppercase" style={{ fontFamily: 'Outfit, sans-serif' }}>
            Silent Cycles
         </h2>
@@ -47,7 +47,7 @@ export default function ServicesOffering() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-4">
           
           {/* Day Cycle Card */}
           <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-8 flex flex-col">
