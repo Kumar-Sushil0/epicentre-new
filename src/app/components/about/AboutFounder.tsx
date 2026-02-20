@@ -2,7 +2,7 @@
 
 export default function AboutFounder() {
   return (
-    <section className="py-32 px-16 bg-earth-900 border-b border-earth-800">
+    <section className="py-32 px-4 md:px-16 bg-earth-900 border-b border-earth-800">
       <div className="w-full">
         <div className="flex flex-col lg:flex-row items-stretch gap-16 lg:gap-24">
 

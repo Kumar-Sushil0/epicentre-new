@@ -11,7 +11,7 @@ export default function RoomsPage() {
     <main className="min-h-screen bg-earth-900 text-earth-100  ">
       <Header />
       <RoomsHero />
-      <div className="px-16 py-8 lg:py-16 w-full mx-auto">
+      <div className="px-4 md:px-16 py-8 lg:py-16 w-full mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 relative">
           <RoomsSidebar />
 

@@ -258,7 +258,7 @@ export default function ExperiencesPage() {
       <ExperiencesPhilosophy />
       
       {/* Actions Toggle Section */}
-      <div className="w-full px-16 py-6">
+      <div className="w-full px-4 md:px-16 py-6">
         <div className="flex items-center justify-between max-w-7xl mx-auto">
           <div className="flex items-center gap-4">
             <h3 className="text-xl font-semibold text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>
@@ -294,7 +294,7 @@ export default function ExperiencesPage() {
         </div>
       </div>
 
-      <div className="flex-1 w-full px-16 py-10">
+      <div className="flex-1 w-full px-4 md:px-16 py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 align-top">
           {experiences.map((exp, index) => (
             <CarouselCard

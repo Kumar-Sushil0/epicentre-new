@@ -67,7 +67,7 @@ export default function Header() {
   return (
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isScrolled ? 'bg-[#0f0b08] backdrop-blur-sm border-b border-earth-800/50' : 'bg-transparent'}`}>
-        <div className="w-full px-16 py-8 h-[30px] flex items-center justify-between relative">
+        <div className="w-full px-4 md:px-16 py-8 h-[30px] flex items-center justify-between relative">
 
           {/* LEFT: Logo */}
           <Link href="/" className="h-[56px] w-40 flex items-center justify-center z-10">

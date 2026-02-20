@@ -203,7 +203,7 @@ export default function StoriesPage() {
       <Header />
       <StoriesHero />
       <StoriesCategoryNav />
-      <div className="w-full px-16 py-12">
+      <div className="w-full px-4 md:px-16 py-12">
         {storyCategories.map((category) => (
           <section
             key={category.id}

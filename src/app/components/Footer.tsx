@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="w-full px-4 md:px-16 pt-12 pb-12">
 
         {/* Main Footer Navigation */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-11 gap-12 lg:gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-11 gap-8 md:gap-12 lg:gap-6 mb-8">
 
           {/* Brand & Address */}
           <div className="lg:col-span-3 space-y-8">
@@ -31,8 +31,33 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Links Section 1: Explore */}
-          <div className="lg:col-span-2">
+          {/* Mobile: 2-column layout for Explore and Have Questions */}
+          <div className="grid grid-cols-2 gap-6 md:hidden col-span-1">
+            {/* Links Section 1: Explore */}
+            <div>
+              <h4 className="text-[#e7dfd3] font-bold mb-4 text-sm tracking-wide uppercase">Explore</h4>
+              <ul className="space-y-3 text-sm text-[#e7dfd3] font-body">
+                <li><Link href="/about-us" className="hover:text-gold-500 transition-colors block py-0.5">About Us</Link></li>
+                <li><Link href="/venue" className="hover:text-gold-500 transition-colors block py-0.5">Estate</Link></li>
+                <li><Link href="/test" className="hover:text-gold-500 transition-colors block py-0.5">Services</Link></li>
+                <li><Link href="/stories" className="hover:text-gold-500 transition-colors block py-0.5">Stories</Link></li>
+              </ul>
+            </div>
+
+            {/* Links Section 2: Have Questions? */}
+            <div>
+              <h4 className="text-[#e7dfd3] font-bold mb-4 text-sm tracking-wide uppercase">Questions?</h4>
+              <ul className="space-y-3 text-sm text-[#e7dfd3] font-body">
+                <li><Link href="/blogs" className="hover:text-gold-500 transition-colors block py-0.5">Blogs</Link></li>
+                <li><Link href="/events" className="hover:text-gold-500 transition-colors block py-0.5">Events</Link></li>
+                <li><Link href="/faq" className="hover:text-gold-500 transition-colors block py-0.5">FAQ</Link></li>
+                <li><Link href="/contact" className="hover:text-gold-500 transition-colors block py-0.5">Contact Us</Link></li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Desktop: Original layout for Explore */}
+          <div className="hidden md:block lg:col-span-2">
             <h4 className="text-[#e7dfd3] font-bold mb-6 text-sm tracking-wide uppercase">Explore</h4>
             <ul className="space-y-4 text-sm text-[#e7dfd3] font-body">
               <li><Link href="/about-us" className="hover:text-gold-500 transition-colors block py-0.5">About Us</Link></li>
@@ -44,8 +69,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Links Section 2: Have Questions? */}
-          <div className="lg:col-span-2">
+          {/* Desktop: Original layout for Have Questions? */}
+          <div className="hidden md:block lg:col-span-2">
             <h4 className="text-[#e7dfd3] font-bold mb-6 text-sm tracking-wide uppercase">Have Questions?</h4>
             <ul className="space-y-4 text-sm text-[#e7dfd3] font-body">
               <li><Link href="/blogs" className="hover:text-gold-500 transition-colors block py-0.5">Blogs</Link></li>

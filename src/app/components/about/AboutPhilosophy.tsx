@@ -37,7 +37,7 @@ export default function AboutPhilosophy() {
 
   return (
     <section className="py-8 bg-earth-950 border-b border-earth-800" id="philosophy">
-      <div className="w-full px-16">
+      <div className="w-full px-4 md:px-16">
         <div className="mb-8">
           <h3 className="text-3xl font-normal mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Why This Structure</h3>
           <p className="text-[#e7dfd3] font-body text-[15px] max-w-full">

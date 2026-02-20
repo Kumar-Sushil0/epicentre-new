@@ -103,7 +103,7 @@ export default function WellnessPage() {
       <WellnessHero />
       <WellnessPhilosophy />
       <div className="grow">
-        <section className="px-16 py-10 w-full">
+        <section className="px-4 md:px-16 py-10 w-full">
           <WellnessGrid practices={practices} />
         </section>
        

@@ -30,7 +30,7 @@ export default function TestPage() {
 
            
 {/* Solitude Section */}
-            <section className={`w-full px-16 transition-all duration-300 ${solitudeExpanded ? 'mb-24' : 'pt-12 mb-6'}`}>
+            <section className={`w-full px-4 md:px-16 transition-all duration-300 ${solitudeExpanded ? 'mb-24' : 'pt-12 mb-6'}`}>
                 <div className="flex items-center gap-4 cursor-pointer mb-6" onClick={() => setSolitudeExpanded(!solitudeExpanded)}>
                         <h2 className="text-2xl font-normal text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             01. Solitude as a Service
@@ -71,7 +71,7 @@ export default function TestPage() {
             </section >
 
             {/* Expression Section */}
-            <section className={`w-full px-16 transition-all duration-300 ${expressionExpanded ? 'mb-24' : 'mb-6'}`}>
+            <section className={`w-full px-4 md:px-16 transition-all duration-300 ${expressionExpanded ? 'mb-24' : 'mb-6'}`}>
                 <div className="flex items-center gap-4 cursor-pointer mb-6" onClick={() => setExpressionExpanded(!expressionExpanded)}>
                         <h2 className="text-2xl font-normal text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             02. Experiment as a Service
@@ -113,7 +113,7 @@ export default function TestPage() {
             
 
             {/* Residency Section */}
-            <section className={`w-full px-16 transition-all duration-300 ${residencyExpanded ? 'mb-24' : 'mb-6'}`}>
+            <section className={`w-full px-4 md:px-16 transition-all duration-300 ${residencyExpanded ? 'mb-24' : 'mb-6'}`}>
                 <div className="flex items-center gap-4 cursor-pointer mb-6" onClick={() => setResidencyExpanded(!residencyExpanded)}>
                         <h2 className="text-2xl font-normal text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             03. Residency as a Service

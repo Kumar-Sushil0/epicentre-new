@@ -76,7 +76,7 @@ export default function AboutCollective() {
 
   return (
     <section className="py-16 bg-earth-900 border-b border-earth-800" id="collective">
-      <div className="w-full px-16">
+      <div className="w-full px-4 md:px-16">
         <div className="mb-8">
           <h3 className="text-3xl font-normal mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Our Team</h3>
         </div>

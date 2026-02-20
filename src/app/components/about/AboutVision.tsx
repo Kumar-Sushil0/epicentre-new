@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function AboutVision() {
   return (
-    <section className="py-40 px-16 flex flex-col items-center justify-center text-center bg-earth-950 relative overflow-hidden">
+    <section className="py-40 px-4 md:px-16 flex flex-col items-center justify-center text-center bg-earth-950 relative overflow-hidden">
       <div
         className="absolute inset-0 opacity-5 pointer-events-none"
         style={{

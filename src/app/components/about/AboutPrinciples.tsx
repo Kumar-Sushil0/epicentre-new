@@ -1,6 +1,6 @@
 export default function AboutPrinciples() {
   return (
-    <section className="py-24 px-16 bg-earth-900 relative">
+    <section className="py-24 px-4 md:px-16 bg-earth-900 relative">
       <div className="w-full relative z-10">
         <div className="mb-16">
           <h2 className="text-gold-500 text-3xl font-display" style={{ fontFamily: 'Outfit, sans-serif' }}>Principles</h2>

@@ -1,6 +1,6 @@
 export default function AboutTriad() {
   return (
-    <section className="py-24 px-16 bg-earth-900">
+    <section className="py-24 px-4 md:px-16 bg-earth-900">
       <div className="max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div className="space-y-6">

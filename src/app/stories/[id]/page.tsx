@@ -60,7 +60,7 @@ I didn't need more time. I needed less interference.`,
                 <div className="absolute inset-0 bg-gradient-to-t from-earth-900 via-earth-900/60 to-transparent" />
 
                 {/* Breadcrumb and Category */}
-                <div className="absolute top-24 left-0 right-0 px-16">
+                <div className="absolute top-24 left-0 right-0 px-4 md:px-16">
                     <div className="mb-4">
                         <Link
                             href="/stories"
@@ -80,7 +80,7 @@ I didn't need more time. I needed less interference.`,
                 </div>
 
                 {/* Title */}
-                <div className="absolute bottom-0 left-0 right-0 px-16 pb-12">
+                <div className="absolute bottom-0 left-0 right-0 px-4 md:px-16 pb-12">
                     <div>
                         <h1 className="text-4xl md:text-6xl font-bold text-earth-100 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             {story.title}
@@ -106,7 +106,7 @@ I didn't need more time. I needed less interference.`,
             </section>
 
             {/* Content Section */}
-            <section className="py-16 px-16">
+            <section className="py-16 px-4 md:px-16">
                 <div>
                     {/* Initial Description */}
                     <div className="mb-12">
