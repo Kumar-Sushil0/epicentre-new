@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import BlogHero from "../components/blogs/BlogHero";
 import StoriesSection from "../components/stories/StoriesSection";
 import { blogCategories } from "../content/blogs";
+import RequestConversation from "../components/RequestConversation";
 
 export default function BlogsPage() {
     const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
@@ -37,6 +38,7 @@ export default function BlogsPage() {
                     </section>
                 ))}
             </div>
+            <RequestConversation />
             <Footer />
         </main>
     );

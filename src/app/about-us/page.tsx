@@ -15,6 +15,7 @@ import WhoThisIsFor from "../components/about/WhoThisIsFor";
 import TeamSection from "../components/TeamSection";
 import OurPhilosophy from "../components/OurPhilosophy";
 import LivingRoom from '../components/about/LivingRoom';
+import RequestConversation from "../components/RequestConversation";
 
 import IconStrip from "../components/IconStrip";
 
@@ -46,7 +47,7 @@ export default function AboutUsPage() {
       
       
  
-      
+      <RequestConversation />
       <Footer />
     </main>
   );

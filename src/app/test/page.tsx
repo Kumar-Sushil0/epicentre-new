@@ -10,6 +10,7 @@ import { experiences } from "../content/experiences";
 import { expressionPillars } from "../content/expression";
 import { solitudePractices } from "../content/solitude";
 import { residencies } from "../content/residency";
+import RequestConversation from "../components/RequestConversation";
 
 export default function TestPage() {
     const [wishlist, setWishlist] = useState<Set<string>>(new Set());
@@ -152,6 +153,7 @@ export default function TestPage() {
                 )}
             </section >
 
+            <RequestConversation />
             <Footer />
         </main >
     );

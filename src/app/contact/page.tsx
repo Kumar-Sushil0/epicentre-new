@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import RequestConversation from "../components/RequestConversation";
 
 export default function ContactPage() {
     const [formData, setFormData] = useState({
@@ -247,6 +248,7 @@ export default function ContactPage() {
                 </div>
             </section>
 
+            <RequestConversation />
             <Footer />
         </main>
     );

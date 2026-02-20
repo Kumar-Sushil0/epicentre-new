@@ -18,7 +18,7 @@ export default function EventsPage() {
                 
                 <div className="w-full h-full overflow-y-auto relative flex flex-col items-center justify-center">
                     {/* Main Content Container */}
-                    <div className="w-full max-w-7xl mx-auto px-6">
+                    <div className="w-full px-4 md:px-16">
                         {/* Header Section */}
                         <div className="text-center mb-6">
                             

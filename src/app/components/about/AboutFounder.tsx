@@ -67,7 +67,7 @@ export default function AboutFounder() {
           <div className="w-full lg:w-5/12 relative group">
             <div className="relative h-full min-h-[500px] w-full overflow-hidden rounded-sm">
               <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105 contrast-[1.1]"
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110 contrast-[1.1]"
                 style={{
                   backgroundImage: "url('/dd.jpeg')"
                 }}
@@ -75,7 +75,7 @@ export default function AboutFounder() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
               
               {/* Gold Background Overlay - Slides up from bottom like CarouselCard */}
-              <div className="absolute left-0 right-0 bottom-0 bg-gold-500 h-[20%] transition-all duration-700 ease-in-out translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100" style={{ zIndex: 15 }}>
+              <div className="absolute left-0 right-0 bottom-0 bg-gold-500 h-[30%] transition-all duration-700 ease-in-out translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100" style={{ zIndex: 15 }}>
               </div>
 
               {/* Social Icons - Extreme right of image, side by side */}
@@ -111,7 +111,9 @@ export default function AboutFounder() {
                 </h2>
                 <p className="text-xs font-normal tracking-widest uppercase transition-all duration-700 opacity-0 group-hover:opacity-100 group-hover:text-earth-900 text-earth-300">
                 
-                Founder & Liberation Designer
+                Founder <br/>
+                Liberation Designer<br/>
+                Life System Architect
                 </p>
               </div>
             </div>

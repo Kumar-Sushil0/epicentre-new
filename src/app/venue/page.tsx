@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import VenueHero from "../components/venue/VenueHero";
 import VenueSection from "../components/venue/VenueSection";
+import RequestConversation from "../components/RequestConversation";
 
 export default function VenuePage() {
   const [expandedSection, setExpandedSection] = useState<string>("wildlife");
@@ -475,6 +476,7 @@ export default function VenuePage() {
           </section>
         ))}
       </div>
+      <RequestConversation />
       <Footer />
     </main>
   );

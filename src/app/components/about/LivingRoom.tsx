@@ -28,7 +28,7 @@ const research = [
         link: "https://doi.org/10.1037/0003-066X.55.1.68"
     },
     {
-        title: "Self-Regulation Theory— Directed Attention & Behavioral Control",
+        title: "Self-Regulation Theory — Directed Attention & Behavioral Control",
         author: "Kaplan, S., & Berman, M. G. (2010). Directed Attention as a Common Resource for Executive Functioning and Self-Regulation. Perspectives on Psychological Science.",
         description: "Shows that restoring directed attention improves executive control and self-regulatory capacity.",
         link: "https://doi.org/10.1177/1745691610385554"
@@ -103,14 +103,13 @@ const ResearchItem = ({ item, index }: { item: typeof research[0], index: number
 const LivingRoom = () => {
     return (
         <section className="bg-gold-500 py-20 text-earth-900">
-            <div className="container mx-auto px-4 md:px-16">
+            <div className="px-4 md:px-16">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl font-normal mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
                         Evidence
                     </h2>
                     <p className="text-xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                        This is not ideology.<br />
-                        It is informed by research in cognitive science and psychology.
+                        This is not ideology. It is informed by research in cognitive science and psychology.
                     </p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">

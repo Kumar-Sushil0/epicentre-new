@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import ExpressionHero from "../components/expression/ExpressionHero";
 import ExpressionPhilosophy from "../components/expression/ExpressionPhilosophy";
 import CarouselCard from "../components/CarouselCard";
+import RequestConversation from "../components/RequestConversation";
 
 export default function ExpressionPage() {
   const pillars = [
@@ -91,6 +92,7 @@ export default function ExpressionPage() {
           ))}
         </div>
       </div>
+      <RequestConversation />
       <Footer />
     </main>
   );

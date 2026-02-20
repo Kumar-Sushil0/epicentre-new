@@ -229,27 +229,9 @@ export default function DevelopmentTimeline() {
               <div key={`${month.year}-${month.month}-${index}`} className="shrink-0 w-64">
                 {/* Month Header */}
                 <div className="sticky top-0 bg-transparent backdrop-blur-sm py-3 mb-4 border-b-2 border-gold-500">
-                  <div className="flex items-center gap-3">
-                    <h4 className="text-xl font-bold text-gold-500 font-display">
-                      {month.month} {month.year}
-                    </h4>
-                    {/* Arrow next to title (except after last one) */}
-                    {index < timelineData.length - 1 && (
-                      <svg
-                        className="w-10 h-6 text-gold-500 shrink-0"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 40 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M2 12h30m0 0l-6-6m6 6l-6 6"
-                        />
-                      </svg>
-                    )}
-                  </div>
+                  <h4 className="text-xl font-bold text-gold-500 font-display">
+                    {month.month} {month.year}
+                  </h4>
                 </div>
                 {/* Zones */}
                 <div className="space-y-4">

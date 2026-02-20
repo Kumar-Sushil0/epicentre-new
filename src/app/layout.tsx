@@ -29,7 +29,7 @@ export default function RootLayout({
           <ShopProvider>
             <SmoothScroll />
             {children}
-            <FloatingWhatsApp />
+            
             
           </ShopProvider>
         </AuthProvider>

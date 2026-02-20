@@ -180,7 +180,7 @@ export default function Header() {
               className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/venue") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
                 }`}
             >
-              Venue
+              Estate
             </Link>
             <Link
               href="/test"
@@ -188,13 +188,6 @@ export default function Header() {
                 }`}
             >
               Services
-            </Link>
-            <Link
-              href="/stories"
-              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/stories") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
-                }`}
-            >
-              Stories
             </Link>
             <Link
               href="/events"

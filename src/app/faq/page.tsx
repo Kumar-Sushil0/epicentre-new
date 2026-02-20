@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import FAQItem from "../components/FAQItem";
 import FAQHero from "../components/faq/FAQHero";
 import FAQPhilosophy from "../components/faq/FAQPhilosophy";
+import RequestConversation from "../components/RequestConversation";
 
 interface FAQItem {
   id: string;
@@ -341,6 +342,7 @@ export default function FAQPage() {
         </div>
       </section>
 
+      <RequestConversation />
       <Footer />
     </div>
   );
