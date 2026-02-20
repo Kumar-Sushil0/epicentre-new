@@ -57,8 +57,10 @@ export default function CarouselCard({
     const [isHovered, setIsHovered] = useState(false);
     const cardRef = useRef<HTMLDivElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
+    const titleContainerRef = useRef<HTMLDivElement>(null);
     const [isForceHovered, setIsForceHovered] = useState(false);
     const [contentHeight, setContentHeight] = useState(0);
+    const [totalHeight, setTotalHeight] = useState(0);
 
     useEffect(() => {
         // Check if parent has force-hover class
@@ -84,20 +86,23 @@ export default function CarouselCard({
         return () => observer.disconnect();
     }, []);
 
+    const shouldShowHoverState = isHovered || isForceHovered;
+
     // Measure content height when hover state changes
     useEffect(() => {
-        if (contentRef.current && shouldShowHoverState) {
+        if (titleContainerRef.current && shouldShowHoverState) {
             // Small delay to ensure DOM is updated
             const timer = setTimeout(() => {
-                if (contentRef.current) {
-                    setContentHeight(contentRef.current.scrollHeight);
+                if (titleContainerRef.current) {
+                    // Get the full height of the title container including all content
+                    const fullHeight = titleContainerRef.current.offsetHeight;
+                    // Add extra padding above (80px above the title for more breathing room)
+                    setTotalHeight(fullHeight + 80);
                 }
             }, 50);
             return () => clearTimeout(timer);
         }
-    }, [isHovered, isForceHovered, description, category, hoverTitle, socialIcons]);
-
-    const shouldShowHoverState = isHovered || isForceHovered;
+    }, [isHovered, isForceHovered, description, category, hoverTitle, socialIcons, shouldShowHoverState]);
 
     useEffect(() => {
         if (shouldShowHoverState) return; // Pause on hover or force hover
@@ -171,20 +176,9 @@ export default function CarouselCard({
                     </div>
                 )}
 
-                {/* Gold Background Overlay - Dynamic height based on content */}
-                {overlayColor === 'gold-solid' && (
-                    <div
-                        className={`absolute left-0 right-0 bottom-0 bg-gold-500 rounded-b-[10px] transition-all duration-700 ease-in-out ${shouldShowHoverState ? 'opacity-100' : 'opacity-0'}`}
-                        style={{
-                            zIndex: 15,
-                            top: 'auto',
-                            height: shouldShowHoverState ? `${contentHeight + 32}px` : '0px', // +32px for top/bottom padding
-                        }}
-                    />
-                )}
-
                 {/* Title Overlay (Initially Visible) */}
                 <div
+                    ref={titleContainerRef}
                     className="absolute pointer-events-none"
                     style={{
                         bottom: titlePosition?.bottom || '1.5rem',
@@ -267,6 +261,18 @@ export default function CarouselCard({
                         </div>
                     </div>
                 </div>
+
+                {/* Gold Background Overlay - Dynamic height based on content - Positioned AFTER title div */}
+                {overlayColor === 'gold-solid' && (
+                    <div
+                        className={`absolute left-0 right-0 bottom-0 bg-gold-500 rounded-b-[10px] transition-all duration-700 ease-in-out ${shouldShowHoverState ? 'opacity-100' : 'opacity-0'}`}
+                        style={{
+                            zIndex: 15,
+                            top: 'auto',
+                            height: shouldShowHoverState ? `${totalHeight}px` : '0px',
+                        }}
+                    />
+                )}
 
                 {/* Dots */}
                 {images.length > 1 && (

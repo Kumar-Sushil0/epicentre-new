@@ -1,6 +1,22 @@
 'use client';
 
 import { useState } from 'react';
+import ResidencyPractitioner from './ResidencyPractitioner';
+
+interface SocialMedia {
+  platform: string;
+  url: string;
+  icon: string;
+}
+
+interface Practitioner {
+  name: string;
+  role: string;
+  image: string;
+  bio: string;
+  specialties: string[];
+  socialMedia?: SocialMedia[];
+}
 
 interface ProvisionItem {
   title: string;
@@ -23,17 +39,19 @@ interface ItineraryDay {
   schedule: TimeSlot[];
 }
 
-interface ExpressionDetailsContentProps {
+interface ResidencyDetailsContentProps {
+  practitioners: Practitioner[];
   includedItems?: ProvisionItem[];
   kitItems?: KitItem[];
   itinerary?: ItineraryDay[];
 }
 
-export default function ExpressionDetailsContent({
+export default function ResidencyDetailsContent({ 
+  practitioners, 
   includedItems,
   kitItems,
-  itinerary,
-}: ExpressionDetailsContentProps) {
+  itinerary 
+}: ResidencyDetailsContentProps) {
   const [activeDay, setActiveDay] = useState<number>(1);
 
   const activeDayData = itinerary && itinerary.find(d => d.day === activeDay) || (itinerary && itinerary[0]);
@@ -44,7 +62,7 @@ export default function ExpressionDetailsContent({
       {includedItems && includedItems.length > 0 && (
         <div className="flex flex-col gap-6">
           <h4 className="text-xl font-bold text-earth-50 font-display">What's Included</h4>
-          <p className="text-sm text-earth-400 font-body">Everything you need for the experiment.</p>
+          <p className="text-sm text-earth-400 font-body">Expert-guided sessions with personalized feedback.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {includedItems.map((item, index) => (
               <div key={index} className="flex items-start gap-4 p-4 rounded-lg bg-earth-800 border border-earth-700">
@@ -101,7 +119,7 @@ export default function ExpressionDetailsContent({
           <div className="flex flex-col gap-6">
             <h4 className="text-xl font-bold text-earth-50 font-display">Daily Schedule</h4>
             <p className="text-sm text-earth-400 font-body">
-              A suggested rhythm for the experiment. Adapt based on your needs.
+              A structured rhythm guided by expert practitioners. Sessions adapt to group needs.
             </p>
             
             <div className="border border-earth-700 rounded-lg overflow-hidden bg-earth-900/50">

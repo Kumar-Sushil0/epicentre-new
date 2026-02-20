@@ -4,11 +4,11 @@ interface InfoItem {
   description: string;
 }
 
-interface SolitudeDetailsInfoProps {
+interface ResidencyDetailsInfoProps {
   infoItems: InfoItem[];
 }
 
-export default function SolitudeDetailsInfo({ infoItems }: SolitudeDetailsInfoProps) {
+export default function ResidencyDetailsInfo({ infoItems }: ResidencyDetailsInfoProps) {
   // Function to format description with bullet points if it contains •
   const formatDescription = (description: string) => {
     if (description.includes('•')) {

@@ -17,45 +17,64 @@ const solitudePractices: Record<
     subtitle: string;
     image: string;
     infoItems: Array<{ icon: string; title: string; description: string }>;
-    contentTitle: string;
-    description: string[];
-    provisioningTitle: string;
-    provisioningSubtitle: string;
-    provisions: Array<{ title: string; description: string }>;
+    kitItems?: Array<{ item: string; purpose: string }>;
+    includedItems?: Array<{ title: string; description: string }>;
+    itinerary?: Array<{
+      day: number;
+      title: string;
+      schedule: Array<{ time: string; activity: string }>;
+    }>;
     stationName: string;
     price: string;
   }
 > = {
   angling: {
     title: "Angling",
-    subtitle: "Waiting with water and repetition.",
+    subtitle: "A self-guided immersion into patience, observation, and restraint under silence.",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuAwddnFGXgHVAAMrVrlLMnATirIuGyO8bdmUB8jh5OukP18ingx47NDlk8PmHoIKaar9X4thO0o4zRxsEudmV2BSHn06A3xkyvr6VF2Iq8IlJP2JewI4Ikb55iReVw6hS_PKQtd4JrhYq-YX-xQVdcqJPcFW5hqWnVthfc6vQDwh8rZQSIgJV8lyHGsWp8d-iZOb64SqVsRPJRgGH6xi_yIfElpjpJMHrs8G4gdvnA27shmOdXsgQoeHMltRtX0TkV4UfJQuqYZ7nIw",
     infoItems: [
       {
-        icon: "water_ec",
-        title: "What This Is",
-        description: "A self-directed learning experience. You are given equipment, location, time, and silence. No instruction beyond safety. Learning comes from repetition, waiting, and watching.",
-      },
-      {
         icon: "psychology",
-        title: "What It's Designed For",
-        description: "Patience without reward. Attention without stimulation. Effort without urgency. Presence without outcome guarantees. Nothing needs to be caught for the experience to work.",
+        title: "Core Tension",
+        description: "Modern life trains constant reaction. Immediate replies. Continuous movement. Shortened attention spans. Angling demands the opposite. Stillness. Waiting. Environmental reading. It exposes impatience quickly. The question is not whether you catch fish. It is whether you can remain steady without stimulation.",
       },
       {
-        icon: "schedule",
-        title: "How It Works",
-        description: "Choose your time. Equipment explained once. Move to water independently. Remain as long as you choose. Return when the body signals completion. No fixed duration.",
+        icon: "landscape",
+        title: "What This Environment Changes",
+        description: "The Silent Club removes distraction. No constant conversation. No crowd noise. No social performance. Long water horizons. Slow wind. Shifting light. Silence turns angling into cognitive training. You begin to observe patterns — not just in water, but in yourself.",
+      },
+      {
+        icon: "groups",
+        title: "Suitable For",
+        description: "Individuals seeking patience training • Decision-makers needing cognitive reset • Beginners willing to learn independently • Those comfortable with extended quiet",
+      },
+      {
+        icon: "cancel",
+        title: "What It Is Not",
+        description: "Not sport fishing • Not guided tours • Not competitive angling • Not entertainment • Catching something is secondary. Remaining present is primary.",
+      },
+      {
+        icon: "emoji_events",
+        title: "Outcome",
+        description: "Improved tolerance for stillness • Increased environmental awareness • Reduced compulsive stimulation • Foundational angling competence • Not excitement. Calibration.",
+      },
+      {
+        icon: "inventory_2",
+        title: "What You Receive",
+        description: "Shared curated digital library • Step-by-step orientation guide • Essential angling tool kit • Suggested silent daily rhythm • Access to dam backwater zones • No instructor. No guide on-site.",
       },
     ],
-    contentTitle: "Learning patience through still water",
-    description: [
-      "Angling at The Silent Club is not a sport, lesson, or competition. It is a solitary practice designed to slow attention, sharpen observation, and rebuild tolerance for waiting.",
-      "The water teaches without speaking.",
+    kitItems: [
+      { item: "Rod & Reel (Basic Quality)", purpose: "Functional fishing" },
+      { item: "Tackle Box (Minimal)", purpose: "Controlled choice" },
+      { item: "Bait / Lures", purpose: "As required" },
+      { item: "Float Marker", purpose: "Patience practice" },
+      { item: "Quiet Folding Stool", purpose: "Stationary endurance" },
+      { item: "Catch Log Sheet", purpose: "Time vs outcome observation" },
+      { item: "Release Net", purpose: "Ethical handling" },
     ],
-    provisioningTitle: "What's Included",
-    provisioningSubtitle: "No live coaching. No performance feedback.",
-    provisions: [
+    includedItems: [
       {
         title: "Angling equipment rental",
         description: "Basic gear provided and explained for safe use.",
@@ -75,6 +94,81 @@ const solitudePractices: Record<
       {
         title: "Printed reference material",
         description: "Self-learning guides for independent practice.",
+      },
+      {
+        title: "Weather and timing advisories",
+        description: "Daily updates on optimal conditions for practice.",
+      },
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrival & Nervous System Downshift (Monday)",
+        schedule: [
+          { time: "11:00–13:00", activity: "Check-in Window" },
+          { time: "13:00–16:00", activity: "Personal Setup & Environment Familiarization" },
+          { time: "16:00–17:30", activity: "Orientation Brief (Light Theory Introduction)" },
+          { time: "18:00–19:00", activity: "Gentle Mobility / Silent Movement" },
+          { time: "19:00–20:00", activity: "Dinner" },
+          { time: "20:30–21:00", activity: "Optional Evening Stillness Sit" },
+          { time: "21:30", activity: "Early Rest Encouraged" },
+        ],
+      },
+      {
+        day: 2,
+        title: "Initiation of Structured Practice (Tuesday)",
+        schedule: [
+          { time: "06:30–07:30", activity: "Morning Movement / Breath Practice" },
+          { time: "08:00–09:00", activity: "Breakfast" },
+          { time: "09:30–11:00", activity: "Theory Block 1" },
+          { time: "11:30–13:00", activity: "Practical Block 1" },
+          { time: "12:00–13:00", activity: "Lunch (within silent window)" },
+          { time: "14:30–16:00", activity: "Practical Block 2" },
+          { time: "16:30–18:00", activity: "Theory Block 2" },
+          { time: "19:00–20:00", activity: "Dinner" },
+          { time: "20:30–21:00", activity: "Optional Silent Sit" },
+        ],
+      },
+      {
+        day: 3,
+        title: "Deepening & Application (Wednesday)",
+        schedule: [
+          { time: "06:30–07:30", activity: "Morning Movement" },
+          { time: "08:00–09:00", activity: "Breakfast" },
+          { time: "09:30–11:00", activity: "Practical Block 1" },
+          { time: "11:30–13:00", activity: "Practical Block 2" },
+          { time: "12:00–13:00", activity: "Lunch" },
+          { time: "14:30–16:00", activity: "Light Theory Integration" },
+          { time: "16:30–18:00", activity: "Extended Practice" },
+          { time: "19:00–20:00", activity: "Dinner" },
+          { time: "20:30–21:00", activity: "Silent Reflection Window" },
+        ],
+      },
+      {
+        day: 4,
+        title: "Extended Immersion (Thursday)",
+        schedule: [
+          { time: "06:30–07:30", activity: "Morning Movement" },
+          { time: "08:00–09:00", activity: "Breakfast" },
+          { time: "09:30–11:00", activity: "Deep Practice Block" },
+          { time: "11:30–13:00", activity: "Deep Practice Block" },
+          { time: "12:00–13:00", activity: "Lunch" },
+          { time: "14:30–16:00", activity: "Self-Directed Work" },
+          { time: "16:30–18:00", activity: "Long Practice / Field Application" },
+          { time: "19:00–20:00", activity: "Dinner" },
+          { time: "20:30–21:00", activity: "Personal Integration Sit" },
+        ],
+      },
+      {
+        day: 5,
+        title: "Integration & Departure (Friday)",
+        schedule: [
+          { time: "06:30–07:30", activity: "Final Practice" },
+          { time: "08:00–09:00", activity: "Breakfast" },
+          { time: "09:30–10:30", activity: "Personal Reflection & Journaling" },
+          { time: "11:00–12:00", activity: "Checkout Window" },
+          { time: "By 13:00", activity: "Departure" },
+        ],
       },
     ],
     stationName: "Lakefront Access",
@@ -363,14 +457,12 @@ function SolitudeDetailsPageContent() {
       <SolitudeDetailsHero title={practice.title} subtitle={practice.subtitle} image={practice.image} />
       <SolitudeDetailsPhilosophy />
       <SolitudeDetailsInfo infoItems={practice.infoItems} />
-      <section className="px-4 md:px-10 lg:px-40 py-16 bg-earth-950">
-        <div className="max-w-[1080px] mx-auto flex flex-col lg:flex-row gap-16">
+      <section className="px-4 md:px-16 py-16 bg-earth-950">
+        <div className="w-full flex flex-col lg:flex-row gap-16">
           <SolitudeDetailsContentComponent
-            title={practice.contentTitle}
-            description={practice.description}
-            provisioningTitle={practice.provisioningTitle}
-            provisioningSubtitle={practice.provisioningSubtitle}
-            provisions={practice.provisions}
+            kitItems={practice.kitItems}
+            includedItems={practice.includedItems}
+            itinerary={practice.itinerary}
           />
           <SolitudeDetailsBooking stationName={practice.stationName} price={practice.price} />
         </div>
