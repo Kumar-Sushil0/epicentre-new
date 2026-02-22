@@ -95,6 +95,14 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-6">
             <nav className="flex items-center gap-6">
               <Link 
+                href="/" 
+                className={`text-sm uppercase tracking-wider transition-colors ${
+                  isActive("/") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
+                }`}
+              >
+                Home
+              </Link>
+              <Link 
                 href="/venue" 
                 className={`text-sm uppercase tracking-wider transition-colors ${
                   isActive("/venue") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
@@ -175,6 +183,13 @@ export default function Header() {
 
         <div className="flex-1 overflow-y-auto px-6 py-4">
           <nav>
+            <Link
+              href="/"
+              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+                }`}
+            >
+              Home
+            </Link>
             <Link
               href="/venue"
               className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/venue") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"

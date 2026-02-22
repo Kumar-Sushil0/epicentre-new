@@ -16,7 +16,7 @@ export default function EventsPage() {
                     }} />
                 </div>
                 
-                <div className="w-full h-full overflow-y-auto relative flex flex-col items-center justify-center">
+                <div className="w-full h-full overflow-y-auto relative flex flex-col items-center pt-24">
                     {/* Main Content Container */}
                     <div className="w-full px-4 md:px-16">
                         {/* Header Section */}

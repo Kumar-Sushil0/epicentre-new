@@ -270,11 +270,19 @@ export default function FAQPage() {
   return (
     <div className="min-h-screen bg-earth-950">
       <Header />
-     
-     
+      
+      {/* Page Title */}
+      <section className="pt-16 pb-4 px-4 md:px-16 text-center border-b border-earth-800">
+        <h1 className="text-4xl md:text-5xl font-normal text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
+          Frequently Asked Questions
+        </h1>
+        <p className="text-earth-300 text-lg max-w-2xl mx-auto">
+          Find answers to common questions about The Silent Club
+        </p>
+      </section>
      
       {/* Category Filter */}
-      <section className="py-8 px-4 md:px-16 border-b border-earth-800 ">
+      <section className="pt-0 pb-8 px-4 md:px-16 border-b border-earth-800 ">
         <div className="w-full mt-16">
           <div className="flex flex-wrap gap-2 justify-center">
             {categories.map((category) => (

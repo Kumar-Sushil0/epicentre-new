@@ -156,20 +156,6 @@ export default function VenueCard({ title, description, image, imageAlt, badge, 
                   <h4 className="text-[21px] font-normal text-earth-900 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
                     {title}
                   </h4>
-                  
-                  {/* Tags below title */}
-                  {tags.length > 0 && (
-                    <div className="flex flex-wrap gap-1">
-                      {tags.map((tag, index) => (
-                        <span 
-                          key={index}
-                          className="px-1.5 py-0.5 bg-earth-900/10 border border-earth-900/20 rounded-full text-[10px] text-earth-800 whitespace-nowrap"
-                        >
-                          #{tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
                 </div>
 
                 {/* Badge on hover */}

@@ -7,7 +7,7 @@ interface KitItem {
 
 interface ProvisionItem {
   title: string;
-  description: string;
+  description?: string;
 }
 
 interface TimeSlot {

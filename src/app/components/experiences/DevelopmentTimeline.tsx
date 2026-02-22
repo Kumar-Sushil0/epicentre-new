@@ -56,6 +56,11 @@ const timelineData: TimelineMonth[] = [
         preciseDate: "March 26, 2026",
         description: "A three-day immersive workshop focused on mindfulness, meditation, and inner stillness. Participants will engage in guided silence practices, contemplative walks, and group reflection sessions in a supportive environment.",
       },
+      {
+        name: "Deep Work Residency",
+        preciseDate: "March 15, 2026",
+        description: "A week-long intensive program for focused creative and professional work. Participants receive dedicated workspace, minimal distractions, and structured silence periods to support deep concentration and meaningful progress on complex projects.",
+      },
     ],
   },
   {
