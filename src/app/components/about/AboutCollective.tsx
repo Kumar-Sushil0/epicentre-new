@@ -32,10 +32,10 @@ export default function AboutCollective() {
       <div className="w-full px-4 md:px-16">
         <div className="text-center mb-12">
           <h3 className="text-3xl font-normal mb-4 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>
-            Silent Tourism Foundation For Non-Profit
+            BIGवन — A Case for Silent Tourism
           </h3>
           <p className="text-xl text-earth-300" style={{ fontFamily: 'Outfit, sans-serif' }}>
-            The people building and maintaining this space
+            A non-profit research and advocacy effort to formalize silence as a legitimate economic and environmental model. <br/> Development does not have to mean density.
           </p>
         </div>
         <div className="flex justify-center">
