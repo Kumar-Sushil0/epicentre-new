@@ -17,7 +17,7 @@ export default function ServicesOffering() {
            Silent Cycles
         </h2>
         <p className="text-earth-300 text-base md:text-lg text-center mb-3 md:mb-4 px-4">
-           Choose the depth of your withdrawal. Choose the depth of your withdrawal.<br/> Choose the depth of your withdrawal. Choose the depth of your withdrawal.
+          The same environment reveals different things at different depths.<br/> Cycles allow you to return with intention.
         </p>
 
         <div className="max-w-5xl mx-auto">
@@ -29,7 +29,7 @@ export default function ServicesOffering() {
                   Full Cycle
                 </h3>
                 <p className="text-gold-500 text-sm leading-snug mb-3">
-                  Extended immersion for deep work or residencies. Prolonged engagement with sustained attention.
+                  Complete environmental control for sustained immersion.
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <div className="flex items-center gap-2">
@@ -197,67 +197,6 @@ export default function ServicesOffering() {
           {/* Three Cards Below */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
           
-          {/* Day Cycle Card */}
-          <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-3 md:p-4 flex flex-col">
-            <h3 className="text-lg md:text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Day Cycle
-            </h3>
-            
-            <p className="text-gold-500 text-xs md:text-sm leading-snug mb-3">
-              Short-duration recalibration and focused 
-</p>
-            <div className="space-y-1 mb-2 flex-1">
-              <div className="flex items-center gap-2">
-                <span className="text-gold-500">•</span>
-                <span className="text-earth-300 text-sm">Access Upto 4Hrs</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="text-gold-500">•</span>
-                <span className="text-earth-300 text-sm">All meals Included</span>
-              </div>
-            </div>
-
-            <div className="mt-auto">
-              <div className="text-gold-500 text-lg font-normal">
-                ₹1,000
-              </div>
-              <p className="text-earth-400 text-xs mt-1">Per Person • Taxes applicable</p>
-            </div>
-          </div>
-
-          {/* Weekend Cycle Card */}
-          <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-4 flex flex-col">
-            <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Weekend Cycle
-            </h3>
-            
-            <p className="text-gold-500 text-sm leading-snug mb-3">
-              Structured withdrawal with optional
-            </p>
-
-            <div className="space-y-1 mb-2 flex-1">
-              <div className="flex items-center gap-2">
-                <span className="text-gold-500">•</span>
-                <span className="text-earth-300 text-sm">2 nights / 3 days</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="text-gold-500">•</span>
-                <span className="text-earth-300 text-sm">Full access</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="text-gold-500">•</span>
-                <span className="text-earth-300 text-sm">All meals Included</span>
-              </div>
-            </div>
-
-            <div className="mt-auto">
-              <div className="text-gold-500 text-lg font-normal">
-                {accommodationType === 'dorm' ? '₹10,000' : '₹15,000'}
-              </div>
-              <p className="text-earth-400 text-xs mt-1">Per Person • Taxes applicable</p>
-            </div>
-          </div>
-
           {/* Weekday Cycle Card */}
           <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-4 flex flex-col">
             <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
@@ -265,7 +204,7 @@ export default function ServicesOffering() {
             </h3>
             
             <p className="text-gold-500 text-sm leading-snug mb-3">
-              Uninterrupted deep work. Extended focus with 
+              Uninterrupted silence for extended focus and deep work.
               </p>
             <div className="space-y-1 mb-2 flex-1">
               <div className="flex items-center gap-2">
@@ -290,6 +229,67 @@ export default function ServicesOffering() {
             <div className="mt-auto">
               <div className="text-gold-500 text-lg font-normal">
                 {accommodationType === 'dorm' ? '₹20,000' : '₹30,000'}
+              </div>
+              <p className="text-earth-400 text-xs mt-1">Per Person • Taxes applicable</p>
+            </div>
+          </div>
+
+          {/* Weekend Cycle Card */}
+          <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-4 flex flex-col">
+            <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+              Weekend Cycle
+            </h3>
+            
+            <p className="text-gold-500 text-sm leading-snug mb-3">
+              Structured withdrawal to reset direction without disruption.
+            </p>
+
+            <div className="space-y-1 mb-2 flex-1">
+              <div className="flex items-center gap-2">
+                <span className="text-gold-500">•</span>
+                <span className="text-earth-300 text-sm">2 nights / 3 days</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-gold-500">•</span>
+                <span className="text-earth-300 text-sm">Full access</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-gold-500">•</span>
+                <span className="text-earth-300 text-sm">All meals Included</span>
+              </div>
+            </div>
+
+            <div className="mt-auto">
+              <div className="text-gold-500 text-lg font-normal">
+                {accommodationType === 'dorm' ? '₹10,000' : '₹15,000'}
+              </div>
+              <p className="text-earth-400 text-xs mt-1">Per Person • Taxes applicable</p>
+            </div>
+          </div>
+          
+          {/* Day Cycle Card */}
+          <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-3 md:p-4 flex flex-col">
+            <h3 className="text-lg md:text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+              Day Cycle
+            </h3>
+            
+            <p className="text-gold-500 text-xs md:text-sm leading-snug mb-3">
+              Short calibration when attention needs immediate correction.
+</p>
+            <div className="space-y-1 mb-2 flex-1">
+              <div className="flex items-center gap-2">
+                <span className="text-gold-500">•</span>
+                <span className="text-earth-300 text-sm">Access Upto 4Hrs</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-gold-500">•</span>
+                <span className="text-earth-300 text-sm">All meals Included</span>
+              </div>
+            </div>
+
+            <div className="mt-auto">
+              <div className="text-gold-500 text-lg font-normal">
+                ₹1,000
               </div>
               <p className="text-earth-400 text-xs mt-1">Per Person • Taxes applicable</p>
             </div>
