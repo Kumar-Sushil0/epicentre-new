@@ -11,6 +11,10 @@ interface VenueCardProps {
   imageAlt: string;
   badge?: string;
   href?: string;
+  icon?: string;
+  category?: string;
+  area?: string;
+  capacity?: string;
 }
 
 // Helper function to parse description and extract tags
@@ -37,7 +41,7 @@ function parseDescription(description: string): { tags: string[], mainDescriptio
   return { tags, mainDescription };
 }
 
-export default function VenueCard({ title, description, image, imageAlt, badge, href }: VenueCardProps) {
+export default function VenueCard({ title, description, image, imageAlt, badge, href, icon, category, area, capacity }: VenueCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -109,16 +113,6 @@ export default function VenueCard({ title, description, image, imageAlt, badge, 
         {/* Gradient Overlay - Black like Accommodation cards */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
 
-        {/* Gold Background Overlay - Dynamic height based on content */}
-        <div
-          className={`absolute left-0 right-0 bottom-0 bg-gold-500 rounded-b-[10px] transition-all duration-700 ease-in-out ${shouldShowHoverState ? 'opacity-100' : 'opacity-0'}`}
-          style={{
-            zIndex: 15,
-            top: 'auto',
-            height: shouldShowHoverState ? `${contentHeight + 32}px` : '0px', // +32px for top/bottom padding
-          }}
-        />
-
         {/* Title Overlay (Initially Visible) */}
         <div
           className="absolute pointer-events-none"
@@ -129,46 +123,37 @@ export default function VenueCard({ title, description, image, imageAlt, badge, 
             zIndex: 20
           }}
         >
-          {/* Non-hover content */}
-          {!shouldShowHoverState && (
-            <>
-              {/* Badge */}
-              {badge && (
-                <div className="mb-3">
-                  <span className="inline-block bg-gold-500/90 text-earth-950 text-xs font-normal px-3 py-1 rounded-full backdrop-blur">
-                    {badge}
-                  </span>
-                </div>
-              )}
-
-              <h4 className="text-[21px] font-normal mb-2 text-[#e7dfd3]" style={{ fontFamily: 'Outfit, sans-serif', textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)' }}>
-                {title}
-              </h4>
-            </>
+          {/* Icon - always visible at top */}
+          {icon && (
+            <div className="flex items-center gap-2 text-gold-500 mb-2">
+              <span className="material-symbols-outlined text-lg" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)' }}>{icon}</span>
+            </div>
           )}
 
-          {/* Description - Revealed on Hover using grid approach */}
+          {/* Title - always visible, with arrow only when not hovered */}
+          <div className="flex items-center gap-2 mb-2">
+            <h4 className="text-[21px] font-normal text-[#e7dfd3]" style={{ fontFamily: 'Outfit, sans-serif', textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)' }}>
+              {title}
+            </h4>
+            {href && !shouldShowHoverState && (
+              <span className="material-symbols-outlined text-gold-500 text-xl">arrow_forward</span>
+            )}
+          </div>
+
+          {/* Description and Category - Revealed on Hover using grid approach */}
           <div className={`grid transition-all duration-700 ease-in-out ${shouldShowHoverState ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
             <div className="overflow-hidden">
-              <div ref={contentRef}>
-                {/* Title with hover state - appears on hover for gold background */}
-                <div className="mb-3">
-                  <h4 className="text-[21px] font-normal text-earth-900 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                    {title}
-                  </h4>
-                </div>
-
-                {/* Badge on hover */}
-                {badge && (
+              <div ref={contentRef} className="border-t border-gold-500/30 pt-4">
+                {/* Category tag - appears on hover */}
+                {category && (
                   <div className="mb-3">
-                    <span className="inline-block bg-earth-900/20 text-earth-900 text-xs font-normal px-3 py-1 rounded-full">
-                      {badge}
+                    <span className="text-xs uppercase tracking-widest font-body font-bold text-gold-500" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)' }}>
+                      {category}
                     </span>
                   </div>
                 )}
-
                 {/* Description */}
-                <p className="text-sm md:text-base leading-snug font-body text-earth-800">
+                <p className="text-sm md:text-base leading-relaxed font-body text-[#e7dfd3]" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6)', whiteSpace: 'pre-line' }}>
                   {mainDescription}
                 </p>
               </div>

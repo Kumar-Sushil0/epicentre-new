@@ -9,6 +9,8 @@ interface Venue {
   capacity: string;
   badge?: string;
   href?: string;
+  icon?: string;
+  category?: string;
 }
 
 interface VenueSectionProps {

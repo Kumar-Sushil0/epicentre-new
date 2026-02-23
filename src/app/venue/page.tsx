@@ -51,6 +51,8 @@ export default function VenuePage() {
           imageAlt: "Forest safari trail",
           area: "3 km trail",
           capacity: "20 ppl",
+          icon: "forest",
+          category: "Nature Walk",
           href: "/venue#wildlife",
         },
         {
@@ -61,6 +63,8 @@ export default function VenuePage() {
           imageAlt: "Bird watching area",
           area: "500 sqft",
           capacity: "15 ppl",
+          icon: "flutter",
+          category: "Wildlife Observation",
           href: "/venue#wildlife",
         },
         {
@@ -71,6 +75,8 @@ export default function VenuePage() {
           imageAlt: "Boat joy rides on lake",
           area: "Lake access",
           capacity: "6 ppl",
+          icon: "sailing",
+          category: "Water Activity",
           href: "/venue#wildlife",
         },
       ],
@@ -93,6 +99,8 @@ export default function VenuePage() {
           imageAlt: "Private room",
           area: "King-size bed",
           capacity: "1-2 ppl",
+          icon: "bed",
+          category: "Private Accommodation",
           href: "/venue#collective",
         },
         {
@@ -103,6 +111,8 @@ export default function VenuePage() {
           imageAlt: "Dark room",
           area: "Total isolation",
           capacity: "1 ppl",
+          icon: "dark_mode",
+          category: "Sensory Isolation",
           href: "/venue#collective",
         },
         {
@@ -113,6 +123,8 @@ export default function VenuePage() {
           imageAlt: "Shared dormitory",
           area: "Shared space",
           capacity: "4-6 ppl",
+          icon: "bunk_bed",
+          category: "Shared Accommodation",
           href: "/venue#collective",
         },
         {
@@ -123,6 +135,8 @@ export default function VenuePage() {
           imageAlt: "Minimalist camping tents",
           area: "Canvas tent",
           capacity: "2 ppl",
+          icon: "camping",
+          category: "Outdoor Accommodation",
           href: "/venue#collective",
         },
         {
@@ -133,6 +147,8 @@ export default function VenuePage() {
           imageAlt: "Minimalist camping tents",
           area: "Canvas tent",
           capacity: "2 ppl",
+          icon: "meeting_room",
+          category: "Community Space",
           href: "/venue#collective",
         },
       ],
@@ -155,6 +171,8 @@ export default function VenuePage() {
           imageAlt: "Satvik home food",
           area: "Dining hall",
           capacity: "30 ppl",
+          icon: "restaurant",
+          category: "Daily Meals",
           href: "/venue#food",
         },
         {
@@ -165,6 +183,8 @@ export default function VenuePage() {
           imageAlt: "Salads, smoothies and sandwiches",
           area: "Kitchen",
           capacity: "As needed",
+          icon: "nutrition",
+          category: "Light Meals",
           href: "/venue#food",
         },
         {
@@ -175,6 +195,8 @@ export default function VenuePage() {
           imageAlt: "Pizza, barbecue and sushi",
           area: "Outdoor area",
           capacity: "40 ppl",
+          icon: "local_pizza",
+          category: "Special Meals",
           href: "/venue#food",
         },
         {
@@ -185,6 +207,8 @@ export default function VenuePage() {
           imageAlt: "Pizza, barbecue and sushi",
           area: "Outdoor area",
           capacity: "40 ppl",
+          icon: "blender",
+          category: "Fresh Beverages",
           href: "/venue#food",
         },
         {
@@ -195,6 +219,8 @@ export default function VenuePage() {
           imageAlt: "Self-serve pantry",
           area: "Pantry",
           capacity: "Self-serve",
+          icon: "kitchen",
+          category: "Self-Service",
           href: "/venue#food",
         },
         {
@@ -205,6 +231,8 @@ export default function VenuePage() {
           imageAlt: "Outdoor kitchen",
           area: "Outdoor",
           capacity: "20 ppl",
+          icon: "outdoor_grill",
+          category: "Communal Cooking",
           href: "/venue#food",
         },
       ],
@@ -227,6 +255,8 @@ export default function VenuePage() {
           imageAlt: "Outdoor gym equipment",
           area: "1,200 sqft",
           capacity: "15 ppl",
+          icon: "fitness_center",
+          category: "Strength Training",
           href: "/venue#intimate",
         },
         {
@@ -237,6 +267,8 @@ export default function VenuePage() {
           imageAlt: "Sports court",
           area: "3,000 sqft",
           capacity: "20 ppl",
+          icon: "sports_basketball",
+          category: "Sports & Play",
           href: "/venue#intimate",
         },
         {
@@ -247,6 +279,8 @@ export default function VenuePage() {
           imageAlt: "Contrast recovery facilities",
           area: "800 sqft",
           capacity: "8 ppl",
+          icon: "thermostat",
+          category: "Recovery",
           href: "/venue#intimate",
         },
         {
@@ -257,6 +291,8 @@ export default function VenuePage() {
           imageAlt: "Bicycles",
           area: "N/A",
           capacity: "Multiple",
+          icon: "pedal_bike",
+          category: "Cardio",
           href: "/venue#intimate",
         },
         {
@@ -267,6 +303,8 @@ export default function VenuePage() {
           imageAlt: "Kayaks on water",
           area: "N/A",
           capacity: "Multiple",
+          icon: "kayaking",
+          category: "Water Sport",
           href: "/venue#intimate",
         },
         {
@@ -277,6 +315,8 @@ export default function VenuePage() {
           imageAlt: "Yoga loft",
           area: "2,000 sqft",
           capacity: "30 ppl",
+          icon: "self_improvement",
+          category: "Mindful Movement",
           href: "/venue#intimate",
         },
         {
@@ -287,6 +327,8 @@ export default function VenuePage() {
           imageAlt: "Tree house",
           area: "100 sqft",
           capacity: "1 ppl",
+          icon: "cottage",
+          category: "Solo Workspace",
           href: "/venue#intimate",
         },
         {
@@ -297,6 +339,8 @@ export default function VenuePage() {
           imageAlt: "Zen garden",
           area: "600 sqft",
           capacity: "5 ppl",
+          icon: "spa",
+          category: "Contemplation",
           href: "/venue#intimate",
         },
         {
@@ -307,6 +351,8 @@ export default function VenuePage() {
           imageAlt: " Ground Work ",
           area: "Variable",
           capacity: "Small groups",
+          icon: "agriculture",
+          category: "Land Work",
           href: "/venue#intimate",
         },
         {
@@ -317,6 +363,8 @@ export default function VenuePage() {
           imageAlt: "Practice platform",
           area: "300 sqft",
           capacity: "5 ppl",
+          icon: "music_note",
+          category: "Creative Practice",
           href: "/venue#intimate",
         },
         {
@@ -327,6 +375,8 @@ export default function VenuePage() {
           imageAlt: "Silent board games",
           area: "Indoor",
           capacity: "4-8 ppl",
+          icon: "casino",
+          category: "Strategic Play",
           href: "/venue#intimate",
         },
       ],
@@ -349,6 +399,8 @@ export default function VenuePage() {
           imageAlt: "Design dome",
           area: "2,000 sqft",
           capacity: "50 ppl",
+          icon: "architecture",
+          category: "Gathering Space",
           href: "/venue#creative",
         },
         {
@@ -359,6 +411,8 @@ export default function VenuePage() {
           imageAlt: "Library lounge",
           area: "800 sqft",
           capacity: "20 ppl",
+          icon: "local_library",
+          category: "Multi-Purpose Hall",
           href: "/venue#creative",
         },
         {
@@ -369,6 +423,8 @@ export default function VenuePage() {
           imageAlt: "Front lawn",
           area: "5,000 sqft",
           capacity: "100 ppl",
+          icon: "grass",
+          category: "Open Space",
           href: "/venue#creative",
         },
         {
@@ -379,6 +435,8 @@ export default function VenuePage() {
           imageAlt: "Courtyard",
           area: "1,500 sqft",
           capacity: "40 ppl",
+          icon: "yard",
+          category: "Courtyard",
           href: "/venue#creative",
         },
         {
@@ -389,6 +447,8 @@ export default function VenuePage() {
           imageAlt: "Signal deck",
           area: "Multiple cabins",
           capacity: "2-4 ppl",
+          icon: "wifi",
+          category: "Communication Zone",
           href: "/venue#creative",
         },
       ],
@@ -411,6 +471,8 @@ export default function VenuePage() {
           imageAlt: "Identity cemetery",
           area: "2,000 sqft",
           capacity: "30 ppl",
+          icon: "door_front",
+          category: "Threshold",
           href: "/venue#living",
         },
         {
@@ -421,6 +483,8 @@ export default function VenuePage() {
           imageAlt: "Moon gate",
           area: "N/A",
           capacity: "N/A",
+          icon: "circle",
+          category: "Symbolic Structure",
           href: "/venue#living",
         },
         {
@@ -431,6 +495,8 @@ export default function VenuePage() {
           imageAlt: "Truman's wall",
           area: "N/A",
           capacity: "Unlimited",
+          icon: "wall",
+          category: "Installation",
           href: "/venue#living",
         },
         {
@@ -441,6 +507,8 @@ export default function VenuePage() {
           imageAlt: "Thinking man sculpture",
           area: "N/A",
           capacity: "1 ppl",
+          icon: "person",
+          category: "Contemplation Point",
           href: "/venue#living",
         },
         {
@@ -451,6 +519,8 @@ export default function VenuePage() {
           imageAlt: "Edgeless gallery",
           area: "Perimeter",
           capacity: "Small groups",
+          icon: "gallery_thumbnail",
+          category: "Viewing Platform",
           href: "/venue#living",
         },
       ],
