@@ -216,7 +216,7 @@ const expressionPractices = {
 function ExpressionDetailsPageContent() {
   const searchParams = useSearchParams();
   const practiceId = searchParams.get("id") || "the-writer-says";
-  const practice = expressionPractices[practiceId] || expressionPractices["the-writer-says"];
+  const practice = expressionPractices[practiceId as keyof typeof expressionPractices] || expressionPractices["the-writer-says"];
 
   return (
     <main className="min-h-screen bg-earth-900 text-earth-100">
