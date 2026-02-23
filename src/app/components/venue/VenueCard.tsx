@@ -7,7 +7,7 @@ import Link from "next/link";
 interface VenueCardProps {
   title: string;
   description: string;
-  image: string;
+  image: string | string[];
   imageAlt: string;
   badge?: string;
   href?: string;
@@ -43,6 +43,7 @@ function parseDescription(description: string): { tags: string[], mainDescriptio
 
 export default function VenueCard({ title, description, image, imageAlt, badge, href, icon, category, area, capacity }: VenueCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const cardRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [isForceHovered, setIsForceHovered] = useState(false);
@@ -50,6 +51,9 @@ export default function VenueCard({ title, description, image, imageAlt, badge, 
 
   // Parse description to extract tags
   const { tags, mainDescription } = parseDescription(description);
+
+  // Convert image to array if it's a single string
+  const images = Array.isArray(image) ? image : [image];
 
   useEffect(() => {
     // Check if parent has force-hover class
@@ -90,6 +94,17 @@ export default function VenueCard({ title, description, image, imageAlt, badge, 
 
   const shouldShowHoverState = isHovered || isForceHovered;
 
+  // Carousel effect for multiple images
+  useEffect(() => {
+    if (shouldShowHoverState) return; // Pause on hover or force hover
+    if (images.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 4000); // 4 seconds per slide
+    return () => clearInterval(interval);
+  }, [shouldShowHoverState, images.length]);
+
   const CardContent = (
     <div
       ref={cardRef}
@@ -99,16 +114,21 @@ export default function VenueCard({ title, description, image, imageAlt, badge, 
     >
       {/* Foreground Image Layer */}
       <div className="absolute inset-0 z-10 bg-earth-900">
-        {/* Image */}
-        <div className="absolute inset-0">
-          <Image
-            src={image}
-            alt={imageAlt}
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
+        {/* Images - Carousel */}
+        {images.map((src, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentIndex ? "opacity-100" : "opacity-0"}`}
+          >
+            <Image
+              src={src}
+              alt={`${imageAlt} - ${index + 1}`}
+              fill
+              className="object-cover"
+              priority={index === 0}
+            />
+          </div>
+        ))}
 
         {/* Gradient Overlay - Black like Accommodation cards */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
@@ -160,6 +180,24 @@ export default function VenueCard({ title, description, image, imageAlt, badge, 
             </div>
           </div>
         </div>
+
+        {/* Dots - only show if multiple images */}
+        {images.length > 1 && (
+          <div className={`absolute bottom-4 left-0 right-0 flex justify-center gap-2 transition-opacity duration-300 z-20 ${shouldShowHoverState ? 'opacity-0' : ''}`}>
+            {images.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setCurrentIndex(idx);
+                }}
+                className={`h-1.5 rounded-full transition-all duration-300 ${idx === currentIndex ? "bg-gold-500 w-6" : "bg-white/40 hover:bg-white/80 w-1.5"}`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

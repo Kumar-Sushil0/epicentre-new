@@ -94,8 +94,11 @@ export default function VenuePage() {
         {
           title: "Private Room",
           description: "Enclosed personal sleeping space with controlled light and sound.\n\nUsed for: Deep rest. Sensory withdrawal. Personal integration. Extended silence.\n\nSleep is protected. Interruption is minimized.",
-          image:
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/privateroom.jpeg",
+          image: [
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/room1.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/room2.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/room3.png"
+          ],
           imageAlt: "Private room",
           area: "King-size bed",
           capacity: "1-2 ppl",
@@ -130,8 +133,11 @@ export default function VenuePage() {
         {
           title: "Minimalist Tents",
           description: "Outdoor sleeping structures with minimal artificial input.\n\nUsed for: Ground connection. Environmental immersion. Sensory simplification. Early sleep cycles.\n\nCloser to land. Fewer barriers.",
-          image:
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/tents.png",
+          image: [
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/tent1.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/tent2.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/tent3.png"
+          ],
           imageAlt: "Minimalist camping tents",
           area: "Canvas tent",
           capacity: "2 ppl",
@@ -250,8 +256,11 @@ export default function VenuePage() {
         {
           title: "Outdoor Gym",
           description: "Open-air strength and conditioning space.\n\nUsed for: Stress discharge. Physical training. Hormonal regulation. Structured exertion.\n\nEffort clears residual tension.",
-          image:
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/gym.png",
+          image: [
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/gym1.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/gym2.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/gym3.png"
+          ],
           imageAlt: "Outdoor gym equipment",
           area: "1,200 sqft",
           capacity: "15 ppl",

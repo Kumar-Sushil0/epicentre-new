@@ -3,7 +3,7 @@ import VenueCard from "./VenueCard";
 interface Venue {
   title: string;
   description: string;
-  image: string;
+  image: string | string[];
   imageAlt: string;
   area: string;
   capacity: string;
