@@ -46,8 +46,11 @@ export default function VenuePage() {
         {
           title: "Forest Safari",
           description: "Guided walking trails across open land and low-density terrain.\n\nUsed for: Horizon exposure. Light movement. Ecological awareness. Nervous system decompression.\n\nDistance from built environments reduces cognitive load.",
-          image:
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/grasslandsafari.png",
+          image: [
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/grasslandsafari1.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/grasslandsafari2.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/grasslandsafari3.png"
+          ],
           imageAlt: "Forest safari trail",
           area: "3 km trail",
           capacity: "20 ppl",
@@ -58,8 +61,11 @@ export default function VenuePage() {
         {
           title: "Bird Watching",
           description: "Designated quiet observation areas near natural habitats.\n\nUsed for: Sustained attention. Pattern recognition. Auditory sensitivity. Stillness training.\n\nObservation without interference sharpens perception.",
-          image:
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/bird.png",
+          image: [
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/bird1.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/bird2.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/bird3.png"
+          ],
           imageAlt: "Bird watching area",
           area: "500 sqft",
           capacity: "15 ppl",
@@ -70,8 +76,11 @@ export default function VenuePage() {
         {
           title: "Boat Joy Rides",
           description: "Slow-paced lake movement along open water.\n\nUsed for: Visual horizon reset. Rhythmic motion. Emotional settling. Perspective shift.\n\nWater environments reduce sensory fragmentation.",
-          image:
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/nightboatsafari.png",
+          image: [
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/boat1.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/boat2.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/boat3.png"
+          ],
           imageAlt: "Boat joy rides on lake",
           area: "Lake access",
           capacity: "6 ppl",
@@ -121,8 +130,11 @@ export default function VenuePage() {
         {
           title: "Shared Dorm",
           description: "Structured shared sleeping space with quiet norms.\n\nUsed for: Collective silence. Budget stays. Group cycles. Rhythmic routine.\n\nShared space, protected quiet.",
-          image:
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/dorms.png",
+          image: [
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/dorm1.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/dorm2.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/dorm3.png"
+          ],
           imageAlt: "Shared dormitory",
           area: "Shared space",
           capacity: "4-6 ppl",
@@ -187,8 +199,11 @@ export default function VenuePage() {
         {
           title: "Salads, Smoothies & Sandwiches",
           description: "Light meal options focused on simplicity and freshness.\n\nWed & Fri: Midday reset. Low digestive load. Active cycles. Clean nutrition.\n\nDesigned to sustain focus.",
-          image:
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/somthiessaladsandwiches.png",
+          image: [
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/sss1.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/sss2.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/sss3.png"
+          ],
           imageAlt: "Salads, smoothies and sandwiches",
           area: "Kitchen",
           capacity: "As needed",
@@ -199,8 +214,11 @@ export default function VenuePage() {
         {
           title: "Pizza, Barbeque & Sushi",
           description: "Occasional communal meals prepared intentionally.\n\nAs required: Shared gathering. Social bonding. Celebration within structure. Moderated indulgence.\n\nEven stimulation is regulated.",
-          image:
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/pizza.png",
+          image: [
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/pbs1.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/pbs2.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/pbs3.png"
+          ],
           imageAlt: "Pizza, barbecue and sushi",
           area: "Outdoor area",
           capacity: "40 ppl",
@@ -211,8 +229,11 @@ export default function VenuePage() {
         {
           title: "Fruits Juices & Fresh Bites",
           description: "Occasional communal meals prepared intentionally.\n\nAs required: Shared gathering. Social bonding. Celebration within structure. Moderated indulgence.\n\nEven stimulation is regulated.",
-          image:
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/fnj.png",
+          image: [
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/fjs1.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/fjs2.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/fjs3.png"
+          ],
           imageAlt: "Pizza, barbecue and sushi",
           area: "Outdoor area",
           capacity: "40 ppl",
@@ -223,8 +244,11 @@ export default function VenuePage() {
         {
           title: "Self-Serve Pantry",
           description: "Designated kitchen access for simple personal preparation.\n\nUsed for: Tea and coffee. Light snacks. Between-meal regulation. Dietary flexibility.\n\nAutonomy within rhythm.",
-          image:
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/self.png",
+          image: [
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/ssp1.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/ssp2.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/ssp3.png"
+          ],
           imageAlt: "Self-serve pantry",
           area: "Pantry",
           capacity: "Self-serve",
@@ -235,8 +259,11 @@ export default function VenuePage() {
         {
           title: "Outdoor Kitchen",
           description: "Open-air cooking space used for occasional communal meals and curated events.\n\nUsed for: Structured shared cooking. Small-group gatherings. Seasonal meals. Experimental dining formats.\n\nFood can gather people without accelerating them.",
-          image:
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/outdoor.png",
+          image: [
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/ok1.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/ok2.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/ok3.png"
+          ],
           imageAlt: "Outdoor kitchen",
           area: "Outdoor",
           capacity: "20 ppl",
@@ -274,8 +301,11 @@ export default function VenuePage() {
         {
           title: "Sports Court",
           description: "Multi-use court for competitive or cooperative play.\n\nUsed for: Energy release. Group engagement. Motor coordination. Active recovery.\n\nMovement restores mental steadiness.",
-          image:
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/sportscourt.png",
+          image: [
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/sc1.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/sc2.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/sc3.png"
+          ],
           imageAlt: "Sports court",
           area: "3,000 sqft",
           capacity: "20 ppl",
@@ -346,8 +376,11 @@ export default function VenuePage() {
         {
           title: "Zen Garden",
           description: "Minimalist stone and sand installation.\n\nUsed for: Visual stillness. Pattern contemplation. Micro-focus training. Grounded presence.\n\nAttention stabilizes through repetition.",
-          image:
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/zen.png",
+          image: [
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/zen1.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/zen2.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/zen3.png"
+          ],
           imageAlt: "Zen garden",
           area: "600 sqft",
           capacity: "5 ppl",
@@ -370,8 +403,11 @@ export default function VenuePage() {
         {
           title: "Practice Platform",
           description: "Stone deck under a neem tree overlooking open water.\n\nUsed for: Music rehearsal. Artistic practice. Sun exposure. Solo training. Focused repetition.\n\nSkill deepens when environment is undisturbed.",
-          image:
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/practice.png",
+          image: [
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/pp1.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/pp2.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/pp3.png"
+          ],
           imageAlt: "Practice platform",
           area: "300 sqft",
           capacity: "5 ppl",
