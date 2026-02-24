@@ -30,9 +30,9 @@ export default function AboutCollective() {
   return (
     <section className="py-16 bg-earth-900 border-b border-earth-800" id="collective">
       <div className="w-full px-4 md:px-16">
-        <div className="flex flex-col lg:flex-row items-start justify-center gap-12 lg:gap-16 max-w-7xl mx-auto">
+        <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-16">
           {/* Left Content */}
-          <div className="w-full lg:flex-1 text-center">
+          <div className="w-full lg:w-1/2 text-left">
             <h3 className="text-3xl font-normal mb-6 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>
               BIGवन — A Case for Silent Tourism
             </h3>
@@ -44,7 +44,7 @@ export default function AboutCollective() {
           </div>
 
           {/* Right Side - Image and Download Card */}
-          <div className="w-full lg:w-auto flex flex-col items-center gap-8 lg:flex-shrink-0">
+          <div className="w-full lg:w-1/2 flex flex-col items-center gap-8">
             <div className="w-full max-w-xs">
               <img 
                 src="/silent.svg" 

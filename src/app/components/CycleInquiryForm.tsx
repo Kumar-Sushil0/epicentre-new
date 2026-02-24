@@ -28,7 +28,7 @@ export default function CycleInquiryForm() {
     <section className="py-24 px-6 md:px-16 bg-earth-900">
       <div className="max-w-3xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-semibold text-gold-500 mb-4 text-center" style={{ fontFamily: 'Outfit, sans-serif' }}>
-          Request Conversation
+          Request a conversation
         </h2>
         <p className="text-earth-300 text-center mb-12">
           Share your intent. We'll respond within 48 hours.

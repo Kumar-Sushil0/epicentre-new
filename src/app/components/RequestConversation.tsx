@@ -43,7 +43,7 @@ export default function RequestConversation({ message, pageName }: RequestConver
           className="inline-block text-lg font-normal text-gold-500 hover:text-gold-400 hover:border-gold-400 transition-colors cursor-pointer border-2 border-gold-500 rounded-lg px-6 py-2"
           style={{ fontFamily: 'Outfit, sans-serif' }}
         >
-          Request Conversation
+          Request a conversation
         </a>
       </div>
         {/* Bottom Notice */}

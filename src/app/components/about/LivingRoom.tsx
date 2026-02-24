@@ -104,7 +104,7 @@ const LivingRoom = () => {
     return (
         <section className="bg-gold-500 py-20 text-earth-900">
             <div className="px-4 md:px-16">
-                <div className="text-center mb-16">
+                <div className="text-left mb-16">
                     <h2 className="text-3xl font-normal mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
                         Evidence
                     </h2>

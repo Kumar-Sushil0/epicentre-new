@@ -23,7 +23,7 @@ export default function ServicesOffering() {
         <div className="max-w-5xl mx-auto">
           {/* Full Cycle Card - At the Top */}
           <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-4 mb-3">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
               <div className="flex-1">
                 <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
                   Full Cycle
@@ -46,121 +46,63 @@ export default function ServicesOffering() {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col gap-2 items-end">
-                {/* Mobile: Toggle and Price side by side */}
-                <div className="flex md:hidden items-center justify-between w-full gap-3">
-                  {/* Day Selection Toggle - Smaller for mobile */}
-                  <div className="inline-flex items-center gap-1 bg-earth-800/50 rounded-lg p-0.5 border border-earth-700/50">
-                    {/* Weekdays */}
-                    <div className="flex items-center gap-0.5 pr-1 border-r-2 border-gold-500/30">
-                      {[
-                        { label: 'M', value: 'M' as const },
-                        { label: 'T', value: 'T' as const },
-                        { label: 'W', value: 'W' as const },
-                        { label: 'T', value: 'Th' as const }
-                      ].map((day, index) => (
-                        <button
-                          key={day.value}
-                          onClick={() => setSelectedDay(day.value)}
-                          className={`w-4 h-4 rounded-md flex items-center justify-center text-[10px] font-medium transition-all ${
-                            selectedDay === day.value
-                              ? 'bg-gold-500 text-earth-950'
-                              : 'text-earth-400 hover:text-gold-500'
-                          }`}
-                          style={{ fontFamily: 'Outfit, sans-serif' }}
-                        >
-                          {day.label}
-                        </button>
-                      ))}
-                    </div>
 
-                    {/* Weekends */}
-                    <div className="flex items-center gap-0.5 pl-1">
-                      {[
-                        { label: 'F', value: 'F' as const },
-                        { label: 'S', value: 'S' as const },
-                        { label: 'S', value: 'Su' as const }
-                      ].map((day) => (
-                        <button
-                          key={day.value}
-                          onClick={() => setSelectedDay(day.value)}
-                          className={`w-4 h-4 rounded-md flex items-center justify-center text-[10px] font-medium transition-all ${
-                            selectedDay === day.value
-                              ? 'bg-gold-500 text-earth-950'
-                              : 'text-earth-400 hover:text-gold-500'
-                          }`}
-                          style={{ fontFamily: 'Outfit, sans-serif' }}
-                        >
-                          {day.label}
-                        </button>
-                      ))}
-                    </div>
+              {/* Right side: Toggle and Price stacked vertically with space between */}
+              <div className="flex flex-col justify-between items-end h-full min-h-[120px]">
+                {/* Day Selection Toggle Container - Top */}
+                <div className="inline-flex items-center gap-2 bg-earth-800/50 rounded-lg p-1 border border-earth-700/50">
+                  {/* Weekdays */}
+                  <div className="flex items-center gap-1 pr-2 border-r-2 border-gold-500/30">
+                    {[
+                      { label: 'M', value: 'M' as const },
+                      { label: 'T', value: 'T' as const },
+                      { label: 'W', value: 'W' as const },
+                      { label: 'T', value: 'Th' as const }
+                    ].map((day) => (
+                      <button
+                        key={day.value}
+                        onClick={() => setSelectedDay(day.value)}
+                        className={`w-6 h-6 rounded-md flex items-center justify-center text-xs font-medium transition-all ${
+                          selectedDay === day.value
+                            ? 'bg-gold-500 text-earth-950'
+                            : 'text-earth-400 hover:text-gold-500'
+                        }`}
+                        style={{ fontFamily: 'Outfit, sans-serif' }}
+                      >
+                        {day.label}
+                      </button>
+                    ))}
                   </div>
 
-                  <div className="text-right">
-                    <div className="text-gold-500 text-lg font-normal">
-                      ₹{['F', 'S', 'Su'].includes(selectedDay) ? '1,20,000' : '1,00,000'}
-                    </div>
-                    <p className="text-earth-400 text-xs mt-1">Per Night • Taxes applicable</p>
+                  {/* Weekends */}
+                  <div className="flex items-center gap-1 pl-2">
+                    {[
+                      { label: 'F', value: 'F' as const },
+                      { label: 'S', value: 'S' as const },
+                      { label: 'S', value: 'Su' as const }
+                    ].map((day) => (
+                      <button
+                        key={day.value}
+                        onClick={() => setSelectedDay(day.value)}
+                        className={`w-6 h-6 rounded-md flex items-center justify-center text-xs font-medium transition-all ${
+                          selectedDay === day.value
+                            ? 'bg-gold-500 text-earth-950'
+                            : 'text-earth-400 hover:text-gold-500'
+                        }`}
+                        style={{ fontFamily: 'Outfit, sans-serif' }}
+                      >
+                        {day.label}
+                      </button>
+                    ))}
                   </div>
                 </div>
 
-                {/* Desktop: Original layout */}
-                <div className="hidden md:block">
-                  {/* Day Selection Toggle with Visual UI */}
-                  <div className="inline-flex items-center gap-2 bg-earth-800/50 rounded-lg p-1 border border-earth-700/50 mb-2">
-                    {/* Weekdays */}
-                    <div className="flex items-center gap-1 pr-2 border-r-2 border-gold-500/30">
-                      {[
-                        { label: 'M', value: 'M' as const },
-                        { label: 'T', value: 'T' as const },
-                        { label: 'W', value: 'W' as const },
-                        { label: 'T', value: 'Th' as const }
-                      ].map((day) => (
-                        <button
-                          key={day.value}
-                          onClick={() => setSelectedDay(day.value)}
-                          className={`w-6 h-6 rounded-md flex items-center justify-center text-xs font-medium transition-all ${
-                            selectedDay === day.value
-                              ? 'bg-gold-500 text-earth-950'
-                              : 'text-earth-400 hover:text-gold-500'
-                          }`}
-                          style={{ fontFamily: 'Outfit, sans-serif' }}
-                        >
-                          {day.label}
-                        </button>
-                      ))}
-                    </div>
-
-                    {/* Weekends */}
-                    <div className="flex items-center gap-1 pl-2">
-                      {[
-                        { label: 'F', value: 'F' as const },
-                        { label: 'S', value: 'S' as const },
-                        { label: 'S', value: 'Su' as const }
-                      ].map((day) => (
-                        <button
-                          key={day.value}
-                          onClick={() => setSelectedDay(day.value)}
-                          className={`w-6 h-6 rounded-md flex items-center justify-center text-xs font-medium transition-all ${
-                            selectedDay === day.value
-                              ? 'bg-gold-500 text-earth-950'
-                              : 'text-earth-400 hover:text-gold-500'
-                          }`}
-                          style={{ fontFamily: 'Outfit, sans-serif' }}
-                        >
-                          {day.label}
-                        </button>
-                      ))}
-                    </div>
+                {/* Price Container - Bottom */}
+                <div className="text-right">
+                  <div className="text-gold-500 text-xl font-normal">
+                    ₹{['F', 'S', 'Su'].includes(selectedDay) ? '1,20,000' : '1,00,000'}
                   </div>
-
-                  <div className="text-right">
-                    <div className="text-gold-500 text-xl font-normal">
-                      ₹{['F', 'S', 'Su'].includes(selectedDay) ? '1,20,000' : '1,00,000'}
-                    </div>
-                    <p className="text-earth-400 text-xs mt-1">Per Night • Taxes applicable</p>
-                  </div>
+                  <p className="text-earth-400 text-xs mt-1">Per Night • Taxes applicable</p>
                 </div>
               </div>
             </div>
@@ -226,7 +168,7 @@ export default function ServicesOffering() {
               </div>
             </div>
 
-            <div className="mt-auto">
+            <div className="mt-auto text-right">
               <div className="text-gold-500 text-lg font-normal">
                 {accommodationType === 'dorm' ? '₹20,000' : '₹30,000'}
               </div>
@@ -259,7 +201,7 @@ export default function ServicesOffering() {
               </div>
             </div>
 
-            <div className="mt-auto">
+            <div className="mt-auto text-right">
               <div className="text-gold-500 text-lg font-normal">
                 {accommodationType === 'dorm' ? '₹10,000' : '₹15,000'}
               </div>
@@ -279,7 +221,7 @@ export default function ServicesOffering() {
             <div className="space-y-1 mb-2 flex-1">
               <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
-                <span className="text-earth-300 text-sm">Access Upto 4Hrs</span>
+                <span className="text-earth-300 text-sm">Full Access Upto 4Hrs</span>
               </div>
               <div className="flex items-center gap-3">
                 <span className="text-gold-500">•</span>
@@ -287,7 +229,7 @@ export default function ServicesOffering() {
               </div>
             </div>
 
-            <div className="mt-auto">
+            <div className="mt-auto text-right">
               <div className="text-gold-500 text-lg font-normal">
                 ₹1,000
               </div>
@@ -299,7 +241,7 @@ export default function ServicesOffering() {
 
         </div>
 
-        {/* Request Conversation Button */}
+        {/* Request a conversation Button */}
         <div className="text-center mt-10 mb-3">
           <a
             href={whatsappLink}
@@ -308,7 +250,7 @@ export default function ServicesOffering() {
             className="inline-block text-base md:text-lg font-normal text-gold-500 hover:text-gold-400 hover:border-gold-400 transition-colors cursor-pointer border-2 border-gold-500 rounded-lg px-4 md:px-6 py-2"
             style={{ fontFamily: 'Outfit, sans-serif' }}
           >
-            Request Conversation
+            Request a conversation
           </a>
         </div>
         

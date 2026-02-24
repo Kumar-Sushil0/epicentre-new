@@ -226,7 +226,7 @@ export default function SolitudeDetailsBooking({ stationName, price }: SolitudeD
               }
             }}
           >
-            Request Conversation
+            Request a conversation
           </a>
         </div>
       </div>

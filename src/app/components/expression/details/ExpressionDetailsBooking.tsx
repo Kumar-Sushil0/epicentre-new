@@ -227,7 +227,7 @@ export default function ExpressionDetailsBooking({
               }
             }}
           >
-            Request Conversation
+            Request a conversation
           </a>
         </div>
       </div>

@@ -58,7 +58,7 @@ export default function Location() {
         {/* Postal Address & Phone */}
         <div className="mt-8 text-center">
           <p className="text-earth-900 font-body text-sm">
-           Our Postal Code : The Silent Club, Kumbhar Goan, Bird Sanctuary, Bhigwan, Maharashtra 413104. | Phone: +91 98903 22494
+           Our Postal Address: The Silent Club, Kumbhar Goan, Bird Sanctuary, Bhigwan, Maharashtra 413104. | Phone: +91 98903 22494
           </p>
         </div>
       </div>
