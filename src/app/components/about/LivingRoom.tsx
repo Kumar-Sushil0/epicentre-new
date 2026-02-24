@@ -28,7 +28,7 @@ const research = [
         link: "https://doi.org/10.1037/0003-066X.55.1.68"
     },
     {
-        title: "Self-Regulation Theory — Directed Attention & Behavioral Control",
+        title: "Directed Attention & Self-Regulation",
         author: "Kaplan, S., & Berman, M. G. (2010). Directed Attention as a Common Resource for Executive Functioning and Self-Regulation. Perspectives on Psychological Science.",
         description: "Shows that restoring directed attention improves executive control and self-regulatory capacity.",
         link: "https://doi.org/10.1177/1745691610385554"
@@ -109,7 +109,7 @@ const LivingRoom = () => {
                         Evidence
                     </h2>
                     <p className="text-xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                        This is not ideology. It is informed by research in cognitive science and psychology.
+                        This is not ideology.<br />It is informed by research in cognitive science and psychology.
                     </p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">

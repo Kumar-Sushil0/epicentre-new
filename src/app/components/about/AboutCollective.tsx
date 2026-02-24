@@ -35,7 +35,9 @@ export default function AboutCollective() {
             BIGवन — A Case for Silent Tourism
           </h3>
           <p className="text-xl text-earth-300" style={{ fontFamily: 'Outfit, sans-serif' }}>
-            A non-profit research and advocacy effort to formalize silence as a legitimate economic and environmental model. <br/> Development does not have to mean density.
+            Silence is cognitive infrastructure. Infrastructure deserves protection.<br />
+            If sovereignty begins with attention, landscapes that protect attention are public goods.<br />
+            Development can preserve authority — if designed deliberately.
           </p>
         </div>
         <div className="flex justify-center">
@@ -45,7 +47,7 @@ export default function AboutCollective() {
               className="flex items-center justify-center gap-3 w-full text-lg font-normal text-gold-500 hover:text-gold-400 transition-colors"
               style={{ fontFamily: 'Outfit, sans-serif' }}
             >
-              <span>Download Foundational Document</span>
+              <span>Download the foundational document.</span>
               <span className="material-symbols-outlined text-2xl">download</span>
             </button>
           </div>

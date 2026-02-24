@@ -7,7 +7,7 @@ export default function OurPhilosophy() {
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Clarity is a product of subtraction */}
+          {/* Clarity Through Subtraction */}
           <div className="flex flex-col items-start text-center md:text-left bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
             <div className="mb-4">
               <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -15,12 +15,16 @@ export default function OurPhilosophy() {
                 <circle cx="32" cy="32" r="12" stroke="#C9A961" strokeWidth="2"/>
               </svg>
             </div>
-            <p className="text-earth-300 text-sm font-body">
-              Clarity is a product of subtraction.
+            <h3 className="text-gold-500 text-base font-normal mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
+              Clarity Through Subtraction
+            </h3>
+            <p className="text-earth-300 text-sm font-body leading-relaxed">
+              We remove before we add.<br />
+              Noise is edited so perception can stabilize.
             </p>
           </div>
 
-          {/* Autonomy requires constraint */}
+          {/* Constraint Creates Autonomy */}
           <div className="flex flex-col items-start text-center md:text-left bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
             <div className="mb-4">
               <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,12 +32,16 @@ export default function OurPhilosophy() {
                 <path d="M24 24V40M32 24V40M40 24V40" stroke="#C9A961" strokeWidth="2" strokeLinecap="round"/>
               </svg>
             </div>
-            <p className="text-earth-300 text-sm font-body">
-              Autonomy requires constraint.
+            <h3 className="text-gold-500 text-base font-normal mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
+              Constraint Creates Autonomy
+            </h3>
+            <p className="text-earth-300 text-sm font-body leading-relaxed">
+              Freedom without structure is drift.<br />
+              Structure protects agency.
             </p>
           </div>
 
-          {/* Identity is authored, not inherited */}
+          {/* Identity Is Authored */}
           <div className="flex flex-col items-start text-center md:text-left bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
             <div className="mb-4">
               <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,12 +49,16 @@ export default function OurPhilosophy() {
                 <circle cx="36" cy="16" r="4" stroke="#C9A961" strokeWidth="2"/>
               </svg>
             </div>
-            <p className="text-earth-300 text-sm font-body">
-              Identity is authored, not inherited.
+            <h3 className="text-gold-500 text-base font-normal mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
+              Identity Is Authored
+            </h3>
+            <p className="text-earth-300 text-sm font-body leading-relaxed">
+              You are not here to perform inherited roles.<br />
+              You are here to decide deliberately.
             </p>
           </div>
 
-          {/* Sovereignty begins with protected attention */}
+          {/* Attention Is Sovereignty */}
           <div className="flex flex-col items-start text-center md:text-left bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6">
             <div className="mb-4">
               <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -55,8 +67,12 @@ export default function OurPhilosophy() {
                 <circle cx="32" cy="32" r="3" fill="#C9A961"/>
               </svg>
             </div>
-            <p className="text-earth-300 text-sm font-body">
-              Sovereignty begins with protected attention.
+            <h3 className="text-gold-500 text-base font-normal mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
+              Attention Is Sovereignty
+            </h3>
+            <p className="text-earth-300 text-sm font-body leading-relaxed">
+              What you protect shapes who you become.<br />
+              We protect attention first.
             </p>
           </div>
         </div>

@@ -13,19 +13,19 @@ export default function AboutPhilosophy() {
   const philosophies: PhilosophyItem[] = [
     {
       title: "Why Silence",
-      description: "Silence reduces signal.\nWhen signal reduces, perception sharpens.\nDecisions surface without pressure.\nSilence is not decoration.\nIt is a tool.",
+      description: "Silence reduces external influence.\nReduced influence strengthens internal authority.\nDecisions surface without persuasion.\nSilence is not emptiness.\nIt is self-governance in practice.",
     },
     {
       title: "Why a Club",
-      description: "Entry is voluntary.\nShared norms protect the space.\nAgreement replaces enforcement.\nNo audience.\nNo performance.",
+      description: "Voluntary entry protects coherence.\nShared norms protect autonomy.\nAgreement sustains order without control.",
     },
     {
       title: "Why Bhigwan",
-      description: "Open land.\nLong horizons.\nLow signal density.\nThe landscape quiets you before policy does.",
+      description: "Wide horizons reduce cognitive compression.\nDistance restores perspective.\nLand influences thought before policy does.",
     },
     {
       title: "Why We Experiment",
-      description: "Nothing here is fixed.\nFormats are tested.\nNoise is removed.\nTesting is structural, not personal.",
+      description: "Sovereignty is not static.\nConditions are refined.\nFormats are tested.\nStructure evolves.",
     }
   ];
 
@@ -41,7 +41,7 @@ export default function AboutPhilosophy() {
         <div className="mb-8">
           <h3 className="text-3xl font-normal mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Why This Structure</h3>
           <p className="text-[#e7dfd3] font-body text-[15px] max-w-full">
-            These choices are not aesthetic. They protect attention.
+            These decisions exist to protect cognitive sovereignty.
           </p>
         </div>
 

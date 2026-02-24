@@ -172,8 +172,11 @@ export default function VenuePage() {
         {
           title: "Satvik Home Food",
           description: "Traditional Indian meals prepared with low-stimulation ingredients.\n\nEveryday: Stable energy. Digestive ease. Rhythmic eating. Nutritional awareness.\n\nMeals support clarity, not indulgence.",
-          image:
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/homefood.png",
+          image: [
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/homefood1.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/homefood2.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/homefood3.png"
+          ],
           imageAlt: "Satvik home food",
           area: "Dining hall",
           capacity: "30 ppl",
