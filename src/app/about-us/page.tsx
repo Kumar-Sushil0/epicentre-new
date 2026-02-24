@@ -30,7 +30,7 @@ export default function AboutUsPage() {
     >
       <Header />
       <AboutHero />
-      <AboutPhilosophyQuote />
+      
       <OurPhilosophy />
       <AboutPrinciples />
       <AboutPhilosophy />

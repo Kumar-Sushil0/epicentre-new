@@ -21,14 +21,14 @@ export default function AboutHero() {
             <span className="italic text-gold-500">Designed Deliberately.</span>
           </h1>
           <p className="text-earth-300/80 text-xl md:text-2xl font-light leading-relaxed w-full font-body">
-            The Silent Club is not a retreat.
+            The Silent Club is not a retreat.<br />
             It is a structured environment engineered to reduce interference.<br />
-            Silence here is functional, not aesthetic.
-            When external input decreases, attention stabilizes.
-            When attention stabilizes, decisions become less negotiable.
-            Clarity is not chased.
+            Silence here is functional, not aesthetic.<br />
+            When external input decreases, attention stabilizes.<br />
+            When attention stabilizes, decisions become less negotiable.<br />
+            Clarity is not chased.<br />
             It is permitted.<br />
-            You do not leave life here.
+            You do not leave life here.<br />
             You prepare to re-enter it deliberately.
           </p>
         </div>
