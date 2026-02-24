@@ -65,16 +65,7 @@ export default function Hero() {
           
           {/* CTA Buttons */}
           <div className="flex flex-row gap-4 mt-8 items-start">
-            <button
-              onClick={() => {
-                const section = document.getElementById('cycles-section');
-                section?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }}
-              className="inline-flex items-center gap-2 text-gold-500 hover:text-gold-400 hover:border-gold-400 transition-colors duration-300 text-lg font-normal border-2 border-gold-500 rounded-lg px-6 py-3 bg-earth-950/50 backdrop-blur-sm"
-              style={{ fontFamily: 'Outfit, sans-serif' }}
-            >
-              → Explore Cycles
-            </button>
+          
             <Link
               href="/venue"
               className="inline-flex items-center gap-2 text-gold-500 hover:text-gold-400 hover:border-gold-400 transition-colors duration-300 text-lg font-normal border-2 border-gold-500 rounded-lg px-6 py-3 bg-earth-950/50 backdrop-blur-sm"
