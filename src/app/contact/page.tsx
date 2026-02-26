@@ -114,7 +114,7 @@ export default function ContactPage() {
                                     </li>
                                 </ul>
                             </div>
-                            
+                             
                             <div className="bg-earth-800/30 border border-earth-700 rounded-lg p-6 space-y-4">
                                 <h3 className="text-xl font-semibold text-gold-500">Volunteer Roles</h3>
                                 <ul className="space-y-3 text-earth-300">
