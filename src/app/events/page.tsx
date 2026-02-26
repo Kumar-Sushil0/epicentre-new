@@ -7,16 +7,16 @@ export default function EventsPage() {
     return (
         <>
             <Header />
-            <div className="fixed inset-0 z-40 h-screen w-screen" style={{ backgroundColor: '#1a120b' }}>
+            <div className="min-h-screen w-full" style={{ backgroundColor: '#1a120b' }}>
                 {/* Subtle background pattern */}
-                <div className="absolute inset-0 opacity-5">
+                <div className="absolute inset-0 opacity-5 pointer-events-none">
                     <div className="absolute inset-0" style={{
                         backgroundImage: `radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
                                          radial-gradient(circle at 75% 75%, rgba(212, 175, 55, 0.05) 0%, transparent 50%)`
                     }} />
                 </div>
                 
-                <div className="w-full h-full overflow-y-auto relative flex flex-col items-center pt-24">
+                <div className="w-full relative flex flex-col items-center pt-24 pb-12">
                     {/* Main Content Container */}
                     <div className="w-full px-4 md:px-16">
                         {/* Header Section */}
@@ -31,7 +31,7 @@ export default function EventsPage() {
                                             timeline.scrollBy({ left: -300, behavior: 'smooth' });
                                         }
                                     }}
-                                    className="group flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-gold-500/10 to-gold-600/10 hover:from-gold-500/20 hover:to-gold-600/20 border border-gold-500/30 hover:border-gold-400 transition-all duration-300 backdrop-blur-sm shadow-lg hover:shadow-xl hover:scale-105"
+                                    className="hidden md:flex group items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-gold-500/10 to-gold-600/10 hover:from-gold-500/20 hover:to-gold-600/20 border border-gold-500/30 hover:border-gold-400 transition-all duration-300 backdrop-blur-sm shadow-lg hover:shadow-xl hover:scale-105"
                                     aria-label="Scroll left"
                                 >
                                     <svg
@@ -60,7 +60,7 @@ export default function EventsPage() {
                                             timeline.scrollBy({ left: 300, behavior: 'smooth' });
                                         }
                                     }}
-                                    className="group flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-gold-500/10 to-gold-600/10 hover:from-gold-500/20 hover:to-gold-600/20 border border-gold-500/30 hover:border-gold-400 transition-all duration-300 backdrop-blur-sm shadow-lg hover:shadow-xl hover:scale-105"
+                                    className="hidden md:flex group items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-gold-500/10 to-gold-600/10 hover:from-gold-500/20 hover:to-gold-600/20 border border-gold-500/30 hover:border-gold-400 transition-all duration-300 backdrop-blur-sm shadow-lg hover:shadow-xl hover:scale-105"
                                     aria-label="Scroll right"
                                 >
                                     <svg
@@ -86,7 +86,7 @@ export default function EventsPage() {
 
                         {/* Timeline Container */}
                         <div className="relative">
-                            <div className="overflow-hidden min-h-[300px]">
+                            <div className="overflow-hidden md:min-h-[300px]">
                                 <DevelopmentTimeline />
                             </div>
                         </div>

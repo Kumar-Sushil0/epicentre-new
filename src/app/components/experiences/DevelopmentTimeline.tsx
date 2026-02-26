@@ -223,15 +223,15 @@ export default function DevelopmentTimeline() {
   return (
     <div className="w-full py-2">
       <div className="relative">
-        {/* Scroll container */}
+        {/* Scroll container - Horizontal on desktop, Vertical on mobile */}
         <div
           ref={scrollContainerRef}
           data-timeline-scroll
-          className="overflow-x-auto pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+          className="md:overflow-x-auto overflow-y-visible pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
         >
-          <div className="inline-flex gap-8 min-w-full px-4 items-start">
+          <div className="flex flex-col md:inline-flex md:flex-row gap-8 md:min-w-full items-start md:px-4">
             {timelineData.map((month, index) => (
-              <div key={`${month.year}-${month.month}-${index}`} className="shrink-0 w-64">
+              <div key={`${month.year}-${month.month}-${index}`} className="w-full md:shrink-0 md:w-64">
                 {/* Month Header */}
                 <div className="sticky top-0 bg-transparent backdrop-blur-sm py-3 mb-4 border-b-2 border-gold-500">
                   <h4 className="text-xl font-bold text-gold-500 font-display">
@@ -246,10 +246,10 @@ export default function DevelopmentTimeline() {
                     return (
                       <div
                         key={zoneIndex}
-                        className="relative pl-6 pb-4 border-l-2 border-gold-500"
+                        className="relative pl-8 pb-4 border-l-2 border-gold-500 ml-2"
                       >
                         {/* Timeline dot */}
-                        <div className="absolute left-[-5px] top-0 w-2 h-2 rounded-full bg-gold-500 ring-4 ring-earth-900 transition-transform" />
+                        <div className="absolute left-[-5px] top-0 w-2 h-2 rounded-full bg-gold-500 ring-4 ring-[#1a120b] transition-transform" />
                         {/* Zone Card */}
                         <div className="bg-transparent rounded-lg border border-earth-700/30 overflow-hidden transition-all duration-300">
                           <button
@@ -265,7 +265,7 @@ export default function DevelopmentTimeline() {
                                   {zone.preciseDate}
                                 </p>
                                 {isExpanded && (
-                                  <p className="text-sm text-earth-300/80 font-body leading-relaxed">
+                                  <p className="text-sm text-earth-300/80 font-body leading-relaxed mt-2">
                                     {zone.description}
                                   </p>
                                 )}

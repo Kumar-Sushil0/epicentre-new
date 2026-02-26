@@ -19,12 +19,12 @@ export default function ExpressionHero() {
 
       {/* Content */}
       <div className="relative z-20 container px-4 md:px-16 max-w-7xl">
-        <div className="max-w-4xl border-l-2 border-gold-500/50 pl-8 md:pl-12 py-4 animate-in slide-in-from-left-4 duration-1000">
-          <h1 className="text-earth-100 text-5xl md:text-7xl lg:text-8xl font-display font-medium leading-[1.1] tracking-tight mb-8 drop-shadow-2xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
+        <div className="max-w-4xl border-l-2 border-gold-500/50 pl-4 md:pl-8 lg:pl-12 py-4 animate-in slide-in-from-left-4 duration-1000">
+          <h1 className="text-earth-100 text-4xl md:text-7xl lg:text-8xl font-display font-medium leading-[1.1] tracking-tight mb-6 md:mb-8 drop-shadow-2xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
             
            
           </h1>
-          <p className="text-earth-300/80 text-xl md:text-2xl font-light leading-relaxed w-full font-body">
+          <p className="text-earth-300/80 text-lg md:text-2xl font-light leading-relaxed w-full font-body">
             Temporary sandboxes for individuals or groups exploring unfinished ideas.<br />
             Built for testing, not presentation.
           </p>
@@ -32,7 +32,7 @@ export default function ExpressionHero() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-60 animate-bounce">
+      <div className="hidden md:flex absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 flex-col items-center gap-2 opacity-60 animate-bounce">
         <div className="w-12 h-12 rounded-full border-2 border-earth-300 flex items-center justify-center">
           <span className="material-symbols-outlined text-earth-300 text-2xl">expand_more</span>
         </div>

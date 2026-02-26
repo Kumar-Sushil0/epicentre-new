@@ -48,7 +48,7 @@ export default function VenueSection({
         onClick={onToggle}
       >
         <h2 className="text-2xl font-normal text-gold-500 tracking-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>
-          {number}. {title} : {subtitle}
+          {number}. {title}<span className="hidden md:inline"> : {subtitle}</span>
         </h2>
         <div className="h-[1px] bg-earth-700 flex-grow"></div>
         <span className="material-symbols-outlined text-gold-500 text-3xl">{icon}</span>

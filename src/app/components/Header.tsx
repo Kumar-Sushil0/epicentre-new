@@ -72,8 +72,8 @@ export default function Header() {
           {/* LEFT: Logo */}
           <Link href="/" className="h-[56px] w-40 flex items-center justify-center z-10">
             <Image
-              src="/Untitled.png"
-              alt="EPiCentre Logo"
+              src="/the-silent-club-logo.png"
+              alt="The Silent Club Logo"
               width={200}
               height={75}
               className="object-contain"
@@ -111,9 +111,9 @@ export default function Header() {
                 Estate
               </Link>
               <Link 
-                href="/test" 
+                href="/services" 
                 className={`text-sm uppercase tracking-wider transition-colors ${
-                  isActive("/test") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
+                  isActive("/services") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
                 }`}
               >
                Services
@@ -198,8 +198,8 @@ export default function Header() {
               Estate
             </Link>
             <Link
-              href="/test"
-              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/test") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+              href="/services"
+              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/services") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
                 }`}
             >
               Services

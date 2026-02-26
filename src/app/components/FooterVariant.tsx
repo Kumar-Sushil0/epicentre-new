@@ -135,9 +135,17 @@ export default function FooterVariant() {
         </div>
         <div className="text-center mt-16 pt-8 border-t border-earth-800 text-xs text-earth-300/40 font-body">
           © 2023 EPiCentre Retreats. All rights reserved.{" "}
-          <a className="underline hover:text-earth-100 ml-2" href="#">
+          <Link href="/privacy-policy" className="underline hover:text-earth-100 ml-2">
             Privacy Policy
-          </a>
+          </Link>
+          {" · "}
+          <Link href="/terms-of-service" className="underline hover:text-earth-100">
+            Terms of Service
+          </Link>
+          {" · "}
+          <Link href="/sitemap-page" className="underline hover:text-earth-100">
+            Sitemap
+          </Link>
         </div>
       </div>
     </footer>

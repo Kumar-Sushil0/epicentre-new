@@ -18,13 +18,13 @@ export default function TestHero() {
             </div>
 
             {/* Content */}
-            <div className="relative z-20 container px-16 max-w-7xl">
-                <div className="max-w-6xl border-l-2 border-gold-500/50 pl-8 md:pl-12 py-4 animate-in slide-in-from-left-4 duration-1000">
-                    <h1 className="text-earth-100 text-5xl md:text-7xl lg:text-8xl font-display font-normal leading-[1.1] tracking-tight mb-8 drop-shadow-2xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            <div className="relative z-20 container px-4 md:px-16 max-w-7xl">
+                <div className="max-w-6xl border-l-2 border-gold-500/50 pl-4 md:pl-8 lg:pl-12 py-4 animate-in slide-in-from-left-4 duration-1000">
+                    <h1 className="text-earth-100 text-4xl md:text-7xl lg:text-8xl font-display font-normal leading-[1.1] tracking-tight mb-6 md:mb-8 drop-shadow-2xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
                         <span className="text-earth-100">Silence, </span>
                         <span className="italic text-gold-500">Structured</span>
                     </h1>
-                    <p className="text-earth-300/80 text-xl md:text-2xl font-light leading-relaxed w-full font-body">
+                    <p className="text-earth-300/80 text-lg md:text-2xl font-light leading-relaxed w-full font-body">
                         The estate provides conditions.<br />
                         These services determine how those conditions are engaged.<br />
                         Three formats.<br />

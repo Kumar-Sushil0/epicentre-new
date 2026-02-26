@@ -282,14 +282,14 @@ export default function FAQPage() {
       </section>
      
       {/* Category Filter */}
-      <section className="pt-0 pb-8 px-4 md:px-16 border-b border-earth-800 ">
-        <div className="w-full mt-16">
-          <div className="flex flex-wrap gap-2 justify-center">
+      <section className="pt-0 pb-8 px-4 md:px-16 border-b border-earth-800">
+        <div className="w-full mt-8 md:mt-16">
+          <div className="flex flex-wrap gap-2 justify-center max-w-5xl mx-auto">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 whitespace-nowrap ${
+                className={`px-3 md:px-4 py-2 md:py-2.5 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 ${
                   activeCategory === category
                     ? 'bg-gold-500 text-earth-950'
                     : 'bg-earth-900 text-earth-300 hover:bg-earth-800 hover:text-gold-500'

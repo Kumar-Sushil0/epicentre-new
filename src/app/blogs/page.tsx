@@ -24,7 +24,7 @@ export default function BlogsPage() {
         <main className="min-h-screen bg-earth-900 text-earth-100">
             <Header />
             <BlogHero />
-            <div className="w-full px-16 py-12">
+            <div className="w-full px-4 md:px-16 py-12">
                 {blogCategories.map((category) => (
                     <section
                         key={category.id}

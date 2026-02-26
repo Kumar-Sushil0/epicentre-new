@@ -11,9 +11,9 @@ export default function Philosophy() {
           </h2>
           <div className="relative py-6 md:py-8">
             <p className="text-sm md:text-[15px] leading-relaxed md:leading-loose text-[#261B14] relative z-10" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Most people don't lack answers.
+              Most people don't lack answers.<br />
               They lack uninterrupted attention.<br />
-              Distraction is constant
+              Distraction is constant.<br />
               This environment removes it.
             </p>
           </div>

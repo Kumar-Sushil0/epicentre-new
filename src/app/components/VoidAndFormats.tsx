@@ -29,7 +29,7 @@ export default function VoidAndFormats() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Solitude */}
-            <Link href="/test" className="block">
+            <Link href="/services" className="block">
               <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-4 md:p-6 hover:border-gold-500 transition-colors cursor-pointer h-full">
                 <span className="material-symbols-outlined text-gold-500 text-3xl md:text-4xl mb-3 md:mb-4 block">self_improvement</span>
                 <h3 className="text-lg md:text-xl font-normal text-gold-500 mb-2 md:mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
@@ -42,7 +42,7 @@ export default function VoidAndFormats() {
             </Link>
 
             {/* Experiments */}
-            <Link href="/test" className="block">
+            <Link href="/services" className="block">
               <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6 hover:border-gold-500 transition-colors cursor-pointer h-full">
                 <span className="material-symbols-outlined text-gold-500 text-4xl mb-4 block">science</span>
                 <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
@@ -55,7 +55,7 @@ export default function VoidAndFormats() {
             </Link>
 
             {/* Clarity Residency */}
-            <Link href="/test" className="block">
+            <Link href="/services" className="block">
               <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6 hover:border-gold-500 transition-colors cursor-pointer h-full">
                 <span className="material-symbols-outlined text-gold-500 text-4xl mb-4 block">school</span>
                 <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
