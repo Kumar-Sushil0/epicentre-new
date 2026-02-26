@@ -15,6 +15,7 @@ interface VenueCardProps {
   category?: string;
   area?: string;
   capacity?: string;
+  objectPosition?: string;
 }
 
 // Helper function to parse description and extract tags
@@ -41,7 +42,7 @@ function parseDescription(description: string): { tags: string[], mainDescriptio
   return { tags, mainDescription };
 }
 
-export default function VenueCard({ title, description, image, imageAlt, badge, href, icon, category, area, capacity }: VenueCardProps) {
+export default function VenueCard({ title, description, image, imageAlt, badge, href, icon, category, area, capacity, objectPosition }: VenueCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -125,6 +126,7 @@ export default function VenueCard({ title, description, image, imageAlt, badge, 
               alt={`${imageAlt} - ${index + 1}`}
               fill
               className="object-cover"
+              style={objectPosition ? { objectPosition } : undefined}
               priority={index === 0}
             />
           </div>

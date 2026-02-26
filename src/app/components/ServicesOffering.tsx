@@ -8,7 +8,7 @@ const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
 export default function ServicesOffering() {
   const [accommodationType, setAccommodationType] = useState<'dorm' | 'room'>('dorm');
-  const [selectedDay, setSelectedDay] = useState<'M' | 'T' | 'W' | 'Th' | 'F' | 'S' | 'Su'>('M');
+  const [cycleType, setCycleType] = useState<'weekday' | 'weekend'>('weekday');
 
   return (
     <section id="cycles-section" className="relative py-6 md:py-8 px-4 md:px-16 bg-earth-950">
@@ -17,11 +17,39 @@ export default function ServicesOffering() {
            Silent Cycles
         </h2>
         <p className="text-earth-300 text-base md:text-lg text-center mb-3 md:mb-4 px-4">
-          The same environment reveals different things at different depths.<br/> Cycles allow you to return with intention.
+          The same environment reveals different things at different depths. Cycles allow you to return with intention.
         </p>
 
         <div className="max-w-5xl mx-auto">
-          {/* Day Selection Toggle - Above Full Cycle Card on Mobile */}
+          {/* Weekday/Weekend Toggle - Above Full Cycle Card */}
+          <div className="flex justify-center mb-3">
+            <div className="inline-flex items-center gap-2 bg-earth-800/50 rounded-lg p-1 border border-earth-700/50">
+              <button
+                onClick={() => setCycleType('weekday')}
+                className={`px-4 md:px-6 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium transition-all ${
+                  cycleType === 'weekday'
+                    ? 'bg-gold-500 text-earth-950'
+                    : 'text-earth-300 hover:text-gold-500'
+                }`}
+                style={{ fontFamily: 'Outfit, sans-serif' }}
+              >
+                Weekday
+              </button>
+              <button
+                onClick={() => setCycleType('weekend')}
+                className={`px-4 md:px-6 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium transition-all ${
+                  cycleType === 'weekend'
+                    ? 'bg-gold-500 text-earth-950'
+                    : 'text-earth-300 hover:text-gold-500'
+                }`}
+                style={{ fontFamily: 'Outfit, sans-serif' }}
+              >
+                Weekend
+              </button>
+            </div>
+          </div>
+
+          {/* Day Selection Visual Indicator - Above Full Cycle Card on Mobile */}
           <div className="flex justify-center mb-3 md:hidden">
             <div className="inline-flex items-center gap-2 bg-earth-800/50 rounded-lg p-1 border border-earth-700/50">
               {/* Weekdays */}
@@ -32,18 +60,17 @@ export default function ServicesOffering() {
                   { label: 'W', value: 'W' as const },
                   { label: 'T', value: 'Th' as const }
                 ].map((day) => (
-                  <button
+                  <div
                     key={day.value}
-                    onClick={() => setSelectedDay(day.value)}
                     className={`w-6 h-6 rounded-md flex items-center justify-center text-xs font-medium transition-all ${
-                      selectedDay === day.value
+                      cycleType === 'weekday'
                         ? 'bg-gold-500 text-earth-950'
-                        : 'text-earth-400 hover:text-gold-500'
+                        : 'text-earth-400'
                     }`}
                     style={{ fontFamily: 'Outfit, sans-serif' }}
                   >
                     {day.label}
-                  </button>
+                  </div>
                 ))}
               </div>
 
@@ -54,18 +81,17 @@ export default function ServicesOffering() {
                   { label: 'S', value: 'S' as const },
                   { label: 'S', value: 'Su' as const }
                 ].map((day) => (
-                  <button
+                  <div
                     key={day.value}
-                    onClick={() => setSelectedDay(day.value)}
                     className={`w-6 h-6 rounded-md flex items-center justify-center text-xs font-medium transition-all ${
-                      selectedDay === day.value
+                      cycleType === 'weekend'
                         ? 'bg-gold-500 text-earth-950'
-                        : 'text-earth-400 hover:text-gold-500'
+                        : 'text-earth-400'
                     }`}
                     style={{ fontFamily: 'Outfit, sans-serif' }}
                   >
                     {day.label}
-                  </button>
+                  </div>
                 ))}
               </div>
             </div>
@@ -99,7 +125,7 @@ export default function ServicesOffering() {
 
               {/* Right side: Toggle and Price stacked vertically - Desktop Only */}
               <div className="hidden md:flex flex-col justify-between items-end h-full min-h-[120px]">
-                {/* Day Selection Toggle Container - Top */}
+                {/* Day Selection Visual Indicator Container - Top */}
                 <div className="inline-flex items-center gap-2 bg-earth-800/50 rounded-lg p-1 border border-earth-700/50">
                   {/* Weekdays */}
                   <div className="flex items-center gap-1 pr-2 border-r-2 border-gold-500/30">
@@ -109,18 +135,17 @@ export default function ServicesOffering() {
                       { label: 'W', value: 'W' as const },
                       { label: 'T', value: 'Th' as const }
                     ].map((day) => (
-                      <button
+                      <div
                         key={day.value}
-                        onClick={() => setSelectedDay(day.value)}
                         className={`w-6 h-6 rounded-md flex items-center justify-center text-xs font-medium transition-all ${
-                          selectedDay === day.value
+                          cycleType === 'weekday'
                             ? 'bg-gold-500 text-earth-950'
-                            : 'text-earth-400 hover:text-gold-500'
+                            : 'text-earth-400'
                         }`}
                         style={{ fontFamily: 'Outfit, sans-serif' }}
                       >
                         {day.label}
-                      </button>
+                      </div>
                     ))}
                   </div>
 
@@ -131,18 +156,17 @@ export default function ServicesOffering() {
                       { label: 'S', value: 'S' as const },
                       { label: 'S', value: 'Su' as const }
                     ].map((day) => (
-                      <button
+                      <div
                         key={day.value}
-                        onClick={() => setSelectedDay(day.value)}
                         className={`w-6 h-6 rounded-md flex items-center justify-center text-xs font-medium transition-all ${
-                          selectedDay === day.value
+                          cycleType === 'weekend'
                             ? 'bg-gold-500 text-earth-950'
-                            : 'text-earth-400 hover:text-gold-500'
+                            : 'text-earth-400'
                         }`}
                         style={{ fontFamily: 'Outfit, sans-serif' }}
                       >
                         {day.label}
-                      </button>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -150,7 +174,7 @@ export default function ServicesOffering() {
                 {/* Price Container - Bottom */}
                 <div className="text-right">
                   <div className="text-gold-500 text-xl font-normal">
-                    ₹{['F', 'S', 'Su'].includes(selectedDay) ? '1,20,000' : '1,00,000'}
+                    ₹{cycleType === 'weekend' ? '1,20,000' : '1,00,000'}
                   </div>
                   <p className="text-earth-400 text-xs mt-1">Per Night • Taxes applicable</p>
                 </div>
@@ -159,7 +183,7 @@ export default function ServicesOffering() {
               {/* Price Container - Mobile Only */}
               <div className="md:hidden text-right">
                 <div className="text-gold-500 text-xl font-normal">
-                  ₹{['F', 'S', 'Su'].includes(selectedDay) ? '1,20,000' : '1,00,000'}
+                  ₹{cycleType === 'weekend' ? '1,20,000' : '1,00,000'}
                 </div>
                 <p className="text-earth-400 text-xs mt-1">Per Night • Taxes applicable</p>
               </div>

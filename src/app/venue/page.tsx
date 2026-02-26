@@ -558,6 +558,7 @@ export default function VenuePage() {
           icon: "person",
           category: "Contemplation Point",
           href: "/venue#living",
+          objectPosition: "center 30%",
         },
         {
           title: "Edgeless Gallery",

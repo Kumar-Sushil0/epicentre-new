@@ -64,7 +64,7 @@ export default function Footer() {
                 <li><Link href="/blogs" className="hover:text-gold-500 transition-colors block py-0.5">Blogs</Link></li>
                 <li><Link href="/events" className="hover:text-gold-500 transition-colors block py-0.5">Events</Link></li>
                 <li><Link href="/faq" className="hover:text-gold-500 transition-colors block py-0.5">FAQ</Link></li>
-                <li><Link href="/contact" className="hover:text-gold-500 transition-colors block py-0.5">Contact Us</Link></li>
+                <li><Link href="/contact" className="hover:text-gold-500 transition-colors block py-0.5">Work as a Volunteer</Link></li>
               </ul>
             </div>
           </div>
@@ -90,7 +90,7 @@ export default function Footer() {
               <li><Link href="/events" className="hover:text-gold-500 transition-colors block py-0.5">Events</Link></li>
              
               <li><Link href="/faq" className="hover:text-gold-500 transition-colors block py-0.5">FAQ</Link></li>
-              <li><Link href="/contact" className="hover:text-gold-500 transition-colors block py-0.5">Contact Us</Link></li>
+              <li><Link href="/contact" className="hover:text-gold-500 transition-colors block py-0.5">Work as Volunteer</Link></li>
             </ul>
           </div>
 

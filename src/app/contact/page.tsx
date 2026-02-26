@@ -9,9 +9,14 @@ export default function ContactPage() {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
-        subject: "",
-        message: "",
-        inquiryType: "general"
+        phone: "",
+        location: "",
+        availability: "",
+        skills: "",
+        experience: "",
+        motivation: "",
+        duration: "3-6 months",
+        cv: null as File | null
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null);
@@ -21,6 +26,14 @@ export default function ContactPage() {
         setFormData(prev => ({
             ...prev,
             [name]: value
+        }));
+    };
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0] || null;
+        setFormData(prev => ({
+            ...prev,
+            cv: file
         }));
     };
 
@@ -41,16 +54,21 @@ export default function ContactPage() {
             const data = await response.json();
 
             if (response.ok) {
-                setSubmitStatus({ type: 'success', message: 'Thank you for reaching out. We will get back to you soon.' });
+                setSubmitStatus({ type: 'success', message: 'Thank you for your interest! We will review your application and get back to you soon.' });
                 setFormData({
                     name: "",
                     email: "",
-                    subject: "",
-                    message: "",
-                    inquiryType: "general"
+                    phone: "",
+                    location: "",
+                    availability: "",
+                    skills: "",
+                    experience: "",
+                    motivation: "",
+                    duration: "3-6 months",
+                    cv: null
                 });
             } else {
-                setSubmitStatus({ type: 'error', message: data.error || 'Failed to submit form. Please try again.' });
+                setSubmitStatus({ type: 'error', message: data.error || 'Failed to submit application. Please try again.' });
             }
         } catch (error) {
             setSubmitStatus({ type: 'error', message: 'An error occurred. Please try again later.' });
@@ -68,26 +86,67 @@ export default function ContactPage() {
                 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                     
-                    {/* Contact Information */}
+                    {/* Volunteer Information */}
                     <div className="space-y-12">
                         <div>
-                            <h2 className="text-4xl font-bold text-gold-500 mb-8" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                Connect With Us
+                            <h2 className="text-4xl font-bold text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                Work as Volunteer
                             </h2>
-                            <p className="text-earth-300 text-lg leading-relaxed mb-8">
-                                Whether you're interested in a residency, have questions about our practices, 
-                                or simply want to learn more about EPiCentre, we'd love to hear from you.
-                            </p>
+                            <p className="text-earth-400 text-sm mb-8 italic">Minimum participation: 3 months</p>
+                            <div className="bg-earth-800/30 border border-earth-700 rounded-lg p-6 space-y-4 mb-6">
+                                <h3 className="text-xl font-semibold text-gold-500">Exchange Includes</h3>
+                                <ul className="space-y-3 text-earth-300">
+                                    <li className="flex items-start gap-3">
+                                        <span className="text-gold-500 mt-1">•</span>
+                                        <span>Food and accommodation during your volunteer period</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <span className="text-gold-500 mt-1">•</span>
+                                        <span>Full access to entire estate facility</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <span className="text-gold-500 mt-1">•</span>
+                                        <span>Immersive experience in silence practices</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <span className="text-gold-500 mt-1">•</span>
+                                        <span>Opportunity to learn and grow in a unique environment</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div className="bg-earth-800/30 border border-earth-700 rounded-lg p-6 space-y-4">
+                                <h3 className="text-xl font-semibold text-gold-500">Volunteer Roles</h3>
+                                <ul className="space-y-3 text-earth-300">
+                                    <li className="flex items-start gap-3">
+                                        <span className="text-gold-500 mt-1">•</span>
+                                        <span>Facility management</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <span className="text-gold-500 mt-1">•</span>
+                                        <span>Vendor Communication</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <span className="text-gold-500 mt-1">•</span>
+                                        <span>Guest hospitality and Communiaction</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <span className="text-gold-500 mt-1">•</span>
+                                        <span>Content creation and documentation</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
 
                         {/* Contact Details */}
-                        <div className="space-y-8">
+                        <div className="space-y-6">
+                            <h3 className="text-xl font-semibold text-earth-100">Questions?</h3>
                             <div className="flex items-start gap-4">
                                 <div className="w-12 h-12 rounded-full bg-gold-500/10 border border-gold-500/30 flex items-center justify-center shrink-0">
                                     <span className="material-symbols-outlined text-gold-500 text-xl">mail</span>
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-semibold text-earth-100 mb-2">Email</h3>
+                                    <h4 className="text-lg font-semibold text-earth-100 mb-1">Email</h4>
                                     <a href="mailto:hello@thesilent.club" className="text-earth-300 hover:text-gold-500 transition-colors">hello@thesilent.club</a>
                                 </div>
                             </div>
@@ -99,38 +158,14 @@ export default function ContactPage() {
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-semibold text-earth-100 mb-2">WhatsApp</h3>
+                                    <h4 className="text-lg font-semibold text-earth-100 mb-1">WhatsApp</h4>
                                     <a href="https://wa.me/919890322494" target="_blank" rel="noopener noreferrer" className="text-earth-300 hover:text-gold-500 transition-colors">+91 98903 22494</a>
-                                </div>
-                            </div>
-
-                            <div className="flex items-start gap-4">
-                                <div className="w-12 h-12 rounded-full bg-gold-500/10 border border-gold-500/30 flex items-center justify-center shrink-0">
-                                    <span className="material-symbols-outlined text-gold-500 text-xl">location_on</span>
-                                </div>
-                                <div>
-                                    <h3 className="text-xl font-semibold text-earth-100 mb-2">Location</h3>
-                                    <a href="https://maps.google.com/?q=Bird+Sanctuary+Kumbhargaon+Bhigwan+Maharashtra" target="_blank" rel="noopener noreferrer" className="text-earth-300 hover:text-gold-500 transition-colors">
-                                        Near Bird Sanctuary, Kumbhargaon,<br />Bhigwan, Maharashtra 413104
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div className="flex items-start gap-4">
-                                <div className="w-12 h-12 rounded-full bg-gold-500/10 border border-gold-500/30 flex items-center justify-center shrink-0">
-                                    <svg className="w-6 h-6 text-gold-500" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 className="text-xl font-semibold text-earth-100 mb-2">Instagram</h3>
-                                    <a href="https://instagram.com/thesilent.club" target="_blank" rel="noopener noreferrer" className="text-earth-300 hover:text-gold-500 transition-colors">@thesilent.club</a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* Contact Form */}
+                    {/* Volunteer Application Form */}
                     <div className="bg-earth-800/30 border border-earth-700 rounded-lg p-8">
                         {submitStatus && (
                             <div className={`mb-6 p-4 rounded-lg ${
@@ -143,33 +178,10 @@ export default function ContactPage() {
                         )}
                         <form onSubmit={handleSubmit} className="space-y-6">
                             
-                            {/* Inquiry Type */}
-                            <div>
-                                <label htmlFor="inquiryType" className="block text-sm font-medium text-earth-200 mb-2">
-                                    Type of Inquiry
-                                </label>
-                                <select
-                                    id="inquiryType"
-                                    name="inquiryType"
-                                    value={formData.inquiryType}
-                                    onChange={handleInputChange}
-                                    className="w-full px-4 py-3 bg-earth-900 border border-earth-600 rounded-lg text-earth-100 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent"
-                                >
-                                    <option value="general">General Inquiry</option>
-                                    <option value="residency">Residency Program</option>
-                                    <option value="wellness">Wellness Practices</option>
-                                    <option value="experiences">Experiences</option>
-                                    <option value="expression">Expression Labs</option>
-                                    <option value="solitude">Solitude Practices</option>
-                                    <option value="booking">Booking & Reservations</option>
-                                    <option value="partnership">Partnership</option>
-                                </select>
-                            </div>
-
                             {/* Name */}
                             <div>
                                 <label htmlFor="name" className="block text-sm font-medium text-earth-200 mb-2">
-                                    Name
+                                    Full Name *
                                 </label>
                                 <input
                                     type="text"
@@ -186,7 +198,7 @@ export default function ContactPage() {
                             {/* Email */}
                             <div>
                                 <label htmlFor="email" className="block text-sm font-medium text-earth-200 mb-2">
-                                    Email
+                                    Email *
                                 </label>
                                 <input
                                     type="email"
@@ -200,38 +212,147 @@ export default function ContactPage() {
                                 />
                             </div>
 
-                            {/* Subject */}
+                            {/* Phone */}
                             <div>
-                                <label htmlFor="subject" className="block text-sm font-medium text-earth-200 mb-2">
-                                    Subject
+                                <label htmlFor="phone" className="block text-sm font-medium text-earth-200 mb-2">
+                                    Phone Number *
                                 </label>
                                 <input
-                                    type="text"
-                                    id="subject"
-                                    name="subject"
-                                    value={formData.subject}
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    value={formData.phone}
                                     onChange={handleInputChange}
                                     required
                                     className="w-full px-4 py-3 bg-earth-900 border border-earth-600 rounded-lg text-earth-100 placeholder-earth-400 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent"
-                                    placeholder="Brief subject line"
+                                    placeholder="+91 XXXXX XXXXX"
                                 />
                             </div>
 
-                            {/* Message */}
+                            {/* Location */}
                             <div>
-                                <label htmlFor="message" className="block text-sm font-medium text-earth-200 mb-2">
-                                    Message
+                                <label htmlFor="location" className="block text-sm font-medium text-earth-200 mb-2">
+                                    Current Location *
+                                </label>
+                                <input
+                                    type="text"
+                                    id="location"
+                                    name="location"
+                                    value={formData.location}
+                                    onChange={handleInputChange}
+                                    required
+                                    className="w-full px-4 py-3 bg-earth-900 border border-earth-600 rounded-lg text-earth-100 placeholder-earth-400 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent"
+                                    placeholder="City, Country"
+                                />
+                            </div>
+
+                            {/* Duration */}
+                            <div>
+                                <label htmlFor="duration" className="block text-sm font-medium text-earth-200 mb-2">
+                                    Preferred Duration *
+                                </label>
+                                <select
+                                    id="duration"
+                                    name="duration"
+                                    value={formData.duration}
+                                    onChange={handleInputChange}
+                                    className="w-full px-4 py-3 bg-earth-900 border border-earth-600 rounded-lg text-earth-100 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent"
+                                >
+                                    <option value="3-6 months">3-6 months</option>
+                                    <option value="6-12 months">6-12 months</option>
+                                    <option value="12+ months">12+ months</option>
+                                    <option value="flexible">Flexible (minimum 3 months)</option>
+                                </select>
+                            </div>
+
+                            {/* Availability */}
+                            <div>
+                                <label htmlFor="availability" className="block text-sm font-medium text-earth-200 mb-2">
+                                    When can you start? *
+                                </label>
+                                <input
+                                    type="text"
+                                    id="availability"
+                                    name="availability"
+                                    value={formData.availability}
+                                    onChange={handleInputChange}
+                                    required
+                                    className="w-full px-4 py-3 bg-earth-900 border border-earth-600 rounded-lg text-earth-100 placeholder-earth-400 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent"
+                                    placeholder="e.g., Immediately, Next month, After June 2026"
+                                />
+                            </div>
+
+                            {/* Skills */}
+                            <div>
+                                <label htmlFor="skills" className="block text-sm font-medium text-earth-200 mb-2">
+                                    Relevant Skills *
                                 </label>
                                 <textarea
-                                    id="message"
-                                    name="message"
-                                    value={formData.message}
+                                    id="skills"
+                                    name="skills"
+                                    value={formData.skills}
                                     onChange={handleInputChange}
                                     required
                                     rows={3}
                                     className="w-full px-4 py-3 bg-earth-900 border border-earth-600 rounded-lg text-earth-100 placeholder-earth-400 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent resize-vertical"
-                                    placeholder="Tell us more about your inquiry, interests, or questions..."
+                                    placeholder="e.g., Gardening, cooking, maintenance, hospitality, content creation, photography, etc."
                                 />
+                            </div>
+
+                            {/* Experience */}
+                            <div>
+                                <label htmlFor="experience" className="block text-sm font-medium text-earth-200 mb-2">
+                                    Previous Experience
+                                </label>
+                                <textarea
+                                    id="experience"
+                                    name="experience"
+                                    value={formData.experience}
+                                    onChange={handleInputChange}
+                                    rows={3}
+                                    className="w-full px-4 py-3 bg-earth-900 border border-earth-600 rounded-lg text-earth-100 placeholder-earth-400 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent resize-vertical"
+                                    placeholder="Any relevant volunteer or work experience..."
+                                />
+                            </div>
+
+                            {/* Motivation */}
+                            <div>
+                                <label htmlFor="motivation" className="block text-sm font-medium text-earth-200 mb-2">
+                                    Why do you want to volunteer with us? *
+                                </label>
+                                <textarea
+                                    id="motivation"
+                                    name="motivation"
+                                    value={formData.motivation}
+                                    onChange={handleInputChange}
+                                    required
+                                    rows={4}
+                                    className="w-full px-4 py-3 bg-earth-900 border border-earth-600 rounded-lg text-earth-100 placeholder-earth-400 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent resize-vertical"
+                                    placeholder="Tell us what draws you to The Silent Club and what you hope to contribute and gain from this experience..."
+                                />
+                            </div>
+
+                            {/* CV Upload */}
+                            <div>
+                                <label htmlFor="cv" className="block text-sm font-medium text-earth-200 mb-2">
+                                    Attach CV/Resume
+                                </label>
+                                <div className="relative">
+                                    <input
+                                        type="file"
+                                        id="cv"
+                                        name="cv"
+                                        onChange={handleFileChange}
+                                        accept=".pdf,.doc,.docx"
+                                        className="w-full px-4 py-3 bg-earth-900 border border-earth-600 rounded-lg text-earth-100 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-gold-500 file:text-earth-900 hover:file:bg-gold-600 file:cursor-pointer focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent"
+                                    />
+                                    {formData.cv && (
+                                        <p className="mt-2 text-sm text-earth-400">
+                                            Selected: {formData.cv.name}
+                                        </p>
+                                    )}
+                                </div>
+                                <p className="mt-1 text-xs text-earth-400">Accepted formats: PDF, DOC, DOCX (Max 5MB)</p>
                             </div>
 
                             {/* Submit Button */}
@@ -240,7 +361,7 @@ export default function ContactPage() {
                                 disabled={isSubmitting}
                                 className="w-full bg-gold-500 hover:bg-gold-600 text-earth-900 font-semibold py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
+                                <span>{isSubmitting ? 'Submitting...' : 'Submit Application'}</span>
                                 {!isSubmitting && <span className="material-symbols-outlined text-xl">send</span>}
                             </button>
                         </form>
