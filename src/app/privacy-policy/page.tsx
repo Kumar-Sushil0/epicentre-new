@@ -1,3 +1,26 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | The Silent Club",
+  description: "Read The Silent Club's privacy policy to understand how we collect, use, and protect your personal information. Learn about data security, cookies, and your privacy rights.",
+  keywords: ["privacy policy", "data protection", "personal information", "privacy rights", "data security"],
+  alternates: {
+    canonical: "https://thesilent.club/privacy-policy",
+  },
+  openGraph: {
+    title: "Privacy Policy | The Silent Club",
+    description: "Read our privacy policy to understand how we protect your personal information.",
+    url: "https://thesilent.club/privacy-policy",
+    siteName: "The Silent Club",
+    locale: "en_US",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
 export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-earth-50 py-16 px-4 md:px-16">

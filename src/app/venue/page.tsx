@@ -51,7 +51,7 @@ export default function VenuePage() {
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/grasslandsafari2.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/grasslandsafari3.png"
           ],
-          imageAlt: "Forest safari trail",
+          imageAlt: "Forest Safari - Guided walking trails across open grassland terrain at The Silent Club",
           area: "3 km trail",
           capacity: "20 ppl",
           icon: "forest",
@@ -66,7 +66,7 @@ export default function VenuePage() {
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/bird2.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/bird3.png"
           ],
-          imageAlt: "Bird watching area",
+          imageAlt: "Bird Watching - Quiet observation areas near natural bird habitats",
           area: "500 sqft",
           capacity: "15 ppl",
           icon: "flutter",
@@ -81,7 +81,7 @@ export default function VenuePage() {
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/boat2.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/boat3.png"
           ],
-          imageAlt: "Boat joy rides on lake",
+          imageAlt: "Boat Joy Rides - Slow-paced boat rides on the lake for visual horizon reset",
           area: "Lake access",
           capacity: "6 ppl",
           icon: "sailing",
@@ -108,7 +108,7 @@ export default function VenuePage() {
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/room2.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/room3.png"
           ],
-          imageAlt: "Private room",
+          imageAlt: "Private Room - Enclosed personal sleeping space with king-size bed for deep rest",
           area: "King-size bed",
           capacity: "1-2 ppl",
           icon: "bed",
@@ -120,7 +120,7 @@ export default function VenuePage() {
           description: "Enclosed personal sleeping space with controlled light and sound.\n\nUsed for: Deep rest. Sensory withdrawal. Personal integration. Extended silence.\n\nSleep is protected. Interruption is minimized.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/darkroom.png",
-          imageAlt: "Dark room",
+          imageAlt: "Dark Room - Total light isolation space for sensory withdrawal and deep rest",
           area: "Total isolation",
           capacity: "1 ppl",
           icon: "dark_mode",
@@ -135,10 +135,10 @@ export default function VenuePage() {
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/dorm2.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/dorm3.png"
           ],
-          imageAlt: "Shared dormitory",
+          imageAlt: "Shared Dorm - Structured shared sleeping space with quiet norms for collective silence",
           area: "Shared space",
           capacity: "4-6 ppl",
-          icon: "bunk_bed",
+          icon: "bed",
           category: "Shared Accommodation",
           href: "/venue#collective",
         },
@@ -150,7 +150,7 @@ export default function VenuePage() {
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/tent2.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/tent3.png"
           ],
-          imageAlt: "Minimalist camping tents",
+          imageAlt: "Minimalist Tents - Outdoor canvas tents for ground connection and environmental immersion",
           area: "Canvas tent",
           capacity: "2 ppl",
           icon: "camping",
@@ -162,7 +162,7 @@ export default function VenuePage() {
           description: "Outdoor sleeping structures with minimal artificial input.\n\nUsed for: Ground connection. Environmental immersion. Sensory simplification. Early sleep cycles.\n\nCloser to land. Fewer barriers.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/hall.png",
-          imageAlt: "Minimalist camping tents",
+          imageAlt: "Community Hall - Large gathering space for group activities and communal events",
           area: "Canvas tent",
           capacity: "2 ppl",
           icon: "meeting_room",
@@ -189,7 +189,7 @@ export default function VenuePage() {
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/homefood2.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/homefood3.png"
           ],
-          imageAlt: "Satvik home food",
+          imageAlt: "Satvik Home Food - Traditional Indian vegetarian meals for stable energy and digestive ease",
           area: "Dining hall",
           capacity: "30 ppl",
           icon: "restaurant",
@@ -204,7 +204,7 @@ export default function VenuePage() {
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/sss2.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/sss3.png"
           ],
-          imageAlt: "Salads, smoothies and sandwiches",
+          imageAlt: "Salads, Smoothies & Sandwiches - Light meal options for midday reset and clean nutrition",
           area: "Kitchen",
           capacity: "As needed",
           icon: "nutrition",
@@ -219,7 +219,7 @@ export default function VenuePage() {
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/pbs2.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/pbs3.png"
           ],
-          imageAlt: "Pizza, barbecue and sushi",
+          imageAlt: "Pizza, Barbecue & Sushi - Occasional communal meals for shared gathering and social bonding",
           area: "Outdoor area",
           capacity: "40 ppl",
           icon: "local_pizza",
@@ -234,7 +234,7 @@ export default function VenuePage() {
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/fjs2.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/fjs3.png"
           ],
-          imageAlt: "Pizza, barbecue and sushi",
+          imageAlt: "Fruit Juices & Fresh Bites - Fresh beverages and light snacks for energy and hydration",
           area: "Outdoor area",
           capacity: "40 ppl",
           icon: "blender",
@@ -249,7 +249,7 @@ export default function VenuePage() {
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/ssp2.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/ssp3.png"
           ],
-          imageAlt: "Self-serve pantry",
+          imageAlt: "Self-Serve Pantry - Kitchen access for tea, coffee and light snacks with dietary flexibility",
           area: "Pantry",
           capacity: "Self-serve",
           icon: "kitchen",
@@ -264,7 +264,7 @@ export default function VenuePage() {
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/ok2.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/ok3.png"
           ],
-          imageAlt: "Outdoor kitchen",
+          imageAlt: "Outdoor Kitchen - Open-air cooking space for communal meals and small-group gatherings",
           area: "Outdoor",
           capacity: "20 ppl",
           icon: "outdoor_grill",
@@ -291,7 +291,7 @@ export default function VenuePage() {
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/gym2.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/gym3.png"
           ],
-          imageAlt: "Outdoor gym equipment",
+          imageAlt: "Outdoor Gym - Open-air strength and conditioning space for physical training and stress discharge",
           area: "1,200 sqft",
           capacity: "15 ppl",
           icon: "fitness_center",
@@ -306,7 +306,7 @@ export default function VenuePage() {
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/sc2.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/sc3.png"
           ],
-          imageAlt: "Sports court",
+          imageAlt: "Sports Court - Multi-use court for competitive play, energy release and group engagement",
           area: "3,000 sqft",
           capacity: "20 ppl",
           icon: "sports_basketball",
@@ -318,7 +318,7 @@ export default function VenuePage() {
           description: "Hot and cold exposure environments.\n\nUsed for: Circulation improvement. Inflammation reduction. Nervous system recalibration. Recovery cycles.\n\nPhysiological reset through contrast.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/hot.png",
-          imageAlt: "Contrast recovery facilities",
+          imageAlt: "Contrast Recovery - Hot and cold therapy facilities for nervous system recalibration",
           area: "800 sqft",
           capacity: "8 ppl",
           icon: "thermostat",
@@ -330,7 +330,7 @@ export default function VenuePage() {
           description: "Manual & Motorized bicycles for on-land movement.\n\nUsed for: Cardio training. Solo reflection. Exploratory motion. Breath regulation.\n\nRepetition stabilizes thought.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/cycle.png",
-          imageAlt: "Bicycles",
+          imageAlt: "Cycles - Manual and motorized bicycles for cardio training and solo reflection",
           area: "N/A",
           capacity: "Multiple",
           icon: "pedal_bike",
@@ -342,7 +342,7 @@ export default function VenuePage() {
           description: "Water-based manual rowing equipment.\n\nUsed for: Upper-body engagement. Rhythmic motion. Horizon focus. Controlled isolation.\n\nSteady motion supports steady thinking.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/kayak.png",
-          imageAlt: "Kayaks on water",
+          imageAlt: "Kayaks - Water-based rowing equipment for upper-body engagement and rhythmic motion",
           area: "N/A",
           capacity: "Multiple",
           icon: "kayaking",
@@ -354,7 +354,7 @@ export default function VenuePage() {
           description: "Quiet outdoor loft for guided or self-directed practice.\n\nUsed for: Breath regulation. Postural reset. Focus training. Group stillness.\n\nStillness is trained, not assumed.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/yogaloft.png",
-          imageAlt: "Yoga loft",
+          imageAlt: "Yoga Loft - Quiet outdoor space for breath regulation and mindful movement practice",
           area: "2,000 sqft",
           capacity: "30 ppl",
           icon: "self_improvement",
@@ -366,7 +366,7 @@ export default function VenuePage() {
           description: "Elevated solo structure with desk and minimal amenities.\n\nUsed for: Writing. Focused thinking. Creative work. Quiet isolation.\n\nWithdrawal within withdrawal.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/treehouse.jpeg",
-          imageAlt: "Tree house",
+          imageAlt: "Tree House - Elevated solo workspace for writing, focused thinking and creative work",
           area: "100 sqft",
           capacity: "1 ppl",
           icon: "cottage",
@@ -381,7 +381,7 @@ export default function VenuePage() {
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/zen2.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/zen3.png"
           ],
-          imageAlt: "Zen garden",
+          imageAlt: "Zen Garden - Minimalist stone and sand installation for visual stillness and contemplation",
           area: "600 sqft",
           capacity: "5 ppl",
           icon: "spa",
@@ -393,7 +393,7 @@ export default function VenuePage() {
           description: "Hands-on agricultural tasks and land maintenance.\n\nUsed for: Physical labor. Grounding work. Rhythmic routine. Purposeful exertion.\n\nWork without performance pressure.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/farm.jpeg",
-          imageAlt: " Ground Work ",
+          imageAlt: "Ground Work - Hands-on agricultural tasks and land maintenance for grounding and physical labor",
           area: "Variable",
           capacity: "Small groups",
           icon: "agriculture",
@@ -408,7 +408,7 @@ export default function VenuePage() {
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/pp2.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/pp3.png"
           ],
-          imageAlt: "Practice platform",
+          imageAlt: "Practice Platform - Stone deck under neem tree for music rehearsal and artistic practice",
           area: "300 sqft",
           capacity: "5 ppl",
           icon: "music_note",
@@ -420,7 +420,7 @@ export default function VenuePage() {
           description: "Analog tabletop games designed for low-verbal interaction.\n\nUsed for: Strategic thinking. Pattern recognition. Cooperative play. Social presence without performance.\n\nEngagement without volume.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/boardgame.png",
-          imageAlt: "Silent board games",
+          imageAlt: "Silent Board Games - Analog tabletop games for strategic thinking and cooperative play",
           area: "Indoor",
           capacity: "4-8 ppl",
           icon: "casino",
@@ -444,7 +444,7 @@ export default function VenuePage() {
           description: "Architectural installation near the entrance.\n\nUsed for: Identity examination. Role suspension. Personal release. Transitional awareness.\n\nEntry marks a shift in self-perception.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Assembly/designdome.png",
-          imageAlt: "Design dome",
+          imageAlt: "Design Dome - Architectural installation for identity examination and transitional awareness",
           area: "2,000 sqft",
           capacity: "50 ppl",
           icon: "architecture",
@@ -456,7 +456,7 @@ export default function VenuePage() {
           description: "Multi-purpose enclosed hall adaptable across cycles.\n\nUsed for: Morning meditation. Focused co-working. Writing workshops. Curated exhibitions. Structured group inquiry.\n\nThe space adapts. The silence remains constant.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Assembly/library.png",
-          imageAlt: "Library lounge",
+          imageAlt: "Library Lounge - Multi-purpose hall for meditation, co-working and writing workshops",
           area: "800 sqft",
           capacity: "20 ppl",
           icon: "local_library",
@@ -468,7 +468,7 @@ export default function VenuePage() {
           description: "Open grass field adjacent to the main structure.\n\nUsed for: Grounding. Informal sitting. Open-air screenings. Guided outdoor engagement. Unstructured picnics.\n\nHorizontal space reduces social pressure.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Assembly/lawn.jpeg",
-          imageAlt: "Front lawn",
+          imageAlt: "Front Lawn - Open grass field for grounding, informal sitting and open-air screenings",
           area: "5,000 sqft",
           capacity: "100 ppl",
           icon: "grass",
@@ -480,7 +480,7 @@ export default function VenuePage() {
           description: "Open grass field adjacent to the main structure.\n\nUsed for: Grounding. Informal sitting. Open-air screenings. Guided outdoor engagement. Unstructured pause.\n\nHorizontal space reduces social pressure.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Assembly/courtyard.png",
-          imageAlt: "Courtyard",
+          imageAlt: "Courtyard - Central open space for grounding and informal outdoor engagement",
           area: "1,500 sqft",
           capacity: "40 ppl",
           icon: "yard",
@@ -492,7 +492,7 @@ export default function VenuePage() {
           description: "Elevated semi-private outdoor cabins designed for limited external communication.\n\nUsed for: Essential calls. Scheduled briefings. Small-group dialogue (2–4 people). Controlled re-entry into external signal.\n\nCommunication is contained. Not expanded.\n\nThis is not a social space. It is a boundary space.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/treehouse.jpeg",
-          imageAlt: "Signal deck",
+          imageAlt: "Signal Deck - Elevated cabins for essential calls and controlled external communication",
           area: "Multiple cabins",
           capacity: "2-4 ppl",
           icon: "wifi",
@@ -516,7 +516,7 @@ export default function VenuePage() {
           description: "Circular threshold structure at entry/exit.\n\nUsed for: Psychological transition. Symbolic crossing. Arrival awareness. Exit reflection.\n\nThe person entering and leaving may not be identical.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Symbolic/cemetary.jpg",
-          imageAlt: "Identity cemetery",
+          imageAlt: "Identity Cemetery - Circular threshold structure for psychological transition and symbolic crossing",
           area: "2,000 sqft",
           capacity: "30 ppl",
           icon: "door_front",
@@ -528,7 +528,7 @@ export default function VenuePage() {
           description: "Boundary installation referencing perceived reality.\n\nUsed for: Perspective inquiry. Assumption testing. Cognitive interruption. Awareness of constructed identity.\n\nInterpretation is personal.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Symbolic/moongate.png",
-          imageAlt: "Moon gate",
+          imageAlt: "Moon Gate - Boundary installation for perspective inquiry and cognitive interruption",
           area: "N/A",
           capacity: "N/A",
           icon: "circle",
@@ -540,10 +540,10 @@ export default function VenuePage() {
           description: "Sculptural installation at entry.\n\nUsed for: Reflective pause. Cognitive priming. Symbolic confrontation. Intellectual stillness.\n\nThought is foregrounded before entry.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Symbolic/trumanwall.png",
-          imageAlt: "Truman's wall",
+          imageAlt: "Truman's Wall - Sculptural installation for reflective pause and cognitive priming",
           area: "N/A",
           capacity: "Unlimited",
-          icon: "wall",
+          icon: "account_balance",
           category: "Installation",
           href: "/venue#living",
         },
@@ -552,7 +552,7 @@ export default function VenuePage() {
           description: "Perimeter platform facing open landscape.\n\nUsed for: Solitude. Sunset viewing. Boundary awareness. Spatial reset.\n\nStanding at the edge clarifies scale.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Symbolic/thinkingman.png",
-          imageAlt: "Thinking man sculpture",
+          imageAlt: "Thinking Man - Perimeter platform for solitude, sunset viewing and boundary awareness",
           area: "N/A",
           capacity: "1 ppl",
           icon: "person",
@@ -565,7 +565,7 @@ export default function VenuePage() {
           description: "Perimeter gallery facing open landscape.\n\nUsed for: Solitude. Sunset viewing. Boundary awareness. Spatial reset.\n\nStanding at the edge clarifies scale.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Symbolic/edgelessgallery.jpeg",
-          imageAlt: "Edgeless gallery",
+          imageAlt: "Edgeless Gallery - Perimeter viewing platform facing open landscape for spatial reset",
           area: "Perimeter",
           capacity: "Small groups",
           icon: "gallery_thumbnail",

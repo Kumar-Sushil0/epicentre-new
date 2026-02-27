@@ -1,0 +1,47 @@
+# robots.txt for The Silent Club
+# https://thesilent.club
+
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Disallow crawling of API routes
+Disallow: /api/
+
+# Disallow crawling of admin areas (if any)
+Disallow: /admin/
+
+# Disallow crawling of Next.js internal files
+Disallow: /_next/static/
+Disallow: /_next/image
+
+# Disallow crawling of user-specific pages
+Disallow: /wishlist
+Disallow: /bookings
+Disallow: /login
+
+# Allow crawling of public assets
+Allow: /public/
+
+# Sitemap location
+Sitemap: https://thesilent.club/sitemap.xml
+
+# Crawl-delay (optional - helps prevent server overload)
+# Crawl-delay: 1
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Block bad bots (optional)
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10

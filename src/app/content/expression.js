@@ -1,6 +1,6 @@
 export const expressionPillars = [
         {
-            title: "Process Experiments",
+            title: "Process Experiments - Testing frameworks and methods under real conditions",
             description: "Testing a framework, method, or system under real human conditions.",
             images: [
                 "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Experiences/Experiments/process.png",
@@ -8,7 +8,7 @@ export const expressionPillars = [
             icon: "science",
         },
         {
-            title: "Material Experiments",
+            title: "Material Experiments - Testing physical artifacts in constrained environments",
             description: "Testing physical or spatial artifacts in constrained environments.",
             images: [
                 "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Experiences/Experiments/material.png",
@@ -16,7 +16,7 @@ export const expressionPillars = [
             icon: "construction",
         },
         {
-            title: "Narrative Experiments",
+            title: "Narrative Experiments - Testing writing, storytelling and identity articulation",
             description: "Testing writing, storytelling, identity articulation.",
             images: [
                 "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Experiences/Experiments/narrative.png",
@@ -24,7 +24,7 @@ export const expressionPillars = [
             icon: "history_edu",
         },
         {
-            title: "Performance Experiments",
+            title: "Performance Experiments - Testing dialogue and embodied expression",
             description: "Testing dialogue, facilitation, or embodied expression without audience dependency.",
             images: [
                 "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Experiences/Experiments/performace.png",
@@ -32,7 +32,7 @@ export const expressionPillars = [
             icon: "visibility",
         },
         {
-            title: "Media Experiments",
+            title: "Media Experiments - Testing audio-visual formats before public exposure",
             description: "Testing audio-visual formats before public exposure.",
             images: [
                 "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Experiences/Experiments/media.png",
@@ -40,7 +40,7 @@ export const expressionPillars = [
             icon: "settings_suggest",
         },
         {
-            title: "Movement Experiments",
+            title: "Movement Experiments - Testing somatic systems and embodied practice",
             description: "Testing somatic systems, endurance models, or embodied practice.",
             images: [
                 "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Experiences/Experiments/movement.png",

@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function BlogCard({
   title,
   excerpt,
@@ -17,10 +19,12 @@ export default function BlogCard({
     <div className="bg-earth-800 rounded-2xl overflow-hidden border border-earth-700 shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer">
       {/* Image */}
       <div className="relative aspect-[25/20] overflow-hidden">
-        <img
+        <Image
           src={image}
           alt={title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
         

@@ -6,7 +6,7 @@ import CarouselCard from "./CarouselCard";
 const ITEMS = [
   {
     id: 0,
-    title: "Held Silence",
+    title: "Held Silence - Structurally and culturally maintained quiet environment",
     description: "Silence is not suggested or symbolic. It is structurally and culturally held.",
     images: [
       "/moat.png"
@@ -14,7 +14,7 @@ const ITEMS = [
   },
   {
     id: 1,
-    title: "Anonymity by Design",
+    title: "Anonymity by Design - Optional identity and engagement",
     description: "Identity is optional. Guests may choose to remain unseen, unengaged, and uninterrupted.",
     images: [
       "/moat2.png"
@@ -22,7 +22,7 @@ const ITEMS = [
   },
   {
     id: 2,
-    title: "Deep Sensory Withdrawal",
+    title: "Deep Sensory Withdrawal - Total light isolation dark rooms",
     description: "Dark rooms offer total light isolation with no facilitation or narrative. Only conditions. Only time.",
     images: [
       "/moat3.png"

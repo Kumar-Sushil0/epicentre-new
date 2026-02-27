@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 const images = [
   'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80',
@@ -57,11 +58,13 @@ export default function ImageCarousel() {
         style={{ transform: `translateX(-${currentIndex * 25}%)` }}
       >
         {infiniteImages.map((image, index) => (
-          <div key={index} className="w-1/4 h-full flex-shrink-0">
-            <img
+          <div key={index} className="w-1/4 h-full flex-shrink-0 relative">
+            <Image
               src={image}
               alt={`Gallery ${(index % images.length) + 1}`}
-              className="w-full h-full object-cover"
+              fill
+              sizes="25vw"
+              className="object-cover"
             />
           </div>
         ))}

@@ -1,3 +1,26 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Terms of Service | The Silent Club",
+  description: "Read The Silent Club's terms of service to understand the rules, guidelines, and legal agreements for using our services, booking stays, and participating in programs at our estate.",
+  keywords: ["terms of service", "terms and conditions", "user agreement", "booking terms", "service guidelines"],
+  alternates: {
+    canonical: "https://thesilent.club/terms-of-service",
+  },
+  openGraph: {
+    title: "Terms of Service | The Silent Club",
+    description: "Read our terms of service and user agreements.",
+    url: "https://thesilent.club/terms-of-service",
+    siteName: "The Silent Club",
+    locale: "en_US",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
 export default function TermsOfService() {
   return (
     <div className="min-h-screen bg-earth-50 py-16 px-4 md:px-16">

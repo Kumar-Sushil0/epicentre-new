@@ -112,7 +112,7 @@ export default function Footer() {
                 </li>
                 <li className="flex items-center gap-3 group">
                   <span className="material-symbols-outlined text-lg text-earth-400 group-hover:text-gold-500 transition-colors">location_on</span>
-                  <a href="https://maps.google.com/?q=Bird+Sanctuary+Kumbhargaon+Bhigwan+Maharashtra" target="_blank" rel="noopener noreferrer" className="hover:text-[#e7dfd3] transition-colors">Google Map Location </a>
+                  <a href="https://maps.app.goo.gl/K12Hj47J2aMKhZvq8" target="_blank" rel="noopener noreferrer" className="hover:text-[#e7dfd3] transition-colors">Google Map Location </a>
                 </li>
                 <li className="flex items-center gap-3 group">
                   <svg className="w-5 h-5 text-earth-400 group-hover:text-gold-500 transition-colors flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">

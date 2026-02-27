@@ -8,6 +8,8 @@ export default function BlogHero() {
           style={{
             backgroundImage: "url('https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80')"
           }}
+          role="img"
+          aria-label="Blogs - Peaceful writing environment with natural lighting"
         ></div>
         {/* Cinematic Gradient Overlays */}
         <div className="absolute inset-0 bg-gradient-to-t from-earth-950 via-earth-950/40 to-transparent z-10 opacity-90"></div>

@@ -73,7 +73,7 @@ export default function Header() {
           <Link href="/" className="h-[56px] w-40 flex items-center justify-center z-10">
             <Image
               src="/the-silent-club-logo.png"
-              alt="The Silent Club Logo"
+              alt="The Silent Club - Private Estate for Structured Silence and Deep Work"
               width={200}
               height={75}
               className="object-contain"

@@ -20,7 +20,7 @@ export default function Location() {
           {/* Map Container */}
           <div className="w-full md:w-1/2 rounded-2xl overflow-hidden h-[300px]">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3788.783030855364!2d74.78720287466037!3d18.265765276909015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc379b944e039bd%3A0x665288b2ca5e25f!2sEPiCENTRE%20a%20sanctuary%20built%20for%20transformation.!5e0!3m2!1sen!2sin!4v1770715751426!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3788.8023952143494!2d74.78934330608215!3d18.264878020717468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc379a78540dae5%3A0x1887106e21d5085d!2sThe%20Silent%20Club!5e0!3m2!1sen!2sin!4v1772105560153!5m2!1sen!2sin"
               width="100%"
               height="100%"
               style={{ 

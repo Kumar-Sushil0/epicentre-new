@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 export default function AboutCollective() {
   const handleDownload = () => {
     // Create a simple PDF-like content
@@ -45,11 +47,12 @@ export default function AboutCollective() {
 
           {/* Right Side - Image and Download Card */}
           <div className="w-full lg:w-1/2 flex flex-col items-center gap-8">
-            <div className="w-full max-w-xs">
-              <img 
+            <div className="w-full max-w-xs relative h-64">
+              <Image 
                 src="/silent.svg" 
-                alt="Silent Tourism" 
-                className="w-full h-auto"
+                alt="BIGवन - Silent Tourism logo and initiative" 
+                fill
+                className="object-contain"
               />
             </div>
             <div className="border border-earth-700/50 rounded-lg overflow-hidden p-6 bg-earth-800/30 w-full max-w-md">

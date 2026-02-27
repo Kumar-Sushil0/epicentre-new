@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 const teamImages = [
   "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80",
@@ -29,10 +30,12 @@ export default function TeamSection() {
           <div className="w-full lg:w-5/12 relative">
             <div className="relative h-full min-h-[500px] w-full overflow-hidden rounded-2xl">
               {/* Image */}
-              <img
+              <Image
                 src={teamImages[currentSlide]}
                 alt={`Team member ${currentSlide + 1}`}
-                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover transition-opacity duration-500"
                 style={{ filter: 'drop-shadow(0 10px 30px rgba(0,0,0,0.4))' }}
               />
 

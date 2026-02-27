@@ -28,25 +28,36 @@ export default function Hero() {
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-earth-950/80 to-transparent z-10"></div>
       
       {/* Video Background with Crossfade */}
-      <div className="absolute inset-0 z-0">
-        {videos.map((src, index) => (
-          <video
-            key={index}
-            ref={index === currentVideoIndex ? videoRef : null}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className={`absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover transition-opacity duration-1000 ease-in-out ${
-              index === currentVideoIndex ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{
-              transform: 'translate(-50%, -50%) scale(1.2)',
-            }}
-          >
-            <source src={src} type="video/mp4" />
-          </video>
-        ))}
+      <div className="absolute inset-0 z-0" aria-label="The Silent Club estate aerial views and activities">
+        {videos.map((src, index) => {
+          const videoDescriptions = [
+            "Aerial drone view of The Silent Club estate surrounded by nature",
+            "Peaceful boat ride on the lake at The Silent Club",
+            "Angling and fishing activities at the estate",
+            "Starry night sky view from The Silent Club"
+          ];
+          
+          return (
+            <video
+              key={index}
+              ref={index === currentVideoIndex ? videoRef : null}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload={index === 0 ? "auto" : "metadata"}
+              aria-label={videoDescriptions[index]}
+              className={`absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover transition-opacity duration-1000 ease-in-out ${
+                index === currentVideoIndex ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{
+                transform: 'translate(-50%, -50%) scale(1.2)',
+              }}
+            >
+              <source src={src} type="video/mp4" />
+            </video>
+          );
+        })}
       </div>
       
       {/* Cinematic Gradient Overlays */}

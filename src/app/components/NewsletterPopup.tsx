@@ -10,10 +10,11 @@ export default function NewsletterPopup() {
   const [hasShownOnScroll, setHasShownOnScroll] = useState(false);
 
   useEffect(() => {
-    // Check if user has already seen the popup
+    // Check if user has already subscribed or seen the popup
+    const hasSubscribed = localStorage.getItem("hasSubscribedNewsletter");
     const hasSeenPopup = localStorage.getItem("hasSeenNewsletterPopup");
     
-    if (hasSeenPopup) {
+    if (hasSubscribed || hasSeenPopup) {
       return;
     }
 
@@ -62,9 +63,13 @@ export default function NewsletterPopup() {
       setSubmitMessage("Thank you for subscribing!");
       setEmail("");
       
+      // Mark as subscribed in localStorage
+      localStorage.setItem("hasSubscribedNewsletter", "true");
+      localStorage.setItem("hasSeenNewsletterPopup", "true");
+      
       // Close popup after 2 seconds
       setTimeout(() => {
-        handleClose();
+        setIsVisible(false);
       }, 2000);
     } catch (error) {
       setSubmitMessage("Something went wrong. Please try again.");

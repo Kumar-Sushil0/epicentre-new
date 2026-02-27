@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 export default function DiningVariant() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -65,34 +66,34 @@ export default function DiningVariant() {
     {
       id: 0,
       category: "",
-      title: "Accommodations",
+      title: "Private Room - Complete withdrawal and uninterrupted rest",
       description: "Complete withdrawal and uninterrupted rest.",
       images: [
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/privateroom.jpeg"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/room3.png"
       ],
     },
     {
       id: 1,
       category: "",
-      title: "Accommodations",
+      title: "Shared Dorm - Quiet coexistence with clear boundaries",
       description: "Quiet coexistence with clear boundaries.",
       images: [
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/dorms.png"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/dorm1.png"
       ],
     },
     {
       id: 2,
       category: "",
-      title: "Accommodations",
+      title: "Minimalist Tent - Minimal shelter close to land and weather",
       description: "Minimal shelter close to land and weather.",
       images: [
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/tents.png"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/tent1.png"
       ],
     },
     {
       id: 3,
       category: "",
-      title: "Accommodations",
+      title: "Dark Room - Total sensory isolation for deep rest",
       description: "Total sensory isolation for deep rest.",
       images: [
         "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/darkroom.png"
@@ -104,28 +105,28 @@ export default function DiningVariant() {
     {
       id: 0,
       category: "",
-      title: "Food",
+      title: "Satvik Home Food - Uncomplicated vegetarian meals",
       description: "Uncomplicated vegetarian meals prepared for ease.",
       images: [
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/homefood.png"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/homefood1.png"
       ],
     },
     {
       id: 1,
       category: "",
-      title: "Food",
+      title: "Salads, Smoothies & Sandwiches - Light preparations",
       description: "Occasional lighter preparations available anytime.",
       images: [
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/somthiessaladsandwiches.png"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/sss1.png"
       ],
     },
     {
       id: 2,
       category: "",
-      title: "Food",
+      title: "Pizza, Barbecue & Sushi - Communal meals",
       description: "Occasional communal meals prepared intentionally.",
       images: [
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/pizzasushi.png"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/pbs1.png"
       ],
     },
   ];
@@ -134,34 +135,34 @@ export default function DiningVariant() {
     {
       id: 0,
       category: "",
-      title: "Practice & Recovery",
+      title: "Outdoor Gym - Body-supporting practices",
       description: "Always-available practices that support the body.",
       images: [
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/gym.png"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/gym1.png"
       ],
     },
     {
       id: 1,
       category: "",
-      title: "Practice & Recovery",
+      title: "Contrast Recovery - Hot and cold therapy",
       description: "Hot and cold therapy for nervous system regulation.",
       images: [
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/hottub.png"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/hot.png"
       ],
     },
     {
       id: 2,
       category: "",
-      title: "Practice & Recovery",
+      title: "Yoga Loft - Nature-based engagement",
       description: "Self-led, nature-based engagement without instruction.",
       images: [
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/yoga.png"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/yogaloft.png"
       ],
     },
     {
       id: 3,
       category: "",
-      title: "Practice & Recovery",
+      title: "Cycling - Manual movement for cardio",
       description: "Manual movement for cardio and reflection.",
       images: [
         "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/cycle.png"
@@ -217,10 +218,12 @@ export default function DiningVariant() {
                   <div className="relative aspect-[25/20] rounded-lg overflow-hidden shadow-2xl border border-earth-700 group cursor-pointer">
                     {/* Image */}
                     <div className="absolute inset-0">
-                      <img
+                      <Image
                         src={item.images[0]}
                         alt={item.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                     </div>
@@ -293,10 +296,12 @@ export default function DiningVariant() {
                   <div className="relative aspect-[25/20] rounded-lg overflow-hidden shadow-2xl border border-earth-700 group cursor-pointer">
                     {/* Image */}
                     <div className="absolute inset-0">
-                      <img
+                      <Image
                         src={item.images[0]}
                         alt={item.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                     </div>
@@ -369,10 +374,12 @@ export default function DiningVariant() {
                   <div className="relative aspect-[25/20] rounded-lg overflow-hidden shadow-2xl border border-earth-700 group cursor-pointer">
                     {/* Image */}
                     <div className="absolute inset-0">
-                      <img
+                      <Image
                         src={item.images[0]}
                         alt={item.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                     </div>
