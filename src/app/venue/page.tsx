@@ -3,9 +3,14 @@
 import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Breadcrumb from "../components/Breadcrumb";
 import VenueHero from "../components/venue/VenueHero";
 import VenueSection from "../components/venue/VenueSection";
 import RequestConversation from "../components/RequestConversation";
+
+const breadcrumbItems = [
+  { label: "Estate", href: "/venue" }
+];
 
 export default function VenuePage() {
   const [expandedSection, setExpandedSection] = useState<string>("wildlife");
@@ -579,6 +584,7 @@ export default function VenuePage() {
   return (
     <main className="min-h-screen bg-earth-900 text-earth-100 ">
       <Header />
+      <Breadcrumb items={breadcrumbItems} />
       <VenueHero />
 
       <div className="w-full px-4 md:px-16 py-12">

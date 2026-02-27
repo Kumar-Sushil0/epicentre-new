@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Breadcrumb from "../components/Breadcrumb";
 import CarouselCard from "../components/CarouselCard";
 import TestHero from "../components/services/ServicesHero";
 import TestPhilosophy from "../components/services/ServicesPhilosophy";
@@ -11,6 +12,10 @@ import { expressionPillars } from "../content/expression";
 import { solitudePractices } from "../content/solitude";
 import { residencies } from "../content/residency";
 import RequestConversation from "../components/RequestConversation";
+
+const breadcrumbItems = [
+  { label: "Services", href: "/services" }
+];
 
 export default function TestPage() {
     const [wishlist, setWishlist] = useState<Set<string>>(new Set());
@@ -25,6 +30,7 @@ export default function TestPage() {
     return (
         <main className="min-h-screen bg-earth-900 text-earth-100">
             <Header />
+            <Breadcrumb items={breadcrumbItems} />
             <TestHero />
           
 

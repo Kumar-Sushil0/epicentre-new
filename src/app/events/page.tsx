@@ -1,12 +1,18 @@
 "use client";
 
 import Header from "../components/Header";
+import Breadcrumb from "../components/Breadcrumb";
 import DevelopmentTimeline from "../components/experiences/DevelopmentTimeline";
+
+const breadcrumbItems = [
+  { label: "Events", href: "/events" }
+];
 
 export default function EventsPage() {
     return (
         <>
             <Header />
+            <Breadcrumb items={breadcrumbItems} />
             <div className="min-h-screen w-full" style={{ backgroundColor: '#1a120b' }}>
                 {/* Subtle background pattern */}
                 <div className="absolute inset-0 opacity-5 pointer-events-none">

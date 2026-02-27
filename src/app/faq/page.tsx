@@ -3,10 +3,15 @@
 import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Breadcrumb from "../components/Breadcrumb";
 import FAQItem from "../components/FAQItem";
 import FAQHero from "../components/faq/FAQHero";
 import FAQPhilosophy from "../components/faq/FAQPhilosophy";
 import RequestConversation from "../components/RequestConversation";
+
+const breadcrumbItems = [
+  { label: "FAQ", href: "/faq" }
+];
 
 interface FAQItem {
   id: string;
@@ -270,6 +275,7 @@ export default function FAQPage() {
   return (
     <div className="min-h-screen bg-earth-950">
       <Header />
+      <Breadcrumb items={breadcrumbItems} />
       
       {/* Page Title */}
       <section className="pt-16 pb-4 px-4 md:px-16 text-center border-b border-earth-800">

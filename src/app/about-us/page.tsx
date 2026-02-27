@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import AboutHero from "../components/about/AboutHero";
+import Breadcrumb from "../components/Breadcrumb";
 import StructuredData from "@/components/StructuredData";
 import { generateBreadcrumbSchema } from "@/utils/structuredData";
 
@@ -9,6 +10,10 @@ const breadcrumbs = generateBreadcrumbSchema([
   { name: "Home", url: "https://thesilent.club" },
   { name: "About Us", url: "https://thesilent.club/about-us" }
 ]);
+
+const breadcrumbItems = [
+  { label: "About Us", href: "/about-us" }
+];
 
 export const metadata: Metadata = {
   title: "About Us | The Silent Club",
@@ -70,6 +75,7 @@ export default function AboutUsPage() {
         }}
       >
       <Header />
+      <Breadcrumb items={breadcrumbItems} />
       <AboutHero />
       
       <OurPhilosophy />

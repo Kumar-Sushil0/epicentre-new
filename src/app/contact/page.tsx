@@ -3,7 +3,12 @@
 import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Breadcrumb from "../components/Breadcrumb";
 import RequestConversation from "../components/RequestConversation";
+
+const breadcrumbItems = [
+  { label: "Contact", href: "/contact" }
+];
 
 export default function ContactPage() {
     const [formData, setFormData] = useState({
@@ -80,6 +85,7 @@ export default function ContactPage() {
     return (
         <main className="min-h-screen bg-earth-900 text-earth-100">
             <Header />
+            <Breadcrumb items={breadcrumbItems} />
             
             {/* Contact Form Section */}
             <section className="px-4 md:px-10 py-20 pt-32 max-w-[1200px] mx-auto">
