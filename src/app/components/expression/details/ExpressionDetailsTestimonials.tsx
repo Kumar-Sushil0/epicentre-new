@@ -4,6 +4,8 @@ interface Testimonial {
   role: string;
 }
 
+import Image from "next/image";
+
 interface ExpressionDetailsTestimonialsProps {
   testimonials: Testimonial[];
   images: Array<{ src: string; alt: string; label: string }>;
@@ -33,11 +35,12 @@ export default function ExpressionDetailsTestimonials({ testimonials, images }: 
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-4 mt-8">
-              <div className="bg-earth-800 h-64 rounded-lg overflow-hidden shadow-xl">
-                <img
+              <div className="relative bg-earth-800 h-64 rounded-lg overflow-hidden shadow-xl">
+                <Image
                   alt={images[0]?.alt || ""}
                   src={images[0]?.src || ""}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700 opacity-80 hover:opacity-100"
+                  fill
+                  className="object-cover hover:scale-105 transition-transform duration-700 opacity-80 hover:opacity-100"
                 />
               </div>
               <div className="p-4">
@@ -48,11 +51,12 @@ export default function ExpressionDetailsTestimonials({ testimonials, images }: 
               <div className="p-4">
                 <p className="text-earth-50/50 text-xs font-body uppercase tracking-widest">{images[1]?.label || ""}</p>
               </div>
-              <div className="bg-earth-800 h-80 rounded-lg overflow-hidden shadow-xl">
-                <img
+              <div className="relative bg-earth-800 h-80 rounded-lg overflow-hidden shadow-xl">
+                <Image
                   alt={images[1]?.alt || ""}
                   src={images[1]?.src || ""}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700 opacity-80 hover:opacity-100"
+                  fill
+                  className="object-cover hover:scale-105 transition-transform duration-700 opacity-80 hover:opacity-100"
                 />
               </div>
             </div>
