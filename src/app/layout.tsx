@@ -8,6 +8,7 @@ import VerticalBookNow from "./components/VerticalBookNow";
 import NewsletterPopup from "./components/NewsletterPopup";
 import StructuredData from "@/components/StructuredData";
 import { organizationSchema, websiteSchema } from "@/utils/structuredData";
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata: Metadata = {
   title: "The Silent Club | Private Estate for Structured Silence & Deep Work",
@@ -75,10 +76,11 @@ export default function RootLayout({
             <SmoothScroll />
             {children}
             <NewsletterPopup />
-            
-            
+
+
           </ShopProvider>
         </AuthProvider>
+        <GoogleAnalytics gaId="G-75RHKV8F97" />
       </body>
     </html>
   );

@@ -40,7 +40,7 @@ export default function AboutCollective() {
             </h3>
             <p className="text-xl text-earth-300" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Silence is cognitive infrastructure. Infrastructure deserves protection.<br />
-              If sovereignty begins with attention, landscapes that protect attention are public goods.<br />
+              If sovereignty begins with attention, landscapes that protect attention are public goods.
               Development can preserve authority — if designed deliberately.
             </p>
           </div>

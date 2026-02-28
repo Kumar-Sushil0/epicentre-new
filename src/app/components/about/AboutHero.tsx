@@ -26,9 +26,7 @@ export default function AboutHero() {
             The Silent Club is not a retreat.<br />
             It is a structured environment engineered to reduce interference.<br />
             Silence here is functional, not aesthetic.<br />
-            When external input decreases, attention stabilizes.<br />
-            When attention stabilizes, decisions become less negotiable.<br />
-            Clarity is not chased.<br />
+           
             It is permitted.<br />
             You do not leave life here.<br />
             You prepare to re-enter it deliberately.
