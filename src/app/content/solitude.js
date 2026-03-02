@@ -1,6 +1,6 @@
 export const solitudePractices = [
         {
-            title: "Angling - Meditative fishing practice for patience and presence",
+            title: "Angling",
             description: "Repetition and still attention. A meditative practice of patience and presence by the water's edge. Let the rhythm of the cast soothe the restless mind.",
             category: "Focus",
             icon: "arrow_forward",
@@ -9,7 +9,7 @@ export const solitudePractices = [
             ],
         },
         {
-            title: "Bird Watching - Soft observation of local wildlife in natural habitat",
+            title: "Bird Watching",
             description: "Looking without pursuit. Soft observation of local wildlife in their natural habitat. Train your eye to notice the subtle movements of life around you.",
             category: "Observe",
             icon: "map",
@@ -18,7 +18,7 @@ export const solitudePractices = [
             ],
         },
         {
-            title: "Star Gazing - Reconnecting with cosmos under clear night skies",
+            title: "Star Gazing",
             description: "Observation without urgency. Reconnecting with the cosmos under our clear, protected night skies. Feel the scale of the universe in silence.",
             category: "Wonder",
             icon: "star",
@@ -27,7 +27,7 @@ export const solitudePractices = [
             ],
         },
         {
-            title: "Forest Trails - Walking through ancient woods without destination",
+            title: "Forest Trails",
             description: "Walking without destination or goal. Let your feet guide you through the ancient woods, breathing in the earth and finding your own pace.",
             category: "Wander",
             icon: "directions_walk",
@@ -36,7 +36,7 @@ export const solitudePractices = [
             ],
         },
         {
-            title: "Fascia System - Deep tissue awareness and connective tissue work",
+            title: "Fascia System",
             description: "Deep tissue awareness and release. A practice of understanding and working with the body's connective tissue network. Explore the subtle architecture that holds you together.",
             category: "Release",
             icon: "healing",
@@ -45,7 +45,7 @@ export const solitudePractices = [
             ],
         },
         {
-            title: "Triathlon Training - Swimming, cycling and running for physical resilience",
+            title: "Triathlon Training",
             description: "Push your limits across three disciplines. A comprehensive practice of swimming, cycling, and running that builds physical resilience and mental fortitude. Find strength in the challenge.",
             category: "Endure",
             icon: "fitness_center",
