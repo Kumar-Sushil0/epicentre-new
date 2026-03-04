@@ -25,6 +25,7 @@ interface VenueSectionProps {
   introText?: string;
   usedFor?: string[];
   closingText?: string;
+  bullets?: string[];
 }
 
 export default function VenueSection({ 
@@ -38,7 +39,8 @@ export default function VenueSection({
   onToggle, 
   introText, 
   usedFor, 
-  closingText
+  closingText,
+  bullets
 }: VenueSectionProps) {
   
   return (
@@ -60,16 +62,22 @@ export default function VenueSection({
       </div>
       {expanded && (
         <>
-          {/* Introductory Text */}
-          {(introText || closingText) && (
-            <div className="mb-8 space-y-4">
-              {introText && (
-                <p className="text-earth-300 text-base leading-relaxed">
-                  {introText}
-                </p>
+          {/* Introductory Text + Bullets */}
+          {(closingText || bullets) && (
+            <div className="mb-8 space-y-4 text-earth-300 text-sm md:text-base font-body">
+              {bullets && bullets.length > 0 && (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6">
+                  {bullets.map((line, idx) => (
+                    <div key={idx} className="flex items-start gap-2">
+                      <span className="mt-1 text-gold-500">•</span>
+                      <span>{line}</span>
+                    </div>
+                  ))}
+                </div>
               )}
+
               {closingText && (
-                <p className="text-earth-300 text-base italic border-t border-earth-700 pt-4 mt-4">
+                <p className="italic border-t border-earth-700 pt-4 mt-4">
                   {closingText}
                 </p>
               )}

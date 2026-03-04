@@ -42,9 +42,14 @@ export default function VenuePage() {
       id: "wildlife",
       number: "01",
       title: "Wildlife & Nature",
-      subtitle: "The Land Carries Weight",
+      subtitle: "The Land Reduces Noise",
       icon: "nature",
       introText: "Natural environments and wildlife observation areas.",
+      bullets: [
+        "Open terrain. Water exposure. Low built density.",
+        "Designed to lower visual and auditory interference.",
+        "Nature is not curated. It is left intact."
+      ],
       usedFor: ["Horizon exposure", "Nature walks", "Ecological awareness", "Nervous system decompression"],
       closingText: "",
       venues: [
@@ -102,6 +107,11 @@ export default function VenuePage() {
       subtitle: "Sleep Is Non-Negotiable",
       icon: "bed",
       introText: "Living environments for restoration and sleep.",
+      bullets: [
+        "Environments designed for sensory withdrawal and uninterrupted rest.",
+        "Sleep is protected.",
+        "Interruption is minimized."
+      ],
       usedFor: ["Deep rest", "Extended silence", "Sensory withdrawal", "Private integration"],
       closingText: "",
       venues: [
@@ -180,9 +190,14 @@ export default function VenuePage() {
       id: "food",
       number: "03",
       title: "Food",
-      subtitle: "Food Stabilizes, Not Stimulates",
+      subtitle: "Stability Over Stimulation",
       icon: "restaurant",
       introText: "Dining spaces and culinary environments.",
+      bullets: [
+        "Meals are designed to regulate energy, not excite it.",
+        "Food supports clarity.",
+        "It does not compete for attention."
+      ],
       usedFor: ["Shared meals", "Mindful eating", "Nutritional awareness", "Rhythmic reset"],
       closingText: "",
       venues: [
@@ -285,6 +300,11 @@ export default function VenuePage() {
       subtitle: "The Body Must Discharge",
       icon: "fitness_center",
       introText: "Movement, recovery, and regulation environments.",
+      bullets: [
+        "Movement spaces for physical regulation and nervous system reset.",
+        "Effort clears residual tension.",
+        "Physical discharge supports mental steadiness."
+      ],
       usedFor: ["Physical reset", "Stress discharge", "Endurance training", "Body recalibration"],
       closingText: "",
       venues: [
@@ -441,6 +461,11 @@ export default function VenuePage() {
       subtitle: "Interaction Is Intentional",
       icon: "groups",
       introText: "Primary collective environments for structured or unstructured gathering.",
+      bullets: [
+        "Spaces designed for structured inquiry and contained dialogue.",
+        "Communication is contained.",
+        "Silence remains primary."
+      ],
       usedFor: ["Inquiry sessions", "Intentional dialogue", "Quiet collaboration", "Shared silence"],
       closingText: "",
       venues: [
@@ -513,6 +538,11 @@ export default function VenuePage() {
       subtitle: "Identity Is Interrupted",
       icon: "brush",
       introText: "Architectural structures designed for reflection and declaration.",
+      bullets: [
+        "Architectural markers that frame transition and perspective.",
+        "Interpretation is personal.",
+        "No narrative is imposed."
+      ],
       usedFor: ["Identity examination", "Personal release", "Perspective shift"],
       closingText: "",
       venues: [
