@@ -52,14 +52,14 @@ const timelineData: TimelineMonth[] = [
         description: "Dedicated spaces for rest, recovery, and mental rejuvenation. These zones are designed with natural elements and quiet environments to support personal well-being and reflection.",
       },
       {
-        name: "Silent Retreat Workshop",
+        name: "Structured Activities Launch",
         preciseDate: "March 26, 2026",
-        description: "A three-day immersive workshop focused on mindfulness, meditation, and inner stillness. Participants will engage in guided silence practices, contemplative walks, and group reflection sessions in a supportive environment.",
+        description: "Launch of our guided activity sessions focusing on mindfulness and physical engagement.",
       },
       {
-        name: "Deep Work Residency",
+        name: "Expression Experiments",
         preciseDate: "March 15, 2026",
-        description: "A week-long intensive program for focused creative and professional work. Participants receive dedicated workspace, minimal distractions, and structured silence periods to support deep concentration and meaningful progress on complex projects.",
+        description: "Initial rollout of structured environments for testing creative ideas and methods.",
       },
     ],
   },

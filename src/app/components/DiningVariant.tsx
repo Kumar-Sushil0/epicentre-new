@@ -66,37 +66,28 @@ export default function DiningVariant() {
     {
       id: 0,
       category: "",
-      title: "Private Room - Complete withdrawal and uninterrupted rest",
+      title: "Private Room",
       description: "Complete withdrawal and uninterrupted rest.",
       images: [
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/room3.png"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/room3.png",
       ],
     },
     {
       id: 1,
       category: "",
-      title: "Shared Dorm - Quiet coexistence with clear boundaries",
+      title: "Shared Dorm",
       description: "Quiet coexistence with clear boundaries.",
       images: [
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/dorm1.png"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/dorm1.png",
       ],
     },
     {
       id: 2,
       category: "",
-      title: "Minimalist Tent - Minimal shelter close to land and weather",
-      description: "Minimal shelter close to land and weather.",
+      title: "Community Halls",
+      description: "Larger shared spaces for communal silence and gatherings.",
       images: [
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/tent1.png"
-      ],
-    },
-    {
-      id: 3,
-      category: "",
-      title: "Dark Room - Total sensory isolation for deep rest",
-      description: "Total sensory isolation for deep rest.",
-      images: [
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/darkroom.png"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/hall.png",
       ],
     },
   ];
@@ -105,28 +96,28 @@ export default function DiningVariant() {
     {
       id: 0,
       category: "",
-      title: "Satvik Home Food - Uncomplicated vegetarian meals",
+      title: "Satvik Home Food",
       description: "Uncomplicated vegetarian meals prepared for ease.",
       images: [
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/homefood1.png"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/homefood1.png",
       ],
     },
     {
       id: 1,
       category: "",
-      title: "Salads, Smoothies & Sandwiches - Light preparations",
+      title: "Salads, Smoothies & Sandwiches",
       description: "Occasional lighter preparations available anytime.",
       images: [
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/sss1.png"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/sss1.png",
       ],
     },
     {
       id: 2,
       category: "",
-      title: "Pizza, Barbecue & Sushi - Communal meals",
+      title: "Barbeque, Pizza Sushi",
       description: "Occasional communal meals prepared intentionally.",
       images: [
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/pbs1.png"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/pbs1.png",
       ],
     },
   ];
@@ -135,37 +126,28 @@ export default function DiningVariant() {
     {
       id: 0,
       category: "",
-      title: "Outdoor Gym - Body-supporting practices",
+      title: "Outdoor Gym",
       description: "Always-available practices that support the body.",
       images: [
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/gym1.png"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/gym1.png",
       ],
     },
     {
       id: 1,
       category: "",
-      title: "Contrast Recovery - Hot and cold therapy",
+      title: "Contrast Therapy",
       description: "Hot and cold therapy for nervous system regulation.",
       images: [
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/hot.png"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/hot.png",
       ],
     },
     {
       id: 2,
       category: "",
-      title: "Yoga Loft - Nature-based engagement",
+      title: "Yoga & Meditation",
       description: "Self-led, nature-based engagement without instruction.",
       images: [
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/yogaloft.png"
-      ],
-    },
-    {
-      id: 3,
-      category: "",
-      title: "Cycling - Manual movement for cardio",
-      description: "Manual movement for cardio and reflection.",
-      images: [
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/cycle.png"
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/yogaloft.png",
       ],
     },
   ];
@@ -197,8 +179,8 @@ export default function DiningVariant() {
   return (
     <section ref={sectionRef} className="py-12 md:py-24 min-h-[100vh] bg-earth-900 flex items-center" id="dining">
       <div className="w-full px-4 md:px-16">
-        <div className="mb-6 md:mb-8">
-          <h3 className="text-2xl md:text-3xl font-normal mb-2 text-gold-500 uppercase" style={{ fontFamily: 'Outfit, sans-serif' }}>The Club Includes</h3>
+        <div className="mb-6 md:mb-8 text-center">
+          <h3 className="text-2xl md:text-3xl font-normal mb-4 md:mb-6 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>The Club Includes</h3>
           <p className="text-[#e7dfd3] font-body text-base md:text-lg max-w-full">
             Accommodations, Food, and Practice & Recovery
           </p>
@@ -215,7 +197,7 @@ export default function DiningVariant() {
                     index === currentIndex ? 'opacity-100 relative z-10' : 'opacity-0 absolute inset-0 z-0 pointer-events-none'
                   }`}
                 >
-                  <div className="relative aspect-[25/20] rounded-lg overflow-hidden shadow-2xl border border-earth-700 group cursor-pointer">
+                  <div className="relative aspect-[25/20] rounded-lg overflow-hidden shadow-2xl border border-earth-700">
                     {/* Image */}
                     <div className="absolute inset-0">
                       <Image
@@ -223,23 +205,14 @@ export default function DiningVariant() {
                         alt={item.title}
                         fill
                         sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                     </div>
 
                     {/* Content */}
                     <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                      <h3 className="text-xl font-normal text-[#e7dfd3] group-hover:text-gold-500 -mb-2 leading-tight transition-all duration-500 group-hover:-translate-y-2" style={{ fontFamily: 'Outfit, sans-serif' }}>{item.title}</h3>
-
-                      {/* Description - Revealed on Hover */}
-                      <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
-                        <div className="overflow-hidden">
-                          <p className="text-[#e7dfd3] text-sm leading-relaxed mt-2 border-t border-gold-500/30 pt-3">
-                            {item.description}
-                          </p>
-                        </div>
-                      </div>
+                      <h3 className="text-xl font-normal text-[#e7dfd3] leading-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>{item.title}</h3>
                     </div>
                   </div>
                 </div>
@@ -293,7 +266,7 @@ export default function DiningVariant() {
                     index === currentAccommodationIndex ? 'opacity-100 relative z-10' : 'opacity-0 absolute inset-0 z-0 pointer-events-none'
                   }`}
                 >
-                  <div className="relative aspect-[25/20] rounded-lg overflow-hidden shadow-2xl border border-earth-700 group cursor-pointer">
+                  <div className="relative aspect-[25/20] rounded-lg overflow-hidden shadow-2xl border border-earth-700">
                     {/* Image */}
                     <div className="absolute inset-0">
                       <Image
@@ -301,23 +274,14 @@ export default function DiningVariant() {
                         alt={item.title}
                         fill
                         sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                     </div>
 
                     {/* Content */}
                     <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                      <h3 className="text-xl font-normal text-[#e7dfd3] group-hover:text-gold-500 -mb-2 leading-tight transition-all duration-500 group-hover:-translate-y-2" style={{ fontFamily: 'Outfit, sans-serif' }}>{item.title}</h3>
-
-                      {/* Description - Revealed on Hover */}
-                      <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
-                        <div className="overflow-hidden">
-                          <p className="text-[#e7dfd3] text-sm leading-relaxed mt-2 border-t border-gold-500/30 pt-3">
-                            {item.description}
-                          </p>
-                        </div>
-                      </div>
+                      <h3 className="text-xl font-normal text-[#e7dfd3] leading-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>{item.title}</h3>
                     </div>
                   </div>
                 </div>
@@ -371,7 +335,7 @@ export default function DiningVariant() {
                     index === currentExperienceIndex ? 'opacity-100 relative z-10' : 'opacity-0 absolute inset-0 z-0 pointer-events-none'
                   }`}
                 >
-                  <div className="relative aspect-[25/20] rounded-lg overflow-hidden shadow-2xl border border-earth-700 group cursor-pointer">
+                  <div className="relative aspect-[25/20] rounded-lg overflow-hidden shadow-2xl border border-earth-700">
                     {/* Image */}
                     <div className="absolute inset-0">
                       <Image
@@ -379,23 +343,14 @@ export default function DiningVariant() {
                         alt={item.title}
                         fill
                         sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                     </div>
 
                     {/* Content */}
                     <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                      <h3 className="text-xl font-normal text-[#e7dfd3] group-hover:text-gold-500 -mb-2 leading-tight transition-all duration-500 group-hover:-translate-y-2" style={{ fontFamily: 'Outfit, sans-serif' }}>{item.title}</h3>
-
-                      {/* Description - Revealed on Hover */}
-                      <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
-                        <div className="overflow-hidden">
-                          <p className="text-[#e7dfd3] text-sm leading-relaxed mt-2 border-t border-gold-500/30 pt-3">
-                            {item.description}
-                          </p>
-                        </div>
-                      </div>
+                      <h3 className="text-xl font-normal text-[#e7dfd3] leading-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>{item.title}</h3>
                     </div>
                   </div>
                 </div>

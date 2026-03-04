@@ -13,19 +13,19 @@ export default function AboutPhilosophy() {
   const philosophies: PhilosophyItem[] = [
     {
       title: "Why Silence",
-      description: "Silence reduces external influence.\nReduced influence strengthens internal authority.\nDecisions surface without persuasion.\nSilence is not emptiness.\nIt is self-governance in practice.",
+      description: "Most environments amplify input.\nSilence reduces distortion.\nClear thinking requires signal control.",
     },
     {
-      title: "Why a Club",
-      description: "Voluntary entry protects coherence.\nShared norms protect autonomy.\nAgreement sustains order without control.",
+      title: "Why Membership",
+      description: "Attention requires cultural coherence.\nLimited membership preserves density,\nprotects anonymity, and prevents drift.",
     },
     {
       title: "Why Bhigwan",
-      description: "Wide horizons reduce cognitive compression.\nDistance restores perspective.\nLand influences thought before policy does.",
+      description: "Distance matters.\nFar enough to interrupt routine.\nClose enough to remain accessible.",
     },
     {
-      title: "Why We Experiment",
-      description: "Sovereignty is not static.\nConditions are refined.\nFormats are tested.\nStructure evolves.",
+      title: "Why Sequencing",
+      description: "Cohorts shape culture.\nEach year centers a specific life-stage group\nto preserve depth and clarity of intent.",
     }
   ];
 

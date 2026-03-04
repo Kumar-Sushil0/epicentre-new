@@ -63,11 +63,6 @@ export default function FooterVariant() {
                   </Link>
                 </li>
                 <li className="w-fit">
-                  <Link className="hover:text-gold-500 transition-colors" href="/wellness">
-                    Wellness
-                  </Link>
-                </li>
-                <li className="w-fit">
                   <Link className="hover:text-gold-500 transition-colors" href="/experiences">
                     Experiences
                   </Link>
@@ -75,18 +70,8 @@ export default function FooterVariant() {
               </ul>
               <ul className="space-y-3 text-sm text-earth-300/60 font-body w-fit">
                 <li className="w-fit">
-                  <Link className="hover:text-gold-500 transition-colors" href="/solitude">
-                    Solitude
-                  </Link>
-                </li>
-                <li className="w-fit">
                   <Link className="hover:text-gold-500 transition-colors" href="/expression">
                     Expression
-                  </Link>
-                </li>
-                <li className="w-fit">
-                  <Link className="hover:text-gold-500 transition-colors" href="/residency">
-                    Residency
                   </Link>
                 </li>
                 <li className="w-fit">
@@ -102,11 +87,11 @@ export default function FooterVariant() {
             <ul className="space-y-3 text-sm text-earth-300/60 font-body">
               <li className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-xs">mail</span>
-                hello@epicenter.com
+                hello@thesilent.club
               </li>
               <li className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-xs">call</span>
-                +91 98765 43210
+                +91 98903 22494
               </li>
               <li className="flex gap-4 mt-4">
                 <a className="hover:text-gold-500 transition-colors" href="#">

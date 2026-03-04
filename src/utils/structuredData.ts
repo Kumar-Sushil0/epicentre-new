@@ -110,26 +110,11 @@ export const serviceSchema = {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Solitude as a Service",
-          "description": "Self-directed silence within protected conditions"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
           "name": "Experiment as a Service",
           "description": "Structured environments for testing ideas without performance pressure"
         }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Residency as a Service",
-          "description": "Multi-day immersion around a single high-stakes question"
-        }
       }
+
     ]
   }
 };

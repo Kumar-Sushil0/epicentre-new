@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import AboutHero from "../components/about/AboutHero";
-import Breadcrumb from "../components/Breadcrumb";
 import StructuredData from "@/components/StructuredData";
 import { generateBreadcrumbSchema } from "@/utils/structuredData";
 
@@ -10,10 +9,6 @@ const breadcrumbs = generateBreadcrumbSchema([
   { name: "Home", url: "https://thesilent.club" },
   { name: "About Us", url: "https://thesilent.club/about-us" }
 ]);
-
-const breadcrumbItems = [
-  { label: "About Us", href: "/about-us" }
-];
 
 export const metadata: Metadata = {
   title: "About Us | The Silent Club",
@@ -56,6 +51,7 @@ import AboutPrinciples from "../components/about/AboutPrinciples";
 import AboutTriad from "../components/about/AboutTriad";
 import BuiltEnvironment from "../components/about/BuiltEnvironment";
 import WhoThisIsFor from "../components/about/WhoThisIsFor";
+import AboutAttentionCycle from "../components/about/AboutAttentionCycle";
 import TeamSection from "../components/TeamSection";
 import OurPhilosophy from "../components/OurPhilosophy";
 import LivingRoom from '../components/about/LivingRoom';
@@ -74,28 +70,22 @@ export default function AboutUsPage() {
             "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAhz0wWXU4xS6BdtUrmYdwyCzigduYrRYr-qCYXeK0zWlrvNOLsM3FMEGXX8kTmkhLnks7DhZDzfT0COpi6rQCM_50M_63Se2dqYtm2z5KZqH2e5PbTMNfNtN74k82J77cRkCQfiKirrMuhx6bzxc_e4GDhi0ZNhTobudsMGNM3bLJyFiXVsDOFZk5AyyP-hWPuyZoIAMhxXIkUZq3gxz5TS_aOMt8ZEVZ6t_6gP9caHyNF0-frTThfwxUiN5XqPvklltRv3_VRAtAx')",
         }}
       >
-      <Header />
-      <Breadcrumb items={breadcrumbItems} />
-      <AboutHero />
-      
-      <OurPhilosophy />
-      <AboutPrinciples />
-      <AboutPhilosophy />
-      <LivingRoom />
-      
-      
-      <AboutCollective />
-      
-      <AboutFounder />
-      
-      
-      
-      
-      
-      
- 
-      <RequestConversation />
-      <Footer />
+        <Header />
+        <AboutHero />
+
+        <OurPhilosophy />
+        <AboutPrinciples />
+        <AboutPhilosophy />
+        <AboutAttentionCycle />
+        <LivingRoom />
+
+
+        <AboutCollective />
+
+        <AboutFounder />
+
+        <RequestConversation />
+        <Footer />
       </main>
     </>
   );

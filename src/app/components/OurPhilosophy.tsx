@@ -19,7 +19,7 @@ export default function OurPhilosophy() {
               Clarity Through Subtraction
             </h3>
             <p className="text-earth-300 text-sm font-body leading-relaxed">
-              We remove before we add. Noise is edited so perception can stabilize.
+              We remove before we add. Noise is edited so perception stabilizes.
             </p>
           </div>
 
@@ -35,7 +35,7 @@ export default function OurPhilosophy() {
               Constraint Creates Autonomy
             </h3>
             <p className="text-earth-300 text-sm font-body leading-relaxed">
-              Freedom without structure is drift. Structure protects agency.
+              Freedom without structure drifts. Structure protects agency.
             </p>
           </div>
 
@@ -51,7 +51,7 @@ export default function OurPhilosophy() {
               Identity Is Authored
             </h3>
             <p className="text-earth-300 text-sm font-body leading-relaxed">
-              You are not here to perform inherited roles. You are here to decide deliberately.
+              Inherited roles pause here. Deliberate identity resumes.
             </p>
           </div>
 
@@ -68,7 +68,7 @@ export default function OurPhilosophy() {
               Attention Is Sovereignty
             </h3>
             <p className="text-earth-300 text-sm font-body leading-relaxed">
-              What you protect shapes who you become. We protect attention first.
+              What you protect shapes you. Attention is protected first.
             </p>
           </div>
         </div>

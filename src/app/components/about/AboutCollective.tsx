@@ -30,38 +30,46 @@ export default function AboutCollective() {
   };
 
   return (
-    <section className="py-16 bg-earth-900 border-b border-earth-800" id="collective">
+    <section className="py-20 bg-earth-900 border-b border-earth-800" id="collective">
       <div className="w-full px-4 md:px-16">
-        <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-16">
+        <div className="flex flex-col lg:flex-row items-center lg:items-stretch gap-8 lg:gap-12">
           {/* Left Content */}
-          <div className="w-full lg:w-1/2 text-left">
-            <h3 className="text-3xl font-normal mb-6 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>
+          <div className="w-full lg:w-1/2 text-left flex flex-col justify-center">
+            <h3
+              className="text-3xl md:text-4xl font-normal mb-6 text-gold-500"
+              style={{ fontFamily: 'Outfit, sans-serif' }}
+            >
               BIGवन — A Case for Silent Tourism
             </h3>
-            <p className="text-xl text-earth-300" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Silence is cognitive infrastructure. Infrastructure deserves protection.<br />
-              If sovereignty begins with attention, landscapes that protect attention are public goods.
-              Development can preserve authority — if designed deliberately.
-            </p>
+            <div className="space-y-3 text-earth-300 text-base md:text-lg font-body max-w-xl">
+              <p>Silence is cognitive infrastructure.</p>
+              <p>As attention becomes scarce, environments that protect it become essential.</p>
+              <p>Modern tourism amplifies stimulation. Silent tourism reduces it.</p>
+              <p>The Silent Club operates as a pilot model.</p>
+              <p>
+                The Silent Tourism Foundation documents and open-sources this architecture so it can be
+                replicated independently.
+              </p>
+              <p className="font-semibold text-earth-100">Designed deliberately. Built to endure.</p>
+            </div>
           </div>
 
           {/* Right Side - Image and Download Card */}
-          <div className="w-full lg:w-1/2 flex flex-col items-center gap-8">
-            <div className="w-full max-w-xs relative h-64">
-              <Image 
-                src="/silent.svg" 
-                alt="BIGवन - Silent Tourism logo and initiative" 
-                fill
-                className="object-contain"
-              />
-            </div>
-            <div className="border border-earth-700/50 rounded-lg overflow-hidden p-6 bg-earth-800/30 w-full max-w-md">
+          <div className="w-full lg:w-1/2 flex flex-col items-center justify-between h-full">
+            <Image
+              src="/silent.svg"
+              alt="BIGवन - Silent Tourism logo and initiative"
+              width={120}
+              height={120}
+              className="w-100 h-auto"
+            />
+            <div className="border border-earth-700/50 rounded-lg overflow-hidden p-6 bg-earth-800/40 w-full max-w-sm">
               <button
                 onClick={handleDownload}
-                className="flex items-center justify-center gap-3 w-full text-lg font-normal text-gold-500 hover:text-gold-400 transition-colors"
+                className="flex items-center justify-center gap-3 w-full text-base md:text-lg font-normal text-gold-500 hover:text-gold-400 transition-colors"
                 style={{ fontFamily: 'Outfit, sans-serif' }}
               >
-                <span>Download the foundational document.</span>
+                <span>Download the foundational document</span>
                 <span className="material-symbols-outlined text-2xl">download</span>
               </button>
             </div>

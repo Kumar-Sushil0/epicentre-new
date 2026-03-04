@@ -5,21 +5,21 @@ import Image from 'next/image';
 
 const reviews = [
   {
-    text: "My experience at Osho Himalayas was absolutely amazing. Entire staff is so welcoming and they always greet you with a smile. The property has its own charm and positive vibes. The owners make you feel as part of family. They have 3 playful and friendly dogs. The meditation sessions were well organized and peaceful so befitting the overall environment. We wish we had spend more days here!!",
-    author: "Swati Khator",
-    location: "India",
+    text: "My experience at The Silent Club was absolutely amazing. Entire staff is so welcoming and they always greet you with a smile. The property has its own charm and positive vibes. The owners make you feel as part of family. They have 3 playful and friendly dogs. The meditation sessions were well organized and peaceful so befitting the overall environment. We wish we had spend more days here!!",
+    author: "Swati K.",
+    location: "Mumbai, India",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Replace with actual image path
   },
   {
     text: "A truly transformative place. The silence, the nature, and the guidance from the facilitators allowed me to connect with myself on a deeper level. I left feeling refreshed, centered, and with a new perspective on life. Highly recommended for anyone seeking inner peace.",
-    author: "John Doe",
-    location: "USA",
+    author: "Julian M.",
+    location: "London, UK",
     image: "https://images.unsplash.com/photo-1552058544-f2b08422138a?q=80&w=1899&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Replace with actual image path
   },
   {
     text: "The perfect escape from the chaos of city life. The serene environment and the carefully curated programs helped me to disconnect from the outside world and reconnect with my inner self. The food was delicious and healthy, and the staff was incredibly attentive.",
-    author: "Jane Smith",
-    location: "UK",
+    author: "Sarah J.",
+    location: "New York, USA",
     image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Replace with actual image path
   },
 ];
@@ -38,7 +38,7 @@ const Reviews = () => {
   return (
     <section className="bg-earth-900 py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        
+
 
         <h2 className="text-4xl font-bold text-gold-500 mb-12" style={{ fontFamily: 'Outfit, sans-serif' }}>
           Reviews
@@ -92,7 +92,7 @@ const Reviews = () => {
           </button>
         </div>
 
-        
+
       </div>
     </section>
   );

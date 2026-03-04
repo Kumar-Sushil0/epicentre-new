@@ -6,7 +6,7 @@ export default function TestPhilosophy() {
                     <p className="text-[15px] leading-loose text-[#261B14] relative z-10" style={{ fontFamily: 'Outfit, sans-serif' }}>
                         "Every card tells a story.<br />
                         Every section holds a purpose.<br />
-                        From wellness to expression, solitude to residency.<br />
+                        From activities to expression.<br />
                         This is where all paths converge.<br />
                         A single view of everything we offer.<br />
                         Designed for clarity. Built for exploration."

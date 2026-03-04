@@ -2,13 +2,16 @@ export default function DesignedDeliberately() {
   return (
     <section className="py-12 md:py-24 px-4 md:px-16 bg-earth-900">
       <div className="w-full">
-        
         {/* Top Section */}
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-2xl md:text-3xl font-normal text-gold-500 mb-6 md:mb-8 uppercase" style={{ fontFamily: 'Outfit, sans-serif' }}>
+          <div className="w-10 md:w-12 h-px mx-auto mb-4 md:mb-6 bg-earth-700/80" />
+          <h2
+            className="text-2xl md:text-3xl font-normal text-gold-500 mb-4 md:mb-5 "
+            style={{ fontFamily: "Outfit, sans-serif" }}
+          >
             Designed Deliberately
           </h2>
-          
+
           <div className="space-y-3 px-4">
             <p className="text-earth-300 text-base md:text-lg leading-normal">
               Every constraint here protects your attention.
@@ -16,38 +19,59 @@ export default function DesignedDeliberately() {
           </div>
         </div>
 
-        {/* Bottom Section - Cards */}
+        {/* Bottom Section - Icon Row */}
         <div className="text-center">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
             {/* Designed Silence */}
-            <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-4 md:p-6 h-full">
-              <span className="material-symbols-outlined text-gold-500 text-3xl md:text-4xl mb-3 md:mb-4 block">volume_off</span>
-              <h3 className="text-lg md:text-xl font-normal text-gold-500 mb-2 md:mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            <div className="flex flex-col items-center gap-3 md:gap-4">
+              <div className="flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full border border-earth-700/80">
+                <span className="material-symbols-outlined text-gold-500 text-xl md:text-2xl">
+                  volume_off
+                </span>
+              </div>
+              <h3
+                className="text-base md:text-lg font-normal text-earth-100"
+                style={{ fontFamily: "Outfit, sans-serif" }}
+              >
                 Designed Silence
               </h3>
-              <p className="text-earth-300 text-xs md:text-sm leading-relaxed">
+              <p className="text-earth-300 text-xs md:text-sm leading-relaxed max-w-xs mx-auto">
                 Sound, pace, and signal are shaped to reduce distraction.
               </p>
             </div>
 
             {/* Designed Anonymity */}
-            <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6 h-full">
-              <span className="material-symbols-outlined text-gold-500 text-4xl mb-4 block">person_off</span>
-              <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            <div className="flex flex-col items-center gap-3 md:gap-4">
+              <div className="flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full border border-earth-700/80">
+                <span className="material-symbols-outlined text-gold-500 text-xl md:text-2xl">
+                  person_off
+                </span>
+              </div>
+              <h3
+                className="text-base md:text-lg font-normal text-earth-100"
+                style={{ fontFamily: "Outfit, sans-serif" }}
+              >
                 Designed Anonymity
               </h3>
-              <p className="text-earth-300 text-sm leading-relaxed">
+              <p className="text-earth-300 text-xs md:text-sm leading-relaxed max-w-xs mx-auto">
                 External roles pause. Only first names remain.
               </p>
             </div>
 
             {/* Designed Withdrawal */}
-            <div className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6 h-full">
-              <span className="material-symbols-outlined text-gold-500 text-4xl mb-4 block">logout</span>
-              <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            <div className="flex flex-col items-center gap-3 md:gap-4">
+              <div className="flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full border border-earth-700/80">
+                <span className="material-symbols-outlined text-gold-500 text-xl md:text-2xl">
+                  logout
+                </span>
+              </div>
+              <h3
+                className="text-base md:text-lg font-normal text-earth-100"
+                style={{ fontFamily: "Outfit, sans-serif" }}
+              >
                 Designed Withdrawal
               </h3>
-              <p className="text-earth-300 text-sm leading-relaxed">
+              <p className="text-earth-300 text-xs md:text-sm leading-relaxed max-w-xs mx-auto">
                 Distance from constant input allows thought to stabilize.
               </p>
             </div>

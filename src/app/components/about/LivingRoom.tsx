@@ -6,37 +6,37 @@ const research = [
     {
         title: "Attention Restoration Theory — Directed Attention Fatigue",
         author: "Kaplan, S. (1995). The Restorative Benefits of Nature: Toward an Integrative Framework. Journal of Environmental Psychology.",
-        description: "Research shows that environments with reduced sensory demand restore directed attention capacity and reduce cognitive fatigue.",
+        description: "Modern life depletes directed attention through constant stimulus. Research shows that low-stimulation, natural environments restore cognitive capacity and reduce mental fatigue. The estate is structured around this principle.",
         link: "https://doi.org/10.1016/0272-4944(95)90001-2"
     },
     {
         title: "Systematic Review — Attention Restoration Theory",
         author: "Ohly, H. et al. (2016). Attention Restoration Theory: A systematic review. Journal of Toxicology and Environmental Health, Part B.",
-        description: "Meta-analysis confirming that natural, low-stimulation environments improve executive attention and cognitive performance.",
+        description: "Meta-analyses confirm that environments with reduced sensory demand improve executive attention and cognitive performance. Silence is not aesthetic here. It is attentional recovery infrastructure.",
         link: "https://pubmed.ncbi.nlm.nih.gov/27668460/"
     },
     {
         title: "Default Mode Network — Internal Self-Referential Processing",
         author: "Raichle, M. E. et al. (2001). A Default Mode of Brain Function. Proceedings of the National Academy of Sciences (PNAS).",
-        description: "Identifies the Default Mode Network (DMN), active during rest and internally directed thought, including self-reflection and identity processing.",
+        description: "Neuroscience identifies the Default Mode Network as active during rest and internally directed thought. Reduced external input allows identity processing and reflective thinking to stabilize. This is why interruption is minimized.",
         link: "https://doi.org/10.1073/pnas.98.2.676"
     },
     {
         title: "Self-Determination Theory — Autonomy & Self-Authorship",
         author: "Ryan, R. M., & Deci, E. L. (2000). Self-Determination Theory and the Facilitation of Intrinsic Motivation, Social Development, and Well-Being. American Psychologist.",
-        description: "Demonstrates that autonomy is a core psychological need and foundational to self-directed behavior and internal motivation.",
+        description: "Autonomy is a core psychological need. When external pressure decreases, intrinsic motivation increases. The Silent Club removes performance pressure to restore self-directed agency.",
         link: "https://doi.org/10.1037/0003-066X.55.1.68"
     },
     {
-        title: "Directed Attention & Self-Regulation — Directed Attention & Behavioral Control",
+        title: "Directed Attention & Self-Regulation — Executive Control",
         author: "Kaplan, S., & Berman, M. G. (2010). Directed Attention as a Common Resource for Executive Functioning and Self-Regulation. Perspectives on Psychological Science.",
-        description: "Shows that restoring directed attention improves executive control and self-regulatory capacity.",
+        description: "Restored attention improves executive functioning and behavioral regulation. Cognitive control strengthens when stimulus load decreases. The structure supports sustained focus without force.",
         link: "https://doi.org/10.1177/1745691610385554"
     },
     {
         title: "Locus of Control — Agency & Responsibility",
         author: "Rotter, J. B. (1966). Generalized Expectancies for Internal versus External Control of Reinforcement. Psychological Monographs.",
-        description: "Introduces internal locus of control as a predictor of responsibility-taking and adaptive behavior.",
+        description: "Internal locus of control correlates with responsibility-taking and adaptive decision-making. When attention stabilizes, agency strengthens. This environment protects that condition.",
         link: "https://doi.org/10.1037/h0092976"
     }
 ];
@@ -80,17 +80,17 @@ const ResearchItem = ({ item, index }: { item: typeof research[0], index: number
                 }}
             >
                 <div className="p-4 pt-0 space-y-3">
-                    <p className="text-sm italic font-body">
+                    <p className="text-sm italic font-body font-semibold">
                         {item.author}
                     </p>
-                    <p className="text-sm font-body">
+                    <p className="text-sm font-body font-semibold">
                         {item.description}
                     </p>
                     <a 
                         href={item.link} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="inline-block text-sm font-normal underline hover:no-underline transition-all"
+                        className="inline-block text-sm font-semibold underline hover:no-underline transition-all"
                     >
                         Click here
                     </a>

@@ -41,15 +41,15 @@ export default function RequestConversation({ message, pageName }: RequestConver
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block text-lg font-normal text-gold-500 hover:text-gold-400 hover:border-gold-400 transition-colors cursor-pointer border-2 border-gold-500 rounded-lg px-6 py-2"
-          style={{ fontFamily: 'Outfit, sans-serif' }}
+          
         >
-          Request a conversation
+          APPLY FOR MEMBERSHIPS →
         </a>
       </div>
         {/* Bottom Notice */}
         <div className="text-center ">
           <p className="text-earth-300 text-xs md:text-sm leading-snug max-w-full mx-auto px-4">
-            Access is based on alignment with the nature of the estate.
+          For those who can remain self-directed.
           </p>
         </div>
     </section>

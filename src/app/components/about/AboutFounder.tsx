@@ -17,19 +17,27 @@ export default function AboutFounder() {
               </p>
 
               <p>
-                I built it because I couldn't think clearly in the environments I was succeeding in.
+                I built it because I could not think clearly in the environments I was succeeding in.
               </p>
 
               <p>
-                Too much input. Too much performance. Too many inherited roles.
+                Too much input.
               </p>
 
               <p>
-                At some point I realized clarity does not come from more strategy.
+                Too much performance.
               </p>
 
               <p>
-                It comes from subtracting interference.
+                Too many inherited roles.
+              </p>
+
+              <p>
+                Clarity did not come from more strategy.
+              </p>
+
+              <p>
+                It came from subtracting interference.
               </p>
 
               <p>
@@ -45,20 +53,19 @@ export default function AboutFounder() {
               </p>
 
               <p>
-                It is to protect the conditions where you can hear yourself think.
+                It is to protect the conditions where you can think clearly.
               </p>
 
               <p>
-                I am not a guide. I am not a guru.
+                I am not a guide.
               </p>
 
               <p>
-                I maintain structure. You do the deciding.
+                I maintain structure.
               </p>
 
-              <p className="text-earth-100 font-normal pt-4">
-                If this idea unsettles you, good.<br />
-                We should talk.
+              <p>
+                You decide.
               </p>
             </div>
           </div>

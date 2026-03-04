@@ -53,9 +53,59 @@ export default function TestPage() {
                 {solitudeExpanded && (
                     <div className="space-y-6">
                         <div className="space-y-4 mb-8">
-                            <p className="text-earth-300 text-base leading-relaxed">
-                                Self-directed silence within protected conditions.
-                            </p>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 text-earth-300 text-sm md:text-base font-body">
+                                {/* Col 1: intro + heading */}
+                                <div className="space-y-2">
+                                    <p className="font-medium text-gold-500">
+                                        Weekdays | Full Silence
+                                    </p>
+                                    <p className="text-base md:text-lg leading-relaxed font-medium text-[#e7dfd3]">
+                                        A deliberately structured environment where you step away from noise, keep your own time, and remain unobserved .
+                                    </p>
+                                </div>
+
+                                {/* Col 2: weekday context + first bullet list (vertical) */}
+                                <div className="space-y-2">
+                                    <p className="font-medium text-[#e7dfd3]">
+                                        Weekdays are reserved for uninterrupted silence.
+                                    </p>
+                                    <div className="space-y-1">
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>No scheduled interaction.</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>No shared programming.</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>No performance.</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Col 3: estate context + second bullet list (vertical) */}
+                                <div className="space-y-2">
+                                    <p className="font-medium text-[#e7dfd3]">
+                                        You occupy the estate independently.
+                                    </p>
+                                    <div className="space-y-1">
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>Full withdrawal.</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>Self-directed.</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>Unobserved.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         {/* Grid View */}
@@ -97,6 +147,46 @@ export default function TestPage() {
                             <p className="text-earth-300 text-base leading-relaxed">
                                 Structured environments for testing ideas without performance pressure.
                             </p>
+
+                            <div className="space-y-3 text-earth-300 text-sm md:text-base font-body">
+                                <p className="font-medium text-[#e7dfd3]">
+                                    Weekends | Observed Silence | 10–12 Max
+                                </p>
+                                <p>
+                                    Weekends are reserved for structured, small-group inquiry.
+                                </p>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 mt-2">
+                                    <div className="flex items-start gap-2">
+                                        <span className="mt-1 text-gold-500">•</span>
+                                        <span>Silence remains the default condition.</span>
+                                    </div>
+                                    <div className="flex items-start gap-2">
+                                        <span className="mt-1 text-gold-500">•</span>
+                                        <span>Interaction is time-bound and intentional.</span>
+                                    </div>
+                                    <div className="flex items-start gap-2">
+                                        <span className="mt-1 text-gold-500">•</span>
+                                        <span>No workshops, seminars, or panels.</span>
+                                    </div>
+                                </div>
+                                <p className="mt-3">
+                                    You engage within a defined perimeter.
+                                </p>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 mt-2">
+                                    <div className="flex items-start gap-2">
+                                        <span className="mt-1 text-gold-500">•</span>
+                                        <span>One anchoring question.</span>
+                                    </div>
+                                    <div className="flex items-start gap-2">
+                                        <span className="mt-1 text-gold-500">•</span>
+                                        <span>Curated participants.</span>
+                                    </div>
+                                    <div className="flex items-start gap-2">
+                                        <span className="mt-1 text-gold-500">•</span>
+                                        <span>No stage dynamics.</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         {/* Grid View */}
@@ -139,6 +229,46 @@ export default function TestPage() {
                             <p className="text-earth-300 text-base leading-relaxed">
                                 Multi-day immersion around a single high-stakes question.
                             </p>
+
+                            <div className="space-y-3 text-earth-300 text-sm md:text-base font-body">
+                                <p className="font-medium text-[#e7dfd3]">
+                                    Weekends | Observed Silence | 10–12 Max
+                                </p>
+                                <p>
+                                    Weekends are reserved for structured, small-group inquiry.
+                                </p>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 mt-2">
+                                    <div className="flex items-start gap-2">
+                                        <span className="mt-1 text-gold-500">•</span>
+                                        <span>Silence remains the default condition.</span>
+                                    </div>
+                                    <div className="flex items-start gap-2">
+                                        <span className="mt-1 text-gold-500">•</span>
+                                        <span>Interaction is time-bound and intentional.</span>
+                                    </div>
+                                    <div className="flex items-start gap-2">
+                                        <span className="mt-1 text-gold-500">•</span>
+                                        <span>No workshops, seminars, or panels.</span>
+                                    </div>
+                                </div>
+                                <p className="mt-3">
+                                    You engage within a defined perimeter.
+                                </p>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 mt-2">
+                                    <div className="flex items-start gap-2">
+                                        <span className="mt-1 text-gold-500">•</span>
+                                        <span>One anchoring question.</span>
+                                    </div>
+                                    <div className="flex items-start gap-2">
+                                        <span className="mt-1 text-gold-500">•</span>
+                                        <span>Curated participants.</span>
+                                    </div>
+                                    <div className="flex items-start gap-2">
+                                        <span className="mt-1 text-gold-500">•</span>
+                                        <span>No stage dynamics.</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         {/* Grid View */}

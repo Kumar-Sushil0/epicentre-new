@@ -3,7 +3,7 @@ export default function TestHero() {
         <section className="relative min-h-screen flex items-end pb-20 overflow-hidden">
             {/* Top Shadow for Header Visibility */}
             <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-earth-950/80 to-transparent z-10"></div>
-            
+
             {/* Background Image with Parallax-like feel */}
             <div className="absolute inset-0 z-0">
                 <div
@@ -27,8 +27,8 @@ export default function TestHero() {
                     <p className="text-earth-300/80 text-lg md:text-2xl font-light leading-relaxed w-full font-body">
                         The estate provides conditions.<br />
                         These services determine how those conditions are engaged.<br />
-                        Three formats.<br />
-                        Three depths.<br />
+                        Two formats.<br />
+                        Two depths.<br />
                         One objective: clarity.
                     </p>
                 </div>

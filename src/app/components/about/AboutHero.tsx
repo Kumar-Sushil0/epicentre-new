@@ -23,13 +23,13 @@ export default function AboutHero() {
             <span className="italic text-gold-500">Designed Deliberately.</span>
           </h1>
           <p className="text-earth-300/80 text-lg md:text-2xl font-light leading-relaxed w-full font-body">
-            The Silent Club is not a retreat.<br />
+            The Silent Club is not accidental.<br />
             It is a structured environment engineered to reduce interference.<br />
             Silence here is functional, not aesthetic.<br />
-           
-            It is permitted.<br />
-            You do not leave life here.<br />
-            You prepare to re-enter it deliberately.
+            Membership is alignment-based.<br />
+            Access is limited by design.<br />
+            You do not arrive to be instructed.<br />
+            You arrive to think without interruption.
           </p>
         </div>
       </div>

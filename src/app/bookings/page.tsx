@@ -7,7 +7,7 @@ import Footer from "../components/Footer";
 import BookingForm from "../components/BookingForm";
 
 // --- Types ---
-type Category = "stay" | "solitude" | "expression" | "wellness" | "activities" | "residency" | "dining" | "booking";
+type Category = "stay" | "expression" | "activities" | "dining" | "booking";
 
 interface BookingItem {
   id: string;
@@ -33,7 +33,7 @@ const BOOKING_ITEMS: BookingItem[] = [
   },
   {
     id: "half-place-booking",
-    category: "booking", 
+    category: "booking",
     name: "Half Place Booking",
     description: "",
     price: 2500,
@@ -46,7 +46,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     name: "Full Place Booking",
     description: "",
     price: 5000,
-    priceDisplay: "$5,000 / day", 
+    priceDisplay: "$5,000 / day",
     image: "/moat2.png",
   },
   {
@@ -114,61 +114,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     priceDisplay: "$50 / night",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB0W9yJw8axjF-kN3nS3rx2wcnSyZDgPPr4N6-dQHkur_vVcYF7VJDVWzdTVlXQINnv8OPubPGsP93vzoZSB1siyf5Dfyl4VbjsiDfThEFh4mCXDJb2-Q3XzsQ-yKSgt_d9eFJgNilz-sF-0wpPmMdd_1eUEJmyZqiPXLW-gBggW1zAzs7-S96DxPtCF5pg4bxnbJGHsTOiNtH_b3S1jWkXeIxnAOQavLlixwoNfkJe-ZzbvSK4qZMGzvYZFscIPgABiVcKzflo9wUo",
   },
-  // WELLNESS
-  {
-    id: "physical-training",
-    category: "wellness",
-    name: "Self-Paced Physical Training",
-    description: "",
-    price: 50,
-    priceDisplay: "$50 / session",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAG8sRV16GeDF6s3Aix4GpETZ3eauYTdeaL5IlWaBQHdmLaEUl8HwITF-icK7rBJH3rs4_eyRc0OnTyudHniz8NCe3oRC2k5_KcTRLReqJdws9zmY25stjYSrFvYvnbb4fxetbYlgcqCJDWwMaBr_6UB09wT864MpT6mLPkqnqxG3JPy_DNNFOMUqcmW8iZWOE4etCbj4TW4EEkBzJss4y7vWzlNmUWjLyUiZaka0GRqyef8OxRV6v8-KYfO5Y2EoBHFW0f3nVZFV6T",
-  },
-  {
-    id: "kayaking-cycling",
-    category: "wellness",
-    name: "Outdoor Kayaking & Cycling",
-    description: "",
-    price: 75,
-    priceDisplay: "$75 / session",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBs-hb7o4jNTYxKGveJrfp7t9OjuheyFrl6975031WiGmob3tmuoKzo9e2Gi5gfjM2WmcObIeJRsPLgmRU5lBfL7W78uunGYn_oc94_vQrdsZ1BjmCDRi9ZxSTde7PluowM0B9IEifnGvy1rLS3ysNmjoRiMZS8YRu_xL2Xp4IpulOke15P3reMJbLN2dYFGAbVe9q8f6FFx6X_KZoJ7O_EJvbTRGc45bGfCOWnlsHH2_6uy6yvEum6rEOuMrf4jW3NfWk49g1EY9L5",
-  },
-  {
-    id: "yoga-meditation",
-    category: "wellness",
-    name: "Yoga & Meditation",
-    description: "",
-    price: 40,
-    priceDisplay: "$40 / session",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBpZOvr0qjgBHYFzGTiTaPYUUfxtRTTng4Mwyz1Y1DWNZJ_1bIkfqJ3exaDYGFmGQH0kEFlJ--2x9K7P2_gWe-POWZpboure-tmEfUlOPBXEahy3y3fJM4Yf1VShZ5WCMnIOQRgohRnU1MHh9dBz_RMPXnR6lgAzzpCeWWqxfY1jj5rO29e1v-so6AiyI_-y3kx2qdK_n4hThx3ugUPOZty1UBFhhmRzm7Lds78A7DSjpxT19FH5wa-UqsVvRcWUBB5wtZ4-NGFFouA",
-  },
-  {
-    id: "board-games",
-    category: "wellness",
-    name: "Leisure & Board Games",
-    description: "",
-    price: 20,
-    priceDisplay: "$20 / session",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDpLgNIXCBBA7cPpXwO9csLOqZrHsSadnHbb7Q-s24LEXvnrtHwATVxM-rgQthaw7HXT23Wv2Vj4M0QHf7vMXlnFxVR_3527JHh44DEYoHmp9RAiTjj5UKVQsSpgDXnPAtpKFwBRYkq1brPYGQAyalnn8lw1Ew3ezLh9zoRAIiS58I2gC8YpIP3e3Vx-QSnJvTJzmVneD0Kah0f9YnTcUovk_mk9mNLTdZ2PEgiloIzz1gOrdmvtvnxrXR2idxdg2P4IVZ0jM6IqpKT",
-  },
-  {
-    id: "pet-companionship",
-    category: "wellness",
-    name: "Companionship & Pet Friendly",
-    description: "",
-    price: 30,
-    priceDisplay: "$30 / session",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA2Tpwiek3PonA5i87JcVQ0JysCYWwZeYKjPR00nuxAGlqkrb3Oc2Y76BPK5eoukMAJQpiiOpUXSye5KD7z0KrMUhR-VAei7QNfxuEafVCYyoPl2zI3KEil0UkwjxK_l6FhAUKIbZzxXgqDkWh-X6LW5Zh9V0fgppjnWfzsEE9CipCUk-lGo482Uh8fF2rqUczpWgg0hGFp7hIyQClItjfCzoXHDeU1kPzuo9ZBkjj7S1RucpxI27X9fAKm_lGvr_ZxX4o8cU_In7QQ",
-  },
-  {
-    id: "farm-day",
-    category: "wellness",
-    name: "Grounding, A Day at a Farm",
-    description: "",
-    price: 60,
-    priceDisplay: "$60 / day",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAWhITh0xZYsAlerv6-wQYlJ2lGDb2fA_wBAeP-_GMQIbFan5_10uwImDJBEYxv89qG40jiKmPooOPAuK9VNy0byJTjkmF4qhQWNpG_rIZyaiWljPgYyplu6QhWi4ITpQrmDn--uGE-0y86G3XGlnTx0Szqsk_LMFKI1PoC37grwx7PFmwsXeweFG5cInow3VbwMtmjiHmOpbL1EBaeG9-Ix3LzkGgpXcwBPNvDZuavErPWW1u3mWa2a3qiqIcBhHnodWXLlg5povz0",
-  },
+
   // ACTIVITIES (EXPERIENCES)
   {
     id: "boat-safari",
@@ -215,7 +161,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     priceDisplay: "$24 / night",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDOdeEUhl309Gu2oZN0GhIAVH2l8s3vv94ApUE-B6IGCw9iIvASGUtpseKwR8a41lo7fnjVBtSoxTqXUEaEbfZJMPlRLjrsT3gZ6H_4EcN3OO9WdF-WcJQez51O2kEx4IAtenZ4GV4ZVZtFAjcFZWGtsWzbyB-IVweW31304V3gZAf1pYXeR6Ik-f66OZWQiNAnpe7OXRHn8xea79ZUVoSZNwFLGO46Y2NpGCDqWpP6jrw3m8vznKRCe9U6R2fqNdl40yZkOnKu2ZyL",
   },
-  
+
   {
     id: "sound-immersion",
     category: "activities",
@@ -270,70 +216,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     priceDisplay: "$60 / session",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDOdeEUhl309Gu2oZN0GhIAVH2l8s3vv94ApUE-B6IGCw9iIvASGUtpseKwR8a41lo7fnjVBtSoxTqXUEaEbfZJMPlRLjrsT3gZ6H_4EcN3OO9WdF-WcJQez51O2kEx4IAtenZ4GV4ZVZtFAjcFZWGtsWzbyB-IVweW31304V3gZAf1pYXeR6Ik-f66OZWQiNAnpe7OXRHn8xea79ZUVoSZNwFLGO46Y2NpGCDqWpP6jrw3m8vznKRCe9U6R2fqNdl40yZkOnKu2ZyL",
   },
-  // SOLITUDE
-  {
-    id: "angling",
-    category: "solitude",
-    name: "Angling",
-    description: "",
-    price: 35,
-    priceDisplay: "$35 / session",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA0HsBN67MCfII7SFbyoe1CuEbEDrqaYf7kqJpp72tE8oPKovG1zztOo__0OQzzELS2oQ_DGIuO1KS_1IVBucK8qj3FwvhRqbMhDhMbqm1ocMzXlUZu5zJy0ltLGZMhF5nbdxBiOOkVb0CbxNMhe3JUOqBjg4wMOeojwjaZBLtOtIZGd0bfLsFeA9XysJv44KgWPDDw2dfGb8kuCIadFmbgCYe5XTjiZwGX0My_VA7VqMgybDzGRzIgV_DDxQrBvxv58qq8EQmUqBNd",
-  },
-  {
-    id: "bird-watching",
-    category: "solitude",
-    name: "Bird Watching",
-    description: "",
-    price: 30,
-    priceDisplay: "$30 / session",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDsP2PVMAnzEeQANwyaypvuhQWIt86oMF9re2yM2NG7_BzlSLrJN65CWOxusQWunAJmE3QFO5KI0y_wRzwx06Hf1pN5gjTvHjrhusUKu6KLAiYJdg5UqyuiV3Exg2Gx20sI1_BmDSyvmNahXSAiqdL9jtzB8c6xwHed0IyPo0Bs-jEZouWM4TARhZMON7EHMpCXGgxuD-xj1WpOkwIEH6Q_rSiGChRmBpn5iA7_qxdQcU6lzE12bqOVEBm59P0h2vHi_VoV3OLtsjnM",
-  },
-  {
-    id: "star-gazing",
-    category: "solitude",
-    name: "Star Gazing",
-    description: "",
-    price: 40,
-    priceDisplay: "$40 / session",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAfUEFkuPsDcRrwomNpV_HwfuHf9O-A4L4U6MKLljPvLYJJwCUlXXxY2mjgE-er6h_jG_PklBuvKzJnEWMoUJTBEFnfYdbWj0UoS3cNXdzuBn3c88huWQsb9L1tETDwGKjEr-JXTFe2AZ17ij8blc4Ins9QdK95sIdIr8UwQdYwnWrcQj1lZakOp8Ym0eJLoProiY8a7Mgr0ih-iysVaPtnEnXgmXEjcYNY-jgM_8kZIOdBMKHtMR5R46CeAnA6rA3Z00VVJIJkJdLa",
-  },
-  {
-    id: "forest-walks",
-    category: "solitude",
-    name: "Forest Walks",
-    description: "",
-    price: 25,
-    priceDisplay: "$25 / session",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBS-7ETT0Y8bS144cz6202eGntk2MphbdlmHEt8WqWvWfiBzm80K29cumWX7SRpzNPBWVx2KCkjnZWjF6sj9NpVOCPtk688LcjR8EWa7w8VCQYsrQGbylEBhILeQ9KeZORxLzYKw_VlTgyoibONM9Epoo4FkKSfhEknTxMEh1F1TcoYX9LQ0WLW-IiFj1WOAwKKbs28Kmd6eLeVvQfDyupUltNoBBnP8j96m928ssFCgnjjZBtATZI7UDeYYqKukLbDQoQ68yqdfCCK",
-  },
-  {
-    id: "triathlon-training",
-    category: "solitude",
-    name: "Triathlon Training",
-    description: "",
-    price: 80,
-    priceDisplay: "$80 / session",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBS-7ETT0Y8bS144cz6202eGntk2MphbdlmHEt8WqWvWfiBzm80K29cumWX7SRpzNPBWVx2KCkjnZWjF6sj9NpVOCPtk688LcjR8EWa7w8VCQYsrQGbylEBhILeQ9KeZORxLzYKw_VlTgyoibONM9Epoo4FkKSfhEknTxMEh1F1TcoYX9LQ0WLW-IiFj1WOAwKKbs28Kmd6eLeVvQfDyupUltNoBBnP8j96m928ssFCgnjjZBtATZI7UDeYYqKukLbDQoQ68yqdfCCK",
-  },
-  {
-    id: "awareness-of-breath",
-    category: "solitude",
-    name: "Awareness of Breath",
-    description: "",
-    price: 20,
-    priceDisplay: "$20 / session",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA0HsBN67MCfII7SFbyoe1CuEbEDrqaYf7kqJpp72tE8oPKovG1zztOo__0OQzzELS2oQ_DGIuO1KS_1IVBucK8qj3FwvhRqbMhDhMbqm1ocMzXlUZu5zJy0ltLGZMhF5nbdxBiOOkVb0CbxNMhe3JUOqBjg4wMOeojwjaZBLtOtIZGd0bfLsFeA9XysJv44KgWPDDw2dfGb8kuCIadFmbgCYe5XTjiZwGX0My_VA7VqMgybDzGRzIgV_DDxQrBvxv58qq8EQmUqBNd",
-  },
-  {
-    id: "fascia-system",
-    category: "solitude",
-    name: "The Fascia System",
-    description: "",
-    price: 55,
-    priceDisplay: "$55 / session",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDsP2PVMAnzEeQANwyaypvuhQWIt86oMF9re2yM2NG7_BzlSLrJN65CWOxusQWunAJmE3QFO5KI0y_wRzwx06Hf1pN5gjTvHjrhusUKu6KLAiYJdg5UqyuiV3Exg2Gx20sI1_BmDSyvmNahXSAiqdL9jtzB8c6xwHed0IyPo0Bs-jEZouWM4TARhZMON7EHMpCXGgxuD-xj1WpOkwIEH6Q_rSiGChRmBpn5iA7_qxdQcU6lzE12bqOVEBm59P0h2vHi_VoV3OLtsjnM",
-  },
+
   // EXPRESSION
   {
     id: "clay-modeling",
@@ -362,25 +245,7 @@ const BOOKING_ITEMS: BookingItem[] = [
     priceDisplay: "$45 / session",
     image: "/noise.png",
   },
-  // RESIDENCY
-  {
-    id: "writers-residency",
-    category: "residency",
-    name: "Writer's Residency",
-    description: "",
-    price: 800,
-    priceDisplay: "$800 / week",
-    image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1000&q=80",
-  },
-  {
-    id: "artist-residency",
-    category: "residency",
-    name: "Artist's Studio",
-    description: "",
-    price: 850,
-    priceDisplay: "$850 / week",
-    image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1000&q=80",
-  },
+
   // DINING
   {
     id: "satvik-meal",
@@ -417,7 +282,7 @@ export default function BookingsPage() {
   const [cart, setCart] = useState<string[]>([]);
   const [quantities, setQuantities] = useState<Record<string, number>>({});
   const [activeTab, setActiveTab] = useState<TabId>("booking");
-  const [activeExperienceTab, setActiveExperienceTab] = useState<"activities" | "solitude" | "expression" | "residency">("activities");
+  const [activeExperienceTab, setActiveExperienceTab] = useState<"activities" | "expression">("activities");
 
   const isInCart = (id: string) => cart.includes(id);
 
@@ -528,9 +393,7 @@ export default function BookingsPage() {
 
   const experienceTabs = [
     { id: "activities" as const, label: "Activities" },
-    { id: "solitude" as const, label: "Solitude" },
     { id: "expression" as const, label: "Expression" },
-    { id: "residency" as const, label: "Residency" },
   ];
 
   return (
@@ -555,24 +418,25 @@ export default function BookingsPage() {
               selectedItemsDetails.map((item) => {
                 const quantity = getQuantity(item.id);
                 return (
-                <div key={item.id} className="group flex justify-between items-center bg-earth-950/50 border border-earth-800/50 rounded p-3 hover:border-gold-500/20 transition-all">
-                  <div className="flex items-center gap-3 overflow-hidden">
-                    <div className="relative w-8 h-8 rounded bg-earth-900 shrink-0">
-                      <Image src={item.image} alt={item.name} fill className="object-cover opacity-80" />
+                  <div key={item.id} className="group flex justify-between items-center bg-earth-950/50 border border-earth-800/50 rounded p-3 hover:border-gold-500/20 transition-all">
+                    <div className="flex items-center gap-3 overflow-hidden">
+                      <div className="relative w-8 h-8 rounded bg-earth-900 shrink-0">
+                        <Image src={item.image} alt={item.name} fill className="object-cover opacity-80" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-sm font-medium text-earth-100 truncate">{item.name}</p>
+                        <p className="text-xs text-earth-400">{item.category} {quantity > 1 && `× ${quantity}`}</p>
+                      </div>
                     </div>
-                    <div className="min-w-0">
-                      <p className="text-sm font-medium text-earth-100 truncate">{item.name}</p>
-                      <p className="text-xs text-earth-400">{item.category} {quantity > 1 && `× ${quantity}`}</p>
+                    <div className="flex items-center gap-3">
+                      <span className="text-xs font-medium text-gold-500">${item.price * quantity}</span>
+                      <button onClick={() => toggleItem(item.id)} className="text-earth-500 hover:text-red-400 transition-colors">
+                        <span className="material-symbols-outlined text-base">close</span>
+                      </button>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs font-medium text-gold-500">${item.price * quantity}</span>
-                    <button onClick={() => toggleItem(item.id)} className="text-earth-500 hover:text-red-400 transition-colors">
-                      <span className="material-symbols-outlined text-base">close</span>
-                    </button>
-                  </div>
-                </div>
-              )})
+                )
+              })
             )}
           </div>
 
@@ -617,11 +481,10 @@ export default function BookingsPage() {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex-1 w-full px-6 py-4 text-left transition-all relative ${
-                      activeTab === tab.id
+                    className={`flex-1 w-full px-6 py-4 text-left transition-all relative ${activeTab === tab.id
                         ? 'bg-earth-900/60 text-gold-500'
                         : 'text-earth-300 hover:bg-earth-900/30 hover:text-earth-100'
-                    }`}
+                      }`}
                   >
                     <div className="text-sm font-serif" style={{ fontFamily: 'Outfit, sans-serif' }}>{tab.label}</div>
                     <div className="text-xs text-earth-400 mt-0.5">{tab.subtitle}</div>
@@ -637,7 +500,7 @@ export default function BookingsPage() {
                 {activeTab === "booking" && renderItems(BOOKING_ITEMS.filter(i => i.category === "booking"))}
                 {activeTab === "stay" && renderItems(BOOKING_ITEMS.filter(i => i.category === "stay"))}
                 {activeTab === "dining" && renderItems(BOOKING_ITEMS.filter(i => i.category === "dining"))}
-                
+
                 {activeTab === "experiences" && (
                   <div>
                     {/* Nested Experience Tabs */}
@@ -646,11 +509,10 @@ export default function BookingsPage() {
                         <button
                           key={tab.id}
                           onClick={() => setActiveExperienceTab(tab.id)}
-                          className={`flex-shrink-0 px-4 py-3 text-sm transition-all relative ${
-                            activeExperienceTab === tab.id
+                          className={`flex-shrink-0 px-4 py-3 text-sm transition-all relative ${activeExperienceTab === tab.id
                               ? 'bg-earth-900/40 text-gold-400'
                               : 'text-earth-300 hover:bg-earth-900/20 hover:text-earth-100'
-                          }`}
+                            }`}
                         >
                           {tab.label}
                           {activeExperienceTab === tab.id && (
@@ -659,13 +521,11 @@ export default function BookingsPage() {
                         </button>
                       ))}
                     </div>
-                    
+
                     {/* Experience Content */}
                     <div>
                       {activeExperienceTab === "activities" && renderItems(BOOKING_ITEMS.filter(i => i.category === "activities"))}
-                      {activeExperienceTab === "solitude" && renderItems(BOOKING_ITEMS.filter(i => i.category === "solitude"))}
                       {activeExperienceTab === "expression" && renderItems(BOOKING_ITEMS.filter(i => i.category === "expression"))}
-                      {activeExperienceTab === "residency" && renderItems(BOOKING_ITEMS.filter(i => i.category === "residency"))}
                     </div>
                   </div>
                 )}

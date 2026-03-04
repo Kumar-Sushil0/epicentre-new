@@ -13,11 +13,11 @@ export default function ServicesOffering() {
   return (
     <section id="cycles-section" className="relative py-6 md:py-8 px-4 md:px-16 bg-earth-950">
       <div className="w-full">
-        <h2 className="text-2xl md:text-3xl font-normal text-gold-500 mb-1 text-center uppercase" style={{ fontFamily: 'Outfit, sans-serif' }}>
+        <h2 className="text-2xl md:text-3xl font-normal text-gold-500 mb-4 md:mb-6 text-center" style={{ fontFamily: 'Outfit, sans-serif' }}>
            Silent Cycles
         </h2>
         <p className="text-earth-300 text-base md:text-lg text-center mb-3 md:mb-4 px-4">
-          The same environment reveals different things at different depths. Cycles allow you to return with intention.
+        Cycles do not change the environment. They change your depth of engagement. Access is available through membership or invitation only.
         </p>
 
         <div className="max-w-5xl mx-auto">
@@ -105,7 +105,7 @@ export default function ServicesOffering() {
                   Full Cycle
                 </h3>
                 <p className="text-gold-500 text-sm leading-snug mb-3">
-                  Complete environmental control for sustained immersion.
+                  Complete environmental control for sustained immersion. No overlap. No shared programming. Designed for uninterrupted continuity.
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <div className="flex items-center gap-2">
@@ -118,13 +118,13 @@ export default function ServicesOffering() {
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-gold-500">•</span>
-                    <span className="text-earth-300 text-sm">Includes Rooms, Dorms, Community Hall, Tents with flexible sleeping options upto for 40 people.</span>
+                    <span className="text-earth-300 text-sm">Includes 4 Rooms, 10 Dorm Beds, Access to  Community Hall, Tents and flexible sleeping options</span>
                   </div>
                 </div>
               </div>
 
-              {/* Right side: Toggle and Price stacked vertically - Desktop Only */}
-              <div className="hidden md:flex flex-col justify-between items-end h-full min-h-[120px]">
+              {/* Right side: Day selection indicator - Desktop Only */}
+              <div className="hidden md:flex flex-col items-end h-full min-h-[120px]">
                 {/* Day Selection Visual Indicator Container - Top */}
                 <div className="inline-flex items-center gap-2 bg-earth-800/50 rounded-lg p-1 border border-earth-700/50">
                   {/* Weekdays */}
@@ -171,22 +171,19 @@ export default function ServicesOffering() {
                   </div>
                 </div>
 
-                {/* Price Container - Bottom */}
-                <div className="text-right">
-                  <div className="text-gold-500 text-xl font-normal">
-                    ₹{cycleType === 'weekend' ? '1,20,000' : '1,00,000'}
-                  </div>
-                  <p className="text-earth-400 text-xs mt-1">Per Night • Taxes applicable</p>
-                </div>
               </div>
+            </div>
 
-              {/* Price Container - Mobile Only */}
-              <div className="md:hidden text-right">
-                <div className="text-gold-500 text-xl font-normal">
-                  ₹{cycleType === 'weekend' ? '1,20,000' : '1,00,000'}
-                </div>
-                <p className="text-earth-400 text-xs mt-1">Per Night • Taxes applicable</p>
-              </div>
+            {/* CTA - Full Cycle */}
+            <div className="mt-3 text-right">
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs md:text-sm font-normal text-gold-500 hover:text-gold-400 underline"
+              >
+                Request pricing
+              </a>
             </div>
           </div>
 
@@ -228,8 +225,8 @@ export default function ServicesOffering() {
             </h3>
             
             <p className="text-gold-500 text-sm leading-snug mb-3">
-              Uninterrupted silence for extended focus and deep work.
-              </p>
+              Extended silence for deep, sustained work. No event overlap. Low density.
+            </p>
             <div className="space-y-1 mb-2 flex-1">
               <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
@@ -251,10 +248,14 @@ export default function ServicesOffering() {
             </div>
 
             <div className="mt-auto text-right">
-              <div className="text-gold-500 text-lg font-normal">
-                {accommodationType === 'dorm' ? '₹20,000' : '₹30,000'}
-              </div>
-              <p className="text-earth-400 text-xs mt-1">Per Person • Taxes applicable</p>
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs md:text-sm font-normal text-gold-500 hover:text-gold-400 underline"
+              >
+                Request pricing
+              </a>
             </div>
           </div>
 
@@ -265,7 +266,7 @@ export default function ServicesOffering() {
             </h3>
             
             <p className="text-gold-500 text-sm leading-snug mb-3">
-              Structured withdrawal to reset direction without disruption.
+              Structured withdrawal without disrupting larger commitments.
             </p>
 
             <div className="space-y-1 mb-2 flex-1">
@@ -284,10 +285,14 @@ export default function ServicesOffering() {
             </div>
 
             <div className="mt-auto text-right">
-              <div className="text-gold-500 text-lg font-normal">
-                {accommodationType === 'dorm' ? '₹10,000' : '₹15,000'}
-              </div>
-              <p className="text-earth-400 text-xs mt-1">Per Person • Taxes applicable</p>
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs md:text-sm font-normal text-gold-500 hover:text-gold-400 underline"
+              >
+                Request pricing
+              </a>
             </div>
           </div>
           
@@ -298,8 +303,8 @@ export default function ServicesOffering() {
             </h3>
             
             <p className="text-gold-500 text-xs md:text-sm leading-snug mb-3">
-              Short calibration when attention needs immediate correction.
-</p>
+              Short recalibration when attention needs immediate correction.
+            </p>
             <div className="space-y-1 mb-2 flex-1">
               <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
@@ -312,10 +317,14 @@ export default function ServicesOffering() {
             </div>
 
             <div className="mt-auto text-right">
-              <div className="text-gold-500 text-lg font-normal">
-                ₹1,000
-              </div>
-              <p className="text-earth-400 text-xs mt-1">Per Person • Taxes applicable</p>
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs md:text-sm font-normal text-gold-500 hover:text-gold-400 underline"
+              >
+                Request pricing
+              </a>
             </div>
           </div>
 
@@ -330,16 +339,15 @@ export default function ServicesOffering() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block text-base md:text-lg font-normal text-gold-500 hover:text-gold-400 hover:border-gold-400 transition-colors cursor-pointer border-2 border-gold-500 rounded-lg px-4 md:px-6 py-2"
-            style={{ fontFamily: 'Outfit, sans-serif' }}
           >
-            Request a conversation
+            APPLY FOR MEMBERSHIPS →
           </a>
         </div>
         
          {/* Bottom Notice */}
         <div className="text-center ">
           <p className="text-earth-300 text-xs md:text-sm leading-snug max-w-full mx-auto px-4">
-            Access is based on alignment with the nature of the estate.
+          For those who can remain self-directed.
           </p>
         </div>
 

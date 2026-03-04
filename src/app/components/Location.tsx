@@ -12,8 +12,8 @@ export default function Location() {
   return (
     <section className="py-8 bg-gold-500 flex items-center" id="location">
       <div className="w-full px-4 md:px-16">
-        <div className="mb-8">
-           <h3 className="text-3xl font-normal mb-3 text-earth-900 uppercase" style={{ fontFamily: 'Outfit, sans-serif' }}>Location</h3>
+        <div className="mb-8 text-center">
+           <h3 className="text-3xl font-normal mb-3 text-earth-900" style={{ fontFamily: 'Outfit, sans-serif' }}>Location</h3>
         </div>
 
         <div className="flex flex-col md:flex-row gap-8">
