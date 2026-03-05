@@ -51,7 +51,6 @@ import AboutPrinciples from "../components/about/AboutPrinciples";
 import AboutTriad from "../components/about/AboutTriad";
 import BuiltEnvironment from "../components/about/BuiltEnvironment";
 import WhoThisIsFor from "../components/about/WhoThisIsFor";
-import AboutAttentionCycle from "../components/about/AboutAttentionCycle";
 import TeamSection from "../components/TeamSection";
 import OurPhilosophy from "../components/OurPhilosophy";
 import LivingRoom from '../components/about/LivingRoom';
@@ -76,7 +75,6 @@ export default function AboutUsPage() {
         <OurPhilosophy />
         <AboutPrinciples />
         <AboutPhilosophy />
-        <AboutAttentionCycle />
         <LivingRoom />
 
 

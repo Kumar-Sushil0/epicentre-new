@@ -17,18 +17,19 @@ export default function VoidAndFormats() {
           </h2>
 
 
-          <div className="max-w-2xl mx-auto text-center text-earth-300 text-base md:text-lg leading-relaxed space-y-3 md:space-y-4">
-            <p>You step into a low-stimulation environment.
-              <br />External roles pause.
-              Input reduces.
-              Attention stabilizes.
-              <br />From that stability, decisions surface.
+          <div className="max-w-5xl mx-auto text-center text-earth-300 text-base md:text-lg leading-relaxed space-y-3 md:space-y-4">
+            <p className="md:whitespace-nowrap">
+              You step into a low-stimulation environment. External roles pause. Input reduces. Attention stabilizes.
+            </p>
+            <p>
+              From that stability, decisions surface.
               Nothing is interpreted for you.
-              <br />
+            </p>
+            <p>
               Silence is not the goal.
-              
               Silence is the condition.
-              <br />Clarity emerges.</p>
+              Clarity emerges.
+            </p>
           </div>
         </div>
 
@@ -49,7 +50,7 @@ export default function VoidAndFormats() {
                   Solitude as a Service
                 </h3>
                 <p className="text-earth-300 text-xs md:text-sm leading-relaxed">
-                  Self-directed silence for deep work, decompression, and decision space.
+                  Self-directed silence for deep work and decision space.
                 </p>
               </div>
             </Link>
@@ -67,7 +68,7 @@ export default function VoidAndFormats() {
                   Experiments as a Service
                 </h3>
                 <p className="text-earth-300 text-xs md:text-sm leading-relaxed">
-                  Controlled sessions for testing ideas and formats without public pressure.
+                  Controlled sessions for testing ideas without public pressure.
                 </p>
               </div>
             </Link>
@@ -85,7 +86,7 @@ export default function VoidAndFormats() {
                   Residency as a Service
                 </h3>
                 <p className="text-earth-300 text-xs md:text-sm leading-relaxed">
-                  Small-group immersion around a single high-stakes question or transition.
+                  Small-group immersion around a single high-stakes question.
                 </p>
               </div>
             </Link>

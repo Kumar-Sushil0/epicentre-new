@@ -66,8 +66,8 @@ export default function DiningVariant() {
     {
       id: 0,
       category: "",
-      title: "Private Room",
-      description: "Complete withdrawal and uninterrupted rest.",
+      title: "Private Rooms",
+      description: "Protected space for uninterrupted rest.",
       images: [
         "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/room3.png",
       ],
@@ -97,7 +97,7 @@ export default function DiningVariant() {
       id: 0,
       category: "",
       title: "Satvik Home Food",
-      description: "Uncomplicated vegetarian meals prepared for ease.",
+      description: "Meals designed for stability, not stimulation.",
       images: [
         "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/homefood1.png",
       ],
@@ -106,7 +106,7 @@ export default function DiningVariant() {
       id: 1,
       category: "",
       title: "Salads, Smoothies & Sandwiches",
-      description: "Occasional lighter preparations available anytime.",
+      description: "Light meals that sustain focus.",
       images: [
         "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/sss1.png",
       ],
@@ -114,8 +114,8 @@ export default function DiningVariant() {
     {
       id: 2,
       category: "",
-      title: "Barbeque, Pizza Sushi",
-      description: "Occasional communal meals prepared intentionally.",
+      title: "Barbeque, Pizza & Sushi",
+      description: "Occasional shared meals within rhythm.",
       images: [
         "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/pbs1.png",
       ],
@@ -127,7 +127,7 @@ export default function DiningVariant() {
       id: 0,
       category: "",
       title: "Outdoor Gym",
-      description: "Always-available practices that support the body.",
+      description: "Physical discharge for mental clarity.",
       images: [
         "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/gym1.png",
       ],
@@ -136,7 +136,7 @@ export default function DiningVariant() {
       id: 1,
       category: "",
       title: "Contrast Therapy",
-      description: "Hot and cold therapy for nervous system regulation.",
+      description: "Heat and cold to recalibrate the nervous system.",
       images: [
         "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/hot.png",
       ],
@@ -145,7 +145,7 @@ export default function DiningVariant() {
       id: 2,
       category: "",
       title: "Yoga & Meditation",
-      description: "Self-led, nature-based engagement without instruction.",
+      description: "Stillness practiced through breath and posture.",
       images: [
         "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/yogaloft.png",
       ],
@@ -180,9 +180,14 @@ export default function DiningVariant() {
     <section ref={sectionRef} className="py-12 md:py-24 min-h-[100vh] bg-earth-900 flex items-center" id="dining">
       <div className="w-full px-4 md:px-16">
         <div className="mb-6 md:mb-8 text-center">
-          <h3 className="text-2xl md:text-3xl font-normal mb-4 md:mb-6 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>The Club Includes</h3>
-          <p className="text-[#e7dfd3] font-body text-base md:text-lg max-w-full">
-            Accommodations, Food, and Practice & Recovery
+          <h3 className="text-2xl md:text-3xl font-normal mb-4 md:mb-6 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            The Club Includes
+          </h3>
+          <p className="text-[#e7dfd3] font-body text-base md:text-lg max-w-full font-medium">
+            Accommodations, food, and physical discharge.
+          </p>
+          <p className="text-[#e7dfd3] font-body text-sm md:text-base max-w-full mt-2">
+            Everything required for sustained attention. Nothing unnecessary.
           </p>
         </div>
 

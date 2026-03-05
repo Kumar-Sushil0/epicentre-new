@@ -16,6 +16,9 @@ export default function DesignedDeliberately() {
             <p className="text-earth-300 text-base md:text-lg leading-normal">
               Every constraint here protects your attention.
             </p>
+            <p className="text-earth-300 text-base md:text-lg leading-normal">
+              Nothing here is accidental. Interference is removed by design.
+            </p>
           </div>
         </div>
 
@@ -35,8 +38,9 @@ export default function DesignedDeliberately() {
               >
                 Designed Silence
               </h3>
-              <p className="text-earth-300 text-xs md:text-sm leading-relaxed max-w-xs mx-auto">
-                Sound, pace, and signal are shaped to reduce distraction.
+              <p className="text-earth-300 text-xs md:text-sm leading-relaxed">
+                Sound, pace, and signal are reduced.<br />
+                Distraction is edited out of the environment.
               </p>
             </div>
 
@@ -53,8 +57,9 @@ export default function DesignedDeliberately() {
               >
                 Designed Anonymity
               </h3>
-              <p className="text-earth-300 text-xs md:text-sm leading-relaxed max-w-xs mx-auto">
-                External roles pause. Only first names remain.
+              <p className="text-earth-300 text-xs md:text-sm leading-relaxed">
+                External roles pause.<br />
+                Only first names remain.
               </p>
             </div>
 
@@ -71,8 +76,9 @@ export default function DesignedDeliberately() {
               >
                 Designed Withdrawal
               </h3>
-              <p className="text-earth-300 text-xs md:text-sm leading-relaxed max-w-xs mx-auto">
-                Distance from constant input allows thought to stabilize.
+              <p className="text-earth-300 text-xs md:text-sm leading-relaxed">
+                Distance from constant input restores cognitive space.<br />
+                Thought stabilizes without interference.
               </p>
             </div>
           </div>

@@ -12,8 +12,14 @@ export default function Location() {
   return (
     <section className="py-8 bg-gold-500 flex items-center" id="location">
       <div className="w-full px-4 md:px-16">
-        <div className="mb-8 text-center">
-           <h3 className="text-3xl font-normal mb-3 text-earth-900" style={{ fontFamily: 'Outfit, sans-serif' }}>Location</h3>
+        <div className="mb-6 text-center">
+          <h3 className="text-3xl font-normal mb-3 text-earth-900" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            Location
+          </h3>
+          <p className="text-earth-900 font-body text-base md:text-lg font-medium">
+            Remote enough for silence.<br />
+            Close enough to remain accessible.
+          </p>
         </div>
 
         <div className="flex flex-col md:flex-row gap-8">
@@ -38,17 +44,21 @@ export default function Location() {
           <div className="w-full md:w-1/2 flex items-center h-[300px]">
             <div className="bg-earth-900 border border-earth-900/30 rounded-lg p-8 w-full h-full flex items-center">
               <div className="space-y-6 text-gold-500">
-                <p className="text-2xl font-normal text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Bhigwan, Maharashtra.</p>
+                <p className="text-2xl font-normal text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                  Bhigwan, Maharashtra.
+                </p>
                 <div className="space-y-3 text-lg">
                   <div className="flex items-center gap-3">
                     <span className="text-gold-500">•</span>
-                    <p>2.5 hours from Pune.</p>
+                    <p>2.5 hours from Pune</p>
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="text-gold-500">•</span>
-                    <p>5.5 hours from Mumbai.</p>
+                    <p>5.5 hours from Mumbai</p>
                   </div>
-                  <p className="pt-3 border-t border-gold-500/30">Accessed by Taxi, Bus & Train - From Mumbai, Pune, Baramati</p>
+                  <p className="pt-3 border-t border-gold-500/30">
+                    Accessed by taxi, bus, or train.
+                  </p>
                 </div>
               </div>
             </div>
