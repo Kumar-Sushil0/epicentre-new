@@ -73,7 +73,7 @@ export default function Hero() {
 
           <div className="space-y-3 md:space-y-4 text-earth-300/80 font-body">
             <p className="text-lg md:text-2xl font-light leading-relaxed">
-              A private estate in Bhigwan designed to protect attention. <br/> For individuals between major chapters. <br/> <span className="text-gold-500 font-bold">2026 Focus</span>: Post-exit founders designing their next decade.
+              A private estate in Bhigwan designed to protect attention. For individuals between major chapters. <br/> <span className="text-gold-500 font-bold">2026 Focus</span>: Post-exit founders designing their next decade.
             </p>
             <p className="text-base md:text-lg font-light leading-relaxed">
              
@@ -90,10 +90,10 @@ export default function Hero() {
               className="inline-flex items-center gap-2 text-gold-500 hover:text-gold-400 hover:border-gold-400 transition-colors duration-300 text-base md:text-lg font-normal border-2 border-gold-500 rounded-lg px-5 md:px-6 py-2.5 md:py-3 bg-earth-950/50 backdrop-blur-sm"
               
             >
-              APPLY FOR MEMBERSHIPS →
+             REQUEST AN INVITE →
             </Link>
             <p className="text-earth-300/80">
-            Membership is alignment-based.
+            Access is by alignment.
             </p>
           </div>
         </div>
