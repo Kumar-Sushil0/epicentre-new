@@ -4,12 +4,12 @@ import BetweenChapters from "./components/BetweenChapters";
 import Philosophy from "./components/Philosophy";
 import WhatThisIsNot from "./components/WhatThisIsNot";
 import DiningVariant from "./components/DiningVariant";
-import ServicesOffering from "./components/ServicesOffering";
 import Location from "./components/Location";
 import Footer from "./components/Footer";
 import DesignedDeliberately from "./components/DesignedDeliberately";
 import VoidAndFormats from "./components/VoidAndFormats";
 import AboutAttentionCycle from "./components/about/AboutAttentionCycle";
+import RequestConversation from "./components/RequestConversation";
 
 export default function Home() {
   return (
@@ -22,10 +22,9 @@ export default function Home() {
       <VoidAndFormats />
       <AboutAttentionCycle />
 
-      <DiningVariant/>
+      <DiningVariant />
       <Location />
-      <ServicesOffering />
-     
+      <RequestConversation />
       <Footer />
     </main>
   );

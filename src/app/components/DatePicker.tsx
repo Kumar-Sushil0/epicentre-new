@@ -8,9 +8,10 @@ interface DatePickerProps {
   onCheckInChange: (date: Date | null) => void;
   onCheckOutChange: (date: Date | null) => void;
   onClose: () => void;
+  variant?: "dropdown" | "overlay" | "inline";
 }
 
-export default function DatePicker({ checkIn, checkOut, onCheckInChange, onCheckOutChange, onClose }: DatePickerProps) {
+export default function DatePicker({ checkIn, checkOut, onCheckInChange, onCheckOutChange, onClose, variant = "dropdown" }: DatePickerProps) {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [hoverDate, setHoverDate] = useState<Date | null>(null);
   const popupRef = useRef<HTMLDivElement>(null);
@@ -84,13 +85,19 @@ export default function DatePicker({ checkIn, checkOut, onCheckInChange, onCheck
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  // Close on outside click
+  // Close on outside click (for dropdown/overlay variants only)
   useEffect(() => {
+    if (variant === "inline") return;
+
     const handleClickOutside = (event: MouseEvent) => {
       if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
-        const target = event.target as HTMLElement;
-        // Don't close if clicking on the date input field
-        if (!target.closest('[data-date-input]')) {
+        if (variant === "dropdown") {
+          const target = event.target as HTMLElement;
+          // Don't close if clicking on the date input field
+          if (!target.closest('[data-date-input]')) {
+            onClose();
+          }
+        } else {
           onClose();
         }
       }
@@ -105,11 +112,18 @@ export default function DatePicker({ checkIn, checkOut, onCheckInChange, onCheck
       clearTimeout(timeoutId);
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [onClose]);
+  }, [onClose, variant]);
+
+  const wrapperClass =
+    variant === "overlay"
+      ? "fixed inset-0 z-[9999] flex items-center justify-center bg-black/40"
+      : variant === "inline"
+      ? "w-full"
+      : "absolute top-full left-0 mt-2 z-[9999]";
 
   return (
-    <div className="absolute top-full left-0 mt-2 z-[9999]" ref={popupRef}>
-      <div className="border border-earth-700 rounded-xl shadow-2xl p-4 w-[320px]" style={{ backgroundColor: '#261b14' }}>
+    <div className={wrapperClass} ref={popupRef}>
+      <div className="border border-earth-700 rounded-xl shadow-2xl p-4 w-full" style={{ backgroundColor: '#261b14' }}>
         {/* Selected Dates Display */}
         <div className="grid grid-cols-2 gap-2 mb-4">
           <div className="bg-earth-900 border border-earth-700 rounded-lg p-2">
