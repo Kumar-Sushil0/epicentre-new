@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DatePicker from "./DatePicker";
 
 type CheckoutStep = "form" | "confirmation";
@@ -24,6 +24,9 @@ export default function CyclesCheckout({
   const [checkIn, setCheckIn] = useState<Date | null>(null);
   const [checkOut, setCheckOut] = useState<Date | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [bookedRanges, setBookedRanges] = useState<
+    { checkIn: string | Date; checkOut: string | Date }[]
+  >([]);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -75,6 +78,25 @@ export default function CyclesCheckout({
       setIsSubmitting(false);
     }
   };
+
+  useEffect(() => {
+    const fetchAvailability = async () => {
+      try {
+        const params = new URLSearchParams({
+          cycleLabel: selectedCycle.label,
+          accommodationType: selectedCycle.accommodationType,
+        });
+        const res = await fetch(`/api/cycle-availability?${params.toString()}`);
+        if (!res.ok) return;
+        const data = await res.json();
+        setBookedRanges(data.bookedRanges || []);
+      } catch (error) {
+        console.error("Error fetching availability", error);
+      }
+    };
+
+    fetchAvailability();
+  }, [selectedCycle.label, selectedCycle.accommodationType]);
 
   return (
     <div className="mt-6 md:mt-8 max-w-7xl mx-auto">
@@ -162,6 +184,7 @@ export default function CyclesCheckout({
                 onCheckOutChange={setCheckOut}
                 onClose={() => {}}
                 variant="inline"
+                unavailableRanges={bookedRanges}
               />
             </div>
 

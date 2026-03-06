@@ -75,7 +75,6 @@ export default function AboutUsPage() {
         <AboutHero />
 
         <AboutWhat />
-        <AboutWho />
 
         <OurPhilosophy />
         <AboutPrinciples />

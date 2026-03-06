@@ -9,9 +9,18 @@ interface DatePickerProps {
   onCheckOutChange: (date: Date | null) => void;
   onClose: () => void;
   variant?: "dropdown" | "overlay" | "inline";
+  unavailableRanges?: { checkIn: string | Date; checkOut: string | Date }[];
 }
 
-export default function DatePicker({ checkIn, checkOut, onCheckInChange, onCheckOutChange, onClose, variant = "dropdown" }: DatePickerProps) {
+export default function DatePicker({
+  checkIn,
+  checkOut,
+  onCheckInChange,
+  onCheckOutChange,
+  onClose,
+  variant = "dropdown",
+  unavailableRanges = [],
+}: DatePickerProps) {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [hoverDate, setHoverDate] = useState<Date | null>(null);
   const popupRef = useRef<HTMLDivElement>(null);
@@ -47,6 +56,17 @@ export default function DatePicker({ checkIn, checkOut, onCheckInChange, onCheck
       return false;
     }
     return isDateInRange(date);
+  };
+
+  const isUnavailable = (date: Date) => {
+    if (!unavailableRanges.length) return false;
+    return unavailableRanges.some((range) => {
+      const start = new Date(range.checkIn);
+      const end = new Date(range.checkOut);
+      start.setHours(0, 0, 0, 0);
+      end.setHours(0, 0, 0, 0);
+      return date >= start && date <= end;
+    });
   };
 
   const handleDateClick = (day: number) => {
@@ -183,6 +203,7 @@ export default function DatePicker({ checkIn, checkOut, onCheckInChange, onCheck
               const isCheckIn = checkIn && isSameDay(date, checkIn);
               const isCheckOut = checkOut && isSameDay(date, checkOut);
               const inRange = isDateBetween(date);
+              const unavailable = isUnavailable(date);
               const isHovering = hoverDate && checkIn && !checkOut && date > checkIn && date <= hoverDate;
 
               return (
@@ -193,15 +214,15 @@ export default function DatePicker({ checkIn, checkOut, onCheckInChange, onCheck
                     handleDateClick(day);
                   }}
                   onMouseEnter={() => setHoverDate(date)}
-                  disabled={isPast}
+                  disabled={isPast || unavailable}
                   type="button"
                   className={`aspect-square flex items-center justify-center rounded text-xs transition-all pointer-events-auto ${
-                    isPast
-                      ? "text-earth-700 cursor-not-allowed"
+                    isPast || unavailable
+                      ? "text-earth-700 cursor-not-allowed line-through"
                       : isCheckIn || isCheckOut
                       ? "bg-gold-500 text-earth-950 font-bold"
                       : inRange || isHovering
-                      ? "bg-gold-500 text-gold-500 font-medium"
+                      ? "bg-gold-500/20 text-gold-300"
                       : "text-earth-300 hover:text-earth-100 hover:bg-earth-700/50"
                   }`}
                 >

@@ -4,35 +4,35 @@ import React, { useState } from 'react';
 
 const research = [
     {
-        title: "Attention Restoration Theory — Directed Attention Fatigue",
+        title: "Attention Restoration Theory  Directed Attention Fatigue",
         author: "Kaplan, S. (1995). The Restorative Benefits of Nature: Toward an Integrative Framework. Journal of Environmental Psychology.",
         description:
             "Kaplan (1995) demonstrates that modern life depletes directed attention through constant stimulus. Low-stimulation, natural environments restore cognitive capacity and reduce mental fatigue. The estate is structured around this finding.",
         link: "https://doi.org/10.1016/0272-4944(95)90001-2",
     },
     {
-        title: "Systematic Review — Attentional Recovery",
+        title: "Systematic Review Attentional Recovery",
         author: "Ohly, H. et al. (2016). Attention Restoration Theory: A systematic review. Journal of Toxicology and Environmental Health, Part B.",
         description:
             "Meta-analyses confirm that environments with reduced sensory demand improve executive attention and cognitive performance. Silence here is not aesthetic, it is attentional recovery infrastructure.",
         link: "https://pubmed.ncbi.nlm.nih.gov/27668460/",
     },
     {
-        title: "Default Mode Network — Internal Processing",
+        title: "Default Mode Network Internal Processing",
         author: "Raichle, M. E. et al. (2001). A Default Mode of Brain Function. Proceedings of the National Academy of Sciences (PNAS).",
         description:
             "Neuroscience identifies the Default Mode Network as active during rest and internally directed thought. Reduced external input allows identity processing and reflective thinking to stabilise. Minimising interruption is what makes this possible.",
         link: "https://doi.org/10.1073/pnas.98.2.676",
     },
     {
-        title: "Self-Determination Theory — Autonomy and Agency",
+        title: "Self-Determination Theory Autonomy and Agency",
         author: "Ryan, R. M., & Deci, E. L. (2000). Self-Determination Theory and the Facilitation of Intrinsic Motivation, Social Development, and Well-Being. American Psychologist.",
         description:
             "When external pressure decreases, intrinsic motivation increases. The estate removes performance pressure to restore self-directed agency. You arrive without a role to perform.",
         link: "https://doi.org/10.1037/0003-066X.55.1.68",
     },
     {
-        title: "Locus of Control — Responsibility and Decision",
+        title: "Locus of Control Responsibility and Decision",
         author: "Rotter, J. B. (1966). Generalized Expectancies for Internal versus External Control of Reinforcement. Psychological Monographs.",
         description:
             "Internal locus of control correlates with responsibility-taking and adaptive decision-making. When attention stabilises, agency strengthens. This environment protects that condition.",

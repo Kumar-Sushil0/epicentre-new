@@ -53,21 +53,35 @@ export default function TestPage() {
                 {solitudeExpanded && (
                     <div className="space-y-6">
                         <div className="space-y-4 mb-8">
+                            <p className="font-medium text-gold-500 text-sm md:text-base">
+                                Weekdays | Full Silence
+                            </p>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 text-earth-300 text-sm md:text-base font-body">
-                                {/* Col 1: intro + heading */}
+                                {/* Col 1: The Cycle */}
                                 <div className="space-y-2">
-                                    <p className="font-medium text-gold-500">
-                                        Weekdays | Full Silence
+                                    <p className="font-semibold text-[#e7dfd3]">
+                                        The Cycle
                                     </p>
-                                    <p className="text-base md:text-lg leading-relaxed font-medium text-[#e7dfd3]">
-                                        A deliberately structured environment where you step away from noise, keep your own time, and remain unobserved .
-                                    </p>
+                                    <div className="space-y-1">
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>Step away from noise.</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>Keep your own time.</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>Remain unobserved.</span>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                {/* Col 2: weekday context + first bullet list (vertical) */}
+                                {/* Col 2: The Protocol */}
                                 <div className="space-y-2">
-                                    <p className="font-medium text-[#e7dfd3]">
-                                        Weekdays are reserved for uninterrupted silence.
+                                    <p className="font-semibold text-[#e7dfd3]">
+                                        The Protocol
                                     </p>
                                     <div className="space-y-1">
                                         <div className="flex items-start gap-2">
@@ -85,10 +99,10 @@ export default function TestPage() {
                                     </div>
                                 </div>
 
-                                {/* Col 3: estate context + second bullet list (vertical) */}
+                                {/* Col 3: The Condition */}
                                 <div className="space-y-2">
-                                    <p className="font-medium text-[#e7dfd3]">
-                                        You occupy the estate independently.
+                                    <p className="font-semibold text-[#e7dfd3]">
+                                        The Condition
                                     </p>
                                     <div className="space-y-1">
                                         <div className="flex items-start gap-2">
@@ -148,42 +162,70 @@ export default function TestPage() {
                                 Structured environments for testing ideas without performance pressure.
                             </p>
 
-                            <div className="space-y-3 text-earth-300 text-sm md:text-base font-body">
-                                <p className="font-medium text-[#e7dfd3]">
-                                    Weekends | Observed Silence | 10–12 Max
-                                </p>
-                                <p>
-                                    Weekends are reserved for structured, small-group inquiry.
-                                </p>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 mt-2">
-                                    <div className="flex items-start gap-2">
-                                        <span className="mt-1 text-gold-500">•</span>
-                                        <span>Silence remains the default condition.</span>
-                                    </div>
-                                    <div className="flex items-start gap-2">
-                                        <span className="mt-1 text-gold-500">•</span>
-                                        <span>Interaction is time-bound and intentional.</span>
-                                    </div>
-                                    <div className="flex items-start gap-2">
-                                        <span className="mt-1 text-gold-500">•</span>
-                                        <span>No workshops, seminars, or panels.</span>
+                            <p className="font-medium text-[#e7dfd3] text-sm md:text-base">
+                                Weekends | Observed Silence | 10–12 Max
+                            </p>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 text-earth-300 text-sm md:text-base font-body">
+                                {/* Col 1: The Cycle */}
+                                <div className="space-y-2">
+                                    <p className="font-semibold text-[#e7dfd3]">
+                                        The Cycle
+                                    </p>
+                                    <div className="space-y-1">
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>Reserved for weekends.</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>Presence is shared, not solitary.</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>Limited participants, curated for alignment.</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <p className="mt-3">
-                                    You engage within a defined perimeter.
-                                </p>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 mt-2">
-                                    <div className="flex items-start gap-2">
-                                        <span className="mt-1 text-gold-500">•</span>
-                                        <span>One anchoring question.</span>
+
+                                {/* Col 2: The Protocol */}
+                                <div className="space-y-2">
+                                    <p className="font-semibold text-[#e7dfd3]">
+                                        The Protocol
+                                    </p>
+                                    <div className="space-y-1">
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>Silence remains the default condition.</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>Interaction is time-bound and intentional.</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>One anchoring question holds the session.</span>
+                                        </div>
                                     </div>
-                                    <div className="flex items-start gap-2">
-                                        <span className="mt-1 text-gold-500">•</span>
-                                        <span>Curated participants.</span>
-                                    </div>
-                                    <div className="flex items-start gap-2">
-                                        <span className="mt-1 text-gold-500">•</span>
-                                        <span>No stage dynamics.</span>
+                                </div>
+
+                                {/* Col 3: The Condition */}
+                                <div className="space-y-2">
+                                    <p className="font-semibold text-[#e7dfd3]">
+                                        The Condition
+                                    </p>
+                                    <div className="space-y-1">
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>No workshops or seminars.</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>No stage dynamics.</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>You engage within a defined perimeter.</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -230,42 +272,70 @@ export default function TestPage() {
                                 Multi-day immersion around a single high-stakes question.
                             </p>
 
-                            <div className="space-y-3 text-earth-300 text-sm md:text-base font-body">
-                                <p className="font-medium text-[#e7dfd3]">
-                                    Weekends | Observed Silence | 10–12 Max
-                                </p>
-                                <p>
-                                    Weekends are reserved for structured, small-group inquiry.
-                                </p>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 mt-2">
-                                    <div className="flex items-start gap-2">
-                                        <span className="mt-1 text-gold-500">•</span>
-                                        <span>Silence remains the default condition.</span>
-                                    </div>
-                                    <div className="flex items-start gap-2">
-                                        <span className="mt-1 text-gold-500">•</span>
-                                        <span>Interaction is time-bound and intentional.</span>
-                                    </div>
-                                    <div className="flex items-start gap-2">
-                                        <span className="mt-1 text-gold-500">•</span>
-                                        <span>No workshops, seminars, or panels.</span>
+                            <p className="font-medium text-[#e7dfd3] text-sm md:text-base">
+                                Weekends | Observed Silence | 10–12 Max
+                            </p>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 text-earth-300 text-sm md:text-base font-body">
+                                {/* Col 1: The Cycle */}
+                                <div className="space-y-2">
+                                    <p className="font-semibold text-[#e7dfd3]">
+                                        The Cycle
+                                    </p>
+                                    <div className="space-y-1">
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>Reserved for weekends.</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>Presence is shared, not solitary.</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>Limited participants, curated for alignment.</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <p className="mt-3">
-                                    You engage within a defined perimeter.
-                                </p>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 mt-2">
-                                    <div className="flex items-start gap-2">
-                                        <span className="mt-1 text-gold-500">•</span>
-                                        <span>One anchoring question.</span>
+
+                                {/* Col 2: The Protocol */}
+                                <div className="space-y-2">
+                                    <p className="font-semibold text-[#e7dfd3]">
+                                        The Protocol
+                                    </p>
+                                    <div className="space-y-1">
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>Silence remains the default condition.</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>Interaction is time-bound and intentional.</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>One anchoring question holds the session.</span>
+                                        </div>
                                     </div>
-                                    <div className="flex items-start gap-2">
-                                        <span className="mt-1 text-gold-500">•</span>
-                                        <span>Curated participants.</span>
-                                    </div>
-                                    <div className="flex items-start gap-2">
-                                        <span className="mt-1 text-gold-500">•</span>
-                                        <span>No stage dynamics.</span>
+                                </div>
+
+                                {/* Col 3: The Condition */}
+                                <div className="space-y-2">
+                                    <p className="font-semibold text-[#e7dfd3]">
+                                        The Condition
+                                    </p>
+                                    <div className="space-y-1">
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>No workshops or seminars.</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>No stage dynamics.</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <span className="mt-1 text-gold-500">•</span>
+                                            <span>You engage within a defined perimeter.</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

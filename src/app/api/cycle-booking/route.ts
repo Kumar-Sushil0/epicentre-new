@@ -1,3 +1,78 @@
+import { NextResponse } from "next/server";
+import { getDb } from "@/lib/mongodb";
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+
+    const {
+      cycleLabel,
+      accommodationType,
+      priceLabel,
+      checkIn,
+      checkOut,
+      name,
+      email,
+      phone,
+      notes,
+      questions,
+      answers,
+    } = body;
+
+    if (!cycleLabel || !accommodationType || !checkIn || !checkOut || !name || !email) {
+      return NextResponse.json(
+        { error: "Missing required booking fields" },
+        { status: 400 }
+      );
+    }
+
+    const db = await getDb();
+
+    const checkInDate = new Date(checkIn);
+    const checkOutDate = new Date(checkOut);
+
+    // Check for overlapping bookings for same cycle + accommodation type
+    const overlapping = await db.collection("bookings").findOne({
+      cycleLabel,
+      accommodationType,
+      status: { $ne: "cancelled" },
+      checkIn: { $lt: checkOutDate },
+      checkOut: { $gt: checkInDate },
+    });
+
+    if (overlapping) {
+      return NextResponse.json(
+        { error: "These dates are already booked for this accommodation type." },
+        { status: 409 }
+      );
+    }
+
+    await db.collection("bookings").insertOne({
+      cycleLabel,
+      accommodationType,
+      priceLabel,
+      checkIn: checkInDate,
+      checkOut: checkOutDate,
+      name,
+      email,
+      phone,
+      notes,
+      questions,
+      answers,
+      status: "pending",
+      createdAt: new Date(),
+    });
+
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    console.error("Error creating booking", error);
+    return NextResponse.json(
+      { error: "Failed to create booking" },
+      { status: 500 }
+    );
+  }
+}
+
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
