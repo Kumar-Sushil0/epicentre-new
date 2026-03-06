@@ -12,6 +12,8 @@ export default function BlogHero() {
           aria-label="Blogs - Peaceful writing environment with natural lighting"
         ></div>
         {/* Cinematic Gradient Overlays */}
+        {/* Subtle top overlay to keep header readable */}
+        <div className="absolute inset-x-0 top-0 h-20 md:h-24 bg-gradient-to-b from-earth-950/70 via-earth-950/40 to-transparent z-10"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-earth-950 via-earth-950/40 to-transparent z-10 opacity-90"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-earth-950/80 via-transparent to-transparent z-10"></div>
       </div>
