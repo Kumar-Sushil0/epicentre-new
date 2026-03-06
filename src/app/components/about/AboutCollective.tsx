@@ -32,9 +32,9 @@ export default function AboutCollective() {
   return (
     <section className="py-20 bg-earth-900 border-b border-earth-800" id="collective">
       <div className="w-full px-4 md:px-16">
-        <div className="flex flex-col lg:flex-row items-center lg:items-stretch gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
           {/* Left Content */}
-          <div className="w-full lg:w-1/2 text-left flex flex-col justify-center">
+          <div className="w-full text-left flex flex-col justify-center">
             <h3
               className="text-3xl md:text-4xl font-normal mb-6 text-gold-500"
               style={{ fontFamily: 'Outfit, sans-serif' }}
@@ -53,7 +53,7 @@ export default function AboutCollective() {
           </div>
 
           {/* Right Side - Image and Download Card */}
-          <div className="w-full lg:w-1/2 flex flex-col items-center justify-between h-full">
+          <div className="w-full flex flex-col gap-8 lg:gap-0 lg:justify-between h-full items-center">
             <Image
               src="/silent.svg"
               alt="BIGवन - Silent Tourism logo and initiative"
@@ -61,7 +61,7 @@ export default function AboutCollective() {
               height={120}
               className="w-100 h-auto"
             />
-            <div className="border border-earth-700/50 rounded-lg overflow-hidden p-6 bg-earth-800/40 w-full max-w-sm">
+            <div className="border border-earth-700/50 rounded-lg overflow-hidden p-6 bg-earth-800/40 w-full max-w-sm self-center">
               <button
                 onClick={handleDownload}
                 className="flex items-center justify-center gap-3 w-full text-base md:text-lg font-normal text-gold-500 hover:text-gold-400 transition-colors"

@@ -202,7 +202,7 @@ export default function DiningVariant() {
                     index === currentIndex ? 'opacity-100 relative z-10' : 'opacity-0 absolute inset-0 z-0 pointer-events-none'
                   }`}
                 >
-                  <div className="relative aspect-[25/20] rounded-lg overflow-hidden shadow-2xl border border-earth-700">
+                  <div className="relative aspect-[25/20] rounded-lg overflow-hidden shadow-2xl border border-earth-700 group cursor-pointer">
                     {/* Image */}
                     <div className="absolute inset-0">
                       <Image
@@ -210,14 +210,28 @@ export default function DiningVariant() {
                         alt={item.title}
                         fill
                         sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                     </div>
 
                     {/* Content */}
                     <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                      <h3 className="text-xl font-normal text-[#e7dfd3] leading-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>{item.title}</h3>
+                      <h3
+                        className="text-xl font-normal text-[#e7dfd3] group-hover:text-gold-500 -mb-2 leading-tight transition-all duration-500 group-hover:-translate-y-2"
+                        style={{ fontFamily: 'Outfit, sans-serif' }}
+                      >
+                        {item.title}
+                      </h3>
+
+                      {/* Description - Revealed on Hover */}
+                      <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
+                        <div className="overflow-hidden">
+                          <p className="text-[#e7dfd3] text-sm md:text-base leading-relaxed mt-2 border-t border-gold-500/30 pt-3">
+                            {item.description}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -271,7 +285,7 @@ export default function DiningVariant() {
                     index === currentAccommodationIndex ? 'opacity-100 relative z-10' : 'opacity-0 absolute inset-0 z-0 pointer-events-none'
                   }`}
                 >
-                  <div className="relative aspect-[25/20] rounded-lg overflow-hidden shadow-2xl border border-earth-700">
+                  <div className="relative aspect-[25/20] rounded-lg overflow-hidden shadow-2xl border border-earth-700 group cursor-pointer">
                     {/* Image */}
                     <div className="absolute inset-0">
                       <Image
@@ -279,14 +293,28 @@ export default function DiningVariant() {
                         alt={item.title}
                         fill
                         sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                     </div>
 
                     {/* Content */}
                     <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                      <h3 className="text-xl font-normal text-[#e7dfd3] leading-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>{item.title}</h3>
+                      <h3
+                        className="text-xl font-normal text-[#e7dfd3] group-hover:text-gold-500 -mb-2 leading-tight transition-all duration-500 group-hover:-translate-y-2"
+                        style={{ fontFamily: 'Outfit, sans-serif' }}
+                      >
+                        {item.title}
+                      </h3>
+
+                      {/* Description - Revealed on Hover */}
+                      <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
+                        <div className="overflow-hidden">
+                          <p className="text-[#e7dfd3] text-sm md:text-base leading-relaxed mt-2 border-t border-gold-500/30 pt-3">
+                            {item.description}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -340,7 +368,7 @@ export default function DiningVariant() {
                     index === currentExperienceIndex ? 'opacity-100 relative z-10' : 'opacity-0 absolute inset-0 z-0 pointer-events-none'
                   }`}
                 >
-                  <div className="relative aspect-[25/20] rounded-lg overflow-hidden shadow-2xl border border-earth-700">
+                  <div className="relative aspect-[25/20] rounded-lg overflow-hidden shadow-2xl border border-earth-700 group cursor-pointer">
                     {/* Image */}
                     <div className="absolute inset-0">
                       <Image
@@ -348,14 +376,28 @@ export default function DiningVariant() {
                         alt={item.title}
                         fill
                         sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                     </div>
 
                     {/* Content */}
                     <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                      <h3 className="text-xl font-normal text-[#e7dfd3] leading-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>{item.title}</h3>
+                      <h3
+                        className="text-xl font-normal text-[#e7dfd3] group-hover:text-gold-500 -mb-2 leading-tight transition-all duration-500 group-hover:-translate-y-2"
+                        style={{ fontFamily: 'Outfit, sans-serif' }}
+                      >
+                        {item.title}
+                      </h3>
+
+                      {/* Description - Revealed on Hover */}
+                      <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
+                        <div className="overflow-hidden">
+                          <p className="text-[#e7dfd3] text-sm md:text-base leading-relaxed mt-2 border-t border-gold-500/30 pt-3">
+                            {item.description}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
