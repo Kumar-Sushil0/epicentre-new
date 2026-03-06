@@ -1,32 +1,24 @@
 import { MongoClient, Db } from "mongodb";
 
-const uri = process.env.MONGODB_URI;
 const dbName = process.env.MONGODB_DB || "silent_club";
-
-if (!uri) {
-  throw new Error("MONGODB_URI is not set in environment variables");
-}
-
-let client: MongoClient | null = null;
-let clientPromise: Promise<MongoClient> | null = null;
 
 declare global {
   // eslint-disable-next-line no-var
   var _mongoClientPromise: Promise<MongoClient> | undefined;
 }
 
-if (!global._mongoClientPromise) {
-  client = new MongoClient(uri);
-  global._mongoClientPromise = client.connect();
+function getClientPromise(): Promise<MongoClient> {
+  const uri = process.env.MONGODB_URI;
+  if (!uri) {
+    throw new Error("MONGODB_URI is not set in environment variables");
+  }
+  if (!global._mongoClientPromise) {
+    global._mongoClientPromise = new MongoClient(uri).connect();
+  }
+  return global._mongoClientPromise;
 }
-
-clientPromise = global._mongoClientPromise;
 
 export async function getDb(): Promise<Db> {
-  if (!clientPromise) {
-    throw new Error("MongoDB client not initialized");
-  }
-  const client = await clientPromise;
+  const client = await getClientPromise();
   return client.db(dbName);
 }
-
