@@ -118,7 +118,7 @@ export default function TestPage() {
                                     images={practice.images}
                                     icon={practice.icon}
                                     category={practice.category}
-                                    href="/solitude/details"
+                                    href={`/solitude/details?id=${practice.practiceId}`}
                                 />
                             ))}
                         </div>
