@@ -120,14 +120,6 @@ export default function Header() {
               </Link>
              
               <Link 
-                href="/events" 
-                className={`text-sm uppercase tracking-wider transition-colors ${
-                  isActive("/events") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
-                }`}
-              >
-                Events
-              </Link>
-              <Link 
                 href="/about-us" 
                 className={`text-sm uppercase tracking-wider transition-colors ${
                   isActive("/about-us") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
@@ -203,13 +195,6 @@ export default function Header() {
                 }`}
             >
               Services
-            </Link>
-            <Link
-              href="/events"
-              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/events") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
-                }`}
-            >
-              Events
             </Link>
             <Link
               href="/about-us"
