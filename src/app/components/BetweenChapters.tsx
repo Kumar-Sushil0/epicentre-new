@@ -22,6 +22,9 @@ export default function BetweenChapters() {
           No masterminds.
           No performance.
         </p>
+        <p className="text-[#e7dfd3] text-base md:text-lg font-body">
+          Just uninterrupted time with your own thinking.<br/> That is rarer than you expect.
+        </p>
       </div>
     </section>
   );

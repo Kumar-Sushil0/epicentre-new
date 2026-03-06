@@ -39,16 +39,14 @@ export default function AboutCollective() {
               className="text-3xl md:text-4xl font-normal mb-6 text-gold-500"
               style={{ fontFamily: 'Outfit, sans-serif' }}
             >
-              BIGवन — A Case for Silent Tourism
+              BIGवन : A Case for Silent Tourism
             </h3>
             <div className="space-y-3 text-earth-300 text-base md:text-lg font-body max-w-xl">
               <p>Silence is cognitive infrastructure.</p>
               <p>As attention becomes scarce, environments that protect it become essential.</p>
-              <p>Modern tourism amplifies stimulation. Silent tourism reduces it.</p>
-              <p>The Silent Club operates as a pilot model.</p>
+              <p>Modern tourism amplifies stimulation. Silent tourism reduces it. The Silent Club operates as a pilot model for this category.</p>
               <p>
-                The Silent Tourism Foundation documents and open-sources this architecture so it can be
-                replicated independently.
+                The Silent Tourism Foundation documents and open-sources this architecture so it can be replicated independently not as a franchise, but as a contribution to how environments are designed.
               </p>
               <p className="font-semibold text-earth-100">Designed deliberately. Built to endure.</p>
             </div>

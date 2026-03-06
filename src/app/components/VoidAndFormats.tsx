@@ -18,18 +18,21 @@ export default function VoidAndFormats() {
 
 
           <div className="max-w-5xl mx-auto text-center text-earth-300 text-base md:text-lg leading-relaxed space-y-3 md:space-y-4">
+            <p>
+              There is no schedule when you arrive. No one is waiting to guide you.<br/> The estate simply removes everything that has been competing for your attention.
+            </p>
             <p className="md:whitespace-nowrap">
               You step into a low-stimulation environment. External roles pause. Input reduces. Attention stabilizes.
             </p>
             <p>
               From that stability, decisions surface.
               Nothing is interpreted for you.
-            </p>
-            <p>
+              <br/>
               Silence is not the goal.
               Silence is the condition.
               Clarity emerges.
             </p>
+           
           </div>
         </div>
 

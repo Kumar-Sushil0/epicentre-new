@@ -21,6 +21,9 @@ export default function Philosophy() {
                 Noise is normalized.
               </p>
               <p>
+                Most environments, even quiet ones, are still designed <br/>around stimulation, guidance, or social performance.
+              </p>
+              <p>
                 Very few environments remove it.<br />
                 This one is.
               </p>

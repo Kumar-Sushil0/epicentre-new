@@ -20,6 +20,9 @@ export default function Location() {
             Remote enough for silence.<br />
             Close enough to remain accessible.
           </p>
+          <p className="text-earth-900 font-body text-sm md:text-base mt-2 max-w-2xl mx-auto">
+            Set beside the Bhigwan Bird Sanctuary on the Ujjani reservoir — one of the quietest stretches of landscape within reach of Pune and Mumbai.
+          </p>
         </div>
 
         <div className="flex flex-col md:flex-row gap-8">

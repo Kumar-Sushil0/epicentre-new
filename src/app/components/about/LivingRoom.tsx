@@ -6,39 +6,38 @@ const research = [
     {
         title: "Attention Restoration Theory — Directed Attention Fatigue",
         author: "Kaplan, S. (1995). The Restorative Benefits of Nature: Toward an Integrative Framework. Journal of Environmental Psychology.",
-        description: "Modern life depletes directed attention through constant stimulus. Research shows that low-stimulation, natural environments restore cognitive capacity and reduce mental fatigue. The estate is structured around this principle.",
-        link: "https://doi.org/10.1016/0272-4944(95)90001-2"
+        description:
+            "Kaplan (1995) demonstrates that modern life depletes directed attention through constant stimulus. Low-stimulation, natural environments restore cognitive capacity and reduce mental fatigue. The estate is structured around this finding.",
+        link: "https://doi.org/10.1016/0272-4944(95)90001-2",
     },
     {
-        title: "Systematic Review — Attention Restoration Theory",
+        title: "Systematic Review — Attentional Recovery",
         author: "Ohly, H. et al. (2016). Attention Restoration Theory: A systematic review. Journal of Toxicology and Environmental Health, Part B.",
-        description: "Meta-analyses confirm that environments with reduced sensory demand improve executive attention and cognitive performance. Silence is not aesthetic here. It is attentional recovery infrastructure.",
-        link: "https://pubmed.ncbi.nlm.nih.gov/27668460/"
+        description:
+            "Meta-analyses confirm that environments with reduced sensory demand improve executive attention and cognitive performance. Silence here is not aesthetic, it is attentional recovery infrastructure.",
+        link: "https://pubmed.ncbi.nlm.nih.gov/27668460/",
     },
     {
-        title: "Default Mode Network — Internal Self-Referential Processing",
+        title: "Default Mode Network — Internal Processing",
         author: "Raichle, M. E. et al. (2001). A Default Mode of Brain Function. Proceedings of the National Academy of Sciences (PNAS).",
-        description: "Neuroscience identifies the Default Mode Network as active during rest and internally directed thought. Reduced external input allows identity processing and reflective thinking to stabilize. This is why interruption is minimized.",
-        link: "https://doi.org/10.1073/pnas.98.2.676"
+        description:
+            "Neuroscience identifies the Default Mode Network as active during rest and internally directed thought. Reduced external input allows identity processing and reflective thinking to stabilise. Minimising interruption is what makes this possible.",
+        link: "https://doi.org/10.1073/pnas.98.2.676",
     },
     {
-        title: "Self-Determination Theory — Autonomy & Self-Authorship",
+        title: "Self-Determination Theory — Autonomy and Agency",
         author: "Ryan, R. M., & Deci, E. L. (2000). Self-Determination Theory and the Facilitation of Intrinsic Motivation, Social Development, and Well-Being. American Psychologist.",
-        description: "Autonomy is a core psychological need. When external pressure decreases, intrinsic motivation increases. The Silent Club removes performance pressure to restore self-directed agency.",
-        link: "https://doi.org/10.1037/0003-066X.55.1.68"
+        description:
+            "When external pressure decreases, intrinsic motivation increases. The estate removes performance pressure to restore self-directed agency. You arrive without a role to perform.",
+        link: "https://doi.org/10.1037/0003-066X.55.1.68",
     },
     {
-        title: "Directed Attention & Self-Regulation — Executive Control",
-        author: "Kaplan, S., & Berman, M. G. (2010). Directed Attention as a Common Resource for Executive Functioning and Self-Regulation. Perspectives on Psychological Science.",
-        description: "Restored attention improves executive functioning and behavioral regulation. Cognitive control strengthens when stimulus load decreases. The structure supports sustained focus without force.",
-        link: "https://doi.org/10.1177/1745691610385554"
-    },
-    {
-        title: "Locus of Control — Agency & Responsibility",
+        title: "Locus of Control — Responsibility and Decision",
         author: "Rotter, J. B. (1966). Generalized Expectancies for Internal versus External Control of Reinforcement. Psychological Monographs.",
-        description: "Internal locus of control correlates with responsibility-taking and adaptive decision-making. When attention stabilizes, agency strengthens. This environment protects that condition.",
-        link: "https://doi.org/10.1037/h0092976"
-    }
+        description:
+            "Internal locus of control correlates with responsibility-taking and adaptive decision-making. When attention stabilises, agency strengthens. This environment protects that condition.",
+        link: "https://doi.org/10.1037/h0092976",
+    },
 ];
 
 const ResearchItem = ({ item, index }: { item: typeof research[0], index: number }) => {
@@ -106,10 +105,10 @@ const LivingRoom = () => {
             <div className="px-4 md:px-16">
                 <div className="text-left mb-16">
                     <h2 className="text-3xl font-normal mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                        Evidence
+                        The Evidence Base
                     </h2>
                     <p className="text-xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                        This is not ideology.<br />It is informed by research in cognitive science and psychology.
+                        The Silent Club is not built on ideology. It is informed by research in cognitive science and psychology.
                     </p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">

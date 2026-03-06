@@ -73,7 +73,9 @@ export default function Hero() {
 
           <div className="space-y-3 md:space-y-4 text-earth-300/80 font-body">
             <p className="text-lg md:text-2xl font-light leading-relaxed">
-              A private estate in Bhigwan designed to protect attention. For individuals between major chapters. <br/> <span className="text-gold-500 font-bold">2026 Focus</span>: Post-exit founders designing their next decade.
+            The world does not run out of noise. It runs out of places that protect you from it. 
+            The Silent Club is a private estate built for individuals between major chapters where nothing is demanded of you, and clarity arrives on its own.
+            <br/> <span className="text-gold-500 font-bold">2026 Cohort</span>: Post-Exit Founders. 100 memberships. Application-based.
             </p>
             <p className="text-base md:text-lg font-light leading-relaxed">
              

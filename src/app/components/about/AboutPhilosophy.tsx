@@ -12,24 +12,33 @@ export default function AboutPhilosophy() {
 
   const philosophies: PhilosophyItem[] = [
     {
+      title: "Why This Structure",
+      description:
+        "These decisions exist to protect what the estate calls cognitive sovereignty, the condition in which your attention belongs entirely to you.",
+    },
+    {
       title: "Why Silence",
-      description: "Most environments amplify input.\nSilence reduces distortion.\nClear thinking requires signal control.",
+      description:
+        "Most environments amplify input.\nSilence reduces distortion.\nClear thinking requires signal control.\nThe estate is built on this principle.",
     },
     {
       title: "Why Membership",
-      description: "Attention requires cultural coherence.\nLimited membership preserves density,\nprotects anonymity, and prevents drift.",
+      description:
+        "Attention requires cultural coherence.\nLimited membership preserves the density of the environment, protects the anonymity of members, and prevents cultural drift.\nWhen the room changes every day, the environment cannot stabilize.\nMembership solves this.",
     },
     {
       title: "Why Bhigwan",
-      description: "Distance matters.\nFar enough to interrupt routine.\nClose enough to remain accessible.",
+      description:
+        "Distance matters.\nBhigwan is far enough from Pune and Mumbai to interrupt routine, and close enough to remain accessible.\nThe location is not incidental, it is a design decision.",
     },
     {
-      title: "Why Sequencing",
-      description: "Cohorts shape culture.\nEach year centers a specific life-stage group\nto preserve depth and clarity of intent.",
-    }
+      title: "Why Sequencing by Cohort",
+      description:
+        "Cohorts shape culture.\nEach annual cohort centres a specific life-stage group so that the shared context among members remains deep and the clarity of intent is preserved.\nMixing life stages dilutes both.",
+    },
   ];
 
-  const icons = ['volume_off', 'groups', 'landscape', 'science'];
+  const icons = ['account_tree', 'volume_off', 'groups', 'landscape', 'science'];
 
   const toggleDropdown = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index);
@@ -39,9 +48,14 @@ export default function AboutPhilosophy() {
     <section className="py-8 bg-earth-950 border-b border-earth-800" id="philosophy">
       <div className="w-full px-4 md:px-16">
         <div className="mb-8">
-          <h3 className="text-3xl font-normal mb-3 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>Why This Structure</h3>
+          <h3
+            className="text-3xl font-normal mb-3 text-gold-500"
+            style={{ fontFamily: 'Outfit, sans-serif' }}
+          >
+            Why This Structure
+          </h3>
           <p className="text-[#e7dfd3] font-body text-[15px] max-w-full">
-            These decisions exist to protect cognitive sovereignty.
+            These decisions exist to protect what the estate calls cognitive sovereignty, the condition in which your attention belongs entirely to you.
           </p>
         </div>
 

@@ -2,9 +2,12 @@ export default function OurPhilosophy() {
   return (
     <section className="py-16 bg-earth-900">
       <div className="w-full px-4 md:px-16">
-        <h2 className="text-3xl font-normal mb-12 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>
+        <h2 className="text-3xl font-normal mb-4 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>
           Philosophy
         </h2>
+        <p className="text-earth-300 text-sm md:text-base font-body max-w-2xl mb-10">
+          Four principles govern the design of The Silent Club.
+        </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Clarity Through Subtraction */}
@@ -19,7 +22,7 @@ export default function OurPhilosophy() {
               Clarity Through Subtraction
             </h3>
             <p className="text-earth-300 text-sm font-body leading-relaxed">
-              We remove before we add. Noise is edited so perception stabilizes.
+              We remove before we add. Noise is edited so that perception can stabilize. The environment works by taking away, not by providing.
             </p>
           </div>
 
@@ -35,7 +38,7 @@ export default function OurPhilosophy() {
               Constraint Creates Autonomy
             </h3>
             <p className="text-earth-300 text-sm font-body leading-relaxed">
-              Freedom without structure drifts. Structure protects agency.
+              Freedom without structure drifts. The estate&apos;s structure is what creates genuine agency; it holds the conditions so you are not required to manage them yourself.
             </p>
           </div>
 
@@ -51,7 +54,7 @@ export default function OurPhilosophy() {
               Identity Is Authored
             </h3>
             <p className="text-earth-300 text-sm font-body leading-relaxed">
-              Inherited roles pause here. Deliberate identity resumes.
+              Inherited roles pause here. The estate makes no demands on who you are in the outside world. Deliberate identity resumes at your own pace.
             </p>
           </div>
 
@@ -68,7 +71,7 @@ export default function OurPhilosophy() {
               Attention Is Sovereignty
             </h3>
             <p className="text-earth-300 text-sm font-body leading-relaxed">
-              What you protect shapes you. Attention is protected first.
+              What you protect shapes you. Attention is the primary resource being safeguarded here—not comfort, not productivity, not experience.
             </p>
           </div>
         </div>

@@ -181,13 +181,13 @@ export default function DiningVariant() {
       <div className="w-full px-4 md:px-16">
         <div className="mb-6 md:mb-8 text-center">
           <h3 className="text-2xl md:text-3xl font-normal mb-4 md:mb-6 text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>
-            The Club Includes
+            What the Estate Provides
           </h3>
-          <p className="text-[#e7dfd3] font-body text-base md:text-lg max-w-full font-medium">
-            Accommodations, food, and physical discharge.
+          <p className="text-[#e7dfd3] font-body text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+            Everything here is chosen for one reason: to support sustained, undistracted presence.
           </p>
           <p className="text-[#e7dfd3] font-body text-sm md:text-base max-w-full mt-2">
-            Everything required for sustained attention. Nothing unnecessary.
+            Accommodation, food, and physical recovery — nothing more, nothing less.
           </p>
         </div>
 

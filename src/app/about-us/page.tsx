@@ -53,8 +53,10 @@ import BuiltEnvironment from "../components/about/BuiltEnvironment";
 import WhoThisIsFor from "../components/about/WhoThisIsFor";
 import TeamSection from "../components/TeamSection";
 import OurPhilosophy from "../components/OurPhilosophy";
-import LivingRoom from '../components/about/LivingRoom';
+import LivingRoom from "../components/about/LivingRoom";
 import RequestConversation from "../components/RequestConversation";
+import AboutWhat from "../components/about/AboutWhat";
+import AboutWho from "../components/about/AboutWho";
 
 import IconStrip from "../components/IconStrip";
 
@@ -71,6 +73,9 @@ export default function AboutUsPage() {
       >
         <Header />
         <AboutHero />
+
+        <AboutWhat />
+        <AboutWho />
 
         <OurPhilosophy />
         <AboutPrinciples />
