@@ -39,7 +39,7 @@ export default function AboutCollective() {
               className="text-3xl md:text-4xl font-normal mb-6 text-gold-500"
               style={{ fontFamily: 'Outfit, sans-serif' }}
             >
-              BIGवन : A Case for Silent Tourism
+              BIG<span className="text-2xl md:text-3xl">वन</span> : A Case for Silent Tourism
             </h3>
             <div className="space-y-3 text-earth-300 text-base md:text-lg font-body max-w-xl">
               <p>Silence is cognitive infrastructure.</p>
@@ -61,7 +61,7 @@ export default function AboutCollective() {
               height={120}
               className="w-100 h-auto"
             />
-            <div className="border border-earth-700/50 rounded-lg overflow-hidden p-6 bg-earth-800/40 w-full max-w-sm self-center">
+            <div className="border border-earth-700/50 rounded-lg overflow-hidden p-6 bg-earth-800/40 w-full self-center">
               <button
                 onClick={handleDownload}
                 className="flex items-center justify-center gap-3 w-full text-base md:text-lg font-normal text-gold-500 hover:text-gold-400 transition-colors"
