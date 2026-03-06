@@ -53,8 +53,10 @@ export default function TestPage() {
                 {solitudeExpanded && (
                     <div className="space-y-6">
                         <div className="space-y-4 mb-8">
-                            <p className="font-medium text-gold-500 text-sm md:text-base">
-                                Weekdays | Full Silence
+                            <p className="text-[#e7dfd3] text-base md:text-lg leading-relaxed">
+                                <span className="font-medium text-gold-500">Weekdays | Full Silence</span>
+                                <span className="text-earth-300"> — </span>
+                                A deliberately structured environment for withdrawing from noise without needing to perform for anyone.
                             </p>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 text-earth-300 text-sm md:text-base font-body">
                                 {/* Col 1: The Cycle */}
@@ -158,12 +160,10 @@ export default function TestPage() {
                 {expressionExpanded && (
                     <div className="space-y-6">
                         <div className="space-y-4 mb-8">
-                            <p className="text-earth-300 text-base leading-relaxed">
+                            <p className="text-[#e7dfd3] text-base md:text-lg leading-relaxed">
+                                <span className="font-medium text-gold-500">Weekends | Observed Silence | 10–12 Max</span>
+                                <span className="text-earth-300"> — </span>
                                 Structured environments for testing ideas without performance pressure.
-                            </p>
-
-                            <p className="font-medium text-[#e7dfd3] text-sm md:text-base">
-                                Weekends | Observed Silence | 10–12 Max
                             </p>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 text-earth-300 text-sm md:text-base font-body">
                                 {/* Col 1: The Cycle */}
@@ -268,12 +268,10 @@ export default function TestPage() {
                 {residencyExpanded && (
                     <div className="space-y-6">
                         <div className="space-y-4 mb-8">
-                            <p className="text-earth-300 text-base leading-relaxed">
+                            <p className="text-[#e7dfd3] text-base md:text-lg leading-relaxed">
+                                <span className="font-medium text-gold-500">Weekends | Observed Silence | 10–12 Max</span>
+                                <span className="text-earth-300"> — </span>
                                 Multi-day immersion around a single high-stakes question.
-                            </p>
-
-                            <p className="font-medium text-[#e7dfd3] text-sm md:text-base">
-                                Weekends | Observed Silence | 10–12 Max
                             </p>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 text-earth-300 text-sm md:text-base font-body">
                                 {/* Col 1: The Cycle */}

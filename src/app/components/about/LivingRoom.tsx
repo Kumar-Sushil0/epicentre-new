@@ -38,6 +38,13 @@ const research = [
             "Internal locus of control correlates with responsibility-taking and adaptive decision-making. When attention stabilises, agency strengthens. This environment protects that condition.",
         link: "https://doi.org/10.1037/h0092976",
     },
+    {
+        title: "Polyvagal Theory Nervous System Regulation",
+        author: "Porges, S. W. (2001). The Polyvagal Theory: Phylogenetic Substrates of a Social Nervous System. International Journal of Psychophysiology.",
+        description:
+            "The autonomic nervous system shifts between states of threat and safety based on environmental cues. Silence, stillness, and the absence of social performance signal to the body that it is safe. The estate is designed to sustain that signal. Recovery begins before any conscious effort is made.",
+        link: "",
+    },
 ];
 
 const ResearchItem = ({ item, index }: { item: typeof research[0], index: number }) => {
@@ -85,6 +92,7 @@ const ResearchItem = ({ item, index }: { item: typeof research[0], index: number
                     <p className="text-sm font-body font-semibold">
                         {item.description}
                     </p>
+                    {item.link && (
                     <a 
                         href={item.link} 
                         target="_blank" 
@@ -93,6 +101,7 @@ const ResearchItem = ({ item, index }: { item: typeof research[0], index: number
                     >
                         Click here
                     </a>
+                    )}
                 </div>
             </div>
         </div>
