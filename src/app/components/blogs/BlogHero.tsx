@@ -6,7 +6,7 @@ export default function BlogHero() {
         <div
           className="w-full h-full bg-cover bg-center bg-no-repeat transform scale-105"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80')"
+            backgroundImage: "url('/banner/4.png')"
           }}
           role="img"
           aria-label="Blogs - Peaceful writing environment with natural lighting"

@@ -6,7 +6,7 @@ export default function AboutHero() {
         <div
           className="w-full h-full bg-cover bg-center bg-no-repeat transform scale-105"
           style={{
-            backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAgtoMMPZz88PXkDYrxvHVR6uCSwqNqDnob4jaoXODBFLGl2UsdhfJ4s__nqrXImhLMN4QUasNvlWzk9Yo_824P4d9lIvSn1WbjbbWb28HQs30tbEHbQGS_MuR1epNrsedDPULlE6AaZ45m5He654JaT49FOV-G_q2QjNTxPSVrimly9bjXTZ01TiOoTicoKoqMBOqEzGfSDPcspcYTtn2f9nvsAvItSPnGcZhvCVsFO9kjJPBy1OdqHj_PbY0RZq_5hkBecKLlEATa')"
+            backgroundImage: "url('/banner/6.png')"
           }}
           role="img"
           aria-label="About Us - Serene natural landscape at The Silent Club"

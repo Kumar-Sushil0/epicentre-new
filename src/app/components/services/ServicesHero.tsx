@@ -9,7 +9,7 @@ export default function TestHero() {
                 <div
                     className="w-full h-full bg-cover bg-center bg-no-repeat transform scale-105"
                     style={{
-                        backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCo3MJhZ2Vq9-Ga2Ea74ot7K3svtpwhjBfDSCrXUYnFOYTuKa0AlDwQhdZ8BxihuYNAXOpSdB-tTtKdMZs3cGX8b9BvyVJ0f7v10BnyVYkQEHkFN4-JvUnOV3TtcfaasbCLOtA1FJ36Hww-91OBUlDJHTpWkvWgfKLGDdNvhDccKPCHKxSre2HqIJDUmAdVeuaFlpLJWz1rQnuz4k27-rXUV4Tm2jrPtpK6Sxr5anLKPzQwalZ-iwFuH6pQqNpaJADP6WWqN2Pu-Yd4')"
+                        backgroundImage: "url('/banner/3.png')"
                     }}
                 ></div>
                 {/* Cinematic Gradient Overlays */}
