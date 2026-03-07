@@ -172,49 +172,47 @@ const solitudePractices: Record<
   },
   "bird-watching": {
     title: "Bird Watching",
-    subtitle: "Seeing without interference.",
+    subtitle: "Observation before conclusion.",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuDsP2PVMAnzEeQANwyaypvuhQWIt86oMF9re2yM2NG7_BzlSLrJN65CWOxusQWunAJmE3QFO5KI0y_wRzwx06Hf1pN5gjTvHjrhusUKu6KLAiYJdg5UqyuiV3Exg2Gx20sI1_BmDSyvmNahXSAiqdL9jtzB8c6xwHed0IyPo0Bs-jEZouWM4TARhZMON7EHMpCXGgxuD-xj1WpOkwIEH6Q_rSiGChRmBpn5iA7_qxdQcU6lzE12bqOVEBm59P0h2vHi_VoV3OLtsjnM",
     infoItems: [
       {
         icon: "psychology",
         title: "Core Frame",
-        description: "Bird watching is a practice of quiet noticing. It asks you to slow your movements, soften your gaze, and refine your listening. You do not pursue birds. You wait long enough for them to resume being themselves. Under silence, perception reorganizes. Peripheral vision sharpens. Subtle sound distinctions become meaningful. Attention moves from scanning to attuning.",
+        description: "Bird watching is one of the few activities that trains undivided attention without demanding effort. You cannot observe birds by trying. You observe them by becoming still enough that your presence stops being a disturbance. The Ujani backwaters host over 200 recorded species — greater flamingos, painted storks, pelicans, herons, and migratory visitors from Central Asia. What you encounter depends entirely on how long you are willing to remain quiet and how precisely you learn to look.",
       },
       {
         icon: "landscape",
         title: "What This Environment Changes",
-        description: "The Silent Club reduces human density and acoustic noise. Without conversation, devices, or social signaling, your nervous system settles. Micro-movements in foliage, shifts in wind, and distant calls become detectable. You begin to see patterns of migration, rhythm, and territory. The estate's open horizons and seasonal bird movement support prolonged observation without urgency.",
+        description: "The Silent Club removes social noise before you reach the water. Without the pressure to perform an experience or report on it, your perception sharpens naturally. You begin to notice what the eye bypasses under distraction — movement at distance, shifts in posture, the silence before a bird takes flight. Duration expands. The hour you expected to spend becomes two without effort.",
       },
       {
         icon: "emoji_events",
         title: "Outcome",
-        description: "You leave with heightened perceptual sensitivity. Your attention becomes less reactive and more receptive. You notice before you interpret. Patience extends without strain. Nothing dramatic occurs. But your tolerance for subtlety increases.",
+        description: "You leave with a recalibrated attention threshold. Things that required effort to notice now register automatically. The habit of looking carefully before reacting — trained at the water — begins to transfer. Decision quality improves not through discipline but through perceptual change.",
       },
       {
         icon: "groups",
         title: "Suitable For",
-        description: "Individuals restoring attentional stamina • Writers and thinkers refining perception • Beginners curious about avian life • Experienced birders seeking uninterrupted quiet • Anyone rebuilding sensory depth",
+        description: "Individuals who process through observation rather than discussion • Those rebuilding the capacity for sustained, non-urgent attention • Members seeking a practice that requires no prior knowledge • Anyone who finds movement and noise counterproductive to thinking",
       },
       {
         icon: "cancel",
         title: "What It Is Not",
-        description: "Not a guided birding tour • Not a photography workshop • Not species-count competition • Not a social outdoor activity • There is no checklist to complete.",
+        description: "Not a guided birdwatching tour • Not a wildlife photography session • Not a naturalist course • Not social recreation • There are no checklists here.",
       },
       {
         icon: "inventory_2",
         title: "What You Receive",
-        description: "Shared digital library (basic ornithology & migration cycles) • Printed silent observation guide • Mapped bird observation zones • Seasonal species list (non-exhaustive) • Physical carry kit • Suggested weekly rhythm • We provide structure. You provide steadiness.",
+        description: "Shared digital species reference for Bhigwan backwaters • Printed observation field guide • Access to designated water viewpoints • Physical carry kit • Suggested morning and dusk rhythm",
       },
     ],
     kitItems: [
-      { item: "Binoculars", purpose: "Long-distance clarity" },
-      { item: "Field Notebook", purpose: "Observation logging" },
-      { item: "Species Reference Card", purpose: "Quiet identification" },
-      { item: "Simple Field Guide", purpose: "Basic taxonomy" },
-      { item: "Compact Stool", purpose: "Extended stillness" },
-      { item: "Hat / Shade Cloth", purpose: "Environmental comfort" },
-      { item: "Time Log Sheet", purpose: "Pattern tracking" },
+      { item: "Binoculars (8x42)", purpose: "Sustained distance observation" },
+      { item: "Field notebook", purpose: "Recording attention, not logging" },
+      { item: "Printed species reference", purpose: "Silent identification aid" },
+      { item: "Light windproof layer", purpose: "Dawn and dusk temperature drop" },
+      { item: "Neutral-tone clothing guidance", purpose: "Reduces environmental disturbance" },
     ],
     includedItems: [
       {
@@ -224,16 +222,16 @@ const solitudePractices: Record<
         title: "Three daily meals",
       },
       {
-        title: "Designated observation access areas",
+        title: "Binoculars (estate-provided)",
       },
       {
-        title: "Safety & habitat orientation",
+        title: "Designated viewpoint access",
       },
       {
-        title: "Estate access during stay",
+        title: "Safety orientation",
       },
       {
-        title: "Shared silence protocol",
+        title: "Full estate access for duration of stay",
       },
     ],
     itinerary: [
@@ -308,49 +306,47 @@ const solitudePractices: Record<
   },
   "star-gazing": {
     title: "Star Gazing",
-    subtitle: "Looking up until the mind softens.",
+    subtitle: "Scale corrects proportion.",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuAfUEFkuPsDcRrwomNpV_HwfuHf9O-A4L4U6MKLljPvLYJJwCUlXXxY2mjgE-er6h_jG_PklBuvKzJnEWMoUJTBEFnfYdbWj0UoS3cNXdzuBn3c88huWQsb9L1tETDwGKjEr-JXTFe2AZ17ij8blc4Ins9QdK95sIdIr8UwQdYwnWrcQj1lZakOp8Ym0eJLoProiY8a7Mgr0ih-iysVaPtnEnXgmXEjcYNY-jgM_8kZIOdBMKHtMR5R46CeAnA6rA3Z00VVJIJkJdLa",
     infoItems: [
       {
         icon: "psychology",
         title: "Core Frame",
-        description: "Star gazing is a practice of scale. When you look at the night sky long enough, your internal urgency reorganizes. Problems shrink. Narratives loosen. Perspective widens without effort. Under darkness, attention expands. You stop searching for meaning and begin absorbing proportion. The sky does not demand interpretation. It simply reveals.",
+        description: "Bhigwan sits beyond the light pollution radius of both Pune and Mumbai. On clear nights, the sky above the estate is dark enough to see the Milky Way unaided. Star gazing here is not a scheduled event. It is an available condition. The act of sustained exposure to genuine scale produces a specific cognitive effect: problems that occupied the foreground of your thinking begin to occupy a more accurate proportion. This is not philosophy. It is a known perceptual response to environments that dwarf the self.",
       },
       {
         icon: "landscape",
         title: "What This Environment Changes",
-        description: "The Silent Club minimizes artificial light and sound. Without screens, street glow, or commentary, the night regains depth. Constellations sharpen. Movement becomes visible. Time stretches between breaths. Darkness here is not absence. It is restoration of contrast. You are not entertained by the sky. You are recalibrated by it.",
+        description: "The estate eliminates artificial light interference after sundown. Without ambient noise, digital input, or social obligation, the sky becomes fully legible. Time slows. The kind of thinking that only surfaces in stillness, the kind that requires no urgency becomes accessible. Members report that the clearest thinking of their stay frequently happens here, after dark, doing nothing except looking up.",
       },
       {
         icon: "emoji_events",
         title: "Outcome",
-        description: "You leave with expanded perspective. Your internal dialogue slows. Minor anxieties lose dominance. Decision-making regains proportion. Nothing is solved. But everything feels correctly sized.",
+        description: "You leave with a recalibrated sense of proportion. Things that felt large begin to occupy their actual size. The mental compression that comes with sustained high-performance living decompresses not through effort, but through exposure. Nothing resolves dramatically. But your tolerance for ambiguity increases, and your relationship with time becomes less adversarial.",
       },
       {
         icon: "groups",
         title: "Suitable For",
-        description: "Individuals seeking perspective • High-responsibility decision-makers • Writers and thinkers processing scale • Beginners curious about the night sky • Anyone needing distance from immediacy",
+        description: "Individuals carrying disproportionate cognitive weight • Those at inflection points requiring perspective rather than answers • Members who find stillness generative rather than uncomfortable • Anyone for whom scale and distance produce clarity",
       },
       {
         icon: "cancel",
         title: "What It Is Not",
-        description: "Not an astronomy course • Not a telescope workshop • Not astrophotography training • Not a guided constellation tour • There is no performance here.",
+        description: "Not an astronomy course • Not a guided celestial tour • Not a group experience • Not performance-oriented • There are no telescopic targets assigned here.",
       },
       {
         icon: "inventory_2",
         title: "What You Receive",
-        description: "Shared digital library (basic celestial navigation & sky cycles) • Printed night-sky orientation guide • Seasonal constellation map • Dark-zone access areas • Physical carry kit • Suggested weekly rhythm • We provide the conditions. You provide the gaze.",
+        description: "Shared digital sky reference for Bhigwan latitude • Printed constellation and planetary guide • Access to estate observation point • Physical carry kit • Suggested seasonal viewing rhythm",
       },
     ],
     kitItems: [
-      { item: "Star Map (Seasonal)", purpose: "Basic orientation" },
-      { item: "Red-Light Torch", purpose: "Night vision preservation" },
-      { item: "Blanket / Ground Mat", purpose: "Still positioning" },
-      { item: "Reclining Chair / Mat", purpose: "Extended viewing" },
-      { item: "Notebook", purpose: "Reflection logging" },
-      { item: "Warm Layer", purpose: "Temperature stability" },
-      { item: "Time Log Sheet", purpose: "Sky movement tracking" },
+      { item: "Telescope (estate-provided)", purpose: "Extended deep-sky observation" },
+      { item: "Printed sky map", purpose: "Silent navigation — no screen required" },
+      { item: "Recliner / ground mat", purpose: "Sustained horizontal viewing" },
+      { item: "Warm layer", purpose: "Night temperature at the backwater drops significantly" },
+      { item: "Red-light torch (estate-provided)", purpose: "Preserves night vision" },
     ],
     includedItems: [
       {
@@ -360,16 +356,16 @@ const solitudePractices: Record<
         title: "Three daily meals",
       },
       {
-        title: "Night-access clearance to designated zones",
+        title: "Telescope (estate-provided)",
       },
       {
-        title: "Low-light safety orientation",
+        title: "Recliner access at observation point",
       },
       {
-        title: "Estate access during stay",
+        title: "Safety orientation",
       },
       {
-        title: "Shared silence protocol",
+        title: "Full estate access for duration of stay",
       },
     ],
     itinerary: [
@@ -438,49 +434,47 @@ const solitudePractices: Record<
   },
   "forest-walks": {
     title: "Forest Trails",
-    subtitle: "Walking until the mind untangles.",
+    subtitle: "Movement without destination.",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBS-7ETT0Y8bS144cz6202eGntk2MphbdlmHEt8WqWvWfiBzm80K29cumWX7SRpzNPBWVx2KCkjnZWjF6sj9NpVOCPtk688LcjR8EWa7w8VCQYsrQGbylEBhILeQ9KeZORxLzYKw_VlTgyoibONM9Epoo4FkKSfhEknTxMEh1F1TcoYX9LQ0WLW-IiFj1WOAwKKbs28Kmd6eLeVvQfDyupUltNoBBnP8j96m928ssFCgnjjZBtATZI7UDeYYqKukLbDQoQ68yqdfCCK",
     infoItems: [
       {
         icon: "psychology",
         title: "Core Frame",
-        description: "Forest Trails is a practice of rhythmic movement. Walking without conversation reorganizes thought. Repetition steadies breath. The body begins solving what the mind has been overworking. Under silence, steps become metronomes. Internal dialogue surfaces, settles, and rearranges itself without force. Movement here is not transit. It is processing.",
+        description: "Walking is one of the few states in which the thinking mind processes without being directed. Bilateral physical rhythm, the left-right repetition of movement, is associated with memory consolidation, emotional integration, and the low-level processing that produces clarity after extended stillness. The trails accessible from the estate are unstructured. There is no marked difficulty, no target elevation, no completion metric. You walk because the walking works, not because it leads somewhere.",
       },
       {
         icon: "landscape",
         title: "What This Environment Changes",
-        description: "The Silent Club offers low-density land and uninterrupted paths. Without headphones, screens, or social pacing, your nervous system recalibrates. The body returns to natural cadence. Breath aligns with terrain. Attention shifts from abstraction to sensation. Tree corridors, open stretches, and changing light support prolonged walking without urgency. The environment holds the rhythm so you do not have to.",
+        description: "The Silent Club removes urgency before you reach the trail. Without a schedule to return to or a performance to maintain, the walk becomes genuinely open. You notice what you notice. The pace you set is the pace the thinking requires. Members who use walking as a cognitive tool report that the trail at the estate produces a different quality of movement than urban running or structured fitness, slower, less compressed, more generative.",
       },
       {
         icon: "emoji_events",
         title: "Outcome",
-        description: "You leave with reduced cognitive compression. Thought becomes less fragmented. Decisions feel less forced. The body carries less residual tension. Nothing spectacular happens. But your internal pace slows to something usable.",
+        description: "You leave with physically integrated thinking rather than intellectually held conclusions. The kind of clarity that arrives while walking does not dissolve when you stop. It has already moved through the body. Decisions that felt paralysed become easier to make. Not because the trail provided answers but because the movement removed the interference that was preventing them.",
       },
       {
         icon: "groups",
         title: "Suitable For",
-        description: "Individuals under cognitive overload • Decision-makers processing complexity • Writers reorganizing ideas • Anyone rebuilding tolerance for unstructured time • Those seeking embodied clarity",
+        description: "Individuals who think better in motion than in stillness • Those processing a significant decision or transition • Members who find seated reflection insufficient on its own • Anyone who uses physical rhythm as a cognitive instrument",
       },
       {
         icon: "cancel",
         title: "What It Is Not",
-        description: "Not a trekking tour • Not endurance training • Not a fitness challenge • Not a guided nature workshop • Distance is secondary. Regulation is primary.",
+        description: "Not a fitness programme • Not a guided nature walk • Not timed or tracked • Not group activity • There are no distances to complete here.",
       },
       {
         icon: "inventory_2",
         title: "What You Receive",
-        description: "Shared digital library (walking cognition & restoration theory) • Printed silent walking guide • Mapped estate trail routes • Suggested pacing framework • Physical carry kit • Suggested weekly rhythm • We provide the land. You provide the steps.",
+        description: "Printed trail map with route options by duration • Terrain and safety briefing • Access to all estate trail networks • Physical carry kit • Suggested morning rhythm",
       },
     ],
     kitItems: [
-      { item: "Trail Map", purpose: "Route clarity" },
-      { item: "Minimal Backpack", purpose: "Lightweight carry" },
-      { item: "Water Bottle", purpose: "Hydration stability" },
-      { item: "Field Notebook", purpose: "Walking reflections" },
-      { item: "Pencil", purpose: "Quiet recording" },
-      { item: "Hat / Sun Protection", purpose: "Environmental comfort" },
-      { item: "Time Log Sheet", purpose: "Pace awareness" },
+      { item: "Lightweight trail shoes or boots", purpose: "Uneven terrain ankle support recommended" },
+      { item: "1L water bottle", purpose: "Dawn walks heat builds by 9am" },
+      { item: "Field notebook", purpose: "For thinking that arrives mid-trail" },
+      { item: "Light breathable layer", purpose: "Early morning temperature variation" },
+      { item: "Sun protection", purpose: "Open sections of the trail have no canopy" },
     ],
     includedItems: [
       {
@@ -490,16 +484,16 @@ const solitudePractices: Record<
         title: "Three daily meals",
       },
       {
-        title: "Designated trail access",
+        title: "Printed trail map",
       },
       {
-        title: "Safety & route orientation",
+        title: "Terrain orientation",
       },
       {
-        title: "Estate access during stay",
+        title: "Safety briefing",
       },
       {
-        title: "Shared silence protocol",
+        title: "Full estate access for duration of stay",
       },
     ],
     itinerary: [
@@ -569,49 +563,47 @@ const solitudePractices: Record<
   },
   "triathlon-conditioning": {
     title: "Triathlon Training",
-    subtitle: "Endurance without applause.",
+    subtitle: "Discipline without an audience.",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBS-7ETT0Y8bS144cz6202eGntk2MphbdlmHEt8WqWvWfiBzm80K29cumWX7SRpzNPBWVx2KCkjnZWjF6sj9NpVOCPtk688LcjR8EWa7w8VCQYsrQGbylEBhILeQ9KeZORxLzYKw_VlTgyoibONM9Epoo4FkKSfhEknTxMEh1F1TcoYX9LQ0WLW-IiFj1WOAwKKbs28Kmd6eLeVvQfDyupUltNoBBnP8j96m928ssFCgnjjZBtATZI7UDeYYqKukLbDQoQ68yqdfCCK",
     infoItems: [
       {
         icon: "psychology",
         title: "Core Frame",
-        description: "Triathlon is structured endurance. Swim. Cycle. Run. Repeat. In most environments, training becomes performance. Metrics dominate. Comparison accelerates. The body becomes a scoreboard. Under silence, endurance becomes introspection. Effort reveals thought patterns. Fatigue exposes narrative. Breath reorganizes impulse. This is not about speed. It is about composure under strain.",
+        description: "The Bhigwan environment is naturally suited to triathlon training. Open water for swimming. Flat, low-traffic roads for cycling. Trail access for running. Three disciplines, three environments, one uninterrupted morning. For members who use physical training as a cognitive instrument, the triathlon format offers a full-spectrum reset not because it is demanding, but because it requires the kind of sustained, singular focus that urban training environments rarely permit. No crowd. No race atmosphere. No performance pressure.",
       },
       {
         icon: "landscape",
         title: "What This Environment Changes",
-        description: "The Silent Club removes spectators and social pacing. Without noise, commentary, or digital tracking pressure, you confront effort without external validation. Long horizons replace crowded lanes. Repetition replaces intensity spikes. Movement becomes rhythmic instead of reactive. The estate allows volume without chaos.",
+        description: "The Silent Club removes the comparative and social dimensions of training before you begin. Without a Strava segment, a training partner's pace, or a coach's target, the session becomes genuinely yours. You train at the intensity the day requires. The body sets the pace. Members who train seriously report that sessions at the estate produce a different quality of physical output not faster, but more integrated. The thinking that surfaces during a long cycle or an open-water swim here is qualitatively different from what arrives in a city pool or on an urban road.",
       },
       {
         icon: "emoji_events",
         title: "Outcome",
-        description: "You leave with stabilized endurance. Your pacing becomes internal rather than competitive. Effort feels measured instead of frantic. Recovery improves without force. Nothing heroic happens. But your tolerance for sustained effort increases.",
+        description: "You leave with both physical and cognitive reset. The combination of sustained aerobic effort across three disciplines each requiring different sensory engagement produces a decompression that isolated gym sessions rarely achieve. Decisions that required forced deliberation begin to resolve during the swim, the ride, or the run. Not through effort. Through motion in silence.",
       },
       {
         icon: "groups",
         title: "Suitable For",
-        description: "Individuals rebuilding discipline • Athletes seeking distraction-free training • Professionals strengthening resilience • Beginners willing to train slowly • Anyone testing composure under fatigue",
+        description: "Trained athletes seeking a private, unstructured training environment • Individuals who use sustained physical effort as a thinking tool • Members preparing for an event who require focused solo training • Anyone for whom competitive training environments have become counterproductive",
       },
       {
         icon: "cancel",
         title: "What It Is Not",
-        description: "Not race preparation coaching • Not competitive camp training • Not performance benchmarking • Not motivational fitness culture • This is solitary endurance.",
+        description: "Not a triathlon coaching programme • Not a group training camp • Not performance-monitored • Not a race preparation service • There are no times recorded here.",
       },
       {
         icon: "inventory_2",
         title: "What You Receive",
-        description: "Shared digital training library (endurance fundamentals & pacing theory) • Printed weekly training structure • Access to swim, cycle, and run routes • Structured daily training windows • Physical carry kit • Suggested weekly rhythm • We provide the structure. You execute.",
+        description: "Printed route maps for all three disciplines • Open water safety briefing • Access to cycling, swimming, and trail running routes • Physical carry kit • Suggested session rhythm by stay cycle",
       },
     ],
     kitItems: [
-      { item: "Swim Cap & Goggles", purpose: "Water training" },
-      { item: "Basic Bike Maintenance Kit", purpose: "Mechanical stability" },
-      { item: "Reflective Vest", purpose: "Route safety" },
-      { item: "Training Log Sheet", purpose: "Effort tracking" },
-      { item: "Minimal First Aid Kit", purpose: "Risk management" },
-      { item: "Stretch Band", purpose: "Recovery work" },
-      { item: "Hydration Bottle", purpose: "Sustained output" },
+      { item: "Personal bicycle (or estate rental available)", purpose: "Road and trail circuit access" },
+      { item: "Open water wetsuit (recommended)", purpose: "Backwater temperature varies by season" },
+      { item: "Swim goggles", purpose: "Open water conditions" },
+      { item: "Running shoes", purpose: "Trail and road terrain" },
+      { item: "Nutrition and hydration kit", purpose: "Sessions often exceed 2 hours — plan accordingly" },
     ],
     includedItems: [
       {
@@ -621,16 +613,16 @@ const solitudePractices: Record<
         title: "Three daily meals",
       },
       {
-        title: "Training route access",
+        title: "Open water access",
       },
       {
-        title: "Basic safety orientation",
+        title: "Road cycling routes (20km circuit)",
       },
       {
-        title: "Estate access during stay",
+        title: "Safety orientation",
       },
       {
-        title: "Shared silence protocol",
+        title: "Full estate access for duration of stay",
       },
     ],
     itinerary: [
@@ -748,50 +740,48 @@ const solitudePractices: Record<
     price: "Included in Solitude Stay",
   },
   "fascia-system": {
-    title: "Fascia Systems",
-    subtitle: "Releasing what tension has memorized.",
+    title: "Fascia System",
+    subtitle: "The body holds what the mind accumulates.",
     image:
       "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Experiences/Solitude/fascia.png",
     infoItems: [
       {
         icon: "psychology",
         title: "Core Frame",
-        description: "Fascia holds what movement repeats. It is the connective tissue that adapts to posture, stress, and habit. Over time, it tightens around patterns you no longer notice. Under silence, sensation becomes detectable. Micro-tension surfaces. Breath exposes restriction. This is not about flexibility. It is about recalibrating internal tension maps.",
+        description: "Extended periods of high performance leave physical residue. Compressed posture. Shallow breathing. Held tension in the shoulders, jaw, and hips. These are not metaphors — they are structural conditions that directly limit the quality of thinking. The Fascia System addresses this through resistance training, mobility work, and fascial release: the systematic decompression of tissue locked by prolonged stress. It is not a gym session. It is a physical protocol designed to restore the body's capacity to support clear thought.",
       },
       {
         icon: "landscape",
         title: "What This Environment Changes",
-        description: "The Silent Club removes social observation and external pacing. Without mirrors, group instruction, or verbal correction, you move more honestly. The nervous system softens. Sensation replaces performance. Slow, deliberate loading and release patterns become measurable without distraction. Silence amplifies proprioception. You begin to feel before you react.",
+        description: "The Silent Club removes the social dimension of physical training before you begin. Without mirrors, performance culture, or comparative pressure, the body responds differently. Effort becomes internal rather than performed. You notice where tension lives — genuinely, not diagnostically. The outdoor setup at the estate places the work in low-stimulation conditions, which changes how the nervous system responds to exertion. Recovery is faster. Awareness is sharper.",
       },
       {
         icon: "emoji_events",
         title: "Outcome",
-        description: "You leave with increased bodily awareness. Movement feels less compressed. Postural tension reduces without force. Breathing deepens without instruction. Nothing dramatic shifts. But internal resistance decreases.",
+        description: "You leave with a physically lighter cognitive load. Tension that was limiting the range of your thinking has been removed at the source. Breathing deepens. Posture opens. The mental clarity that follows is not motivation, it is the result of the body no longer competing with the mind for resources. Members report that physical sessions mid-stay consistently precede the clearest thinking of the visit.",
       },
       {
         icon: "groups",
         title: "Suitable For",
-        description: "Individuals carrying chronic tension • Desk-bound professionals • Athletes seeking structural reset • Somatic learners preferring solitude • Anyone restoring body intelligence",
+        description: "Individuals carrying chronic physical tension from sustained high performance • Those who have neglected the body during a demanding professional chapter • Members who process emotionally through physical release • Anyone for whom the body is a constraint on the quality of thought",
       },
       {
         icon: "cancel",
         title: "What It Is Not",
-        description: "Not a physiotherapy session • Not personal training • Not corrective coaching • Not rehabilitation treatment • This is self-guided structural awareness.",
+        description: "Not a gym membership • Not personal training • Not performance coaching • Not aesthetic fitness • There are no metrics tracked here.",
       },
       {
         icon: "inventory_2",
         title: "What You Receive",
-        description: "Shared digital library (basic fascia theory & movement maps) • Printed guided sequence manual • Access to designated movement space • Structured daily practice windows • Physical carry kit • Suggested weekly rhythm • We provide the structure. You move within it.",
+        description: "Printed Fascia System protocol guide • Equipment orientation on arrival • Access to outdoor functional training setup • Physical carry kit • Suggested session rhythm by stay cycle",
       },
     ],
     kitItems: [
-      { item: "Foam Roller", purpose: "Myofascial release" },
-      { item: "Massage Ball Set", purpose: "Targeted pressure" },
-      { item: "Resistance Band", purpose: "Controlled tension" },
-      { item: "Floor Mat", purpose: "Ground work" },
-      { item: "Sequence Guide", purpose: "Movement reference" },
-      { item: "Breath Timing Card", purpose: "Pace awareness" },
-      { item: "Log Sheet", purpose: "Sensation tracking" },
+      { item: "Comfortable training clothes", purpose: "Functional movement — not aesthetic" },
+      { item: "Training shoes", purpose: "Flat sole preferred for ground-based work" },
+      { item: "Foam roller (estate-provided)", purpose: "Fascial release between sessions" },
+      { item: "Resistance bands (estate-provided)", purpose: "Mobility and activation work" },
+      { item: "Water bottle", purpose: "Training in outdoor heat requires sustained hydration" },
     ],
     includedItems: [
       {
@@ -801,16 +791,16 @@ const solitudePractices: Record<
         title: "Three daily meals",
       },
       {
-        title: "Movement floor access",
+        title: "Full equipment access",
       },
       {
-        title: "Basic mobility equipment",
+        title: "Equipment orientation",
       },
       {
-        title: "Safety orientation",
+        title: "Safety briefing",
       },
       {
-        title: "Estate access during stay",
+        title: "Full estate access for duration of stay",
       },
     ],
     itinerary: [

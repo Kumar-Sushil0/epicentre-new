@@ -14,7 +14,7 @@ export const blogPosts: Record<string, BlogPostDetail> = {
     subtitle: "Why clarity is not intelligence — it's continuity.",
     category: "Silence & Attention",
     author: "The Silent Club",
-    date: "2024",
+    date: "2026",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBzQUBgomUJe6e1OB_6dmTVcgR_GYt5k-UgoretbmfZ_izouiCOaK8YYEWLDt_QTV_ISyTECnULI_O5W2HYPqj6w163bSvDPTOBZHjRl7FljH8xAlUWQIAfo5Eosj0EPZTfwiMtkXcjRL7RThN1FokJa4gSqWamw681YNKmVWdMcKtTZpKktdALEho3axfgg38XvTVTyHnF8634k552ETsVCipetwOV8NQ9ujUeRJusTOeygeyE16mtVKBxnTDmtPIEduKGAtXfTURb",
     content: [
       "Most people assume clarity requires more information. Another framework. Another conversation. Another opinion.",
@@ -38,7 +38,7 @@ export const blogPosts: Record<string, BlogPostDetail> = {
     subtitle: "How engineered noise fragments thinking.",
     category: "Silence & Attention",
     author: "The Silent Club",
-    date: "2024",
+    date: "2026",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDRDZ8o-JGgFjqHv3XthGLGz519OyZYTh_sWwcvBjdQQIzolyCXSsUjdTvivWDhmcltlTFvD71iGQr0I77PCKoXLuqGYJ22zlf__h8EMkv791VfiUJnEUc4ykgWQtr9O5EBzFF-MJ07jrYOwEkyg5xEl0X9ayH0rYcb9diiyN68oouAfDUUeOTFPIBjvnYN8xELQ9oCDNI2lBDINuvnt6NQPsVbvR-t4c4gZrshZ1RXGQrACrjJyPGfT62LIZeuaMXegi9fS2KKrZ35",
     content: [
       "Silence is often framed as spiritual. Meditative. Sacred. Mystical.",
@@ -63,7 +63,7 @@ export const blogPosts: Record<string, BlogPostDetail> = {
     subtitle: "Reframing silence as infrastructure.",
     category: "Silence & Attention",
     author: "The Silent Club",
-    date: "2024",
+    date: "2026",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCL7r_EfdzJXByVkgj8b1NMj-ZAtICOd-7f0nIhoxkQIxwBXH598TGdlFxtN24GiUoEphwYF0zIlhdvgru9oSMfTu9oihv5xP2V32qk72jVhmmMD13Pcuc1s0mmIW9z0PwjwSoqpRfVVjN7zXydMqkaSSiGcvxYcCH0nmyLUFMqAU494-rLxIKe2FG8GvN3X8ki91b9auaQ6g5uK2zpi_NeVNIbCo2enuZdmqIXYer0VC9t9T7g6Bxyw44xX4oXh4-0yrKVSoFNsFSS",
     content: [
       "Most people think behavior is personal. It isn't. It is heavily environmental.",
@@ -89,7 +89,7 @@ export const blogPosts: Record<string, BlogPostDetail> = {
     subtitle: "On suspending external identity.",
     category: "Identity & Sovereignty",
     author: "The Silent Club",
-    date: "2024",
+    date: "2026",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBzQUBgomUJe6e1OB_6dmTVcgR_GYt5k-UgoretbmfZ_izouiCOaK8YYEWLDt_QTV_ISyTECnULI_O5W2HYPqj6w163bSvDPTOBZHjRl7FljH8xAlUWQIAfo5Eosj0EPZTfwiMtkXcjRL7RThN1FokJa4gSqWamw681YNKmVWdMcKtTZpKktdALEho3axfgg38XvTVTyHnF8634k552ETsVCipetwOV8NQ9ujUeRJusTOeygeyE16mtVKBxnTDmtPIEduKGAtXfTURb",
     content: [
       "Most identities are relational. Parent. Founder. Partner. Leader. Expert. Employee.",
@@ -115,7 +115,7 @@ export const blogPosts: Record<string, BlogPostDetail> = {
     subtitle: "Introducing authorship without preaching.",
     category: "Identity & Sovereignty",
     author: "The Silent Club",
-    date: "2024",
+    date: "2026",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDRDZ8o-JGgFjqHv3XthGLGz519OyZYTh_sWwcvBjdQQIzolyCXSsUjdTvivWDhmcltlTFvD71iGQr0I77PCKoXLuqGYJ22zlf__h8EMkv791VfiUJnEUc4ykgWQtr9O5EBzFF-MJ07jrYOwEkyg5xEl0X9ayH0rYcb9diiyN68oouAfDUUeOTFPIBjvnYN8xELQ9oCDNI2lBDINuvnt6NQPsVbvR-t4c4gZrshZ1RXGQrACrjJyPGfT62LIZeuaMXegi9fS2KKrZ35",
     content: [
       "Most identity is inherited. Not consciously chosen.",
@@ -144,7 +144,7 @@ export const blogPosts: Record<string, BlogPostDetail> = {
     subtitle: "The psychological basis of sovereignty.",
     category: "Identity & Sovereignty",
     author: "The Silent Club",
-    date: "2024",
+    date: "2026",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCL7r_EfdzJXByVkgj8b1NMj-ZAtICOd-7f0nIhoxkQIxwBXH598TGdlFxtN24GiUoEphwYF0zIlhdvgru9oSMfTu9oihv5xP2V32qk72jVhmmMD13Pcuc1s0mmIW9z0PwjwSoqpRfVVjN7zXydMqkaSSiGcvxYcCH0nmyLUFMqAU494-rLxIKe2FG8GvN3X8ki91b9auaQ6g5uK2zpi_NeVNIbCo2enuZdmqIXYer0VC9t9T7g6Bxyw44xX4oXh4-0yrKVSoFNsFSS",
     content: [
       "Most buildings have entrances. Few have thresholds.",
@@ -172,7 +172,7 @@ export const blogPosts: Record<string, BlogPostDetail> = {
     subtitle: "Architecture > motivation.",
     category: "Environment & Structure",
     author: "The Silent Club",
-    date: "2024",
+    date: "2026",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBzQUBgomUJe6e1OB_6dmTVcgR_GYt5k-UgoretbmfZ_izouiCOaK8YYEWLDt_QTV_ISyTECnULI_O5W2HYPqj6w163bSvDPTOBZHjRl7FljH8xAlUWQIAfo5Eosj0EPZTfwiMtkXcjRL7RThN1FokJa4gSqWamw681YNKmVWdMcKtTZpKktdALEho3axfgg38XvTVTyHnF8634k552ETsVCipetwOV8NQ9ujUeRJusTOeygeyE16mtVKBxnTDmtPIEduKGAtXfTURb",
     content: [
       "Most people believe behavior changes through motivation. They wait for discipline. Clarity. Inspiration.",
@@ -198,7 +198,7 @@ export const blogPosts: Record<string, BlogPostDetail> = {
     subtitle: "Decision fatigue & structural reduction.",
     category: "Environment & Structure",
     author: "The Silent Club",
-    date: "2024",
+    date: "2026",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDRDZ8o-JGgFjqHv3XthGLGz519OyZYTh_sWwcvBjdQQIzolyCXSsUjdTvivWDhmcltlTFvD71iGQr0I77PCKoXLuqGYJ22zlf__h8EMkv791VfiUJnEUc4ykgWQtr9O5EBzFF-MJ07jrYOwEkyg5xEl0X9ayH0rYcb9diiyN68oouAfDUUeOTFPIBjvnYN8xELQ9oCDNI2lBDINuvnt6NQPsVbvR-t4c4gZrshZ1RXGQrACrjJyPGfT62LIZeuaMXegi9fS2KKrZ35",
     content: [
       "Modern life celebrates abundance. More options. More customization. More upgrades. More flexibility.",
@@ -224,7 +224,7 @@ export const blogPosts: Record<string, BlogPostDetail> = {
     subtitle: "Why the Club model works.",
     category: "Environment & Structure",
     author: "The Silent Club",
-    date: "2024",
+    date: "2026",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCL7r_EfdzJXByVkgj8b1NMj-ZAtICOd-7f0nIhoxkQIxwBXH598TGdlFxtN24GiUoEphwYF0zIlhdvgru9oSMfTu9oihv5xP2V32qk72jVhmmMD13Pcuc1s0mmIW9z0PwjwSoqpRfVVjN7zXydMqkaSSiGcvxYcCH0nmyLUFMqAU494-rLxIKe2FG8GvN3X8ki91b9auaQ6g5uK2zpi_NeVNIbCo2enuZdmqIXYer0VC9t9T7g6Bxyw44xX4oXh4-0yrKVSoFNsFSS",
     content: [
       "Most spaces rely on rules. Rules are written. Displayed. Enforced. They exist because alignment is assumed to be fragile.",
@@ -252,7 +252,7 @@ export const blogPosts: Record<string, BlogPostDetail> = {
     subtitle: "Why more input rarely solves uncertainty.",
     category: "Silence & Attention",
     author: "The Silent Club",
-    date: "2024",
+    date: "2026",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBzQUBgomUJe6e1OB_6dmTVcgR_GYt5k-UgoretbmfZ_izouiCOaK8YYEWLDt_QTV_ISyTECnULI_O5W2HYPqj6w163bSvDPTOBZHjRl7FljH8xAlUWQIAfo5Eosj0EPZTfwiMtkXcjRL7RThN1FokJa4gSqWamw681YNKmVWdMcKtTZpKktdALEho3axfgg38XvTVTyHnF8634k552ETsVCipetwOV8NQ9ujUeRJusTOeygeyE16mtVKBxnTDmtPIEduKGAtXfTURb",
     content: [
       "When people feel unclear, their first instinct is to seek more input.",
@@ -284,7 +284,7 @@ export const blogPosts: Record<string, BlogPostDetail> = {
     subtitle: "On avoidance vs ambiguity.",
     category: "Identity & Sovereignty",
     author: "The Silent Club",
-    date: "2024",
+    date: "2026",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDRDZ8o-JGgFjqHv3XthGLGz519OyZYTh_sWwcvBjdQQIzolyCXSsUjdTvivWDhmcltlTFvD71iGQr0I77PCKoXLuqGYJ22zlf__h8EMkv791VfiUJnEUc4ykgWQtr9O5EBzFF-MJ07jrYOwEkyg5xEl0X9ayH0rYcb9diiyN68oouAfDUUeOTFPIBjvnYN8xELQ9oCDNI2lBDINuvnt6NQPsVbvR-t4c4gZrshZ1RXGQrACrjJyPGfT62LIZeuaMXegi9fS2KKrZ35",
     content: [
       "People often describe major decisions as difficult.",
@@ -316,7 +316,7 @@ export const blogPosts: Record<string, BlogPostDetail> = {
     subtitle: "A final integrative piece.",
     category: "Environment & Structure",
     author: "The Silent Club",
-    date: "2024",
+    date: "2026",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCL7r_EfdzJXByVkgj8b1NMj-ZAtICOd-7f0nIhoxkQIxwBXH598TGdlFxtN24GiUoEphwYF0zIlhdvgru9oSMfTu9oihv5xP2V32qk72jVhmmMD13Pcuc1s0mmIW9z0PwjwSoqpRfVVjN7zXydMqkaSSiGcvxYcCH0nmyLUFMqAU494-rLxIKe2FG8GvN3X8ki91b9auaQ6g5uK2zpi_NeVNIbCo2enuZdmqIXYer0VC9t9T7g6Bxyw44xX4oXh4-0yrKVSoFNsFSS",
     content: [
       "Many people approach silence as transformation. They expect breakthrough. Insight. A shift in identity.",
