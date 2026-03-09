@@ -19,22 +19,22 @@ export default function AboutPhilosophy() {
     {
       title: "Why Silence",
       description:
-        "Most environments amplify input.\nSilence reduces distortion.\nClear thinking requires signal control.\nThe estate is built on this principle.",
+        "Most environments amplify input. Silence reduces distortion. Clear thinking requires signal control. The estate is built on this principle.",
     },
     {
       title: "Why Membership",
       description:
-        "Attention requires cultural coherence.\nLimited membership preserves the density of the environment, protects the anonymity of members, and prevents cultural drift.\nWhen the room changes every day, the environment cannot stabilize.\nMembership solves this.",
+        "Attention requires cultural coherence. Limited membership preserves the density of the environment, protects the anonymity of members, and prevents cultural drift. When the room changes every day, the environment cannot stabilize. Membership solves this.",
     },
     {
       title: "Why Bhigwan",
       description:
-        "Distance matters.\nBhigwan is far enough from Pune and Mumbai to interrupt routine, and close enough to remain accessible.\nThe location is not incidental, it is a design decision.",
+        "Distance matters. Bhigwan is far enough from Pune and Mumbai to interrupt routine, and close enough to remain accessible. The location is not incidental, it is a design decision.",
     },
     {
       title: "Why Sequencing by Cohort",
       description:
-        "Cohorts shape culture.\nEach annual cohort centres a specific life-stage group so that the shared context among members remains deep and the clarity of intent is preserved.\nMixing life stages dilutes both.",
+        "Cohorts shape culture. Each annual cohort centres a specific life-stage group so that the shared context among members remains deep and the clarity of intent is preserved. Mixing life stages dilutes both.",
     },
   ];
 

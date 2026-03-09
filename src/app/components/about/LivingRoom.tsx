@@ -39,11 +39,11 @@ const research = [
         link: "https://doi.org/10.1037/h0092976",
     },
     {
-        title: "Polyvagal Theory Nervous System Regulation",
+        title: "Polyvagal Theory: Nervous System Regulation",
         author: "Porges, S. W. (2001). The Polyvagal Theory: Phylogenetic Substrates of a Social Nervous System. International Journal of Psychophysiology.",
         description:
-            "The autonomic nervous system shifts between states of threat and safety based on environmental cues. Silence, stillness, and the absence of social performance signal to the body that it is safe. The estate is designed to sustain that signal. Recovery begins before any conscious effort is made.",
-        link: "",
+            "Polyvagal Theory explains how the nervous system continuously scans the environment for safety signals. Calm environments reduce threat responses and allow physiological regulation. Silence, stillness, and the absence of social performance cues signal safety to the body, so regulation begins automatically before conscious effort is required.",
+        link: "https://doi.org/10.1016/S0167-8760(01)00162-3",
     },
 ];
 
