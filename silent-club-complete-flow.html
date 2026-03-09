@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Silent Club — Complete Flow</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#080604;--bg2:#0f0c09;--bg3:#161209;--bg4:#1c1610;
+  --gold:#C9A84C;--gold2:#e8c96a;--gold-dim:rgba(201,168,76,0.12);--gold-border:rgba(201,168,76,0.28);
+  --text:#d4c9b0;--text-dim:#7a7060;--text-muted:#4a4438;--white:#f0ead8;
+  --error:#c47a5a;--success:#7a9e7e;--warn:#c9a44c;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Jost',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.5;}
+
+/* SCREENS */
+.screen{display:none;min-height:100vh;position:relative;}
+.screen.active{display:flex;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;padding:22px 48px;display:flex;align-items:center;justify-content:space-between;z-index:50;background:linear-gradient(to bottom,var(--bg) 0%,transparent 100%);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:var(--text);font-weight:300;letter-spacing:.08em;cursor:pointer;}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex;align-items:center;gap:16px;}
+.nav-badge{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-border);padding:4px 12px;}
+
+/* TYPOGRAPHY */
+h1{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(2.8rem,5vw,5rem);color:var(--gold);line-height:1.05;letter-spacing:-.01em;}
+h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(1.6rem,2.8vw,2.4rem);color:var(--white);line-height:1.2;}
+h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.25rem;color:var(--gold);}
+h4{font-size:.8rem;font-weight:500;letter-spacing:.08em;color:var(--white);text-transform:uppercase;}
+p{font-size:.9rem;line-height:1.8;color:var(--text);font-weight:300;}
+.label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);font-weight:400;}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 28px;border:1px solid var(--gold);background:transparent;color:var(--gold);font-family:'Jost',sans-serif;font-size:.75rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .22s;text-decoration:none;}
+.btn:hover{background:var(--gold-dim);color:var(--gold2);border-color:var(--gold2);}
+.btn-sm{padding:9px 20px;font-size:.68rem;}
+.btn-full{width:100%;justify-content:center;}
+.btn-ghost{background:none;border:none;color:var(--text-dim);font-family:'Jost',sans-serif;font-size:.75rem;font-weight:300;letter-spacing:.1em;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:color .2s;text-decoration:none;padding:4px 0;}
+.btn-ghost:hover{color:var(--text);}
+.btn-danger{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border:1px solid rgba(196,122,90,.35);background:transparent;color:var(--error);font-family:'Jost',sans-serif;font-size:.72rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .22s;}
+.btn-danger:hover{background:rgba(196,122,90,.08);}
+.btn-warn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border:1px solid rgba(201,168,76,.35);background:transparent;color:var(--warn);font-family:'Jost',sans-serif;font-size:.72rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .22s;}
+
+/* INPUTS */
+textarea,input[type="text"],input[type="email"],input[type="number"]{width:100%;background:rgba(255,255,255,.025);border:1px solid rgba(201,168,76,.18);color:var(--white);font-family:'Jost',sans-serif;font-size:.88rem;font-weight:300;padding:14px 18px;resize:none;outline:none;transition:border-color .2s;line-height:1.7;}
+textarea:focus,input:focus{border-color:rgba(201,168,76,.45);}
+textarea{min-height:110px;}
+input::placeholder,textarea::placeholder{color:var(--text-muted);}
+select{width:100%;background:var(--bg2);border:1px solid rgba(201,168,76,.18);color:var(--text);font-family:'Jost',sans-serif;font-size:.85rem;font-weight:300;padding:13px 16px;outline:none;cursor:pointer;appearance:none;}
+
+/* LAYOUT HELPERS */
+.gold-line{width:36px;height:1px;background:var(--gold);display:block;flex-shrink:0;}
+.divider{border:none;border-top:1px solid rgba(201,168,76,.1);margin:28px 0;}
+.spacer{height:24px;}
+.center{justify-content:center;align-items:center;flex-direction:column;text-align:center;padding:40px 24px;}
+.inner{max-width:580px;width:100%;}
+.inner-wide{max-width:880px;width:100%;}
+.pill{display:inline-flex;align-items:center;gap:10px;margin-bottom:18px;}
+.pill-text{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);}
+.badge{display:inline-block;padding:5px 14px;border:1px solid var(--gold-border);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);}
+.badge-success{border-color:rgba(122,158,126,.4);color:var(--success);}
+.badge-warn{border-color:rgba(201,168,76,.35);color:var(--warn);}
+.badge-error{border-color:rgba(196,122,90,.35);color:var(--error);}
+.badge-grey{border-color:rgba(255,255,255,.1);color:var(--text-dim);}
+
+/* CARD */
+.card{background:var(--bg2);border:1px solid rgba(201,168,76,.11);padding:28px;}
+.card+.card{margin-top:16px;}
+.card-highlight{border-color:rgba(201,168,76,.28);background:rgba(201,168,76,.03);}
+
+/* ALERT */
+.alert{padding:14px 20px;border:1px solid rgba(201,168,76,.22);background:rgba(201,168,76,.05);display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px;}
+.alert p{font-size:.8rem;margin:0;}
+.alert.warn{border-color:rgba(196,122,90,.3);background:rgba(196,122,90,.06);}
+.alert.warn p{color:#d4a090;}
+.alert.info{border-color:rgba(122,158,126,.3);background:rgba(122,158,126,.06);}
+.alert.info p{color:#a0c4a4;}
+
+/* CLOSE BTN */
+.close-btn{position:fixed;top:22px;left:22px;background:none;border:none;color:var(--text-dim);font-size:18px;cursor:pointer;z-index:100;font-family:'Jost',sans-serif;font-weight:300;transition:color .2s;line-height:1;}
+.close-btn:hover{color:var(--gold);}
+
+/* TABS */
+.tabs{display:flex;gap:0;border-bottom:1px solid rgba(201,168,76,.1);margin-bottom:28px;}
+.tab{padding:11px 22px;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;background:none;border-left:none;border-right:none;border-top:none;font-family:'Jost',sans-serif;font-weight:400;}
+.tab.active{color:var(--gold);border-bottom-color:var(--gold);}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
+/* TABLE */
+.data-table{width:100%;border-collapse:collapse;}
+.data-table th{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);padding:10px 16px;text-align:left;border-bottom:1px solid rgba(201,168,76,.1);font-weight:400;}
+.data-table td{padding:14px 16px;font-size:.82rem;color:var(--text);border-bottom:1px solid rgba(255,255,255,.035);vertical-align:middle;}
+.data-table tr:hover td{background:rgba(201,168,76,.025);cursor:pointer;}
+
+/* STAT CARDS */
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:36px;}
+.stat-card{background:var(--bg2);border:1px solid rgba(201,168,76,.1);padding:22px;}
+.stat-card .s-label{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;display:block;}
+.stat-card .s-value{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--gold);line-height:1;margin-bottom:4px;}
+.stat-card .s-sub{font-size:.72rem;color:var(--text-dim);}
+
+/* WALLET BAR */
+.w-bar-wrap{margin-bottom:8px;}
+.w-bar-bg{height:3px;background:rgba(255,255,255,.06);}
+.w-bar-fill{height:100%;background:linear-gradient(to right,var(--gold),var(--gold2));transition:width .8s ease;}
+
+/* CYCLE CARDS */
+.cycle-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:36px;}
+.cycle-card{background:var(--bg2);border:1px solid rgba(201,168,76,.1);padding:22px 18px;cursor:pointer;transition:all .22s;text-align:center;}
+.cycle-card:hover,.cycle-card.selected{border-color:rgba(201,168,76,.35);background:rgba(201,168,76,.04);}
+.cycle-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold);margin-bottom:6px;}
+.cycle-desc{font-size:.68rem;color:var(--text-dim);margin-bottom:12px;line-height:1.6;}
+.cycle-price{font-size:.78rem;color:var(--white);}
+
+/* TX LIST */
+.tx-item{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.tx-type{font-size:.82rem;color:var(--white);margin-bottom:3px;}
+.tx-date{font-size:.7rem;color:var(--text-dim);}
+.tx-amount{font-size:.86rem;font-weight:400;}
+.tx-amount.cr{color:var(--success);}
+.tx-amount.dr{color:var(--text);}
+
+/* MODAL */
+.modal{display:none;position:fixed;inset:0;background:rgba(8,6,4,.88);z-index:200;justify-content:center;align-items:center;padding:24px;}
+.modal.open{display:flex;}
+.modal-box{background:var(--bg2);border:1px solid rgba(201,168,76,.2);padding:36px;max-width:480px;width:100%;animation:fadeUp .28s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+/* TOPUP OPTIONS */
+.topup-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px;}
+.topup-opt{padding:15px;border:1px solid var(--gold-border);background:none;color:var(--text);font-family:'Jost',sans-serif;font-size:.8rem;cursor:pointer;transition:all .2s;text-align:left;}
+.topup-opt:hover,.topup-opt.sel{border-color:var(--gold);background:var(--gold-dim);color:var(--white);}
+.opt-amt{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--gold);display:block;margin-bottom:3px;}
+.opt-lbl{font-size:.68rem;color:var(--text-dim);}
+
+/* CALENDAR */
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:20px;}
+.cal-header{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:8px;}
+.cal-day-label{font-size:.6rem;text-align:center;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase;padding:4px;}
+.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--text-dim);cursor:pointer;transition:all .18s;border:1px solid transparent;}
+.cal-day:hover{border-color:var(--gold-border);color:var(--text);}
+.cal-day.today{color:var(--gold);border-color:var(--gold-border);}
+.cal-day.selected{background:var(--gold);color:var(--bg);border-color:var(--gold);}
+.cal-day.booked{background:rgba(201,168,76,.12);color:var(--gold);font-weight:500;}
+.cal-day.empty{pointer-events:none;}
+.cal-day.past{opacity:.3;pointer-events:none;}
+
+/* MEMBER PULSE */
+.member-tag{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border:1px solid var(--gold-border);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);}
+.member-tag::before{content:'';width:5px;height:5px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.25;}}
+
+/* SIDEBAR LAYOUT */
+.sidebar-layout{display:flex;min-height:100vh;width:100%;}
+.sidebar{width:220px;flex-shrink:0;background:var(--bg2);border-right:1px solid rgba(201,168,76,.08);padding:88px 0 40px;position:fixed;top:0;left:0;bottom:0;z-index:40;overflow-y:auto;}
+.sidebar-section{margin-bottom:8px;}
+.sidebar-label{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);padding:16px 24px 8px;display:block;}
+.sidebar-item{display:flex;align-items:center;gap:10px;padding:10px 24px;font-size:.75rem;color:var(--text-dim);cursor:pointer;transition:all .18s;letter-spacing:.04em;border-left:2px solid transparent;text-decoration:none;}
+.sidebar-item:hover{color:var(--text);background:rgba(255,255,255,.025);}
+.sidebar-item.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.04);}
+.sidebar-item .item-icon{width:14px;text-align:center;font-size:.8rem;flex-shrink:0;}
+.sidebar-badge{margin-left:auto;background:rgba(201,168,76,.15);color:var(--gold);font-size:.58rem;padding:2px 7px;border-radius:2px;}
+.main-content{margin-left:220px;flex:1;padding:100px 48px 80px;}
+
+/* FLOW NAVIGATOR */
+.flow-nav{position:fixed;bottom:28px;right:28px;z-index:100;display:flex;flex-direction:column;align-items:flex-end;gap:6px;}
+.flow-label{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted);}
+.flow-dots{display:flex;gap:5px;flex-wrap:wrap;max-width:200px;justify-content:flex-end;}
+.flow-dot{width:5px;height:5px;border:1px solid var(--text-muted);background:none;cursor:pointer;transition:all .18s;border-radius:0;}
+.flow-dot.active{background:var(--gold);border-color:var(--gold);}
+.flow-dot.done{background:rgba(201,168,76,.28);border-color:rgba(201,168,76,.28);}
+
+/* SECTION SWITCHER (DD/Applicant toggle) */
+.view-toggle{position:fixed;top:22px;right:180px;z-index:60;display:flex;gap:0;}
+.vt-btn{padding:6px 16px;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;font-family:'Jost',sans-serif;font-weight:400;cursor:pointer;transition:all .2s;border:1px solid rgba(201,168,76,.2);background:none;color:var(--text-dim);}
+.vt-btn.active{background:var(--gold-dim);color:var(--gold);border-color:var(--gold-border);}
+
+/* INTAKE ANIMATION */
+.q-slide{display:none;animation:fadeUp .35s ease;}
+.q-slide.active{display:block;}
+
+/* PROFILE SECTION */
+.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px;}
+.profile-field .label{margin-bottom:6px;display:block;}
+.profile-field .value{font-size:.88rem;color:var(--white);}
+
+/* NOTIFICATION LIST */
+.notif-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.notif-dot{width:8px;height:8px;border-radius:50%;margin-top:5px;flex-shrink:0;}
+.notif-dot.gold{background:var(--gold);}
+.notif-dot.green{background:var(--success);}
+.notif-dot.red{background:var(--error);}
+.notif-dot.grey{background:var(--text-muted);}
+.notif-title{font-size:.82rem;color:var(--white);margin-bottom:3px;}
+.notif-sub{font-size:.72rem;color:var(--text-dim);}
+
+/* VISIT CONFIRMATION */
+.confirm-row{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.confirm-row:last-child{border-bottom:none;}
+.confirm-label{font-size:.78rem;color:var(--text-dim);}
+.confirm-value{font-size:.82rem;color:var(--white);}
+
+/* RENEWAL BANNER */
+.renewal-banner{border:1px solid rgba(201,168,76,.25);background:rgba(201,168,76,.04);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px;}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:18px 20px;}
+  .nav-links,.view-toggle{display:none;}
+  .sidebar{display:none;}
+  .main-content{margin-left:0;padding:80px 20px 60px;}
+  .stat-grid{grid-template-columns:1fr 1fr;}
+  .cycle-grid{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo" onclick="goTo('s-home')">The Silent Club</span>
+  <ul class="nav-links">
+    <li><a href="#">Estate</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">FAQ</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-badge" id="nav-member-badge" style="display:none;">Member · 2026</span>
+  </div>
+</nav>
+
+<!-- VIEW TOGGLE -->
+<div class="view-toggle">
+  <button class="vt-btn active" onclick="setView('applicant',this)">Applicant</button>
+  <button class="vt-btn" onclick="setView('dd',this)">D.D. Dashboard</button>
+</div>
+
+<!-- ═══════════════════════════════════════
+  APPLICANT SCREENS
+═══════════════════════════════════════ -->
+
+<!-- A1: HOMEPAGE -->
+<div id="s-home" class="screen active" style="flex-direction:column;justify-content:center;padding:0 10vw;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 65% 50%,rgba(201,168,76,.04) 0%,transparent 65%);pointer-events:none;"></div>
+  <div style="position:relative;z-index:1;max-width:600px;">
+    <h1 style="font-style:italic;margin-bottom:26px;">Silence as<br>a Service.</h1>
+    <p style="max-width:420px;margin-bottom:10px;">The world does not run out of noise. It runs out of places that protect you from it.</p>
+    <p style="font-size:.82rem;color:var(--text-dim);margin-bottom:36px;"><strong style="color:var(--gold);font-weight:400;">2026 Cohort:</strong> Post-Exit Founders. 100 memberships. Application-based.</p>
+    <button class="btn" onclick="goTo('s-prescreen')">Request an Invite →</button>
+    <p style="margin-top:11px;font-size:.68rem;color:var(--text-muted);">Access is by alignment.</p>
+  </div>
+</div>
+
+<!-- A2: PRESCREEN -->
+<div id="s-prescreen" class="screen center">
+  <button class="close-btn" onclick="goTo('s-home')">✕</button>
+  <div class="inner" style="text-align:center;">
+    <h2 style="margin-bottom:24px;">Before you request an invite</h2>
+    <p style="margin-bottom:14px;">The Silent Club is a structured environment for uninterrupted attention.</p>
+    <p style="margin-bottom:14px;">There are no programs, no hosts, and no instruction.<br><strong style="color:var(--white);font-weight:400;">The environment holds silence. You decide how to use it.</strong></p>
+    <p style="margin-bottom:14px;">Most visitors arrive between chapters — after completing something significant and before beginning the next.</p>
+    <p style="margin-bottom:36px;">If that moment resonates with you, continue.</p>
+    <button class="btn" onclick="goTo('s-intake')">Continue →</button>
+  </div>
+</div>
+
+<!-- A3: INTAKE FORM (5 Qs) -->
+<div id="s-intake" class="screen" style="flex-direction:column;justify-content:center;align-items:center;padding:110px 24px 60px;">
+  <button class="close-btn" onclick="goTo('s-home')">✕</button>
+  <div style="max-width:680px;width:100%;">
+    <span style="color:var(--gold);font-size:.78rem;letter-spacing:.06em;display:block;margin-bottom:44px;" id="q-label">01/05 — What chapter are you currently between?</span>
+
+    <div class="q-slide active" id="q1">
+      <p style="font-size:1rem;color:var(--text);margin-bottom:26px;line-height:1.7;font-weight:300;">What chapter are you currently between?</p>
+      <textarea placeholder="Write freely. There is no correct answer." id="a1" style="min-height:130px;"></textarea>
+      <div style="display:flex;justify-content:flex-end;margin-top:32px;">
+        <button class="btn" onclick="nextQ(2)">Next question →</button>
+      </div>
+    </div>
+    <div class="q-slide" id="q2">
+      <p style="font-size:1rem;color:var(--text);margin-bottom:26px;line-height:1.7;font-weight:300;">What would uninterrupted attention allow you to confront?</p>
+      <textarea placeholder="Write freely." id="a2"></textarea>
+      <div style="display:flex;justify-content:space-between;margin-top:32px;">
+        <button class="btn-ghost" onclick="prevQ(1)">← Back</button>
+        <button class="btn" onclick="nextQ(3)">Next question →</button>
+      </div>
+    </div>
+    <div class="q-slide" id="q3">
+      <p style="font-size:1rem;color:var(--text);margin-bottom:26px;line-height:1.7;font-weight:300;">Are you comfortable with extended silence?</p>
+      <textarea placeholder="Write freely." id="a3"></textarea>
+      <div style="display:flex;justify-content:space-between;margin-top:32px;">
+        <button class="btn-ghost" onclick="prevQ(2)">← Back</button>
+        <button class="btn" onclick="nextQ(4)">Next question →</button>
+      </div>
+    </div>
+    <div class="q-slide" id="q4">
+      <p style="font-size:1rem;color:var(--text);margin-bottom:26px;line-height:1.7;font-weight:300;">Are you seeking withdrawal or structured inquiry?</p>
+      <textarea placeholder="Write freely." id="a4"></textarea>
+      <div style="display:flex;justify-content:space-between;margin-top:32px;">
+        <button class="btn-ghost" onclick="prevQ(3)">← Back</button>
+        <button class="btn" onclick="nextQ(5)">Next question →</button>
+      </div>
+    </div>
+    <div class="q-slide" id="q5">
+      <p style="font-size:1rem;color:var(--text);margin-bottom:26px;line-height:1.7;font-weight:300;">What would make this visit meaningful?</p>
+      <textarea placeholder="Write freely." id="a5"></textarea>
+      <div style="margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <input type="text" placeholder="Full name" id="inp-name">
+        <input type="email" placeholder="Email address" id="inp-email">
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:28px;">
+        <button class="btn-ghost" onclick="prevQ(4)">← Back</button>
+        <button class="btn" onclick="submitApp()">Submit application →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- A4: EMAIL CONFIRMATION (what applicant receives) -->
+<div id="s-email-confirm" class="screen center">
+  <div class="inner" style="text-align:center;">
+    <div style="width:48px;height:1px;background:var(--gold);margin:0 auto 28px;"></div>
+    <div class="badge" style="margin-bottom:28px;">Application Received</div>
+    <h2 style="margin-bottom:20px;">Your application is with D.D.</h2>
+    <p style="margin-bottom:14px;">Responses are reviewed personally. You will hear back within 7 days.</p>
+    <p style="color:var(--text-dim);margin-bottom:8px;font-size:.82rem;">There is nothing to do now.<br>No follow-up is required or expected.</p>
+    <div class="divider"></div>
+    <div class="card" style="text-align:left;margin-bottom:20px;">
+      <span class="label" style="display:block;margin-bottom:12px;">Email confirmation sent to</span>
+      <p style="font-size:.85rem;" id="confirm-email-display">applicant@email.com</p>
+      <hr class="divider">
+      <p style="font-size:.78rem;color:var(--text-dim);line-height:1.9;">
+        <strong style="color:var(--text);font-weight:400;">Subject:</strong> Your application — The Silent Club 2026<br>
+        <strong style="color:var(--text);font-weight:400;">From:</strong> hello@thesilent.club<br><br>
+        Your application has been received. D.D. reviews each submission personally against a defined alignment checklist. You will be contacted within 7 days with a decision.
+      </p>
+    </div>
+    <button class="btn-ghost" onclick="goTo('s-dd-review')" style="font-size:.7rem;color:var(--text-muted);">→ See D.D.'s review (demo)</button>
+  </div>
+</div>
+
+<!-- A5: INVITE RECEIVED (applicant email) -->
+<div id="s-invite-received" class="screen center">
+  <div class="inner" style="text-align:center;">
+    <div class="badge badge-success" style="margin-bottom:28px;">Invite Confirmed</div>
+    <h2 style="margin-bottom:20px;">You have been invited.</h2>
+    <p style="margin-bottom:14px;">D.D. has reviewed your application and confirmed your alignment with the estate's protocol.</p>
+    <p style="color:var(--text-dim);margin-bottom:28px;font-size:.82rem;">Your membership spot in the 2026 Post-Exit Founders cohort is reserved for 7 days pending payment.</p>
+    <div class="card" style="text-align:left;margin-bottom:24px;">
+      <span class="label" style="display:block;margin-bottom:14px;">Email received</span>
+      <p style="font-size:.78rem;color:var(--text-dim);line-height:1.9;">
+        <strong style="color:var(--text);font-weight:400;">From:</strong> hello@thesilent.club<br>
+        <strong style="color:var(--text);font-weight:400;">Subject:</strong> Your invitation — The Silent Club 2026<br><br>
+        Your application has been reviewed. You are aligned.<br><br>
+        Annual membership: ₹1,00,000. This funds your membership and your visit wallet — all cycle visits are deducted from this balance.<br><br>
+        Your spot is held for 7 days. After that, it returns to the waitlist.
+      </p>
+    </div>
+    <button class="btn btn-full" onclick="goTo('s-payment')">Review & Complete Payment →</button>
+  </div>
+</div>
+
+<!-- A6: PAYMENT -->
+<div id="s-payment" class="screen" style="flex-direction:column;justify-content:center;align-items:center;padding:100px 24px 60px;">
+  <div style="max-width:540px;width:100%;">
+    <div class="pill"><span class="gold-line"></span><span class="pill-text">Membership Invoice</span></div>
+    <h2 style="margin-bottom:8px;">Confirm your membership.</h2>
+    <p style="margin-bottom:32px;color:var(--text-dim);">One payment. Funds your membership and your visit wallet.</p>
+    <div class="card" style="margin-bottom:20px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid rgba(201,168,76,.1);">
+        <div><h3 style="margin-bottom:3px;">The Silent Club</h3><p style="font-size:.7rem;color:var(--text-dim);">Invoice #TSC-2026-001 · Due 16 March 2026</p></div>
+        <div style="text-align:right;"><span class="badge">2026 Cohort</span></div>
+      </div>
+      <div class="confirm-row"><span class="confirm-label">Annual Membership — Post-Exit Founders</span><span class="confirm-value">₹1,00,000</span></div>
+      <div class="confirm-row"><span class="confirm-label">Visit wallet (all cycles drawn from this balance)</span><span class="confirm-value" style="color:var(--success);">Included</span></div>
+      <div class="confirm-row"><span class="confirm-label">GST as applicable</span><span class="confirm-value">Applicable</span></div>
+      <div style="display:flex;justify-content:space-between;padding:18px 0 0;border-top:1px solid rgba(201,168,76,.18);margin-top:10px;">
+        <span style="font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);">Total Due</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:var(--gold);">₹1,00,000</span>
+      </div>
+    </div>
+    <div style="background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.1);padding:16px 18px;margin-bottom:22px;">
+      <p style="font-size:.75rem;color:var(--text-dim);line-height:1.85;">Day Cycle ₹1,000 · Weekend Cycle ₹10,000 · Weekday Cycle ₹20,000 · Full Cycle ₹1,00,000/night — all deducted from this wallet. Top up when the balance runs low.</p>
+    </div>
+    <button class="btn btn-full" style="margin-bottom:10px;" onclick="completePayment()">Pay ₹1,00,000 via Razorpay →</button>
+    <p style="font-size:.65rem;color:var(--text-muted);text-align:center;">Secured payment · 7-day hold on your spot</p>
+  </div>
+</div>
+
+<!-- A7: PAYMENT SUCCESS -->
+<div id="s-payment-success" class="screen center">
+  <div class="inner" style="text-align:center;">
+    <div class="badge badge-success" style="margin-bottom:28px;">Payment Confirmed</div>
+    <h2 style="margin-bottom:20px;">Welcome to The Silent Club.</h2>
+    <p style="margin-bottom:14px;">Your 2026 membership is active. Your wallet has been funded.</p>
+    <p style="color:var(--text-dim);margin-bottom:32px;font-size:.82rem;">A receipt and membership details have been sent to your email.</p>
+    <div class="card" style="text-align:left;margin-bottom:24px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <span class="label">Membership Summary</span>
+        <span class="member-tag">Active · 2026</span>
+      </div>
+      <div class="confirm-row"><span class="confirm-label">Cohort</span><span class="confirm-value">Post-Exit Founders · 2026</span></div>
+      <div class="confirm-row"><span class="confirm-label">Wallet balance</span><span class="confirm-value" style="color:var(--success);">₹1,00,000</span></div>
+      <div class="confirm-row"><span class="confirm-label">Membership valid until</span><span class="confirm-value">March 2027</span></div>
+      <div class="confirm-row"><span class="confirm-label">Alignment review</span><span class="confirm-value">March 2027</span></div>
+    </div>
+    <button class="btn btn-full" onclick="goTo('s-wallet'); document.getElementById('nav-member-badge').style.display='inline-block';">Go to My Membership →</button>
+  </div>
+</div>
+
+<!-- A8: MEMBER WALLET DASHBOARD -->
+<div id="s-wallet" class="screen" style="flex-direction:column;padding:100px 48px 80px;">
+  <div id="renewal-banner" class="renewal-banner" style="display:none;">
+    <div>
+      <h4 style="margin-bottom:4px;">Membership renewal due</h4>
+      <p style="font-size:.78rem;color:var(--text-dim);">Your 2026 membership expires in 30 days. Renew to continue access.</p>
+    </div>
+    <button class="btn btn-sm">Renew →</button>
+  </div>
+  <div id="low-bal-alert" class="alert warn" style="display:none;">
+    <p>⚠ Wallet below ₹10,000. Top up to continue booking visits.</p>
+    <button class="btn btn-sm" onclick="openTopup()">Top Up →</button>
+  </div>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:36px;">
+    <div>
+      <div class="member-tag" style="margin-bottom:10px;">Active Member · 2026</div>
+      <h2>My Membership</h2>
+    </div>
+    <button class="btn btn-sm" onclick="openTopup()">+ Top Up Wallet</button>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card card-highlight">
+      <span class="s-label">Wallet Balance</span>
+      <div class="s-value" id="w-balance">₹1,00,000</div>
+      <div class="w-bar-wrap" style="margin-top:10px;">
+        <div class="w-bar-bg"><div class="w-bar-fill" id="w-bar" style="width:100%;"></div></div>
+      </div>
+    </div>
+    <div class="stat-card"><span class="s-label">Membership Year</span><div class="s-value" style="font-size:1.6rem;">2026</div><span class="s-sub">Renews March 2027</span></div>
+    <div class="stat-card"><span class="s-label">Visits This Year</span><div class="s-value" style="font-size:1.6rem;" id="w-visit-count">0</div><span class="s-sub">No visits yet</span></div>
+    <div class="stat-card"><span class="s-label">Total Spent</span><div class="s-value" style="font-size:1.6rem;" id="w-spent">₹0</div><span class="s-sub">From wallet</span></div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="wTab('book',this)">Book a Visit</button>
+    <button class="tab" onclick="wTab('history',this)">Visit History</button>
+    <button class="tab" onclick="wTab('membership',this)">Membership Details</button>
+    <button class="tab" onclick="wTab('notifications',this)">Notifications</button>
+  </div>
+
+  <!-- BOOK -->
+  <div id="wtab-book" class="tab-content active">
+    <p style="font-size:.8rem;color:var(--text-dim);margin-bottom:24px;">Select a cycle. Date selection follows.</p>
+    <div class="cycle-grid" id="cycle-grid-book">
+      <div class="cycle-card" onclick="selectCycle(this,'Day Cycle',1000)">
+        <div class="cycle-name">Day Cycle</div>
+        <div class="cycle-desc">Short recalibration. Immediate correction.</div>
+        <div class="cycle-price">₹1,000 · Up to 4 hrs</div>
+      </div>
+      <div class="cycle-card" onclick="selectCycle(this,'Weekend Cycle',10000)">
+        <div class="cycle-name">Weekend Cycle</div>
+        <div class="cycle-desc">Structured withdrawal. Two nights.</div>
+        <div class="cycle-price">₹10,000 · 2 nights / 3 days</div>
+      </div>
+      <div class="cycle-card" onclick="selectCycle(this,'Weekday Cycle',20000)">
+        <div class="cycle-name">Weekday Cycle</div>
+        <div class="cycle-desc">Extended silence. Deep sustained work.</div>
+        <div class="cycle-price">₹20,000 · 4 nights / 5 days</div>
+      </div>
+      <div class="cycle-card" onclick="selectCycle(this,'Full Cycle',100000)">
+        <div class="cycle-name">Full Cycle</div>
+        <div class="cycle-desc">Complete environmental control.</div>
+        <div class="cycle-price">₹1,00,000 / night</div>
+      </div>
+    </div>
+    <div id="booking-calendar" style="display:none;">
+      <div class="pill"><span class="gold-line"></span><span class="pill-text">Select arrival date</span></div>
+      <div style="max-width:360px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+          <button class="btn-ghost" onclick="calPrev()">← Prev</button>
+          <span style="font-size:.85rem;color:var(--white);" id="cal-month-label">March 2026</span>
+          <button class="btn-ghost" onclick="calNext()">Next →</button>
+        </div>
+        <div class="cal-header">
+          <div class="cal-day-label">Mo</div><div class="cal-day-label">Tu</div><div class="cal-day-label">We</div>
+          <div class="cal-day-label">Th</div><div class="cal-day-label">Fr</div><div class="cal-day-label">Sa</div><div class="cal-day-label">Su</div>
+        </div>
+        <div class="cal-grid" id="cal-grid"></div>
+      </div>
+      <div id="booking-confirm-panel" style="display:none;margin-top:20px;">
+        <div class="card" style="margin-bottom:16px;">
+          <div class="confirm-row"><span class="confirm-label">Cycle</span><span class="confirm-value" id="bc-cycle">—</span></div>
+          <div class="confirm-row"><span class="confirm-label">Arrival</span><span class="confirm-value" id="bc-date">—</span></div>
+          <div class="confirm-row"><span class="confirm-label">Wallet deduction</span><span class="confirm-value" id="bc-cost">—</span></div>
+          <div class="confirm-row"><span class="confirm-label">Remaining balance</span><span class="confirm-value" id="bc-remaining">—</span></div>
+        </div>
+        <button class="btn" onclick="confirmBooking()">Confirm Visit →</button>
+        <button class="btn-ghost" style="margin-left:16px;" onclick="cancelBooking()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORY -->
+  <div id="wtab-history" class="tab-content">
+    <div id="tx-list-main">
+      <div class="tx-item"><div><div class="tx-type">Membership payment — Wallet funded</div><div class="tx-date">9 March 2026</div></div><div class="tx-amount cr">+₹1,00,000</div></div>
+    </div>
+    <p style="color:var(--text-dim);font-size:.8rem;margin-top:20px;" id="no-visits-msg">No visits booked yet. Book a cycle to get started.</p>
+  </div>
+
+  <!-- MEMBERSHIP DETAILS -->
+  <div id="wtab-membership" class="tab-content">
+    <div class="card" style="margin-bottom:20px;">
+      <h4 style="margin-bottom:20px;">Membership Information</h4>
+      <div class="profile-grid">
+        <div class="profile-field"><span class="label">Status</span><span class="value"><span class="badge badge-success">Active</span></span></div>
+        <div class="profile-field"><span class="label">Cohort</span><span class="value">Post-Exit Founders · 2026</span></div>
+        <div class="profile-field"><span class="label">Member since</span><span class="value">9 March 2026</span></div>
+        <div class="profile-field"><span class="label">Valid until</span><span class="value">March 2027</span></div>
+        <div class="profile-field"><span class="label">Alignment review</span><span class="value">March 2027</span></div>
+        <div class="profile-field"><span class="label">Access type</span><span class="value">All cycles</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <h4 style="margin-bottom:16px;">Wallet Structure</h4>
+      <p style="font-size:.82rem;color:var(--text-dim);line-height:1.9;margin-bottom:16px;">Your annual membership payment funds a single wallet. Every visit cycle is deducted at the applicable rate. When your balance is insufficient to book a cycle, you will be prompted to top up.</p>
+      <div class="confirm-row"><span class="confirm-label">Day Cycle</span><span class="confirm-value">₹1,000</span></div>
+      <div class="confirm-row"><span class="confirm-label">Weekend Cycle</span><span class="confirm-value">₹10,000</span></div>
+      <div class="confirm-row"><span class="confirm-label">Weekday Cycle</span><span class="confirm-value">₹20,000</span></div>
+      <div class="confirm-row"><span class="confirm-label">Full Cycle</span><span class="confirm-value">₹1,00,000 / night</span></div>
+    </div>
+  </div>
+
+  <!-- NOTIFICATIONS -->
+  <div id="wtab-notifications" class="tab-content">
+    <div id="notif-list">
+      <div class="notif-item"><div class="notif-dot green"></div><div><div class="notif-title">Payment confirmed — wallet funded</div><div class="notif-sub">9 March 2026</div></div></div>
+      <div class="notif-item"><div class="notif-dot gold"></div><div><div class="notif-title">Welcome to the 2026 cohort</div><div class="notif-sub">9 March 2026 · Membership active</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- A9: LOW BALANCE FULL PAGE -->
+<div id="s-low-balance" class="screen center">
+  <div class="inner" style="text-align:center;">
+    <div class="badge badge-warn" style="margin-bottom:28px;">Wallet Low</div>
+    <h2 style="margin-bottom:20px;">Your wallet needs topping up.</h2>
+    <p style="margin-bottom:14px;">Your current balance is insufficient to book this cycle.</p>
+    <p style="color:var(--text-dim);margin-bottom:32px;font-size:.82rem;">Top up your wallet to continue. Your membership remains active — only the visit balance needs replenishing.</p>
+    <div class="card" style="text-align:left;margin-bottom:24px;">
+      <div class="confirm-row"><span class="confirm-label">Current balance</span><span class="confirm-value" id="lb-current">₹0</span></div>
+      <div class="confirm-row"><span class="confirm-label">Required for next cycle</span><span class="confirm-value" id="lb-required">₹10,000</span></div>
+    </div>
+    <button class="btn btn-full" onclick="openTopup();goTo('s-wallet');">Top Up Wallet →</button>
+    <br><br>
+    <button class="btn-ghost" onclick="goTo('s-wallet')" style="margin:0 auto;display:inline-flex;">← Back to membership</button>
+  </div>
+</div>
+
+<!-- A10: VISIT UPCOMING -->
+<div id="s-upcoming-visit" class="screen center">
+  <div class="inner" style="text-align:center;">
+    <div class="badge badge-success" style="margin-bottom:28px;">Visit Confirmed</div>
+    <h2 style="margin-bottom:20px;">Your visit is confirmed.</h2>
+    <p style="margin-bottom:32px;color:var(--text-dim);">Details have been sent to your email.</p>
+    <div class="card" style="text-align:left;margin-bottom:20px;">
+      <h4 style="margin-bottom:18px;">Visit Details</h4>
+      <div class="confirm-row"><span class="confirm-label">Cycle</span><span class="confirm-value" id="visit-cycle-display">Weekend Cycle</span></div>
+      <div class="confirm-row"><span class="confirm-label">Arrival</span><span class="confirm-value" id="visit-date-display">—</span></div>
+      <div class="confirm-row"><span class="confirm-label">Location</span><span class="confirm-value">Bhigwan, Maharashtra</span></div>
+      <div class="confirm-row"><span class="confirm-label">What to bring</span><span class="confirm-value">Physical carry kit guidance sent via email</span></div>
+      <div class="confirm-row"><span class="confirm-label">Protocol reminder</span><span class="confirm-value">No content. No networking. No performance.</span></div>
+    </div>
+    <button class="btn btn-full" onclick="goTo('s-wallet')">Back to My Membership →</button>
+  </div>
+</div>
+
+<!-- A11: RENEWAL SCREEN -->
+<div id="s-renewal" class="screen center">
+  <div class="inner" style="text-align:center;">
+    <div class="badge badge-warn" style="margin-bottom:28px;">Renewal Due</div>
+    <h2 style="margin-bottom:20px;">Your 2026 membership expires soon.</h2>
+    <p style="margin-bottom:14px;">Renewal is not automatic. Each year is reviewed independently.</p>
+    <p style="color:var(--text-dim);margin-bottom:32px;font-size:.82rem;">Continuation depends on behavioural alignment with the estate's protocol — not status, wealth, or industry. D.D. will contact you before the renewal date.</p>
+    <div class="card" style="text-align:left;margin-bottom:24px;">
+      <div class="confirm-row"><span class="confirm-label">Current membership</span><span class="confirm-value">2026 — Post-Exit Founders</span></div>
+      <div class="confirm-row"><span class="confirm-label">Expiry</span><span class="confirm-value">31 March 2027</span></div>
+      <div class="confirm-row"><span class="confirm-label">2027 cohort</span><span class="confirm-value">To be announced</span></div>
+      <div class="confirm-row"><span class="confirm-label">Alignment review</span><span class="confirm-value">Initiated by D.D.</span></div>
+    </div>
+    <button class="btn btn-full" onclick="goTo('s-wallet')">Back to My Membership →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+  D.D. DASHBOARD SCREENS
+═══════════════════════════════════════ -->
+
+<!-- D1: D.D. REVIEW DASHBOARD -->
+<div id="s-dd-review" class="screen sidebar-layout" style="display:none;">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-section">
+      <span class="sidebar-label">Applications</span>
+      <a class="sidebar-item active" onclick="ddNav('s-dd-review',this)"><span class="item-icon">◈</span>Review Queue<span class="sidebar-badge" id="pending-count">1</span></a>
+      <a class="sidebar-item" onclick="ddNav('s-dd-members',this)"><span class="item-icon">○</span>All Members</a>
+      <a class="sidebar-item" onclick="ddNav('s-dd-waitlist',this)"><span class="item-icon">◇</span>Waitlist<span class="sidebar-badge">0</span></a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Operations</span>
+      <a class="sidebar-item" onclick="ddNav('s-dd-visits',this)"><span class="item-icon">◻</span>Visit Schedule</a>
+      <a class="sidebar-item" onclick="ddNav('s-dd-wallets',this)"><span class="item-icon">▽</span>Wallet Monitor</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Overview</span>
+      <a class="sidebar-item" onclick="ddNav('s-dd-cohort',this)"><span class="item-icon">◈</span>Cohort Stats</a>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div style="margin-bottom:36px;">
+      <div class="pill"><span class="gold-line"></span><span class="pill-text">D.D. Dashboard</span></div>
+      <h2>Review Queue</h2>
+    </div>
+
+    <!-- APPLICANT CARD -->
+    <div class="card" id="dd-app-card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;">
+        <div><h3 id="dd-app-name" style="margin-bottom:3px;">—</h3><p style="font-size:.75rem;color:var(--text-dim);">Received 9 March 2026 · 2026 Cohort</p></div>
+        <span class="badge">Pending Review</span>
+      </div>
+
+      <div class="profile-grid" style="margin-bottom:22px;">
+        <div class="profile-field"><span class="label">Email</span><span class="value" id="dd-app-email">—</span></div>
+        <div class="profile-field"><span class="label">Cohort applied</span><span class="value">Post-Exit Founders · 2026</span></div>
+      </div>
+
+      <div style="margin-bottom:22px;" id="dd-qa-list"></div>
+
+      <!-- ALIGNMENT CHECKLIST -->
+      <div style="background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.1);padding:22px;margin-bottom:22px;">
+        <span style="font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:14px;">Alignment Criteria — D.D. Checklist</span>
+        <div id="dd-checklist">
+          <div class="check-item" onclick="toggleCheck(this)"><div class="checkbox" style="width:16px;height:16px;border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;"></div><span style="font-size:.8rem;color:var(--text);margin-left:12px;">Applicant is between a significant chapter — not avoiding re-entry</span></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="checkbox" style="width:16px;height:16px;border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;"></div><span style="font-size:.8rem;color:var(--text);margin-left:12px;">Response demonstrates comfort with self-directed, unstructured time</span></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="checkbox" style="width:16px;height:16px;border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;"></div><span style="font-size:.8rem;color:var(--text);margin-left:12px;">No indication of requiring facilitation, guidance, or social structure</span></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="checkbox" style="width:16px;height:16px;border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;"></div><span style="font-size:.8rem;color:var(--text);margin-left:12px;">No content-extraction or performance intent evident in responses</span></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="checkbox" style="width:16px;height:16px;border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;"></div><span style="font-size:.8rem;color:var(--text);margin-left:12px;">Responses demonstrate that the applicant read and understood the protocol</span></div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:18px;">
+        <span class="label" style="display:block;margin-bottom:8px;">D.D. Notes (optional)</span>
+        <textarea id="dd-notes" placeholder="Private notes — not shared with applicant." style="min-height:70px;"></textarea>
+      </div>
+
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <button class="btn" onclick="approveApplicant()">Approve & Send Invite →</button>
+        <button class="btn-warn" onclick="waitlistApplicant()">Move to Waitlist</button>
+        <button class="btn-danger" onclick="declineApplicant()">Decline</button>
+      </div>
+    </div>
+
+    <div id="dd-empty-queue" style="display:none;padding:48px 0;">
+      <p style="color:var(--text-dim);">No pending applications.</p>
+    </div>
+  </div>
+</div>
+
+<!-- D2: MEMBERS LIST -->
+<div id="s-dd-members" class="screen sidebar-layout" style="display:none;">
+  <div class="sidebar" id="sidebar-members"></div>
+  <div class="main-content">
+    <div style="margin-bottom:32px;display:flex;align-items:flex-end;justify-content:space-between;">
+      <div><div class="pill"><span class="gold-line"></span><span class="pill-text">D.D. Dashboard</span></div><h2>Members — 2026 Cohort</h2></div>
+      <span class="label" id="member-count-label">1 active member</span>
+    </div>
+    <table class="data-table">
+      <thead><tr><th>Member</th><th>Status</th><th>Wallet Balance</th><th>Visits</th><th>Last Visit</th><th>Review</th></tr></thead>
+      <tbody id="member-table-body">
+        <tr onclick="ddNav('s-dd-member-profile')"><td><div style="font-size:.85rem;color:var(--white);" id="mt-name">—</div><div style="font-size:.7rem;color:var(--text-dim);" id="mt-email">—</div></td><td><span class="badge badge-success">Active</span></td><td id="mt-balance">₹1,00,000</td><td id="mt-visits">0</td><td>—</td><td><span class="badge">March 2027</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- D3: MEMBER PROFILE -->
+<div id="s-dd-member-profile" class="screen sidebar-layout" style="display:none;">
+  <div class="sidebar" id="sidebar-profile"></div>
+  <div class="main-content">
+    <div style="margin-bottom:32px;"><button class="btn-ghost" onclick="ddNav('s-dd-members')" style="margin-bottom:16px;">← All Members</button><div class="pill"><span class="gold-line"></span><span class="pill-text">Member Profile</span></div><h2 id="profile-name-h">Member</h2></div>
+    <div class="tabs">
+      <button class="tab active" onclick="profileTab('overview',this)">Overview</button>
+      <button class="tab" onclick="profileTab('wallet',this)">Wallet</button>
+      <button class="tab" onclick="profileTab('visits',this)">Visits</button>
+      <button class="tab" onclick="profileTab('application',this)">Application</button>
+    </div>
+    <div id="ptab-overview" class="tab-content active">
+      <div class="card" style="margin-bottom:16px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+          <h4>Member Information</h4><span class="badge badge-success">Active</span>
+        </div>
+        <div class="profile-grid">
+          <div class="profile-field"><span class="label">Name</span><span class="value" id="pp-name">—</span></div>
+          <div class="profile-field"><span class="label">Email</span><span class="value" id="pp-email">—</span></div>
+          <div class="profile-field"><span class="label">Cohort</span><span class="value">Post-Exit Founders · 2026</span></div>
+          <div class="profile-field"><span class="label">Member since</span><span class="value">9 March 2026</span></div>
+          <div class="profile-field"><span class="label">Membership valid</span><span class="value">Until March 2027</span></div>
+          <div class="profile-field"><span class="label">Alignment review</span><span class="value">March 2027</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <h4 style="margin-bottom:16px;">D.D. Notes</h4>
+        <textarea id="profile-notes" placeholder="Private notes on this member." style="min-height:80px;"></textarea>
+        <button class="btn btn-sm" style="margin-top:12px;">Save Notes</button>
+      </div>
+    </div>
+    <div id="ptab-wallet" class="tab-content">
+      <div class="card" style="margin-bottom:16px;">
+        <h4 style="margin-bottom:18px;">Wallet Status</h4>
+        <div class="confirm-row"><span class="confirm-label">Current balance</span><span class="confirm-value" id="pp-balance">₹1,00,000</span></div>
+        <div class="confirm-row"><span class="confirm-label">Total funded</span><span class="confirm-value">₹1,00,000</span></div>
+        <div class="confirm-row"><span class="confirm-label">Total consumed</span><span class="confirm-value" id="pp-consumed">₹0</span></div>
+        <div style="margin-top:16px;"><div class="w-bar-bg"><div class="w-bar-fill" id="pp-bar" style="width:100%;"></div></div></div>
+      </div>
+      <div style="display:flex;gap:12px;margin-bottom:24px;">
+        <button class="btn btn-sm" onclick="ddManualTopup()">Manual Top-Up Credit →</button>
+        <button class="btn-warn btn-sm" style="padding:9px 20px;font-size:.68rem;">Send Top-Up Reminder</button>
+      </div>
+      <h4 style="margin-bottom:14px;">Transaction History</h4>
+      <div id="pp-tx-list">
+        <div class="tx-item"><div><div class="tx-type">Membership payment — Wallet funded</div><div class="tx-date">9 March 2026</div></div><div class="tx-amount cr">+₹1,00,000</div></div>
+      </div>
+    </div>
+    <div id="ptab-visits" class="tab-content">
+      <p style="color:var(--text-dim);font-size:.82rem;padding:24px 0;" id="pp-no-visits">No visits recorded yet.</p>
+      <div id="pp-visit-list"></div>
+    </div>
+    <div id="ptab-application" class="tab-content">
+      <div class="card">
+        <h4 style="margin-bottom:18px;">Original Application Responses</h4>
+        <div id="pp-qa-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- D4: WAITLIST -->
+<div id="s-dd-waitlist" class="screen sidebar-layout" style="display:none;">
+  <div class="sidebar" id="sidebar-waitlist"></div>
+  <div class="main-content">
+    <div style="margin-bottom:32px;"><div class="pill"><span class="gold-line"></span><span class="pill-text">D.D. Dashboard</span></div><h2>Waitlist</h2></div>
+    <div id="waitlist-empty"><p style="color:var(--text-dim);font-size:.85rem;padding:40px 0;">No waitlisted applicants currently.</p></div>
+    <div id="waitlist-body" style="display:none;"></div>
+  </div>
+</div>
+
+<!-- D5: VISIT SCHEDULE -->
+<div id="s-dd-visits" class="screen sidebar-layout" style="display:none;">
+  <div class="sidebar" id="sidebar-visits"></div>
+  <div class="main-content">
+    <div style="margin-bottom:32px;"><div class="pill"><span class="gold-line"></span><span class="pill-text">D.D. Dashboard</span></div><h2>Visit Schedule</h2></div>
+    <div id="dd-visit-schedule">
+      <p style="color:var(--text-dim);font-size:.85rem;padding:20px 0;" id="dd-no-visits-msg">No visits scheduled yet.</p>
+      <div id="dd-visit-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- D6: WALLET MONITOR -->
+<div id="s-dd-wallets" class="screen sidebar-layout" style="display:none;">
+  <div class="sidebar" id="sidebar-wallets"></div>
+  <div class="main-content">
+    <div style="margin-bottom:32px;"><div class="pill"><span class="gold-line"></span><span class="pill-text">D.D. Dashboard</span></div><h2>Wallet Monitor</h2></div>
+    <div id="wallet-monitor-empty"><p style="color:var(--text-dim);font-size:.85rem;">No active members yet.</p></div>
+    <div id="wallet-monitor-table" style="display:none;">
+      <table class="data-table">
+        <thead><tr><th>Member</th><th>Balance</th><th>Usage</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody id="wallet-monitor-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- D7: COHORT STATS -->
+<div id="s-dd-cohort" class="screen sidebar-layout" style="display:none;">
+  <div class="sidebar" id="sidebar-cohort"></div>
+  <div class="main-content">
+    <div style="margin-bottom:32px;"><div class="pill"><span class="gold-line"></span><span class="pill-text">D.D. Dashboard</span></div><h2>Cohort Overview — 2026</h2></div>
+    <div class="stat-grid">
+      <div class="stat-card"><span class="s-label">Total Memberships</span><div class="s-value">100</div><span class="s-sub">Maximum capacity</span></div>
+      <div class="stat-card card-highlight"><span class="s-label">Active Members</span><div class="s-value" id="cs-active">1</div><span class="s-sub">Confirmed & paid</span></div>
+      <div class="stat-card"><span class="s-label">Applications</span><div class="s-value" id="cs-apps">1</div><span class="s-sub">Total received</span></div>
+      <div class="stat-card"><span class="s-label">Spots Remaining</span><div class="s-value" id="cs-remaining">99</div><span class="s-sub">Before waitlist</span></div>
+    </div>
+    <div class="card">
+      <h4 style="margin-bottom:18px;">Wallet Health</h4>
+      <div class="confirm-row"><span class="confirm-label">Total wallet value (all members)</span><span class="confirm-value" id="cs-wallet-total">₹1,00,000</span></div>
+      <div class="confirm-row"><span class="confirm-label">Total consumed</span><span class="confirm-value" id="cs-consumed">₹0</span></div>
+      <div class="confirm-row"><span class="confirm-label">Members below ₹10,000</span><span class="confirm-value" id="cs-low-bal">0</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOP UP MODAL -->
+<div class="modal" id="topup-modal">
+  <div class="modal-box">
+    <h3 style="margin-bottom:6px;">Top Up Wallet</h3>
+    <p style="color:var(--text-dim);margin-bottom:24px;font-size:.82rem;">Select an amount to add to your visit balance.</p>
+    <div class="topup-opts">
+      <button class="topup-opt" onclick="selTopup(this,25000)"><span class="opt-amt">₹25,000</span><span class="opt-lbl">~2 Weekend Cycles</span></button>
+      <button class="topup-opt" onclick="selTopup(this,50000)"><span class="opt-amt">₹50,000</span><span class="opt-lbl">~2 Weekday Cycles</span></button>
+      <button class="topup-opt" onclick="selTopup(this,100000)"><span class="opt-amt">₹1,00,000</span><span class="opt-lbl">Full replenishment</span></button>
+      <button class="topup-opt" onclick="selTopup(this,'custom')"><span class="opt-amt">Custom</span><span class="opt-lbl">Enter amount</span></button>
+    </div>
+    <div style="display:flex;gap:12px;align-items:center;">
+      <button class="btn" style="flex:1;justify-content:center;" onclick="confirmTopup()">Confirm Top Up →</button>
+      <button class="btn-ghost" onclick="closeTopup()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- FLOW NAVIGATOR -->
+<div class="flow-nav">
+  <span class="flow-label" id="flow-label">Homepage</span>
+  <div class="flow-dots" id="flow-dots"></div>
+</div>
+
+<script>
+// ── STATE ──────────────────────────────────────────────────────────────────
+const state = {
+  applicantName: '',
+  applicantEmail: '',
+  answers: ['','','','',''],
+  walletBalance: 0,
+  visitCount: 0,
+  totalSpent: 0,
+  transactions: [],
+  visits: [],
+  selectedCycle: '',
+  selectedCycleCost: 0,
+  selectedDate: '',
+  topupAmount: 0,
+  memberApproved: false,
+  waitlisted: [],
+  calYear: 2026,
+  calMonth: 2 // 0-indexed, March
+};
+
+// ── ALL SCREENS ────────────────────────────────────────────────────────────
+const ALL_SCREENS = [
+  {id:'s-home',       label:'Homepage',         side:'applicant'},
+  {id:'s-prescreen',  label:'Pre-screen',        side:'applicant'},
+  {id:'s-intake',     label:'Application',       side:'applicant'},
+  {id:'s-email-confirm', label:'Submitted',      side:'applicant'},
+  {id:'s-invite-received', label:'Invite Received', side:'applicant'},
+  {id:'s-payment',    label:'Payment',           side:'applicant'},
+  {id:'s-payment-success', label:'Payment Done', side:'applicant'},
+  {id:'s-wallet',     label:'My Membership',     side:'applicant'},
+  {id:'s-upcoming-visit', label:'Visit Confirmed', side:'applicant'},
+  {id:'s-low-balance', label:'Low Balance',      side:'applicant'},
+  {id:'s-renewal',    label:'Renewal',           side:'applicant'},
+  {id:'s-dd-review',  label:'D.D. Review',       side:'dd'},
+  {id:'s-dd-members', label:'D.D. Members',      side:'dd'},
+  {id:'s-dd-member-profile', label:'Member Profile', side:'dd'},
+  {id:'s-dd-waitlist', label:'Waitlist',         side:'dd'},
+  {id:'s-dd-visits',  label:'Visit Schedule',    side:'dd'},
+  {id:'s-dd-wallets', label:'Wallet Monitor',    side:'dd'},
+  {id:'s-dd-cohort',  label:'Cohort Stats',      side:'dd'},
+];
+
+let currentView = 'applicant';
+let currentScreenId = 's-home';
+
+function buildFlowNav() {
+  const visible = ALL_SCREENS.filter(s => s.side === currentView);
+  const dots = document.getElementById('flow-dots');
+  dots.innerHTML = '';
+  visible.forEach(s => {
+    const d = document.createElement('div');
+    d.className = 'flow-dot';
+    d.title = s.label;
+    d.onclick = () => goTo(s.id);
+    dots.appendChild(d);
+  });
+  updateFlowNav();
+}
+
+function updateFlowNav() {
+  const visible = ALL_SCREENS.filter(s => s.side === currentView);
+  const dots = document.querySelectorAll('.flow-dot');
+  const idx = visible.findIndex(s => s.id === currentScreenId);
+  dots.forEach((d,i) => {
+    d.classList.remove('active','done');
+    if(i === idx) d.classList.add('active');
+    else if(i < idx) d.classList.add('done');
+  });
+  const cur = ALL_SCREENS.find(s => s.id === currentScreenId);
+  if(cur) document.getElementById('flow-label').textContent = cur.label;
+  // cloneSidebars
+  syncSidebars();
+}
+
+function goTo(id) {
+  ALL_SCREENS.forEach(s => {
+    const el = document.getElementById(s.id);
+    if(el) el.classList.remove('active');
+    if(el) el.style.display = 'none';
+  });
+  const target = document.getElementById(id);
+  if(!target) return;
+  currentScreenId = id;
+  const info = ALL_SCREENS.find(s => s.id === id);
+  const isDd = info && info.side === 'dd';
+  target.style.display = isDd ? 'flex' : 'flex';
+  target.classList.add('active');
+  window.scrollTo(0,0);
+  updateFlowNav();
+}
+
+function setView(view, btn) {
+  document.querySelectorAll('.vt-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentView = view;
+  buildFlowNav();
+  if(view === 'dd') {
+    goTo('s-dd-review');
+  } else {
+    if(state.memberApproved) goTo('s-wallet');
+    else goTo('s-home');
+  }
+}
+
+// ── SIDEBAR SYNC ────────────────────────────────────────────────────────────
+const SIDEBAR_HTML = `
+<div class="sidebar-section">
+  <span class="sidebar-label">Applications</span>
+  <a class="sidebar-item" id="si-review" onclick="ddNav('s-dd-review',this)"><span class="item-icon">◈</span>Review Queue<span class="sidebar-badge" id="si-pending">1</span></a>
+  <a class="sidebar-item" id="si-members" onclick="ddNav('s-dd-members',this)"><span class="item-icon">○</span>All Members</a>
+  <a class="sidebar-item" id="si-waitlist" onclick="ddNav('s-dd-waitlist',this)"><span class="item-icon">◇</span>Waitlist</a>
+</div>
+<div class="sidebar-section">
+  <span class="sidebar-label">Operations</span>
+  <a class="sidebar-item" id="si-visits" onclick="ddNav('s-dd-visits',this)"><span class="item-icon">◻</span>Visit Schedule</a>
+  <a class="sidebar-item" id="si-wallets" onclick="ddNav('s-dd-wallets',this)"><span class="item-icon">▽</span>Wallet Monitor</a>
+</div>
+<div class="sidebar-section">
+  <span class="sidebar-label">Overview</span>
+  <a class="sidebar-item" id="si-cohort" onclick="ddNav('s-dd-cohort',this)"><span class="item-icon">◈</span>Cohort Stats</a>
+</div>`;
+
+function syncSidebars() {
+  ['sidebar-members','sidebar-profile','sidebar-waitlist','sidebar-visits','sidebar-wallets','sidebar-cohort'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.innerHTML = SIDEBAR_HTML;
+  });
+  // Set active state
+  const map = {
+    's-dd-review':'si-review','s-dd-members':'si-members','s-dd-member-profile':'si-members',
+    's-dd-waitlist':'si-waitlist','s-dd-visits':'si-visits','s-dd-wallets':'si-wallets','s-dd-cohort':'si-cohort'
+  };
+  const activeKey = map[currentScreenId];
+  if(activeKey) {
+    document.querySelectorAll('.sidebar-item').forEach(i => {
+      i.classList.remove('active');
+      if(i.id === activeKey) i.classList.add('active');
+    });
+  }
+}
+
+function ddNav(screenId, el) {
+  goTo(screenId);
+}
+
+// ── INTAKE FORM ─────────────────────────────────────────────────────────────
+const Q_LABELS = ['','01/05 — What chapter are you currently between?','02/05 — What would uninterrupted attention allow you to confront?','03/05 — Are you comfortable with extended silence?','04/05 — Are you seeking withdrawal or structured inquiry?','05/05 — What would make this visit meaningful?'];
+
+function nextQ(n) {
+  document.getElementById('q'+(n-1)).classList.remove('active');
+  document.getElementById('q'+n).classList.add('active');
+  document.getElementById('q-label').textContent = Q_LABELS[n];
+}
+function prevQ(n) {
+  document.getElementById('q'+(n+1)).classList.remove('active');
+  document.getElementById('q'+n).classList.add('active');
+  document.getElementById('q-label').textContent = Q_LABELS[n];
+}
+
+function submitApp() {
+  state.applicantName = document.getElementById('inp-name').value || 'Arjun Mehta';
+  state.applicantEmail = document.getElementById('inp-email').value || 'arjun@mehta.co';
+  state.answers = [
+    document.getElementById('a1').value || 'Post-exit from a seven-year venture. Sitting with what it means to have built something and let it go.',
+    document.getElementById('a2').value || 'A decision I have been deferring for six months. The noise has been convenient cover for not making it.',
+    document.getElementById('a3').value || 'Yes. I find most social environments cognitively expensive. Silence is not uncomfortable for me.',
+    document.getElementById('a4').value || 'Withdrawal first. If structured inquiry emerges on its own terms, I am open to it.',
+    document.getElementById('a5').value || 'Leaving with clarity on what the next decade is actually for — not what I can convince others it is for.'
+  ];
+
+  // Populate email confirm
+  document.getElementById('confirm-email-display').textContent = state.applicantEmail;
+
+  // Populate D.D. review
+  document.getElementById('dd-app-name').textContent = state.applicantName;
+  document.getElementById('dd-app-email').textContent = state.applicantEmail;
+
+  // Populate member table
+  document.getElementById('mt-name').textContent = state.applicantName;
+  document.getElementById('mt-email').textContent = state.applicantEmail;
+
+  // Populate profile
+  document.getElementById('profile-name-h').textContent = state.applicantName;
+  document.getElementById('pp-name').textContent = state.applicantName;
+  document.getElementById('pp-email').textContent = state.applicantEmail;
+
+  const QS = ['What chapter are you currently between?','What would uninterrupted attention allow you to confront?','Are you comfortable with extended silence?','Are you seeking withdrawal or structured inquiry?','What would make this visit meaningful?'];
+
+  // DD qa list
+  const ddQa = document.getElementById('dd-qa-list');
+  ddQa.innerHTML = '';
+  QS.forEach((q,i) => {
+    ddQa.innerHTML += `<div style="padding:14px 0;border-bottom:1px solid rgba(255,255,255,.04);"><div style="font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:7px;">${String(i+1).padStart(2,'0')} — ${q}</div><div style="font-size:.84rem;color:var(--text);font-style:italic;line-height:1.7;">${state.answers[i]}</div></div>`;
+  });
+
+  // Profile qa list
+  const ppQa = document.getElementById('pp-qa-list');
+  ppQa.innerHTML = '';
+  QS.forEach((q,i) => {
+    ppQa.innerHTML += `<div style="padding:14px 0;border-bottom:1px solid rgba(255,255,255,.04);"><div style="font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:7px;">${String(i+1).padStart(2,'0')} — ${q}</div><div style="font-size:.84rem;color:var(--text);font-style:italic;line-height:1.7;">${state.answers[i]}</div></div>`;
+  });
+
+  goTo('s-email-confirm');
+}
+
+// ── CHECKLIST ───────────────────────────────────────────────────────────────
+function toggleCheck(el) {
+  const box = el.querySelector('.checkbox');
+  if(box.style.background === 'rgba(201, 168, 76, 0.15)' || box.classList.contains('checked')) {
+    box.style.background = 'none';
+    box.style.borderColor = 'rgba(201,168,76,0.28)';
+    box.textContent = '';
+    box.classList.remove('checked');
+  } else {
+    box.style.background = 'rgba(201,168,76,0.15)';
+    box.style.borderColor = 'var(--gold)';
+    box.textContent = '✓';
+    box.style.color = 'var(--gold)';
+    box.style.fontSize = '10px';
+    box.classList.add('checked');
+  }
+}
+
+// ── D.D. DECISIONS ──────────────────────────────────────────────────────────
+function approveApplicant() {
+  state.memberApproved = true;
+  document.getElementById('dd-app-card').style.display = 'none';
+  document.getElementById('dd-empty-queue').style.display = 'block';
+  document.querySelectorAll('#si-pending,.sidebar-badge').forEach(el => { if(el.textContent==='1') el.textContent='0'; });
+  document.getElementById('pending-count').textContent = '0';
+
+  // Update cohort stats
+  document.getElementById('cs-apps').textContent = '1';
+
+  // Show invite-sent notification, then go to invite sent confirmation
+  goTo('s-invite-received');
+  currentView = 'applicant';
+  buildFlowNav();
+}
+
+function waitlistApplicant() {
+  state.waitlisted.push({name:state.applicantName, email:state.applicantEmail});
+  document.getElementById('dd-app-card').style.display = 'none';
+  document.getElementById('dd-empty-queue').style.display = 'block';
+  document.getElementById('pending-count').textContent = '0';
+  document.getElementById('waitlist-empty').style.display = 'none';
+  document.getElementById('waitlist-body').style.display = 'block';
+  document.getElementById('waitlist-body').innerHTML = `
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div><div style="font-size:.88rem;color:var(--white);margin-bottom:3px;">${state.applicantName}</div><div style="font-size:.72rem;color:var(--text-dim);">${state.applicantEmail}</div></div>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <span class="badge badge-warn">Waitlisted</span>
+          <button class="btn btn-sm" onclick="approveApplicant()">Approve →</button>
+        </div>
+      </div>
+    </div>`;
+  alert(`${state.applicantName} has been moved to the waitlist. They will be notified.`);
+}
+
+function declineApplicant() {
+  if(confirm(`Decline ${state.applicantName}'s application?\n\nA decline notification will be sent to their email.`)) {
+    document.getElementById('dd-app-card').style.display = 'none';
+    document.getElementById('dd-empty-queue').style.display = 'block';
+    document.getElementById('pending-count').textContent = '0';
+    alert('Decline notification sent.');
+  }
+}
+
+// ── PAYMENT ─────────────────────────────────────────────────────────────────
+function completePayment() {
+  state.walletBalance = 100000;
+  state.transactions = [{type:'Membership payment — Wallet funded', date:'9 March 2026', amount:100000, cr:true}];
+  updateWalletUI();
+  document.getElementById('nav-member-badge').style.display = 'inline-block';
+
+  // Update DD side
+  document.getElementById('mt-balance').textContent = '₹1,00,000';
+  document.getElementById('pp-balance').textContent = '₹1,00,000';
+  document.getElementById('cs-active').textContent = '1';
+  document.getElementById('cs-wallet-total').textContent = '₹1,00,000';
+  document.getElementById('cs-remaining').textContent = '99';
+
+  // Wallet monitor
+  document.getElementById('wallet-monitor-empty').style.display = 'none';
+  document.getElementById('wallet-monitor-table').style.display = 'block';
+  document.getElementById('wallet-monitor-body').innerHTML = `
+    <tr><td><div style="font-size:.85rem;color:var(--white);">${state.applicantName}</div></td>
+    <td id="wm-balance">₹1,00,000</td>
+    <td><div class="w-bar-bg" style="width:80px;"><div class="w-bar-fill" id="wm-bar" style="width:100%;"></div></div></td>
+    <td><span class="badge badge-success">Healthy</span></td>
+    <td><button class="btn btn-sm" onclick="ddNav('s-dd-member-profile')">View →</button></td></tr>`;
+
+  goTo('s-payment-success');
+}
+
+// ── WALLET UI ────────────────────────────────────────────────────────────────
+function updateWalletUI() {
+  const fmt = v => '₹' + v.toLocaleString('en-IN');
+  document.getElementById('w-balance').textContent = fmt(state.walletBalance);
+  const pct = Math.max(0, Math.min(100, (state.walletBalance/100000)*100));
+  document.getElementById('w-bar').style.width = pct+'%';
+  document.getElementById('w-visit-count').textContent = state.visitCount;
+  document.getElementById('w-spent').textContent = fmt(state.totalSpent);
+
+  // Update DD member table
+  const mtbal = document.getElementById('mt-balance');
+  if(mtbal) mtbal.textContent = fmt(state.walletBalance);
+  const mtvisits = document.getElementById('mt-visits');
+  if(mtvisits) mtvisits.textContent = state.visitCount;
+  const ppbal = document.getElementById('pp-balance');
+  if(ppbal) ppbal.textContent = fmt(state.walletBalance);
+  const ppcons = document.getElementById('pp-consumed');
+  if(ppcons) ppcons.textContent = fmt(state.totalSpent);
+  const ppbar = document.getElementById('pp-bar');
+  if(ppbar) ppbar.style.width = pct+'%';
+
+  // Cohort stats
+  const cswt = document.getElementById('cs-wallet-total');
+  if(cswt) cswt.textContent = fmt(state.walletBalance + state.totalSpent);
+  const cscons = document.getElementById('cs-consumed');
+  if(cscons) cscons.textContent = fmt(state.totalSpent);
+  const cslb = document.getElementById('cs-low-bal');
+  if(cslb) cslb.textContent = state.walletBalance < 10000 ? '1' : '0';
+
+  // Wallet monitor
+  const wmbal = document.getElementById('wm-balance');
+  if(wmbal) wmbal.textContent = fmt(state.walletBalance);
+  const wmbar = document.getElementById('wm-bar');
+  if(wmbar) wmbar.style.width = pct+'%';
+
+  // Low balance alerts
+  const lba = document.getElementById('low-bal-alert');
+  if(lba) lba.style.display = state.walletBalance < 10000 ? 'flex' : 'none';
+
+  // Transaction lists
+  rebuildTxList();
+}
+
+function rebuildTxList() {
+  const listMain = document.getElementById('tx-list-main');
+  const listPp = document.getElementById('pp-tx-list');
+  const fmt = v => '₹' + v.toLocaleString('en-IN');
+  const html = state.transactions.map(tx => `
+    <div class="tx-item">
+      <div><div class="tx-type">${tx.type}</div><div class="tx-date">${tx.date}</div></div>
+      <div class="tx-amount ${tx.cr?'cr':'dr'}">${tx.cr?'+':'-'}${fmt(tx.amount)}</div>
+    </div>`).join('');
+  if(listMain) listMain.innerHTML = html;
+  if(listPp) listPp.innerHTML = html;
+  if(state.transactions.length <= 1) {
+    const nm = document.getElementById('no-visits-msg');
+    if(nm) nm.style.display = 'block';
+  } else {
+    const nm = document.getElementById('no-visits-msg');
+    if(nm) nm.style.display = 'none';
+  }
+}
+
+// ── CYCLE BOOKING ────────────────────────────────────────────────────────────
+function selectCycle(el, name, cost) {
+  document.querySelectorAll('.cycle-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  state.selectedCycle = name;
+  state.selectedCycleCost = cost;
+  state.selectedDate = '';
+  document.getElementById('booking-calendar').style.display = 'block';
+  document.getElementById('booking-confirm-panel').style.display = 'none';
+  renderCal();
+}
+
+// ── CALENDAR ─────────────────────────────────────────────────────────────────
+const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+function renderCal() {
+  const label = document.getElementById('cal-month-label');
+  if(label) label.textContent = MONTH_NAMES[state.calMonth] + ' ' + state.calYear;
+  const grid = document.getElementById('cal-grid');
+  if(!grid) return;
+  grid.innerHTML = '';
+  const firstDay = new Date(state.calYear, state.calMonth, 1).getDay();
+  const daysInMonth = new Date(state.calYear, state.calMonth+1, 0).getDate();
+  const offset = (firstDay + 6) % 7;
+  for(let i=0;i<offset;i++){
+    const e=document.createElement('div');e.className='cal-day empty';grid.appendChild(e);
+  }
+  const today = new Date();
+  for(let d=1;d<=daysInMonth;d++){
+    const el=document.createElement('div');
+    el.className='cal-day';
+    el.textContent=d;
+    const thisDate = new Date(state.calYear, state.calMonth, d);
+    if(thisDate < today) el.classList.add('past');
+    else if(d===today.getDate() && state.calMonth===today.getMonth() && state.calYear===today.getFullYear()) el.classList.add('today');
+    const dateStr = `${d} ${MONTH_NAMES[state.calMonth]} ${state.calYear}`;
+    if(state.visits.some(v=>v.date===dateStr)) el.classList.add('booked');
+    el.onclick = () => selectDate(d, el);
+    grid.appendChild(el);
+  }
+}
+function calPrev(){if(state.calMonth===0){state.calMonth=11;state.calYear--;}else{state.calMonth--;}renderCal();}
+function calNext(){if(state.calMonth===11){state.calMonth=0;state.calYear++;}else{state.calMonth++;}renderCal();}
+function selectDate(d, el) {
+  document.querySelectorAll('.cal-day').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  state.selectedDate = `${d} ${MONTH_NAMES[state.calMonth]} ${state.calYear}`;
+  showBookingConfirm();
+}
+function showBookingConfirm() {
+  const panel = document.getElementById('booking-confirm-panel');
+  panel.style.display = 'block';
+  const fmt = v => '₹'+v.toLocaleString('en-IN');
+  document.getElementById('bc-cycle').textContent = state.selectedCycle;
+  document.getElementById('bc-date').textContent = state.selectedDate;
+  document.getElementById('bc-cost').textContent = fmt(state.selectedCycleCost);
+  document.getElementById('bc-remaining').textContent = fmt(state.walletBalance - state.selectedCycleCost);
+}
+function cancelBooking(){
+  document.getElementById('booking-confirm-panel').style.display='none';
+  document.querySelectorAll('.cal-day').forEach(c=>c.classList.remove('selected'));
+  state.selectedDate='';
+}
+function confirmBooking() {
+  if(state.walletBalance < state.selectedCycleCost) {
+    document.getElementById('lb-current').textContent = '₹'+state.walletBalance.toLocaleString('en-IN');
+    document.getElementById('lb-required').textContent = '₹'+state.selectedCycleCost.toLocaleString('en-IN');
+    goTo('s-low-balance');
+    return;
+  }
+  state.walletBalance -= state.selectedCycleCost;
+  state.totalSpent += state.selectedCycleCost;
+  state.visitCount++;
+  const today = new Date();
+  const dateStr = today.toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
+  state.transactions.unshift({type:`${state.selectedCycle} — Visit booked`,date:dateStr,amount:state.selectedCycleCost,cr:false});
+  state.visits.push({cycle:state.selectedCycle,date:state.selectedDate,cost:state.selectedCycleCost});
+
+  // Update visit confirmed screen
+  document.getElementById('visit-cycle-display').textContent = state.selectedCycle;
+  document.getElementById('visit-date-display').textContent = state.selectedDate;
+
+  // Add notification
+  const nl = document.getElementById('notif-list');
+  nl.insertAdjacentHTML('afterbegin',`<div class="notif-item"><div class="notif-dot green"></div><div><div class="notif-title">${state.selectedCycle} confirmed — ${state.selectedDate}</div><div class="notif-sub">${dateStr}</div></div></div>`);
+
+  // Update visit schedule (DD side)
+  document.getElementById('dd-no-visits-msg').style.display='none';
+  document.getElementById('dd-visit-list').innerHTML += `<div class="card" style="margin-bottom:12px;"><div style="display:flex;align-items:center;justify-content:space-between;"><div><div style="font-size:.88rem;color:var(--white);margin-bottom:3px;">${state.applicantName} — ${state.selectedCycle}</div><div style="font-size:.72rem;color:var(--text-dim);">Arrival: ${state.selectedDate}</div></div><span class="badge badge-success">Confirmed</span></div></div>`;
+
+  // Update member profile visits
+  document.getElementById('pp-no-visits').style.display='none';
+  document.getElementById('pp-visit-list').innerHTML += `<div class="card" style="margin-bottom:10px;"><div class="confirm-row"><span class="confirm-label">Cycle</span><span class="confirm-value">${state.selectedCycle}</span></div><div class="confirm-row"><span class="confirm-label">Date</span><span class="confirm-value">${state.selectedDate}</span></div><div class="confirm-row"><span class="confirm-label">Deducted</span><span class="confirm-value">₹${state.selectedCycleCost.toLocaleString('en-IN')}</span></div></div>`;
+
+  updateWalletUI();
+  goTo('s-upcoming-visit');
+}
+
+// ── TOP UP ────────────────────────────────────────────────────────────────────
+function openTopup(){document.getElementById('topup-modal').classList.add('open');}
+function closeTopup(){document.getElementById('topup-modal').classList.remove('open');}
+function selTopup(el,amt){
+  document.querySelectorAll('.topup-opt').forEach(o=>o.classList.remove('sel'));
+  el.classList.add('sel');
+  if(amt==='custom'){const v=prompt('Enter top-up amount (₹):');state.topupAmount=parseInt(v)||0;}
+  else{state.topupAmount=amt;}
+}
+function confirmTopup(){
+  if(!state.topupAmount){alert('Select an amount.');return;}
+  state.walletBalance+=state.topupAmount;
+  const dateStr=new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
+  state.transactions.unshift({type:'Wallet top-up',date:dateStr,amount:state.topupAmount,cr:true});
+  const nl = document.getElementById('notif-list');
+  nl.insertAdjacentHTML('afterbegin',`<div class="notif-item"><div class="notif-dot gold"></div><div><div class="notif-title">Wallet topped up — ₹${state.topupAmount.toLocaleString('en-IN')} added</div><div class="notif-sub">${dateStr}</div></div></div>`);
+  updateWalletUI();
+  closeTopup();
+}
+
+// ── DD MANUAL TOPUP ──────────────────────────────────────────────────────────
+function ddManualTopup(){
+  const amt=parseInt(prompt('Enter manual credit amount (₹):'))||0;
+  if(!amt)return;
+  state.walletBalance+=amt;
+  const dateStr=new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
+  state.transactions.unshift({type:`Manual credit by D.D.`,date:dateStr,amount:amt,cr:true});
+  updateWalletUI();
+  alert(`₹${amt.toLocaleString('en-IN')} credited to ${state.applicantName}'s wallet.`);
+}
+
+// ── TABS ──────────────────────────────────────────────────────────────────────
+function wTab(name,btn){
+  document.querySelectorAll('#s-wallet .tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('#s-wallet .tab-content').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('wtab-'+name).classList.add('active');
+}
+function profileTab(name,btn){
+  document.querySelectorAll('#s-dd-member-profile .tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('#s-dd-member-profile .tab-content').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('ptab-'+name).classList.add('active');
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+buildFlowNav();
+renderCal();
+// Hide all DD screens initially
+['s-dd-review','s-dd-members','s-dd-member-profile','s-dd-waitlist','s-dd-visits','s-dd-wallets','s-dd-cohort'].forEach(id=>{
+  const el=document.getElementById(id);if(el){el.style.display='none';el.classList.remove('active');}
+});
+goTo('s-home');
+</script>
+</body>
+</html>

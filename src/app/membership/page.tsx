@@ -1,7 +1,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Breadcrumb from "../components/Breadcrumb";
-import ServicesOffering from "../components/ServicesOffering";
+import MembershipServicesOffering from "../components/MembershipServicesOffering";
 
 const breadcrumbItems = [
   { label: "Membership", href: "/membership" }
@@ -15,7 +15,7 @@ export default function MembershipPage() {
 
 
       {/* Services Offering Component */}
-      <ServicesOffering/>
+      <MembershipServicesOffering />
 
       <Footer />
     </main>

@@ -13,6 +13,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
     { label: 'Dashboard', icon: 'dashboard', href: '/admin/dashboard' },
+    { label: 'DD Dashboard', icon: 'dashboard_customize', href: '/admin/dd-dashboard' },
     { label: 'Users', icon: 'group', href: '/admin/users', badge: '24' },
     { label: 'Bookings', icon: 'calendar_month', href: '/admin/bookings', badge: '12' },
     { label: 'Rooms', icon: 'bed', href: '/admin/rooms' },

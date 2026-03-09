@@ -19,9 +19,9 @@ interface ServicesOfferingProps {
   secondaryToggleLabel?: string;
 }
 
-export default function ServicesOffering({
+export default function MembershipServicesOffering({
   onCycleSelect,
-  title = "Silent Cycles",
+  title = "Memberships",
   primaryToggleLabel = "Dorm",
   secondaryToggleLabel = "Private Room",
 }: ServicesOfferingProps) {
@@ -389,3 +389,4 @@ export default function ServicesOffering({
     </section>
   );
 }
+
