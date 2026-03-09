@@ -51,7 +51,7 @@ export default function Questionnaire() {
               className="text-2xl md:text-3xl font-normal text-gold-500 mb-2"
               style={{ fontFamily: "Outfit, sans-serif" }}
             >
-              Before you request an invite
+              Before you Explore Access
             </h2>
             <p className="text-[#e7dfd3] text-base md:text-lg font-body">
               The Silent Club is a structured environment for uninterrupted attention.
