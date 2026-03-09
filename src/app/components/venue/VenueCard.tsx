@@ -185,7 +185,7 @@ export default function VenueCard({ title, description, image, imageAlt, badge, 
 
         {/* Dots - only show if multiple images */}
         {images.length > 1 && (
-          <div className={`absolute bottom-4 left-0 right-0 flex justify-center gap-2 transition-opacity duration-300 z-20 ${shouldShowHoverState ? 'opacity-0' : ''}`}>
+          <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
             {images.map((_, idx) => (
               <button
                 key={idx}
