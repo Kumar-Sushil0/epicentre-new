@@ -30,6 +30,9 @@ export default function MembershipServicesOffering({
   const [selectedDay, setSelectedDay] = useState<'M' | 'T' | 'W' | 'Th' | 'F' | 'S' | 'Su'>('M');
   const [pricingMode, setPricingMode] = useState<'membership' | 'invite'>('membership');
 
+  const formatPrice = (value: number) =>
+    `₹${value.toLocaleString('en-IN')}`;
+
   return (
     <section id="cycles-section" className="relative pt-16 pb-6 md:pt-20 md:pb-8 px-4 md:px-16 bg-earth-950">
       <div className="w-full">
@@ -83,7 +86,10 @@ export default function MembershipServicesOffering({
               onCycleSelect?.({
                 label: "Day Cycle",
                 accommodationType,
-                priceLabel: "₹1,000 per person",
+                priceLabel:
+                  pricingMode === 'membership'
+                    ? "₹1,000 per person"
+                    : "₹1,500 per person",
               })
             }
           >
@@ -107,7 +113,9 @@ export default function MembershipServicesOffering({
 
             <div className="mt-auto text-right">
               <div className="text-gold-500 text-lg font-normal">
-                ₹1,000
+                {pricingMode === 'membership'
+                  ? "₹1,000"
+                  : "₹1,500"}
               </div>
               <p className="text-earth-400 text-xs mt-1">
                 Per Person • Taxes applicable
@@ -122,7 +130,14 @@ export default function MembershipServicesOffering({
               onCycleSelect?.({
                 label: "Weekend Cycle",
                 accommodationType,
-                priceLabel: `${accommodationType === "dorm" ? "₹10,000" : "₹15,000"} per person`,
+                priceLabel:
+                  accommodationType === "dorm"
+                    ? pricingMode === "membership"
+                      ? "₹10,000 per person"
+                      : "₹12,000 per person"
+                    : pricingMode === "membership"
+                      ? "₹15,000 per person"
+                      : "₹18,000 per person",
               })
             }
           >
@@ -151,7 +166,13 @@ export default function MembershipServicesOffering({
 
             <div className="mt-auto text-right">
               <div className="text-gold-500 text-lg font-normal">
-                {accommodationType === "dorm" ? "₹10,000" : "₹15,000"}
+                {accommodationType === "dorm"
+                  ? pricingMode === "membership"
+                    ? "₹10,000"
+                    : "₹12,000"
+                  : pricingMode === "membership"
+                    ? "₹15,000"
+                    : "₹18,000"}
               </div>
               <p className="text-earth-400 text-xs mt-1">
                 Per Person • Taxes applicable
@@ -166,7 +187,14 @@ export default function MembershipServicesOffering({
               onCycleSelect?.({
                 label: "Weekday Cycle",
                 accommodationType,
-                priceLabel: `${accommodationType === "dorm" ? "₹20,000" : "₹30,000"} per person`,
+                priceLabel:
+                  accommodationType === "dorm"
+                    ? pricingMode === "membership"
+                      ? "₹20,000 per person"
+                      : "₹25,000 per person"
+                    : pricingMode === "membership"
+                      ? "₹30,000 per person"
+                      : "₹35,000 per person",
               })
             }
           >
@@ -199,7 +227,13 @@ export default function MembershipServicesOffering({
 
             <div className="mt-auto text-right">
               <div className="text-gold-500 text-lg font-normal">
-                {accommodationType === "dorm" ? "₹20,000" : "₹30,000"}
+                {accommodationType === "dorm"
+                  ? pricingMode === "membership"
+                    ? "₹20,000"
+                    : "₹25,000"
+                  : pricingMode === "membership"
+                    ? "₹30,000"
+                    : "₹35,000"}
               </div>
               <p className="text-earth-400 text-xs mt-1">
                 Per Person • Taxes applicable
@@ -294,7 +328,15 @@ export default function MembershipServicesOffering({
                 onCycleSelect?.({
                   label: "Full Cycle",
                   accommodationType,
-                  priceLabel: `${["F", "S", "Su"].includes(selectedDay) ? "₹1,20,000" : "₹1,00,000"} per night (full estate)`,
+                  priceLabel: `${
+                    ["F", "S", "Su"].includes(selectedDay)
+                      ? pricingMode === "membership"
+                        ? "₹1,20,000"
+                        : "₹1,40,000"
+                      : pricingMode === "membership"
+                        ? "₹1,00,000"
+                        : "₹1,20,000"
+                  } per night (full estate)`,
                 })
               }
             >
@@ -379,7 +421,15 @@ export default function MembershipServicesOffering({
               {/* Full Cycle Pricing (replaces CTA) */}
               <div className="mt-3 text-right">
                 <div className="text-gold-500 text-xl font-normal">
-                  ₹{["F", "S", "Su"].includes(selectedDay) ? "1,20,000" : "1,00,000"}
+                  {formatPrice(
+                    ["F", "S", "Su"].includes(selectedDay)
+                      ? pricingMode === "membership"
+                        ? 120000
+                        : 140000
+                      : pricingMode === "membership"
+                        ? 100000
+                        : 120000
+                  )}
                 </div>
                 <p className="text-earth-400 text-xs mt-1">
                   Per Night • Taxes applicable
