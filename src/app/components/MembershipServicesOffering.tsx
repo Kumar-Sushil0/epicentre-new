@@ -21,13 +21,14 @@ interface ServicesOfferingProps {
 
 export default function MembershipServicesOffering({
   onCycleSelect,
-  title = "Memberships",
+  title = "Explore access",
   primaryToggleLabel = "Dorm",
   secondaryToggleLabel = "Private Room",
 }: ServicesOfferingProps) {
   const [accommodationType, setAccommodationType] = useState<'dorm' | 'room'>('dorm');
   const [cycleType, setCycleType] = useState<'weekday' | 'weekend'>('weekday');
   const [selectedDay, setSelectedDay] = useState<'M' | 'T' | 'W' | 'Th' | 'F' | 'S' | 'Su'>('M');
+  const [pricingMode, setPricingMode] = useState<'membership' | 'invite'>('membership');
 
   return (
     <section id="cycles-section" className="relative pt-16 pb-6 md:pt-20 md:pb-8 px-4 md:px-16 bg-earth-950">
@@ -35,13 +36,17 @@ export default function MembershipServicesOffering({
         <h2 className="text-2xl md:text-3xl font-normal text-gold-500 mb-4 md:mb-6 text-center" style={{ fontFamily: 'Outfit, sans-serif' }}>
            {title}
         </h2>
-        <p className="text-earth-300 text-base md:text-lg text-center mb-3 md:mb-4 px-4">
+        <p className="text-earth-300 text-base md:text-lg text-center  mb-7 md:mb-8 px-4">
         Cycles do not change the environment. They change your depth of engagement. Access is available through membership or invitation only.
         </p>
 
         <div className="max-w-5xl mx-auto">
+              {/* Panel with tabs sitting on its top border */}
+              <div className="relative mb-4">
+                {/* Enclosing panel */}
+                <div className="border border-earth-800/80 rounded-2xl bg-earth-950/60 px-4 md:px-6 pt-8 pb-4">
               {/* Accommodation toggle ABOVE the three cards */}
-              <div className="flex justify-center mb-3 md:mb-4">
+              <div className="flex justify-center mt-4 mb-3 md:mb-4">
                 <div className="inline-flex items-center gap-2 bg-earth-800/50 rounded-lg p-1 border border-earth-700/50">
                   <button
                     onClick={() => setAccommodationType('dorm')}
@@ -382,6 +387,37 @@ export default function MembershipServicesOffering({
               </div>
             </div>
           </div>
+
+                </div>
+
+                {/* Tabs pill anchored on the panel border */}
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                  <div className="inline-flex items-center gap-0 rounded-md border border-earth-700/70 bg-earth-900 px-1 py-0.5">
+                    <button
+                      onClick={() => setPricingMode('membership')}
+                      className={`px-4 md:px-6 py-1.5 md:py-2 text-xs md:text-sm font-medium transition-all rounded-md ${
+                        pricingMode === 'membership'
+                          ? 'bg-gold-500 text-earth-950'
+                          : 'bg-transparent text-earth-300 hover:text-gold-500'
+                      }`}
+                      style={{ fontFamily: 'Outfit, sans-serif' }}
+                    >
+                      Apply for Membership
+                    </button>
+                    <button
+                      onClick={() => setPricingMode('invite')}
+                      className={`px-4 md:px-6 py-1.5 md:py-2 text-xs md:text-sm font-medium transition-all rounded-md ${
+                        pricingMode === 'invite'
+                          ? 'bg-gold-500 text-earth-950'
+                          : 'bg-transparent text-earth-300 hover:text-gold-500'
+                      }`}
+                      style={{ fontFamily: 'Outfit, sans-serif' }}
+                    >
+                      Request an Invite
+                    </button>
+                  </div>
+                </div>
+              </div>
 
         </div>
 
