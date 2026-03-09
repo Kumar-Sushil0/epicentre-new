@@ -6,23 +6,23 @@ const cohorts = [
   },
   {
     year: "2027",
-    label: "Independent Designers",
-    description: "Refining a signature body of work.",
+    label: "Designers & Developers",
+    description: "Designing work that outlives trends.",
   },
   {
     year: "2028",
-    label: "Established Artists",
-    description: "Operating beyond visibility.",
+    label: "Musicians & Singers",
+    description: "Designing sounds you are obsessed about",
   },
   {
     year: "2029",
     label: "Writers & Thinkers",
-    description: "Between major works.",
+    description: "Designing Ideas too dangerous for blogs",
   },
   {
     year: "2030",
-    label: "Legacy Architects",
-    description: "Designing multi-decade impact.",
+    label: "Artists & Actors",
+    description: "Designing performances beyond applause",
   },
 ] as const;
 
@@ -41,13 +41,12 @@ export default function AboutAttentionCycle() {
           Each year, The Silent Club centers one life-stage cohort.
         </p>
         <p className="text-earth-100 text-base md:text-lg mb-4 max-w-3xl mx-auto font-body font-medium">
-          100 memberships are released annually.
-          One cohort. One shared chapter.
+          100 memberships are released annually. One cohort. One shared chapter.
         </p>
-        <p className="text-earth-300/80 text-base md:text-lg mb-2 max-w-10xl mx-auto font-body">
+        <p className="text-earth-300/80 text-base md:text-lg mb-2 max-w-3xl mx-auto font-body">
           This sequencing is deliberate. Depth requires cultural coherence. Unstructured growth dilutes it.
         </p>
-        <p className="text-earth-300/80 text-base md:text-lg mb-2 max-w-10xl mx-auto font-body">
+        <p className="text-earth-300/80 text-base md:text-lg mb-2 max-w-3xl mx-auto font-body">
           The first five years are staged intentionally.
         </p>
 

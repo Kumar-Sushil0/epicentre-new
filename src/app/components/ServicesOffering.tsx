@@ -22,7 +22,7 @@ export default function ServicesOffering({ onCycleSelect }: ServicesOfferingProp
   const [selectedDay, setSelectedDay] = useState<'M' | 'T' | 'W' | 'Th' | 'F' | 'S' | 'Su'>('M');
 
   return (
-    <section id="cycles-section" className="relative pt-0 pb-6 md:pt-0 md:pb-8 px-4 md:px-16 bg-earth-950">
+    <section id="cycles-section" className="relative pt-16 pb-6 md:pt-20 md:pb-8 px-4 md:px-16 bg-earth-950">
       <div className="w-full">
         <h2 className="text-2xl md:text-3xl font-normal text-gold-500 mb-4 md:mb-6 text-center" style={{ fontFamily: 'Outfit, sans-serif' }}>
            Silent Cycles

@@ -25,7 +25,7 @@ interface VenueSectionProps {
   introText?: string;
   usedFor?: string[];
   closingText?: string;
-  bullets?: string[];
+  singleLine?: string;
 }
 
 export default function VenueSection({ 
@@ -40,7 +40,7 @@ export default function VenueSection({
   introText, 
   usedFor, 
   closingText,
-  bullets
+  singleLine
 }: VenueSectionProps) {
   
   return (
@@ -50,8 +50,7 @@ export default function VenueSection({
         onClick={onToggle}
       >
         <h2 className="text-2xl font-normal text-gold-500 tracking-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>
-          {number}. {title}<span className="hidden md:inline"> : {subtitle}</span>
-        </h2>
+          {number}. {title}</h2>
         <div className="h-[1px] bg-earth-700 flex-grow"></div>
         <span className="material-symbols-outlined text-gold-500 text-3xl">{icon}</span>
         <button className="text-gold-500 hover:text-gold-400 transition-colors">
@@ -62,25 +61,18 @@ export default function VenueSection({
       </div>
       {expanded && (
         <>
-          {/* Introductory Text + Bullets */}
-          {(closingText || bullets) && (
-            <div className="mb-8 space-y-4 text-earth-300 text-sm md:text-base font-body">
-              {bullets && bullets.length > 0 && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6">
-                  {bullets.map((line, idx) => (
-                    <div key={idx} className="flex items-start gap-2">
-                      <span className="mt-1 text-gold-500">•</span>
-                      <span>{line}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
+          {/* Single Line Description */}
+          {singleLine && (
+            <div className="mb-8 text-earth-300 text-sm md:text-base font-body">
+              <p className="leading-relaxed">{singleLine}</p>
+            </div>
+          )}
 
-              {closingText && (
-                <p className="italic border-t border-earth-700 pt-4 mt-4">
-                  {closingText}
-                </p>
-              )}
+          {closingText && (
+            <div className="mb-8 text-earth-300 text-sm md:text-base font-body">
+              <p className="italic border-t border-earth-700 pt-4">
+                {closingText}
+              </p>
             </div>
           )}
           

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useAuth } from "../context/AuthContext";
 
 // Global state to persist menu across page changes
 let globalMenuState = false;
@@ -16,6 +17,7 @@ const setGlobalMenuState = (state: boolean) => {
 
 export default function Header() {
   const pathname = usePathname();
+  const { isAuthenticated, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(globalMenuState);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -111,6 +113,14 @@ export default function Header() {
                 Estate
               </Link>
               <Link 
+                href="/membership" 
+                className={`text-sm uppercase tracking-wider transition-colors ${
+                  isActive("/membership") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
+                }`}
+              >
+                Membership
+              </Link>
+              <Link 
                 href="/services" 
                 className={`text-sm uppercase tracking-wider transition-colors ${
                   isActive("/services") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
@@ -143,6 +153,34 @@ export default function Header() {
               >
                 FAQ
               </Link>
+              {isAuthenticated ? (
+                <>
+                  <Link 
+                    href="/dashboard" 
+                    className={`text-sm uppercase tracking-wider transition-colors ${
+                      isActive("/dashboard") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
+                    }`}
+                  >
+                    Dashboard
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => logout()}
+                    className="text-sm uppercase tracking-wider text-gold-500 hover:text-[#e7dfd3] transition-colors bg-transparent border-none cursor-pointer font-inherit"
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <Link 
+                  href="/login" 
+                  className={`text-sm uppercase tracking-wider transition-colors ${
+                    isActive("/login") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
+                  }`}
+                >
+                  Login
+                </Link>
+              )}
             </nav>
           </div>
         </div>
@@ -190,6 +228,13 @@ export default function Header() {
               Estate
             </Link>
             <Link
+              href="/membership"
+              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/membership") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+                }`}
+            >
+              Membership
+            </Link>
+            <Link
               href="/services"
               className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/services") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
                 }`}
@@ -217,6 +262,34 @@ export default function Header() {
             >
               FAQ
             </Link>
+            {isAuthenticated ? (
+              <>
+                <Link
+                  href="/dashboard"
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/dashboard") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+                    }`}
+                >
+                  Dashboard
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => { logout(); setIsMenuOpen(false); }}
+                  className="block w-full text-left px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all text-[#e7dfd3] hover:text-gold-500 bg-transparent border-none cursor-pointer font-inherit"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <Link
+                href="/login"
+                onClick={() => setIsMenuOpen(false)}
+                className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/login") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+                  }`}
+              >
+                Login
+              </Link>
+            )}
           </nav>
         </div>
       </aside>

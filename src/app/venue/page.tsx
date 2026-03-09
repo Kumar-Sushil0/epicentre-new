@@ -45,17 +45,13 @@ export default function VenuePage() {
       subtitle: "The Land Reduces Noise",
       icon: "nature",
       introText: "Natural environments and wildlife observation areas.",
-      bullets: [
-        "Open terrain. Water exposure. Low built density.",
-        "Designed to lower visual and auditory interference.",
-        "Nature is not curated. It is left intact."
-      ],
+      singleLine: "Open Land | Natural Silence — The surrounding terrain lowers visual and auditory interference without deliberate intervention.",
       usedFor: ["Horizon exposure", "Nature walks", "Ecological awareness", "Nervous system decompression"],
       closingText: "",
       venues: [
         {
           title: "Forest Safari",
-          description: "Guided walking trails across open land and low-density terrain.\n\nUsed for: Horizon exposure. Light movement. Ecological awareness. Nervous system decompression.\n\nDistance from built environments reduces cognitive load.",
+          description: "Guided passage through natural habitat and open terrain.\n\nYou are present in the wild, not in control of it.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/grasslandsafari1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/grasslandsafari2.png",
@@ -65,12 +61,12 @@ export default function VenuePage() {
           area: "3 km trail",
           capacity: "20 ppl",
           icon: "forest",
-          category: "Nature Walk",
+          category: "Wildlife Observation",
           href: "/venue#wildlife",
         },
         {
           title: "Bird Watching",
-          description: "Designated quiet observation areas near natural habitats.\n\nUsed for: Sustained attention. Pattern recognition. Auditory sensitivity. Stillness training.\n\nObservation without interference sharpens perception.",
+          description: "Designated quiet observation areas near natural habitats.\n\nObservation without interference sharpens perception.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/bird1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/bird2.png",
@@ -84,8 +80,8 @@ export default function VenuePage() {
           href: "/venue#wildlife",
         },
         {
-          title: "Boat Joy Rides",
-          description: "Slow-paced lake movement along open water.\n\nUsed for: Visual horizon reset. Rhythmic motion. Emotional settling. Perspective shift.\n\nWater environments reduce sensory fragmentation.",
+          title: "Boat Joyrides",
+          description: "Slow-paced lake movement along open water.\n\nWater environments reduce sensory fragmentation.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/boat1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/boat2.png",
@@ -107,17 +103,13 @@ export default function VenuePage() {
       subtitle: "Sleep Is Non-Negotiable",
       icon: "bed",
       introText: "Living environments for restoration and sleep.",
-      bullets: [
-        "Environments designed for sensory withdrawal and uninterrupted rest.",
-        "Sleep is protected.",
-        "Interruption is minimized."
-      ],
+      singleLine: "Private Rooms | Protected Sleep — Environments designed to remove stimulation and preserve uninterrupted rest.",
       usedFor: ["Deep rest", "Extended silence", "Sensory withdrawal", "Private integration"],
       closingText: "",
       venues: [
         {
           title: "Private Room",
-          description: "Enclosed personal sleeping space with controlled light and sound.\n\nUsed for: Deep rest. Sensory withdrawal. Personal integration. Extended silence.\n\nSleep is protected. Interruption is minimized.",
+          description: "Enclosed room designed for rest, work, and quiet reflection.\n\nHere, withdrawal can happen without concern for others.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/room1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/room2.png",
@@ -132,7 +124,7 @@ export default function VenuePage() {
         },
         {
           title: "Dark Room",
-          description: "Enclosed personal sleeping space with controlled light and sound.\n\nUsed for: Deep rest. Sensory withdrawal. Personal integration. Extended silence.\n\nSleep is protected. Interruption is minimized.",
+          description: "Light- and sound-controlled chamber for uninterrupted withdrawal.\n\nFood and essentials are provided without breaking isolation.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/darkroom.png",
           imageAlt: "Dark Room - Total light isolation space for sensory withdrawal and deep rest",
@@ -144,7 +136,7 @@ export default function VenuePage() {
         },
         {
           title: "Shared Dorm",
-          description: "Structured shared sleeping space with quiet norms.\n\nUsed for: Collective silence. Budget stays. Group cycles. Rhythmic routine.\n\nShared space, protected quiet.",
+          description: "Quiet dormitory with individual beds and personal desks.\n\nA shared room designed for solitary work and reflection.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/dorm1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/dorm2.png",
@@ -159,7 +151,7 @@ export default function VenuePage() {
         },
         {
           title: "Minimalist Tents",
-          description: "Outdoor sleeping structures with minimal artificial input.\n\nUsed for: Ground connection. Environmental immersion. Sensory simplification. Early sleep cycles.\n\nCloser to land. Fewer barriers.",
+          description: "Lightweight sleeping tents placed directly on the land.\n\nSleep closer to the ground and away from built comfort.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/tent1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/tent2.png",
@@ -174,7 +166,7 @@ export default function VenuePage() {
         },
         {
           title: "Community Hall",
-          description: "Outdoor sleeping structures with minimal artificial input.\n\nUsed for: Ground connection. Environmental immersion. Sensory simplification. Early sleep cycles.\n\nCloser to land. Fewer barriers.",
+          description: "Indoor hall for shared meals, conversation, and informal gathering.\n\nA simple shelter where the estate occasionally comes together.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/hall.png",
           imageAlt: "Community Hall - Large gathering space for group activities and communal events",
@@ -193,17 +185,13 @@ export default function VenuePage() {
       subtitle: "Stability Over Stimulation",
       icon: "restaurant",
       introText: "Dining spaces and culinary environments.",
-      bullets: [
-        "Meals are designed to regulate energy, not excite it.",
-        "Food supports clarity.",
-        "It does not compete for attention."
-      ],
+      singleLine: "Simple Meals | Stable Energy — Food structured to regulate energy and support sustained mental clarity.",
       usedFor: ["Shared meals", "Mindful eating", "Nutritional awareness", "Rhythmic reset"],
       closingText: "",
       venues: [
         {
           title: "Satvik Home Food",
-          description: "Traditional Indian meals prepared with low-stimulation ingredients.\n\nEveryday: Stable energy. Digestive ease. Rhythmic eating. Nutritional awareness.\n\nMeals support clarity, not indulgence.",
+          description: "Traditional Indian meals prepared with low-stimulation ingredients.\n\nMeals support clarity, not indulgence.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/homefood1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/homefood2.png",
@@ -218,7 +206,7 @@ export default function VenuePage() {
         },
         {
           title: "Salads, Smoothies & Sandwiches",
-          description: "Light meal options focused on simplicity and freshness.\n\nWed & Fri: Midday reset. Low digestive load. Active cycles. Clean nutrition.\n\nDesigned to sustain focus.",
+          description: "Light meal options focused on simplicity and freshness.\n\nDesigned to sustain focus.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/sss1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/sss2.png",
@@ -232,8 +220,8 @@ export default function VenuePage() {
           href: "/venue#food",
         },
         {
-          title: "Pizza, Barbeque & Sushi",
-          description: "Occasional communal meals prepared intentionally.\n\nAs required: Shared gathering. Social bonding. Celebration within structure. Moderated indulgence.\n\nEven stimulation is regulated.",
+          title: "Barbeque, Pizzas & Sushi",
+          description: "Occasional shared meals prepared intentionally.\n\nMoments where the estate briefly gathers.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/pbs1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/pbs2.png",
@@ -247,8 +235,8 @@ export default function VenuePage() {
           href: "/venue#food",
         },
         {
-          title: "Fruits Juices & Fresh Bites",
-          description: "Occasional communal meals prepared intentionally.\n\nAs required: Shared gathering. Social bonding. Celebration within structure. Moderated indulgence.\n\nEven stimulation is regulated.",
+          title: "Fruits, Juices & Fresh Bites",
+          description: "Fresh fruit and juices for light, flexible nourishment.\n\nSome eat. Some fast. The body decides.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/fjs1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/fjs2.png",
@@ -258,12 +246,12 @@ export default function VenuePage() {
           area: "Outdoor area",
           capacity: "40 ppl",
           icon: "blender",
-          category: "Fresh Beverages",
+          category: "Light Nourishment",
           href: "/venue#food",
         },
         {
-          title: "Self-Serve Pantry",
-          description: "Designated kitchen access for simple personal preparation.\n\nUsed for: Tea and coffee. Light snacks. Between-meal regulation. Dietary flexibility.\n\nAutonomy within rhythm.",
+          title: "Self Serve Pantry",
+          description: "Designated kitchen access for simple personal preparation.\n\nAutonomy within rhythm.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/ssp1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/ssp2.png",
@@ -278,7 +266,7 @@ export default function VenuePage() {
         },
         {
           title: "Outdoor Kitchen",
-          description: "Open-air cooking space used for occasional communal meals and curated events.\n\nUsed for: Structured shared cooking. Small-group gatherings. Seasonal meals. Experimental dining formats.\n\nFood can gather people without accelerating them.",
+          description: "Open-air cooking space used for occasional communal meals and curated events.\n\nFood can gather people without accelerating them.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/ok1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/ok2.png",
@@ -300,17 +288,13 @@ export default function VenuePage() {
       subtitle: "The Body Must Discharge",
       icon: "fitness_center",
       introText: "Movement, recovery, and regulation environments.",
-      bullets: [
-        "Movement spaces for physical regulation and nervous system reset.",
-        "Effort clears residual tension.",
-        "Physical discharge supports mental steadiness."
-      ],
+      singleLine: "Movement Spaces | Physical Reset — Areas designed for effort that clears residual tension from the nervous system.",
       usedFor: ["Physical reset", "Stress discharge", "Endurance training", "Body recalibration"],
       closingText: "",
       venues: [
         {
           title: "Outdoor Gym",
-          description: "Open-air strength and conditioning space.\n\nUsed for: Stress discharge. Physical training. Hormonal regulation. Structured exertion.\n\nEffort clears residual tension.",
+          description: "Open-air strength and conditioning space.\n\nEffort clears residual tension.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/gym1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/gym2.png",
@@ -324,8 +308,8 @@ export default function VenuePage() {
           href: "/venue#intimate",
         },
         {
-          title: "Sports Court",
-          description: "Multi-use court for competitive or cooperative play.\n\nUsed for: Energy release. Group engagement. Motor coordination. Active recovery.\n\nMovement restores mental steadiness.",
+          title: "Sports Courts",
+          description: "Multi-use court for competitive or cooperative play.\n\nMovement restores mental steadiness.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/sc1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/sc2.png",
@@ -340,7 +324,7 @@ export default function VenuePage() {
         },
         {
           title: "Contrast Recovery",
-          description: "Hot and cold exposure environments.\n\nUsed for: Circulation improvement. Inflammation reduction. Nervous system recalibration. Recovery cycles.\n\nPhysiological reset through contrast.",
+          description: "Hot and cold exposure environments.\n\nPhysiological reset through contrast.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/hot.png",
           imageAlt: "Contrast Recovery - Hot and cold therapy facilities for nervous system recalibration",
@@ -352,7 +336,7 @@ export default function VenuePage() {
         },
         {
           title: "Cycles",
-          description: "Manual & Motorized bicycles for on-land movement.\n\nUsed for: Cardio training. Solo reflection. Exploratory motion. Breath regulation.\n\nRepetition stabilizes thought.",
+          description: "Manual & Motorized bicycles for on-land movement.\n\nRepetition stabilizes thought.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/cycle.png",
           imageAlt: "Cycles - Manual and motorized bicycles for cardio training and solo reflection",
@@ -364,7 +348,7 @@ export default function VenuePage() {
         },
         {
           title: "Kayaks",
-          description: "Water-based manual rowing equipment.\n\nUsed for: Upper-body engagement. Rhythmic motion. Horizon focus. Controlled isolation.\n\nSteady motion supports steady thinking.",
+          description: "Water-based manual rowing equipment.\n\nSteady motion supports steady thinking.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/kayak.png",
           imageAlt: "Kayaks - Water-based rowing equipment for upper-body engagement and rhythmic motion",
@@ -376,7 +360,7 @@ export default function VenuePage() {
         },
         {
           title: "Yoga Loft",
-          description: "Quiet outdoor loft for guided or self-directed practice.\n\nUsed for: Breath regulation. Postural reset. Focus training. Group stillness.\n\nStillness is trained, not assumed.",
+          description: "Quiet outdoor loft for guided or self-directed practice.\n\nStillness is trained, not assumed.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/yogaloft.png",
           imageAlt: "Yoga Loft - Quiet outdoor space for breath regulation and mindful movement practice",
@@ -387,8 +371,8 @@ export default function VenuePage() {
           href: "/venue#intimate",
         },
         {
-          title: "Tree House",
-          description: "Elevated solo structure with desk and minimal amenities.\n\nUsed for: Writing. Focused thinking. Creative work. Quiet isolation.\n\nWithdrawal within withdrawal.",
+          title: "Tree houses",
+          description: "Elevated solo structure with desk and minimal amenities.\n\nWithdrawal within withdrawal.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/treehouse.jpeg",
           imageAlt: "Tree House - Elevated solo workspace for writing, focused thinking and creative work",
@@ -400,7 +384,7 @@ export default function VenuePage() {
         },
         {
           title: "Zen Garden",
-          description: "Minimalist stone and sand installation.\n\nUsed for: Visual stillness. Pattern contemplation. Micro-focus training. Grounded presence.\n\nAttention stabilizes through repetition.",
+          description: "Minimalist stone and sand installation.\n\nAttention stabilizes through repetition.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/zen1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/zen2.png",
@@ -414,8 +398,8 @@ export default function VenuePage() {
           href: "/venue#intimate",
         },
         {
-          title: " Ground Work ",
-          description: "Hands-on agricultural tasks and land maintenance.\n\nUsed for: Physical labor. Grounding work. Rhythmic routine. Purposeful exertion.\n\nWork without performance pressure.",
+          title: "Ground Work",
+          description: "Hands-on agricultural tasks and land maintenance.\n\nWork without performance pressure.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/farm.jpeg",
           imageAlt: "Ground Work - Hands-on agricultural tasks and land maintenance for grounding and physical labor",
@@ -427,7 +411,7 @@ export default function VenuePage() {
         },
         {
           title: "Practice Platform",
-          description: "Stone deck under a neem tree overlooking open water.\n\nUsed for: Music rehearsal. Artistic practice. Sun exposure. Solo training. Focused repetition.\n\nSkill deepens when environment is undisturbed.",
+          description: "Stone deck under a neem tree overlooking open water.\n\nSkill deepens when environment is undisturbed.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/pp1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/pp2.png",
@@ -441,8 +425,8 @@ export default function VenuePage() {
           href: "/venue#intimate",
         },
         {
-          title: "Silent Board Games",
-          description: "Analog tabletop games designed for low-verbal interaction.\n\nUsed for: Strategic thinking. Pattern recognition. Cooperative play. Social presence without performance.\n\nEngagement without volume.",
+          title: "Silent board Games",
+          description: "Analog tabletop games designed for low-verbal interaction.\n\nEngagement without volume.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/boardgame.png",
           imageAlt: "Silent Board Games - Analog tabletop games for strategic thinking and cooperative play",
@@ -461,17 +445,13 @@ export default function VenuePage() {
       subtitle: "Interaction Is Intentional",
       icon: "groups",
       introText: "Primary collective environments for structured or unstructured gathering.",
-      bullets: [
-        "Spaces designed for structured inquiry and contained dialogue.",
-        "Communication is contained.",
-        "Silence remains primary."
-      ],
+      singleLine: "Shared Rooms | Contained Dialogue — Spaces where interaction happens deliberately within defined limits.",
       usedFor: ["Inquiry sessions", "Intentional dialogue", "Quiet collaboration", "Shared silence"],
       closingText: "",
       venues: [
         {
           title: "Design Dome",
-          description: "Architectural installation near the entrance.\n\nUsed for: Identity examination. Role suspension. Personal release. Transitional awareness.\n\nEntry marks a shift in self-perception.",
+          description: "Central dome used for meditation, work, and exhibition.\n\nThe space adapts as the day unfolds.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Assembly/designdome.png",
           imageAlt: "Design Dome - Architectural installation for identity examination and transitional awareness",
@@ -483,19 +463,19 @@ export default function VenuePage() {
         },
         {
           title: "Library Lounge",
-          description: "Multi-purpose enclosed hall adaptable across cycles.\n\nUsed for: Morning meditation. Focused co-working. Writing workshops. Curated exhibitions. Structured group inquiry.\n\nThe space adapts. The silence remains constant.",
+          description: "Glasshouse lounge with pool, books, and horizon views.\n\nThe space invites reading, resting, and quiet observation.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Assembly/library.png",
           imageAlt: "Library Lounge - Multi-purpose hall for meditation, co-working and writing workshops",
           area: "800 sqft",
           capacity: "20 ppl",
           icon: "local_library",
-          category: "Multi-Purpose Hall",
+          category: "Observation & Reset",
           href: "/venue#creative",
         },
         {
           title: "Front Lawn",
-          description: "Open grass field adjacent to the main structure.\n\nUsed for: Grounding. Informal sitting. Open-air screenings. Guided outdoor engagement. Unstructured picnics.\n\nHorizontal space reduces social pressure.",
+          description: "Wide grass lawn shaded by mango trees.\n\nHere, time is spent slowly and without instruction.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Assembly/lawn.jpeg",
           imageAlt: "Front Lawn - Open grass field for grounding, informal sitting and open-air screenings",
@@ -506,8 +486,8 @@ export default function VenuePage() {
           href: "/venue#creative",
         },
         {
-          title: "Courtyard",
-          description: "Open grass field adjacent to the main structure.\n\nUsed for: Grounding. Informal sitting. Open-air screenings. Guided outdoor engagement. Unstructured pause.\n\nHorizontal space reduces social pressure.",
+          title: "Central Courtyard",
+          description: "Central ground connecting the estate's structures.\n\nEveryone passes through, yet silence remains intact.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Assembly/courtyard.png",
           imageAlt: "Courtyard - Central open space for grounding and informal outdoor engagement",
@@ -519,7 +499,7 @@ export default function VenuePage() {
         },
         {
           title: "Signal Deck",
-          description: "Elevated semi-private outdoor cabins designed for limited external communication.\n\nUsed for: Essential calls. Scheduled briefings. Small-group dialogue (2–4 people). Controlled re-entry into external signal.\n\nCommunication is contained. Not expanded.\n\nThis is not a social space. It is a boundary space.",
+          description: "Elevated semi-private outdoor cabins designed for limited external communication.\n\nThis is not a social space. It is a boundary space.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/treehouse.jpeg",
           imageAlt: "Signal Deck - Elevated cabins for essential calls and controlled external communication",
@@ -538,17 +518,13 @@ export default function VenuePage() {
       subtitle: "Identity Is Interrupted",
       icon: "brush",
       introText: "Architectural structures designed for reflection and declaration.",
-      bullets: [
-        "Architectural markers that frame transition and perspective.",
-        "Interpretation is personal.",
-        "No narrative is imposed."
-      ],
+      singleLine: "Architectural Markers | Perspective Shift — Spatial cues that interrupt routine perception without imposing interpretation.",
       usedFor: ["Identity examination", "Personal release", "Perspective shift"],
       closingText: "",
       venues: [
         {
           title: "Identity Cemetery",
-          description: "Circular threshold structure at entry/exit.\n\nUsed for: Psychological transition. Symbolic crossing. Arrival awareness. Exit reflection.\n\nThe person entering and leaving may not be identical.",
+          description: "Graves at the entrance of the estate.\n\nPast identities that no longer serve may be buried here.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Symbolic/cemetary.jpg",
           imageAlt: "Identity Cemetery - Circular threshold structure for psychological transition and symbolic crossing",
@@ -560,19 +536,19 @@ export default function VenuePage() {
         },
         {
           title: "Moon Gate",
-          description: "Boundary installation referencing perceived reality.\n\nUsed for: Perspective inquiry. Assumption testing. Cognitive interruption. Awareness of constructed identity.\n\nInterpretation is personal.",
+          description: "Moon gate framing the entrance to the estate.\n\nSilence begins on one side. A different person may return on the other.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Symbolic/moongate.png",
           imageAlt: "Moon Gate - Boundary installation for perspective inquiry and cognitive interruption",
           area: "N/A",
           capacity: "N/A",
           icon: "circle",
-          category: "Symbolic Structure",
+          category: "Ritualistic Portal",
           href: "/venue#living",
         },
         {
           title: "Truman's Wall",
-          description: "Sculptural installation at entry.\n\nUsed for: Reflective pause. Cognitive priming. Symbolic confrontation. Intellectual stillness.\n\nThought is foregrounded before entry.",
+          description: "Wall installation referencing constructed reality.\n\nCrossing it marks the end of performative life.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Symbolic/trumanwall.png",
           imageAlt: "Truman's Wall - Sculptural installation for reflective pause and cognitive priming",
@@ -584,7 +560,7 @@ export default function VenuePage() {
         },
         {
           title: "Thinking Man",
-          description: "Perimeter platform facing open landscape.\n\nUsed for: Solitude. Sunset viewing. Boundary awareness. Spatial reset.\n\nStanding at the edge clarifies scale.",
+          description: "Sculptural marker at the entrance of the estate.\n\nIt marks a place where thinking resumes without interference.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Symbolic/thinkingman.png",
           imageAlt: "Thinking Man - Perimeter platform for solitude, sunset viewing and boundary awareness",
@@ -597,7 +573,7 @@ export default function VenuePage() {
         },
         {
           title: "Edgeless Gallery",
-          description: "Perimeter gallery facing open landscape.\n\nUsed for: Solitude. Sunset viewing. Boundary awareness. Spatial reset.\n\nStanding at the edge clarifies scale.",
+          description: "Open platform overlooking the Ujni landscape.\n\nHere the horizon is unobstructed and unguarded.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Symbolic/edgelessgallery.jpeg",
           imageAlt: "Edgeless Gallery - Perimeter viewing platform facing open landscape for spatial reset",
