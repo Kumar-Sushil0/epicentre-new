@@ -22,17 +22,6 @@ interface ResetPasswordResponse {
   message: string;
 }
 
-interface LoginStartResponse {
-  success: boolean;
-  message: string;
-}
-
-interface LoginOtpResponse {
-  success: boolean;
-  message: string;
-  token?: string;
-}
-
 /**
  * Send OTP to user's email for verification
  */
@@ -97,44 +86,6 @@ export const resetPassword = async (
     return response;
   } catch (error) {
     console.error('Error resetting password:', error);
-    throw error;
-  }
-};
-
-/**
- * Start login with password check and send OTP
- */
-export const loginStart = async (
-  email: string,
-  password: string
-): Promise<LoginStartResponse> => {
-  try {
-    const response = await api.post<LoginStartResponse>(endpoints.auth.loginStart, {
-      email,
-      password,
-    });
-    return response;
-  } catch (error) {
-    console.error('Error starting login:', error);
-    throw error;
-  }
-};
-
-/**
- * Complete login using OTP
- */
-export const loginWithOtp = async (
-  email: string,
-  otp: string
-): Promise<LoginOtpResponse> => {
-  try {
-    const response = await api.post<LoginOtpResponse>(endpoints.auth.loginOtp, {
-      email,
-      otp,
-    });
-    return response;
-  } catch (error) {
-    console.error('Error logging in with OTP:', error);
     throw error;
   }
 };

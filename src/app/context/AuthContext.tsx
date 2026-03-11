@@ -3,7 +3,6 @@
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { api, endpoints } from '@/utils/api';
-import { loginWithOtp as apiLoginWithOtp } from '@/utils/authApi';
 
 // Global config to enable/disable authentication
 export const AUTH_ENABLED = true; // Set to true to enable authentication
@@ -18,7 +17,6 @@ interface AuthContextType {
   isAuthenticated: boolean;
   login: (email: string, password: string, name?: string) => Promise<boolean>;
   signup: (email: string, password: string, name: string) => Promise<boolean>;
-  loginWithOtp: (email: string, otp: string) => Promise<boolean>;
   logout: () => void;
   isLoading: boolean;
   authEnabled: boolean;
@@ -135,40 +133,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const loginWithOtp = async (email: string, otp: string): Promise<boolean> => {
-    try {
-      if (!AUTH_ENABLED) {
-        const userData: User = {
-          email,
-          name: email.split('@')[0],
-        };
-        setUser(userData);
-        localStorage.setItem('user', JSON.stringify(userData));
-        return true;
-      }
-
-      const response = await apiLoginWithOtp(email, otp);
-
-      if (!response.token) {
-        return false;
-      }
-
-      const userData: User = {
-        email,
-        name: user?.name || email.split('@')[0],
-      };
-
-      setUser(userData);
-      localStorage.setItem('user', JSON.stringify(userData));
-      localStorage.setItem('token', response.token);
-
-      return true;
-    } catch (error) {
-      console.error('Login with OTP error:', error);
-      return false;
-    }
-  };
-
   const logout = () => {
     setUser(null);
     localStorage.removeItem('user');
@@ -179,7 +143,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const isAuthenticated = user !== null;
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, login, signup, loginWithOtp, logout, isLoading, authEnabled: AUTH_ENABLED }}>
+    <AuthContext.Provider value={{ user, isAuthenticated, login, signup, logout, isLoading, authEnabled: AUTH_ENABLED }}>
       {children}
     </AuthContext.Provider>
   );
