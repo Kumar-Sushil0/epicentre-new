@@ -5,18 +5,22 @@ import { useRouter } from 'next/navigation';
 import { api, endpoints } from '@/utils/api';
 
 // Global config to enable/disable authentication
-export const AUTH_ENABLED = true; // Set to true to enable authentication
+export const AUTH_ENABLED = true; // Enable real authentication
 
 interface User {
   email: string;
   name: string;
 }
 
+type LoginResult = 'success' | 'invalid' | 'otp_required';
+type SignupResult = 'success' | 'otp_required' | 'failed';
+
 interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
-  login: (email: string, password: string, name?: string) => Promise<boolean>;
-  signup: (email: string, password: string, name: string) => Promise<boolean>;
+  login: (email: string, password: string, name?: string) => Promise<LoginResult>;
+  signup: (email: string, password: string, name: string) => Promise<SignupResult>;
+  verifyOtp: (email: string, otp: string) => Promise<boolean>;
   logout: () => void;
   isLoading: boolean;
   authEnabled: boolean;
@@ -55,7 +59,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setIsLoading(false);
   }, []);
 
-  const login = async (email: string, password: string, name?: string): Promise<boolean> => {
+  const login = async (email: string, password: string, name?: string): Promise<LoginResult> => {
     try {
       // If auth is disabled, simulate login
       if (!AUTH_ENABLED) {
@@ -65,36 +69,44 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         };
         setUser(userData);
         localStorage.setItem('user', JSON.stringify(userData));
-        return true;
+        return 'success';
       }
 
-      // Real API call to Express backend
-      const response = await api.post<{ user: User; token?: string }>(
+      // Real API call to Express backend (may require OTP)
+      const response = await api.post<{ user?: User; token?: string; requiresOtp?: boolean }>(
         endpoints.auth.login,
         { email, password }
       );
-      
-      const userData: User = {
-        email: response.user.email,
-        name: response.user.name,
-      };
-      
-      setUser(userData);
-      localStorage.setItem('user', JSON.stringify(userData));
-      
-      // Store token if provided
-      if (response.token) {
-        localStorage.setItem('token', response.token);
+
+      if (response.requiresOtp) {
+        // Step 1 OK, OTP required
+        return 'otp_required';
       }
-      
-      return true;
+
+      if (response.user) {
+        const userData: User = {
+          email: response.user.email,
+          name: response.user.name,
+        };
+
+        setUser(userData);
+        localStorage.setItem('user', JSON.stringify(userData));
+
+        if (response.token) {
+          localStorage.setItem('token', response.token);
+        }
+
+        return 'success';
+      }
+
+      return 'invalid';
     } catch (error) {
       console.error('Login error:', error);
-      return false;
+      return 'invalid';
     }
   };
 
-  const signup = async (email: string, password: string, name: string): Promise<boolean> => {
+  const signup = async (email: string, password: string, name: string): Promise<SignupResult> => {
     try {
       // If auth is disabled, simulate signup
       if (!AUTH_ENABLED) {
@@ -104,31 +116,69 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         };
         setUser(userData);
         localStorage.setItem('user', JSON.stringify(userData));
-        return true;
+        return 'success';
       }
 
       // Real API call to Express backend
-      const response = await api.post<{ user: User; token?: string }>(
+      const response = await api.post<{ user?: User; token?: string; requiresOtp?: boolean }>(
         endpoints.auth.signup,
         { email, password, name }
       );
-      
+
+      if (response.requiresOtp) {
+        // Newly created account needs email verification
+        return 'otp_required';
+      }
+
+      if (response.user) {
+        const userData: User = {
+          email: response.user.email,
+          name: response.user.name,
+        };
+
+        setUser(userData);
+        localStorage.setItem('user', JSON.stringify(userData));
+
+        if (response.token) {
+          localStorage.setItem('token', response.token);
+        }
+
+        return 'success';
+      }
+
+      return 'failed';
+    } catch (error) {
+      console.error('Signup error:', error);
+      return 'failed';
+    }
+  };
+
+  const verifyOtp = async (email: string, otp: string): Promise<boolean> => {
+    try {
+      if (!AUTH_ENABLED) {
+        return true;
+      }
+
+      const response = await api.post<{ user: User; token?: string }>(
+        endpoints.auth.verifyOtp,
+        { email, otp }
+      );
+
       const userData: User = {
         email: response.user.email,
         name: response.user.name,
       };
-      
+
       setUser(userData);
       localStorage.setItem('user', JSON.stringify(userData));
-      
-      // Store token if provided
+
       if (response.token) {
         localStorage.setItem('token', response.token);
       }
-      
+
       return true;
     } catch (error) {
-      console.error('Signup error:', error);
+      console.error('OTP verification error:', error);
       return false;
     }
   };
@@ -143,7 +193,18 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const isAuthenticated = user !== null;
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, login, signup, logout, isLoading, authEnabled: AUTH_ENABLED }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        isAuthenticated,
+        login,
+        signup,
+        verifyOtp,
+        logout,
+        isLoading,
+        authEnabled: AUTH_ENABLED,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
