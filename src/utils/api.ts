@@ -102,6 +102,8 @@ export const api = new ApiClient(API_URL);
 export const endpoints = {
   auth: {
     login: '/auth/login',
+    loginStart: '/auth/login-start',
+    loginOtp: '/auth/login-otp',
     signup: '/auth/signup',
     logout: '/auth/logout',
     me: '/auth/me',

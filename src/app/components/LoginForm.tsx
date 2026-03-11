@@ -3,15 +3,20 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
+import { forgotPassword, resetPassword, loginStart } from "@/utils/authApi";
+
+type ViewState = "login" | "login-otp" | "signup" | "forgot" | "forgot-otp";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [view, setView] = useState("login"); // 'login', 'signup', or 'forgot'
+  const [view, setView] = useState<ViewState>("login");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { login, signup } = useAuth();
+  const [otp, setOtp] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const { loginWithOtp, signup } = useAuth();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -21,11 +26,24 @@ const LoginForm = () => {
 
     try {
       if (view === "login") {
-        const success = await login(email, password);
+        if (!email.trim() || !password.trim()) {
+          setError("Email and password are required");
+          setLoading(false);
+          return;
+        }
+        await loginStart(email, password);
+        setView("login-otp");
+      } else if (view === "login-otp") {
+        if (!otp.trim()) {
+          setError("OTP is required");
+          setLoading(false);
+          return;
+        }
+        const success = await loginWithOtp(email, otp);
         if (success) {
           router.push("/dashboard");
         } else {
-          setError("Invalid email or password");
+          setError("Invalid or expired OTP");
         }
       } else if (view === "signup") {
         if (!name.trim()) {
@@ -39,11 +57,25 @@ const LoginForm = () => {
         } else {
           setError("Signup failed. Please try again.");
         }
-      } else {
-        // Handle forgot password logic here
-        console.log("Email for password reset:", email);
-        alert("Password reset link sent to your email!");
+      } else if (view === "forgot") {
+        if (!email.trim()) {
+          setError("Email is required");
+          setLoading(false);
+          return;
+        }
+        await forgotPassword(email);
+        setView("forgot-otp");
+      } else if (view === "forgot-otp") {
+        if (!otp.trim() || !newPassword.trim()) {
+          setError("OTP and new password are required");
+          setLoading(false);
+          return;
+        }
+        await resetPassword(email, otp, newPassword);
         setView("login");
+        setPassword("");
+        setOtp("");
+        setNewPassword("");
       }
     } catch (err) {
       setError("An error occurred. Please try again.");
@@ -52,7 +84,7 @@ const LoginForm = () => {
     }
   };
 
-  const toggleView = (newView: string) => {
+  const toggleView = (newView: ViewState) => {
     setView(newView);
     setError("");
   };
@@ -61,8 +93,10 @@ const LoginForm = () => {
     <div className="w-full max-w-md p-8 space-y-6 bg-earth-800 rounded-lg shadow-lg">
       <h2 className="text-3xl font-bold text-center text-gold-400">
         {view === "login" && "Login"}
+        {view === "login-otp" && "Enter OTP"}
         {view === "signup" && "Sign Up"}
         {view === "forgot" && "Forgot Password"}
+        {view === "forgot-otp" && "Reset Password"}
       </h2>
       
       {error && (
@@ -152,6 +186,46 @@ const LoginForm = () => {
             />
           </div>
         )}
+        {view === "forgot-otp" && (
+          <>
+            <div>
+              <label
+                htmlFor="otp"
+                className="text-sm font-medium text-gold-500"
+              >
+                OTP Code
+              </label>
+              <input
+                id="otp"
+                name="otp"
+                type="text"
+                autoComplete="one-time-code"
+                required
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                className="w-full px-3 py-2 mt-1 text-white bg-earth-700 border border-earth-600 rounded-md focus:outline-none focus:ring-2 focus:ring-gold-400"
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="new-password"
+                className="text-sm font-medium text-gold-500"
+              >
+                New Password
+              </label>
+              <input
+                id="new-password"
+                name="new-password"
+                type="password"
+                autoComplete="new-password"
+                required
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="w-full px-3 py-2 mt-1 text-white bg-earth-700 border border-earth-600 rounded-md focus:outline-none focus:ring-2 focus:ring-gold-400"
+              />
+            </div>
+          </>
+        )}
         <div className="flex items-center justify-between">
           {view === "login" && (
             <>
@@ -191,9 +265,11 @@ const LoginForm = () => {
         >
           {loading ? "Loading..." : (
             <>
-              {view === "login" && "Login"}
+              {view === "login" && "Send OTP"}
+              {view === "login-otp" && "Verify & Login"}
               {view === "signup" && "Sign Up"}
-              {view === "forgot" && "Send Password Reset Link"}
+              {view === "forgot" && "Send OTP"}
+              {view === "forgot-otp" && "Reset Password"}
             </>
           )}
         </button>
@@ -230,6 +306,21 @@ const LoginForm = () => {
           </>
         )}
         {view === "forgot" && (
+          <>
+            Remember your password?{" "}
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                toggleView("login");
+              }}
+              className="font-medium text-gold-600 hover:text-gold-500"
+            >
+              Login
+            </a>
+          </>
+        )}
+        {view === "forgot-otp" && (
           <>
             Remember your password?{" "}
             <a
