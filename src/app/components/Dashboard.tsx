@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import MembershipRenewal from "./MembershipRenewal";
 import WalletLow from "./WalletLow";
 import ApplicationReceived from "./ApplicationReceived";
 import InviteConfirmed from "./InviteConfirmed";
 
 type TabKey = "book" | "history" | "membership" | "notifications";
+type SectionKey = "membership" | "profile" | "settings";
 
 const Dashboard = () => {
   // Toggle these booleans to force specific full-screen views from the prototype
@@ -20,6 +22,11 @@ const Dashboard = () => {
   );
   const [showRenewalView, setShowRenewalView] = useState(false);
   const [showWalletLowView, setShowWalletLowView] = useState(true);
+  const [activeSection, setActiveSection] =
+    useState<SectionKey>("membership");
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+
+  const { user } = useAuth();
 
   const openTopup = () => setIsTopupOpen(true);
   const closeTopup = () => {
@@ -100,6 +107,160 @@ const Dashboard = () => {
 
   return (
     <div className="relative w-full px-6 md:px-10 pb-16 text-earth-100">
+      {/* Top-right profile button */}
+      <div className="absolute top-6 right-6 z-20">
+        <div className="relative">
+          <button
+            type="button"
+            onClick={() => setIsProfileMenuOpen((open) => !open)}
+            className="flex items-center justify-center w-10 h-10 rounded-full border border-earth-700 bg-earth-950/90 text-earth-100 hover:border-gold-500 hover:text-gold-300 shadow-lg"
+            aria-label="Open profile menu"
+          >
+            <span className="text-sm font-medium">
+              {(user?.name || "M").charAt(0).toUpperCase()}
+            </span>
+          </button>
+          {isProfileMenuOpen && (
+            <div className="absolute right-0 mt-3 w-52 rounded-2xl border border-earth-800 bg-earth-950/95 shadow-xl py-2 text-[0.75rem]">
+              <div className="px-3 pb-2 border-b border-earth-800 mb-1">
+                <p className="text-[0.7rem] tracking-[0.16em] uppercase text-earth-500">
+                  Account
+                </p>
+                <p className="text-sm text-earth-100 truncate">
+                  {user?.name || "Member"}
+                </p>
+                <p className="text-[0.7rem] text-earth-500 truncate">
+                  {user?.email || "hello@thesilent.club"}
+                </p>
+              </div>
+              {[
+                { key: "profile", label: "Profile" },
+                { key: "membership", label: "Membership" },
+                { key: "settings", label: "Settings" },
+              ].map((item) => {
+                const isActive = activeSection === item.key;
+                return (
+                  <button
+                    key={item.key}
+                    type="button"
+                    onClick={() => {
+                      setActiveSection(item.key as SectionKey);
+                      setIsProfileMenuOpen(false);
+                    }}
+                    className={`w-full text-left px-3 py-2 text-[0.74rem] tracking-[0.12em] uppercase transition-colors ${
+                      isActive
+                        ? "text-gold-300 bg-gold-500/10"
+                        : "text-earth-400 hover:text-earth-100 hover:bg-earth-900"
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Profile section */}
+      {activeSection === "profile" && (
+        <div className="pt-16 space-y-6">
+          <div className="flex items-center justify-between gap-4 mb-4">
+            <h1
+              className="text-3xl md:text-4xl font-normal text-earth-50"
+              style={{ fontFamily: "Cormorant Garamond, serif" }}
+            >
+              Profile
+            </h1>
+          </div>
+
+          <div className="rounded-2xl border border-gold-500/20 bg-earth-900/70 p-5">
+            <h2 className="mb-4 text-[0.9rem] tracking-[0.08em] uppercase text-earth-200">
+              Basic Information
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+              <div>
+                <div className="text-[0.65rem] tracking-[0.18em] uppercase text-earth-500 mb-1">
+                  Name
+                </div>
+                <div className="text-earth-100">
+                  {user?.name || "Not set"}
+                </div>
+              </div>
+              <div>
+                <div className="text-[0.65rem] tracking-[0.18em] uppercase text-earth-500 mb-1">
+                  Email
+                </div>
+                <div className="text-earth-100">
+                  {user?.email || "Not set"}
+                </div>
+              </div>
+            </div>
+            <p className="mt-4 text-[0.8rem] text-earth-500">
+              Profile editing will be managed from your primary account
+              settings. For now this area reflects the details used at sign-up.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Settings section */}
+      {activeSection === "settings" && (
+        <div className="pt-16 space-y-6">
+          <div className="flex items-center justify-between gap-4 mb-4">
+            <h1
+              className="text-3xl md:text-4xl font-normal text-earth-50"
+              style={{ fontFamily: "Cormorant Garamond, serif" }}
+            >
+              Settings
+            </h1>
+          </div>
+
+          <div className="rounded-2xl border border-gold-500/20 bg-earth-900/70 p-5">
+            <h2 className="mb-4 text-[0.9rem] tracking-[0.08em] uppercase text-earth-200">
+              Notifications
+            </h2>
+            <div className="space-y-3 text-sm">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <div className="text-earth-100">
+                    Membership & wallet emails
+                  </div>
+                  <div className="text-[0.78rem] text-earth-500">
+                    Renewal reminders, wallet low alerts, and booking
+                    confirmations.
+                  </div>
+                </div>
+                <span className="px-3 py-1 rounded-full border border-gold-500/40 text-[0.7rem] tracking-[0.12em] uppercase text-gold-300">
+                  Default: On
+                </span>
+              </div>
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <div className="text-earth-100">
+                    Occasional announcements
+                  </div>
+                  <div className="text-[0.78rem] text-earth-500">
+                    New cycles, experiments, or residency formats.
+                  </div>
+                </div>
+                <span className="px-3 py-1 rounded-full border border-earth-700 text-[0.7rem] tracking-[0.12em] uppercase text-earth-400">
+                  Default: Off
+                </span>
+              </div>
+            </div>
+            <p className="mt-4 text-[0.8rem] text-earth-500">
+              Fine-grained settings and real toggles will be wired once the
+              notification service is connected. For now this reflects the
+              planned structure.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Membership section (default) */}
+      {activeSection === "membership" && (
+        <>
       {/* Membership header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
         <div>
@@ -533,6 +694,8 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+      )}
+        </>
       )}
     </div>
   );

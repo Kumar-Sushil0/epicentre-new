@@ -123,6 +123,10 @@ export const endpoints = {
     wishlist: '/user/wishlist',
     cart: '/user/cart',
   },
+  dayCycle: {
+    save: '/day-cycle',
+    get: '/day-cycle',
+  },
 };
 
 export default api;
