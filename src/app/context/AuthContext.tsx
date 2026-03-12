@@ -72,16 +72,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         return 'success';
       }
 
-      // Real API call to Express backend (may require OTP)
-      const response = await api.post<{ user?: User; token?: string; requiresOtp?: boolean }>(
+      // Real API call to Express backend (no OTP for login)
+      const response = await api.post<{ user?: User; token?: string }>(
         endpoints.auth.login,
         { email, password }
       );
-
-      if (response.requiresOtp) {
-        // Step 1 OK, OTP required
-        return 'otp_required';
-      }
 
       if (response.user) {
         const userData: User = {

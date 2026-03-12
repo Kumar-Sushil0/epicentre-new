@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
+import { api, endpoints } from "@/utils/api";
 
 type ViewMode = "login" | "signup" | "forgot" | "otp";
+type OtpPurpose = "login" | "reset";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -14,6 +16,9 @@ const LoginForm = () => {
   const [view, setView] = useState<ViewMode>("login"); // 'login', 'signup', 'forgot', 'otp'
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [otpPurpose, setOtpPurpose] = useState<OtpPurpose>("login");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const { login, signup, verifyOtp } = useAuth();
   const router = useRouter();
 
@@ -27,8 +32,6 @@ const LoginForm = () => {
         const result = await login(email, password);
         if (result === "success") {
           router.push("/dashboard");
-        } else if (result === "otp_required") {
-          setView("otp");
         } else {
           setError("Invalid email or password");
         }
@@ -42,21 +45,55 @@ const LoginForm = () => {
         if (signupResult === "success") {
           router.push("/dashboard");
         } else if (signupResult === "otp_required") {
+          setOtpPurpose("login");
           setView("otp");
         } else {
           setError("Signup failed. Please try again.");
         }
       } else if (view === "forgot") {
-        // TODO: Integrate full forgot-password + OTP reset flow
-        console.log("Email for password reset:", email);
-        alert("Password reset link sent to your email!");
-        setView("login");
+        try {
+          await api.post(endpoints.auth.forgotPassword, { email });
+          setOtpPurpose("reset");
+          setView("otp");
+        } catch (err) {
+          setError("Failed to send reset code. Please check the email and try again.");
+        }
       } else if (view === "otp") {
-        const success = await verifyOtp(email, otp);
-        if (success) {
-          router.push("/dashboard");
+        if (otpPurpose === "login") {
+          const success = await verifyOtp(email, otp);
+          if (success) {
+            router.push("/dashboard");
+          } else {
+            setError("Invalid or expired code. Please try again.");
+          }
         } else {
-          setError("Invalid or expired code. Please try again.");
+          // Password reset flow
+          if (!newPassword || newPassword.length < 6) {
+            setError("New password must be at least 6 characters.");
+            setLoading(false);
+            return;
+          }
+          if (newPassword !== confirmPassword) {
+            setError("Passwords do not match.");
+            setLoading(false);
+            return;
+          }
+
+          try {
+            await api.post(endpoints.auth.resetPassword, {
+              email,
+              otp,
+              newPassword,
+            });
+            alert("Password reset successfully. Please login with your new password.");
+            setOtp("");
+            setNewPassword("");
+            setConfirmPassword("");
+            setOtpPurpose("login");
+            setView("login");
+          } catch (err) {
+            setError("Invalid code or unable to reset password. Please try again.");
+          }
         }
       }
     } catch (err) {
@@ -69,6 +106,12 @@ const LoginForm = () => {
   const toggleView = (newView: ViewMode) => {
     setView(newView);
     setError("");
+    if (newView !== "otp") {
+      setOtp("");
+      setOtpPurpose("login");
+      setNewPassword("");
+      setConfirmPassword("");
+    }
   };
 
   return (
@@ -77,7 +120,7 @@ const LoginForm = () => {
         {view === "login" && "Login"}
         {view === "signup" && "Sign Up"}
         {view === "forgot" && "Forgot Password"}
-        {view === "otp" && "Enter Verification Code"}
+        {view === "otp" && (otpPurpose === "reset" ? "Reset Password" : "Enter Verification Code")}
       </h2>
       
       {error && (
@@ -168,27 +211,71 @@ const LoginForm = () => {
           </div>
         )}
         {view === "otp" && (
-          <div>
-            <label
-              htmlFor="otp"
-              className="text-sm font-medium text-gold-500"
-            >
-              Verification Code
-            </label>
-            <input
-              id="otp"
-              name="otp"
-              type="text"
-              inputMode="numeric"
-              autoComplete="one-time-code"
-              required
-              value={otp}
-              onChange={(e) => setOtp(e.target.value)}
-              className="w-full px-3 py-2 mt-1 text-white bg-earth-700 border border-earth-600 rounded-md focus:outline-none focus:ring-2 focus:ring-gold-400 tracking-[0.35em] text-center"
-            />
-            <p className="mt-2 text-xs text-gold-500/80">
-              We&apos;ve sent a 6-digit code to your email. Enter it here to complete sign-in.
-            </p>
+          <div className="space-y-4">
+            <div>
+              <label
+                htmlFor="otp"
+                className="text-sm font-medium text-gold-500"
+              >
+                Verification Code
+              </label>
+              <input
+                id="otp"
+                name="otp"
+                type="text"
+                inputMode="numeric"
+                autoComplete="one-time-code"
+                required
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                className="w-full px-3 py-2 mt-1 text-white bg-earth-700 border border-earth-600 rounded-md focus:outline-none focus:ring-2 focus:ring-gold-400 tracking-[0.35em] text-center"
+              />
+              <p className="mt-2 text-xs text-gold-500/80">
+                {otpPurpose === "reset"
+                  ? "We’ve sent a 6-digit reset code to your email. Enter it here to change your password."
+                  : "We’ve sent a 6-digit code to your email. Enter it here to complete sign-in."}
+              </p>
+            </div>
+            {otpPurpose === "reset" && (
+              <>
+                <div>
+                  <label
+                    htmlFor="new-password"
+                    className="text-sm font-medium text-gold-500"
+                  >
+                    New Password
+                  </label>
+                  <input
+                    id="new-password"
+                    name="new-password"
+                    type="password"
+                    autoComplete="new-password"
+                    required
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    className="w-full px-3 py-2 mt-1 text-white bg-earth-700 border border-earth-600 rounded-md focus:outline-none focus:ring-2 focus:ring-gold-400"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="confirm-password"
+                    className="text-sm font-medium text-gold-500"
+                  >
+                    Confirm New Password
+                  </label>
+                  <input
+                    id="confirm-password"
+                    name="confirm-password"
+                    type="password"
+                    autoComplete="new-password"
+                    required
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className="w-full px-3 py-2 mt-1 text-white bg-earth-700 border border-earth-600 rounded-md focus:outline-none focus:ring-2 focus:ring-gold-400"
+                  />
+                </div>
+              </>
+            )}
           </div>
         )}
         <div className="flex items-center justify-between">
@@ -233,7 +320,7 @@ const LoginForm = () => {
               {view === "login" && "Login"}
               {view === "signup" && "Sign Up"}
               {view === "forgot" && "Send Password Reset Link"}
-              {view === "otp" && "Verify Code"}
+              {view === "otp" && (otpPurpose === "reset" ? "Reset Password" : "Verify Code")}
             </>
           )}
         </button>
