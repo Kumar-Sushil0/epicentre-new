@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useAuth } from "../context/AuthContext";
+import { api, endpoints } from "@/utils/api";
 import MembershipRenewal from "./MembershipRenewal";
 import WalletLow from "./WalletLow";
 import ApplicationReceived from "./ApplicationReceived";
@@ -27,6 +28,8 @@ const Dashboard = () => {
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   const { user } = useAuth();
+  const [walletBalance, setWalletBalance] = useState<number | null>(null);
+  const [walletMembershipYear, setWalletMembershipYear] = useState<number | null>(null);
   const profileMenuRef = useRef<HTMLDivElement>(null);
 
   // Close profile menu when clicking outside
@@ -49,6 +52,39 @@ const Dashboard = () => {
     };
   }, [isProfileMenuOpen]);
 
+  // Load wallet snapshot for the logged-in user
+  const loadWallet = async () => {
+    try {
+      const token =
+        typeof window !== "undefined"
+          ? window.localStorage.getItem("token")
+          : null;
+      if (!token) return;
+
+      const result = await api.get<{ wallet: { balance: number; membershipYear?: number } }>(
+        endpoints.wallet.current,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (result?.wallet) {
+        setWalletBalance(result.wallet.balance);
+        if (typeof result.wallet.membershipYear === "number") {
+          setWalletMembershipYear(result.wallet.membershipYear);
+        }
+      }
+    } catch (error) {
+      console.error("Failed to load wallet snapshot", error);
+    }
+  };
+
+  useEffect(() => {
+    void loadWallet();
+  }, []);
+
   const openTopup = () => setIsTopupOpen(true);
   const closeTopup = () => {
     setIsTopupOpen(false);
@@ -59,10 +95,34 @@ const Dashboard = () => {
     setSelectedTopup(value);
   };
 
-  const handleConfirmTopup = () => {
-    // In the prototype this would update wallet state and notifications.
-    // For now we just close the modal to mirror the flow visually.
-    closeTopup();
+  const handleConfirmTopup = async () => {
+    try {
+      if (selectedTopup == null || selectedTopup === "custom") {
+        return;
+      }
+
+      const token =
+        typeof window !== "undefined"
+          ? window.localStorage.getItem("token")
+          : null;
+      if (!token) return;
+
+      await api.post(
+        endpoints.wallet.topup,
+        { amount: selectedTopup },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      await loadWallet();
+    } catch (error) {
+      console.error("Failed to top up wallet", error);
+    } finally {
+      closeTopup();
+    }
   };
 
   // Force-show "Application Received" screen when flag is true
@@ -202,7 +262,15 @@ const Dashboard = () => {
                         Member since
                       </div>
                     </div>
-                    <div className="text-[0.95rem] text-earth-100 font-medium">9 March 2026</div>
+                <div className="text-[0.95rem] text-earth-100 font-medium">
+                  {user?.memberSince
+                    ? new Date(user.memberSince).toLocaleDateString("en-IN", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      })
+                    : "9 March 2026"}
+                </div>
                   </div>
                   <div className="group/item">
                     <div className="flex items-center gap-2 mb-2">
@@ -213,7 +281,17 @@ const Dashboard = () => {
                         Alignment review
                       </div>
                     </div>
-                    <div className="text-[0.95rem] text-earth-100 font-medium">March 2027</div>
+                    <div className="text-[0.95rem] text-earth-100 font-medium">
+                      {user?.alignmentReviewDate
+                        ? new Date(user.alignmentReviewDate).toLocaleDateString(
+                            "en-IN",
+                            {
+                              month: "long",
+                              year: "numeric",
+                            }
+                          )
+                        : "March 2027"}
+                    </div>
                   </div>
                   <div className="group/item">
                     <div className="flex items-center gap-2 mb-2">
@@ -225,7 +303,7 @@ const Dashboard = () => {
                       </div>
                     </div>
                     <div className="text-[0.95rem] text-earth-100 font-medium">
-                      Post‑Exit Founders · 2026
+                      {user?.cohortLabel || "Post‑Exit Founders · 2026"}
                     </div>
                   </div>
                 </div>
@@ -243,16 +321,17 @@ const Dashboard = () => {
                 </div>
               </div>
               <div className="flex flex-wrap gap-3">
-                {["Recovery from scale", "Deep work cycles", "Designing next chapter"].map(
-                  (tag) => (
-                    <span
-                      key={tag}
-                      className="inline-flex items-center rounded-full border border-gold-500/50 bg-gradient-to-r from-gold-500/10 to-gold-500/5 px-4 py-2 text-[0.8rem] text-gold-200 shadow-md hover:shadow-lg hover:border-gold-500/70 hover:bg-gold-500/15 transition-all duration-200"
-                    >
-                      {tag}
-                    </span>
-                  )
-                )}
+                {(user?.workingThemes && user.workingThemes.length > 0
+                  ? user.workingThemes
+                  : ["Recovery from scale", "Deep work cycles", "Designing next chapter"]
+                ).map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center rounded-full border border-gold-500/50 bg-gradient-to-r from-gold-500/10 to-gold-500/5 px-4 py-2 text-[0.8rem] text-gold-200 shadow-md hover:shadow-lg hover:border-gold-500/70 hover:bg-gold-500/15 transition-all duration-200"
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
@@ -287,7 +366,8 @@ const Dashboard = () => {
                         Noise tolerance
                       </div>
                       <p className="text-[0.9rem] text-earth-200 leading-relaxed">
-                        Prefers quiet zones, low footfall, and predictable patterns.
+                        {user?.noiseTolerance ||
+                          "Prefers quiet zones, low footfall, and predictable patterns."}
                       </p>
                     </div>
                   </div>
@@ -303,7 +383,8 @@ const Dashboard = () => {
                         Ideal work window
                       </div>
                       <p className="text-[0.9rem] text-earth-200 leading-relaxed">
-                        09:00 – 13:00, 16:00 – 19:00. Minimal interruptions.
+                        {user?.idealWorkWindow ||
+                          "09:00 – 13:00, 16:00 – 19:00. Minimal interruptions."}
                       </p>
                     </div>
                   </div>
@@ -319,7 +400,8 @@ const Dashboard = () => {
                         Contact preferences
                       </div>
                       <p className="text-[0.9rem] text-earth-200 leading-relaxed">
-                        Email only, no calls unless urgent and estate‑related.
+                        {user?.contactPreferences ||
+                          "Email only, no calls unless urgent and estate‑related."}
                       </p>
                     </div>
                   </div>
@@ -792,7 +874,9 @@ const Dashboard = () => {
             className="text-3xl text-gold-400"
             style={{ fontFamily: "Cormorant Garamond, serif" }}
           >
-            ₹1,00,000
+            {walletBalance != null
+              ? `₹${walletBalance.toLocaleString("en-IN")}`
+              : "₹0"}
           </div>
           <div className="mt-3 h-[3px] w-full bg-earth-800 rounded-full overflow-hidden">
             <div className="h-full w-full bg-gradient-to-r from-gold-500 to-gold-300" />

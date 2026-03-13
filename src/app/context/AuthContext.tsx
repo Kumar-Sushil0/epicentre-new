@@ -10,6 +10,17 @@ export const AUTH_ENABLED = true; // Enable real authentication
 interface User {
   email: string;
   name: string;
+  // Role returned from backend (used to distinguish admins vs regular users)
+  role?: 'user' | 'admin';
+  // Optional fields coming from TSC user profile
+  _id?: string;
+  cohortLabel?: string;
+  memberSince?: string;
+  alignmentReviewDate?: string;
+  workingThemes?: string[];
+  noiseTolerance?: string;
+  idealWorkWindow?: string;
+  contactPreferences?: string;
 }
 
 type LoginResult = 'success' | 'invalid' | 'otp_required';
@@ -45,18 +56,40 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
-  // Load user from localStorage on mount
+  // Load user from localStorage on mount and refresh from API if token is present
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      try {
-        setUser(JSON.parse(storedUser));
-      } catch (error) {
-        console.error('Error parsing stored user:', error);
-        localStorage.removeItem('user');
+    const hydrateUser = async () => {
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        try {
+          setUser(JSON.parse(storedUser));
+        } catch (error) {
+          console.error('Error parsing stored user:', error);
+          localStorage.removeItem('user');
+        }
       }
-    }
-    setIsLoading(false);
+
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const me = await api.get<{ user: User }>(endpoints.auth.me, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          if (me.user) {
+            setUser(me.user);
+            localStorage.setItem('user', JSON.stringify(me.user));
+          }
+        } catch (error) {
+          console.error('Error loading user profile from API:', error);
+        }
+      }
+
+      setIsLoading(false);
+    };
+
+    void hydrateUser();
   }, []);
 
   const login = async (email: string, password: string, name?: string): Promise<LoginResult> => {
@@ -80,6 +113,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
       if (response.user) {
         const userData: User = {
+          ...response.user,
           email: response.user.email,
           name: response.user.name,
         };
@@ -127,6 +161,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
       if (response.user) {
         const userData: User = {
+          ...response.user,
           email: response.user.email,
           name: response.user.name,
         };
@@ -160,6 +195,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       );
 
       const userData: User = {
+        ...response.user,
         email: response.user.email,
         name: response.user.name,
       };

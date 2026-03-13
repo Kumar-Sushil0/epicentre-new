@@ -2,6 +2,7 @@
 
 import AdminSidebar from '../components/AdminSidebar';
 import AdminHeader from '../components/AdminHeader';
+import AdminProtectedRoute from '../components/AdminProtectedRoute';
 
 interface StatCard {
     title: string;
@@ -37,11 +38,12 @@ const activities = [
 
 export default function AdminDashboard() {
     return (
-        <div className="min-h-screen bg-earth-950">
-            <AdminSidebar />
-            <AdminHeader />
+        <AdminProtectedRoute>
+            <div className="min-h-screen bg-earth-950">
+                <AdminSidebar />
+                <AdminHeader />
 
-            <main className="ml-64 pt-20 p-8">
+                <main className="ml-64 pt-20 p-8">
                 {/* Welcome Section */}
                 <div className="mb-8">
                     <h1 className="text-4xl font-bold text-earth-100 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
@@ -177,7 +179,8 @@ export default function AdminDashboard() {
                         </button>
                     ))}
                 </div>
-            </main>
-        </div>
+                </main>
+            </div>
+        </AdminProtectedRoute>
     );
 }

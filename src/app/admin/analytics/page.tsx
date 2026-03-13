@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import AdminSidebar from '../components/AdminSidebar';
 import AdminHeader from '../components/AdminHeader';
+import AdminProtectedRoute from '../components/AdminProtectedRoute';
 
 export default function Analytics() {
     const [dateRange, setDateRange] = useState('7days');
@@ -39,11 +40,12 @@ export default function Analytics() {
     ];
 
     return (
-        <div className="min-h-screen bg-earth-950">
-            <AdminSidebar />
-            <AdminHeader />
+        <AdminProtectedRoute>
+            <div className="min-h-screen bg-earth-950">
+                <AdminSidebar />
+                <AdminHeader />
 
-            <main className="ml-64 pt-20 p-8">
+                <main className="ml-64 pt-20 p-8">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-8">
                     <div>
@@ -237,7 +239,8 @@ export default function Analytics() {
                         </div>
                     ))}
                 </div>
-            </main>
-        </div>
+                </main>
+            </div>
+        </AdminProtectedRoute>
     );
 }

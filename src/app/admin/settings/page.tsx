@@ -1,8 +1,9 @@
-'use client';
+"use client";
 
 import { useState } from 'react';
 import AdminSidebar from '../components/AdminSidebar';
 import AdminHeader from '../components/AdminHeader';
+import AdminProtectedRoute from '../components/AdminProtectedRoute';
 
 export default function Settings() {
     const [activeTab, setActiveTab] = useState('general');
@@ -60,11 +61,12 @@ export default function Settings() {
     };
 
     return (
-        <div className="min-h-screen bg-earth-950">
-            <AdminSidebar />
-            <AdminHeader />
+        <AdminProtectedRoute>
+            <div className="min-h-screen bg-earth-950">
+                <AdminSidebar />
+                <AdminHeader />
 
-            <main className="ml-64 pt-20 p-8">
+                <main className="ml-64 pt-20 p-8">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-8">
                     <div>
@@ -549,7 +551,8 @@ export default function Settings() {
                         </div>
                     </div>
                 </div>
-            </main>
-        </div>
+                </main>
+            </div>
+        </AdminProtectedRoute>
     );
 }

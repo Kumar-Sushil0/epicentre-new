@@ -117,6 +117,11 @@ export const endpoints = {
     update: (id: string) => `/bookings/${id}`,
     delete: (id: string) => `/bookings/${id}`,
   },
+  wallet: {
+    current: "/wallet",
+    topup: "/wallet/topup",
+    history: "/wallet/history",
+  },
   user: {
     profile: '/user/profile',
     updateProfile: '/user/profile',

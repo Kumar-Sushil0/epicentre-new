@@ -37,8 +37,8 @@ export default function AdminSidebar() {
             {/* Logo */}
             <div className="h-20 flex items-center justify-between px-6 border-b border-gold-500/20">
                 {!isCollapsed && (
-                    <h1 className="text-2xl font-bold text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                        EPiCentre
+                    <h1 className="text-xl font-semibold tracking-[0.18em] uppercase text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                        The Silent Club
                     </h1>
                 )}
                 <button
@@ -94,7 +94,7 @@ export default function AdminSidebar() {
                     {!isCollapsed && (
                         <div className="flex-1">
                             <p className="text-sm font-semibold text-earth-100">Admin User</p>
-                            <p className="text-xs text-earth-400">admin@epicentre.com</p>
+                            <p className="text-xs text-earth-400">admin@thesilent.club</p>
                         </div>
                     )}
                     <button className="p-2 rounded-lg hover:bg-earth-800/50 text-earth-300 hover:text-gold-500 transition-colors">
