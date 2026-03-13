@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import AdminSidebar from '../components/AdminSidebar';
-import AdminHeader from '../components\AdminHeader';
-import AdminProtectedRoute from '../components\AdminProtectedRoute';
+import AdminHeader from '../components/AdminHeader';
+import AdminProtectedRoute from '../components/AdminProtectedRoute';
 
 interface BlogPost {
     id: string;
