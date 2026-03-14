@@ -21,6 +21,8 @@ interface User {
   noiseTolerance?: string;
   idealWorkWindow?: string;
   contactPreferences?: string;
+  // D.D. application lifecycle (none | pending | approved | waitlisted | rejected)
+  applicationStatus?: string;
 }
 
 type LoginResult = 'success' | 'invalid' | 'otp_required';

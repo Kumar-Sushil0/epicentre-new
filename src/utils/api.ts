@@ -132,6 +132,11 @@ export const endpoints = {
     save: '/day-cycle',
     get: '/day-cycle',
   },
+  application: {
+    submit: '/application/submit',
+    list: '/application',
+    updateStatus: (id: string) => `/application/${id}/status`,
+  },
 };
 
 export default api;

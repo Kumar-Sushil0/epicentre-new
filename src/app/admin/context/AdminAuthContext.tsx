@@ -24,6 +24,7 @@ interface AdminAuthContextType {
   isAdminAuthenticated: boolean;
   adminLogin: (email: string, password: string) => Promise<AdminLoginResult>;
   adminLogout: () => void;
+  getAdminToken: () => string | null;
   isLoading: boolean;
   authEnabled: boolean;
 }
@@ -143,6 +144,7 @@ export const AdminAuthProvider: React.FC<AdminAuthProviderProps> = ({
   };
 
   const isAdminAuthenticated = adminUser !== null;
+  const getAdminToken = () => typeof window !== 'undefined' ? localStorage.getItem('adminToken') : null;
 
   return (
     <AdminAuthContext.Provider
@@ -151,6 +153,7 @@ export const AdminAuthProvider: React.FC<AdminAuthProviderProps> = ({
         isAdminAuthenticated,
         adminLogin,
         adminLogout,
+        getAdminToken,
         isLoading,
         authEnabled: ADMIN_AUTH_ENABLED,
       }}

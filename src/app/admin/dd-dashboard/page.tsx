@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import AdminProtectedRoute from '../components/AdminProtectedRoute';
+import { useAdminAuth } from '../context/AdminAuthContext';
+import { api, endpoints } from '@/utils/api';
 
 type DdView =
   | 'review-queue'
@@ -11,8 +13,82 @@ type DdView =
   | 'wallet-monitor'
   | 'cohort-stats';
 
+interface AppUser {
+  _id: string;
+  name: string;
+  email: string;
+  applicationSubmittedAt?: string;
+  cohortLabel?: string;
+}
+
+interface Application {
+  id: string;
+  user: AppUser;
+  questions: string[];
+  answers: string[];
+  status: string;
+  reviewerNotes?: string;
+  decidedAt?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export default function AdminDdDashboardPage() {
+  const { getAdminToken } = useAdminAuth();
   const [activeView, setActiveView] = useState<DdView>('review-queue');
+  const [pendingApplications, setPendingApplications] = useState<Application[]>([]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [reviewerNotes, setReviewerNotes] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [actionLoading, setActionLoading] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchPending = useCallback(async () => {
+    const token = getAdminToken();
+    if (!token) return;
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await api.get<{ applications: Application[] }>(
+        `${endpoints.application.list}?status=pending`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setPendingApplications(res.applications || []);
+      setSelectedIndex(0);
+      setReviewerNotes('');
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Failed to load applications');
+      setPendingApplications([]);
+    } finally {
+      setLoading(false);
+    }
+  }, [getAdminToken]);
+
+  useEffect(() => {
+    if (activeView === 'review-queue') void fetchPending();
+  }, [activeView, fetchPending]);
+
+  const selectedApp = pendingApplications[selectedIndex] ?? null;
+
+  const updateStatus = async (status: 'approved' | 'waitlisted' | 'rejected') => {
+    if (!selectedApp) return;
+    const token = getAdminToken();
+    if (!token) return;
+    setActionLoading(status);
+    try {
+      await api.patch(
+        endpoints.application.updateStatus(selectedApp.id),
+        { status, reviewerNotes: reviewerNotes.trim() || undefined },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      await fetchPending();
+      setReviewerNotes('');
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Failed to update status');
+    } finally {
+      setActionLoading(null);
+    }
+  };
 
   return (
     <AdminProtectedRoute>
@@ -50,7 +126,7 @@ export default function AdminDdDashboardPage() {
                   pending_actions
                 </span>
               </div>
-              <p className="text-earth-100 text-base font-semibold">3</p>
+              <p className="text-earth-100 text-base font-semibold">{loading ? '…' : pendingApplications.length}</p>
             </div>
             <div className="bg-earth-900/70 border border-emerald-500/30 rounded-xl px-3 py-2">
               <div className="flex items-center justify-between mb-1">
@@ -96,7 +172,7 @@ export default function AdminDdDashboardPage() {
                   <span className="text-[0.75rem]">◈</span>
                   <span className="flex-1 text-left">Review Queue</span>
                   <span className="px-1.5 py-0.5 rounded-sm text-[0.58rem] bg-gold-500/20 text-gold-200">
-                    3
+                    {loading ? '…' : pendingApplications.length}
                   </span>
                 </button>
                 <button
@@ -179,116 +255,145 @@ export default function AdminDdDashboardPage() {
           <section className="flex-1 space-y-6">
             {activeView === 'review-queue' && (
               <div className="bg-earth-900/70 border border-gold-500/25 rounded-2xl p-6 md:p-8">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-                  <div>
-                    <div className="flex items-center gap-2 text-[0.62rem] uppercase tracking-[0.18em] text-earth-500 mb-1">
-                      <span className="w-1 h-1 rounded-full bg-gold-500" />
-                      <span>Queue · 01 / 03</span>
-                    </div>
-                    <h2
-                      className="text-2xl text-gold-500 mb-1"
-                      style={{ fontFamily: 'Cormorant Garamond, serif' }}
-                    >
-                      Arjun Mehta
-                    </h2>
-                    <p className="text-xs text-earth-500">
-                      Received 9 March 2026 · 2026 Cohort
-                    </p>
+                {error && (
+                  <div className="mb-4 p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-300 text-sm">
+                    {error}
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full border border-gold-500/40 text-[0.65rem] tracking-[0.18em] uppercase text-gold-400">
-                      Pending Review
-                    </span>
-                    <span className="inline-flex items-center px-3 py-1 rounded-full bg-earth-800 text-[0.65rem] tracking-[0.18em] uppercase text-earth-300">
-                      Silent, self-directed
-                    </span>
+                )}
+                {loading ? (
+                  <div className="py-12 text-center text-earth-400 text-sm">Loading applications…</div>
+                ) : !selectedApp ? (
+                  <div className="py-12 text-center text-earth-400 text-sm">
+                    No applications in queue. New submissions will appear here.
                   </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6 text-sm">
-                  <div>
-                    <div className="text-[0.65rem] tracking-[0.18em] uppercase text-earth-500 mb-1">
-                      Email
-                    </div>
-                    <div className="text-earth-100">arjun@mehta.co</div>
-                  </div>
-                  <div>
-                    <div className="text-[0.65rem] tracking-[0.18em] uppercase text-earth-500 mb-1">
-                      Cohort applied
-                    </div>
-                    <div className="text-earth-100">
-                      Post-Exit Founders · 2026
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-4 mb-6 text-sm">
-                  {[
-                    'What chapter are you currently between?',
-                    'What would uninterrupted attention allow you to confront?',
-                    'Are you comfortable with extended silence?',
-                    'Are you seeking withdrawal or structured inquiry?',
-                    'What would make this visit meaningful?',
-                  ].map((question, i) => (
-                    <div
-                      key={question}
-                      className="border-b border-white/5 pb-4 last:border-0"
-                    >
-                      <div className="text-[0.65rem] tracking-[0.14em] uppercase text-gold-400 mb-2">
-                        {String(i + 1).padStart(2, '0')} — {question}
+                ) : (
+                  <>
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+                      <div>
+                        <div className="flex items-center gap-2 text-[0.62rem] uppercase tracking-[0.18em] text-earth-500 mb-1">
+                          <span className="w-1 h-1 rounded-full bg-gold-500" />
+                          <span>Queue · {String(selectedIndex + 1).padStart(2, '0')} / {String(pendingApplications.length).padStart(2, '0')}</span>
+                        </div>
+                        <h2
+                          className="text-2xl text-gold-500 mb-1"
+                          style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                        >
+                          {selectedApp.user?.name ?? 'Applicant'}
+                        </h2>
+                        <p className="text-xs text-earth-500">
+                          {selectedApp.user?.applicationSubmittedAt
+                            ? `Received ${new Date(selectedApp.user.applicationSubmittedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}`
+                            : 'Application received'}
+                          {selectedApp.user?.cohortLabel ? ` · ${selectedApp.user.cohortLabel}` : ''}
+                        </p>
                       </div>
-                      <p className="text-sm text-earth-200 italic leading-relaxed">
-                        Placeholder answer mirroring the narrative tone from the
-                        original prototype.
-                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full border border-gold-500/40 text-[0.65rem] tracking-[0.18em] uppercase text-gold-400">
+                          Pending Review
+                        </span>
+                      </div>
                     </div>
-                  ))}
-                </div>
 
-                <div className="bg-gold-500/5 border border-gold-500/20 rounded-xl p-4 mb-6">
-                  <div className="text-[0.62rem] tracking-[0.18em] uppercase text-gold-400 mb-3">
-                    Alignment Criteria — D.D. Checklist
-                  </div>
-                  <div className="space-y-3">
-                    {[
-                      'Applicant is between a significant chapter — not avoiding re-entry',
-                      'Response demonstrates comfort with self-directed, unstructured time',
-                      'No indication of requiring facilitation, guidance, or social structure',
-                      'No content-extraction or performance intent evident in responses',
-                      'Responses demonstrate that the applicant read and understood the protocol',
-                    ].map((item) => (
-                      <div
-                        key={item}
-                        className="flex items-start gap-3 text-sm text-earth-200"
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6 text-sm">
+                      <div>
+                        <div className="text-[0.65rem] tracking-[0.18em] uppercase text-earth-500 mb-1">Email</div>
+                        <div className="text-earth-100">{selectedApp.user?.email ?? '—'}</div>
+                      </div>
+                      <div>
+                        <div className="text-[0.65rem] tracking-[0.18em] uppercase text-earth-500 mb-1">Cohort applied</div>
+                        <div className="text-earth-100">{selectedApp.user?.cohortLabel ?? '—'}</div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4 mb-6 text-sm">
+                      {(selectedApp.questions && selectedApp.questions.length
+                        ? selectedApp.questions.map((q, i) => ({ q, a: selectedApp.answers?.[i] ?? '' }))
+                        : []
+                      ).map(({ q, a }, i) => (
+                        <div key={i} className="border-b border-white/5 pb-4 last:border-0">
+                          <div className="text-[0.65rem] tracking-[0.14em] uppercase text-gold-400 mb-2">
+                            {String(i + 1).padStart(2, '0')} — {q}
+                          </div>
+                          <p className="text-sm text-earth-200 italic leading-relaxed">{a || '—'}</p>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="bg-gold-500/5 border border-gold-500/20 rounded-xl p-4 mb-6">
+                      <div className="text-[0.62rem] tracking-[0.18em] uppercase text-gold-400 mb-3">
+                        Alignment Criteria — D.D. Checklist
+                      </div>
+                      <div className="space-y-3">
+                        {[
+                          'Applicant is between a significant chapter — not avoiding re-entry',
+                          'Response demonstrates comfort with self-directed, unstructured time',
+                          'No indication of requiring facilitation, guidance, or social structure',
+                          'No content-extraction or performance intent evident in responses',
+                          'Responses demonstrate that the applicant read and understood the protocol',
+                        ].map((item) => (
+                          <div key={item} className="flex items-start gap-3 text-sm text-earth-200">
+                            <div className="mt-0.5 w-4 h-4 border border-gold-500/60 rounded-sm" />
+                            <span>{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="mb-6">
+                      <div className="text-[0.65rem] tracking-[0.18em] uppercase text-earth-500 mb-2">
+                        D.D. Notes (optional)
+                      </div>
+                      <textarea
+                        value={reviewerNotes}
+                        onChange={(e) => setReviewerNotes(e.target.value)}
+                        className="w-full bg-earth-900/60 border border-gold-500/25 rounded-lg px-3 py-2 text-sm text-earth-100 resize-none min-h-[80px] outline-none focus:border-gold-500"
+                        placeholder="Private notes — not shared with applicant."
+                      />
+                    </div>
+
+                    {pendingApplications.length > 1 && (
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {pendingApplications.map((app, i) => (
+                          <button
+                            key={app.id}
+                            onClick={() => { setSelectedIndex(i); setReviewerNotes(''); }}
+                            className={`px-3 py-1.5 rounded-lg text-xs border transition-all ${
+                              i === selectedIndex
+                                ? 'bg-gold-500/20 border-gold-500/60 text-gold-300'
+                                : 'border-earth-600 text-earth-400 hover:bg-earth-800'
+                            }`}
+                          >
+                            {app.user?.name ?? `#${i + 1}`}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+
+                    <div className="flex flex-wrap gap-3">
+                      <button
+                        onClick={() => updateStatus('approved')}
+                        disabled={!!actionLoading}
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-gold-500 text-[0.72rem] tracking-[0.14em] uppercase text-gold-400 hover:bg-gold-500/10 disabled:opacity-50"
                       >
-                        <div className="mt-0.5 w-4 h-4 border border-gold-500/60 rounded-sm" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mb-6">
-                  <div className="text-[0.65rem] tracking-[0.18em] uppercase text-earth-500 mb-2">
-                    D.D. Notes (optional)
-                  </div>
-                  <textarea
-                    className="w-full bg-earth-900/60 border border-gold-500/25 rounded-lg px-3 py-2 text-sm text-earth-100 resize-none min-h-[80px] outline-none focus:border-gold-500"
-                    placeholder="Private notes — not shared with applicant."
-                  />
-                </div>
-
-                <div className="flex flex-wrap gap-3">
-                  <button className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-gold-500 text-[0.72rem] tracking-[0.14em] uppercase text-gold-400 hover:bg-gold-500/10">
-                    Approve &amp; Send Invite →
-                  </button>
-                  <button className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-amber-500/60 text-[0.72rem] tracking-[0.14em] uppercase text-amber-400 hover:bg-amber-500/5">
-                    Move to Waitlist
-                  </button>
-                  <button className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-red-500/60 text-[0.72rem] tracking-[0.14em] uppercase text-red-400 hover:bg-red-500/5">
-                    Decline
-                  </button>
-                </div>
+                        {actionLoading === 'approved' ? '…' : 'Approve & Send Invite →'}
+                      </button>
+                      <button
+                        onClick={() => updateStatus('waitlisted')}
+                        disabled={!!actionLoading}
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-amber-500/60 text-[0.72rem] tracking-[0.14em] uppercase text-amber-400 hover:bg-amber-500/5 disabled:opacity-50"
+                      >
+                        {actionLoading === 'waitlisted' ? '…' : 'Move to Waitlist'}
+                      </button>
+                      <button
+                        onClick={() => updateStatus('rejected')}
+                        disabled={!!actionLoading}
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-red-500/60 text-[0.72rem] tracking-[0.14em] uppercase text-red-400 hover:bg-red-500/5 disabled:opacity-50"
+                      >
+                        {actionLoading === 'rejected' ? '…' : 'Decline'}
+                      </button>
+                    </div>
+                  </>
+                )}
               </div>
             )}
 

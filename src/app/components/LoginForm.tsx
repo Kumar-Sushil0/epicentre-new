@@ -8,12 +8,22 @@ import { api, endpoints } from "@/utils/api";
 type ViewMode = "login" | "signup" | "forgot" | "otp";
 type OtpPurpose = "login" | "reset";
 
-const LoginForm = () => {
+interface LoginFormProps {
+  initialView?: ViewMode;
+  onAuthComplete?: () => void;
+  signupOnly?: boolean;
+}
+
+const LoginForm = ({
+  initialView = "login",
+  onAuthComplete,
+  signupOnly = false,
+}: LoginFormProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [otp, setOtp] = useState("");
   const [name, setName] = useState("");
-  const [view, setView] = useState<ViewMode>("login"); // 'login', 'signup', 'forgot', 'otp'
+  const [view, setView] = useState<ViewMode>(initialView); // 'login', 'signup', 'forgot', 'otp'
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [otpPurpose, setOtpPurpose] = useState<OtpPurpose>("login");
@@ -31,7 +41,11 @@ const LoginForm = () => {
       if (view === "login") {
         const result = await login(email, password);
         if (result === "success") {
-          router.push("/dashboard");
+          if (onAuthComplete) {
+            onAuthComplete();
+          } else {
+            router.push("/dashboard");
+          }
         } else {
           setError("Invalid email or password");
         }
@@ -43,7 +57,11 @@ const LoginForm = () => {
         }
         const signupResult = await signup(email, password, name);
         if (signupResult === "success") {
-          router.push("/dashboard");
+          if (onAuthComplete) {
+            onAuthComplete();
+          } else {
+            router.push("/dashboard");
+          }
         } else if (signupResult === "otp_required") {
           setOtpPurpose("login");
           setView("otp");
@@ -62,7 +80,11 @@ const LoginForm = () => {
         if (otpPurpose === "login") {
           const success = await verifyOtp(email, otp);
           if (success) {
-            router.push("/dashboard");
+            if (onAuthComplete) {
+              onAuthComplete();
+            } else {
+              router.push("/dashboard");
+            }
           } else {
             setError("Invalid or expired code. Please try again.");
           }
@@ -348,7 +370,11 @@ const LoginForm = () => {
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                toggleView("login");
+                if (signupOnly) {
+                  router.push("/login");
+                } else {
+                  toggleView("login");
+                }
               }}
               className="font-medium text-gold-600 hover:text-gold-500"
             >
