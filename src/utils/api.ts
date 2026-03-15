@@ -1,6 +1,6 @@
 // API Client for connecting to Express backend
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080/api';
 
 interface RequestOptions extends RequestInit {
   body?: any;

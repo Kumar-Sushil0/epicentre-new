@@ -11,22 +11,29 @@ type OtpPurpose = "login" | "reset";
 interface LoginFormProps {
   initialView?: ViewMode;
   onAuthComplete?: () => void;
+  onSignupVerified?: () => void;
+  onSignupClick?: () => void; // intercept "Sign up" link before showing signup form
+  onBack?: () => void;        // back button when in signup-only mode
   signupOnly?: boolean;
 }
 
 const LoginForm = ({
   initialView = "login",
   onAuthComplete,
+  onSignupVerified,
+  onSignupClick,
+  onBack,
   signupOnly = false,
 }: LoginFormProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [otp, setOtp] = useState("");
   const [name, setName] = useState("");
-  const [view, setView] = useState<ViewMode>(initialView); // 'login', 'signup', 'forgot', 'otp'
+  const [view, setView] = useState<ViewMode>(initialView);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [otpPurpose, setOtpPurpose] = useState<OtpPurpose>("login");
+  const [isNewSignup, setIsNewSignup] = useState(false);
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const { login, signup, verifyOtp } = useAuth();
@@ -63,6 +70,7 @@ const LoginForm = ({
             router.push("/dashboard");
           }
         } else if (signupResult === "otp_required") {
+          setIsNewSignup(true);
           setOtpPurpose("login");
           setView("otp");
         } else {
@@ -80,7 +88,9 @@ const LoginForm = ({
         if (otpPurpose === "login") {
           const success = await verifyOtp(email, otp);
           if (success) {
-            if (onAuthComplete) {
+            if (isNewSignup && onSignupVerified) {
+              onSignupVerified();
+            } else if (onAuthComplete) {
               onAuthComplete();
             } else {
               router.push("/dashboard");
@@ -355,7 +365,11 @@ const LoginForm = ({
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                toggleView("signup");
+                if (onSignupClick) {
+                  onSignupClick();
+                } else {
+                  toggleView("signup");
+                }
               }}
               className="font-medium text-gold-600 hover:text-gold-500"
             >
@@ -370,7 +384,9 @@ const LoginForm = ({
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                if (signupOnly) {
+                if (onBack) {
+                  onBack();
+                } else if (signupOnly) {
                   router.push("/login");
                 } else {
                   toggleView("login");
@@ -378,7 +394,7 @@ const LoginForm = ({
               }}
               className="font-medium text-gold-600 hover:text-gold-500"
             >
-              Login
+              {onBack ? "← Back" : "Login"}
             </a>
           </>
         )}
