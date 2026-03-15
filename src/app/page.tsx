@@ -15,7 +15,6 @@ import DesignedDeliberately from "./components/DesignedDeliberately";
 import VoidAndFormats from "./components/VoidAndFormats";
 import AboutAttentionCycle from "./components/about/AboutAttentionCycle";
 import RequestConversation from "./components/RequestConversation";
-import DesignYourDay from "./components/DesignYourDay";
 
 export default function Home() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -48,7 +47,6 @@ export default function Home() {
       <DesignedDeliberately />
       <VoidAndFormats />
       <AboutAttentionCycle />
-      <DesignYourDay />
       <DiningVariant />
       <Location />
       <RequestConversation />

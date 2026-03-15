@@ -8,16 +8,17 @@ import WalletLow from "./WalletLow";
 import ApplicationReceived from "./ApplicationReceived";
 import InviteConfirmed from "./InviteConfirmed";
 import BookCycle from "./BookCycle";
+import DesignYourDay from "./DesignYourDay";
 
-type TabKey = "book" | "history" | "membership" | "notifications";
-type SectionKey = "membership" | "profile" | "settings";
+type TabKey = "history" | "membership" | "notifications";
+type SectionKey = "membership" | "profile" | "settings" | "book" | "day";
 
 const Dashboard = () => {
   // Toggle these booleans to force specific full-screen views from the prototype
   const SHOW_APPLICATION_RECEIVED = false;
   const SHOW_INVITE_CONFIRMED = false;
 
-  const [activeTab, setActiveTab] = useState<TabKey>("book");
+  const [activeTab, setActiveTab] = useState<TabKey>("history");
   const [isTopupOpen, setIsTopupOpen] = useState(false);
   const [selectedTopup, setSelectedTopup] = useState<number | "custom" | null>(
     null
@@ -707,6 +708,36 @@ const Dashboard = () => {
         </div>
       )}
 
+      {/* Design Your Day section */}
+      {activeSection === "day" && (
+        <div className="space-y-6">
+          <div>
+            <h1 className="text-3xl md:text-4xl font-normal text-earth-50" style={{ fontFamily: "Cormorant Garamond, serif" }}>
+              Design Your Day
+            </h1>
+            <p className="mt-2 text-[0.85rem] text-earth-400">
+              Structure your time at the estate around what matters.
+            </p>
+          </div>
+          <DesignYourDay />
+        </div>
+      )}
+
+      {/* Book a Cycle section */}
+      {activeSection === "book" && (
+        <div className="space-y-6">
+          <div>
+            <h1 className="text-3xl md:text-4xl font-normal text-earth-50" style={{ fontFamily: "Cormorant Garamond, serif" }}>
+              Book a Cycle
+            </h1>
+            <p className="mt-2 text-[0.85rem] text-earth-400">
+              Select a cycle, pick your dates, and submit your request.
+            </p>
+          </div>
+          <BookCycle />
+        </div>
+      )}
+
       {/* Membership section (default) */}
       {activeSection === "membership" && (
         <>
@@ -773,6 +804,8 @@ const Dashboard = () => {
                   {[
                     { key: "profile", label: "Profile", icon: "person" },
                     { key: "membership", label: "Membership", icon: "card_membership" },
+                    { key: "book", label: "Book a Cycle", icon: "event_available" },
+                    { key: "day", label: "Design Your Day", icon: "wb_sunny" },
                     { key: "settings", label: "Settings", icon: "settings" },
                   ].map((item) => {
                     const isActive = activeSection === item.key;
@@ -928,7 +961,6 @@ const Dashboard = () => {
       {/* Tabs */}
       <div className="border-b border-gold-500/15 mb-6 flex gap-2 overflow-x-auto">
         {[
-          { key: "book", label: "Book a Visit" },
           { key: "history", label: "Visit History" },
           { key: "membership", label: "Membership Details" },
           { key: "notifications", label: "Notifications" },
@@ -948,11 +980,6 @@ const Dashboard = () => {
       </div>
 
       {/* Tab content */}
-      {activeTab === "book" && (
-        <div>
-          <BookCycle />
-        </div>
-      )}
 
       {activeTab === "history" && (
         <div>
