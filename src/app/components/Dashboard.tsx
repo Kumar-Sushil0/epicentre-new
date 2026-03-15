@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { api, endpoints } from "@/utils/api";
 import MembershipRenewal from "./MembershipRenewal";
@@ -25,34 +25,12 @@ const Dashboard = () => {
   );
   const [showRenewalView, setShowRenewalView] = useState(false);
   const [showWalletLowView, setShowWalletLowView] = useState(true);
-  const [activeSection, setActiveSection] =
-    useState<SectionKey>("membership");
-  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<SectionKey>("membership");
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   const { user, logout } = useAuth();
   const [walletBalance, setWalletBalance] = useState<number | null>(null);
   const [walletMembershipYear, setWalletMembershipYear] = useState<number | null>(null);
-  const profileMenuRef = useRef<HTMLDivElement>(null);
-
-  // Close profile menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        profileMenuRef.current &&
-        !profileMenuRef.current.contains(event.target as Node)
-      ) {
-        setIsProfileMenuOpen(false);
-      }
-    };
-
-    if (isProfileMenuOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isProfileMenuOpen]);
 
   // Load wallet snapshot for the logged-in user
   const loadWallet = async () => {
@@ -189,7 +167,103 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="relative w-full px-6 md:px-10 pb-16 text-earth-100">
+    <div className="flex fixed inset-0 bg-earth-950 text-earth-100">
+
+      {/* ── Sidebar ─────────────────────────────────────────────────────────── */}
+      <aside className={`sticky top-0 h-screen flex flex-col flex-shrink-0 bg-earth-950 border-r border-earth-800 transition-all duration-300 ${sidebarCollapsed ? "w-16" : "w-60"}`}>
+        {/* Logo / collapse toggle */}
+        <div className="flex items-center justify-between px-4 py-5 border-b border-earth-800">
+          {!sidebarCollapsed && (
+            <span className="text-[0.7rem] tracking-[0.2em] uppercase text-gold-500 font-medium">
+              The Silent Club
+            </span>
+          )}
+          <button
+            type="button"
+            onClick={() => setSidebarCollapsed((c) => !c)}
+            className="ml-auto flex items-center justify-center w-7 h-7 rounded-md text-earth-400 hover:text-gold-500 hover:bg-earth-800 transition-colors"
+            aria-label={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+          >
+            <span className="material-symbols-outlined text-[1.1rem]">
+              {sidebarCollapsed ? "chevron_right" : "chevron_left"}
+            </span>
+          </button>
+        </div>
+
+        {/* User info */}
+        {!sidebarCollapsed && (
+          <div className="px-4 py-4 border-b border-earth-800">
+            <div className="flex items-center gap-3">
+              <div className="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-full border border-gold-500/50 bg-earth-900 text-gold-300 text-sm font-medium">
+                {(user?.name || "M").charAt(0).toUpperCase()}
+              </div>
+              <div className="min-w-0">
+                <p className="text-[0.82rem] font-medium text-earth-50 truncate">{user?.name || "Member"}</p>
+                <p className="text-[0.68rem] text-earth-500 truncate">{user?.email}</p>
+              </div>
+            </div>
+            <div className="mt-3 inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-[0.6rem] tracking-[0.12em] uppercase text-emerald-300">Active · 2026</span>
+            </div>
+          </div>
+        )}
+
+        {/* Collapsed avatar */}
+        {sidebarCollapsed && (
+          <div className="flex justify-center py-4 border-b border-earth-800">
+            <div className="flex items-center justify-center w-9 h-9 rounded-full border border-gold-500/50 bg-earth-900 text-gold-300 text-sm font-medium">
+              {(user?.name || "M").charAt(0).toUpperCase()}
+            </div>
+          </div>
+        )}
+
+        {/* Nav items */}
+        <nav className="flex-1 px-2 py-4 space-y-1">
+          {[
+            { key: "membership", label: "Membership", icon: "card_membership" },
+            { key: "book",       label: "Book a Cycle",     icon: "event_available" },
+            { key: "day",        label: "Design Your Day",  icon: "wb_sunny" },
+            { key: "profile",    label: "Profile",          icon: "person" },
+            { key: "settings",   label: "Settings",         icon: "settings" },
+          ].map((item) => {
+            const isActive = activeSection === item.key;
+            return (
+              <button
+                key={item.key}
+                type="button"
+                onClick={() => setActiveSection(item.key as SectionKey)}
+                title={sidebarCollapsed ? item.label : undefined}
+                className={`w-full flex items-center gap-3 px-2.5 py-2.5 rounded-lg text-[0.78rem] tracking-[0.06em] transition-all duration-150 ${
+                  isActive
+                    ? "bg-gold-500/15 border border-gold-500/30 text-gold-300"
+                    : "border border-transparent text-earth-400 hover:text-earth-100 hover:bg-earth-800/60"
+                } ${sidebarCollapsed ? "justify-center" : ""}`}
+              >
+                <span className="material-symbols-outlined text-[1.15rem] flex-shrink-0">{item.icon}</span>
+                {!sidebarCollapsed && <span>{item.label}</span>}
+              </button>
+            );
+          })}
+        </nav>
+
+        {/* Logout */}
+        <div className="px-2 pb-4 border-t border-earth-800 pt-3">
+          <button
+            type="button"
+            onClick={logout}
+            title={sidebarCollapsed ? "Logout" : undefined}
+            className={`w-full flex items-center gap-3 px-2.5 py-2.5 rounded-lg text-[0.78rem] tracking-[0.06em] border border-transparent text-earth-400 hover:text-red-400 hover:bg-red-500/10 hover:border-red-500/20 transition-all duration-150 ${sidebarCollapsed ? "justify-center" : ""}`}
+          >
+            <span className="material-symbols-outlined text-[1.15rem] flex-shrink-0">logout</span>
+            {!sidebarCollapsed && <span>Logout</span>}
+          </button>
+        </div>
+      </aside>
+
+      {/* ── Main content ─────────────────────────────────────────────────────── */}
+      <div className="flex-1 overflow-y-auto" data-lenis-prevent>
+        <div className="px-6 md:px-10 py-8 pb-16">
 
       {/* Profile section */}
       {activeSection === "profile" && (
@@ -763,97 +837,6 @@ const Dashboard = () => {
           >
             + Top Up Wallet
           </button>
-          <div className="relative" ref={profileMenuRef}>
-            <button
-              type="button"
-              onClick={() => setIsProfileMenuOpen((open) => !open)}
-              className="flex items-center justify-center w-10 h-10 rounded-full border border-earth-700 bg-earth-950/90 text-earth-100 hover:border-gold-500 hover:text-gold-300 shadow-lg transition-all duration-200"
-              aria-label="Open profile menu"
-            >
-              <span className="text-sm font-medium">
-                {(user?.name || "M").charAt(0).toUpperCase()}
-              </span>
-            </button>
-            {isProfileMenuOpen && (
-              <div className="absolute right-0 mt-3 w-64 rounded-2xl border border-earth-800 bg-earth-950/95 backdrop-blur-xl shadow-2xl py-3 text-[0.75rem] z-50">
-                {/* User Info Section */}
-                <div className="px-4 pb-3 mb-3 border-b border-earth-800/60">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-gold-500/60 bg-gradient-to-br from-earth-900 to-earth-950 text-gold-300 text-lg font-medium shadow-lg">
-                      {(user?.name || "M").charAt(0).toUpperCase()}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-earth-50 truncate">
-                        {user?.name || "Member"}
-                      </p>
-                      <p className="text-[0.7rem] text-earth-400 truncate">
-                        {user?.email || "hello@thesilent.club"}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <span className="text-[0.65rem] tracking-[0.12em] uppercase text-emerald-300 font-medium">
-                      Active · 2026
-                    </span>
-                  </div>
-                </div>
-
-                {/* Navigation Items */}
-                <div className="px-2 mb-2">
-                  {[
-                    { key: "profile", label: "Profile", icon: "person" },
-                    { key: "membership", label: "Membership", icon: "card_membership" },
-                    { key: "book", label: "Book a Cycle", icon: "event_available" },
-                    { key: "day", label: "Design Your Day", icon: "wb_sunny" },
-                    { key: "settings", label: "Settings", icon: "settings" },
-                  ].map((item) => {
-                    const isActive = activeSection === item.key;
-                    return (
-                      <button
-                        key={item.key}
-                        type="button"
-                        onClick={() => {
-                          setActiveSection(item.key as SectionKey);
-                          setIsProfileMenuOpen(false);
-                        }}
-                        className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[0.8rem] tracking-[0.08em] transition-all duration-200 ${
-                          isActive
-                            ? "text-gold-300 bg-gold-500/15 border border-gold-500/30 shadow-sm"
-                            : "text-earth-300 hover:text-earth-50 hover:bg-earth-900/60 border border-transparent"
-                        }`}
-                      >
-                        <span className="material-symbols-outlined text-[1.2rem]">
-                          {item.icon}
-                        </span>
-                        <span>{item.label}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {/* Divider */}
-                <div className="my-2 border-t border-earth-800/60" />
-
-                {/* Logout */}
-                <div className="px-2">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIsProfileMenuOpen(false);
-                      logout();
-                    }}
-                    className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[0.8rem] tracking-[0.08em] text-earth-300 hover:text-red-400 hover:bg-red-500/10 border border-transparent hover:border-red-500/20 transition-all duration-200"
-                  >
-                    <span className="material-symbols-outlined text-[1.2rem]">
-                      logout
-                    </span>
-                    <span>Logout</span>
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
         </div>
       </div>
 
@@ -1213,6 +1196,8 @@ const Dashboard = () => {
       )}
         </>
       )}
+        </div>
+      </div>
     </div>
   );
 };

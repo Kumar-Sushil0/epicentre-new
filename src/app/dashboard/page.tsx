@@ -78,7 +78,11 @@ export default function DashboardPage() {
 
   // Authenticated returning user
   if (isAuthenticated && view !== "submitted") {
-    return <Dashboard />;
+    return (
+      <div className="fixed inset-0">
+        <Dashboard />
+      </div>
+    );
   }
 
   // --- Intro screen ---
@@ -179,7 +183,11 @@ export default function DashboardPage() {
 
   // --- Submitted confirmation ---
   if (view === "submitted") {
-    if (isAuthenticated) return <Dashboard />;
+    if (isAuthenticated) return (
+      <div className="fixed inset-0">
+        <Dashboard />
+      </div>
+    );
     return (
       <div className="min-h-screen bg-earth-950 flex items-center justify-center px-4">
         <div className="w-full max-w-xl text-center space-y-4">
