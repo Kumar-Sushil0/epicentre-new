@@ -7,6 +7,8 @@ import MembershipRenewal from "./MembershipRenewal";
 import WalletLow from "./WalletLow";
 import ApplicationReceived from "./ApplicationReceived";
 import InviteConfirmed from "./InviteConfirmed";
+import ServicesOffering from "./ServicesOffering";
+import DatePicker from "./DatePicker";
 
 type TabKey = "book" | "history" | "membership" | "notifications";
 type SectionKey = "membership" | "profile" | "settings";
@@ -18,6 +20,17 @@ const Dashboard = () => {
 
   const [activeTab, setActiveTab] = useState<TabKey>("book");
   const [isTopupOpen, setIsTopupOpen] = useState(false);
+
+  // Booking state
+  const [selectedCycle, setSelectedCycle] = useState<{ label: string; accommodationType: 'dorm' | 'room'; priceLabel: string } | null>(null);
+  const [bookingCheckIn, setBookingCheckIn] = useState<Date | null>(null);
+  const [bookingCheckOut, setBookingCheckOut] = useState<Date | null>(null);
+  const [showBookingDatePicker, setShowBookingDatePicker] = useState(false);
+  const [bookingPhone, setBookingPhone] = useState("");
+  const [bookingNotes, setBookingNotes] = useState("");
+  const [bookingLoading, setBookingLoading] = useState(false);
+  const [bookingSuccess, setBookingSuccess] = useState(false);
+  const [bookingError, setBookingError] = useState("");
   const [selectedTopup, setSelectedTopup] = useState<number | "custom" | null>(
     null
   );
@@ -949,60 +962,155 @@ const Dashboard = () => {
       {/* Tab content */}
       {activeTab === "book" && (
         <div>
-          <p className="text-[0.8rem] text-earth-400 mb-4">
-            Select a cycle. Date selection follows.
-          </p>
+          <ServicesOffering
+            onCycleSelect={(selection) => {
+              setSelectedCycle(selection);
+              setBookingSuccess(false);
+              setBookingError("");
+              setBookingCheckIn(null);
+              setBookingCheckOut(null);
+            }}
+          />
 
-          {/* Cycle grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
-            {[
-              {
-                name: "Day Cycle",
-                desc: "Short recalibration. Immediate correction.",
-                price: "₹1,000 · Up to 4 hrs",
-              },
-              {
-                name: "Weekend Cycle",
-                desc: "Structured withdrawal. Two nights.",
-                price: "₹10,000 · 2 nights / 3 days",
-              },
-              {
-                name: "Weekday Cycle",
-                desc: "Extended silence. Deep sustained work.",
-                price: "₹20,000 · 4 nights / 5 days",
-              },
-              {
-                name: "Full Cycle",
-                desc: "Complete environmental control.",
-                price: "₹1,00,000 / night",
-              },
-            ].map((c) => (
-              <div
-                key={c.name}
-                className="cursor-pointer rounded-xl border border-gold-500/20 bg-earth-900/70 px-4 py-5 text-center hover:border-gold-500/50 hover:bg-gold-500/5 transition-colors"
-              >
-                <div
-                  className="mb-1 text-lg text-gold-400"
-                  style={{ fontFamily: "Cormorant Garamond, serif" }}
+          {/* Booking panel — appears after cycle selection */}
+          {selectedCycle && !bookingSuccess && (
+            <div className="mt-6 rounded-2xl border border-gold-500/30 bg-earth-900/80 p-6 space-y-5">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h3 className="text-lg text-gold-400" style={{ fontFamily: "Cormorant Garamond, serif" }}>
+                    {selectedCycle.label}
+                  </h3>
+                  <p className="text-[0.8rem] text-earth-400 mt-0.5">
+                    {selectedCycle.accommodationType === "dorm" ? "Shared Dorm" : "Private Room"} · {selectedCycle.priceLabel}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setSelectedCycle(null)}
+                  className="text-earth-500 hover:text-earth-200 text-sm"
                 >
-                  {c.name}
-                </div>
-                <div className="mb-2 text-[0.7rem] text-earth-400">
-                  {c.desc}
-                </div>
-                <div className="text-[0.8rem] text-earth-100">{c.price}</div>
+                  ✕
+                </button>
               </div>
-            ))}
-          </div>
 
-          {/* Placeholder booking panel */}
-          <div className="rounded-2xl border border-gold-500/15 bg-earth-900/70 p-5">
-            <p className="text-[0.8rem] text-earth-400">
-              Calendar selection and confirmation details from the prototype can
-              be wired here. For now this area mirrors the layout but remains
-              static.
-            </p>
-          </div>
+              {/* Date picker */}
+              <div>
+                <label className="block text-[0.7rem] tracking-[0.14em] uppercase text-earth-500 mb-2">
+                  Dates
+                </label>
+                <div className="relative">
+                  <div
+                    onClick={() => setShowBookingDatePicker((v) => !v)}
+                    className="flex items-center gap-2 bg-earth-950 border border-earth-700 rounded-lg px-4 py-2.5 cursor-pointer hover:border-gold-500/50 transition-colors"
+                  >
+                    <span className="material-symbols-outlined text-gold-500 text-base">calendar_month</span>
+                    <span className="text-sm text-earth-200">
+                      {bookingCheckIn && bookingCheckOut
+                        ? `${bookingCheckIn.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })} → ${bookingCheckOut.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}`
+                        : bookingCheckIn
+                        ? `${bookingCheckIn.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })} → select check-out`
+                        : "Select dates"}
+                    </span>
+                  </div>
+                  {showBookingDatePicker && (
+                    <div className="absolute top-full left-0 mt-2 z-50">
+                      <DatePicker
+                        checkIn={bookingCheckIn}
+                        checkOut={bookingCheckOut}
+                        onCheckInChange={setBookingCheckIn}
+                        onCheckOutChange={setBookingCheckOut}
+                        onClose={() => setShowBookingDatePicker(false)}
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Phone */}
+              <div>
+                <label className="block text-[0.7rem] tracking-[0.14em] uppercase text-earth-500 mb-2">
+                  Phone
+                </label>
+                <input
+                  type="tel"
+                  value={bookingPhone}
+                  onChange={(e) => setBookingPhone(e.target.value)}
+                  placeholder="+91 00000 00000"
+                  className="w-full bg-earth-950 border border-earth-700 rounded-lg px-4 py-2.5 text-sm text-earth-200 placeholder-earth-600 focus:outline-none focus:ring-1 focus:ring-gold-500"
+                />
+              </div>
+
+              {/* Notes */}
+              <div>
+                <label className="block text-[0.7rem] tracking-[0.14em] uppercase text-earth-500 mb-2">
+                  Notes (optional)
+                </label>
+                <textarea
+                  value={bookingNotes}
+                  onChange={(e) => setBookingNotes(e.target.value)}
+                  rows={3}
+                  placeholder="Anything the estate should know before your visit."
+                  className="w-full bg-earth-950 border border-earth-700 rounded-lg px-4 py-2.5 text-sm text-earth-200 placeholder-earth-600 focus:outline-none focus:ring-1 focus:ring-gold-500 resize-none"
+                />
+              </div>
+
+              {bookingError && (
+                <p className="text-red-400 text-sm">{bookingError}</p>
+              )}
+
+              <button
+                type="button"
+                disabled={bookingLoading || !bookingCheckIn || !bookingCheckOut}
+                onClick={async () => {
+                  if (!bookingCheckIn || !bookingCheckOut || !user) return;
+                  setBookingLoading(true);
+                  setBookingError("");
+                  try {
+                    const res = await fetch("/api/cycle-booking", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        cycleLabel: selectedCycle.label,
+                        accommodationType: selectedCycle.accommodationType,
+                        priceLabel: selectedCycle.priceLabel,
+                        checkIn: bookingCheckIn.toISOString(),
+                        checkOut: bookingCheckOut.toISOString(),
+                        name: user.name,
+                        email: user.email,
+                        phone: bookingPhone,
+                        notes: bookingNotes,
+                      }),
+                    });
+                    const data = await res.json();
+                    if (!res.ok) throw new Error(data.error || "Booking failed");
+                    setBookingSuccess(true);
+                  } catch (err: unknown) {
+                    setBookingError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+                  } finally {
+                    setBookingLoading(false);
+                  }
+                }}
+                className="w-full inline-flex items-center justify-center px-4 py-3 text-[0.74rem] tracking-[0.14em] uppercase rounded-lg border border-gold-500 text-gold-300 hover:bg-gold-500/10 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              >
+                {bookingLoading ? "Submitting…" : "Confirm Booking Request →"}
+              </button>
+            </div>
+          )}
+
+          {/* Success state */}
+          {bookingSuccess && (
+            <div className="mt-6 rounded-2xl border border-emerald-500/30 bg-emerald-500/5 p-6 text-center space-y-3">
+              <p className="text-emerald-300 text-base">Booking request submitted.</p>
+              <p className="text-earth-400 text-sm">You&apos;ll receive a confirmation at {user?.email}. The estate team will follow up within 24 hours.</p>
+              <button
+                type="button"
+                onClick={() => { setBookingSuccess(false); setSelectedCycle(null); }}
+                className="mt-2 text-sm text-gold-500 hover:text-gold-400 underline"
+              >
+                Book another cycle
+              </button>
+            </div>
+          )}
         </div>
       )}
 
