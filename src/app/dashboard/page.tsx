@@ -7,7 +7,7 @@ export default function DashboardPage() {
   return (
     <ProtectedRoute>
       <main>
-        <div className="min-h-screen bg-earth-900 pt-10 md:pt-16">
+        <div className="min-h-screen bg-earth-900">
           <Dashboard />
         </div>
       </main>
