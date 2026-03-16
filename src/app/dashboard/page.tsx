@@ -2,7 +2,7 @@
 
 export const dynamic = "force-dynamic";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
 import { api, endpoints } from "@/utils/api";
@@ -20,8 +20,8 @@ const QUESTIONS = [
 
 type PageView = "login" | "intro" | "questions" | "signup" | "submitted";
 
-export default function DashboardPage() {
-  const { isAuthenticated, isLoading, user, logout } = useAuth();
+function DashboardInner() {
+  const { isAuthenticated, isLoading } = useAuth();
   const searchParams = useSearchParams();
   const [view, setView] = useState<PageView>("login");
   const [questionIndex, setQuestionIndex] = useState(0);
@@ -34,12 +34,6 @@ export default function DashboardPage() {
       setView("intro");
     }
   }, [searchParams]);
-
-  useEffect(() => {
-    if (!isLoading && isAuthenticated) {
-      // handled by the isAuthenticated block below
-    }
-  }, [isAuthenticated, isLoading]);
 
   const handleAnswerChange = (value: number) => {
     setAnswers((prev) => {
@@ -92,7 +86,6 @@ export default function DashboardPage() {
     );
   }
 
-  // --- Intro screen ---
   if (view === "intro") {
     return (
       <div className="min-h-screen bg-earth-950 flex items-center justify-center px-4">
@@ -134,7 +127,6 @@ export default function DashboardPage() {
     );
   }
 
-  // --- Questions screen ---
   if (view === "questions") {
     return (
       <div className="min-h-screen bg-earth-950 flex items-center justify-center px-4">
@@ -168,7 +160,6 @@ export default function DashboardPage() {
     );
   }
 
-  // --- Signup form (after questions) ---
   if (view === "signup") {
     return (
       <div className="min-h-screen bg-earth-950 flex items-center justify-center px-4">
@@ -186,7 +177,6 @@ export default function DashboardPage() {
     );
   }
 
-  // --- Submitted ---
   if (view === "submitted") {
     return (
       <div className="min-h-screen bg-earth-950 flex items-center justify-center px-4">
@@ -209,7 +199,6 @@ export default function DashboardPage() {
     );
   }
 
-  // --- Default: Login screen ---
   return (
     <div className="min-h-screen bg-earth-950 flex items-center justify-center px-4">
       <LoginForm
@@ -217,5 +206,17 @@ export default function DashboardPage() {
         onAuthComplete={() => {}}
       />
     </div>
+  );
+}
+
+export default function DashboardPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-earth-950 flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-gold-500 border-t-transparent rounded-full animate-spin" />
+      </div>
+    }>
+      <DashboardInner />
+    </Suspense>
   );
 }
