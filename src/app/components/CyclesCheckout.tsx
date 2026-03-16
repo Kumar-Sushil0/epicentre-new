@@ -12,7 +12,7 @@ interface CyclesCheckoutProps {
     priceLabel: string;
   };
   questions: string[];
-  answers: string[];
+  answers: number[];
 }
 
 export default function CyclesCheckout({

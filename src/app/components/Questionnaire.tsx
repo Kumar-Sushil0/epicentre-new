@@ -8,6 +8,7 @@ import CyclesCheckout from "./CyclesCheckout";
 import LoginForm from "./LoginForm";
 import { api, endpoints } from "@/utils/api";
 import { useAuth } from "@/app/context/AuthContext";
+import QuestionSlider from "./QuestionSlider";
 
 type Step = 1 | 2 | 3 | 4;
 
@@ -54,9 +55,9 @@ function QuestionnaireIntro({ onContinue }: QuestionnaireIntroProps) {
 
 interface QuestionnaireQuestionsProps {
   questions: string[];
-  answers: string[];
+  answers: number[];
   questionIndex: number;
-  onAnswerChange: (value: string) => void;
+  onAnswerChange: (value: number) => void;
   onBack: () => void;
   onNext: () => void;
 }
@@ -69,9 +70,10 @@ function QuestionnaireQuestions({
   onBack,
   onNext,
 }: QuestionnaireQuestionsProps) {
+  const hasAnswer = true; // always has a value (default 0 = neutral)
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="space-y-2 text-[#e7dfd3] text-sm md:text-base font-body mb-4">
+      <div className="space-y-2 text-[#e7dfd3] text-sm md:text-base font-body mb-8">
         <p className="font-medium text-gold-500">
           {String(questionIndex + 1).padStart(2, "0")}/
           {String(questions.length).padStart(2, "0")} —{" "}
@@ -79,16 +81,12 @@ function QuestionnaireQuestions({
         </p>
       </div>
 
-      <div className="space-y-4 text-[#e7dfd3] text-sm md:text-base font-body">
-        <textarea
-          value={answers[questionIndex]}
-          onChange={(e) => onAnswerChange(e.target.value)}
-          rows={4}
-          className="w-full bg-earth-900 border border-earth-700 rounded-lg px-4 py-3 text-[#e7dfd3] text-sm md:text-base font-body focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent resize-vertical"
-        />
-      </div>
+      <QuestionSlider
+        value={answers[questionIndex]}
+        onChange={onAnswerChange}
+      />
 
-      <div className="mt-8 flex justify-between items-center">
+      <div className="mt-10 flex justify-between items-center">
         <button
           type="button"
           onClick={onBack}
@@ -100,7 +98,8 @@ function QuestionnaireQuestions({
         <button
           type="button"
           onClick={onNext}
-          className="inline-flex items-center gap-1 text-sm md:text-base font-normal text-gold-500 hover:text-gold-400 transition-colors"
+          disabled={!hasAnswer}
+          className="inline-flex items-center gap-1 text-sm md:text-base font-normal text-gold-500 hover:text-gold-400 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
         >
           {questionIndex < questions.length - 1
             ? "Next question →"
@@ -113,7 +112,7 @@ function QuestionnaireQuestions({
 
 interface QuestionnaireCyclesProps {
   questions: string[];
-  answers: string[];
+  answers: number[];
   showCheckout: boolean;
   selectedCycle: {
     label: string;
@@ -176,7 +175,7 @@ export default function Questionnaire() {
   const router = useRouter();
   const [step, setStep] = useState<Step>(1);
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [answers, setAnswers] = useState<string[]>(["", "", "", "", ""]);
+  const [answers, setAnswers] = useState<number[]>([0, 0, 0, 0, 0]);
   const [showCheckout, setShowCheckout] = useState(false);
   const [selectedCycle, setSelectedCycle] = useState<{
     label: string;
@@ -222,7 +221,7 @@ export default function Questionnaire() {
     "What would make this visit meaningful?",
   ];
 
-  const handleAnswerChange = (value: string) => {
+  const handleAnswerChange = (value: number) => {
     setAnswers((prev) => {
       const copy = [...prev];
       copy[questionIndex] = value;
