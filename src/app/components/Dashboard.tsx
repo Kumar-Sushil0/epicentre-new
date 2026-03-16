@@ -202,10 +202,17 @@ const Dashboard = () => {
                 <p className="text-[0.68rem] text-earth-500 truncate">{user?.email}</p>
               </div>
             </div>
-            <div className="mt-3 inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-[0.6rem] tracking-[0.12em] uppercase text-emerald-300">Active · 2026</span>
-            </div>
+            {user?.applicationStatus === "approved" ? (
+              <div className="mt-3 inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-[0.6rem] tracking-[0.12em] uppercase text-emerald-300">Active · 2026</span>
+              </div>
+            ) : (
+              <div className="mt-3 inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-amber-500/10 border border-amber-500/30">
+                <span className="material-symbols-outlined text-[0.85rem] text-amber-400">warning</span>
+                <span className="text-[0.6rem] tracking-[0.12em] uppercase text-amber-300">Verification by DD pending</span>
+              </div>
+            )}
           </div>
         )}
 
@@ -319,10 +326,14 @@ const Dashboard = () => {
                     </span>
                     <span>{user?.email || "hello@thesilent.club"}</span>
                   </div>
-                  <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-emerald-500/15 border border-emerald-500/40 shadow-lg">
-                    <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-lg shadow-emerald-400/50" />
-                    <span className="text-[0.75rem] tracking-[0.14em] uppercase text-emerald-300 font-medium">
-                      Active Member · 2026 Cohort
+                  <div className={`inline-flex items-center gap-2.5 px-4 py-2 rounded-full border shadow-lg ${user?.applicationStatus === "approved" ? "bg-emerald-500/15 border-emerald-500/40" : "bg-amber-500/10 border-amber-500/30"}`}>
+                    {user?.applicationStatus === "approved" ? (
+                      <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-lg shadow-emerald-400/50" />
+                    ) : (
+                      <span className="material-symbols-outlined text-[1rem] text-amber-400">warning</span>
+                    )}
+                    <span className={`text-[0.75rem] tracking-[0.14em] uppercase font-medium ${user?.applicationStatus === "approved" ? "text-emerald-300" : "text-amber-300"}`}>
+                      {user?.applicationStatus === "approved" ? "Active Member · 2026 Cohort" : "Verification by DD pending"}
                     </span>
                   </div>
                 </div>
@@ -793,7 +804,19 @@ const Dashboard = () => {
               Structure your time at the estate around what matters.
             </p>
           </div>
-          <DesignYourDay />
+          {user?.applicationStatus === "approved" ? (
+            <DesignYourDay />
+          ) : (
+            <div className="rounded-2xl border border-earth-800 bg-earth-900/60 p-10 text-center space-y-3">
+              <span className="material-symbols-outlined text-[2rem] text-earth-600">lock</span>
+              <h3 className="text-lg font-normal text-earth-300" style={{ fontFamily: "Cormorant Garamond, serif" }}>
+                Access pending
+              </h3>
+              <p className="text-[0.85rem] text-earth-500 max-w-sm mx-auto">
+                This section becomes available once your application has been reviewed and approved by D.D.
+              </p>
+            </div>
+          )}
         </div>
       )}
 
@@ -808,7 +831,19 @@ const Dashboard = () => {
               Select a cycle, pick your dates, and submit your request.
             </p>
           </div>
-          <BookCycle />
+          {user?.applicationStatus === "approved" ? (
+            <BookCycle />
+          ) : (
+            <div className="rounded-2xl border border-earth-800 bg-earth-900/60 p-10 text-center space-y-3">
+              <span className="material-symbols-outlined text-[2rem] text-earth-600">lock</span>
+              <h3 className="text-lg font-normal text-earth-300" style={{ fontFamily: "Cormorant Garamond, serif" }}>
+                Access pending
+              </h3>
+              <p className="text-[0.85rem] text-earth-500 max-w-sm mx-auto">
+                Cycle booking opens once your application has been reviewed and approved by D.D.
+              </p>
+            </div>
+          )}
         </div>
       )}
 
@@ -818,10 +853,17 @@ const Dashboard = () => {
       {/* Membership header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
         <div>
-          <div className="inline-flex items-center gap-2 border border-gold-500/40 px-3 py-1 text-[0.62rem] tracking-[0.16em] uppercase text-gold-400 rounded-full">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse" />
-            Active Member · 2026
-          </div>
+          {user?.applicationStatus === "approved" ? (
+            <div className="inline-flex items-center gap-2 border border-gold-500/40 px-3 py-1 text-[0.62rem] tracking-[0.16em] uppercase text-gold-400 rounded-full">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse" />
+              Active Member · 2026
+            </div>
+          ) : (
+            <div className="inline-flex items-center gap-1.5 border border-amber-500/40 px-3 py-1 text-[0.62rem] tracking-[0.16em] uppercase text-amber-400 rounded-full bg-amber-500/10">
+              <span className="material-symbols-outlined text-[0.85rem]">warning</span>
+              Verification by DD pending
+            </div>
+          )}
           <h1
             className="mt-3 text-3xl md:text-4xl font-normal text-earth-50"
             style={{ fontFamily: "Cormorant Garamond, serif" }}
@@ -833,7 +875,9 @@ const Dashboard = () => {
         <div className="flex items-center gap-3">
           <button
             onClick={openTopup}
-            className="inline-flex items-center justify-center px-4 py-2 text-[0.72rem] tracking-[0.14em] uppercase rounded-md border border-gold-500 text-gold-400 hover:bg-gold-500/10"
+            disabled={user?.applicationStatus !== "approved"}
+            title={user?.applicationStatus !== "approved" ? "Top-up locked until DD verification is complete" : undefined}
+            className="inline-flex items-center justify-center px-4 py-2 text-[0.72rem] tracking-[0.14em] uppercase rounded-md border border-gold-500 text-gold-400 hover:bg-gold-500/10 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent"
           >
             + Top Up Wallet
           </button>
@@ -842,6 +886,22 @@ const Dashboard = () => {
 
       {/* Wallet low / renewal banners (static for now) */}
       <div className="space-y-3 mb-6">
+        {user?.applicationStatus !== "approved" && (
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 border border-amber-500/40 bg-amber-500/8 px-4 py-4 rounded-xl">
+            <div className="flex items-start gap-3">
+              <span className="material-symbols-outlined text-[1.3rem] text-amber-400 mt-0.5 flex-shrink-0">warning</span>
+              <div>
+                <h4 className="text-[0.8rem] tracking-[0.08em] uppercase text-amber-200 mb-1">
+                  Verification by DD pending
+                </h4>
+                <p className="text-[0.78rem] text-amber-300/70">
+                  Your application is under review. You will not be able to renew or purchase memberships until D.D. has verified your application.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+      
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 border border-gold-500/30 bg-gold-500/5 px-4 py-3 rounded-xl">
           <div>
             <h4 className="text-[0.8rem] tracking-[0.08em] uppercase text-earth-50 mb-1">

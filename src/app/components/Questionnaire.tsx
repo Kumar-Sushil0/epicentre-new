@@ -214,11 +214,11 @@ export default function Questionnaire() {
   }, [isLoading]);
 
   const questions = [
-    "What chapter are you currently between?",
-    "What would uninterrupted attention allow you to confront?",
-    "Are you comfortable with extended silence?",
-    "Are you seeking withdrawal or structured inquiry?",
-    "What would make this visit meaningful?",
+    "Transitional Clarity | How clearly do you feel you are between chapters of life or work?",
+    "Confrontation Readiness | How ready are you to face the thoughts that may emerge with uninterrupted attention?",
+    "Silence Comfort | How comfortable are you with extended periods of silence?",
+    "Mode of Engagement | Which direction are you leaning toward during your visit?",
+    "Intentionality of Visit | How clearly defined is the purpose of your visit to the Silent Club?",
   ];
 
   const handleAnswerChange = (value: number) => {

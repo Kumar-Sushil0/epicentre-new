@@ -213,7 +213,7 @@ export default function QuestionSlider({ value, onChange }: QuestionSliderProps)
 
       {/* Tick labels */}
       <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', marginTop: '8px', padding: '0 4px' }}>
-        {[['No', '-1'], ['Neutral', '0'], ['Yes', '1']].map(([label, v]) => (
+        {[['1', '-1'], ['5', '0'], ['10', '1']].map(([label, v]) => (
           <span
             key={v}
             style={{

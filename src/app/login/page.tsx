@@ -31,7 +31,7 @@ export default function LoginPage() {
     <main>
       <Header />
       <div className="min-h-screen flex items-center justify-center bg-earth-900">
-        <LoginForm />
+        <LoginForm onSignupClick={() => router.push("/dashboard?signup=1")} />
       </div>
       <Footer />
     </main>
