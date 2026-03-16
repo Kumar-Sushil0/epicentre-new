@@ -902,42 +902,46 @@ const Dashboard = () => {
           </div>
         )}
       
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 border border-gold-500/30 bg-gold-500/5 px-4 py-3 rounded-xl">
-          <div>
-            <h4 className="text-[0.8rem] tracking-[0.08em] uppercase text-earth-50 mb-1">
-              Membership renewal due
-            </h4>
-            <p className="text-[0.78rem] text-earth-400">
-              Your 2026 membership expires in 30 days. Renew to continue access.
-            </p>
-          </div>
-          <button
-            onClick={() => setShowRenewalView(true)}
-            className="inline-flex items-center justify-center px-3 py-1.5 text-[0.7rem] tracking-[0.14em] uppercase rounded-md border border-gold-500 text-gold-400 hover:bg-gold-500/10"
-          >
-            Renew →
-          </button>
-        </div>
+        {user?.applicationStatus === "approved" && (
+          <>
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 border border-gold-500/30 bg-gold-500/5 px-4 py-3 rounded-xl">
+              <div>
+                <h4 className="text-[0.8rem] tracking-[0.08em] uppercase text-earth-50 mb-1">
+                  Membership renewal due
+                </h4>
+                <p className="text-[0.78rem] text-earth-400">
+                  Your 2026 membership expires in 30 days. Renew to continue access.
+                </p>
+              </div>
+              <button
+                onClick={() => setShowRenewalView(true)}
+                className="inline-flex items-center justify-center px-3 py-1.5 text-[0.7rem] tracking-[0.14em] uppercase rounded-md border border-gold-500 text-gold-400 hover:bg-gold-500/10"
+              >
+                Renew →
+              </button>
+            </div>
 
-        <div className="flex items-center justify-between gap-3 border border-amber-500/40 bg-amber-500/10 px-4 py-3 rounded-xl">
-          <p className="text-[0.8rem] text-amber-100">
-            ⚠ Wallet below ₹10,000. Top up to continue booking visits.
-          </p>
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setShowWalletLowView(true)}
-              className="hidden sm:inline-flex items-center justify-center px-3 py-1.5 text-[0.7rem] tracking-[0.14em] uppercase rounded-md border border-amber-400 text-amber-200 hover:bg-amber-400/10"
-            >
-              View Wallet Screen →
-            </button>
-            <button
-              onClick={openTopup}
-              className="sm:hidden inline-flex items-center justify-center px-3 py-1.5 text-[0.7rem] tracking-[0.14em] uppercase rounded-md border border-amber-400 text-amber-200 hover:bg-amber-400/10"
-            >
-              Top Up →
-            </button>
-          </div>
-        </div>
+            <div className="flex items-center justify-between gap-3 border border-amber-500/40 bg-amber-500/10 px-4 py-3 rounded-xl">
+              <p className="text-[0.8rem] text-amber-100">
+                ⚠ Wallet below ₹10,000. Top up to continue booking visits.
+              </p>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setShowWalletLowView(true)}
+                  className="hidden sm:inline-flex items-center justify-center px-3 py-1.5 text-[0.7rem] tracking-[0.14em] uppercase rounded-md border border-amber-400 text-amber-200 hover:bg-amber-400/10"
+                >
+                  View Wallet Screen →
+                </button>
+                <button
+                  onClick={openTopup}
+                  className="sm:hidden inline-flex items-center justify-center px-3 py-1.5 text-[0.7rem] tracking-[0.14em] uppercase rounded-md border border-amber-400 text-amber-200 hover:bg-amber-400/10"
+                >
+                  Top Up →
+                </button>
+              </div>
+            </div>
+          </>
+        )}
       </div>
 
       {/* Stats grid */}
@@ -1028,24 +1032,32 @@ const Dashboard = () => {
         <div>
           <div className="rounded-2xl border border-gold-500/15 bg-earth-900/70 p-5">
             <div className="divide-y divide-white/5 text-sm">
-              <div className="flex items-center justify-between py-3">
-                <div>
-                  <div className="text-earth-100">
-                    Membership payment — Wallet funded
+              {user?.applicationStatus === "approved" ? (
+                <div className="flex items-center justify-between py-3">
+                  <div>
+                    <div className="text-earth-100">
+                      Membership payment — Wallet funded
+                    </div>
+                    <div className="text-[0.75rem] text-earth-500">
+                      9 March 2026
+                    </div>
                   </div>
-                  <div className="text-[0.75rem] text-earth-500">
-                    9 March 2026
+                  <div className="text-sm text-emerald-400 font-medium">
+                    +₹1,00,000
                   </div>
                 </div>
-                <div className="text-sm text-emerald-400 font-medium">
-                  +₹1,00,000
+              ) : (
+                <div className="py-4 text-center text-[0.82rem] text-earth-500">
+                  No history yet. Activity will appear here once your application is approved.
                 </div>
-              </div>
+              )}
             </div>
           </div>
-          <p className="mt-4 text-[0.8rem] text-earth-500">
-            No visits booked yet. Book a cycle to get started.
-          </p>
+          {user?.applicationStatus === "approved" && (
+            <p className="mt-4 text-[0.8rem] text-earth-500">
+              No visits booked yet. Book a cycle to get started.
+            </p>
+          )}
         </div>
       )}
 
@@ -1060,9 +1072,16 @@ const Dashboard = () => {
                 <div className="text-[0.65rem] tracking-[0.18em] uppercase text-earth-500 mb-1">
                   Status
                 </div>
-                <span className="inline-flex items-center px-2 py-1 border border-emerald-500/50 rounded-full text-[0.65rem] tracking-[0.16em] uppercase text-emerald-300">
-                  Active
-                </span>
+                {user?.applicationStatus === "approved" ? (
+                  <span className="inline-flex items-center px-2 py-1 border border-emerald-500/50 rounded-full text-[0.65rem] tracking-[0.16em] uppercase text-emerald-300">
+                    Active
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center gap-1 px-2 py-1 border border-amber-500/40 rounded-full text-[0.65rem] tracking-[0.16em] uppercase text-amber-300">
+                    <span className="material-symbols-outlined text-[0.75rem]">warning</span>
+                    Verification pending
+                  </span>
+                )}
               </div>
               <div>
                 <div className="text-[0.65rem] tracking-[0.18em] uppercase text-earth-500 mb-1">
@@ -1134,30 +1153,36 @@ const Dashboard = () => {
 
       {activeTab === "notifications" && (
         <div className="rounded-2xl border border-gold-500/20 bg-earth-900/70 p-5">
-          <div className="space-y-4">
-            <div className="flex gap-3">
-              <span className="mt-1 w-2 h-2 rounded-full bg-emerald-400" />
-              <div>
-                <div className="text-sm text-earth-100">
-                  Payment confirmed — wallet funded
+          {user?.applicationStatus === "approved" ? (
+            <div className="space-y-4">
+              <div className="flex gap-3">
+                <span className="mt-1 w-2 h-2 rounded-full bg-emerald-400" />
+                <div>
+                  <div className="text-sm text-earth-100">
+                    Payment confirmed — wallet funded
+                  </div>
+                  <div className="text-[0.75rem] text-earth-500">
+                    9 March 2026
+                  </div>
                 </div>
-                <div className="text-[0.75rem] text-earth-500">
-                  9 March 2026
+              </div>
+              <div className="flex gap-3">
+                <span className="mt-1 w-2 h-2 rounded-full bg-gold-400" />
+                <div>
+                  <div className="text-sm text-earth-100">
+                    Welcome to the 2026 cohort
+                  </div>
+                  <div className="text-[0.75rem] text-earth-500">
+                    9 March 2026 · Membership active
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="flex gap-3">
-              <span className="mt-1 w-2 h-2 rounded-full bg-gold-400" />
-              <div>
-                <div className="text-sm text-earth-100">
-                  Welcome to the 2026 cohort
-                </div>
-                <div className="text-[0.75rem] text-earth-500">
-                  9 March 2026 · Membership active
-                </div>
-              </div>
+          ) : (
+            <div className="text-center text-[0.82rem] text-earth-500 py-4">
+              No notifications yet. Updates will appear here once your application is approved.
             </div>
-          </div>
+          )}
         </div>
       )}
 
