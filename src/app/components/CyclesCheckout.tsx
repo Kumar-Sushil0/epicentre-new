@@ -142,7 +142,7 @@ export default function CyclesCheckout({
               </div>
             </div>
 
-            {answers.some((a) => a.trim() !== "") && (
+            {answers.some((a) => a !== 0) && (
               <div className="hidden pt-6 mt-6 border-t border-earth-700/50">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="material-symbols-outlined text-gold-500 text-lg">chat</span>
@@ -150,7 +150,7 @@ export default function CyclesCheckout({
                 </div>
                 <div className="space-y-3 max-h-48 overflow-y-auto pr-2">
                   {answers.map((answer, idx) =>
-                    answer.trim() ? (
+                    answer !== 0 ? (
                       <div key={idx} className="bg-earth-900/50 rounded-lg p-3">
                         <p className="text-xs text-earth-500 mb-1.5">
                           {questions[idx]}
