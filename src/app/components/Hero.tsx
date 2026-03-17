@@ -74,11 +74,9 @@ export default function Hero() {
           <div className="space-y-3 md:space-y-4 text-[#E7DFD3] font-body">
             <p className="text-lg md:text-2xl font-normal leading-relaxed">
               The world does not run out of noise. It runs out of places that protect you from it.
-              <br /> <span className="text-gold-500 font-bold">2026 Cohort</span>: Post-Exit Founders. 100 memberships. Application-based.
+              <br /> 
             </p>
-            <p className="text-base md:text-lg font-light leading-relaxed">
-             
-            </p>
+           
            
 
            
@@ -94,7 +92,7 @@ export default function Hero() {
              Explore Access →
             </Link>
             <p className="text-earth-300/80">
-            Access is by alignment.
+            <span className="text-gold-500 font-bold">2026 Cohort</span>: Post-Exit Founders.
             </p>
           </div>
         </div>

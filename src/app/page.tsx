@@ -43,7 +43,7 @@ export default function Home() {
       <Header />
       <Hero />
       <BetweenChapters />
-      <Philosophy />
+      
       <DesignedDeliberately />
       <VoidAndFormats />
       <AboutAttentionCycle />
