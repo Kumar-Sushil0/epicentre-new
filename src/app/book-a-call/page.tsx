@@ -9,9 +9,9 @@ import Footer from "../components/Footer";
 import CallDateTimePicker from "../components/CallDateTimePicker";
 
 const CALL_QUESTIONS = [
-  "What are you stepping away from, or stepping toward?",
-  "What would make this visit meaningful for you?",
-  "Is there anything we should know before the call?",
+  "Can you hold silence for one to seven days without structure, instruction, or external accountability and remain fully functional?",
+  "When no one is guiding you, managing your schedule, or checking in — do you still move forward?",
+  "In complete silence, with no distractions and no noise, can you sit with yourself long enough to map the next decade of your life?",
 ];
 
 function BookACallInner() {
