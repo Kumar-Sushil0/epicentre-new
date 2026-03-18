@@ -113,9 +113,9 @@ export default function Header() {
                 Estate
               </Link>
               <Link 
-                href="/dashboard" 
+                href="/cycles" 
                 className={`text-sm uppercase tracking-wider transition-colors ${
-                  isActive("/dashboard") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
+                  isActive("/cycles") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
                 }`}
               >
                 Membership
@@ -228,8 +228,8 @@ export default function Header() {
               Estate
             </Link>
             <Link
-              href="/dashboard"
-              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/dashboard") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+              href="/cycles"
+              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/cycles") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
                 }`}
             >
               Membership
