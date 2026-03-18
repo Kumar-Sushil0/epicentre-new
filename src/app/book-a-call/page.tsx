@@ -119,13 +119,22 @@ function BookACallInner() {
                     <label className="text-[0.78rem] text-earth-400 leading-relaxed block">
                       {String(idx + 1).padStart(2, "0")}. {q}
                     </label>
-                    <textarea
-                      rows={2}
-                      value={answers[idx]}
-                      onChange={(e) => handleAnswer(idx, e.target.value)}
-                      placeholder="Your answer..."
-                      className="w-full bg-earth-950/60 border border-earth-700 rounded-lg px-4 py-2.5 text-[0.85rem] text-earth-100 placeholder:text-earth-600 focus:outline-none focus:border-gold-500/50 transition-colors resize-none"
-                    />
+                    <div className="flex gap-2">
+                      {["Yes", "No", "Maybe"].map((opt) => (
+                        <button
+                          key={opt}
+                          type="button"
+                          onClick={() => handleAnswer(idx, opt)}
+                          className={`flex-1 py-2 rounded-lg text-[0.8rem] border transition-colors ${
+                            answers[idx] === opt
+                              ? "bg-gold-500/20 border-gold-500 text-gold-300"
+                              : "bg-earth-950/60 border-earth-700 text-earth-400 hover:border-earth-500"
+                          }`}
+                        >
+                          {opt}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 ))}
               </div>
