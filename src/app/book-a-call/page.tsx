@@ -22,18 +22,20 @@ function BookACallInner() {
 
   const [callDateTime, setCallDateTime] = useState<{ date: Date | null; time: string | null }>({ date: null, time: null });
   const [answers, setAnswers] = useState(["", "", ""]);
+
+  // Modal state
   const [showModal, setShowModal] = useState(false);
+  const [modalStep, setModalStep] = useState<"form" | "confirmed">("form");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
   const handleAnswer = (idx: number, val: string) => {
     setAnswers((prev) => { const c = [...prev]; c[idx] = val; return c; });
   };
 
-  const handleFinalSubmit = async (e: React.FormEvent) => {
+  const handleModalSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
     try {
@@ -51,39 +53,13 @@ function BookACallInner() {
           answers,
         }),
       });
-      setShowModal(false);
-      setSubmitted(true);
+      setModalStep("confirmed");
     } catch (err) {
       console.error(err);
     } finally {
       setSubmitting(false);
     }
   };
-
-  if (submitted) {
-    return (
-      <main className="min-h-screen bg-earth-950 text-earth-100">
-        <Header />
-        <section className="min-h-[80vh] flex items-center justify-center px-4 py-20">
-          <div className="text-center space-y-4 max-w-md">
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gold-500/10 border border-gold-500/30">
-              <span className="material-symbols-outlined text-gold-400 text-2xl">check_circle</span>
-            </div>
-            <h2 className="text-2xl font-normal text-earth-50" style={{ fontFamily: "Cormorant Garamond, serif" }}>
-              Request received
-            </h2>
-            <p className="text-[0.9rem] text-earth-400 leading-relaxed">
-              We'll be in touch within 48 hours to confirm the call.
-            </p>
-            <a href="/" className="inline-block mt-2 text-[0.8rem] tracking-[0.12em] uppercase text-gold-400 hover:text-gold-300 border border-gold-500/40 rounded-lg px-5 py-2.5 hover:bg-gold-500/10 transition-colors">
-              Return home
-            </a>
-          </div>
-        </section>
-        <Footer />
-      </main>
-    );
-  }
 
   return (
     <main className="min-h-screen bg-earth-950 text-earth-100">
@@ -116,7 +92,7 @@ function BookACallInner() {
             {/* Right — cycle pill + questions + CTA */}
             <div className="bg-earth-900/60 border border-earth-800 rounded-2xl p-6 space-y-5 flex flex-col">
 
-              {/* Cycle pill — top of right column */}
+              {/* Cycle pill */}
               {cycle && (
                 <div className="flex items-start gap-3 border border-gold-500/30 bg-gold-500/5 rounded-xl px-4 py-3">
                   <span className="material-symbols-outlined text-gold-400 text-[1.1rem] mt-0.5">event_available</span>
@@ -157,7 +133,7 @@ function BookACallInner() {
               <div className="space-y-2 pt-2">
                 <button
                   type="button"
-                  onClick={() => setShowModal(true)}
+                  onClick={() => { setModalStep("form"); setShowModal(true); }}
                   className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 text-[0.8rem] tracking-[0.14em] uppercase border border-gold-500 text-gold-400 hover:bg-gold-500/10 rounded-lg transition-colors"
                 >
                   Book a Call →
@@ -172,60 +148,58 @@ function BookACallInner() {
       </section>
       <Footer />
 
-      {/* Contact details modal */}
+      {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
-          <div className="w-full max-w-md bg-earth-950 border border-earth-800 rounded-2xl p-7 shadow-2xl space-y-5">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h3 className="text-xl font-normal text-earth-50" style={{ fontFamily: "Cormorant Garamond, serif" }}>
-                  Your details
-                </h3>
-                <p className="text-[0.8rem] text-earth-500 mt-1">
-                  We'll use these to confirm the call.
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={() => setShowModal(false)}
-                className="text-earth-500 hover:text-earth-200 transition-colors"
-              >
-                <span className="material-symbols-outlined text-[1.3rem]">close</span>
-              </button>
-            </div>
+          <div className="w-full max-w-md bg-earth-950 border border-earth-800 rounded-2xl p-7 shadow-2xl">
 
-            <form onSubmit={handleFinalSubmit} className="space-y-4">
-              <input
-                required
-                type="text"
-                placeholder="Full name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full bg-earth-900 border border-earth-700 rounded-lg px-4 py-3 text-[0.85rem] text-earth-100 placeholder:text-earth-600 focus:outline-none focus:border-gold-500/50 transition-colors"
-              />
-              <input
-                required
-                type="email"
-                placeholder="Email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-earth-900 border border-earth-700 rounded-lg px-4 py-3 text-[0.85rem] text-earth-100 placeholder:text-earth-600 focus:outline-none focus:border-gold-500/50 transition-colors"
-              />
-              <input
-                type="tel"
-                placeholder="Phone (optional)"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="w-full bg-earth-900 border border-earth-700 rounded-lg px-4 py-3 text-[0.85rem] text-earth-100 placeholder:text-earth-600 focus:outline-none focus:border-gold-500/50 transition-colors"
-              />
-              <button
-                type="submit"
-                disabled={submitting}
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 text-[0.8rem] tracking-[0.14em] uppercase bg-gold-500 hover:bg-gold-400 text-earth-950 font-medium rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-              >
-                {submitting ? "Submitting..." : "Confirm →"}
-              </button>
-            </form>
+            {modalStep === "form" ? (
+              <>
+                <div className="flex items-start justify-between gap-4 mb-5">
+                  <div>
+                    <h3 className="text-xl font-normal text-earth-50" style={{ fontFamily: "Cormorant Garamond, serif" }}>
+                      Your details
+                    </h3>
+                    <p className="text-[0.8rem] text-earth-500 mt-1">We'll use these to confirm the call.</p>
+                  </div>
+                  <button type="button" onClick={() => setShowModal(false)} className="text-earth-500 hover:text-earth-200 transition-colors">
+                    <span className="material-symbols-outlined text-[1.3rem]">close</span>
+                  </button>
+                </div>
+
+                <form onSubmit={handleModalSubmit} className="space-y-4">
+                  <input required type="text" placeholder="Full name" value={name} onChange={(e) => setName(e.target.value)}
+                    className="w-full bg-earth-900 border border-earth-700 rounded-lg px-4 py-3 text-[0.85rem] text-earth-100 placeholder:text-earth-600 focus:outline-none focus:border-gold-500/50 transition-colors" />
+                  <input required type="email" placeholder="Email address" value={email} onChange={(e) => setEmail(e.target.value)}
+                    className="w-full bg-earth-900 border border-earth-700 rounded-lg px-4 py-3 text-[0.85rem] text-earth-100 placeholder:text-earth-600 focus:outline-none focus:border-gold-500/50 transition-colors" />
+                  <input type="tel" placeholder="Phone (optional)" value={phone} onChange={(e) => setPhone(e.target.value)}
+                    className="w-full bg-earth-900 border border-earth-700 rounded-lg px-4 py-3 text-[0.85rem] text-earth-100 placeholder:text-earth-600 focus:outline-none focus:border-gold-500/50 transition-colors" />
+                  <button type="submit" disabled={submitting}
+                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 text-[0.8rem] tracking-[0.14em] uppercase bg-gold-500 hover:bg-gold-400 text-earth-950 font-medium rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
+                    {submitting ? "Submitting..." : "Confirm →"}
+                  </button>
+                </form>
+              </>
+            ) : (
+              <div className="text-center space-y-5 py-2">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gold-500/10 border border-gold-500/30 mx-auto">
+                  <span className="material-symbols-outlined text-gold-400 text-2xl">mark_email_read</span>
+                </div>
+                <div className="space-y-2">
+                  <h3 className="text-xl font-normal text-earth-50" style={{ fontFamily: "Cormorant Garamond, serif" }}>
+                    Meeting scheduled
+                  </h3>
+                  <p className="text-[0.85rem] text-earth-400 leading-relaxed">
+                    A meeting link with D.D. has been sent to{" "}
+                    <span className="text-earth-200">{email}</span>.
+                  </p>
+                  <p className="text-[0.75rem] text-earth-600">Check your spam if you don't see it.</p>
+                </div>
+                <a href="/" className="inline-block text-[0.78rem] tracking-[0.12em] uppercase text-gold-400 hover:text-gold-300 border border-gold-500/40 rounded-lg px-5 py-2.5 hover:bg-gold-500/10 transition-colors">
+                  Return home
+                </a>
+              </div>
+            )}
           </div>
         </div>
       )}

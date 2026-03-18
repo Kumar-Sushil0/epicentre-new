@@ -21,7 +21,7 @@ interface ServicesOfferingProps {
 
 export default function ServicesOffering({
   onCycleSelect,
-  title = "Silent Cycles",
+  title = "Request an Invite",
   primaryToggleLabel = "Dorm",
   secondaryToggleLabel = "Private Room",
 }: ServicesOfferingProps) {
