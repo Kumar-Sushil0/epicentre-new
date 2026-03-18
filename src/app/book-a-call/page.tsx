@@ -39,16 +39,17 @@ function BookACallInner() {
     e.preventDefault();
     setSubmitting(true);
     try {
-      await fetch("/api/cycle-booking", {
+      const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
+      await fetch(`${apiBase}/call-request`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          name,
+          email,
+          phone,
           cycleLabel: cycle,
-          accommodationType: accommodation,
-          priceLabel: price,
-          callDate: callDateTime.date?.toISOString(),
+          callDate: callDateTime.date?.toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" }),
           callTime: callDateTime.time,
-          name, email, phone,
           questions: CALL_QUESTIONS,
           answers,
         }),

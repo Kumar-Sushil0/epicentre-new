@@ -113,14 +113,6 @@ export default function Header() {
                 Estate
               </Link>
               <Link 
-                href="/cycles" 
-                className={`text-sm uppercase tracking-wider transition-colors ${
-                  isActive("/cycles") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
-                }`}
-              >
-                Membership
-              </Link>
-              <Link 
                 href="/services" 
                 className={`text-sm uppercase tracking-wider transition-colors ${
                   isActive("/services") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
@@ -171,16 +163,7 @@ export default function Header() {
                     Logout
                   </button>
                 </>
-              ) : (
-                <Link 
-                  href="/login" 
-                  className={`text-sm uppercase tracking-wider transition-colors ${
-                    isActive("/login") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
-                  }`}
-                >
-                  Login
-                </Link>
-              )}
+              ) : null}
             </nav>
           </div>
         </div>
@@ -228,13 +211,6 @@ export default function Header() {
               Estate
             </Link>
             <Link
-              href="/cycles"
-              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/cycles") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
-                }`}
-            >
-              Membership
-            </Link>
-            <Link
               href="/services"
               className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/services") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
                 }`}
@@ -280,16 +256,7 @@ export default function Header() {
                   Logout
                 </button>
               </>
-            ) : (
-              <Link
-                href="/login"
-                onClick={() => setIsMenuOpen(false)}
-                className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/login") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
-                  }`}
-              >
-                Login
-              </Link>
-            )}
+            ) : null}
           </nav>
         </div>
       </aside>
