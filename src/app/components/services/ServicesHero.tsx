@@ -27,8 +27,8 @@ export default function TestHero() {
                     <p className="text-earth-300/80 text-lg md:text-2xl font-light leading-relaxed w-full font-body">
                         The estate provides conditions.<br />
                         These services determine how those conditions are engaged.<br />
-                        Two formats.<br />
-                        Two depths.<br />
+                        Three formats.<br />
+                        Three levels of depth.<br />
                         One objective: clarity.
                     </p>
                 </div>

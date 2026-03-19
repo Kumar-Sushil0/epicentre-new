@@ -14,15 +14,17 @@ export default function AboutPrinciples() {
           {/* 01 */}
           <div className="group relative h-64 border border-earth-700 bg-earth-950/50 rounded-lg overflow-hidden cursor-pointer">
             <div className="absolute inset-0 p-8 flex flex-col justify-end items-center text-center">
-              <span className="text-gold-500 font-display text-4xl mb-4 opacity-30 transition-all duration-500 group-hover:-translate-y-2">
-                01
-              </span>
-              <h4
-                className="text-gold-500 font-normal mb-1 transition-all duration-500 group-hover:-translate-y-2 group-hover:text-gold-400"
-                style={{ fontFamily: 'Outfit, sans-serif' }}
-              >
-                Environment &gt; Motivation
-              </h4>
+              <div className="mb-4 flex items-center gap-4 opacity-80 transition-all duration-500 group-hover:-translate-y-2">
+                <div className="flex flex-col items-center">
+                  <span className="material-symbols-outlined text-gold-500 text-4xl">landscape</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-earth-200">Environment</span>
+                </div>
+                <span className="text-gold-500 text-xl">&gt;</span>
+                <div className="flex flex-col items-center">
+                  <span className="material-symbols-outlined text-gold-500 text-4xl">bolt</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-earth-200">Motivation</span>
+                </div>
+              </div>
               <div className="mt-2 grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out w-full border-t border-gold-500/30 pt-3">
                 <div className="overflow-hidden">
                   <p className="text-earth-50/70 text-sm leading-relaxed">
@@ -36,15 +38,17 @@ export default function AboutPrinciples() {
           {/* 02 */}
           <div className="group relative h-64 border border-earth-700 bg-earth-950/50 rounded-lg overflow-hidden cursor-pointer">
             <div className="absolute inset-0 p-8 flex flex-col justify-end items-center text-center">
-              <span className="text-gold-500 font-display text-4xl mb-4 opacity-30 transition-all duration-500 group-hover:-translate-y-2">
-                02
-              </span>
-              <h4
-                className="text-gold-500 font-normal mb-1 transition-all duration-500 group-hover:-translate-y-2 group-hover:text-gold-400"
-                style={{ fontFamily: 'Outfit, sans-serif' }}
-              >
-                Reduction &gt; Abundance
-              </h4>
+              <div className="mb-4 flex items-center gap-4 opacity-80 transition-all duration-500 group-hover:-translate-y-2">
+                <div className="flex flex-col items-center">
+                  <span className="material-symbols-outlined text-gold-500 text-4xl">remove_circle</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-earth-200">Reduction</span>
+                </div>
+                <span className="text-gold-500 text-xl">&gt;</span>
+                <div className="flex flex-col items-center">
+                  <span className="material-symbols-outlined text-gold-500 text-4xl">all_inclusive</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-earth-200">Abundance</span>
+                </div>
+              </div>
               <div className="mt-2 grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out w-full border-t border-gold-500/30 pt-3">
                 <div className="overflow-hidden">
                   <p className="text-earth-50/70 text-sm leading-relaxed">
@@ -58,15 +62,17 @@ export default function AboutPrinciples() {
           {/* 03 */}
           <div className="group relative h-64 border border-earth-700 bg-earth-950/50 rounded-lg overflow-hidden cursor-pointer">
             <div className="absolute inset-0 p-8 flex flex-col justify-end items-center text-center">
-              <span className="text-gold-500 font-display text-4xl mb-4 opacity-30 transition-all duration-500 group-hover:-translate-y-2">
-                03
-              </span>
-              <h4
-                className="text-gold-500 font-normal mb-1 transition-all duration-500 group-hover:-translate-y-2 group-hover:text-gold-400"
-                style={{ fontFamily: 'Outfit, sans-serif' }}
-              >
-                Agreement &gt; Enforcement
-              </h4>
+              <div className="mb-4 flex items-center gap-4 opacity-80 transition-all duration-500 group-hover:-translate-y-2">
+                <div className="flex flex-col items-center">
+                  <span className="material-symbols-outlined text-gold-500 text-4xl">handshake</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-earth-200">Agreement</span>
+                </div>
+                <span className="text-gold-500 text-xl">&gt;</span>
+                <div className="flex flex-col items-center">
+                  <span className="material-symbols-outlined text-gold-500 text-4xl">gavel</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-earth-200">Enforcement</span>
+                </div>
+              </div>
               <div className="mt-2 grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out w-full border-t border-gold-500/30 pt-3">
                 <div className="overflow-hidden">
                   <p className="text-earth-50/70 text-sm leading-relaxed">
@@ -80,15 +86,17 @@ export default function AboutPrinciples() {
           {/* 04 */}
           <div className="group relative h-64 border border-earth-700 bg-earth-950/50 rounded-lg overflow-hidden cursor-pointer">
             <div className="absolute inset-0 p-8 flex flex-col justify-end items-center text-center">
-              <span className="text-gold-500 font-display text-4xl mb-4 opacity-30 transition-all duration-500 group-hover:-translate-y-2">
-                04
-              </span>
-              <h4
-                className="text-gold-500 font-normal mb-1 transition-all duration-500 group-hover:-translate-y-2 group-hover:text-gold-400"
-                style={{ fontFamily: 'Outfit, sans-serif' }}
-              >
-                Observation &gt; Instruction
-              </h4>
+              <div className="mb-4 flex items-center gap-4 opacity-80 transition-all duration-500 group-hover:-translate-y-2">
+                <div className="flex flex-col items-center">
+                  <span className="material-symbols-outlined text-gold-500 text-4xl">visibility</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-earth-200">Observation</span>
+                </div>
+                <span className="text-gold-500 text-xl">&gt;</span>
+                <div className="flex flex-col items-center">
+                  <span className="material-symbols-outlined text-gold-500 text-4xl">school</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-earth-200">Instruction</span>
+                </div>
+              </div>
               <div className="mt-2 grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out w-full border-t border-gold-500/30 pt-3">
                 <div className="overflow-hidden">
                   <p className="text-earth-50/70 text-sm leading-relaxed">
@@ -102,15 +110,17 @@ export default function AboutPrinciples() {
           {/* 05 */}
           <div className="group relative h-64 border border-earth-700 bg-earth-950/50 rounded-lg overflow-hidden cursor-pointer">
             <div className="absolute inset-0 p-8 flex flex-col justify-end items-center text-center">
-              <span className="text-gold-500 font-display text-4xl mb-4 opacity-30 transition-all duration-500 group-hover:-translate-y-2">
-                05
-              </span>
-              <h4
-                className="text-gold-500 font-normal mb-1 transition-all duration-500 group-hover:-translate-y-2 group-hover:text-gold-400"
-                style={{ fontFamily: 'Outfit, sans-serif' }}
-              >
-                Structure &gt; Personality
-              </h4>
+              <div className="mb-4 flex items-center gap-4 opacity-80 transition-all duration-500 group-hover:-translate-y-2">
+                <div className="flex flex-col items-center">
+                  <span className="material-symbols-outlined text-gold-500 text-4xl">account_tree</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-earth-200">Structure</span>
+                </div>
+                <span className="text-gold-500 text-xl">&gt;</span>
+                <div className="flex flex-col items-center">
+                  <span className="material-symbols-outlined text-gold-500 text-4xl">person</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-earth-200">Personality</span>
+                </div>
+              </div>
               <div className="mt-2 grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out w-full border-t border-gold-500/30 pt-3">
                 <div className="overflow-hidden">
                   <p className="text-earth-50/70 text-sm leading-relaxed">
@@ -124,15 +134,17 @@ export default function AboutPrinciples() {
           {/* 06 */}
           <div className="group relative h-64 border border-earth-700 bg-earth-950/50 rounded-lg overflow-hidden cursor-pointer">
             <div className="absolute inset-0 p-8 flex flex-col justify-end items-center text-center">
-              <span className="text-gold-500 font-display text-4xl mb-4 opacity-30 transition-all duration-500 group-hover:-translate-y-2">
-                06
-              </span>
-              <h4
-                className="text-gold-500 font-normal mb-1 transition-all duration-500 group-hover:-translate-y-2 group-hover:text-gold-400"
-                style={{ fontFamily: 'Outfit, sans-serif' }}
-              >
-                Pace &gt; Urgency
-              </h4>
+              <div className="mb-4 flex items-center gap-4 opacity-80 transition-all duration-500 group-hover:-translate-y-2">
+                <div className="flex flex-col items-center">
+                  <span className="material-symbols-outlined text-gold-500 text-4xl">schedule</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-earth-200">Pace</span>
+                </div>
+                <span className="text-gold-500 text-xl">&gt;</span>
+                <div className="flex flex-col items-center">
+                  <span className="material-symbols-outlined text-gold-500 text-4xl">priority_high</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-earth-200">Urgency</span>
+                </div>
+              </div>
               <div className="mt-2 grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out w-full border-t border-gold-500/30 pt-3">
                 <div className="overflow-hidden">
                   <p className="text-earth-50/70 text-sm leading-relaxed">

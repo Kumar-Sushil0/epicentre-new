@@ -21,7 +21,7 @@ export default function Location() {
             Close enough to remain accessible.
           </p>
           <p className="text-earth-900 font-body text-sm md:text-base mt-2 max-w-2xl mx-auto">
-            Set beside the Bhigwan Bird Sanctuary on the Ujjani reservoir — one of the quietest stretches of landscape within reach of Pune and Mumbai.
+            Set beside the Bhigwan Bird Sanctuary on the Ujjani reservoir, one of the quietest stretches of landscape within reach of Pune and Mumbai.
           </p>
         </div>
 

@@ -78,7 +78,6 @@ export default function Footer() {
               <li><Link href="/venue" className="hover:text-gold-500 transition-colors block py-0.5">Estate</Link></li>
               <li><Link href="/services" className="hover:text-gold-500 transition-colors block py-0.5">Services</Link></li>
               
-              <li><Link href="/stories" className="hover:text-gold-500 transition-colors block py-0.5">Stories</Link></li>
             </ul>
           </div>
 

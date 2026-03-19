@@ -8,14 +8,9 @@ interface PhilosophyItem {
 }
 
 export default function AboutPhilosophy() {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   const philosophies: PhilosophyItem[] = [
-    {
-      title: "Why This Structure",
-      description:
-        "These decisions exist to protect what the estate calls cognitive sovereignty, the condition in which your attention belongs entirely to you.",
-    },
     {
       title: "Why Silence",
       description:
@@ -32,7 +27,7 @@ export default function AboutPhilosophy() {
         "Distance matters. Bhigwan is far enough from Pune and Mumbai to interrupt routine, and close enough to remain accessible. The location is not incidental, it is a design decision.",
     },
     {
-      title: "Why Sequencing by Cohort",
+      title: "Why Cohorts",
       description:
         "Cohorts shape culture. Each annual cohort centres a specific life-stage group so that the shared context among members remains deep and the clarity of intent is preserved. Mixing life stages dilutes both.",
     },
@@ -47,6 +42,14 @@ export default function AboutPhilosophy() {
   return (
     <section className="py-8 bg-earth-950 border-b border-earth-800" id="philosophy">
       <div className="w-full px-4 md:px-16">
+        <div className="mb-6">
+          <h2 className="text-3xl font-normal text-gold-500 tracking-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            Why This Structure
+          </h2>
+          <p className="text-earth-300 text-base leading-relaxed mt-2 ">
+            These decisions exist to protect what the estate calls cognitive sovereignty, the condition in which your attention belongs entirely to you.
+          </p>
+        </div>
         {/* Dropdown Bars */}
         <div className="space-y-6">
           {philosophies.map((philosophy, index) => (
