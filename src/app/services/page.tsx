@@ -17,6 +17,58 @@ const breadcrumbItems = [
   { label: "Services", href: "/services" }
 ];
 
+type ServiceCardItem = {
+    title: string;
+    description: string;
+    images: string[];
+    icon?: string;
+    category?: string;
+    href: string;
+};
+
+function SectionCardCarousel({ items }: { items: ServiceCardItem[] }) {
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    if (!items.length) return null;
+
+    const current = items[currentIndex];
+    const prev = () => setCurrentIndex((p) => (p - 1 + items.length) % items.length);
+    const next = () => setCurrentIndex((p) => (p + 1) % items.length);
+
+    return (
+        <div className="mt-4">
+            <div className="relative max-w-xl mx-auto overflow-visible">
+                <CarouselCard
+                    title={current.title}
+                    description={current.description}
+                    images={current.images}
+                    icon={current.icon}
+                    category={current.category}
+                    href={current.href}
+                />
+                {items.length > 1 && (
+                    <>
+                        <button
+                            onClick={prev}
+                            className="absolute -left-12 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-earth-900/90 border border-gold-500/40 text-gold-500 hover:text-gold-400 transition-colors inline-flex items-center justify-center"
+                            aria-label="Previous card"
+                        >
+                            <span className="material-symbols-outlined text-base leading-none">chevron_left</span>
+                        </button>
+                        <button
+                            onClick={next}
+                            className="absolute -right-12 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-earth-900/90 border border-gold-500/40 text-gold-500 hover:text-gold-400 transition-colors inline-flex items-center justify-center"
+                            aria-label="Next card"
+                        >
+                            <span className="material-symbols-outlined text-base leading-none">chevron_right</span>
+                        </button>
+                    </>
+                )}
+            </div>
+        </div>
+    );
+}
+
 export default function TestPage() {
     const [wishlist, setWishlist] = useState<Set<string>>(new Set());
     const [cart, setCart] = useState<Set<string>>(new Set());
@@ -100,44 +152,16 @@ export default function TestPage() {
 
                                 {/* Right col: Schedule + Duration & Stay + Before You Apply */}
                                 <div className="space-y-6">
-                                    {/* Suggested Daily Rhythm */}
-                                    <div>
-                                        <p className="text-[#e7dfd3] font-semibold text-base mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>Suggested Daily Rhythm</p>
-                                        <p className="text-earth-400 text-sm mb-2">This is a flexible structure to help you ease into the cycle.</p>
-                                        <p className="text-gold-500 text-sm font-medium mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Day 1 — Arrival &amp; Settling In</p>
-                                        <div className="border border-earth-700/50 rounded-lg overflow-hidden">
-                                            <div className="grid grid-cols-2 bg-earth-800/60 text-earth-400 text-sm px-4 py-2">
-                                                <span>Time</span>
-                                                <span>Activity</span>
-                                            </div>
-                                            {[
-                                                ["11:00 – 13:00", "Check-in Window"],
-                                                ["13:00 – 16:00", "Personal Setup & Water Familiarisation"],
-                                                ["16:00 – 17:30", "Orientation (Safety & Estate Basics)"],
-                                                ["18:00 – 19:00", "Gentle Mobility / Fascia Work"],
-                                                ["19:00 – 20:00", "Dinner"],
-                                                ["20:30 – 21:00", "Optional Stillness or Star Observation"],
-                                            ].map(([time, activity], i) => (
-                                                <div key={i} className={`grid grid-cols-2 px-4 py-2 text-earth-300 ${i % 2 === 0 ? 'bg-earth-800/20' : ''}`}>
-                                                    <span className="text-earth-400 text-sm">{time}</span>
-                                                    <span className="text-sm">{activity}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                        <p className="text-earth-500 text-sm mt-2 italic">The remaining days follow a similar open rhythm.</p>
-                                    </div>
-
-                                    {/* Duration & Stay */}
-                                    <div>
-                                        <p className="text-[#e7dfd3] font-semibold text-base mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Duration &amp; Stay Options</p>
-                                        <p className="text-gold-500 text-base font-medium mb-1">Weekday Cycle — 4 Nights / 5 Days</p>
-                                        <div className="space-y-1 text-earth-300 text-base mb-2">
-                                            <div className="flex items-center gap-2"><span className="text-gold-500">•</span><span>Shared Dorm</span></div>
-                                            <div className="flex items-center gap-2"><span className="text-gold-500">•</span><span>Private Room</span></div>
-                                        </div>
-                                        <p className="text-gold-500 text-base">Starting from ₹20,000 <span className="text-earth-400 text-sm">+ applicable taxes</span></p>
-                                    </div>
-
+                                    <SectionCardCarousel
+                                        items={solitudePractices.map((practice) => ({
+                                            title: practice.title,
+                                            description: practice.description,
+                                            images: practice.images,
+                                            icon: practice.icon,
+                                            category: practice.category,
+                                            href: `/solitude/details?id=${practice.practiceId}`,
+                                        }))}
+                                    />
                                     {/* Before You Apply */}
                                     <div className="border border-earth-700/40 rounded-lg p-4 bg-earth-800/20">
                                         <p className="text-[#e7dfd3] font-semibold text-base mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Before You Apply</p>
@@ -149,23 +173,9 @@ export default function TestPage() {
                                             Request a Conversation →
                                         </a>
                                     </div>
+
                                 </div>
                             </div>
-                        </div>
-
-                        {/* Grid View */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {solitudePractices.map((practice, index) => (
-                                <CarouselCard
-                                    key={index}
-                                    title={practice.title}
-                                    description={practice.description}
-                                    images={practice.images}
-                                    icon={practice.icon}
-                                    category={practice.category}
-                                    href={`/solitude/details?id=${practice.practiceId}`}
-                                />
-                            ))}
                         </div>
                     </div>
                 )}
@@ -224,10 +234,30 @@ export default function TestPage() {
                                         </div>
                                         <p className="text-earth-500 text-sm mt-3 italic">All experiments are self-led. The estate provides the container, not the curriculum.</p>
                                     </div>
+                                    {/* Who This Is For */}
+                                    <div>
+                                        <p className="text-[#e7dfd3] font-semibold text-base mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Who This Is For</p>
+                                        <div className="space-y-1 text-earth-300 text-base">
+                                            {["Teams needing offsite clarity without corporate workshop fatigue", "Creators building something that requires uninterrupted focus", "Individuals testing new life or work directions", "Groups wanting a quiet decision-making environment"].map(item => (
+                                                <div key={item} className="flex items-start gap-2">
+                                                    <span className="text-gold-500 mt-0.5">•</span><span>{item}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
                                 </div>
 
                                 {/* Right col */}
                                 <div className="space-y-6">
+                                    <SectionCardCarousel
+                                        items={expressionPillars.map((pillar) => ({
+                                            title: pillar.title,
+                                            description: pillar.description,
+                                            images: pillar.images,
+                                            icon: pillar.icon,
+                                            href: "/expression/details",
+                                        }))}
+                                    />
                                     {/* The Experience Structure */}
                                     <div>
                                         <p className="text-[#e7dfd3] font-semibold text-base mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>The Experience Structure</p>
@@ -240,34 +270,6 @@ export default function TestPage() {
                                                 <div key={heading} className="border-l border-gold-500/30 pl-4 space-y-0.5">
                                                     <p className="text-gold-500 text-base font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>{heading}</p>
                                                     <p className="text-earth-300 text-base leading-relaxed">{body}</p>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    {/* Duration & Booking */}
-                                    <div>
-                                        <p className="text-[#e7dfd3] font-semibold text-base mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Duration &amp; Booking</p>
-                                        <p className="text-earth-300 text-base mb-2">Estate can be reserved for 2 to 7 days or longer based on availability.</p>
-                                        <p className="text-earth-400 text-sm mb-1">Suitable for:</p>
-                                        <div className="space-y-1 text-earth-300 text-base mb-3">
-                                            {["Founders and leadership teams", "Creative collaborators", "Athletes or performance practitioners", "Researchers and independent thinkers"].map(item => (
-                                                <div key={item} className="flex items-start gap-2">
-                                                    <span className="text-gold-500 mt-0.5">•</span><span>{item}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                        <p className="text-earth-400 text-base">Accommodation formats include dorm, private rooms, and nature-integrated stay options.</p>
-                                        <p className="text-gold-500 text-base mt-1">Custom pricing shared after understanding group size and duration.</p>
-                                    </div>
-
-                                    {/* Who This Is For */}
-                                    <div>
-                                        <p className="text-[#e7dfd3] font-semibold text-base mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Who This Is For</p>
-                                        <div className="space-y-1 text-earth-300 text-base">
-                                            {["Teams needing offsite clarity without corporate workshop fatigue", "Creators building something that requires uninterrupted focus", "Individuals testing new life or work directions", "Groups wanting a quiet decision-making environment"].map(item => (
-                                                <div key={item} className="flex items-start gap-2">
-                                                    <span className="text-gold-500 mt-0.5">•</span><span>{item}</span>
                                                 </div>
                                             ))}
                                         </div>
@@ -286,20 +288,6 @@ export default function TestPage() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        {/* Grid View */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {expressionPillars.map((pillar, index) => (
-                                <CarouselCard
-                                    key={index}
-                                    title={pillar.title}
-                                    description={pillar.description}
-                                    images={pillar.images}
-                                    icon={pillar.icon}
-                                    href="/expression/details"
-                                />
-                            ))}
                         </div>
                     </div>
                 )}
@@ -370,23 +358,6 @@ export default function TestPage() {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                {/* Right col */}
-                                <div className="space-y-6">
-                                    {/* Duration & Format */}
-                                    <div>
-                                        <p className="text-[#e7dfd3] font-semibold text-base mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Duration &amp; Format</p>
-                                        <div className="space-y-1 text-earth-300 text-base mb-3">
-                                            {["Weekend residency format", "Typically 2 to 3 days immersion", "Maximum 10–12 participants", "Accommodation and meals included"].map(item => (
-                                                <div key={item} className="flex items-start gap-2">
-                                                    <span className="text-gold-500 mt-0.5">•</span><span>{item}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                        <p className="text-gold-500 text-base">Pricing varies <span className="text-earth-400 text-sm">based on speaker profile, theme, and estate configuration.</span></p>
-                                    </div>
-
                                     {/* Who This Is For */}
                                     <div>
                                         <p className="text-[#e7dfd3] font-semibold text-base mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Who This Is For</p>
@@ -398,7 +369,32 @@ export default function TestPage() {
                                             ))}
                                         </div>
                                     </div>
+                                </div>
 
+                                {/* Right col */}
+                                <div className="space-y-6">
+                                    <SectionCardCarousel
+                                        items={residencies.map((residency) => ({
+                                            title: residency.title,
+                                            description: residency.description,
+                                            images: residency.images,
+                                            icon: residency.icon,
+                                            category: residency.category,
+                                            href: "/residency/details",
+                                        }))}
+                                    />
+                                    {/* Duration & Format */}
+                                    <div className="border border-earth-700/40 rounded-lg p-4 bg-earth-800/20">
+                                        <p className="text-[#e7dfd3] font-semibold text-base mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Duration &amp; Format</p>
+                                        <div className="space-y-1 text-earth-300 text-base mb-3">
+                                            {["Weekend residency format", "Typically 2 to 3 days immersion", "Maximum 10–12 participants", "Accommodation and meals included"].map(item => (
+                                                <div key={item} className="flex items-start gap-2">
+                                                    <span className="text-gold-500 mt-0.5">•</span><span>{item}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <p className="text-gold-500 text-base">Pricing varies <span className="text-earth-400 text-sm">based on speaker profile, theme, and estate configuration.</span></p>
+                                    </div>
                                     {/* Before You Apply */}
                                     <div className="border border-earth-700/40 rounded-lg p-4 bg-earth-800/20">
                                         <p className="text-[#e7dfd3] font-semibold text-base mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Before You Apply</p>
@@ -412,21 +408,6 @@ export default function TestPage() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        {/* Grid View */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {residencies.map((residency, index) => (
-                                <CarouselCard
-                                    key={index}
-                                    title={residency.title}
-                                    description={residency.description}
-                                    images={residency.images}
-                                    icon={residency.icon}
-                                    category={residency.category}
-                                    href="/residency/details"
-                                />
-                            ))}
                         </div>
                     </div>
                 )}
