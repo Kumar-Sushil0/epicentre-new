@@ -17,7 +17,7 @@ export default function Location() {
             Location
           </h3>
           <p className="text-earth-900 font-body text-base md:text-lg font-medium">
-            Remote enough for silence.<br />
+            Remote enough for silence.
             Close enough to remain accessible.
           </p>
           <p className="text-earth-900 font-body text-sm md:text-base mt-2 max-w-2xl mx-auto">

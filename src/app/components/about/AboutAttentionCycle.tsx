@@ -34,19 +34,19 @@ export default function AboutAttentionCycle() {
           className="text-2xl md:text-3xl font-normal text-gold-500 mb-4 md:mb-5 "
           style={{ fontFamily: "Outfit, sans-serif" }}
         >
-          THE 5-YEAR ATTENTION CYCLE
+          The Founding Five-Year Cycle
         </h2>
 
-        <p className="text-earth-300/80 text-base md:text-lg mb-2 max-w-3xl mx-auto font-body">
+        <p className="text-earth-300/80 text-base md:text-lg mb-2 text-center font-body">
           Each year, The Silent Club centers one life-stage cohort.
         </p>
-        <p className="text-earth-100 text-base md:text-lg mb-4 max-w-3xl mx-auto font-body font-medium">
+        <p className="text-earth-100 text-base md:text-lg mb-4 text-center font-body font-medium">
           100 memberships are released annually. One cohort. One shared chapter.
         </p>
-        <p className="text-earth-300/80 text-base md:text-lg mb-2 max-w-3xl mx-auto font-body">
+        <p className="text-earth-300/80 text-base md:text-lg mb-2 text-center font-body">
           This sequencing is deliberate. Depth requires cultural coherence. Unstructured growth dilutes it.
         </p>
-        <p className="text-earth-300/80 text-base md:text-lg mb-2 max-w-3xl mx-auto font-body">
+        <p className="text-earth-300/80 text-base md:text-lg mb-2 text-center font-body">
           The first five years are staged intentionally.
         </p>
 
@@ -66,8 +66,7 @@ export default function AboutAttentionCycle() {
                 </div>
 
                 {/* Timeline node */}
-                <div className="relative pl-6 border-l-2 border-gold-500">
-                  <div className="absolute left-[-5px] top-0 w-2 h-2 rounded-full bg-gold-500 ring-4 ring-earth-950" />
+                <div className="relative">
                   <div className="bg-earth-900/40 rounded-lg border border-earth-800/80 p-4">
                     <p
                       className="text-sm md:text-base text-earth-100 mb-1 font-medium"

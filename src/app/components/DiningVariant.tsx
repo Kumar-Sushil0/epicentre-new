@@ -138,7 +138,7 @@ export default function DiningVariant() {
       title: "Contrast Therapy",
       description: "Heat and cold to recalibrate the nervous system.",
       images: [
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/hot.png",
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/gym3.png",
       ],
     },
     {
