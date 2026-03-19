@@ -10,7 +10,7 @@ export default function ResidencyPage() {
   const residencies = [
     {
       category: "Future Studies",
-      title: "AI Sense-Making Residency",
+      title: "AI, Sense Making Residency",
       description: "A 5-day retreat to navigate the existential and practical shifts of the machine age through shared dialogue and deep reading.",
       speakers: ["Dr. Maya Chen", "Prof. Raj Malhotra"],
       checkIn: "Fri, Feb 15 Noon",
