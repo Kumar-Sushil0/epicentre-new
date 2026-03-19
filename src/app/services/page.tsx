@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Breadcrumb from "../components/Breadcrumb";
@@ -16,6 +16,8 @@ import RequestConversation from "../components/RequestConversation";
 const breadcrumbItems = [
   { label: "Services", href: "/services" }
 ];
+
+type ServicesSectionId = "solitude" | "expression" | "residency";
 
 type ServiceCardItem = {
     title: string;
@@ -73,11 +75,49 @@ export default function TestPage() {
     const [wishlist, setWishlist] = useState<Set<string>>(new Set());
     const [cart, setCart] = useState<Set<string>>(new Set());
 
-    // Collapsible section states
-    const [experiencesExpanded, setExperiencesExpanded] = useState(false);
-    const [expressionExpanded, setExpressionExpanded] = useState(false);
-    const [solitudeExpanded, setSolitudeExpanded] = useState(false);
-    const [residencyExpanded, setResidencyExpanded] = useState(false);
+    // One dropdown open at a time (same pattern as venue page)
+    const [expandedSection, setExpandedSection] = useState<ServicesSectionId | null>(null);
+    const toggleSection = (id: ServicesSectionId) => {
+        setExpandedSection((prev) => (prev === id ? null : id));
+    };
+
+    // After opening a section, scroll so the header sits in the middle of the viewport
+    // (matches venue page: sticky header offset ~120px)
+    useEffect(() => {
+        if (!expandedSection) return;
+
+        const scrollSectionIntoComfortZone = (behavior: ScrollBehavior = "smooth") => {
+            const el = document.getElementById(`section-header-${expandedSection}`);
+            if (!el) return;
+
+            const headerOffset = 120;
+            const rect = el.getBoundingClientRect();
+            const elCenterY = rect.top + window.scrollY + rect.height / 2;
+            const viewportCenterY = headerOffset + (window.innerHeight - headerOffset) / 2;
+            const rawTarget = elCenterY - viewportCenterY;
+            const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+            const targetScroll = Math.min(Math.max(0, rawTarget), maxScroll);
+
+            window.scrollTo({
+                top: targetScroll,
+                behavior,
+            });
+        };
+
+        // First pass after React paints expanded content.
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => scrollSectionIntoComfortZone("smooth"));
+        });
+        // Follow-up passes handle late layout shifts (e.g. images loading),
+        // which is most noticeable on the 3rd section near the page bottom.
+        const retry1 = window.setTimeout(() => scrollSectionIntoComfortZone("smooth"), 220);
+        const retry2 = window.setTimeout(() => scrollSectionIntoComfortZone("smooth"), 520);
+
+        return () => {
+            window.clearTimeout(retry1);
+            window.clearTimeout(retry2);
+        };
+    }, [expandedSection]);
 
     return (
         <main className="min-h-screen bg-earth-900 text-earth-100">
@@ -88,8 +128,8 @@ export default function TestPage() {
 
            
 {/* Solitude Section */}
-            <section className={`w-full px-4 md:px-16 transition-all duration-300 ${solitudeExpanded ? 'mb-24' : 'pt-12 mb-6'}`}>
-                <div className="flex items-center gap-4 cursor-pointer mb-6" onClick={() => setSolitudeExpanded(!solitudeExpanded)}>
+            <section className={`w-full px-4 md:px-16 transition-all duration-300 ${expandedSection === "solitude" ? 'mb-24' : 'pt-12 mb-6'}`}>
+                <div id="section-header-solitude" className="flex items-center gap-4 cursor-pointer mb-6" onClick={() => toggleSection("solitude")}>
                         <h2 className="text-2xl font-normal text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             01. Solitude as a Service
                         </h2>
@@ -97,12 +137,12 @@ export default function TestPage() {
                         <span className="material-symbols-outlined text-gold-500 text-3xl">self_improvement</span>
                         <button className="text-gold-500 hover:text-gold-400 transition-colors">
                             <span className="material-symbols-outlined text-3xl">
-                                {solitudeExpanded ? 'expand_less' : 'expand_more'}
+                                {expandedSection === "solitude" ? 'expand_less' : 'expand_more'}
                             </span>
                         </button>
                 </div>
 
-                {solitudeExpanded && (
+                {expandedSection === "solitude" && (
                     <div className="space-y-6">
                         <div className="mb-8">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
@@ -182,8 +222,8 @@ export default function TestPage() {
             </section >
 
             {/* Expression Section */}
-            <section className={`w-full px-4 md:px-16 transition-all duration-300 ${expressionExpanded ? 'mb-24' : 'mb-6'}`}>
-                <div className="flex items-center gap-4 cursor-pointer mb-6" onClick={() => setExpressionExpanded(!expressionExpanded)}>
+            <section className={`w-full px-4 md:px-16 transition-all duration-300 ${expandedSection === "expression" ? 'mb-24' : 'mb-6'}`}>
+                <div id="section-header-expression" className="flex items-center gap-4 cursor-pointer mb-6" onClick={() => toggleSection("expression")}>
                         <h2 className="text-2xl font-normal text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             02. Experiment as a Service
                         </h2>
@@ -191,12 +231,12 @@ export default function TestPage() {
                         <span className="material-symbols-outlined text-gold-500 text-3xl">science</span>
                         <button className="text-gold-500 hover:text-gold-400 transition-colors">
                             <span className="material-symbols-outlined text-3xl">
-                                {expressionExpanded ? 'expand_less' : 'expand_more'}
+                                {expandedSection === "expression" ? 'expand_less' : 'expand_more'}
                             </span>
                         </button>
                 </div>
 
-                {expressionExpanded && (
+                {expandedSection === "expression" && (
                     <div className="space-y-6">
                         <div className="mb-8">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
@@ -296,8 +336,8 @@ export default function TestPage() {
             
 
             {/* Residency Section */}
-            <section className={`w-full px-4 md:px-16 transition-all duration-300 ${residencyExpanded ? 'mb-24' : 'mb-6'}`}>
-                <div className="flex items-center gap-4 cursor-pointer mb-6" onClick={() => setResidencyExpanded(!residencyExpanded)}>
+            <section className={`w-full px-4 md:px-16 transition-all duration-300 ${expandedSection === "residency" ? 'mb-24' : 'mb-6'}`}>
+                <div id="section-header-residency" className="flex items-center gap-4 cursor-pointer mb-6" onClick={() => toggleSection("residency")}>
                         <h2 className="text-2xl font-normal text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             03. Residency as a Service
                         </h2>
@@ -305,12 +345,12 @@ export default function TestPage() {
                         <span className="material-symbols-outlined text-gold-500 text-3xl">school</span>
                         <button className="text-gold-500 hover:text-gold-400 transition-colors">
                             <span className="material-symbols-outlined text-3xl">
-                                {residencyExpanded ? 'expand_less' : 'expand_more'}
+                                {expandedSection === "residency" ? 'expand_less' : 'expand_more'}
                             </span>
                         </button>
                 </div>
 
-                {residencyExpanded && (
+                {expandedSection === "residency" && (
                     <div className="space-y-6">
                         <div className="mb-8">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
