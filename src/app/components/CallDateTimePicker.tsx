@@ -119,8 +119,7 @@ export default function CallDateTimePicker({ value, onChange }: CallDateTimePick
 
       {/* Time slots */}
       <div className="pt-3 border-t border-earth-800 space-y-3">
-        <p className="text-[0.72rem] tracking-[0.12em] uppercase text-earth-500">Preferred time</p>
-        <div className="grid grid-cols-3 gap-2">
+         <div className="grid grid-cols-3 gap-2">
           {TIME_SLOTS.map((t) => (
             <button
               key={t}

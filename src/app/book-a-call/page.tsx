@@ -4,8 +4,6 @@ export const dynamic = "force-dynamic";
 
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import CallDateTimePicker from "../components/CallDateTimePicker";
 
 const CALL_QUESTIONS = [
@@ -64,14 +62,13 @@ function BookACallInner() {
 
   return (
     <main className="min-h-screen bg-earth-950 text-earth-100">
-      <Header />
       <section className="px-4 md:px-16 py-16 md:py-20">
         <div className="max-w-6xl mx-auto space-y-8">
 
           {/* Page header */}
           <div className="space-y-2">
             <h1 className="text-3xl md:text-4xl font-normal text-earth-50" style={{ fontFamily: "Cormorant Garamond, serif" }}>
-              Book a Call
+              Book a 15 min Call
             </h1>
             <p className="text-[0.9rem] text-earth-400">
               A short conversation to understand where you are and whether this is the right moment.
@@ -84,9 +81,7 @@ function BookACallInner() {
             {/* Left — Date + time picker */}
             <div className="bg-earth-900/60 border border-earth-800 rounded-2xl p-6 space-y-4">
               <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-gold-400 text-[1.2rem]">calendar_month</span>
-                <h2 className="text-[0.85rem] tracking-[0.1em] uppercase text-earth-300">Preferred date & time</h2>
-              </div>
+                </div>
               <CallDateTimePicker value={callDateTime} onChange={setCallDateTime} />
             </div>
 
@@ -111,13 +106,11 @@ function BookACallInner() {
               {/* 3 questions */}
               <div className="space-y-4 flex-1">
                 <div className="flex items-center gap-2">
-                  <span className="material-symbols-outlined text-gold-400 text-[1.2rem]">chat</span>
-                  <h2 className="text-[0.85rem] tracking-[0.1em] uppercase text-earth-300">A few questions</h2>
-                </div>
+                  </div>
                 {CALL_QUESTIONS.map((q, idx) => (
                   <div key={idx} className="space-y-1.5">
                     <label className="text-[0.78rem] text-earth-400 leading-relaxed block">
-                      {String(idx + 1).padStart(2, "0")}. {q}
+                      <span className="text-gold-500">{String(idx + 1).padStart(2, "0")}.</span> {q}
                     </label>
                     <div className="flex gap-2">
                       {["Yes", "No", "Maybe"].map((opt) => (
@@ -156,7 +149,6 @@ function BookACallInner() {
           </div>
         </div>
       </section>
-      <Footer />
 
       {/* Modal */}
       {showModal && (

@@ -29,10 +29,10 @@ export default function LandingFiveYearCycle() {
           className="text-2xl md:text-3xl font-normal text-gold-500 mb-4 md:mb-5"
           style={{ fontFamily: "Outfit, sans-serif" }}
         >
-          THE FOUNDING FIVE-YEAR CYCLE
+          The Founding Five-Year Cycle
         </h2>
 
-        <div className="space-y-3 max-w-3xl mx-auto mb-10">
+        <div className="space-y-3 max-w-full mx-auto mb-10">
           <p className="text-earth-100 text-base md:text-lg font-body">
             The first five years establish the culture of the estate.
           </p>
