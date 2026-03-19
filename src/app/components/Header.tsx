@@ -137,14 +137,6 @@ export default function Header() {
               >
                 Blogs
               </Link>
-              <Link 
-                href="/faq" 
-                className={`text-sm uppercase tracking-wider transition-colors ${
-                  isActive("/faq") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
-                }`}
-              >
-                FAQ
-              </Link>
               {isAuthenticated ? (
                 <>
                   <Link 
@@ -230,13 +222,6 @@ export default function Header() {
                 }`}
             >
               Blogs
-            </Link>
-            <Link
-              href="/faq"
-              className={`block px-4 py-3 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/faq") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
-                }`}
-            >
-              FAQ
             </Link>
             {isAuthenticated ? (
               <>

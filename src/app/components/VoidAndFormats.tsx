@@ -3,36 +3,25 @@ import Link from "next/link";
 export default function VoidAndFormats() {
   return (
     <section className="py-12 md:py-24 px-4 md:px-16 bg-earth-950">
-      <div className="w-full max-w-5xl mx-auto">
-       
-
+      <div className="w-full">
         {/* Experience copy */}
         <div className="mb-12 md:mb-16">
-
-        <h2
-            className="text-center text-2xl md:text-3xl font-normal text-gold-500 mb-4 md:mb-6 "
+          <h2
+            className="text-center text-2xl md:text-3xl font-normal text-gold-500 mb-4 md:mb-6"
             style={{ fontFamily: "Outfit, sans-serif" }}
           >
             How It Works
           </h2>
-
-
-          <div className="max-w-5xl mx-auto text-center text-earth-300 text-base md:text-lg leading-relaxed space-y-3 md:space-y-4">
+          <div className="text-center text-earth-300 text-base md:text-lg leading-relaxed space-y-3 md:space-y-4">
             <p>
-              There is no schedule when you arrive. No one is waiting to guide you.<br/> The estate simply removes everything that has been competing for your attention.
-            </p>
-            <p className="md:whitespace-nowrap">
-              You step into a low-stimulation environment. External roles pause. Input reduces. Attention stabilizes.
+              There is no fixed agenda when you arrive. The environment is intentionally minimal so your attention can return to what matters.
             </p>
             <p>
-              From that stability, decisions surface.
-              Nothing is interpreted for you.
-              <br/>
-              Silence is not the goal.
-              Silence is the condition.
-              Clarity emerges.
+              Stimulation reduces. Roles soften. Time opens. You move at your own pace between reflection, nature, and self-directed practice.
             </p>
-           
+            <p>
+              Silence is not something you perform. It is the condition that allows clearer thinking and more honest decisions to emerge.
+            </p>
           </div>
         </div>
 
@@ -53,7 +42,7 @@ export default function VoidAndFormats() {
                   Solitude as a Service
                 </h3>
                 <p className="text-earth-300 text-xs md:text-sm leading-relaxed">
-                  Self-directed silence for deep work and decision space.
+                  A structured multi-day stay for uninterrupted thinking, nature-led reset, and self-directed deep work.
                 </p>
               </div>
             </Link>
@@ -71,7 +60,7 @@ export default function VoidAndFormats() {
                   Experiments as a Service
                 </h3>
                 <p className="text-earth-300 text-xs md:text-sm leading-relaxed">
-                  Controlled sessions for testing ideas without public pressure.
+                  A private environment to test ideas, routines, or creative directions without performance pressure.
                 </p>
               </div>
             </Link>
@@ -89,7 +78,7 @@ export default function VoidAndFormats() {
                   Residency as a Service
                 </h3>
                 <p className="text-earth-300 text-xs md:text-sm leading-relaxed">
-                  Small-group immersion around a single high-stakes question.
+                  A curated small-group immersion with expert dialogue to explore one critical question in depth.
                 </p>
               </div>
             </Link>

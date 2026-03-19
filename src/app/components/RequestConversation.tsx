@@ -15,7 +15,7 @@ export default function RequestConversation(_props: RequestConversationProps) {
           href="/cycles"
           className="inline-block text-lg font-normal text-gold-500 hover:text-gold-400 hover:border-gold-400 transition-colors cursor-pointer border-2 border-gold-500 rounded-lg px-6 py-2"
         >
-          Explore Access →
+          Request an Access →
         </Link>
         {/* Bottom Notice */}
         <div className="text-center">

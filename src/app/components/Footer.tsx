@@ -87,7 +87,6 @@ export default function Footer() {
             <h4 className="text-[#e7dfd3] font-bold mb-6 text-sm tracking-wide uppercase">Have Questions?</h4>
             <ul className="space-y-4 text-sm text-[#e7dfd3] font-body">
               <li><Link href="/blogs" className="hover:text-gold-500 transition-colors block py-0.5">Blogs</Link></li>
-              <li><Link href="/events" className="hover:text-gold-500 transition-colors block py-0.5">Events</Link></li>
              
               <li><Link href="/faq" className="hover:text-gold-500 transition-colors block py-0.5">FAQ</Link></li>
               <li><Link href="/contact" className="hover:text-gold-500 transition-colors block py-0.5">Work as Volunteer</Link></li>
@@ -112,7 +111,7 @@ export default function Footer() {
                 </li>
                 <li className="flex items-center gap-3 group">
                   <span className="material-symbols-outlined text-lg text-earth-400 group-hover:text-gold-500 transition-colors">location_on</span>
-                  <a href="https://maps.app.goo.gl/K12Hj47J2aMKhZvq8" target="_blank" rel="noopener noreferrer" className="hover:text-[#e7dfd3] transition-colors">Google Map Location </a>
+                  <a href="https://maps.app.goo.gl/K12Hj47J2aMKhZvq8" target="_blank" rel="noopener noreferrer" className="hover:text-[#e7dfd3] transition-colors">Bhigwan , Maharashtra </a>
                 </li>
                 <li className="flex items-center gap-3 group">
                   <svg className="w-5 h-5 text-earth-400 group-hover:text-gold-500 transition-colors flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">

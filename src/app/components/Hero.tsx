@@ -73,7 +73,7 @@ export default function Hero() {
 
           <div className="space-y-3 md:space-y-4 text-[#E7DFD3] font-body">
             <p className="text-lg md:text-2xl font-normal leading-relaxed">
-              The world does not run out of noise. It runs out of places that protect you from it.
+              A private estate designed for structured silence, deep work, and decision clarity.
               <br /> 
             </p>
            
@@ -88,7 +88,7 @@ export default function Hero() {
               href="/cycles"              className="inline-flex items-center gap-2 text-gold-500 hover:text-gold-400 hover:border-gold-400 transition-colors duration-300 text-base md:text-lg font-normal border-2 border-gold-500 rounded-lg px-5 md:px-6 py-2.5 md:py-3 bg-earth-950/50 backdrop-blur-sm"
               
             >
-             Explore Access →
+             Request an Invite →
             </Link>
             <p className="text-earth-300/80">
             <span className="text-gold-500 font-bold">2026 Cohort</span>: Post-Exit Founders.

@@ -22,7 +22,7 @@ export default function AboutPhilosophy() {
         "Most environments amplify input. Silence reduces distortion. Clear thinking requires signal control. The estate is built on this principle.",
     },
     {
-      title: "Why Membership",
+      title: "Why Club",
       description:
         "Attention requires cultural coherence. Limited membership preserves the density of the environment, protects the anonymity of members, and prevents cultural drift. When the room changes every day, the environment cannot stabilize. Membership solves this.",
     },
