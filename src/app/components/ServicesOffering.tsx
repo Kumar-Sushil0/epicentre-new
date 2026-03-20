@@ -115,14 +115,14 @@ export default function ServicesOffering({
             className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-4 flex flex-col cursor-pointer hover:border-gold-500/70 transition-colors"
             onClick={() =>
               onCycleSelect?.({
-                label: "Weekend Cycle",
+                label: "Residency as a Service",
                 accommodationType,
                 priceLabel: `${accommodationType === "dorm" ? "₹10,000" : "₹15,000"} per person`,
               })
             }
           >
             <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Weekend Cycle
+             Residency as a Service
             </h3>
             
             <p className="text-gold-500 text-sm leading-snug mb-3">
@@ -159,14 +159,14 @@ export default function ServicesOffering({
             className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-4 flex flex-col cursor-pointer hover:border-gold-500/70 transition-colors"
             onClick={() =>
               onCycleSelect?.({
-                label: "Weekday Cycle",
+                label: "Solitude as a Service",
                 accommodationType,
                 priceLabel: `${accommodationType === "dorm" ? "₹20,000" : "₹30,000"} per person`,
               })
             }
           >
             <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Weekday Cycle
+              Solitude as a Service
             </h3>
             
             <p className="text-gold-500 text-sm leading-snug mb-3">
@@ -287,7 +287,7 @@ export default function ServicesOffering({
               className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-4 cursor-pointer hover:border-gold-500/70 transition-colors"
               onClick={() =>
                 onCycleSelect?.({
-                  label: "Full Cycle",
+                  label: "Experiment as a Service",
                   accommodationType,
                   priceLabel: `${["F", "S", "Su"].includes(selectedDay) ? "₹1,20,000" : "₹1,00,000"} per night (full estate)`,
                 })
@@ -296,7 +296,7 @@ export default function ServicesOffering({
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
                 <div className="flex-1">
                   <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                    Collective Cycle
+                    Experiment as a Service
                   </h3>
                   <p className="text-gold-500 text-sm leading-snug mb-3">
                     Complete environmental control for sustained immersion.

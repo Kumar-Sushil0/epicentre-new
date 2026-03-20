@@ -209,8 +209,8 @@ export default function TestPage() {
                                             This cycle is self-directed and requires comfort with spending extended time alone or in silence. Limited guidance is provided primarily for safety and orientation.
                                         </p>
                                         <p className="text-earth-400 text-base mb-4">For availability and suitability, you can begin with a short conversation.</p>
-                                        <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 w-full px-5 py-3 rounded-lg border border-gold-500 text-gold-500 text-base font-medium hover:bg-gold-500 hover:text-earth-950 transition-all" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                            Request a Conversation →
+                                        <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-gold-500 text-gold-500 text-base font-medium hover:bg-gold-500 hover:text-earth-950 transition-all" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                            Request an Invite →
                                         </a>
                                     </div>
 
@@ -322,8 +322,8 @@ export default function TestPage() {
                                             This format requires participants to be comfortable with minimal facilitation and extended silent or low-interaction periods.
                                         </p>
                                         <p className="text-earth-400 text-base mb-4">A short alignment conversation helps determine suitability and estate configuration.</p>
-                                        <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 w-full px-5 py-3 rounded-lg border border-gold-500 text-gold-500 text-base font-medium hover:bg-gold-500 hover:text-earth-950 transition-all" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                            Request a Conversation →
+                                        <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-gold-500 text-gold-500 text-base font-medium hover:bg-gold-500 hover:text-earth-950 transition-all" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                            Request an Invite →
                                         </a>
                                     </div>
                                 </div>
@@ -442,8 +442,8 @@ export default function TestPage() {
                                             Residency requires mental readiness for silence, independent thinking, and honest inquiry.
                                         </p>
                                         <p className="text-earth-400 text-base mb-4">A short conversation helps assess alignment with the theme and cohort.</p>
-                                        <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 w-full px-5 py-3 rounded-lg border border-gold-500 text-gold-500 text-base font-medium hover:bg-gold-500 hover:text-earth-950 transition-all" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                            Request a Conversation →
+                                        <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-gold-500 text-gold-500 text-base font-medium hover:bg-gold-500 hover:text-earth-950 transition-all" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                            Request an Invite →
                                         </a>
                                     </div>
                                 </div>
