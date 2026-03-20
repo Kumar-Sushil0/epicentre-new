@@ -296,7 +296,7 @@ export default function ServicesOffering({
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
                 <div className="flex-1">
                   <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                    Full Cycle
+                    Collective Cycle
                   </h3>
                   <p className="text-gold-500 text-sm leading-snug mb-3">
                     Complete environmental control for sustained immersion.
