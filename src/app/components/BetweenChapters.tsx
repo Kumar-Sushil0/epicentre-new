@@ -26,6 +26,9 @@ export default function BetweenChapters() {
         <p className="text-[#261B14] text-base md:text-lg font-body">
           Just uninterrupted time with your own thinking.<br/> That is rarer than you expect.
         </p>
+        <p className="text-[#261B14] text-base md:text-lg font-body">
+        The Silent Club is a private estate built for individuals between major chapters.
+        </p>
       </div>
     </section>
   );
