@@ -68,7 +68,7 @@ function BookACallInner() {
           {/* Page header */}
           <div className="space-y-2">
             <h1 className="text-3xl md:text-4xl font-normal text-earth-50" style={{ fontFamily: "Cormorant Garamond, serif" }}>
-              Book a 15 min Call
+              Book a 15 min Alignment Call
             </h1>
             <p className="text-[0.9rem] text-earth-400">
               A short conversation to understand where you are and whether this is the right moment.
@@ -139,7 +139,7 @@ function BookACallInner() {
                   onClick={() => { setModalStep("form"); setShowModal(true); }}
                   className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 text-[0.8rem] tracking-[0.14em] uppercase border border-gold-500 text-gold-400 hover:bg-gold-500/10 rounded-lg transition-colors"
                 >
-                  Book a Call →
+                  Book a 15 min Alignment Call →
                 </button>
                 <p className="text-center text-[0.72rem] text-earth-600">
                   No commitment. The call is a conversation, not a sales process.

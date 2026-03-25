@@ -30,20 +30,38 @@ export default function ServicesOffering({
   const [cycleType, setCycleType] = useState<'weekday' | 'weekend'>('weekday');
   const [selectedDay, setSelectedDay] = useState<'M' | 'T' | 'W' | 'Th' | 'F' | 'S' | 'Su'>('M');
   const [isDesignYourDayOpen, setIsDesignYourDayOpen] = useState(false);
+  const [highlightDesignYourDay, setHighlightDesignYourDay] = useState(false);
+  const [pendingSelection, setPendingSelection] = useState<CycleSelectionDetails | null>(null);
+
+  const handlePlanClick = (selection: CycleSelectionDetails) => {
+    setPendingSelection(selection);
+    setHighlightDesignYourDay(true);
+  };
+
+  const closeDesignYourDay = () => {
+    setIsDesignYourDayOpen(false);
+    if (pendingSelection) {
+      onCycleSelect?.(pendingSelection);
+      setPendingSelection(null);
+    }
+  };
 
   return (
-    <section id="cycles-section" className="relative pt-16 pb-6 md:pt-20 md:pb-8 px-4 md:px-16 bg-earth-950">
+    <section id="cycles-section" className="relative pt-10 pb-3 md:pt-12 md:pb-4 px-4 md:px-16 bg-earth-950">
       <div className="w-full">
-        <h2 className="text-2xl md:text-3xl font-normal text-gold-500 mb-4 md:mb-6 text-center" style={{ fontFamily: 'Outfit, sans-serif' }}>
+        <h2 className="text-2xl md:text-3xl font-normal text-gold-500 mb-2 md:mb-3 text-center" style={{ fontFamily: 'Outfit, sans-serif' }}>
            {title}
         </h2>
-        <p className="text-earth-300 text-base md:text-lg text-center mb-3 md:mb-4 px-4">
+        <p className="text-earth-300 text-sm md:text-base text-center mb-2 md:mb-3 px-4">
         Cycles do not change the environment. They change your depth of engagement. Access is available through membership or invitation only.
         </p>
 
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-5xl mx-auto relative">
+              {highlightDesignYourDay ? (
+                <div className="absolute inset-0 z-10 bg-black/70 pointer-events-none rounded-xl" />
+              ) : null}
               {/* Accommodation toggle ABOVE the three cards */}
-              <div className="flex justify-center mb-3 md:mb-4">
+              <div className="flex justify-center mb-2 md:mb-3">
                 <div className="inline-flex items-center gap-2 bg-earth-800/50 rounded-lg p-1 border border-earth-700/50">
                   <button
                     onClick={() => setAccommodationType('dorm')}
@@ -71,27 +89,27 @@ export default function ServicesOffering({
               </div>
 
               {/* Three Cards Below */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 mb-2.5">
           
           {/* Day Cycle Card (first) */}
           <div
-            className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-3 md:p-4 flex flex-col cursor-pointer hover:border-gold-500/70 transition-colors"
+            className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-3 flex flex-col cursor-pointer hover:border-gold-500/70 transition-colors"
             onClick={() =>
-              onCycleSelect?.({
+              handlePlanClick({
                 label: "Day Cycle",
                 accommodationType,
                 priceLabel: "₹1,000 per person",
               })
             }
           >
-            <h3 className="text-lg md:text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Day Cycle
+            <h3 className="text-lg md:text-xl font-normal text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
+             Silence as a Service
             </h3>
             
-            <p className="text-gold-500 text-xs md:text-sm leading-snug mb-3">
+            <p className="text-gold-500 text-xs md:text-sm leading-snug mb-2">
               Short recalibration when attention needs immediate correction.
             </p>
-            <div className="space-y-1 mb-2 flex-1">
+            <div className="space-y-1 mb-1.5 flex-1">
               <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
                 <span className="text-earth-300 text-sm">Full Access Upto 4Hrs</span>
@@ -114,24 +132,24 @@ export default function ServicesOffering({
 
           {/* Weekend Cycle Card (second) */}
           <div
-            className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-4 flex flex-col cursor-pointer hover:border-gold-500/70 transition-colors"
+            className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-3 flex flex-col cursor-pointer hover:border-gold-500/70 transition-colors"
             onClick={() =>
-              onCycleSelect?.({
+              handlePlanClick({
                 label: "Residency as a Service",
                 accommodationType,
                 priceLabel: `${accommodationType === "dorm" ? "₹10,000" : "₹15,000"} per person`,
               })
             }
           >
-            <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            <h3 className="text-xl font-normal text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
              Residency as a Service
             </h3>
             
-            <p className="text-gold-500 text-sm leading-snug mb-3">
+            <p className="text-gold-500 text-sm leading-snug mb-2">
               Structured withdrawal without disrupting larger commitments.
             </p>
 
-            <div className="space-y-1 mb-2 flex-1">
+            <div className="space-y-1 mb-1.5 flex-1">
               <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
                 <span className="text-earth-300 text-sm">2 nights / 3 days</span>
@@ -158,23 +176,23 @@ export default function ServicesOffering({
           
           {/* Weekday Cycle Card (third) */}
           <div
-            className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-4 flex flex-col cursor-pointer hover:border-gold-500/70 transition-colors"
+            className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-3 flex flex-col cursor-pointer hover:border-gold-500/70 transition-colors"
             onClick={() =>
-              onCycleSelect?.({
+              handlePlanClick({
                 label: "Solitude as a Service",
                 accommodationType,
                 priceLabel: `${accommodationType === "dorm" ? "₹20,000" : "₹30,000"} per person`,
               })
             }
           >
-            <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            <h3 className="text-xl font-normal text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Solitude as a Service
             </h3>
             
-            <p className="text-gold-500 text-sm leading-snug mb-3">
+            <p className="text-gold-500 text-sm leading-snug mb-2">
               Extended silence for deep, sustained work.
             </p>
-            <div className="space-y-1 mb-2 flex-1">
+            <div className="space-y-1 mb-1.5 flex-1">
               <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
                 <span className="text-earth-300 text-sm">4 nights / 5 days</span>
@@ -207,7 +225,7 @@ export default function ServicesOffering({
           </div>
 
           {/* Weekday/Weekend toggle + Full Cycle BELOW the three cards */}
-          <div className="mt-4 space-y-3">
+          <div className="mt-2.5 space-y-2.5">
             {/* Weekday/Weekend Toggle */}
             <div className="flex justify-center">
               <div className="inline-flex items-center gap-2 bg-earth-800/50 rounded-lg p-1 border border-earth-700/50">
@@ -286,24 +304,24 @@ export default function ServicesOffering({
 
             {/* Full Cycle card */}
             <div
-              className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-4 cursor-pointer hover:border-gold-500/70 transition-colors"
+              className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-3 cursor-pointer hover:border-gold-500/70 transition-colors"
               onClick={() =>
-                onCycleSelect?.({
+                handlePlanClick({
                   label: "Experiment as a Service",
                   accommodationType,
                   priceLabel: `${["F", "S", "Su"].includes(selectedDay) ? "₹1,20,000" : "₹1,00,000"} per night (full estate)`,
                 })
               }
             >
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
                 <div className="flex-1">
-                  <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                  <h3 className="text-xl font-normal text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
                     Experiment as a Service
                   </h3>
-                  <p className="text-gold-500 text-sm leading-snug mb-3">
+                  <p className="text-gold-500 text-sm leading-snug mb-2">
                     Complete environmental control for sustained immersion.
                   </p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5">
                     <div className="flex items-center gap-2">
                       <span className="text-gold-500">•</span>
                       <span className="text-earth-300 text-sm">Full access to all facilities</span>
@@ -322,7 +340,7 @@ export default function ServicesOffering({
                 </div>
 
                 {/* Right side: Day selector */}
-                <div className="flex flex-col items-end h-full min-h-[120px]">
+                <div className="flex flex-col items-end h-full min-h-[92px]">
                   {/* Day Selection Toggle Container - Top */}
                   <div className="inline-flex items-center gap-2 bg-earth-800/50 rounded-lg p-1 border border-earth-700/50">
                     {/* Weekdays */}
@@ -374,7 +392,7 @@ export default function ServicesOffering({
               </div>
 
               {/* Full Cycle Pricing (replaces CTA) */}
-              <div className="mt-3 text-right">
+              <div className="mt-2 text-right">
                 <div className="text-gold-500 text-xl font-normal">
                   ₹{["F", "S", "Su"].includes(selectedDay) ? "1,20,000" : "1,00,000"}
                 </div>
@@ -386,11 +404,18 @@ export default function ServicesOffering({
 
             <button
               type="button"
-              onClick={() => setIsDesignYourDayOpen(true)}
-              className="block mx-auto text-gold-500 hover:text-gold-400 underline underline-offset-4 transition-colors"
+              onClick={() => {
+                setIsDesignYourDayOpen(true);
+                setHighlightDesignYourDay(false);
+              }}
+              className={`relative z-20 block mx-auto px-4 py-2 rounded-md border text-sm md:text-base transition-all ${
+                highlightDesignYourDay
+                  ? "text-gold-300 border-gold-400 bg-gold-500/10 animate-pulse shadow-[0_0_18px_rgba(212,175,55,0.65)]"
+                  : "text-gold-500 border-earth-600 bg-earth-800/50 hover:text-gold-400 hover:border-gold-500/70"
+              }`}
               style={{ fontFamily: "Outfit, sans-serif" }}
             >
-              Design Your Day
+              Design Your Stay at The Silent Club
             </button>
           </div>
 
@@ -403,7 +428,7 @@ export default function ServicesOffering({
           <div className="relative w-full max-w-7xl mx-auto h-full overflow-y-auto rounded-xl border border-earth-700/50 bg-earth-950">
             <button
               type="button"
-              onClick={() => setIsDesignYourDayOpen(false)}
+              onClick={closeDesignYourDay}
               aria-label="Close design your day popup"
               className="sticky top-3 ml-auto mr-3 mt-3 z-10 flex items-center justify-center w-9 h-9 rounded-full bg-earth-800 text-earth-200 hover:text-gold-500 transition-colors"
             >
