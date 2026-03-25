@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import DesignYourDay from "./DesignYourDay";
 
 const whatsappNumber = '919890322494'; // WhatsApp number with country code
 const whatsappMessage = encodeURIComponent('Hey I find this interesting i would like to know more');
@@ -21,13 +22,14 @@ interface ServicesOfferingProps {
 
 export default function ServicesOffering({
   onCycleSelect,
-  title = "Request an Invite",
+  title = "Plans",
   primaryToggleLabel = "Dorm",
   secondaryToggleLabel = "Private Room",
 }: ServicesOfferingProps) {
   const [accommodationType, setAccommodationType] = useState<'dorm' | 'room'>('dorm');
   const [cycleType, setCycleType] = useState<'weekday' | 'weekend'>('weekday');
   const [selectedDay, setSelectedDay] = useState<'M' | 'T' | 'W' | 'Th' | 'F' | 'S' | 'Su'>('M');
+  const [isDesignYourDayOpen, setIsDesignYourDayOpen] = useState(false);
 
   return (
     <section id="cycles-section" className="relative pt-16 pb-6 md:pt-20 md:pb-8 px-4 md:px-16 bg-earth-950">
@@ -381,11 +383,36 @@ export default function ServicesOffering({
                 </p>
               </div>
             </div>
+
+            <button
+              type="button"
+              onClick={() => setIsDesignYourDayOpen(true)}
+              className="block mx-auto text-gold-500 hover:text-gold-400 underline underline-offset-4 transition-colors"
+              style={{ fontFamily: "Outfit, sans-serif" }}
+            >
+              Design Your Day
+            </button>
           </div>
 
         </div>
 
       </div>
+
+      {isDesignYourDayOpen ? (
+        <div className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm p-4 md:p-8">
+          <div className="relative w-full max-w-7xl mx-auto h-full overflow-y-auto rounded-xl border border-earth-700/50 bg-earth-950">
+            <button
+              type="button"
+              onClick={() => setIsDesignYourDayOpen(false)}
+              aria-label="Close design your day popup"
+              className="sticky top-3 ml-auto mr-3 mt-3 z-10 flex items-center justify-center w-9 h-9 rounded-full bg-earth-800 text-earth-200 hover:text-gold-500 transition-colors"
+            >
+              <span className="material-symbols-outlined text-base">close</span>
+            </button>
+            <DesignYourDay />
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 }

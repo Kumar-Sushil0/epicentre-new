@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 import ServicesOffering from "../components/ServicesOffering";
 
 export default function CyclesPage() {
@@ -23,7 +22,6 @@ export default function CyclesPage() {
           }}
         />
       </div>
-      <Footer />
     </main>
   );
 }

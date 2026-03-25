@@ -210,7 +210,7 @@ export default function TestPage() {
                                         </p>
                                         <p className="text-earth-400 text-base mb-4">For availability and suitability, you can begin with a short conversation.</p>
                                         <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-gold-500 text-gold-500 text-base font-medium hover:bg-gold-500 hover:text-earth-950 transition-all" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                            Request an Invite →
+                                            View Plans →
                                         </a>
                                     </div>
 
@@ -323,7 +323,7 @@ export default function TestPage() {
                                         </p>
                                         <p className="text-earth-400 text-base mb-4">A short alignment conversation helps determine suitability and estate configuration.</p>
                                         <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-gold-500 text-gold-500 text-base font-medium hover:bg-gold-500 hover:text-earth-950 transition-all" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                            Request an Invite →
+                                            View Plans →
                                         </a>
                                     </div>
                                 </div>
@@ -443,7 +443,7 @@ export default function TestPage() {
                                         </p>
                                         <p className="text-earth-400 text-base mb-4">A short conversation helps assess alignment with the theme and cohort.</p>
                                         <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-gold-500 text-gold-500 text-base font-medium hover:bg-gold-500 hover:text-earth-950 transition-all" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                            Request an Invite →
+                                            View Plans →
                                         </a>
                                     </div>
                                 </div>
