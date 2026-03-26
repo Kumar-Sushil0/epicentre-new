@@ -19,9 +19,10 @@ interface TimeSlot {
 const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const DAYS = ["Su","Mo","Tu","We","Th","Fr","Sa"];
 
-const activityGroups: { title: string; activities: Activity[] }[] = [
+const activityGroups: { title: string; iconClass: string; activities: Activity[] }[] = [
   {
     title: "Deep Work",
+    iconClass: "text-indigo-300",
     activities: [
       { id: "writing", name: "Writing", icon: "edit_note" },
       { id: "reading", name: "Reading", icon: "menu_book" },
@@ -33,6 +34,7 @@ const activityGroups: { title: string; activities: Activity[] }[] = [
   },
   {
     title: "Quiet Exploration",
+    iconClass: "text-emerald-300",
     activities: [
       { id: "bird-watching", name: "Bird Watching", icon: "flutter" },
       { id: "forest-safari", name: "Forest Safari", icon: "forest" },
@@ -44,6 +46,7 @@ const activityGroups: { title: string; activities: Activity[] }[] = [
   },
   {
     title: "Body Reset",
+    iconClass: "text-sky-300",
     activities: [
       { id: "gym", name: "Gym", icon: "fitness_center" },
       { id: "running", name: "Running", icon: "directions_run" },
@@ -55,6 +58,7 @@ const activityGroups: { title: string; activities: Activity[] }[] = [
   },
   {
     title: "Creative Expression",
+    iconClass: "text-amber-300",
     activities: [
       { id: "drawing", name: "Drawing", icon: "brush" },
       { id: "sketching", name: "Sketching", icon: "ink_pen" },
@@ -66,6 +70,7 @@ const activityGroups: { title: string; activities: Activity[] }[] = [
   },
   {
     title: "Gentle Social",
+    iconClass: "text-rose-300",
     activities: [
       { id: "board-games", name: "Board Games", icon: "casino" },
       { id: "cooking", name: "Cooking", icon: "cooking" },
@@ -77,13 +82,14 @@ const activityGroups: { title: string; activities: Activity[] }[] = [
   },
   {
     title: "Subtraction Rituals",
+    iconClass: "text-violet-300",
     activities: [
-      { id: "silence-blocks", name: "Silence Blocks - Auditory reset", icon: "hearing_disabled" },
-      { id: "dark-room", name: "Dark Room - Visual reset", icon: "visibility_off" },
-      { id: "digital-fasting", name: "Digital Fasting - Cognitive reset", icon: "phonelink_off" },
-      { id: "anonymous-presence", name: "Anonymous Presence - Identity reset", icon: "person_off" },
-      { id: "float-tank", name: "Float Tank - Total sensory reset", icon: "water" },
-      { id: "horizon-gazing", name: "Horizon Gazing - Perspective reset", icon: "landscape" },
+      { id: "silence-blocks", name: "Silence Blocks", icon: "hearing_disabled" },
+      { id: "dark-room", name: "Dark Room", icon: "visibility_off" },
+      { id: "digital-fasting", name: "Digital Fasting", icon: "phonelink_off" },
+      { id: "anonymous-presence", name: "Anonymous Presence", icon: "person_off" },
+      { id: "float-tank", name: "Float Tank", icon: "water" },
+      { id: "horizon-gazing", name: "Horizon Gazing", icon: "landscape" },
     ],
   },
 ];
@@ -106,9 +112,17 @@ const timeSlots: TimeSlot[] = [
 const CHECK_IN_TIME = "13:00";
 const CHECK_OUT_TIME = "11:00";
 
-export default function DesignYourDay() {
+interface DesignYourDayProps {
+  cycle?: string;
+  accommodation?: string;
+  price?: string;
+  quantity?: string;
+}
+
+export default function DesignYourDay({ cycle, accommodation, price, quantity }: DesignYourDayProps) {
   const [schedule, setSchedule] = useState<{ [key: string]: string }>({});
   const [draggedActivity, setDraggedActivity] = useState<string | null>(null);
+  const [activeDropKey, setActiveDropKey] = useState<string | null>(null);
   const [checkIn, setCheckIn] = useState<Date | null>(null);
   const [checkOut, setCheckOut] = useState<Date | null>(null);
   const [hoverDate, setHoverDate] = useState<Date | null>(null);
@@ -180,8 +194,16 @@ export default function DesignYourDay() {
     setDraggedActivity(activityId);
   };
 
-  const handleDragOver = (e: React.DragEvent) => {
+  const handleDragOver = (e: React.DragEvent, dropKey: string) => {
     e.preventDefault();
+    if (activeDropKey !== dropKey) {
+      setActiveDropKey(dropKey);
+    }
+  };
+
+  const handleDragEnd = () => {
+    setDraggedActivity(null);
+    setActiveDropKey(null);
   };
 
   const handleDrop = (date: string, time: string, isFixed?: boolean, isLocked?: boolean) => {
@@ -197,6 +219,7 @@ export default function DesignYourDay() {
       return next;
     });
     setDraggedActivity(null);
+    setActiveDropKey(null);
   };
 
   const handleRemove = (date: string, time: string) => {
@@ -255,13 +278,36 @@ export default function DesignYourDay() {
       keys.push(formatDateKey(cursor));
       cursor.setDate(cursor.getDate() + 1);
     }
-    return keys.slice(0, 7);
+    return keys.slice(0, maxSelectableDays);
+  };
+
+  const normalizedCycle = (cycle || "").toLowerCase();
+  const isDayCyclePlan = normalizedCycle === "day cycle";
+  const isResidencyPlan = normalizedCycle === "residency as a service";
+  const isSolitudePlan = normalizedCycle === "solitude as a service";
+  const maxSelectableDays = isDayCyclePlan ? 1 : 7;
+
+  // JS getDay(): 0=Sun,1=Mon,...,5=Fri,6=Sat
+  const isDateAllowedByPlan = (d: Date) => {
+    const weekday = d.getDay();
+    if (isResidencyPlan) return weekday === 5 || weekday === 6 || weekday === 0; // Fri/Sat/Sun
+    if (isSolitudePlan) return weekday >= 1 && weekday <= 5; // Mon-Fri
+    return true; // Day Cycle + Experiment as a Service => any day
   };
 
   const handleDateClick = (day: number) => {
     const d = new Date(year, month, day);
     d.setHours(0, 0, 0, 0);
-    if (d < today) return;
+    if (d < today || !isDateAllowedByPlan(d)) return;
+
+    // Day Cycle: only one date allowed
+    if (isDayCyclePlan) {
+      setCheckIn(d);
+      setCheckOut(null);
+      setHoverDate(null);
+      setSelectedDates([formatDateKey(d)]);
+      return;
+    }
 
     if (!checkIn || (checkIn && checkOut) || (checkIn && d < checkIn)) {
       setCheckIn(d);
@@ -279,6 +325,15 @@ export default function DesignYourDay() {
         setSelectedDates([formatDateKey(d)]);
       } else {
         const keys = buildRangeKeys(checkIn, d);
+        const hasDisallowedDateInRange = keys.some((key) => !isDateAllowedByPlan(new Date(`${key}T00:00:00`)));
+        if (hasDisallowedDateInRange) {
+          // If range crosses restricted weekdays, restart selection from clicked date.
+          setCheckIn(d);
+          setCheckOut(null);
+          setHoverDate(null);
+          setSelectedDates([formatDateKey(d)]);
+          return;
+        }
         const cappedEnd = new Date(`${keys[keys.length - 1]}T00:00:00`);
         setCheckOut(cappedEnd);
         setSelectedDates(keys);
@@ -293,41 +348,84 @@ export default function DesignYourDay() {
       year: "numeric",
     });
 
+  const callParams = new URLSearchParams();
+  if (cycle) callParams.set("cycle", cycle);
+  if (accommodation) callParams.set("accommodation", accommodation);
+  if (price) callParams.set("price", price);
+  if (quantity) callParams.set("quantity", quantity);
+  const bookCallHref = `/book-a-call${callParams.toString() ? `?${callParams.toString()}` : ""}`;
+
   return (
-    <section className="py-4 px-3 md:px-6 bg-earth-950 border-t border-earth-900">
+    <section className="py-4 px-3 md:px-6 bg-earth-950">
       <div className="w-full">
-        {/* Date Selection */}
+        {/* Planning Context + Date Selection */}
         <div className="mb-3">
-          <button
-            type="button"
-            onClick={() => setIsDatePickerOpen(true)}
-            className="w-full md:w-auto bg-earth-800/50 border border-earth-700/50 rounded-md px-3 py-2 text-earth-200 text-sm hover:border-gold-500/60 transition-colors"
-          >
-            {selectedDates.length
-              ? `${selectedDates.length} date${selectedDates.length > 1 ? "s" : ""} selected`
-              : "Select Dates (up to 7)"}
-          </button>
-          {selectedDates.length ? (
-            <div className="mt-2 flex flex-wrap gap-1">
-              {selectedDates.map((date) => (
-                <span key={date} className="text-[10px] px-2 py-0.5 rounded-full bg-gold-500/15 border border-gold-500/30 text-gold-300">
-                  {prettyDate(date)}
-                </span>
-              ))}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 text-xs">
+            <div className="rounded-lg border border-gold-500/25 bg-earth-900/70 px-3 py-2">
+              <p className="text-[10px] uppercase tracking-[0.08em] text-earth-500">Plan</p>
+              <p className="text-gold-500 text-sm font-medium mt-0.5">{cycle ?? "-"}</p>
+              <p className="text-[10px] text-earth-400 mt-1">
+                {accommodation ? (accommodation === "dorm" ? "Dorm" : "Private Room") : "-"}
+              </p>
             </div>
-          ) : null}
+            <button
+              type="button"
+              onClick={() => setIsDatePickerOpen(true)}
+              className="text-left rounded-lg border border-gold-500/25 bg-earth-900/70 px-3 py-2 hover:border-gold-500/60 transition-colors"
+            >
+              <p className="text-[10px] uppercase tracking-[0.08em] text-earth-500">Dates</p>
+              <p className="text-gold-500 text-sm font-medium mt-0.5">
+                {selectedDates.length
+                  ? `${selectedDates.length} selected`
+                  : ""}
+              </p>
+              {selectedDates.length ? (
+                <div className="mt-1.5 flex flex-wrap gap-1">
+                  {selectedDates.map((date) => (
+                    <span
+                      key={date}
+                      className="text-[10px] px-2 py-0.5 rounded-full bg-gold-500/15 border border-gold-500/40 text-gold-300"
+                    >
+                      {prettyDate(date)}
+                    </span>
+                  ))}
+                </div>
+              ) : (
+                <div className="mt-1">
+                  <p className="text-[10px] text-gold-400 font-medium">Click to select dates</p>
+                  <p className="text-[10px] text-earth-500 mt-0.5">
+                    {isDayCyclePlan
+                      ? "Single day only"
+                      : isResidencyPlan
+                      ? "Friday, Saturday, Sunday only"
+                      : isSolitudePlan
+                      ? "Monday to Friday only"
+                      : "Check-in to check-out (max 7 days)"}
+                  </p>
+                </div>
+              )}
+            </button>
+            <div className="rounded-lg border border-gold-500/25 bg-earth-900/70 px-3 py-2">
+              <p className="text-[10px] uppercase tracking-[0.08em] text-earth-500">Quantity</p>
+              <p className="text-gold-500 text-sm font-medium mt-0.5">{quantity ?? "1 person"}</p>
+            </div>
+            <div className="rounded-lg border border-gold-500/25 bg-earth-900/70 px-3 py-2">
+              <p className="text-[10px] uppercase tracking-[0.08em] text-earth-500">Pricing</p>
+              <p className="text-gold-500 text-sm font-medium mt-0.5">{price ?? "-"}</p>
+            </div>
+          </div>
         </div>
 
         {/* Activities Grid */}
         <div className="mb-3">
-          <h3 className="text-sm md:text-base font-normal text-gold-500 mb-2" style={{ fontFamily: "Outfit, sans-serif" }}>
+          <h3 className="text-base md:text-lg font-normal text-gold-500 mb-3 text-center" style={{ fontFamily: "Outfit, sans-serif" }}>
             Available Activities
           </h3>
           <div className="grid grid-cols-2 lg:grid-cols-6 gap-1.5">
             {activityGroups.map((group) => (
               <div key={group.title} className="bg-earth-900/40 border border-earth-700/50 rounded-md overflow-hidden">
                 <div className="px-2 py-1 border-b border-earth-700/50 bg-earth-900/70">
-                  <p className="text-[10px] text-earth-100 font-medium leading-tight">{group.title}</p>
+                  <p className={`text-xs md:text-sm font-semibold leading-tight ${group.iconClass}`}>{group.title}</p>
                 </div>
                 <div>
                   {group.activities.map((activity) => (
@@ -335,9 +433,10 @@ export default function DesignYourDay() {
                       key={activity.id}
                       draggable
                       onDragStart={() => handleDragStart(activity.id)}
+                      onDragEnd={handleDragEnd}
                       className="px-1.5 py-1 cursor-move border-b border-earth-800/70 last:border-b-0 hover:bg-earth-800/40 transition-colors flex items-center gap-1"
                     >
-                      <span className="material-symbols-outlined text-gold-500 text-xs">
+                      <span className={`material-symbols-outlined text-xs ${group.iconClass}`}>
                         {activity.icon}
                       </span>
                       <span className="text-earth-300 text-[10px] leading-tight">{activity.name}</span>
@@ -348,6 +447,10 @@ export default function DesignYourDay() {
             ))}
           </div>
         </div>
+
+        <h3 className="text-base md:text-lg font-normal text-gold-500 mb-3 text-center" style={{ fontFamily: "Outfit, sans-serif" }}>
+          Timetable
+        </h3>
 
         {/* Schedule Grid */}
         <div className={`overflow-x-auto ${!selectedDates.length ? "opacity-40 pointer-events-none" : ""}`}>
@@ -383,12 +486,13 @@ export default function DesignYourDay() {
                   const checkOutIndex = timeSlots.findIndex((s) => s.time === CHECK_OUT_TIME);
                   const firstSelectedDate = selectedDates[0];
                   const lastSelectedDate = selectedDates[selectedDates.length - 1];
+                  const hasMultiDaySelection = selectedDates.length > 1;
                   const isFirstDate = selectedDate === firstSelectedDate;
                   const isLastDate = selectedDate === lastSelectedDate;
-                  const isCheckInMarker = isFirstDate && slot.time === CHECK_IN_TIME;
-                  const isCheckOutMarker = isLastDate && slot.time === CHECK_OUT_TIME;
-                  const isBeforeCheckInBlocked = isFirstDate && slotIndex < checkInIndex;
-                  const isAfterCheckOutBlocked = isLastDate && slotIndex > checkOutIndex;
+                  const isCheckInMarker = hasMultiDaySelection && isFirstDate && slot.time === CHECK_IN_TIME;
+                  const isCheckOutMarker = hasMultiDaySelection && isLastDate && slot.time === CHECK_OUT_TIME;
+                  const isBeforeCheckInBlocked = hasMultiDaySelection && isFirstDate && slotIndex < checkInIndex;
+                  const isAfterCheckOutBlocked = hasMultiDaySelection && isLastDate && slotIndex > checkOutIndex;
                   const isLockedByStayRule = isBeforeCheckInBlocked || isAfterCheckOutBlocked;
                   const key = `${selectedDate}-${slot.time}`;
                   const activityId = schedule[key];
@@ -450,10 +554,15 @@ export default function DesignYourDay() {
                   return (
                     <div
                       key={slot.time}
-                      onDragOver={handleDragOver}
+                      onDragOver={(e) => handleDragOver(e, key)}
                       onDrop={() => handleDrop(selectedDate, slot.time, slot.isFixed, isLockedByStayRule)}
+                      onDragLeave={() => {
+                        if (activeDropKey === key) {
+                          setActiveDropKey(null);
+                        }
+                      }}
                       className={`bg-earth-800/40 rounded-md p-1 min-h-[32px] flex items-center justify-center transition-all ${
-                        draggedActivity && !activity
+                        draggedActivity && !activity && activeDropKey === key
                           ? "border-2 border-dashed border-gold-500/50"
                           : "border border-earth-700/50"
                       }`}
@@ -484,21 +593,10 @@ export default function DesignYourDay() {
           </div>
         </div>
 
-        <p className="text-earth-400 text-xs text-center mt-2">
-          Select dates first (1 to 7). Then drag activities into each date strip. Click an activity to remove it.
-        </p>
-
         {selectedDates.length ? (
           <div className="mt-3 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2">
             <a
-              href="/The_Silent_Club_2_Page_Brochure.pdf"
-              download="The_Silent_Club_2_Page_Brochure.pdf"
-              className="inline-flex items-center justify-center px-3 py-2 rounded-md border border-earth-700 text-gold-400 text-xs hover:border-gold-500/60 hover:bg-gold-500/10 transition-colors"
-            >
-              Download PDF
-            </a>
-            <a
-              href="/book-a-call"
+              href={bookCallHref}
               className="inline-flex items-center justify-center px-3 py-2 rounded-md bg-gold-500 text-earth-950 text-xs font-medium hover:bg-gold-400 transition-colors"
             >
               Book a 15 min Alignment Call
@@ -539,6 +637,7 @@ export default function DesignYourDay() {
                 const d = new Date(year, month, day);
                 d.setHours(0, 0, 0, 0);
                 const isPast = d < today;
+                const isDisallowedByPlan = !isDateAllowedByPlan(d);
                 const selected = selectedDates.includes(formatDateKey(d));
                 const isStart = isSameDay(d, checkIn);
                 const isEnd = isSameDay(d, checkOut);
@@ -549,7 +648,7 @@ export default function DesignYourDay() {
                   <button
                     key={`${month}-${day}`}
                     type="button"
-                    disabled={isPast}
+                    disabled={isPast || isDisallowedByPlan}
                     onMouseEnter={() => setHoverDate(d)}
                     onClick={() => handleDateClick(day)}
                     className={`aspect-square rounded-md text-xs ${
@@ -559,7 +658,7 @@ export default function DesignYourDay() {
                         ? "bg-gold-500/20 text-gold-300"
                         : selected
                         ? "bg-gold-500/15 text-gold-300"
-                        : isPast
+                        : isPast || isDisallowedByPlan
                         ? "text-earth-700 cursor-not-allowed"
                         : "text-earth-300 hover:bg-earth-800 hover:text-gold-400"
                     }`}
@@ -584,7 +683,7 @@ export default function DesignYourDay() {
                 Clear
               </button>
               <div className="flex items-center gap-2">
-                <span className="text-[10px] text-earth-500">{selectedDates.length}/7 selected</span>
+                <span className="text-[10px] text-earth-500">{selectedDates.length}/{maxSelectableDays} selected</span>
                 <button
                   type="button"
                   onClick={() => setIsDatePickerOpen(false)}

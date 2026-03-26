@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import DesignYourDay from "./DesignYourDay";
+import { useRouter } from "next/navigation";
 
 const whatsappNumber = '919890322494'; // WhatsApp number with country code
 const whatsappMessage = encodeURIComponent('Hey I find this interesting i would like to know more');
@@ -11,6 +11,7 @@ interface CycleSelectionDetails {
   label: string;
   accommodationType: 'dorm' | 'room';
   priceLabel: string;
+  quantityLabel?: string;
 }
 
 interface ServicesOfferingProps {
@@ -26,24 +27,36 @@ export default function ServicesOffering({
   primaryToggleLabel = "Dorm",
   secondaryToggleLabel = "Private Room",
 }: ServicesOfferingProps) {
+  const router = useRouter();
   const [accommodationType, setAccommodationType] = useState<'dorm' | 'room'>('dorm');
   const [cycleType, setCycleType] = useState<'weekday' | 'weekend'>('weekday');
   const [selectedDay, setSelectedDay] = useState<'M' | 'T' | 'W' | 'Th' | 'F' | 'S' | 'Su'>('M');
-  const [isDesignYourDayOpen, setIsDesignYourDayOpen] = useState(false);
   const [highlightDesignYourDay, setHighlightDesignYourDay] = useState(false);
   const [pendingSelection, setPendingSelection] = useState<CycleSelectionDetails | null>(null);
+  const [dayCyclePersons, setDayCyclePersons] = useState(1);
+  const [residencyPersons, setResidencyPersons] = useState(1);
+  const [solitudePersons, setSolitudePersons] = useState(1);
+  const [experimentDays, setExperimentDays] = useState(1);
 
   const handlePlanClick = (selection: CycleSelectionDetails) => {
     setPendingSelection(selection);
     setHighlightDesignYourDay(true);
   };
 
-  const closeDesignYourDay = () => {
-    setIsDesignYourDayOpen(false);
+  const personOptions = Array.from({ length: 4 }, (_, i) => i + 1);
+  const dayOptions = Array.from({ length: 7 }, (_, i) => i + 1);
+
+  const goToDesignYourStay = () => {
+    const params = new URLSearchParams();
     if (pendingSelection) {
-      onCycleSelect?.(pendingSelection);
-      setPendingSelection(null);
+      params.set("cycle", pendingSelection.label);
+      params.set("accommodation", pendingSelection.accommodationType);
+      params.set("price", pendingSelection.priceLabel);
+      if (pendingSelection.quantityLabel) {
+        params.set("quantity", pendingSelection.quantityLabel);
+      }
     }
+    router.push(`/design-your-stay${params.toString() ? `?${params.toString()}` : ""}`);
   };
 
   return (
@@ -98,7 +111,8 @@ export default function ServicesOffering({
               handlePlanClick({
                 label: "Day Cycle",
                 accommodationType,
-                priceLabel: "₹1,000 per person",
+                priceLabel: `₹1,000 per person • ${dayCyclePersons} person${dayCyclePersons > 1 ? "s" : ""}`,
+                quantityLabel: `${dayCyclePersons} person${dayCyclePersons > 1 ? "s" : ""}`,
               })
             }
           >
@@ -120,6 +134,25 @@ export default function ServicesOffering({
               </div>
             </div>
 
+            <div className="mb-2">
+              <label className="text-earth-400 text-[10px]">Persons</label>
+              <select
+                value={dayCyclePersons}
+                onClick={(e) => e.stopPropagation()}
+                onChange={(e) => {
+                  e.stopPropagation();
+                  setDayCyclePersons(Number(e.target.value));
+                }}
+                className="mt-1 w-full bg-earth-900/70 border border-earth-700/60 rounded-md px-2 py-1 text-xs text-earth-200 focus:outline-none focus:border-gold-500/60"
+              >
+                {personOptions.map((count) => (
+                  <option key={count} value={count}>
+                    {count}
+                  </option>
+                ))}
+              </select>
+            </div>
+
             <div className="mt-auto text-right">
               <div className="text-gold-500 text-lg font-normal">
                 ₹1,000
@@ -137,7 +170,8 @@ export default function ServicesOffering({
               handlePlanClick({
                 label: "Residency as a Service",
                 accommodationType,
-                priceLabel: `${accommodationType === "dorm" ? "₹10,000" : "₹15,000"} per person`,
+                priceLabel: `${accommodationType === "dorm" ? "₹10,000" : "₹15,000"} per person • ${residencyPersons} person${residencyPersons > 1 ? "s" : ""}`,
+                quantityLabel: `${residencyPersons} person${residencyPersons > 1 ? "s" : ""}`,
               })
             }
           >
@@ -164,6 +198,25 @@ export default function ServicesOffering({
               </div>
             </div>
 
+            <div className="mb-2">
+              <label className="text-earth-400 text-[10px]">Persons</label>
+              <select
+                value={residencyPersons}
+                onClick={(e) => e.stopPropagation()}
+                onChange={(e) => {
+                  e.stopPropagation();
+                  setResidencyPersons(Number(e.target.value));
+                }}
+                className="mt-1 w-full bg-earth-900/70 border border-earth-700/60 rounded-md px-2 py-1 text-xs text-earth-200 focus:outline-none focus:border-gold-500/60"
+              >
+                {personOptions.map((count) => (
+                  <option key={count} value={count}>
+                    {count}
+                  </option>
+                ))}
+              </select>
+            </div>
+
             <div className="mt-auto text-right">
               <div className="text-gold-500 text-lg font-normal">
                 {accommodationType === "dorm" ? "₹10,000" : "₹15,000"}
@@ -181,7 +234,8 @@ export default function ServicesOffering({
               handlePlanClick({
                 label: "Solitude as a Service",
                 accommodationType,
-                priceLabel: `${accommodationType === "dorm" ? "₹20,000" : "₹30,000"} per person`,
+                priceLabel: `${accommodationType === "dorm" ? "₹20,000" : "₹30,000"} per person • ${solitudePersons} person${solitudePersons > 1 ? "s" : ""}`,
+                quantityLabel: `${solitudePersons} person${solitudePersons > 1 ? "s" : ""}`,
               })
             }
           >
@@ -210,6 +264,25 @@ export default function ServicesOffering({
                 <span className="text-gold-500">•</span>
                 <span className="text-earth-300 text-sm">All meals Included</span>
               </div>
+            </div>
+
+            <div className="mb-2">
+              <label className="text-earth-400 text-[10px]">Persons</label>
+              <select
+                value={solitudePersons}
+                onClick={(e) => e.stopPropagation()}
+                onChange={(e) => {
+                  e.stopPropagation();
+                  setSolitudePersons(Number(e.target.value));
+                }}
+                className="mt-1 w-full bg-earth-900/70 border border-earth-700/60 rounded-md px-2 py-1 text-xs text-earth-200 focus:outline-none focus:border-gold-500/60"
+              >
+                {personOptions.map((count) => (
+                  <option key={count} value={count}>
+                    {count}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div className="mt-auto text-right">
@@ -309,7 +382,8 @@ export default function ServicesOffering({
                 handlePlanClick({
                   label: "Experiment as a Service",
                   accommodationType,
-                  priceLabel: `${["F", "S", "Su"].includes(selectedDay) ? "₹1,20,000" : "₹1,00,000"} per night (full estate)`,
+                  priceLabel: `${["F", "S", "Su"].includes(selectedDay) ? "₹1,20,000" : "₹1,00,000"} per night (full estate) • ${experimentDays} day${experimentDays > 1 ? "s" : ""}`,
+                  quantityLabel: `${experimentDays} day${experimentDays > 1 ? "s" : ""}`,
                 })
               }
             >
@@ -391,6 +465,25 @@ export default function ServicesOffering({
                 </div>
               </div>
 
+              <div className="mb-2 max-w-[180px]">
+                <label className="text-earth-400 text-[10px]">No. of Days</label>
+                <select
+                  value={experimentDays}
+                  onClick={(e) => e.stopPropagation()}
+                  onChange={(e) => {
+                    e.stopPropagation();
+                    setExperimentDays(Number(e.target.value));
+                  }}
+                  className="mt-1 w-full bg-earth-900/70 border border-earth-700/60 rounded-md px-2 py-1 text-xs text-earth-200 focus:outline-none focus:border-gold-500/60"
+                >
+                  {dayOptions.map((dayCount) => (
+                    <option key={dayCount} value={dayCount}>
+                      {dayCount}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
               {/* Full Cycle Pricing (replaces CTA) */}
               <div className="mt-2 text-right">
                 <div className="text-gold-500 text-xl font-normal">
@@ -404,10 +497,7 @@ export default function ServicesOffering({
 
             <button
               type="button"
-              onClick={() => {
-                setIsDesignYourDayOpen(true);
-                setHighlightDesignYourDay(false);
-              }}
+              onClick={goToDesignYourStay}
               className={`relative z-20 block mx-auto px-4 py-2 rounded-md border text-sm md:text-base transition-all ${
                 highlightDesignYourDay
                   ? "text-gold-300 border-gold-400 bg-gold-500/10 animate-pulse shadow-[0_0_18px_rgba(212,175,55,0.65)]"
@@ -417,27 +507,27 @@ export default function ServicesOffering({
             >
               Design Your Stay at The Silent Club
             </button>
+
+            {pendingSelection ? (
+              <div className="relative z-20 mx-auto w-full max-w-2xl rounded-md border border-earth-700/60 bg-earth-900/40 px-3 py-2">
+                <p className="text-[10px] uppercase tracking-[0.08em] text-earth-500 text-center">
+                  Current Selection
+                </p>
+                <div className="mt-1 flex flex-wrap items-center justify-center gap-1.5 text-[11px]">
+                  <span className="rounded-full border border-gold-500/30 bg-gold-500/10 px-2 py-0.5 text-gold-300">
+                    {pendingSelection.label}
+                  </span>
+                  <span className="rounded-full border border-earth-700/70 bg-earth-800/60 px-2 py-0.5 text-earth-300">
+                    {pendingSelection.quantityLabel ?? "1 person"}
+                  </span>
+                </div>
+              </div>
+            ) : null}
           </div>
 
         </div>
 
       </div>
-
-      {isDesignYourDayOpen ? (
-        <div className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm p-4 md:p-8">
-          <div className="relative w-full max-w-7xl mx-auto h-full overflow-y-auto rounded-xl border border-earth-700/50 bg-earth-950">
-            <button
-              type="button"
-              onClick={closeDesignYourDay}
-              aria-label="Close design your day popup"
-              className="sticky top-3 ml-auto mr-3 mt-3 z-10 flex items-center justify-center w-9 h-9 rounded-full bg-earth-800 text-earth-200 hover:text-gold-500 transition-colors"
-            >
-              <span className="material-symbols-outlined text-base">close</span>
-            </button>
-            <DesignYourDay />
-          </div>
-        </div>
-      ) : null}
     </section>
   );
 }
