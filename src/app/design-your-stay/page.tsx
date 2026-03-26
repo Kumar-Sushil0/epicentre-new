@@ -1,9 +1,12 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import DesignYourDay from "../components/DesignYourDay";
 
-export default function DesignYourStayPage() {
+function DesignYourStayInner() {
   const searchParams = useSearchParams();
   const cycle = searchParams.get("cycle") || undefined;
   const accommodation = searchParams.get("accommodation") || undefined;
@@ -30,6 +33,20 @@ export default function DesignYourStayPage() {
         quantity={quantity}
       />
     </main>
+  );
+}
+
+export default function DesignYourStayPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-earth-950 flex items-center justify-center">
+          <div className="w-8 h-8 border-2 border-gold-500 border-t-transparent rounded-full animate-spin" />
+        </div>
+      }
+    >
+      <DesignYourStayInner />
+    </Suspense>
   );
 }
 
