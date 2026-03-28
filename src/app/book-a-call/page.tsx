@@ -33,8 +33,14 @@ function BookACallInner() {
     setAnswers((prev) => { const c = [...prev]; c[idx] = val; return c; });
   };
 
+  const dateTimeComplete =
+    callDateTime.date != null && callDateTime.time != null;
+  const allQuestionsAnswered = answers.every((a) => a !== "");
+  const canBook = dateTimeComplete && allQuestionsAnswered;
+
   const handleModalSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!canBook) return;
     setSubmitting(true);
     try {
       const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
@@ -134,13 +140,35 @@ function BookACallInner() {
 
               {/* CTA — opens modal */}
               <div className="space-y-2 pt-2">
-                <button
-                  type="button"
-                  onClick={() => { setModalStep("form"); setShowModal(true); }}
-                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 text-[0.8rem] tracking-[0.14em] uppercase border border-gold-500 text-gold-400 hover:bg-gold-500/10 rounded-lg transition-colors"
-                >
-                  Book a 15 min Alignment Call →
-                </button>
+                <div className={!canBook ? "cursor-not-allowed" : undefined}>
+                  <button
+                    type="button"
+                    tabIndex={canBook ? 0 : -1}
+                    aria-disabled={!canBook}
+                    onClick={() => {
+                      if (!canBook) return;
+                      setModalStep("form");
+                      setShowModal(true);
+                    }}
+                    onKeyDown={(e) => {
+                      if (!canBook && (e.key === "Enter" || e.key === " ")) {
+                        e.preventDefault();
+                      }
+                    }}
+                    className={`w-full inline-flex items-center justify-center gap-2 px-6 py-3 text-[0.8rem] tracking-[0.14em] uppercase border border-gold-500 text-gold-400 hover:bg-gold-500/10 rounded-lg transition-colors ${!canBook ? "pointer-events-none" : "cursor-pointer"}`}
+                  >
+                    Book a 15 min Alignment Call →
+                  </button>
+                </div>
+                {!canBook && (
+                  <p className="text-center text-[0.72rem] text-earth-500 leading-relaxed">
+                    {!dateTimeComplete && !allQuestionsAnswered
+                      ? "Choose a date and time, and answer all three questions above."
+                      : !dateTimeComplete
+                        ? "Choose a date and time for your call."
+                        : "Answer all three questions above."}
+                  </p>
+                )}
                 <p className="text-center text-[0.72rem] text-earth-600">
                   No commitment. The call is a conversation, not a sales process.
                 </p>
