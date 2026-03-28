@@ -381,3 +381,15 @@ body {
     display: none;
   }
 }
+
+/* Cycles (ServicesOffering) — select control + option list: brown + gold (OS may still theme the popup) */
+select.cycles-plan-select {
+  background-color: #261b14;
+  color: #c5a065;
+  color-scheme: dark;
+}
+select.cycles-plan-select option,
+select.cycles-plan-select optgroup {
+  background-color: #1a120b;
+  color: #c5a065;
+}

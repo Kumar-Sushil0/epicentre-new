@@ -144,7 +144,7 @@ export default function ServicesOffering({
                     e.stopPropagation();
                     setDayCyclePersons(Number(e.target.value));
                   }}
-                  className="mt-1 w-[4.5rem] bg-earth-900/70 border border-earth-700/60 rounded-md px-2 py-1 text-xs text-earth-200 focus:outline-none focus:border-gold-500/60"
+                  className="cycles-plan-select mt-1 w-[4.5rem] border border-earth-600/60 rounded-md px-2 py-1 text-xs focus:outline-none focus:border-gold-500/60"
                 >
                   {personOptions.map((count) => (
                     <option key={count} value={count}>
@@ -209,7 +209,7 @@ export default function ServicesOffering({
                     e.stopPropagation();
                     setResidencyPersons(Number(e.target.value));
                   }}
-                  className="mt-1 w-[4.5rem] bg-earth-900/70 border border-earth-700/60 rounded-md px-2 py-1 text-xs text-earth-200 focus:outline-none focus:border-gold-500/60"
+                  className="cycles-plan-select mt-1 w-[4.5rem] border border-earth-600/60 rounded-md px-2 py-1 text-xs focus:outline-none focus:border-gold-500/60"
                 >
                   {personOptions.map((count) => (
                     <option key={count} value={count}>
@@ -278,7 +278,7 @@ export default function ServicesOffering({
                     e.stopPropagation();
                     setSolitudePersons(Number(e.target.value));
                   }}
-                  className="mt-1 w-[4.5rem] bg-earth-900/70 border border-earth-700/60 rounded-md px-2 py-1 text-xs text-earth-200 focus:outline-none focus:border-gold-500/60"
+                  className="cycles-plan-select mt-1 w-[4.5rem] border border-earth-600/60 rounded-md px-2 py-1 text-xs focus:outline-none focus:border-gold-500/60"
                 >
                   {personOptions.map((count) => (
                     <option key={count} value={count}>
@@ -478,7 +478,7 @@ export default function ServicesOffering({
                       e.stopPropagation();
                       setExperimentDays(Number(e.target.value));
                     }}
-                    className="mt-1 w-[4.5rem] bg-earth-900/70 border border-earth-700/60 rounded-md px-2 py-1 text-xs text-earth-200 focus:outline-none focus:border-gold-500/60"
+                    className="cycles-plan-select mt-1 w-[4.5rem] border border-earth-600/60 rounded-md px-2 py-1 text-xs focus:outline-none focus:border-gold-500/60"
                   >
                     {dayOptions.map((dayCount) => (
                       <option key={dayCount} value={dayCount}>
@@ -512,18 +512,18 @@ export default function ServicesOffering({
             </button>
 
             {pendingSelection ? (
-              <div className="relative z-20 mx-auto w-full max-w-2xl rounded-md border border-earth-700/60 bg-earth-900/40 px-3 py-2">
-                <p className="text-[10px] uppercase tracking-[0.08em] text-earth-500 text-center">
-                  Current Selection
-                </p>
-                <div className="mt-1 flex flex-wrap items-center justify-center gap-1.5 text-[11px]">
-                  <span className="rounded-full border border-gold-500/30 bg-gold-500/10 px-2 py-0.5 text-gold-300">
-                    {pendingSelection.label}
-                  </span>
-                  <span className="rounded-full border border-earth-700/70 bg-earth-800/60 px-2 py-0.5 text-earth-300">
-                    {pendingSelection.quantityLabel ?? "1 person"}
-                  </span>
-                </div>
+              <div className="relative z-20 flex justify-center mt-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setPendingSelection(null);
+                    setHighlightDesignYourDay(false);
+                  }}
+                  className="inline-flex items-center justify-center rounded-md p-1 text-earth-500 hover:text-gold-400 hover:bg-earth-800/60 transition-colors"
+                  aria-label="Clear selection"
+                >
+                  <span className="material-symbols-outlined text-[1.15rem]">close</span>
+                </button>
               </div>
             ) : null}
           </div>
