@@ -134,32 +134,33 @@ export default function ServicesOffering({
               </div>
             </div>
 
-            <div className="mb-2">
-              <label className="text-earth-400 text-[10px]">Persons</label>
-              <select
-                value={dayCyclePersons}
-                onClick={(e) => e.stopPropagation()}
-                onChange={(e) => {
-                  e.stopPropagation();
-                  setDayCyclePersons(Number(e.target.value));
-                }}
-                className="mt-1 w-full bg-earth-900/70 border border-earth-700/60 rounded-md px-2 py-1 text-xs text-earth-200 focus:outline-none focus:border-gold-500/60"
-              >
-                {personOptions.map((count) => (
-                  <option key={count} value={count}>
-                    {count}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="mt-auto text-right">
-              <div className="text-gold-500 text-lg font-normal">
-                ₹1,000
+            <div className="mt-auto flex flex-row items-end justify-between gap-3">
+              <div className="shrink-0">
+                <label className="text-earth-400 text-[10px] block">Persons</label>
+                <select
+                  value={dayCyclePersons}
+                  onClick={(e) => e.stopPropagation()}
+                  onChange={(e) => {
+                    e.stopPropagation();
+                    setDayCyclePersons(Number(e.target.value));
+                  }}
+                  className="mt-1 w-[4.5rem] bg-earth-900/70 border border-earth-700/60 rounded-md px-2 py-1 text-xs text-earth-200 focus:outline-none focus:border-gold-500/60"
+                >
+                  {personOptions.map((count) => (
+                    <option key={count} value={count}>
+                      {count}
+                    </option>
+                  ))}
+                </select>
               </div>
-              <p className="text-earth-400 text-xs mt-1">
-                Per Person • Taxes applicable
-              </p>
+              <div className="min-w-0 text-right">
+                <div className="text-gold-500 text-lg font-normal">
+                  ₹1,000
+                </div>
+                <p className="text-earth-400 text-xs mt-1">
+                  Per Person • Taxes applicable
+                </p>
+              </div>
             </div>
           </div>
 
@@ -198,32 +199,33 @@ export default function ServicesOffering({
               </div>
             </div>
 
-            <div className="mb-2">
-              <label className="text-earth-400 text-[10px]">Persons</label>
-              <select
-                value={residencyPersons}
-                onClick={(e) => e.stopPropagation()}
-                onChange={(e) => {
-                  e.stopPropagation();
-                  setResidencyPersons(Number(e.target.value));
-                }}
-                className="mt-1 w-full bg-earth-900/70 border border-earth-700/60 rounded-md px-2 py-1 text-xs text-earth-200 focus:outline-none focus:border-gold-500/60"
-              >
-                {personOptions.map((count) => (
-                  <option key={count} value={count}>
-                    {count}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="mt-auto text-right">
-              <div className="text-gold-500 text-lg font-normal">
-                {accommodationType === "dorm" ? "₹10,000" : "₹15,000"}
+            <div className="mt-auto flex flex-row items-end justify-between gap-3">
+              <div className="shrink-0">
+                <label className="text-earth-400 text-[10px] block">Persons</label>
+                <select
+                  value={residencyPersons}
+                  onClick={(e) => e.stopPropagation()}
+                  onChange={(e) => {
+                    e.stopPropagation();
+                    setResidencyPersons(Number(e.target.value));
+                  }}
+                  className="mt-1 w-[4.5rem] bg-earth-900/70 border border-earth-700/60 rounded-md px-2 py-1 text-xs text-earth-200 focus:outline-none focus:border-gold-500/60"
+                >
+                  {personOptions.map((count) => (
+                    <option key={count} value={count}>
+                      {count}
+                    </option>
+                  ))}
+                </select>
               </div>
-              <p className="text-earth-400 text-xs mt-1">
-                Per Person • Taxes applicable
-              </p>
+              <div className="min-w-0 text-right">
+                <div className="text-gold-500 text-lg font-normal">
+                  {accommodationType === "dorm" ? "₹10,000" : "₹15,000"}
+                </div>
+                <p className="text-earth-400 text-xs mt-1">
+                  Per Person • Taxes applicable
+                </p>
+              </div>
             </div>
           </div>
           
@@ -266,32 +268,33 @@ export default function ServicesOffering({
               </div>
             </div>
 
-            <div className="mb-2">
-              <label className="text-earth-400 text-[10px]">Persons</label>
-              <select
-                value={solitudePersons}
-                onClick={(e) => e.stopPropagation()}
-                onChange={(e) => {
-                  e.stopPropagation();
-                  setSolitudePersons(Number(e.target.value));
-                }}
-                className="mt-1 w-full bg-earth-900/70 border border-earth-700/60 rounded-md px-2 py-1 text-xs text-earth-200 focus:outline-none focus:border-gold-500/60"
-              >
-                {personOptions.map((count) => (
-                  <option key={count} value={count}>
-                    {count}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="mt-auto text-right">
-              <div className="text-gold-500 text-lg font-normal">
-                {accommodationType === "dorm" ? "₹20,000" : "₹30,000"}
+            <div className="mt-auto flex flex-row items-end justify-between gap-3">
+              <div className="shrink-0">
+                <label className="text-earth-400 text-[10px] block">Persons</label>
+                <select
+                  value={solitudePersons}
+                  onClick={(e) => e.stopPropagation()}
+                  onChange={(e) => {
+                    e.stopPropagation();
+                    setSolitudePersons(Number(e.target.value));
+                  }}
+                  className="mt-1 w-[4.5rem] bg-earth-900/70 border border-earth-700/60 rounded-md px-2 py-1 text-xs text-earth-200 focus:outline-none focus:border-gold-500/60"
+                >
+                  {personOptions.map((count) => (
+                    <option key={count} value={count}>
+                      {count}
+                    </option>
+                  ))}
+                </select>
               </div>
-              <p className="text-earth-400 text-xs mt-1">
-                Per Person • Taxes applicable
-              </p>
+              <div className="min-w-0 text-right">
+                <div className="text-gold-500 text-lg font-normal">
+                  {accommodationType === "dorm" ? "₹20,000" : "₹30,000"}
+                </div>
+                <p className="text-earth-400 text-xs mt-1">
+                  Per Person • Taxes applicable
+                </p>
+              </div>
             </div>
           </div>
 
@@ -465,33 +468,33 @@ export default function ServicesOffering({
                 </div>
               </div>
 
-              <div className="mb-2 max-w-[180px]">
-                <label className="text-earth-400 text-[10px]">No. of Days</label>
-                <select
-                  value={experimentDays}
-                  onClick={(e) => e.stopPropagation()}
-                  onChange={(e) => {
-                    e.stopPropagation();
-                    setExperimentDays(Number(e.target.value));
-                  }}
-                  className="mt-1 w-full bg-earth-900/70 border border-earth-700/60 rounded-md px-2 py-1 text-xs text-earth-200 focus:outline-none focus:border-gold-500/60"
-                >
-                  {dayOptions.map((dayCount) => (
-                    <option key={dayCount} value={dayCount}>
-                      {dayCount}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Full Cycle Pricing (replaces CTA) */}
-              <div className="mt-2 text-right">
-                <div className="text-gold-500 text-xl font-normal">
-                  ₹{["F", "S", "Su"].includes(selectedDay) ? "1,20,000" : "1,00,000"}
+              <div className="mt-3 flex flex-row items-end justify-between gap-3">
+                <div className="shrink-0">
+                  <label className="text-earth-400 text-[10px] block">No. of Days</label>
+                  <select
+                    value={experimentDays}
+                    onClick={(e) => e.stopPropagation()}
+                    onChange={(e) => {
+                      e.stopPropagation();
+                      setExperimentDays(Number(e.target.value));
+                    }}
+                    className="mt-1 w-[4.5rem] bg-earth-900/70 border border-earth-700/60 rounded-md px-2 py-1 text-xs text-earth-200 focus:outline-none focus:border-gold-500/60"
+                  >
+                    {dayOptions.map((dayCount) => (
+                      <option key={dayCount} value={dayCount}>
+                        {dayCount}
+                      </option>
+                    ))}
+                  </select>
                 </div>
-                <p className="text-earth-400 text-xs mt-1">
-                  Per Night • Taxes applicable
-                </p>
+                <div className="min-w-0 text-right">
+                  <div className="text-gold-500 text-xl font-normal">
+                    ₹{["F", "S", "Su"].includes(selectedDay) ? "1,20,000" : "1,00,000"}
+                  </div>
+                  <p className="text-earth-400 text-xs mt-1">
+                    Per Night • Taxes applicable
+                  </p>
+                </div>
               </div>
             </div>
 

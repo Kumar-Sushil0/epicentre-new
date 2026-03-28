@@ -3,6 +3,7 @@
 export const dynamic = "force-dynamic";
 
 import { Suspense } from "react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import DesignYourDay from "../components/DesignYourDay";
 
@@ -15,6 +16,13 @@ function DesignYourStayInner() {
 
   return (
     <main className="min-h-screen bg-earth-950 text-earth-100">
+      <Link
+        href="/cycles"
+        className="fixed left-3 top-3 md:left-4 md:top-4 z-50 inline-flex items-center justify-center rounded-lg p-2.5 text-earth-400 transition-colors hover:text-gold-400 hover:bg-earth-800/60"
+        aria-label="Close and return to cycles"
+      >
+        <span className="material-symbols-outlined text-[1.5rem]">close</span>
+      </Link>
       <section className="pt-8 md:pt-10 px-4 md:px-16">
         <div className="max-w-6xl mx-auto">
           <h1
