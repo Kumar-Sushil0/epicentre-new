@@ -28,7 +28,43 @@ export default function VoidAndFormats() {
         {/* Formats */}
         <div className="space-y-6">
          
-          <div className="mt-2 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+          <div className="mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+            {/* Silence */}
+            <Link href="/services" className="block">
+              <div className="h-full bg-earth-900/60 border border-earth-800/80 rounded-lg px-5 py-6 md:px-6 md:py-7 hover:border-gold-500/80 hover:bg-earth-900 transition-colors cursor-pointer text-center">
+                <span className="material-symbols-outlined text-gold-500 text-3xl mb-3 block">
+                  volume_off
+                </span>
+                <h3
+                  className="text-base md:text-lg font-normal text-earth-100 mb-2"
+                  style={{ fontFamily: "Outfit, sans-serif" }}
+                >
+                  Silence as a Service
+                </h3>
+                <p className="text-earth-300 text-xs md:text-sm leading-relaxed">
+                  Dedicated silence sessions and environments that reduce noise so attention can stabilize and clarity can emerge.
+                </p>
+              </div>
+            </Link>
+
+            {/* Residency */}
+            <Link href="/services" className="block">
+              <div className="h-full bg-earth-900/60 border border-earth-800/80 rounded-lg px-5 py-6 md:px-6 md:py-7 hover:border-gold-500/80 hover:bg-earth-900 transition-colors cursor-pointer text-center">
+                <span className="material-symbols-outlined text-gold-500 text-3xl mb-3 block">
+                  school
+                </span>
+                <h3
+                  className="text-base md:text-lg font-normal text-earth-100 mb-2"
+                  style={{ fontFamily: "Outfit, sans-serif" }}
+                >
+                  Residency as a Service
+                </h3>
+                <p className="text-earth-300 text-xs md:text-sm leading-relaxed">
+                  A curated small-group immersion with expert dialogue to explore one critical question in depth.
+                </p>
+              </div>
+            </Link>
+
             {/* Solitude */}
             <Link href="/services" className="block">
               <div className="h-full bg-earth-900/60 border border-earth-800/80 rounded-lg px-5 py-6 md:px-6 md:py-7 hover:border-gold-500/80 hover:bg-earth-900 transition-colors cursor-pointer text-center">
@@ -65,23 +101,6 @@ export default function VoidAndFormats() {
               </div>
             </Link>
 
-            {/* Residency */}
-            <Link href="/services" className="block">
-              <div className="h-full bg-earth-900/60 border border-earth-800/80 rounded-lg px-5 py-6 md:px-6 md:py-7 hover:border-gold-500/80 hover:bg-earth-900 transition-colors cursor-pointer text-center">
-                <span className="material-symbols-outlined text-gold-500 text-3xl mb-3 block">
-                  school
-                </span>
-                <h3
-                  className="text-base md:text-lg font-normal text-earth-100 mb-2"
-                  style={{ fontFamily: "Outfit, sans-serif" }}
-                >
-                  Residency as a Service
-                </h3>
-                <p className="text-earth-300 text-xs md:text-sm leading-relaxed">
-                  A curated small-group immersion with expert dialogue to explore one critical question in depth.
-                </p>
-              </div>
-            </Link>
           </div>
         </div>
       </div>

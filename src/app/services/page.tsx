@@ -17,7 +17,7 @@ const breadcrumbItems = [
   { label: "Services", href: "/services" }
 ];
 
-type ServicesSectionId = "solitude" | "expression" | "residency";
+type ServicesSectionId = "silence" | "solitude" | "expression" | "residency";
 
 type ServiceCardItem = {
     title: string;
@@ -126,12 +126,86 @@ export default function TestPage() {
             <TestHero />
           
 
-           
+            <div className="flex flex-col">
+            {/* Silence Section */}
+            <section className={`order-1 w-full px-4 md:px-16 transition-all duration-300 ${expandedSection === "silence" ? 'mb-24' : 'pt-12 mb-6'}`}>
+                <div id="section-header-silence" className="flex items-center gap-4 cursor-pointer mb-6" onClick={() => toggleSection("silence")}>
+                        <h2 className="text-2xl font-normal text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                            01. Silence as a Service
+                        </h2>
+                        <div className="h-[1px] bg-earth-700 flex-grow"></div>
+                        <span className="material-symbols-outlined text-gold-500 text-3xl">volume_off</span>
+                        <button className="text-gold-500 hover:text-gold-400 transition-colors">
+                            <span className="material-symbols-outlined text-3xl">
+                                {expandedSection === "silence" ? 'expand_less' : 'expand_more'}
+                            </span>
+                        </button>
+                </div>
+
+                {expandedSection === "silence" && (
+                    <div className="space-y-6">
+                        <div className="mb-8">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
+                                <div className="space-y-6">
+                                    <div>
+                                        <p className="text-gold-500 text-base font-medium mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>Day Cycle | Immediate Recalibration</p>
+                                        <p className="text-earth-300 text-base md:text-lg leading-relaxed">
+                                            A short-format cycle designed for people who need immediate signal correction without a long stay.
+                                        </p>
+                                        <p className="text-earth-400 text-base leading-relaxed mt-2">
+                                            You enter a low-stimulation environment, reduce interruption probability, and return to your week with clearer attention.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <p className="text-[#e7dfd3] font-semibold text-base mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>The Experience</p>
+                                        <div className="space-y-3">
+                                            {[
+                                                { heading: "Rapid Noise Reduction", body: "Silence-first zones and controlled access help reduce reactive attention quickly." },
+                                                { heading: "Short, Structured Window", body: "Designed for a half-day to full-day reset when clarity is needed now, not next month." },
+                                                { heading: "Practical Return", body: "You leave with cleaner attention and better decision signal, ready to continue your current commitments." },
+                                            ].map(({ heading, body }) => (
+                                                <div key={heading} className="border-l border-gold-500/30 pl-4 space-y-0.5">
+                                                    <p className="text-gold-500 text-base font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>{heading}</p>
+                                                    <p className="text-earth-300 text-base leading-relaxed">{body}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="space-y-6">
+                                    <SectionCardCarousel
+                                        items={experiences.slice(0, 3).map((experience) => ({
+                                            title: experience.title,
+                                            description: experience.description,
+                                            images: experience.images,
+                                            icon: experience.icon,
+                                            href: "/services",
+                                        }))}
+                                    />
+                                    <div className="border border-earth-700/40 rounded-lg p-4 bg-earth-800/20">
+                                        <p className="text-[#e7dfd3] font-semibold text-base mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Before You Apply</p>
+                                        <p className="text-earth-300 text-base leading-relaxed mb-2">
+                                            Best for people who want a shorter intervention for attention reset and decision clarity.
+                                        </p>
+                                        <p className="text-earth-400 text-base mb-4">A short conversation helps confirm fit and timing.</p>
+                                        <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-gold-500 text-gold-500 text-base font-medium hover:bg-gold-500 hover:text-earth-950 transition-all" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                            View Plans →
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </section>
+
 {/* Solitude Section */}
-            <section className={`w-full px-4 md:px-16 transition-all duration-300 ${expandedSection === "solitude" ? 'mb-24' : 'pt-12 mb-6'}`}>
+            <section className={`order-3 w-full px-4 md:px-16 transition-all duration-300 ${expandedSection === "solitude" ? 'mb-24' : 'mb-6'}`}>
                 <div id="section-header-solitude" className="flex items-center gap-4 cursor-pointer mb-6" onClick={() => toggleSection("solitude")}>
                         <h2 className="text-2xl font-normal text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                            01. Solitude as a Service
+                            03. Solitude as a Service
                         </h2>
                         <div className="h-[1px] bg-earth-700 flex-grow"></div>
                         <span className="material-symbols-outlined text-gold-500 text-3xl">self_improvement</span>
@@ -222,10 +296,10 @@ export default function TestPage() {
             </section >
 
             {/* Expression Section */}
-            <section className={`w-full px-4 md:px-16 transition-all duration-300 ${expandedSection === "expression" ? 'mb-24' : 'mb-6'}`}>
+            <section className={`order-4 w-full px-4 md:px-16 transition-all duration-300 ${expandedSection === "expression" ? 'mb-24' : 'mb-6'}`}>
                 <div id="section-header-expression" className="flex items-center gap-4 cursor-pointer mb-6" onClick={() => toggleSection("expression")}>
                         <h2 className="text-2xl font-normal text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                            02. Experiment as a Service
+                            04. Experiment as a Service
                         </h2>
                         <div className="h-[1px] bg-earth-700 flex-grow"></div>
                         <span className="material-symbols-outlined text-gold-500 text-3xl">science</span>
@@ -336,10 +410,10 @@ export default function TestPage() {
             
 
             {/* Residency Section */}
-            <section className={`w-full px-4 md:px-16 transition-all duration-300 ${expandedSection === "residency" ? 'mb-24' : 'mb-6'}`}>
+            <section className={`order-2 w-full px-4 md:px-16 transition-all duration-300 ${expandedSection === "residency" ? 'mb-24' : 'mb-6'}`}>
                 <div id="section-header-residency" className="flex items-center gap-4 cursor-pointer mb-6" onClick={() => toggleSection("residency")}>
                         <h2 className="text-2xl font-normal text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                            03. Residency as a Service
+                            02. Residency as a Service
                         </h2>
                         <div className="h-[1px] bg-earth-700 flex-grow"></div>
                         <span className="material-symbols-outlined text-gold-500 text-3xl">school</span>
@@ -452,6 +526,7 @@ export default function TestPage() {
                     </div>
                 )}
             </section >
+            </div>
 
             <RequestConversation />
             <Footer />
