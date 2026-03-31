@@ -37,8 +37,8 @@ export default function ServicesOffering({
   const [experimentDays, setExperimentDays] = useState(1);
 
   // Date picker state
-  const [checkIn, setCheckIn] = useState<Date | null>(null);
-  const [checkOut, setCheckOut] = useState<Date | null>(null);
+  const [popupQuantity, setPopupQuantity] = useState(1);
+  const [checkIn, setCheckIn] = useState<Date | null>(null);  const [checkOut, setCheckOut] = useState<Date | null>(null);
   const [hoverDate, setHoverDate] = useState<Date | null>(null);
   const [selectedDates, setSelectedDates] = useState<string[]>([]);
   const [viewMonth, setViewMonth] = useState(() => {
@@ -70,6 +70,7 @@ export default function ServicesOffering({
   const isDayCyclePlan = normalizedCycle === "day cycle";
   const isResidencyPlan = normalizedCycle === "residency as a service";
   const isSolitudePlan = normalizedCycle === "solitude as a service";
+  const isExperimentPlan = normalizedCycle === "experiment as a service";
   const maxSelectableDays = isDayCyclePlan ? 1 : 7;
 
   const isDateAllowedByPlan = (d: Date) => {
@@ -89,8 +90,44 @@ export default function ServicesOffering({
   const handleDateClick = (day: number) => {
     const d = new Date(year, month, day); d.setHours(0,0,0,0);
     if (d < today || !isDateAllowedByPlan(d)) return;
-    if (isDayCyclePlan) { setCheckIn(d); setCheckOut(null); setHoverDate(null); setSelectedDates([formatDateKey(d)]); return; }
-    if (!checkIn || (checkIn && checkOut) || (checkIn && d < checkIn)) { setCheckIn(d); setCheckOut(null); setHoverDate(null); setSelectedDates([formatDateKey(d)]); return; }
+
+    // Residency: always Fri+Sat+Sun (3 days). Find the Friday of the clicked weekend.
+    if (isResidencyPlan) {
+      const w = d.getDay(); // 5=Fri, 6=Sat, 0=Sun
+      const fridayOffset = w === 5 ? 0 : w === 6 ? -1 : -2;
+      const fri = new Date(d); fri.setDate(fri.getDate() + fridayOffset);
+      const sat = new Date(fri); sat.setDate(fri.getDate() + 1);
+      const sun = new Date(fri); sun.setDate(fri.getDate() + 2);
+      const keys = [fri, sat, sun].map(formatDateKey);
+      setCheckIn(fri); setCheckOut(sun); setSelectedDates(keys);
+      return;
+    }
+
+    // Solitude: always Mon–Fri (5 days). Find the Monday of the clicked week.
+    if (isSolitudePlan) {
+      const w = d.getDay(); // 1=Mon ... 5=Fri
+      const monOffset = -(w - 1);
+      const mon = new Date(d); mon.setDate(mon.getDate() + monOffset);
+      const keys: string[] = [];
+      for (let i = 0; i < 5; i++) {
+        const day = new Date(mon); day.setDate(mon.getDate() + i);
+        keys.push(formatDateKey(day));
+      }
+      const fri = new Date(mon); fri.setDate(mon.getDate() + 4);
+      setCheckIn(mon); setCheckOut(fri); setSelectedDates(keys);
+      return;
+    }
+
+    // Day Cycle: single day
+    if (isDayCyclePlan) {
+      setCheckIn(d); setCheckOut(null); setHoverDate(null); setSelectedDates([formatDateKey(d)]);
+      return;
+    }
+
+    // Experiment / free range
+    if (!checkIn || (checkIn && checkOut) || (checkIn && d < checkIn)) {
+      setCheckIn(d); setCheckOut(null); setHoverDate(null); setSelectedDates([formatDateKey(d)]); return;
+    }
     if (checkIn && !checkOut) {
       if (d <= checkIn) { setCheckIn(d); setCheckOut(null); setHoverDate(null); setSelectedDates([formatDateKey(d)]); }
       else {
@@ -105,6 +142,7 @@ export default function ServicesOffering({
 
   const handlePlanClick = (selection: CycleSelectionDetails) => {
     setPendingSelection(selection);
+    setPopupQuantity(1);
     setCheckIn(null); setCheckOut(null); setSelectedDates([]);
   };
 
@@ -117,7 +155,7 @@ export default function ServicesOffering({
       params.set("cycle", pendingSelection.label);
       params.set("accommodation", pendingSelection.accommodationType);
       params.set("price", pendingSelection.priceLabel);
-      if (pendingSelection.quantityLabel) params.set("quantity", pendingSelection.quantityLabel);
+      params.set("quantity", `${popupQuantity} ${popupQuantity === 1 ? "person" : "persons"}`);
     }
     if (selectedDates.length) params.set("dates", selectedDates.join(","));
     router.push(`/design-your-stay${params.toString() ? `?${params.toString()}` : ""}`);
@@ -172,8 +210,7 @@ export default function ServicesOffering({
               handlePlanClick({
                 label: "Day Cycle",
                 accommodationType,
-                priceLabel: `₹1,000 per person • ${dayCyclePersons} person${dayCyclePersons > 1 ? "s" : ""}`,
-                quantityLabel: `${dayCyclePersons} person${dayCyclePersons > 1 ? "s" : ""}`,
+                priceLabel: `₹1,000 per person`,
               })
             }
           >
@@ -196,33 +233,9 @@ export default function ServicesOffering({
               </div>
             </div>
 
-            <div className="mt-auto flex flex-row items-end justify-between gap-3">
-              <div className="shrink-0">
-                <label className="text-earth-400 text-[10px] block">Persons</label>
-                <select
-                  value={dayCyclePersons}
-                  onClick={(e) => e.stopPropagation()}
-                  onChange={(e) => {
-                    e.stopPropagation();
-                    setDayCyclePersons(Number(e.target.value));
-                  }}
-                  className="cycles-plan-select mt-1 w-[4.5rem] border border-earth-600/60 rounded-md px-2 py-1 text-xs focus:outline-none focus:border-gold-500/60"
-                >
-                  {personOptions.map((count) => (
-                    <option key={count} value={count}>
-                      {count}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="min-w-0 text-right">
-                <div className="text-gold-500 text-lg font-normal">
-                  ₹1,000
-                </div>
-                <p className="text-earth-400 text-xs mt-1">
-                  Per Person • Taxes applicable
-                </p>
-              </div>
+            <div className="mt-auto text-right">
+              <div className="text-gold-500 text-lg font-normal">₹1,000</div>
+              <p className="text-earth-400 text-xs mt-1">Per Person • Taxes applicable</p>
             </div>
           </div>
 
@@ -233,8 +246,7 @@ export default function ServicesOffering({
               handlePlanClick({
                 label: "Residency as a Service",
                 accommodationType,
-                priceLabel: `${accommodationType === "dorm" ? "₹10,000" : "₹15,000"} per person • ${residencyPersons} person${residencyPersons > 1 ? "s" : ""}`,
-                quantityLabel: `${residencyPersons} person${residencyPersons > 1 ? "s" : ""}`,
+                priceLabel: `${accommodationType === "dorm" ? "₹10,000" : "₹15,000"} per person`,
               })
             }
           >
@@ -262,33 +274,9 @@ export default function ServicesOffering({
               </div>
             </div>
 
-            <div className="mt-auto flex flex-row items-end justify-between gap-3">
-              <div className="shrink-0">
-                <label className="text-earth-400 text-[10px] block">Persons</label>
-                <select
-                  value={residencyPersons}
-                  onClick={(e) => e.stopPropagation()}
-                  onChange={(e) => {
-                    e.stopPropagation();
-                    setResidencyPersons(Number(e.target.value));
-                  }}
-                  className="cycles-plan-select mt-1 w-[4.5rem] border border-earth-600/60 rounded-md px-2 py-1 text-xs focus:outline-none focus:border-gold-500/60"
-                >
-                  {personOptions.map((count) => (
-                    <option key={count} value={count}>
-                      {count}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="min-w-0 text-right">
-                <div className="text-gold-500 text-lg font-normal">
-                  {accommodationType === "dorm" ? "₹10,000" : "₹15,000"}
-                </div>
-                <p className="text-earth-400 text-xs mt-1">
-                  Per Person • Taxes applicable
-                </p>
-              </div>
+            <div className="mt-auto text-right">
+              <div className="text-gold-500 text-lg font-normal">{accommodationType === "dorm" ? "₹10,000" : "₹15,000"}</div>
+              <p className="text-earth-400 text-xs mt-1">Per Person • Taxes applicable</p>
             </div>
           </div>
           
@@ -299,8 +287,7 @@ export default function ServicesOffering({
               handlePlanClick({
                 label: "Solitude as a Service",
                 accommodationType,
-                priceLabel: `${accommodationType === "dorm" ? "₹20,000" : "₹30,000"} per person • ${solitudePersons} person${solitudePersons > 1 ? "s" : ""}`,
-                quantityLabel: `${solitudePersons} person${solitudePersons > 1 ? "s" : ""}`,
+                priceLabel: `${accommodationType === "dorm" ? "₹20,000" : "₹30,000"} per person`,
               })
             }
           >
@@ -317,7 +304,6 @@ export default function ServicesOffering({
                 <span className="text-gold-500">•</span>
                 <span className="text-earth-300 text-sm">4 nights / 5 days</span>
               </div>
-              
               <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
                 <span className="text-earth-300 text-sm">No event overlap</span>
@@ -332,33 +318,9 @@ export default function ServicesOffering({
               </div>
             </div>
 
-            <div className="mt-auto flex flex-row items-end justify-between gap-3">
-              <div className="shrink-0">
-                <label className="text-earth-400 text-[10px] block">Persons</label>
-                <select
-                  value={solitudePersons}
-                  onClick={(e) => e.stopPropagation()}
-                  onChange={(e) => {
-                    e.stopPropagation();
-                    setSolitudePersons(Number(e.target.value));
-                  }}
-                  className="cycles-plan-select mt-1 w-[4.5rem] border border-earth-600/60 rounded-md px-2 py-1 text-xs focus:outline-none focus:border-gold-500/60"
-                >
-                  {personOptions.map((count) => (
-                    <option key={count} value={count}>
-                      {count}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="min-w-0 text-right">
-                <div className="text-gold-500 text-lg font-normal">
-                  {accommodationType === "dorm" ? "₹20,000" : "₹30,000"}
-                </div>
-                <p className="text-earth-400 text-xs mt-1">
-                  Per Person • Taxes applicable
-                </p>
-              </div>
+            <div className="mt-auto text-right">
+              <div className="text-gold-500 text-lg font-normal">{accommodationType === "dorm" ? "₹20,000" : "₹30,000"}</div>
+              <p className="text-earth-400 text-xs mt-1">Per Person • Taxes applicable</p>
             </div>
           </div>
 
@@ -449,8 +411,7 @@ export default function ServicesOffering({
                 handlePlanClick({
                   label: "Experiment as a Service",
                   accommodationType,
-                  priceLabel: `${["F", "S", "Su"].includes(selectedDay) ? "₹1,20,000" : "₹1,00,000"} per night (full estate) • ${experimentDays} day${experimentDays > 1 ? "s" : ""}`,
-                  quantityLabel: `${experimentDays} day${experimentDays > 1 ? "s" : ""}`,
+                  priceLabel: `${["F", "S", "Su"].includes(selectedDay) ? "₹1,20,000" : "₹1,00,000"} per night (full estate)`,
                 })
               }
             >
@@ -533,33 +494,11 @@ export default function ServicesOffering({
                 </div>
               </div>
 
-              <div className="mt-3 flex flex-row items-end justify-between gap-3">
-                <div className="shrink-0">
-                  <label className="text-earth-400 text-[10px] block">No. of Days</label>
-                  <select
-                    value={experimentDays}
-                    onClick={(e) => e.stopPropagation()}
-                    onChange={(e) => {
-                      e.stopPropagation();
-                      setExperimentDays(Number(e.target.value));
-                    }}
-                    className="cycles-plan-select mt-1 w-[4.5rem] border border-earth-600/60 rounded-md px-2 py-1 text-xs focus:outline-none focus:border-gold-500/60"
-                  >
-                    {dayOptions.map((dayCount) => (
-                      <option key={dayCount} value={dayCount}>
-                        {dayCount}
-                      </option>
-                    ))}
-                  </select>
+              <div className="mt-3 text-right">
+                <div className="text-gold-500 text-xl font-normal whitespace-nowrap">
+                  ₹{["F", "S", "Su"].includes(selectedDay) ? "1,20,000" : "1,00,000"}
                 </div>
-                <div className="shrink-0 text-right">
-                  <div className="text-gold-500 text-xl font-normal whitespace-nowrap">
-                    ₹{["F", "S", "Su"].includes(selectedDay) ? "1,20,000" : "1,00,000"}
-                  </div>
-                  <p className="text-earth-400 text-xs mt-1">
-                    Per Night • Taxes applicable
-                  </p>
-                </div>
+                <p className="text-earth-400 text-xs mt-1">Per Night • Taxes applicable</p>
               </div>
             </div>
           </div>
@@ -593,22 +532,78 @@ export default function ServicesOffering({
               <div className="grid grid-cols-2 gap-5 items-stretch">
                 {/* Left: pricing breakdown */}
                 {(() => {
+                  const fmt = (n: number) => "₹" + n.toLocaleString("en-IN");
+
+                  // Experiment: price per day based on whether selected dates are weekend
+                  if (isExperimentPlan) {
+                    const weekendDates = selectedDates.filter(k => { const w = new Date(`${k}T00:00:00`).getDay(); return w === 5 || w === 6 || w === 0; });
+                    const weekdayDates = selectedDates.filter(k => { const w = new Date(`${k}T00:00:00`).getDay(); return w >= 1 && w <= 4; });
+                    const weekendNights = weekendDates.length;
+                    const weekdayNights = weekdayDates.length;
+                    const totalNights = selectedDates.length || 1;
+                    const baseNum = (weekendNights * 120000) + (weekdayNights * 100000) || 100000;
+                    const gst = Math.round(baseNum * 0.18);
+                    const total = baseNum + gst;
+                    return (
+                      <div className="border border-earth-700/50 rounded-lg overflow-hidden text-sm flex flex-col">
+                        <div className="flex justify-between px-4 py-3 bg-earth-800/30">
+                          <span className="text-earth-400">Full Estate</span>
+                          <span className="text-earth-200">Private Booking</span>
+                        </div>
+                        {weekdayNights > 0 && (
+                          <div className="flex justify-between px-4 py-3 border-t border-earth-700/50">
+                            <span className="text-earth-400">Weekday × {weekdayNights} night{weekdayNights > 1 ? "s" : ""}</span>
+                            <span className="text-earth-300">{fmt(100000 * weekdayNights)}</span>
+                          </div>
+                        )}
+                        {weekendNights > 0 && (
+                          <div className="flex justify-between px-4 py-3 border-t border-earth-700/50">
+                            <span className="text-earth-400">Weekend × {weekendNights} night{weekendNights > 1 ? "s" : ""} <span className="text-earth-600 text-xs">(₹1,20,000/night)</span></span>
+                            <span className="text-earth-300">{fmt(120000 * weekendNights)}</span>
+                          </div>
+                        )}
+                        {selectedDates.length === 0 && (
+                          <div className="flex justify-between px-4 py-3 border-t border-earth-700/50">
+                            <span className="text-earth-500 text-xs italic">Select dates to see breakdown</span>
+                          </div>
+                        )}
+                        <div className="flex justify-between px-4 py-3 border-t border-earth-700/50">
+                          <span className="text-earth-400">Base total</span>
+                          <span className="text-gold-500 font-medium">{fmt(baseNum)}</span>
+                        </div>
+                        <div className="flex justify-between px-4 py-3 border-t border-earth-700/50">
+                          <span className="text-earth-400">GST (18%)</span>
+                          <span className="text-earth-300">{fmt(gst)}</span>
+                        </div>
+                        <div className="flex justify-between px-4 py-3 border-t border-earth-700/50 bg-earth-800/30 mt-auto">
+                          <span className="text-earth-200 font-medium">Total Amount</span>
+                          <span className="text-gold-400 font-semibold">{fmt(total)}</span>
+                        </div>
+                        <div className="px-4 py-2 border-t border-earth-700/50">
+                          <p className="text-earth-500 text-xs">Incl. all taxes • Subject to confirmation</p>
+                        </div>
+                      </div>
+                    );
+                  }
+
+                  // All other plans: per-person pricing
                   const rawMatch = pendingSelection.priceLabel.match(/₹([\d,]+)/);
                   const baseNum = rawMatch ? parseInt(rawMatch[1].replace(/,/g, ""), 10) : null;
-                  const qtyMatch = pendingSelection.priceLabel.match(/(\d+)\s*person/);
-                  const persons = qtyMatch ? parseInt(qtyMatch[1], 10) : 1;
                   const gst = baseNum ? Math.round(baseNum * 0.18) : null;
                   const total = baseNum && gst ? baseNum + gst : null;
-                  const fmt = (n: number) => "₹" + n.toLocaleString("en-IN");
                   return (
                     <div className="border border-earth-700/50 rounded-lg overflow-hidden text-sm flex flex-col">
                       <div className="flex justify-between px-4 py-3 bg-earth-800/30">
                         <span className="text-earth-400">Accommodation</span>
                         <span className="text-earth-200">{pendingSelection.accommodationType === "dorm" ? "Dorm" : "Private Room"}</span>
                       </div>
-                      <div className="flex justify-between px-4 py-3 border-t border-earth-700/50">
+                      <div className="flex justify-between items-center px-4 py-3 border-t border-earth-700/50">
                         <span className="text-earth-400">Guests</span>
-                        <span className="text-earth-200">{persons} {persons === 1 ? "person" : "persons"}</span>
+                        <div className="flex items-center gap-2">
+                          <button type="button" onClick={() => setPopupQuantity(q => Math.max(1, q - 1))} className="w-6 h-6 rounded bg-earth-700 text-earth-200 hover:bg-earth-600 flex items-center justify-center text-sm">−</button>
+                          <span className="text-earth-200 w-4 text-center">{popupQuantity}</span>
+                          <button type="button" onClick={() => setPopupQuantity(q => Math.min(10, q + 1))} className="w-6 h-6 rounded bg-earth-700 text-earth-200 hover:bg-earth-600 flex items-center justify-center text-sm">+</button>
+                        </div>
                       </div>
                       {baseNum ? (
                         <>
@@ -640,7 +635,14 @@ export default function ServicesOffering({
 
                 {/* Right: calendar — full height to match table */}
                 <div className="border border-earth-700/50 rounded-lg p-4 flex flex-col">
-                  <p className="text-earth-400 text-xs text-center mb-3 uppercase tracking-widest">Select dates</p>
+                  <div className="text-center mb-3">
+                    <p className="text-earth-200 text-xs uppercase tracking-widest">
+                      {isDayCyclePlan ? "Book 1 Day" : isResidencyPlan ? "Book 2 Nights / 3 Days" : isSolitudePlan ? "Book 4 Nights / 5 Days" : "Book Your Dates"}
+                    </p>
+                    <p className="text-earth-600 text-xs mt-0.5">
+                      {isDayCyclePlan ? "Any day" : isResidencyPlan ? "Weekend only (Fri – Sun)" : isSolitudePlan ? "Weekdays only (Mon – Fri)" : "Any dates • Max 7 days"}
+                    </p>
+                  </div>
                   <div className="flex items-center justify-between mb-2">
                     <button type="button" onClick={() => setViewMonth(m => new Date(m.getFullYear(), m.getMonth()-1, 1))} className="w-7 h-7 rounded text-earth-400 hover:text-gold-400 hover:bg-earth-800 flex items-center justify-center">
                       <span className="material-symbols-outlined text-base">chevron_left</span>
