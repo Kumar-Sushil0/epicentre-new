@@ -134,7 +134,7 @@ export default function StoriesCard({ title, description, image, imageAlt, autho
 
                 {/* Author/Date info on hover */}
                 {(author || date) && (
-                  <div className="flex items-center gap-4 text-earth-800 text-xs font-mono mb-4">
+                  <div className="flex items-center gap-4 text-earth-800 text-sm md:text-base leading-relaxed font-body mb-4">
                     {author && (
                       <span className="flex items-center gap-1">
                         <span className="material-symbols-outlined text-base">person</span> {author}
