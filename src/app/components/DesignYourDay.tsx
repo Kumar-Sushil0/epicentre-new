@@ -117,16 +117,17 @@ interface DesignYourDayProps {
   accommodation?: string;
   price?: string;
   quantity?: string;
+  dates?: string;
 }
 
-export default function DesignYourDay({ cycle, accommodation, price, quantity }: DesignYourDayProps) {
+export default function DesignYourDay({ cycle, accommodation, price, quantity, dates }: DesignYourDayProps) {
   const [schedule, setSchedule] = useState<{ [key: string]: string }>({});
   const [draggedActivity, setDraggedActivity] = useState<string | null>(null);
   const [activeDropKey, setActiveDropKey] = useState<string | null>(null);
   const [checkIn, setCheckIn] = useState<Date | null>(null);
   const [checkOut, setCheckOut] = useState<Date | null>(null);
   const [hoverDate, setHoverDate] = useState<Date | null>(null);
-  const [selectedDates, setSelectedDates] = useState<string[]>([]);
+  const [selectedDates, setSelectedDates] = useState<string[]>(() => dates ? dates.split(",").filter(Boolean) : []);
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const [viewMonth, setViewMonth] = useState(() => {
     const today = new Date();
@@ -234,6 +235,11 @@ export default function DesignYourDay({ cycle, accommodation, price, quantity }:
 
   const getActivityById = (id: string) =>
     activityGroups.flatMap((group) => group.activities).find((a) => a.id === id);
+
+  const getActivityIconClass = (id: string) => {
+    const group = activityGroups.find((g) => g.activities.some((a) => a.id === id));
+    return group?.iconClass ?? "text-gold-500";
+  };
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -358,64 +364,6 @@ export default function DesignYourDay({ cycle, accommodation, price, quantity }:
   return (
     <section className="py-4 px-3 md:px-6 bg-earth-950">
       <div className="w-full">
-        {/* Planning Context + Date Selection */}
-        <div className="mb-3">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 text-xs">
-            <div className="rounded-lg border border-gold-500/25 bg-earth-900/70 px-3 py-2">
-              <p className="text-[10px] uppercase tracking-[0.08em] text-earth-500">Plan</p>
-              <p className="text-gold-500 text-sm font-medium mt-0.5">{cycle ?? "-"}</p>
-              <p className="text-[10px] text-earth-400 mt-1">
-                {accommodation ? (accommodation === "dorm" ? "Dorm" : "Private Room") : "-"}
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={() => setIsDatePickerOpen(true)}
-              className="text-left rounded-lg border border-gold-500/25 bg-earth-900/70 px-3 py-2 hover:border-gold-500/60 transition-colors"
-            >
-              <p className="text-[10px] uppercase tracking-[0.08em] text-earth-500">Dates</p>
-              <p className="text-gold-500 text-sm font-medium mt-0.5">
-                {selectedDates.length
-                  ? `${selectedDates.length} selected`
-                  : ""}
-              </p>
-              {selectedDates.length ? (
-                <div className="mt-1.5 flex flex-wrap gap-1">
-                  {selectedDates.map((date) => (
-                    <span
-                      key={date}
-                      className="text-[10px] px-2 py-0.5 rounded-full bg-gold-500/15 border border-gold-500/40 text-gold-300"
-                    >
-                      {prettyDate(date)}
-                    </span>
-                  ))}
-                </div>
-              ) : (
-                <div className="mt-1">
-                  <p className="text-[10px] text-gold-400 font-medium">Click to select dates</p>
-                  <p className="text-[10px] text-earth-500 mt-0.5">
-                    {isDayCyclePlan
-                      ? "Single day only"
-                      : isResidencyPlan
-                      ? "Friday, Saturday, Sunday only"
-                      : isSolitudePlan
-                      ? "Monday to Friday only"
-                      : "Check-in to check-out (max 7 days)"}
-                  </p>
-                </div>
-              )}
-            </button>
-            <div className="rounded-lg border border-gold-500/25 bg-earth-900/70 px-3 py-2">
-              <p className="text-[10px] uppercase tracking-[0.08em] text-earth-500">Quantity</p>
-              <p className="text-gold-500 text-sm font-medium mt-0.5">{quantity ?? "1 person"}</p>
-            </div>
-            <div className="rounded-lg border border-gold-500/25 bg-earth-900/70 px-3 py-2">
-              <p className="text-[10px] uppercase tracking-[0.08em] text-earth-500">Pricing</p>
-              <p className="text-gold-500 text-sm font-medium mt-0.5">{price ?? "-"}</p>
-            </div>
-          </div>
-        </div>
-
         {/* Activities Grid */}
         <div className="mb-3">
           <h3 className="text-base md:text-lg font-normal text-gold-500 mb-3 text-center" style={{ fontFamily: "Outfit, sans-serif" }}>
@@ -572,7 +520,7 @@ export default function DesignYourDay({ cycle, accommodation, price, quantity }:
                           className="relative group w-full h-full flex flex-col items-center justify-center"
                           onClick={() => handleRemove(selectedDate, slot.time)}
                         >
-                          <span className="material-symbols-outlined text-gold-500 text-xs">
+                          <span className={`material-symbols-outlined text-xs ${getActivityIconClass(activityId!)}`}>
                             {activity.icon}
                           </span>
                           <span className="text-earth-300 text-[9px] text-center leading-tight">

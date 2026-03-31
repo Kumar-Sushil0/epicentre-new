@@ -28,42 +28,138 @@ type ServiceCardItem = {
     href: string;
 };
 
+function InnerCollapsible({ title, preview, children }: { title: string; preview: string; children: React.ReactNode }) {
+    const [open, setOpen] = useState(false);
+    return (
+        <div className="border-2 border-gold-500/50 rounded-lg overflow-hidden">
+            <button
+                onClick={() => setOpen((p) => !p)}
+                className="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-earth-800/40 transition-colors"
+            >
+                <div className="flex-1 min-w-0 pr-3">
+                    <p className="text-[#e7dfd3] font-semibold text-sm" style={{ fontFamily: 'Outfit, sans-serif' }}>{title}</p>
+                    {!open && <p className="text-earth-500 text-xs mt-0.5 truncate">{preview}</p>}
+                </div>
+                <span className="material-symbols-outlined text-gold-500 text-xl shrink-0">
+                    {open ? 'expand_less' : 'expand_more'}
+                </span>
+            </button>
+            {open && <div className="px-4 pb-4 pt-1">{children}</div>}
+        </div>
+    );
+}
+
+function SectionTable() {
+    const headers = ["Day", "Check-in", "Check-out", "Duration", "Meals", "Price"];
+    const rows = [
+        ["Mon – Thu", "9:00 AM", "6:00 PM", "9 hrs", "Breakfast + Lunch", "₹1,000/person"],
+        ["Fri – Sun", "8:00 AM", "8:00 PM", "12 hrs", "All meals included", "₹1,500/person"],
+    ];
+    return (
+        <div className="w-full overflow-x-auto rounded-lg border border-earth-600/60">
+            <table className="w-full border-collapse text-xs" style={{ fontFamily: 'Outfit, sans-serif', tableLayout: 'fixed' }}>
+                <colgroup>
+                    <col style={{ width: '16.666%' }} />
+                    <col style={{ width: '16.666%' }} />
+                    <col style={{ width: '16.666%' }} />
+                    <col style={{ width: '16.666%' }} />
+                    <col style={{ width: '16.666%' }} />
+                    <col style={{ width: '16.67%' }} />
+                </colgroup>
+                <thead>
+                    <tr>
+                        {headers.map((h) => (
+                            <th key={h} className="border border-earth-600/60 px-4 py-2 text-gold-500 font-medium text-left bg-earth-800/30">
+                                {h}
+                            </th>
+                        ))}
+                    </tr>
+                </thead>
+                <tbody>
+                    {rows.map((row, ri) => (
+                        <tr key={ri}>
+                            {row.map((cell, ci) => (
+                                <td key={ci} className="border border-earth-600/60 px-4 py-2 text-earth-300">
+                                    {cell}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+}
+
+const PAGE_SIZE = 3;
+
 function SectionCardCarousel({ items }: { items: ServiceCardItem[] }) {
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    useEffect(() => {
+        if (items.length <= PAGE_SIZE) return;
+        const interval = setInterval(() => {
+            setCurrentIndex((prev) => (prev + 1) % items.length);
+        }, 4000);
+        return () => clearInterval(interval);
+    }, [items.length]);
+
     if (!items.length) return null;
 
-    const current = items[currentIndex];
     const prev = () => setCurrentIndex((p) => (p - 1 + items.length) % items.length);
     const next = () => setCurrentIndex((p) => (p + 1) % items.length);
 
+    // Show 3 items starting from currentIndex (wrapping)
+    const visible = [0, 1, 2].map((offset) => items[(currentIndex + offset) % items.length]);
+
     return (
-        <div className="mt-4">
-            <div className="relative max-w-xl mx-auto overflow-visible">
-                <CarouselCard
-                    title={current.title}
-                    description={current.description}
-                    images={current.images}
-                    icon={current.icon}
-                    category={current.category}
-                    href={current.href}
-                />
-                {items.length > 1 && (
+        <div className="w-full">
+            <div className="relative group/carousel">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    {visible.map((item, i) => (
+                        <div
+                            key={`${item.title}-${i}`}
+                            className="transition-opacity duration-700"
+                        >
+                            <CarouselCard
+                                title={item.title}
+                                description={item.description}
+                                images={item.images}
+                                icon={item.icon}
+                                category={item.category}
+                                href={item.href}
+                            />
+                        </div>
+                    ))}
+                </div>
+
+                {items.length > PAGE_SIZE && (
                     <>
                         <button
                             onClick={prev}
-                            className="absolute -left-12 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-earth-900/90 border border-gold-500/40 text-gold-500 hover:text-gold-400 transition-colors inline-flex items-center justify-center"
-                            aria-label="Previous card"
+                            className="absolute -left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-earth-900/90 border border-gold-500/50 text-gold-500 hover:bg-earth-800 hover:border-gold-500 transition-all inline-flex items-center justify-center shadow-lg opacity-0 group-hover/carousel:opacity-100"
+                            aria-label="Previous"
                         >
-                            <span className="material-symbols-outlined text-base leading-none">chevron_left</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                         </button>
                         <button
                             onClick={next}
-                            className="absolute -right-12 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-earth-900/90 border border-gold-500/40 text-gold-500 hover:text-gold-400 transition-colors inline-flex items-center justify-center"
-                            aria-label="Next card"
+                            className="absolute -right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-earth-900/90 border border-gold-500/50 text-gold-500 hover:bg-earth-800 hover:border-gold-500 transition-all inline-flex items-center justify-center shadow-lg opacity-0 group-hover/carousel:opacity-100"
+                            aria-label="Next"
                         >
-                            <span className="material-symbols-outlined text-base leading-none">chevron_right</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                         </button>
+                        {/* Dot indicators */}
+                        <div className="flex justify-center gap-1.5 mt-3">
+                            {items.map((_, idx) => (
+                                <button
+                                    key={idx}
+                                    onClick={() => setCurrentIndex(idx)}
+                                    className={`h-1 rounded-full transition-all duration-300 ${idx === currentIndex ? 'bg-gold-500 w-5' : 'bg-earth-600 w-1.5 hover:bg-earth-400'}`}
+                                    aria-label={`Go to slide ${idx + 1}`}
+                                />
+                            ))}
+                        </div>
                     </>
                 )}
             </div>
@@ -144,58 +240,52 @@ export default function TestPage() {
 
                 {expandedSection === "silence" && (
                     <div className="space-y-6">
-                        <div className="mb-8">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
-                                <div className="space-y-6">
-                                    <div>
-                                        <p className="text-gold-500 text-base font-medium mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>Day Cycle | Immediate Recalibration</p>
-                                        <p className="text-earth-300 text-base md:text-lg leading-relaxed">
-                                            A short-format cycle designed for people who need immediate signal correction without a long stay.
-                                        </p>
-                                        <p className="text-earth-400 text-base leading-relaxed mt-2">
-                                            You enter a low-stimulation environment, reduce interruption probability, and return to your week with clearer attention.
-                                        </p>
-                                    </div>
-
-                                    <div>
-                                        <p className="text-[#e7dfd3] font-semibold text-base mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>The Experience</p>
-                                        <div className="space-y-3">
-                                            {[
-                                                { heading: "Rapid Noise Reduction", body: "Silence-first zones and controlled access help reduce reactive attention quickly." },
-                                                { heading: "Short, Structured Window", body: "Designed for a half-day to full-day reset when clarity is needed now, not next month." },
-                                                { heading: "Practical Return", body: "You leave with cleaner attention and better decision signal, ready to continue your current commitments." },
-                                            ].map(({ heading, body }) => (
-                                                <div key={heading} className="border-l border-gold-500/30 pl-4 space-y-0.5">
-                                                    <p className="text-gold-500 text-base font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>{heading}</p>
-                                                    <p className="text-earth-300 text-base leading-relaxed">{body}</p>
-                                                </div>
-                                            ))}
+                        {/* Full-width carousel */}
+                        <SectionCardCarousel
+                            items={experiences.slice(0, 3).map((experience) => ({
+                                title: experience.title,
+                                description: experience.description,
+                                images: experience.images,
+                                icon: experience.icon,
+                                href: "/services",
+                            }))}
+                        />
+                        <SectionTable />
+                        {/* 3 dropdowns in 3-col grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <InnerCollapsible title="The Experience" preview="Rapid noise reduction, structured window, practical return">
+                                <div className="space-y-3">
+                                    {[
+                                        { heading: "Rapid Noise Reduction", body: "Silence-first zones and controlled access help reduce reactive attention quickly." },
+                                        { heading: "Short, Structured Window", body: "Designed for a half-day to full-day reset when clarity is needed now, not next month." },
+                                        { heading: "Practical Return", body: "You leave with cleaner attention and better decision signal, ready to continue your current commitments." },
+                                    ].map(({ heading, body }) => (
+                                        <div key={heading} className="border-l border-gold-500/30 pl-4 space-y-0.5 mt-2">
+                                            <p className="text-gold-500 text-sm font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>{heading}</p>
+                                            <p className="text-earth-300 text-sm leading-relaxed">{body}</p>
                                         </div>
-                                    </div>
+                                    ))}
                                 </div>
-
-                                <div className="space-y-6">
-                                    <SectionCardCarousel
-                                        items={experiences.slice(0, 3).map((experience) => ({
-                                            title: experience.title,
-                                            description: experience.description,
-                                            images: experience.images,
-                                            icon: experience.icon,
-                                            href: "/services",
-                                        }))}
-                                    />
-                                    <div className="border border-earth-700/40 rounded-lg p-4 bg-earth-800/20">
-                                        <p className="text-[#e7dfd3] font-semibold text-base mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Before You Apply</p>
-                                        <p className="text-earth-300 text-base leading-relaxed mb-2">
-                                            Best for people who want a shorter intervention for attention reset and decision clarity.
-                                        </p>
-                                        <p className="text-earth-400 text-base mb-4">A short conversation helps confirm fit and timing.</p>
-                                        <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-gold-500 text-gold-500 text-base font-medium hover:bg-gold-500 hover:text-earth-950 transition-all" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                            View Plans →
-                                        </a>
-                                    </div>
+                            </InnerCollapsible>
+                            <InnerCollapsible title="Who This Is For" preview="Immediate recalibration, short stays, attention reset">
+                                <div className="space-y-1 text-earth-300 text-sm mt-2">
+                                    {["Professionals needing a same-day clarity reset", "Anyone between commitments who needs signal correction", "People who can't afford a multi-day stay but need structured silence", "Those experiencing decision fatigue or attention scatter"].map((item) => (
+                                        <div key={item} className="flex items-start gap-2">
+                                            <span className="text-gold-500 mt-0.5">•</span>
+                                            <span>{item}</span>
+                                        </div>
+                                    ))}
                                 </div>
-                            </div>
+                            </InnerCollapsible>
+                            <InnerCollapsible title="Before You Apply" preview="A short conversation helps confirm fit and timing">
+                                <p className="text-earth-300 text-sm leading-relaxed mt-2 mb-3">
+                                    Best for people who want a shorter intervention for attention reset and decision clarity.
+                                </p>
+                                <p className="text-earth-400 text-sm mb-4">A short conversation helps confirm fit and timing.</p>
+                                <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-gold-500 text-gold-500 text-sm font-medium hover:bg-gold-500 hover:text-earth-950 transition-all" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                    View Plans →
+                                </a>
+                            </InnerCollapsible>
                         </div>
                     </div>
                 )}
@@ -218,78 +308,51 @@ export default function TestPage() {
 
                 {expandedSection === "solitude" && (
                     <div className="space-y-6">
-                        <div className="mb-8">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
-                                {/* Left col: Intro + The Experience + Who This Is For */}
-                                <div className="space-y-6">
-                                    {/* Intro */}
-                                    <div>
-                                        <p className="text-gold-500 text-base font-medium mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>Weekday Cycle | Structured Solitude</p>
-                                        <p className="text-earth-300 text-base md:text-lg leading-relaxed">
-                                            A 4 nights / 5 days immersion designed for individuals who want to step away from constant stimulation and spend uninterrupted time with themselves.
-                                        </p>
-                                        <p className="text-earth-400 text-base leading-relaxed mt-2">
-                                            This is not a retreat with fixed group programming. It is a quiet, nature-anchored environment where you set your own rhythm while engaging in restorative outdoor practices.
-                                        </p>
-                                    </div>
-
-                                    {/* The Experience */}
-                                    <div>
-                                        <p className="text-[#e7dfd3] font-semibold text-base mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>The Experience</p>
-                                        <div className="space-y-3">
-                                            {[
-                                                { heading: "Step Away From Noise", body: "The estate is structured to reduce unnecessary stimulation. No social obligations, performance expectations, or scheduled group interactions." },
-                                                { heading: "Move At Your Own Pace", body: "You choose how your day unfolds. Some participants spend hours walking or observing nature. Others journal, train, or simply rest." },
-                                                { heading: "Remain Unobserved", body: "The environment allows psychological privacy. You are not required to share, participate, or engage unless you choose to." },
-                                            ].map(({ heading, body }) => (
-                                                <div key={heading} className="border-l border-gold-500/30 pl-4 space-y-0.5">
-                                                    <p className="text-gold-500 text-base font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>{heading}</p>
-                                                    <p className="text-earth-300 text-base leading-relaxed">{body}</p>
-                                                </div>
-                                            ))}
+                        <SectionCardCarousel
+                            items={solitudePractices.map((practice) => ({
+                                title: practice.title,
+                                description: practice.description,
+                                images: practice.images,
+                                icon: practice.icon,
+                                category: practice.category,
+                                href: `/solitude/details?id=${practice.practiceId}`,
+                            }))}
+                        />
+                        <SectionTable />
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <InnerCollapsible title="The Experience" preview="Step away from noise, move at your own pace, remain unobserved">
+                                <div className="space-y-3">
+                                    {[
+                                        { heading: "Step Away From Noise", body: "The estate is structured to reduce unnecessary stimulation. No social obligations, performance expectations, or scheduled group interactions." },
+                                        { heading: "Move At Your Own Pace", body: "You choose how your day unfolds. Some participants spend hours walking or observing nature. Others journal, train, or simply rest." },
+                                        { heading: "Remain Unobserved", body: "The environment allows psychological privacy. You are not required to share, participate, or engage unless you choose to." },
+                                    ].map(({ heading, body }) => (
+                                        <div key={heading} className="border-l border-gold-500/30 pl-4 space-y-0.5 mt-2">
+                                            <p className="text-gold-500 text-sm font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>{heading}</p>
+                                            <p className="text-earth-300 text-sm leading-relaxed">{body}</p>
                                         </div>
-                                    </div>
-
-                                    {/* Who This Is For */}
-                                    <div>
-                                        <p className="text-[#e7dfd3] font-semibold text-base mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Who This Is For</p>
-                                        <div className="space-y-1 text-earth-300 text-base">
-                                            {["Individuals experiencing mental fatigue or creative block", "Professionals seeking uninterrupted thinking time", "Athletes or movement practitioners wanting low-stimulus training environments", "Anyone wanting structured solitude without social pressure"].map((item) => (
-                                                <div key={item} className="flex items-start gap-2">
-                                                    <span className="text-gold-500 mt-0.5">•</span>
-                                                    <span>{item}</span>
-                                                </div>
-                                            ))}
+                                    ))}
+                                </div>
+                            </InnerCollapsible>
+                            <InnerCollapsible title="Who This Is For" preview="Mental fatigue, creative block, uninterrupted thinking time...">
+                                <div className="space-y-1 text-earth-300 text-sm mt-2">
+                                    {["Individuals experiencing mental fatigue or creative block", "Professionals seeking uninterrupted thinking time", "Athletes or movement practitioners wanting low-stimulus training environments", "Anyone wanting structured solitude without social pressure"].map((item) => (
+                                        <div key={item} className="flex items-start gap-2">
+                                            <span className="text-gold-500 mt-0.5">•</span>
+                                            <span>{item}</span>
                                         </div>
-                                    </div>
+                                    ))}
                                 </div>
-
-                                {/* Right col: Schedule + Duration & Stay + Before You Apply */}
-                                <div className="space-y-6">
-                                    <SectionCardCarousel
-                                        items={solitudePractices.map((practice) => ({
-                                            title: practice.title,
-                                            description: practice.description,
-                                            images: practice.images,
-                                            icon: practice.icon,
-                                            category: practice.category,
-                                            href: `/solitude/details?id=${practice.practiceId}`,
-                                        }))}
-                                    />
-                                    {/* Before You Apply */}
-                                    <div className="border border-earth-700/40 rounded-lg p-4 bg-earth-800/20">
-                                        <p className="text-[#e7dfd3] font-semibold text-base mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Before You Apply</p>
-                                        <p className="text-earth-300 text-base leading-relaxed mb-2">
-                                            This cycle is self-directed and requires comfort with spending extended time alone or in silence. Limited guidance is provided primarily for safety and orientation.
-                                        </p>
-                                        <p className="text-earth-400 text-base mb-4">For availability and suitability, you can begin with a short conversation.</p>
-                                        <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-gold-500 text-gold-500 text-base font-medium hover:bg-gold-500 hover:text-earth-950 transition-all" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                            View Plans →
-                                        </a>
-                                    </div>
-
-                                </div>
-                            </div>
+                            </InnerCollapsible>
+                            <InnerCollapsible title="Before You Apply" preview="Self-directed, comfort with extended silence required">
+                                <p className="text-earth-300 text-sm leading-relaxed mt-2 mb-3">
+                                    This cycle is self-directed and requires comfort with spending extended time alone or in silence.
+                                </p>
+                                <p className="text-earth-400 text-sm mb-4">For availability and suitability, you can begin with a short conversation.</p>
+                                <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-gold-500 text-gold-500 text-sm font-medium hover:bg-gold-500 hover:text-earth-950 transition-all" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                    View Plans →
+                                </a>
+                            </InnerCollapsible>
                         </div>
                     </div>
                 )}
@@ -312,96 +375,68 @@ export default function TestPage() {
 
                 {expandedSection === "expression" && (
                     <div className="space-y-6">
-                        <div className="mb-8">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                                {/* Left col */}
-                                <div className="space-y-6">
-                                    {/* Intro */}
-                                    <div>
-                                        <p className="text-gold-500 text-base font-medium mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>Residency Cycle | Private Estate Booking</p>
-                                        <p className="text-earth-300 text-base md:text-lg leading-relaxed">
-                                            A flexible residency format where individuals, teams, or small groups can reserve the entire Silent Club estate for focused time away from routine environments.
-                                        </p>
-                                        <p className="text-earth-400 text-base leading-relaxed mt-2">
-                                            This format is designed for testing ideas, building clarity, or exploring creative and performance questions in a low-stimulation setting. You may book the estate for multiple days based on your requirement and availability.
-                                        </p>
-                                    </div>
-
-                                    {/* What Happens During Residency */}
-                                    <div>
-                                        <p className="text-[#e7dfd3] font-semibold text-base mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>What Happens During Residency</p>
-                                        <p className="text-earth-400 text-base mb-3">Residency is not a retreat with lectures or structured workshops. It is a controlled environment that allows you to engage deeply with your own process. Participants use the space to run self-directed experiments:</p>
-                                        <div className="space-y-3">
-                                            {[
-                                                { heading: "Process Experiments", body: "Testing new routines, workflows, or decision-making approaches without daily operational pressure." },
-                                                { heading: "Material Experiments", body: "Working with physical mediums, prototypes, or tactile practices that require uninterrupted attention." },
-                                                { heading: "Narrative Experiments", body: "Reflecting on personal or professional direction, writing, journaling, or story development." },
-                                                { heading: "Performance Experiments", body: "Exploring cognitive or physical performance under reduced stimulation conditions." },
-                                                { heading: "Media Experiments", body: "Deep creative work such as filming, sound recording, editing, or content ideation in a distraction-free setting." },
-                                                { heading: "Movement Experiments", body: "Training cycles, endurance practice, or somatic exploration supported by natural terrain and open spaces." },
-                                            ].map(({ heading, body }) => (
-                                                <div key={heading} className="border-l border-gold-500/30 pl-4 space-y-0.5">
-                                                    <p className="text-gold-500 text-base font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>{heading}</p>
-                                                    <p className="text-earth-300 text-base leading-relaxed">{body}</p>
-                                                </div>
-                                            ))}
+                        <SectionCardCarousel
+                            items={expressionPillars.map((pillar) => ({
+                                title: pillar.title,
+                                description: pillar.description,
+                                images: pillar.images,
+                                icon: pillar.icon,
+                                href: "/expression/details",
+                            }))}
+                        />
+                        <SectionTable />
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <InnerCollapsible title="What Happens During Residency" preview="Process, material, narrative, performance, media, movement experiments">
+                                <p className="text-earth-400 text-xs mb-3 mt-1">Self-directed experiments — the estate provides the container, not the curriculum.</p>
+                                <div className="space-y-3">
+                                    {[
+                                        { heading: "Process Experiments", body: "Testing new routines, workflows, or decision-making approaches without daily operational pressure." },
+                                        { heading: "Material Experiments", body: "Working with physical mediums, prototypes, or tactile practices that require uninterrupted attention." },
+                                        { heading: "Narrative Experiments", body: "Reflecting on personal or professional direction, writing, journaling, or story development." },
+                                        { heading: "Performance Experiments", body: "Exploring cognitive or physical performance under reduced stimulation conditions." },
+                                        { heading: "Media Experiments", body: "Deep creative work such as filming, sound recording, editing, or content ideation in a distraction-free setting." },
+                                        { heading: "Movement Experiments", body: "Training cycles, endurance practice, or somatic exploration supported by natural terrain and open spaces." },
+                                    ].map(({ heading, body }) => (
+                                        <div key={heading} className="border-l border-gold-500/30 pl-4 space-y-0.5 mt-1">
+                                            <p className="text-gold-500 text-sm font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>{heading}</p>
+                                            <p className="text-earth-300 text-sm leading-relaxed">{body}</p>
                                         </div>
-                                        <p className="text-earth-500 text-sm mt-3 italic">All experiments are self-led. The estate provides the container, not the curriculum.</p>
-                                    </div>
-                                    {/* Who This Is For */}
-                                    <div>
-                                        <p className="text-[#e7dfd3] font-semibold text-base mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Who This Is For</p>
-                                        <div className="space-y-1 text-earth-300 text-base">
-                                            {["Teams needing offsite clarity without corporate workshop fatigue", "Creators building something that requires uninterrupted focus", "Individuals testing new life or work directions", "Groups wanting a quiet decision-making environment"].map(item => (
-                                                <div key={item} className="flex items-start gap-2">
-                                                    <span className="text-gold-500 mt-0.5">•</span><span>{item}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
+                                    ))}
                                 </div>
-
-                                {/* Right col */}
-                                <div className="space-y-6">
-                                    <SectionCardCarousel
-                                        items={expressionPillars.map((pillar) => ({
-                                            title: pillar.title,
-                                            description: pillar.description,
-                                            images: pillar.images,
-                                            icon: pillar.icon,
-                                            href: "/expression/details",
-                                        }))}
-                                    />
-                                    {/* The Experience Structure */}
-                                    <div>
-                                        <p className="text-[#e7dfd3] font-semibold text-base mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>The Experience Structure</p>
-                                        <div className="space-y-3">
-                                            {[
-                                                { heading: "Shared Presence, Intentional Interaction", body: "Residency cycles are usually scheduled on weekends or custom dates. If multiple participants or groups are present, interaction windows are limited and purpose-driven." },
-                                                { heading: "Silence as the Default Condition", body: "Silence remains the baseline environment across most zones. Conversations are time-bound and anchored around a single working question or objective." },
-                                                { heading: "Defined Engagement Perimeter", body: "There are no presentations, seminars, or performance stages. You work within a calm spatial structure that encourages depth rather than display." },
-                                            ].map(({ heading, body }) => (
-                                                <div key={heading} className="border-l border-gold-500/30 pl-4 space-y-0.5">
-                                                    <p className="text-gold-500 text-base font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>{heading}</p>
-                                                    <p className="text-earth-300 text-base leading-relaxed">{body}</p>
-                                                </div>
-                                            ))}
+                            </InnerCollapsible>
+                            <InnerCollapsible title="Who This Is For" preview="Teams, creators, individuals, groups needing quiet decision-making">
+                                <div className="space-y-1 text-earth-300 text-sm mt-2">
+                                    {["Teams needing offsite clarity without corporate workshop fatigue", "Creators building something that requires uninterrupted focus", "Individuals testing new life or work directions", "Groups wanting a quiet decision-making environment"].map(item => (
+                                        <div key={item} className="flex items-start gap-2">
+                                            <span className="text-gold-500 mt-0.5">•</span><span>{item}</span>
                                         </div>
-                                    </div>
-
-                                    {/* Before You Request */}
-                                    <div className="border border-earth-700/40 rounded-lg p-4 bg-earth-800/20">
-                                        <p className="text-[#e7dfd3] font-semibold text-base mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Before You Request a Residency</p>
-                                        <p className="text-earth-300 text-base leading-relaxed mb-2">
-                                            This format requires participants to be comfortable with minimal facilitation and extended silent or low-interaction periods.
-                                        </p>
-                                        <p className="text-earth-400 text-base mb-4">A short alignment conversation helps determine suitability and estate configuration.</p>
-                                        <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-gold-500 text-gold-500 text-base font-medium hover:bg-gold-500 hover:text-earth-950 transition-all" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                            View Plans →
-                                        </a>
-                                    </div>
+                                    ))}
                                 </div>
-                            </div>
+                            </InnerCollapsible>
+                            <InnerCollapsible title="The Experience Structure" preview="Shared presence, silence as default, defined engagement perimeter">
+                                <div className="space-y-3 mt-2">
+                                    {[
+                                        { heading: "Shared Presence, Intentional Interaction", body: "Residency cycles are usually scheduled on weekends or custom dates. Interaction windows are limited and purpose-driven." },
+                                        { heading: "Silence as the Default Condition", body: "Silence remains the baseline environment across most zones. Conversations are time-bound and anchored around a single working question." },
+                                        { heading: "Defined Engagement Perimeter", body: "No presentations, seminars, or performance stages. You work within a calm spatial structure that encourages depth rather than display." },
+                                    ].map(({ heading, body }) => (
+                                        <div key={heading} className="border-l border-gold-500/30 pl-4 space-y-0.5 mt-1">
+                                            <p className="text-gold-500 text-sm font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>{heading}</p>
+                                            <p className="text-earth-300 text-sm leading-relaxed">{body}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </InnerCollapsible>
+                        </div>
+                        <div className="border border-earth-700/40 rounded-lg p-4 bg-earth-800/20">
+                            <p className="text-[#e7dfd3] font-semibold text-sm mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Before You Request a Residency</p>
+                            <p className="text-earth-300 text-sm leading-relaxed mb-2">
+                                This format requires comfort with minimal facilitation and extended silent or low-interaction periods.
+                            </p>
+                            <p className="text-earth-400 text-sm mb-3">A short alignment conversation helps determine suitability and estate configuration.</p>
+                            <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-gold-500 text-gold-500 text-sm font-medium hover:bg-gold-500 hover:text-earth-950 transition-all" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                View Plans →
+                            </a>
                         </div>
                     </div>
                 )}
@@ -426,57 +461,32 @@ export default function TestPage() {
 
                 {expandedSection === "residency" && (
                     <div className="space-y-6">
-                        <div className="mb-8">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                                {/* Left col */}
-                                <div className="space-y-6">
-                                    {/* Intro */}
-                                    <div>
-                                        <p className="text-gold-500 text-base font-medium mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>Expert Residency | Thinking Partner Format</p>
-                                        <p className="text-earth-300 text-base md:text-lg leading-relaxed">
-                                            An invited speaker or domain expert is present during the residency.
-                                        </p>
-                                        <div className="mt-3 space-y-1 text-earth-400 text-base">
-                                            <p className="text-earth-300 text-sm font-medium mb-1">There are:</p>
-                                            {["No presentations", "No slides or projected material", "No seminar-style teaching"].map(item => (
-                                                <div key={item} className="flex items-start gap-2">
-                                                    <span className="text-gold-500 mt-0.5">•</span><span>{item}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                        <p className="text-earth-400 text-base mt-3">Instead, participants engage in one-on-one or small-group discussions around their specific questions. The expert acts as a thinking partner rather than an instructor.</p>
+                        <SectionCardCarousel
+                            items={residencies.map((residency) => ({
+                                title: residency.title,
+                                description: residency.description,
+                                images: residency.images,
+                                icon: residency.icon,
+                                category: residency.category,
+                                href: "/residency/details",
+                            }))}
+                        />
+                        <SectionTable />
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <InnerCollapsible title="The Experience" preview="Silence as default, one anchoring question, defined engagement boundaries">
+                                <div className="space-y-4 mt-2">
+                                    <div className="border-l border-gold-500/30 pl-4 space-y-1">
+                                        <p className="text-gold-500 text-sm font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>Silence as the Default Condition</p>
+                                        <p className="text-earth-300 text-sm leading-relaxed">Outside defined interaction windows, silence remains the baseline. This allows deeper processing, independent reflection, reduced cognitive noise, and sharper decision clarity.</p>
                                     </div>
-
-                                    {/* Experience blocks */}
-                                    <div>
-                                        <p className="text-[#e7dfd3] font-semibold text-base mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>The Experience</p>
-                                        <div className="space-y-4">
-                                            <div className="border-l border-gold-500/30 pl-4 space-y-1">
-                                                <p className="text-gold-500 text-base font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>Silence as the Default Condition</p>
-                                                <p className="text-earth-300 text-base leading-relaxed">Outside defined interaction windows, silence remains the baseline. This allows deeper processing of conversations, independent reflection, reduced cognitive noise, and sharper decision clarity.</p>
-                                            </div>
-                                            <div className="border-l border-gold-500/30 pl-4 space-y-1">
-                                                <p className="text-gold-500 text-base font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>One Anchoring Question</p>
-                                                <p className="text-earth-300 text-base leading-relaxed">Each participant is encouraged to arrive with one important question or decision area. The residency structure supports exploring assumptions, stress-testing ideas, gaining perspective, and refining direction.</p>
-                                            </div>
-                                            <div className="border-l border-gold-500/30 pl-4 space-y-1">
-                                                <p className="text-gold-500 text-base font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>Defined Engagement Boundaries</p>
-                                                <div className="space-y-1 text-earth-300 text-base mt-1">
-                                                    {["No open debates", "No performance pressure", "No stage dynamics", "No forced sharing"].map(item => (
-                                                        <div key={item} className="flex items-start gap-2">
-                                                            <span className="text-gold-500 mt-0.5">•</span><span>{item}</span>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                                <p className="text-earth-400 text-base mt-2">You engage only within designated interaction moments and otherwise remain in a calm, low-stimulation environment.</p>
-                                            </div>
-                                        </div>
+                                    <div className="border-l border-gold-500/30 pl-4 space-y-1">
+                                        <p className="text-gold-500 text-sm font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>One Anchoring Question</p>
+                                        <p className="text-earth-300 text-sm leading-relaxed">Each participant is encouraged to arrive with one important question or decision area. The structure supports exploring assumptions, stress-testing ideas, and refining direction.</p>
                                     </div>
-                                    {/* Who This Is For */}
-                                    <div>
-                                        <p className="text-[#e7dfd3] font-semibold text-base mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Who This Is For</p>
-                                        <div className="space-y-1 text-earth-300 text-base">
-                                            {["Founders or leaders facing critical decisions", "Professionals navigating major career or financial transitions", "Creators or strategists needing deep perspective", "Individuals seeking high-quality thinking conversations rather than generic learning sessions"].map(item => (
+                                    <div className="border-l border-gold-500/30 pl-4 space-y-1">
+                                        <p className="text-gold-500 text-sm font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>Defined Engagement Boundaries</p>
+                                        <div className="space-y-1 text-earth-300 text-sm mt-1">
+                                            {["No open debates", "No performance pressure", "No stage dynamics", "No forced sharing"].map(item => (
                                                 <div key={item} className="flex items-start gap-2">
                                                     <span className="text-gold-500 mt-0.5">•</span><span>{item}</span>
                                                 </div>
@@ -484,44 +494,29 @@ export default function TestPage() {
                                         </div>
                                     </div>
                                 </div>
-
-                                {/* Right col */}
-                                <div className="space-y-6">
-                                    <SectionCardCarousel
-                                        items={residencies.map((residency) => ({
-                                            title: residency.title,
-                                            description: residency.description,
-                                            images: residency.images,
-                                            icon: residency.icon,
-                                            category: residency.category,
-                                            href: "/residency/details",
-                                        }))}
-                                    />
-                                    {/* Duration & Format */}
-                                    <div className="border border-earth-700/40 rounded-lg p-4 bg-earth-800/20">
-                                        <p className="text-[#e7dfd3] font-semibold text-base mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Duration &amp; Format</p>
-                                        <div className="space-y-1 text-earth-300 text-base mb-3">
-                                            {["Weekend residency format", "Typically 2 to 3 days immersion", "Maximum 10–12 participants", "Accommodation and meals included"].map(item => (
-                                                <div key={item} className="flex items-start gap-2">
-                                                    <span className="text-gold-500 mt-0.5">•</span><span>{item}</span>
-                                                </div>
-                                            ))}
+                            </InnerCollapsible>
+                            <InnerCollapsible title="Who This Is For" preview="Founders, professionals, creators navigating high-stakes decisions">
+                                <div className="space-y-1 text-earth-300 text-sm mt-2">
+                                    {["Founders or leaders facing critical decisions", "Professionals navigating major career or financial transitions", "Creators or strategists needing deep perspective", "Individuals seeking high-quality thinking conversations rather than generic learning sessions"].map(item => (
+                                        <div key={item} className="flex items-start gap-2">
+                                            <span className="text-gold-500 mt-0.5">•</span><span>{item}</span>
                                         </div>
-                                        <p className="text-gold-500 text-base">Pricing varies <span className="text-earth-400 text-sm">based on speaker profile, theme, and estate configuration.</span></p>
-                                    </div>
-                                    {/* Before You Apply */}
-                                    <div className="border border-earth-700/40 rounded-lg p-4 bg-earth-800/20">
-                                        <p className="text-[#e7dfd3] font-semibold text-base mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Before You Apply</p>
-                                        <p className="text-earth-300 text-base leading-relaxed mb-2">
-                                            Residency requires mental readiness for silence, independent thinking, and honest inquiry.
-                                        </p>
-                                        <p className="text-earth-400 text-base mb-4">A short conversation helps assess alignment with the theme and cohort.</p>
-                                        <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-gold-500 text-gold-500 text-base font-medium hover:bg-gold-500 hover:text-earth-950 transition-all" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                            View Plans →
-                                        </a>
-                                    </div>
+                                    ))}
                                 </div>
-                            </div>
+                            </InnerCollapsible>
+                            <InnerCollapsible title="Duration & Format" preview="Weekend format, 2–3 days, max 10–12 participants">
+                                <div className="space-y-1 text-earth-300 text-sm mt-2 mb-3">
+                                    {["Weekend residency format", "Typically 2 to 3 days immersion", "Maximum 10–12 participants", "Accommodation and meals included"].map(item => (
+                                        <div key={item} className="flex items-start gap-2">
+                                            <span className="text-gold-500 mt-0.5">•</span><span>{item}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                                <p className="text-gold-500 text-sm mb-4">Pricing varies <span className="text-earth-400 text-xs">based on speaker profile, theme, and estate configuration.</span></p>
+                                <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-gold-500 text-gold-500 text-sm font-medium hover:bg-gold-500 hover:text-earth-950 transition-all" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                    View Plans →
+                                </a>
+                            </InnerCollapsible>
                         </div>
                     </div>
                 )}

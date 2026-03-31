@@ -13,6 +13,7 @@ function DesignYourStayInner() {
   const accommodation = searchParams.get("accommodation") || undefined;
   const price = searchParams.get("price") || undefined;
   const quantity = searchParams.get("quantity") || undefined;
+  const dates = searchParams.get("dates") || undefined;
 
   return (
     <main className="min-h-screen bg-earth-950 text-earth-100">
@@ -39,6 +40,7 @@ function DesignYourStayInner() {
         accommodation={accommodation}
         price={price}
         quantity={quantity}
+        dates={dates}
       />
     </main>
   );
