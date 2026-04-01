@@ -45,17 +45,29 @@ export default function VoidAndFormats() {
             className="text-center text-2xl md:text-3xl font-normal text-gold-500 mb-4 md:mb-6"
             style={{ fontFamily: "Outfit, sans-serif" }}
           >
-            Ways to Enter the Estate
+            What Changes When You Arrive
           </h2>
           <div className="text-center text-earth-300 text-base md:text-lg leading-relaxed space-y-3 md:space-y-4">
             <p>
-              There is no fixed agenda when you arrive.<br />
-              The environment remains the same.<br />
-              Only your depth of engagement changes.
+              There is no fixed agenda when you arrive.
             </p>
             <p>
-              Stimulation reduces. Roles soften. Time opens.<br />
-              You move at your own pace between reflection, nature, and self-directed thought.
+              The environment is intentionally minimal.<br />
+              Stimulation reduces. Roles soften. Time opens.
+            </p>
+            <p>
+              You move at your own pace.<br />
+              Between reflection, nature, and thought.
+            </p>
+            <p>
+              Some come for a few hours.
+              Some stay for days.<br />
+              Some go deeper into complete withdrawal.<br />
+              Some take full control of the environment.
+            </p>
+            <p>
+              The depth changes.
+              The environment does not.
             </p>
             <p>
               Silence is not something you perform.<br />
@@ -73,19 +85,11 @@ export default function VoidAndFormats() {
                   {f.icon}
                 </span>
                 <h3
-                  className="text-base md:text-lg font-normal text-earth-100 mb-1"
+                  className="text-base md:text-lg font-normal text-earth-100"
                   style={{ fontFamily: "Outfit, sans-serif" }}
                 >
                   {f.name}
                 </h3>
-                <p className="text-gold-500/70 text-xs mb-1">{f.days}</p>
-                <p className="text-earth-500 text-xs mb-3">{f.sub}</p>
-                <p className="text-earth-300 text-xs md:text-sm leading-relaxed">
-                  {f.desc1}
-                </p>
-                <p className="text-earth-500 text-xs leading-relaxed mt-1">
-                  {f.desc2}
-                </p>
               </div>
             </Link>
           ))}

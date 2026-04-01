@@ -1,33 +1,30 @@
 export const experiences = [
         {
-            title: "Boat Safari",
-            description: "Guided movement through water alongside bird life.\nExperience: Observation, rhythm, quiet.",
-            icon: "sailing",
+            title: "The Reset",
+            description: "Step out of noise. Let your mind settle. Clarity doesn't come from more input—it comes from space.",
+            category: "Clear",
+            icon: "psychology",
             images: [
                 "https://lh3.googleusercontent.com/aida-public/AB6AXuBzQUBgomUJe6e1OB_6dmTVcgR_GYt5k-UgoretbmfZ_izouiCOaK8YYEWLDt_QTV_ISyTECnULI_O5W2HYPqj6w163bSvDPTOBZHjRl7FljH8xAlUWQIAfo5Eosj0EPZTfwiMtkXcjRL7RThN1FokJa4gSqWamw681YNKmVWdMcKtTZpKktdALEho3axfgg38XvTVTyHnF8634k552ETsVCipetwOV8NQ9ujUeRJusTOeygeyE16mtVKBxnTDmtPIEduKGAtXfTURb",
             ],
-            price: "1000 INR",
-            userCount: "2-5",
         },
         {
-            title: "Boat Night Safari",
-            description: "Float slowly under open sky.\nExperience: Stillness, orientation, vastness.",
-            icon: "sailing",
+            title: "The Ground",
+            description: "Move your body. Breathe deeper. Slow down. When the body settles, the mind follows.",
+            category: "Balance",
+            icon: "self_improvement",
             images: [
                 "https://lh3.googleusercontent.com/aida-public/AB6AXuDRDZ8o-JGgFjqHv3XthGLGz519OyZYTh_sWwcvBjdQQIzolyCXSsUjdTvivWDhmcltlTFvD71iGQr0I77PCKoXLuqGYJ22zlf__h8EMkv791VfiUJnEUc4ykgWQtr9O5EBzFF-MJ07jrYOwEkyg5xEl0X9ayH0rYcb9diiyN68oouAfDUUeOTFPIBjvnYN8xELQ9oCDNI2lBDINuvnt6NQPsVbvR-t4c4gZrshZ1RXGQrACrjJyPGfT62LIZeuaMXegi9fS2KKrZ35",
             ],
-            price: "1000 INR",
-            userCount: "2-5",
         },
         {
-            title: "Grassland Safari",
-            description: "Moving through open terrain near wildlife.\nExperience: Openness, scale, unhurried time.",
-            icon: "landscape",
+            title: "The Reflect",
+            description: "Sit. Write. Observe. You already know more than you think—you just haven't paused.",
+            category: "Awareness",
+            icon: "edit_note",
             images: [
                 "https://lh3.googleusercontent.com/aida-public/AB6AXuCL7r_EfdzJXByVkgj8b1NMj-ZAtICOd-7f0nIhoxkQIxwBXH598TGdlFxtN24GiUoEphwYF0zIlhdvgru9oSMfTu9oihv5xP2V32qk72jVhmmMD13Pcuc1s0mmIW9z0PwjwSoqpRfVVjN7zXydMqkaSSiGcvxYcCH0nmyLUFMqAU494-rLxIKe2FG8GvN3X8ki91b9auaQ6g5uK2zpi_NeVNIbCo2enuZdmqIXYer0VC9t9T7g6Bxyw44xX4oXh4-0yrKVSoFNsFSS",
             ],
-            price: "5000 INR",
-            userCount: "2-5",
         },
         {
             title: "Media Viewing",

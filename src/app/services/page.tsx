@@ -49,6 +49,48 @@ function InnerCollapsible({ title, preview, children }: { title: string; preview
     );
 }
 
+function SolitudeTable() {
+    const tracks = [
+        { emoji: "🧭", name: "The Observer", theme: "Awareness", activities: ["Bird watching", "Nature mapping", "Stillness training"], tagline: "Learn to notice what most people miss." },
+        { emoji: "🌌", name: "The Explorer", theme: "Perspective", activities: ["Stargazing", "Telescope work", "Night sky tracking"], tagline: "Zoom out far enough—everything changes." },
+        { emoji: "🎣", name: "The Hunter", theme: "Focus", activities: ["Fishing / angling", "Patience training", "Environmental reading"], tagline: "Master the art of waiting without distraction." },
+        { emoji: "🧠", name: "The Builder", theme: "Clarity", activities: ["Reading + synthesis", "Writing", "Thinking frameworks"], tagline: "Turn scattered thoughts into structured direction." },
+        { emoji: "🏃", name: "The Athlete", theme: "Endurance", activities: ["Swim / cycle / strength", "Triathlon-style discipline"], tagline: "Push your body until your mind gets honest." },
+        { emoji: "🧬", name: "The Restorer", theme: "Release", activities: ["Fascia training", "Mobility", "Body awareness"], tagline: "Unlock what your body has been holding onto." },
+    ];
+    return (
+        <div className="w-full space-y-3">
+            <div className="text-center space-y-1">
+                <p className="text-gold-500 text-base font-normal" style={{ fontFamily: 'Outfit, sans-serif' }}>What Shifts</p>
+                <p className="text-earth-400 text-sm">You don’t escape silence. You work through it.</p>
+            </div>
+            <div className="w-full overflow-x-auto rounded-lg border border-earth-600/60">
+                <table className="w-full border-collapse text-xs" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                    <thead>
+                        <tr>
+                            <th className="border border-earth-600/60 px-4 py-2 text-gold-500 font-medium text-left bg-earth-800/30">Track</th>
+                            <th className="border border-earth-600/60 px-4 py-2 text-gold-500 font-medium text-left bg-earth-800/30">Theme</th>
+                            <th className="border border-earth-600/60 px-4 py-2 text-gold-500 font-medium text-left bg-earth-800/30">Activities</th>
+                            <th className="border border-earth-600/60 px-4 py-2 text-gold-500 font-medium text-left bg-earth-800/30">What It Does</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {tracks.map((t) => (
+                            <tr key={t.name}>
+                                <td className="border border-earth-600/60 px-4 py-2 text-earth-200 whitespace-nowrap">{t.emoji} {t.name}</td>
+                                <td className="border border-earth-600/60 px-4 py-2 text-gold-500/80">{t.theme}</td>
+                                <td className="border border-earth-600/60 px-4 py-2 text-earth-300">{t.activities.join(", ")}</td>
+                                <td className="border border-earth-600/60 px-4 py-2 text-earth-400 italic">{t.tagline}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <p className="text-earth-400 text-xs text-center">Choose one. Or move between them. The silence stays the same.</p>
+        </div>
+    );
+}
+
 function SectionTable() {
     const headers = ["Day", "Check-in", "Check-out", "Duration", "Meals", "Price"];
     const rows = [
@@ -240,6 +282,9 @@ export default function TestPage() {
 
                 {expandedSection === "silence" && (
                     <div className="space-y-6">
+                        <div>
+                            <p className="text-earth-300 text-sm mb-1">4 hours. No noise. You'll think clearer than you have in weeks.</p>
+                        </div>
                         {/* Full-width carousel */}
                         <SectionCardCarousel
                             items={experiences.slice(0, 3).map((experience) => ({
@@ -247,29 +292,60 @@ export default function TestPage() {
                                 description: experience.description,
                                 images: experience.images,
                                 icon: experience.icon,
+                                category: experience.category,
                                 href: "/services",
                             }))}
                         />
-                        <SectionTable />
+                        {/* Structure points */}
+                        <div className="space-y-2">
+                            <p className="text-gold-500 text-base font-normal" style={{ fontFamily: 'Outfit, sans-serif' }}>The Structure</p>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-1">
+                                {["Up to 4 hours inside the estate", "No schedule. No guidance", "Access to all spaces and facilities", "Meals / snacks available"].map((item) => (
+                                    <div key={item} className="flex items-start gap-2">
+                                        <span className="text-gold-500 mt-0.5">•</span>
+                                        <span className="text-earth-300 text-sm">{item}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        {/* Silence mode table */}
+                        <div className="space-y-3">
+                            <div className="text-center space-y-1">
+                                <p className="text-gold-500 text-base font-normal" style={{ fontFamily: 'Outfit, sans-serif' }}>Choose How You Spend Your Silence</p>
+                                <p className="text-earth-400 text-sm">You don't need a plan. Just a way in.</p>
+                            </div>
+                            <div className="w-full overflow-x-auto rounded-lg border border-earth-600/60">
+                                <table className="w-full border-collapse text-xs" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                    <thead>
+                                        <tr>
+                                            {["Mode", "Focus", "How You Spend It", "What Shifts"].map(h => (
+                                                <th key={h} className="border border-earth-600/60 px-4 py-2 text-gold-500 font-medium text-left bg-earth-800/30">{h}</th>
+                                            ))}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {[
+                                            { mode: "The Reset", focus: "Clarity", how: "Sitting, breathing, doing nothing", shifts: "Mental noise drops" },
+                                            { mode: "The Ground", focus: "Balance", how: "Movement, swim, sauna, workout", shifts: "Body regulates, mind settles" },
+                                            { mode: "The Reflect", focus: "Awareness", how: "Journaling, reading, observing", shifts: "Thoughts become visible" },
+                                        ].map(({ mode, focus, how, shifts }) => (
+                                            <tr key={mode}>
+                                                <td className="border border-earth-600/60 px-4 py-2 text-earth-200">{mode}</td>
+                                                <td className="border border-earth-600/60 px-4 py-2 text-gold-500/80">{focus}</td>
+                                                <td className="border border-earth-600/60 px-4 py-2 text-earth-300">{how}</td>
+                                                <td className="border border-earth-600/60 px-4 py-2 text-earth-400 italic">{shifts}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p className="text-earth-400 text-xs text-center">Start anywhere. Move between them. The silence does the rest.</p>
+                        </div>
                         {/* 3 dropdowns in 3-col grid */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <InnerCollapsible title="The Experience" preview="Rapid noise reduction, structured window, practical return">
-                                <div className="space-y-3">
-                                    {[
-                                        { heading: "Rapid Noise Reduction", body: "Silence-first zones and controlled access help reduce reactive attention quickly." },
-                                        { heading: "Short, Structured Window", body: "Designed for a half-day to full-day reset when clarity is needed now, not next month." },
-                                        { heading: "Practical Return", body: "You leave with cleaner attention and better decision signal, ready to continue your current commitments." },
-                                    ].map(({ heading, body }) => (
-                                        <div key={heading} className="border-l border-gold-500/30 pl-4 space-y-0.5 mt-2">
-                                            <p className="text-gold-500 text-sm font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>{heading}</p>
-                                            <p className="text-earth-300 text-sm leading-relaxed">{body}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                            </InnerCollapsible>
-                            <InnerCollapsible title="Who This Is For" preview="Immediate recalibration, short stays, attention reset">
+                            <InnerCollapsible title="What Actually Happens" preview="You arrive, disconnect, settle in, move at your own pace">
                                 <div className="space-y-1 text-earth-300 text-sm mt-2">
-                                    {["Professionals needing a same-day clarity reset", "Anyone between commitments who needs signal correction", "People who can't afford a multi-day stay but need structured silence", "Those experiencing decision fatigue or attention scatter"].map((item) => (
+                                    {["You arrive, disconnect, and settle in", "You move at your own pace", "You leave when something shifts", "No pressure. No expectations. Just space."].map((item) => (
                                         <div key={item} className="flex items-start gap-2">
                                             <span className="text-gold-500 mt-0.5">•</span>
                                             <span>{item}</span>
@@ -277,15 +353,30 @@ export default function TestPage() {
                                     ))}
                                 </div>
                             </InnerCollapsible>
-                            <InnerCollapsible title="Before You Apply" preview="A short conversation helps confirm fit and timing">
-                                <p className="text-earth-300 text-sm leading-relaxed mt-2 mb-3">
-                                    Best for people who want a shorter intervention for attention reset and decision clarity.
-                                </p>
-                                <p className="text-earth-400 text-sm mb-4">A short conversation helps confirm fit and timing.</p>
-                                <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-gold-500 text-gold-500 text-sm font-medium hover:bg-gold-500 hover:text-earth-950 transition-all" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                    View Plans →
-                                </a>
+                            <InnerCollapsible title="Who This Is For" preview="Mentally crowded, need a break, want clarity without days away">
+                                <div className="space-y-1 text-earth-300 text-sm mt-2">
+                                    {["You feel mentally crowded", "You need a break—but not an escape", "You want clarity without committing days"].map((item) => (
+                                        <div key={item} className="flex items-start gap-2">
+                                            <span className="text-gold-500 mt-0.5">•</span>
+                                            <span>{item}</span>
+                                        </div>
+                                    ))}
+                                </div>
                             </InnerCollapsible>
+                            <InnerCollapsible title="Before You Enter" preview="Simple—but not passive. Silence will slow you down.">
+                                <div className="space-y-2 mt-2">
+                                    <p className="text-earth-300 text-sm leading-relaxed">This is simple—but not passive.</p>
+                                    <p className="text-earth-300 text-sm leading-relaxed">Silence will slow you down.</p>
+                                    <p className="text-earth-400 text-sm mt-1">If you're constantly stimulated, it may feel unfamiliar.</p>
+                                    <p className="text-earth-400 text-sm">That's the point.</p>
+                                </div>
+                            </InnerCollapsible>
+                        </div>
+                        <div className="border border-earth-700/40 rounded-lg p-4 bg-earth-800/20">
+                            <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-gold-500 text-gold-500 text-sm font-medium hover:bg-gold-500 hover:text-earth-950 transition-all mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                Step Into Silence →
+                            </a>
+                            <p className="text-earth-300 text-sm leading-relaxed">You don't need a retreat. You need a few hours without noise.</p>
                         </div>
                     </div>
                 )}
@@ -308,6 +399,9 @@ export default function TestPage() {
 
                 {expandedSection === "solitude" && (
                     <div className="space-y-6">
+                        <div>
+                            <p className="text-earth-300 text-sm mb-1">5 days. Almost no conversation. You'll know what to do next. </p>
+                        </div>
                         <SectionCardCarousel
                             items={solitudePractices.map((practice) => ({
                                 title: practice.title,
@@ -318,25 +412,30 @@ export default function TestPage() {
                                 href: `/solitude/details?id=${practice.practiceId}`,
                             }))}
                         />
-                        <SectionTable />
+                        {/* Logistics points */}
+                        <div className="space-y-2">
+                            <p className="text-gold-500 text-base font-normal" style={{ fontFamily: 'Outfit, sans-serif' }}>The Structure</p>
+                            <div className="grid grid-cols-2 md:grid-cols-5 gap-x-6 gap-y-1">
+                                {["Weekdays only (Mon–Thu)", "4 Nights / 5 Days", "Communication - 30 mins", "Meals included", "Full access to estate"].map((item) => (
+                                    <div key={item} className="flex items-start gap-2">
+                                        <span className="text-gold-500 mt-0.5">•</span>
+                                        <span className="text-earth-300 text-sm">{item}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <SolitudeTable />
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <InnerCollapsible title="The Experience" preview="Step away from noise, move at your own pace, remain unobserved">
-                                <div className="space-y-3">
-                                    {[
-                                        { heading: "Step Away From Noise", body: "The estate is structured to reduce unnecessary stimulation. No social obligations, performance expectations, or scheduled group interactions." },
-                                        { heading: "Move At Your Own Pace", body: "You choose how your day unfolds. Some participants spend hours walking or observing nature. Others journal, train, or simply rest." },
-                                        { heading: "Remain Unobserved", body: "The environment allows psychological privacy. You are not required to share, participate, or engage unless you choose to." },
-                                    ].map(({ heading, body }) => (
-                                        <div key={heading} className="border-l border-gold-500/30 pl-4 space-y-0.5 mt-2">
-                                            <p className="text-gold-500 text-sm font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>{heading}</p>
-                                            <p className="text-earth-300 text-sm leading-relaxed">{body}</p>
-                                        </div>
-                                    ))}
+                            <InnerCollapsible title="What Actually Happens" preview="You'll run out of distractions. Then meet what's been waiting.">
+                                <div className="space-y-2 mt-2">
+                                    <p className="text-earth-300 text-sm leading-relaxed">You'll run out of distractions.</p>
+                                    <p className="text-earth-300 text-sm leading-relaxed">Then meet what's been waiting.</p>
+                                    <p className="text-earth-400 text-sm mt-1">You feel something is off, but can't name it.</p>
                                 </div>
                             </InnerCollapsible>
-                            <InnerCollapsible title="Who This Is For" preview="Mental fatigue, creative block, uninterrupted thinking time...">
+                            <InnerCollapsible title="Who This Is For" preview="Busy but not clear, avoiding something, need space to think">
                                 <div className="space-y-1 text-earth-300 text-sm mt-2">
-                                    {["Individuals experiencing mental fatigue or creative block", "Professionals seeking uninterrupted thinking time", "Athletes or movement practitioners wanting low-stimulus training environments", "Anyone wanting structured solitude without social pressure"].map((item) => (
+                                    {["You've been busy—but not clear", "You're avoiding something important", "You need space to think without interruption"].map((item) => (
                                         <div key={item} className="flex items-start gap-2">
                                             <span className="text-gold-500 mt-0.5">•</span>
                                             <span>{item}</span>
@@ -344,15 +443,21 @@ export default function TestPage() {
                                     ))}
                                 </div>
                             </InnerCollapsible>
-                            <InnerCollapsible title="Before You Apply" preview="Self-directed, comfort with extended silence required">
-                                <p className="text-earth-300 text-sm leading-relaxed mt-2 mb-3">
-                                    This cycle is self-directed and requires comfort with spending extended time alone or in silence.
-                                </p>
-                                <p className="text-earth-400 text-sm mb-4">For availability and suitability, you can begin with a short conversation.</p>
-                                <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-gold-500 text-gold-500 text-sm font-medium hover:bg-gold-500 hover:text-earth-950 transition-all" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                    View Plans →
-                                </a>
+                            <InnerCollapsible title="Before You Enter" preview="This is not easy. Silence amplifies what's already inside you.">
+                                <div className="space-y-2 mt-2">
+                                    
+                                    <p className="text-earth-400 text-sm mt-1">If you're looking to relax—this isn't it.</p>
+                                    <p className="text-earth-400 text-sm">If you're ready to face things—you'll know.</p>
+                                </div>
                             </InnerCollapsible>
+                        </div>
+                        <div className="border border-earth-700/40 rounded-lg p-4 bg-earth-800/20">
+                            <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-gold-500 text-gold-500 text-sm font-medium hover:bg-gold-500 hover:text-earth-950 transition-all" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                               Enter Solitude
+                            </a>
+
+                            <p className="text-earth-300 text-sm leading-relaxed mb-3 mt-2">Most people won’t choose this. The ones who do—don’t come back the same.</p>
+                            
                         </div>
                     </div>
                 )}
@@ -362,7 +467,7 @@ export default function TestPage() {
             <section className={`order-4 w-full px-4 md:px-16 transition-all duration-300 ${expandedSection === "expression" ? 'mb-24' : 'mb-6'}`}>
                 <div id="section-header-expression" className="flex items-center gap-4 cursor-pointer mb-6" onClick={() => toggleSection("expression")}>
                         <h2 className="text-2xl font-normal text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                            04. Experiment as a Service
+                            04. Creation as a Service
                         </h2>
                         <div className="h-[1px] bg-earth-700 flex-grow"></div>
                         <span className="material-symbols-outlined text-gold-500 text-3xl">science</span>
@@ -375,68 +480,102 @@ export default function TestPage() {
 
                 {expandedSection === "expression" && (
                     <div className="space-y-6">
+                        <div>
+                            <p className="text-earth-300 text-sm mb-1">You don't come here to think. You come here to make something real.</p>
+                        </div>
                         <SectionCardCarousel
                             items={expressionPillars.map((pillar) => ({
                                 title: pillar.title,
                                 description: pillar.description,
                                 images: pillar.images,
                                 icon: pillar.icon,
+                                category: pillar.category,
                                 href: "/expression/details",
                             }))}
                         />
-                        <SectionTable />
+                        {/* Structure points */}
+                        <div className="space-y-2">
+                            <p className="text-gold-500 text-base font-normal" style={{ fontFamily: 'Outfit, sans-serif' }}>The Structure</p>
+                            <div className="grid grid-cols-2 md:grid-cols-5 gap-x-6 gap-y-1">
+                                {["Full estate access", "No fixed schedule", "Solo or collaborative use", "Tools, environments, and open space", "Meals included"].map((item) => (
+                                    <div key={item} className="flex items-start gap-2">
+                                        <span className="text-gold-500 mt-0.5">•</span>
+                                        <span className="text-earth-300 text-sm">{item}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        {/* Creation Mode table */}
+                        <div className="space-y-3">
+                            <div className="text-center space-y-1">
+                                <p className="text-gold-500 text-base font-normal" style={{ fontFamily: 'Outfit, sans-serif' }}>Choose Your Creation Mode</p>
+                                <p className="text-earth-400 text-sm">You don't wait for clarity. You build your way into it.</p>
+                            </div>
+                            <div className="w-full overflow-x-auto rounded-lg border border-earth-600/60">
+                                <table className="w-full border-collapse text-xs" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                    <thead>
+                                        <tr>
+                                            {["Mode", "Focus", "How You Work", "What Emerges"].map(h => (
+                                                <th key={h} className="border border-earth-600/60 px-4 py-2 text-gold-500 font-medium text-left bg-earth-800/30">{h}</th>
+                                            ))}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {[
+                                            { mode: "The Forge", focus: "System", how: "Mapping, structuring, refining", emerges: "Clear frameworks & decisions" },
+                                            { mode: "The Lab", focus: "Form", how: "Hands-on testing, building", emerges: "Tangible prototypes" },
+                                            { mode: "The Script", focus: "Meaning", how: "Writing, storytelling", emerges: "Sharper voice & narrative" },
+                                            { mode: "The Studio", focus: "Output", how: "Shooting, editing, publishing", emerges: "Finished content" },
+                                            { mode: "The Arena", focus: "Expression", how: "Movement, performance", emerges: "Embodied clarity" },
+                                            { mode: "The Edge", focus: "Breakthrough", how: "Live testing, pushing limits", emerges: "New directions" },
+                                        ].map(({ mode, focus, how, emerges }) => (
+                                            <tr key={mode}>
+                                                <td className="border border-earth-600/60 px-4 py-2 text-earth-200">{mode}</td>
+                                                <td className="border border-earth-600/60 px-4 py-2 text-gold-500/80">{focus}</td>
+                                                <td className="border border-earth-600/60 px-4 py-2 text-earth-300">{how}</td>
+                                                <td className="border border-earth-600/60 px-4 py-2 text-earth-400 italic">{emerges}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p className="text-earth-400 text-xs text-center">Choose one. Or move between them. The work will tell you where to go.</p>
+                        </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <InnerCollapsible title="What Happens During Residency" preview="Process, material, narrative, performance, media, movement experiments">
-                                <p className="text-earth-400 text-xs mb-3 mt-1">Self-directed experiments — the estate provides the container, not the curriculum.</p>
-                                <div className="space-y-3">
-                                    {[
-                                        { heading: "Process Experiments", body: "Testing new routines, workflows, or decision-making approaches without daily operational pressure." },
-                                        { heading: "Material Experiments", body: "Working with physical mediums, prototypes, or tactile practices that require uninterrupted attention." },
-                                        { heading: "Narrative Experiments", body: "Reflecting on personal or professional direction, writing, journaling, or story development." },
-                                        { heading: "Performance Experiments", body: "Exploring cognitive or physical performance under reduced stimulation conditions." },
-                                        { heading: "Media Experiments", body: "Deep creative work such as filming, sound recording, editing, or content ideation in a distraction-free setting." },
-                                        { heading: "Movement Experiments", body: "Training cycles, endurance practice, or somatic exploration supported by natural terrain and open spaces." },
-                                    ].map(({ heading, body }) => (
-                                        <div key={heading} className="border-l border-gold-500/30 pl-4 space-y-0.5 mt-1">
-                                            <p className="text-gold-500 text-sm font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>{heading}</p>
-                                            <p className="text-earth-300 text-sm leading-relaxed">{body}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                            </InnerCollapsible>
-                            <InnerCollapsible title="Who This Is For" preview="Teams, creators, individuals, groups needing quiet decision-making">
+                            <InnerCollapsible title="What Actually Happens" preview="You arrive with an idea, build without interruption, no noise">
                                 <div className="space-y-1 text-earth-300 text-sm mt-2">
-                                    {["Teams needing offsite clarity without corporate workshop fatigue", "Creators building something that requires uninterrupted focus", "Individuals testing new life or work directions", "Groups wanting a quiet decision-making environment"].map(item => (
+                                    {["You arrive with an idea, problem, or intention", "You use the environment without interruption", "You build, test, refine, repeat", "No noise. No waiting. Just output."].map((item) => (
                                         <div key={item} className="flex items-start gap-2">
-                                            <span className="text-gold-500 mt-0.5">•</span><span>{item}</span>
+                                            <span className="text-gold-500 mt-0.5">•</span>
+                                            <span>{item}</span>
                                         </div>
                                     ))}
                                 </div>
                             </InnerCollapsible>
-                            <InnerCollapsible title="The Experience Structure" preview="Shared presence, silence as default, defined engagement perimeter">
-                                <div className="space-y-3 mt-2">
-                                    {[
-                                        { heading: "Shared Presence, Intentional Interaction", body: "Residency cycles are usually scheduled on weekends or custom dates. Interaction windows are limited and purpose-driven." },
-                                        { heading: "Silence as the Default Condition", body: "Silence remains the baseline environment across most zones. Conversations are time-bound and anchored around a single working question." },
-                                        { heading: "Defined Engagement Perimeter", body: "No presentations, seminars, or performance stages. You work within a calm spatial structure that encourages depth rather than display." },
-                                    ].map(({ heading, body }) => (
-                                        <div key={heading} className="border-l border-gold-500/30 pl-4 space-y-0.5 mt-1">
-                                            <p className="text-gold-500 text-sm font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>{heading}</p>
-                                            <p className="text-earth-300 text-sm leading-relaxed">{body}</p>
+                            <InnerCollapsible title="Who This Is For" preview="You know what to work on, need space to execute, ready to build">
+                                <div className="space-y-1 text-earth-300 text-sm mt-2">
+                                    {["You already know what you want to work on", "You need space to execute without distraction", "You're done thinking—you're ready to build"].map((item) => (
+                                        <div key={item} className="flex items-start gap-2">
+                                            <span className="text-gold-500 mt-0.5">•</span>
+                                            <span>{item}</span>
                                         </div>
                                     ))}
+                                </div>
+                            </InnerCollapsible>
+                            <InnerCollapsible title="Before You Enter" preview="Self-directed. No one tells you what to do.">
+                                <div className="space-y-2 mt-2">
+                                    <p className="text-earth-300 text-sm leading-relaxed">This is self-directed.</p>
+                                    <p className="text-earth-300 text-sm leading-relaxed">No one tells you what to do.</p>
+                                    <p className="text-earth-400 text-sm mt-1">If you need clarity—start with Solitude.</p>
+                                    <p className="text-earth-400 text-sm">If you have clarity—this is where you act.</p>
                                 </div>
                             </InnerCollapsible>
                         </div>
                         <div className="border border-earth-700/40 rounded-lg p-4 bg-earth-800/20">
-                            <p className="text-[#e7dfd3] font-semibold text-sm mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Before You Request a Residency</p>
-                            <p className="text-earth-300 text-sm leading-relaxed mb-2">
-                                This format requires comfort with minimal facilitation and extended silent or low-interaction periods.
-                            </p>
-                            <p className="text-earth-400 text-sm mb-3">A short alignment conversation helps determine suitability and estate configuration.</p>
-                            <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-gold-500 text-gold-500 text-sm font-medium hover:bg-gold-500 hover:text-earth-950 transition-all" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                View Plans →
+                            <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-gold-500 text-gold-500 text-sm font-medium hover:bg-gold-500 hover:text-earth-950 transition-all mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                Start Creating →
                             </a>
+                            <p className="text-earth-300 text-sm leading-relaxed">Most people sit on ideas. The right ones come here and build them.</p>
                         </div>
                     </div>
                 )}
@@ -448,7 +587,7 @@ export default function TestPage() {
             <section className={`order-2 w-full px-4 md:px-16 transition-all duration-300 ${expandedSection === "residency" ? 'mb-24' : 'mb-6'}`}>
                 <div id="section-header-residency" className="flex items-center gap-4 cursor-pointer mb-6" onClick={() => toggleSection("residency")}>
                         <h2 className="text-2xl font-normal text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                            02. Residency as a Service
+                            02. Residency — As a Service
                         </h2>
                         <div className="h-[1px] bg-earth-700 flex-grow"></div>
                         <span className="material-symbols-outlined text-gold-500 text-3xl">school</span>
@@ -461,6 +600,9 @@ export default function TestPage() {
 
                 {expandedSection === "residency" && (
                     <div className="space-y-6">
+                        <div>
+                            <p className="text-earth-300 text-sm mb-1">3 days. One question. You won't think about it the same way again.</p>
+                        </div>
                         <SectionCardCarousel
                             items={residencies.map((residency) => ({
                                 title: residency.title,
@@ -471,52 +613,93 @@ export default function TestPage() {
                                 href: "/residency/details",
                             }))}
                         />
-                        <SectionTable />
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <InnerCollapsible title="The Experience" preview="Silence as default, one anchoring question, defined engagement boundaries">
-                                <div className="space-y-4 mt-2">
-                                    <div className="border-l border-gold-500/30 pl-4 space-y-1">
-                                        <p className="text-gold-500 text-sm font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>Silence as the Default Condition</p>
-                                        <p className="text-earth-300 text-sm leading-relaxed">Outside defined interaction windows, silence remains the baseline. This allows deeper processing, independent reflection, reduced cognitive noise, and sharper decision clarity.</p>
+                        {/* Structure points */}
+                        <div className="space-y-2">
+                            <p className="text-gold-500 text-base font-normal" style={{ fontFamily: 'Outfit, sans-serif' }}>The Structure</p>
+                            <div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-1">
+                                {["Weekends only", "2 Nights / 3 Days", "10–20 participants", "Silence remains the default", "Conversation is intentional and time-bound", "No stages. No presentations. No performance"].map((item) => (
+                                    <div key={item} className="flex items-start gap-2">
+                                        <span className="text-gold-500 mt-0.5">•</span>
+                                        <span className="text-earth-300 text-sm">{item}</span>
                                     </div>
-                                    <div className="border-l border-gold-500/30 pl-4 space-y-1">
-                                        <p className="text-gold-500 text-sm font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>One Anchoring Question</p>
-                                        <p className="text-earth-300 text-sm leading-relaxed">Each participant is encouraged to arrive with one important question or decision area. The structure supports exploring assumptions, stress-testing ideas, and refining direction.</p>
-                                    </div>
-                                    <div className="border-l border-gold-500/30 pl-4 space-y-1">
-                                        <p className="text-gold-500 text-sm font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>Defined Engagement Boundaries</p>
-                                        <div className="space-y-1 text-earth-300 text-sm mt-1">
-                                            {["No open debates", "No performance pressure", "No stage dynamics", "No forced sharing"].map(item => (
-                                                <div key={item} className="flex items-start gap-2">
-                                                    <span className="text-gold-500 mt-0.5">•</span><span>{item}</span>
-                                                </div>
+                                ))}
+                            </div>
+                        </div>
+                        {/* Inquiry table */}
+                        <div className="space-y-3">
+                            <div className="text-center space-y-1">
+                                <p className="text-gold-500 text-base font-normal" style={{ fontFamily: 'Outfit, sans-serif' }}>Choose The Question You're Sitting With</p>
+                                <p className="text-earth-400 text-sm">You don't attend a session. You enter a question.</p>
+                            </div>
+                            <div className="w-full overflow-x-auto rounded-lg border border-earth-600/60">
+                                <table className="w-full border-collapse text-xs" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                    <thead>
+                                        <tr>
+                                            {["Inquiry", "Focus", "What Happens", "What Shifts"].map(h => (
+                                                <th key={h} className="border border-earth-600/60 px-4 py-2 text-gold-500 font-medium text-left bg-earth-800/30">{h}</th>
                                             ))}
-                                        </div>
-                                    </div>
-                                </div>
-                            </InnerCollapsible>
-                            <InnerCollapsible title="Who This Is For" preview="Founders, professionals, creators navigating high-stakes decisions">
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {[
+                                            { inquiry: "Future Studies", focus: "Judgment", what: "AI vs human thinking explored", shifts: "Clearer decision boundaries" },
+                                            { inquiry: "Economics", focus: "Stability", what: "Money, liquidity, risk unpacked", shifts: "Financial clarity" },
+                                            { inquiry: "Wellness", focus: "Regulation", what: "Stress patterns observed", shifts: "Nervous system awareness" },
+                                            { inquiry: "Knowledge", focus: "Boundaries", what: "Digital exposure examined", shifts: "Reduced overload" },
+                                            { inquiry: "Philosophy", focus: "Integrity", what: "Values tested under pressure", shifts: "Stronger alignment" },
+                                            { inquiry: "Closure", focus: "Completion", what: "Emotional backlog processed", shifts: "Relational clarity" },
+                                            { inquiry: "Psychology", focus: "Identity", what: "Behavior without audience", shifts: "Internal grounding" },
+                                            { inquiry: "Communication", focus: "Precision", what: "Speech reduced, meaning increased", shifts: "Sharper expression" },
+                                            { inquiry: "Action", focus: "Execution", what: "Talk vs movement revealed", shifts: "Bias toward doing" },
+                                            { inquiry: "Urban Life", focus: "Positioning", what: "City vs life evaluated", shifts: "Strategic clarity" },
+                                            { inquiry: "Writing", focus: "Clarity", what: "Thought → language structured", shifts: "Reduced mental loops" },
+                                            { inquiry: "Knowledge Design", focus: "Structure", what: "Systems built for thinking", shifts: "Intellectual independence" },
+                                        ].map(({ inquiry, focus, what, shifts }) => (
+                                            <tr key={inquiry}>
+                                                <td className="border border-earth-600/60 px-4 py-2 text-earth-200">{inquiry}</td>
+                                                <td className="border border-earth-600/60 px-4 py-2 text-gold-500/80">{focus}</td>
+                                                <td className="border border-earth-600/60 px-4 py-2 text-earth-300">{what}</td>
+                                                <td className="border border-earth-600/60 px-4 py-2 text-earth-400 italic">{shifts}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p className="text-earth-400 text-xs text-center">You don't need all of them. Just the one that won't leave you alone.</p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <InnerCollapsible title="What Actually Happens" preview="Small group, one question, silence as default, no performance">
                                 <div className="space-y-1 text-earth-300 text-sm mt-2">
-                                    {["Founders or leaders facing critical decisions", "Professionals navigating major career or financial transitions", "Creators or strategists needing deep perspective", "Individuals seeking high-quality thinking conversations rather than generic learning sessions"].map(item => (
+                                    {["A small group gathers around one question", "Silence is the default state", "Conversations happen in controlled windows", "No one performs. No one teaches.", "You don't listen to answers.", "You sit inside the question."].map(item => (
                                         <div key={item} className="flex items-start gap-2">
                                             <span className="text-gold-500 mt-0.5">•</span><span>{item}</span>
                                         </div>
                                     ))}
                                 </div>
                             </InnerCollapsible>
-                            <InnerCollapsible title="Duration & Format" preview="Weekend format, 2–3 days, max 10–12 participants">
-                                <div className="space-y-1 text-earth-300 text-sm mt-2 mb-3">
-                                    {["Weekend residency format", "Typically 2 to 3 days immersion", "Maximum 10–12 participants", "Accommodation and meals included"].map(item => (
+                            <InnerCollapsible title="Who This Is For" preview="Been thinking about something, need perspective, open to listening">
+                                <div className="space-y-1 text-earth-300 text-sm mt-2">
+                                    {["You've been thinking about something for a while", "You don't need more information—you need perspective", "You're open to listening without reacting"].map(item => (
                                         <div key={item} className="flex items-start gap-2">
                                             <span className="text-gold-500 mt-0.5">•</span><span>{item}</span>
                                         </div>
                                     ))}
                                 </div>
-                                <p className="text-gold-500 text-sm mb-4">Pricing varies <span className="text-earth-400 text-xs">based on speaker profile, theme, and estate configuration.</span></p>
-                                <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-gold-500 text-gold-500 text-sm font-medium hover:bg-gold-500 hover:text-earth-950 transition-all" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                    View Plans →
-                                </a>
                             </InnerCollapsible>
+                            <InnerCollapsible title="Before You Enter" preview="Not a workshop. No one is here to impress you.">
+                                <div className="space-y-2 mt-2">
+                                    <p className="text-earth-300 text-sm leading-relaxed">This is not a workshop.</p>
+                                    <p className="text-earth-300 text-sm leading-relaxed">No one is here to impress you.</p>
+                                    <p className="text-earth-400 text-sm mt-1">If you want answers—look elsewhere.</p>
+                                    <p className="text-earth-400 text-sm">If you're willing to question—this will stay with you.</p>
+                                </div>
+                            </InnerCollapsible>
+                        </div>
+                        <div className="border border-earth-700/40 rounded-lg p-4 bg-earth-800/20">
+                            <a href="/book-a-call" className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-gold-500 text-gold-500 text-sm font-medium hover:bg-gold-500 hover:text-earth-950 transition-all mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                Join The Residency →
+                            </a>
+                            <p className="text-earth-300 text-sm leading-relaxed">Some questions don't need answers. They need space—and the right people around them.</p>
                         </div>
                     </div>
                 )}
