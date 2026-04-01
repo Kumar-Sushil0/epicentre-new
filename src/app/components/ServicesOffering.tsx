@@ -150,6 +150,7 @@ export default function ServicesOffering({
   const dayOptions = Array.from({ length: 7 }, (_, i) => i + 1);
 
   const goToDesignYourStay = () => {
+    if (!selectedDates.length) return;
     const params = new URLSearchParams();
     if (pendingSelection) {
       params.set("cycle", pendingSelection.label);
@@ -165,10 +166,10 @@ export default function ServicesOffering({
     <section id="cycles-section" className="relative pt-10 pb-3 md:pt-12 md:pb-4 px-4 md:px-16 bg-earth-950">
       <div className="w-full">
         <h2 className="text-2xl md:text-3xl font-normal text-gold-500 mb-2 md:mb-3 text-center" style={{ fontFamily: 'Outfit, sans-serif' }}>
-           {title}
+           Ways to Enter the Estate
         </h2>
         <p className="text-earth-300 text-sm md:text-base text-center mb-2 md:mb-3 px-4">
-        Cycles do not change the environment. They change your depth of engagement. Access is available through membership or invitation only.
+          Cycles do not change the environment. They change your depth of engagement.
         </p>
 
         <div className="max-w-5xl mx-auto relative">
@@ -215,21 +216,21 @@ export default function ServicesOffering({
             }
           >
             <h3 className="text-lg md:text-xl font-normal text-gold-500 mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>
-             Silence as a Service
+             Arrival
             </h3>
-            <p className="text-earth-300 text-xs mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Entry — Day Cycle</p>
-            
+            <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>Day Visit — Entry</p>
+            <p className="text-earth-600 text-[10px] mb-2">All Days</p>
             <p className="text-gold-500 text-xs md:text-sm leading-snug mb-2">
-              Short recalibration when attention needs immediate correction.
+              A first encounter with silence.
             </p>
             <div className="space-y-1 mb-1.5 flex-1">
               <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
-                <span className="text-earth-300 text-sm">Full Access Upto 4Hrs</span>
+                <span className="text-earth-300 text-sm">Access to the estate for up to 4 hours</span>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
-                <span className="text-earth-300 text-sm">All meals Included</span>
+                <span className="text-earth-300 text-sm">All meals included</span>
               </div>
             </div>
 
@@ -251,26 +252,25 @@ export default function ServicesOffering({
             }
           >
             <h3 className="text-xl font-normal text-gold-500 mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>
-             Residency as a Service
+             Immersion
             </h3>
-            <p className="text-earth-300 text-xs mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Immersion — Weekend Cycle</p>
-            
+            <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>2–3 Days — Short Stay</p>
+            <p className="text-earth-600 text-[10px] mb-2">Weekends Only</p>
             <p className="text-gold-500 text-sm leading-snug mb-2">
-              Structured Silence without disrupting larger commitments.
+              Stepping out of noise.
             </p>
-
             <div className="space-y-1 mb-1.5 flex-1">
               <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
                 <span className="text-earth-300 text-sm">2 nights / 3 days</span>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
                 <span className="text-earth-300 text-sm">Full access</span>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
-                <span className="text-earth-300 text-sm">All meals Included</span>
+                <span className="text-earth-300 text-sm">All meals included</span>
               </div>
             </div>
 
@@ -292,12 +292,12 @@ export default function ServicesOffering({
             }
           >
             <h3 className="text-xl font-normal text-gold-500 mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Solitude as a Service
+              Withdrawal
             </h3>
-            <p className="text-earth-300 text-xs mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Withdrawal — Weekday Cycle</p>
-            
+            <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>4–5 Days — Extended Stay</p>
+            <p className="text-earth-600 text-[10px] mb-2">Weekdays Only</p>
             <p className="text-gold-500 text-sm leading-snug mb-2">
-              Complete silence for deep, sustained work.
+              Longer time in silence.
             </p>
             <div className="space-y-1 mb-1.5 flex-1">
               <div className="flex items-center gap-2">
@@ -314,7 +314,7 @@ export default function ServicesOffering({
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
-                <span className="text-earth-300 text-sm">All meals Included</span>
+                <span className="text-earth-300 text-sm">All meals included</span>
               </div>
             </div>
 
@@ -418,11 +418,12 @@ export default function ServicesOffering({
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
                 <div className="flex-1">
                   <h3 className="text-xl font-normal text-gold-500 mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                    Experiment as a Service
+                    Occupation
                   </h3>
-                  <p className="text-earth-300 text-xs mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Control — Collective Cycle</p>
+                  <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>Full Estate — Complete Access</p>
+                  <p className="text-earth-600 text-[10px] mb-2">All Days</p>
                   <p className="text-gold-500 text-sm leading-snug mb-2">
-                    Complete environmental control for sustained immersion.
+                    The estate, entirely yours.
                   </p>
                   <div className="flex flex-wrap gap-1.5">
                     <div className="flex items-center gap-2">
@@ -435,9 +436,7 @@ export default function ServicesOffering({
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-gold-500">•</span>
-                      <span className="text-earth-300 text-sm">
-                        Includes 4 Rooms, 10 Dorm Beds, access to Community Hall, tents and flexible sleeping options
-                      </span>
+                      <span className="text-earth-300 text-sm">Private use of rooms, dorms, and shared spaces</span>
                     </div>
                   </div>
                 </div>
@@ -588,7 +587,8 @@ export default function ServicesOffering({
 
                   // All other plans: per-person pricing
                   const rawMatch = pendingSelection.priceLabel.match(/₹([\d,]+)/);
-                  const baseNum = rawMatch ? parseInt(rawMatch[1].replace(/,/g, ""), 10) : null;
+                  const baseRatePerGuest = rawMatch ? parseInt(rawMatch[1].replace(/,/g, ""), 10) : null;
+                  const baseNum = baseRatePerGuest ? baseRatePerGuest * popupQuantity : null;
                   const gst = baseNum ? Math.round(baseNum * 0.18) : null;
                   const total = baseNum && gst ? baseNum + gst : null;
                   return (
@@ -608,7 +608,7 @@ export default function ServicesOffering({
                       {baseNum ? (
                         <>
                           <div className="flex justify-between px-4 py-3 border-t border-earth-700/50">
-                            <span className="text-earth-400">Base rate</span>
+                            <span className="text-earth-400">Base rate ({popupQuantity} guest{popupQuantity > 1 ? "s" : ""})</span>
                             <span className="text-gold-500 font-medium">{fmt(baseNum)}</span>
                           </div>
                           <div className="flex justify-between px-4 py-3 border-t border-earth-700/50">
@@ -697,7 +697,8 @@ export default function ServicesOffering({
             <button
               type="button"
               onClick={goToDesignYourStay}
-              className="w-full px-4 py-3 rounded-lg bg-gold-500 text-earth-950 text-sm font-medium hover:bg-gold-400 transition-colors"
+              disabled={!selectedDates.length}
+              className="w-full px-4 py-3 rounded-lg bg-gold-500 text-earth-950 text-sm font-medium hover:bg-gold-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gold-500"
               style={{ fontFamily: 'Outfit, sans-serif' }}
             >
               Design Your Stay at The Silent Club →
