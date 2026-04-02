@@ -63,20 +63,18 @@ export default function Hero() {
       
       {/* Content */}
       <div className="relative z-20 container px-4 md:px-16 max-w-7xl">
-        <div className="max-w-6xl border-l-2 border-gold-500/50 pl-4 md:pl-8 lg:pl-12 py-4 animate-in slide-in-from-left-4 duration-1000">
-          <p className="text-gold-500/70 text-sm uppercase tracking-[0.2em] mb-4" style={{ fontFamily: "Outfit, sans-serif" }}>
-            The Silent Club
-          </p>
+        <div className="max-w-6xl border-l-2 border-gold-500/50 pl-4 md:pl-8 lg:pl-12 animate-in slide-in-from-left-4 duration-1000">
+          
           <h1
-            className="text-earth-100 font-display font-normal leading-[1.1] tracking-tight mb-4 md:mb-6 drop-shadow-2xl whitespace-nowrap"
-            style={{ fontFamily: "Outfit, sans-serif", fontSize: "clamp(2rem, 5vw, 4rem)" }}
+            className="text-earth-100 text-2xl md:text-4xl lg:text-5xl font-display font-normal leading-[1.1] tracking-tight mb-1 drop-shadow-2xl"
+            style={{ fontFamily: "Outfit, sans-serif" }}
           >
-            <span className="italic text-gold-500">Silence reveals direction.</span>
-            <span className="text-earth-100"> The rest is up to you.</span>
+            <span className="italic text-gold-500">Silence reveals direction</span>
           </h1>
+          <p className="text-earth-100 font-normal -mt-2 mb-8" style={{ fontSize: '1.5rem' }}>The rest is up to you.</p>
 
           {/* CTA */}
-          <div className="flex flex-col gap-3 mt-8 md:mt-10 items-start">
+          <div className="flex flex-col gap-3 mt-4 items-start">
             <Link
               href="/cycles"
               className="inline-flex items-center gap-2 text-gold-500 hover:text-gold-400 hover:border-gold-400 transition-colors duration-300 text-base md:text-lg font-normal border-2 border-gold-500 rounded-lg px-5 md:px-6 py-2.5 md:py-3 bg-earth-950/50 backdrop-blur-sm"

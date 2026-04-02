@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import Header from "../components/Header";
 import ServicesOffering from "../components/ServicesOffering";
 
 export default function CyclesPage() {
@@ -9,7 +8,6 @@ export default function CyclesPage() {
 
   return (
     <main className="min-h-screen bg-earth-950 text-earth-100">
-      <Header />
       <div className="pt-8">
         <ServicesOffering
           onCycleSelect={(selection) => {
