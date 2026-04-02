@@ -68,11 +68,11 @@ export default function Hero() {
             The Silent Club
           </p>
           <h1
-            className="text-earth-100 text-4xl md:text-7xl lg:text-8xl font-display font-normal leading-[1.1] tracking-tight mb-4 md:mb-6 drop-shadow-2xl whitespace-nowrap"
-            style={{ fontFamily: "Outfit, sans-serif" }}
+            className="text-earth-100 font-display font-normal leading-[1.1] tracking-tight mb-4 md:mb-6 drop-shadow-2xl whitespace-nowrap"
+            style={{ fontFamily: "Outfit, sans-serif", fontSize: "clamp(2rem, 5vw, 4rem)" }}
           >
-            <span className="italic text-gold-500">Because the Noise</span>
-            <span className="text-earth-100"> Never Did.</span>
+            <span className="italic text-gold-500">Silence reveals direction.</span>
+            <span className="text-earth-100"> The rest is up to you.</span>
           </h1>
 
           {/* CTA */}
@@ -83,9 +83,6 @@ export default function Hero() {
             >
               Choose Your Depth →
             </Link>
-            <p className="text-earth-300 text-sm md:text-base mt-2">
-              Silence reveals direction. The rest is up to you.
-            </p>
           </div>
         </div>
       </div>
