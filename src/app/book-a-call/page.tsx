@@ -7,9 +7,9 @@ import { useSearchParams } from "next/navigation";
 import CallDateTimePicker from "../components/CallDateTimePicker";
 
 const CALL_QUESTIONS = [
-  "Can you hold silence for one to seven days without structure, instruction, or external accountability and remain fully functional?",
-  "When no one is guiding you, managing your schedule, or checking in — do you still move forward?",
-  "In complete silence, with no distractions and no noise, can you sit with yourself long enough to map the next decade of your life?",
+  "When nothing is expected of you—do you know what to do with your time?",
+  "Without noise, distraction, or input—do you move closer to yourself… or away?",
+  "If left completely alone with your thoughts—would you stay, or reach for escape?",
 ];
 
 function BookACallInner() {
@@ -18,6 +18,7 @@ function BookACallInner() {
   const accommodation = searchParams.get("accommodation");
   const price = searchParams.get("price");
   const quantity = searchParams.get("quantity");
+  const dates = searchParams.get("dates");
 
   const [callDateTime, setCallDateTime] = useState<{ date: Date | null; time: string | null }>({ date: null, time: null });
   const [answers, setAnswers] = useState(["", "", ""]);
@@ -75,10 +76,10 @@ function BookACallInner() {
           {/* Page header */}
           <div>
             <h1 className="text-xl md:text-2xl font-normal text-earth-50" style={{ fontFamily: "Cormorant Garamond, serif" }}>
-              Book a 15 min Alignment Call
+              Request an Invite
             </h1>
             <p className="text-[0.8rem] text-earth-400 mt-0.5">
-              A short conversation to understand where you are and whether this is the right moment.
+              Not everyone who reaches here is meant to enter.
             </p>
           </div>
 
@@ -98,13 +99,21 @@ function BookACallInner() {
                 <div className="border border-gold-500/30 bg-gold-500/5 rounded-xl overflow-hidden">
                   <div className="flex items-center gap-2 px-4 py-2.5 border-b border-gold-500/20">
                     <span className="material-symbols-outlined text-gold-400 text-[1rem]">event_available</span>
-                    <p className="text-[0.65rem] tracking-[0.14em] uppercase text-earth-500">Booking Summary</p>
+                    <p className="text-[0.65rem] tracking-[0.14em] uppercase text-earth-500">Your Selection</p>
                   </div>
                   <div className="divide-y divide-earth-800/60 text-[0.82rem]">
                     <div className="flex justify-between px-4 py-2">
                       <span className="text-earth-400">Cycle</span>
                       <span className="text-gold-300">{cycle}</span>
                     </div>
+                    {dates && (
+                      <div className="flex justify-between px-4 py-2">
+                        <span className="text-earth-400">Dates</span>
+                        <span className="text-earth-200 text-right">
+                          {dates.split(",").map(d => new Date(`${d}T00:00:00`).toLocaleDateString("en-IN", { day: "2-digit", month: "short" })).join(", ")}
+                        </span>
+                      </div>
+                    )}
                     {accommodation && (
                       <div className="flex justify-between px-4 py-2">
                         <span className="text-earth-400">Accommodation</span>
@@ -156,7 +165,8 @@ function BookACallInner() {
               {/* 3 questions */}
               <div className="space-y-3 flex-1">
                 <div className="flex items-center gap-2">
-                  </div>
+                  <p className="text-sm text-gold-500">Answer honestly. It matters.</p>
+                </div>
                 {CALL_QUESTIONS.map((q, idx) => (
                   <div key={idx} className="space-y-1.5">
                     <label className="text-[0.78rem] text-earth-400 leading-relaxed block">
@@ -201,12 +211,12 @@ function BookACallInner() {
                     }}
                     className={`w-full inline-flex items-center justify-center gap-2 px-6 py-3 text-[0.8rem] tracking-[0.14em] uppercase border border-gold-500 text-gold-400 hover:bg-gold-500/10 rounded-lg transition-colors ${!canBook ? "pointer-events-none" : "cursor-pointer"}`}
                   >
-                    Book a 15 min Alignment Call →
+                    Request an Invite →
                   </button>
                 </div>
                
                 <p className="text-center text-[0.72rem] text-grey-100">
-                  This Call is about a conversation to see if there is a right fit of expectations.
+                  A short conversation decides if this is for you.
                 </p>
               </div>
             </div>

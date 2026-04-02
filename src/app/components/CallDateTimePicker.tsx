@@ -57,6 +57,7 @@ export default function CallDateTimePicker({ value, onChange }: CallDateTimePick
 
   return (
     <div className="space-y-5">
+      <p className="text-sm font-medium text-gold-500 text-center">Choose date & time. Keep it honest.</p>
       {/* Month nav */}
       <div className="flex items-center justify-between">
         <button

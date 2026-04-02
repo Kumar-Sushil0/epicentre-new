@@ -108,6 +108,7 @@ const timeSlots: TimeSlot[] = [
   { time: "18:00" },
   { time: "19:30", label: "Dinner", isFixed: true },
   { time: "20:00" },
+  { time: "21:30", label: "Voice Window", isFixed: true },
 ];
 const CHECK_IN_TIME = "13:00";
 const CHECK_OUT_TIME = "11:00";
@@ -362,14 +363,15 @@ export default function DesignYourDay({ cycle, accommodation, price, quantity, d
   const bookCallHref = `/book-a-call${callParams.toString() ? `?${callParams.toString()}` : ""}`;
 
   return (
-    <section className="py-4 px-3 md:px-6 bg-earth-950">
-      <div className="w-full">
+    <section className="py-2 px-3 md:px-6 bg-earth-950 flex-1 flex flex-col">
+      <div className="w-full flex-1 flex flex-col">
         {/* Activities Grid */}
-        <div className="mb-3">
-          <h3 className="text-base md:text-lg font-normal text-gold-500 mb-3 text-center" style={{ fontFamily: "Outfit, sans-serif" }}>
-            Available Activities
+        <div className="mb-2">
+          <h3 className="text-sm md:text-base font-normal text-gold-500 mb-0.5 text-center" style={{ fontFamily: "Outfit, sans-serif" }}>
+            Ways to Spend Your Time
           </h3>
-          <div className="grid grid-cols-2 lg:grid-cols-6 gap-1.5">
+          <p className="text-earth-400 text-xs text-center mb-2">Nothing here is required. That's the point.</p>
+          <div className="grid grid-cols-2 lg:grid-cols-6 gap-1">
             {activityGroups.map((group) => (
               <div key={group.title} className="bg-earth-900/40 border border-earth-700/50 rounded-md overflow-hidden">
                 <div className="px-2 py-1 border-b border-earth-700/50 bg-earth-900/70">
@@ -396,15 +398,16 @@ export default function DesignYourDay({ cycle, accommodation, price, quantity, d
           </div>
         </div>
 
-        <h3 className="text-base md:text-lg font-normal text-gold-500 mb-3 text-center" style={{ fontFamily: "Outfit, sans-serif" }}>
-          Timetable
+        <h3 className="text-sm md:text-base font-normal text-gold-500 mb-1 text-center" style={{ fontFamily: "Outfit, sans-serif" }}>
+          Structure
         </h3>
+        <p className="text-earth-300 text-xs text-center mb-2">You can design your days. Or leave them completely empty.</p>
 
         {/* Schedule Grid */}
         <div className={`overflow-x-auto ${!selectedDates.length ? "opacity-40 pointer-events-none" : ""}`}>
           <div className="min-w-[700px]">
             {/* Time Header */}
-            <div className="grid grid-cols-[90px_repeat(13,1fr)] gap-1 mb-1">
+            <div className="grid grid-cols-[90px_repeat(14,1fr)] gap-1 mb-1">
               <div className="bg-earth-800/40 rounded-md p-1"></div>
               {timeSlots.map((slot) => (
                 <div
@@ -422,7 +425,7 @@ export default function DesignYourDay({ cycle, accommodation, price, quantity, d
 
             {/* One strip per selected date */}
             {selectedDates.map((selectedDate) => (
-              <div key={selectedDate} className="grid grid-cols-[90px_repeat(13,1fr)] gap-1 mb-1">
+              <div key={selectedDate} className="grid grid-cols-[90px_repeat(14,1fr)] gap-1 mb-1">
                 <div className="bg-earth-800/40 rounded-md p-1 flex items-center justify-center">
                   <span className="text-earth-300 text-[10px] font-medium leading-tight">
                     {`${new Date(`${selectedDate}T00:00:00`).toLocaleDateString("en-US", { day: "2-digit", month: "short" })} / ${new Date(`${selectedDate}T00:00:00`).toLocaleDateString("en-US", { weekday: "short" })}`}
@@ -542,14 +545,18 @@ export default function DesignYourDay({ cycle, accommodation, price, quantity, d
         </div>
 
         {selectedDates.length ? (
-          <div className="mt-3 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2">
-            <a
-              href={bookCallHref}
-              className="inline-flex items-center justify-center px-3 py-2 rounded-md bg-gold-500 text-earth-950 text-xs font-medium hover:bg-gold-400 transition-colors"
-            >
-              Book a 15 min Alignment Call
-            </a>
-          </div>
+          <>
+            <p className="text-earth-300 text-xs text-center mt-3">If you've made it this far, you already know you need this.</p>
+            <div className="mt-auto pt-3 pb-4 flex flex-col items-center gap-1.5">
+              <a
+                href={bookCallHref}
+                className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-gold-500 text-gold-500 text-sm font-medium hover:bg-gold-500/10 transition-colors"
+              >
+                Request an Invite →
+              </a>
+              <p className="text-gold-500 text-xs">A short conversation decides if this is for you</p>
+            </div>
+          </>
         ) : null}
       </div>
 

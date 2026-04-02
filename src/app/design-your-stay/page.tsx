@@ -16,7 +16,7 @@ function DesignYourStayInner() {
   const dates = searchParams.get("dates") || undefined;
 
   return (
-    <main className="min-h-screen bg-earth-950 text-earth-100">
+    <main className="min-h-screen flex flex-col bg-earth-950 text-earth-100">
       <Link
         href="/cycles"
         className="fixed left-3 top-3 md:left-4 md:top-4 z-50 inline-flex items-center justify-center rounded-lg p-2.5 text-earth-400 transition-colors hover:text-gold-400 hover:bg-earth-800/60"
@@ -24,13 +24,13 @@ function DesignYourStayInner() {
       >
         <span className="material-symbols-outlined text-[1.5rem]">close</span>
       </Link>
-      <section className="pt-8 md:pt-10 px-4 md:px-16">
-        <div className="max-w-6xl mx-auto">
+      <section className="pt-4 px-4 md:px-16">
+        <div className="max-w-3xl mx-auto text-center space-y-3">
           <h1
-            className="text-2xl md:text-3xl font-normal text-gold-500 text-center"
+            className="text-2xl md:text-3xl font-normal text-earth-100"
             style={{ fontFamily: "Outfit, sans-serif" }}
           >
-            Design Your Stay at The Silent Club
+            Ways Silence Can Be Used
           </h1>
         </div>
       </section>

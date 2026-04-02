@@ -67,10 +67,10 @@ export default function ServicesOffering({
   };
 
   const normalizedCycle = (pendingSelection?.label ?? "").toLowerCase();
-  const isDayCyclePlan = normalizedCycle === "day cycle";
+  const isDayCyclePlan = normalizedCycle === "silence as a service";
   const isResidencyPlan = normalizedCycle === "residency as a service";
   const isSolitudePlan = normalizedCycle === "solitude as a service";
-  const isExperimentPlan = normalizedCycle === "experiment as a service";
+  const isExperimentPlan = normalizedCycle === "creation as a service";
   const maxSelectableDays = isDayCyclePlan ? 1 : 7;
 
   const isDateAllowedByPlan = (d: Date) => {
@@ -209,7 +209,7 @@ export default function ServicesOffering({
             className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-3 flex flex-col cursor-pointer hover:border-gold-500/70 transition-colors"
             onClick={() =>
               handlePlanClick({
-                label: "Day Cycle",
+                label: "Silence as a Service",
                 accommodationType,
                 priceLabel: `₹1,000 per person`,
               })
@@ -409,7 +409,7 @@ export default function ServicesOffering({
               className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-3 cursor-pointer hover:border-gold-500/70 transition-colors"
               onClick={() =>
                 handlePlanClick({
-                  label: "Experiment as a Service",
+                  label: "Creation as a Service",
                   accommodationType,
                   priceLabel: `${["F", "S", "Su"].includes(selectedDay) ? "₹1,20,000" : "₹1,00,000"} per night (full estate)`,
                 })
@@ -535,7 +535,7 @@ export default function ServicesOffering({
 
             {/* Plan + pricing + calendar in 2-col layout */}
             <div className="mb-5">
-              <p className="text-gold-500 text-xl font-normal text-center mb-5" style={{ fontFamily: 'Outfit, sans-serif' }}>{pendingSelection.label}</p>
+              <p className="text-gold-500 text-xl font-normal text-center mb-5" style={{ fontFamily: 'Outfit, sans-serif' }}>Select Your Stay</p>
               <div className="grid grid-cols-2 gap-5 items-stretch">
                 {/* Left: pricing breakdown */}
                 {(() => {
@@ -554,8 +554,8 @@ export default function ServicesOffering({
                     return (
                       <div className="border border-earth-700/50 rounded-lg overflow-hidden text-sm flex flex-col">
                         <div className="flex justify-between px-4 py-3 bg-earth-800/30">
-                          <span className="text-earth-400">Full Estate</span>
-                          <span className="text-earth-200">Private Booking</span>
+                          <span className="text-earth-400">Plan</span>
+                          <span className="text-earth-200">{pendingSelection.label}</span>
                         </div>
                         {weekdayNights > 0 && (
                           <div className="flex justify-between px-4 py-3 border-t border-earth-700/50">
@@ -587,7 +587,7 @@ export default function ServicesOffering({
                           <span className="text-gold-400 font-semibold">{fmt(total)}</span>
                         </div>
                         <div className="px-4 py-2 border-t border-earth-700/50">
-                          <p className="text-earth-500 text-xs">Incl. all taxes • Subject to confirmation</p>
+                          <p className="text-earth-500 text-xs">Confirmed after Alignment Call</p>
                         </div>
                       </div>
                     );
@@ -602,6 +602,10 @@ export default function ServicesOffering({
                   return (
                     <div className="border border-earth-700/50 rounded-lg overflow-hidden text-sm flex flex-col">
                       <div className="flex justify-between px-4 py-3 bg-earth-800/30">
+                        <span className="text-earth-400">Plan</span>
+                        <span className="text-earth-200">{pendingSelection.label}</span>
+                      </div>
+                      <div className="flex justify-between px-4 py-3 border-t border-earth-700/50">
                         <span className="text-earth-400">Accommodation</span>
                         <span className="text-earth-200">{pendingSelection.accommodationType === "dorm" ? "Dorm" : "Private Room"}</span>
                       </div>
@@ -627,9 +631,7 @@ export default function ServicesOffering({
                             <span className="text-earth-200 font-medium">Total Amount</span>
                             <span className="text-gold-400 font-semibold">{fmt(total!)}</span>
                           </div>
-                          <div className="px-4 py-2 border-t border-earth-700/50">
-                            <p className="text-earth-500 text-xs">Incl. all taxes • Subject to confirmation</p>
-                          </div>
+                          
                         </>
                       ) : (
                         <div className="flex justify-between px-4 py-3 border-t border-earth-700/50">
@@ -645,10 +647,10 @@ export default function ServicesOffering({
                 <div className="border border-earth-700/50 rounded-lg p-4 flex flex-col">
                   <div className="text-center mb-3">
                     <p className="text-earth-200 text-xs uppercase tracking-widest">
-                      {isDayCyclePlan ? "Book 1 Day" : isResidencyPlan ? "Book 2 Nights / 3 Days" : isSolitudePlan ? "Book 4 Nights / 5 Days" : "Book Your Dates"}
+                      {isDayCyclePlan ? "1 Day Access" : isResidencyPlan ? "2 Nights / 3 Days Access" : isSolitudePlan ? "4 Nights / 5 Days Access" : "24 Hours — Full Estate Access"}
                     </p>
-                    <p className="text-earth-600 text-xs mt-0.5">
-                      {isDayCyclePlan ? "Any day" : isResidencyPlan ? "Weekend only (Fri – Sun)" : isSolitudePlan ? "Weekdays only (Mon – Fri)" : "Any dates • Max 7 days"}
+                    <p className="text-gold-500 text-xs mt-0.5">
+                      {isDayCyclePlan ? "Available all days" : isResidencyPlan ? "Available weekends only (Fri – Sun)" : isSolitudePlan ? "Available weekdays only (Mon – Fri)" : "Available all days"}
                     </p>
                   </div>
                   <div className="flex items-center justify-between mb-2">
@@ -686,11 +688,7 @@ export default function ServicesOffering({
                     })}
                   </div>
                   <div className="mt-3">
-                    {selectedDates.length === 0 ? (
-                      <p className="text-earth-500 text-xs text-center">
-                        {isDayCyclePlan ? "Single day only" : isResidencyPlan ? "Fri / Sat / Sun only" : isSolitudePlan ? "Mon – Fri only" : "Max 7 days"}
-                      </p>
-                    ) : (
+                    {selectedDates.length > 0 && (
                       <div className="flex flex-wrap gap-1 justify-center">
                         {selectedDates.map(date => (
                           <span key={date} className="text-xs px-2 py-0.5 rounded-full bg-gold-500/15 border border-gold-500/40 text-gold-300">{prettyDate(date)}</span>
@@ -702,15 +700,42 @@ export default function ServicesOffering({
               </div>
             </div>
 
-            <button
-              type="button"
-              onClick={goToDesignYourStay}
-              disabled={!selectedDates.length}
-              className="w-full px-4 py-3 rounded-lg bg-gold-500 text-earth-950 text-sm font-medium hover:bg-gold-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gold-500"
-              style={{ fontFamily: 'Outfit, sans-serif' }}
-            >
-              Design Your Stay at The Silent Club →
-            </button>
+            <div className="flex gap-3 w-full">
+              <div className="flex-1 flex flex-col gap-1">
+                <p className="text-earth-400 text-xs text-center">Shape how you want to experience this</p>
+                <button
+                  type="button"
+                  onClick={goToDesignYourStay}
+                  disabled={!selectedDates.length}
+                  className="w-full px-4 py-3 rounded-lg bg-gold-500 text-earth-950 text-sm font-medium hover:bg-gold-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gold-500"
+                  style={{ fontFamily: 'Outfit, sans-serif' }}
+                >
+                  Shape Your Stay →
+                </button>
+              </div>
+              <div className="flex-1 flex flex-col gap-1">
+                <p className="text-earth-400 text-xs text-center">Proceed to confirmation</p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const params = new URLSearchParams();
+                    if (pendingSelection) {
+                      params.set("cycle", pendingSelection.label);
+                      params.set("accommodation", pendingSelection.accommodationType);
+                      params.set("price", pendingSelection.priceLabel);
+                    }
+                    if (selectedDates.length) params.set("dates", selectedDates.join(","));
+                    router.push(`/book-a-call${params.toString() ? `?${params.toString()}` : ""}`);
+                  }}
+                  disabled={!selectedDates.length}
+                  className="w-full px-4 py-3 rounded-lg border border-gold-500 text-gold-500 text-sm font-medium hover:bg-gold-500/10 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{ fontFamily: 'Outfit, sans-serif' }}
+                >
+                  Request an Invite →
+                </button>
+                <p className="text-gold-500 text-xs text-center mt-1">* Includes a short alignment call</p>
+              </div>
+            </div>
           </div>
         </div>
       )}
