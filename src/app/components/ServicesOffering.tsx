@@ -166,10 +166,10 @@ export default function ServicesOffering({
     <section id="cycles-section" className="relative pt-10 pb-3 md:pt-12 md:pb-4 px-4 md:px-16 bg-earth-950">
       <div className="w-full">
         <h2 className="text-2xl md:text-3xl font-normal text-gold-500 mb-2 md:mb-3 text-center" style={{ fontFamily: 'Outfit, sans-serif' }}>
-           Ways to Enter the Estate
+          Choose Your Depth
         </h2>
         <p className="text-earth-300 text-sm md:text-base text-center mb-2 md:mb-3 px-4">
-          Cycles do not change the environment. They change your depth of engagement.
+          The environment stays the same. The depth changes.
         </p>
 
         <div className="max-w-5xl mx-auto relative">
@@ -216,21 +216,21 @@ export default function ServicesOffering({
             }
           >
             <h3 className="text-lg md:text-xl font-normal text-gold-500 mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>
-             Arrival
+              Silence as a Service
             </h3>
-            <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>Day Visit — Entry</p>
+            <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>4 Hours — Full Access — Any Day</p>
             <p className="text-earth-600 text-[10px] mb-2">All Days</p>
             <p className="text-gold-500 text-xs md:text-sm leading-snug mb-2">
-              A first encounter with silence.
+              Step out of noise. Return with direction.
             </p>
             <div className="space-y-1 mb-1.5 flex-1">
               <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
-                <span className="text-earth-300 text-sm">Access to the estate for up to 4 hours</span>
+                <span className="text-earth-300 text-sm">No schedule. Move at your own pace</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
-                <span className="text-earth-300 text-sm">All meals included</span>
+                <span className="text-earth-300 text-sm">All meals included — nothing to think about</span>
               </div>
             </div>
 
@@ -252,25 +252,25 @@ export default function ServicesOffering({
             }
           >
             <h3 className="text-xl font-normal text-gold-500 mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>
-             Immersion
+              Residency as a Service
             </h3>
-            <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>2–3 Days — Short Stay</p>
+            <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>2N–3D — Weekends</p>
             <p className="text-earth-600 text-[10px] mb-2">Weekends Only</p>
             <p className="text-gold-500 text-sm leading-snug mb-2">
-              Stepping out of noise.
+              Step away long enough to question everything.
             </p>
             <div className="space-y-1 mb-1.5 flex-1">
               <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
-                <span className="text-earth-300 text-sm">2 nights / 3 days</span>
+                <span className="text-earth-300 text-sm">Structured or themed weekend experiences</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
-                <span className="text-earth-300 text-sm">Full access</span>
+                <span className="text-earth-300 text-sm">Shared environment. No performance expected.</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
-                <span className="text-earth-300 text-sm">All meals included</span>
+                <span className="text-earth-300 text-sm">Full access + all meals included</span>
               </div>
             </div>
 
@@ -292,29 +292,29 @@ export default function ServicesOffering({
             }
           >
             <h3 className="text-xl font-normal text-gold-500 mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Withdrawal
+              Solitude as a Service
             </h3>
-            <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>4–5 Days — Extended Stay</p>
+            <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>4N–5D — Weekdays</p>
             <p className="text-earth-600 text-[10px] mb-2">Weekdays Only</p>
             <p className="text-gold-500 text-sm leading-snug mb-2">
-              Longer time in silence.
+              When silence stays, so do your thoughts.
             </p>
             <div className="space-y-1 mb-1.5 flex-1">
               <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
-                <span className="text-earth-300 text-sm">4 nights / 5 days</span>
+                <span className="text-earth-300 text-sm">Minimal communication (30 mins/day)</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
-                <span className="text-earth-300 text-sm">No event overlap</span>
+                <span className="text-earth-300 text-sm">Physical kits for self-guided activities</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
-                <span className="text-earth-300 text-sm">Full access</span>
+                <span className="text-earth-300 text-sm">Resource library for skill development</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
-                <span className="text-earth-300 text-sm">All meals included</span>
+                <span className="text-earth-300 text-sm">Full access + all meals included</span>
               </div>
             </div>
 
@@ -418,25 +418,33 @@ export default function ServicesOffering({
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
                 <div className="flex-1">
                   <h3 className="text-xl font-normal text-gold-500 mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                    Occupation
+                    Creation as a Service
                   </h3>
-                  <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>Full Estate — Complete Access</p>
+                  <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>24 Hours — Any Day</p>
                   <p className="text-earth-600 text-[10px] mb-2">All Days</p>
                   <p className="text-gold-500 text-sm leading-snug mb-2">
-                    The estate, entirely yours.
+                    When clarity becomes something real.
                   </p>
                   <div className="flex flex-wrap gap-1.5">
                     <div className="flex items-center gap-2">
                       <span className="text-gold-500">•</span>
-                      <span className="text-earth-300 text-sm">Full access to all facilities</span>
+                      <span className="text-earth-300 text-sm">Noon-to-noon private estate access</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-gold-500">•</span>
-                      <span className="text-earth-300 text-sm">All meals included</span>
+                      <span className="text-earth-300 text-sm">All rooms, dorms, decks, and shared spaces</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-gold-500">•</span>
-                      <span className="text-earth-300 text-sm">Private use of rooms, dorms, and shared spaces</span>
+                      <span className="text-earth-300 text-sm">15 comfortably, up to 40 with flexible sleeping</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-gold-500">•</span>
+                      <span className="text-earth-300 text-sm">Ideal for building, experimenting, or private gatherings</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-gold-500">•</span>
+                      <span className="text-earth-300 text-sm">Full access + all meals included</span>
                     </div>
                   </div>
                 </div>
