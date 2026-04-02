@@ -259,21 +259,6 @@ export default function DiningVariant() {
               </svg>
             </button>
 
-            {/* Dots Indicator */}
-            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-20">
-              {items.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentIndex(index)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    index === currentIndex 
-                      ? 'bg-gold-500 w-8' 
-                      : 'bg-earth-300/50 hover:bg-earth-300 w-2'
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
           </div>
 
           {/* Food Carousel */}
@@ -343,21 +328,6 @@ export default function DiningVariant() {
               </svg>
             </button>
 
-            {/* Dots Indicator */}
-            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-20">
-              {accommodationItems.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentAccommodationIndex(index)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    index === currentAccommodationIndex 
-                      ? 'bg-gold-500 w-8' 
-                      : 'bg-earth-300/50 hover:bg-earth-300 w-2'
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
           </div>
 
           {/* Practice & Recovery Carousel */}
@@ -427,21 +397,7 @@ export default function DiningVariant() {
               </svg>
             </button>
 
-            {/* Dots Indicator */}
-            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-20">
-              {experienceItems.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentExperienceIndex(index)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    index === currentExperienceIndex 
-                      ? 'bg-gold-500 w-8' 
-                      : 'bg-earth-300/50 hover:bg-earth-300 w-2'
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
+            {/* Dots Indicator - removed */}
           </div>
         </div>
       </div>

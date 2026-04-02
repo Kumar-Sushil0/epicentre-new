@@ -78,13 +78,7 @@ export default function Home() {
       {/* Section 10 — Location */}
       <Location />
       {/* Section 11 — FAQ */}
-      <FaqSection items={homeFaqs} title="Before You Come" />
-      <section className="py-8 px-4 md:px-16 bg-earth-900 text-center">
-        <p className="text-earth-300 text-base md:text-lg leading-loose">
-          Most people arrive with questions.<br />
-          Few leave with the same ones.
-        </p>
-      </section>
+      <FaqSection items={homeFaqs} title="Before You Come" subtitle="Most people arrive with questions. Few leave with the same ones." />
       {/* Section 12 — Final Close */}
       <RequestConversation />
       <Footer />

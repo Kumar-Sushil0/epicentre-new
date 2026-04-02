@@ -11,12 +11,14 @@ export interface FaqItem {
 interface FaqSectionProps {
   items: FaqItem[];
   title?: string;
+  subtitle?: string;
   showViewAll?: boolean;
 }
 
 export default function FaqSection({
   items,
   title = "Frequently Asked Questions",
+  subtitle,
   showViewAll = true,
 }: FaqSectionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -24,7 +26,7 @@ export default function FaqSection({
   return (
     <section className="py-12 md:py-16 px-4 md:px-16 bg-earth-900 border-t border-earth-800">
       <div className="w-full">
-        <div className="flex items-end justify-between mb-8">
+        <div className="flex items-end justify-between mb-2">
           <h2
             className="text-2xl md:text-3xl font-normal text-gold-500"
             style={{ fontFamily: "Outfit, sans-serif" }}
@@ -41,6 +43,9 @@ export default function FaqSection({
             </Link>
           )}
         </div>
+        {subtitle && (
+          <p className="text-earth-300 text-sm md:text-base mb-6">{subtitle}</p>
+        )}
 
         <div className="space-y-0 divide-y divide-earth-800">
           {items.map((item, i) => (
