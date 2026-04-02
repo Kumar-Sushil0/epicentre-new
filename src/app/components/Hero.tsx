@@ -83,6 +83,9 @@ export default function Hero() {
             >
               Choose Your Depth →
             </Link>
+            <p className="text-earth-300 text-sm md:text-base mt-2">
+              Silence reveals direction. The rest is up to you.
+            </p>
           </div>
         </div>
       </div>
