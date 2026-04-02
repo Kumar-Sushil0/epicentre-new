@@ -193,7 +193,8 @@ export default function DiningVariant() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8 pb-12 md:pb-0">
           {/* Accommodations Carousel */}
-          <div className="relative">
+          <div>
+            <p className="text-gold-500 text-base md:text-lg font-bold text-center mb-4">Spaces to sit, think, and withdraw.</p>
             <div className="relative">
               {items.map((item, index) => (
                 <div
@@ -276,7 +277,8 @@ export default function DiningVariant() {
           </div>
 
           {/* Food Carousel */}
-          <div className="relative">
+          <div>
+            <p className="text-gold-500 text-base md:text-lg font-bold text-center mb-4">Food that doesn't demand attention.</p>
             <div className="relative">
               {accommodationItems.map((item, index) => (
                 <div
@@ -359,7 +361,8 @@ export default function DiningVariant() {
           </div>
 
           {/* Practice & Recovery Carousel */}
-          <div className="relative">
+          <div>
+            <p className="text-gold-500 text-base md:text-lg font-bold text-center mb-4">Environments that regulate, not stimulate.</p>
             <div className="relative">
               {experienceItems.map((item, index) => (
                 <div

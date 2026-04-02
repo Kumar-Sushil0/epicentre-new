@@ -6,17 +6,16 @@ import { useAuth } from "./context/AuthContext";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import BetweenChapters from "./components/BetweenChapters";
-import Philosophy from "./components/Philosophy";
-import WhatThisIsNot from "./components/WhatThisIsNot";
-import DiningVariant from "./components/DiningVariant";
-import Location from "./components/Location";
-import Footer from "./components/Footer";
-import DesignedDeliberately from "./components/DesignedDeliberately";
+import HomeFilter from "./components/HomeFilter";
+import HomeWhatThisIs from "./components/HomeWhatThisIs";
 import VoidAndFormats from "./components/VoidAndFormats";
-import AboutAttentionCycle from "./components/about/AboutAttentionCycle";
-import RequestConversation from "./components/RequestConversation";
-
+import HomeBridge from "./components/HomeBridge";
+import DiningVariant from "./components/DiningVariant";
+import DesignedDeliberately from "./components/DesignedDeliberately";
+import Location from "./components/Location";
 import FaqSection from "./components/FaqSection";
+import RequestConversation from "./components/RequestConversation";
+import Footer from "./components/Footer";
 
 const homeFaqs = [
   {
@@ -47,7 +46,6 @@ export default function Home() {
     }
   }, [isAuthenticated, isLoading, router]);
 
-  // While checking auth, render nothing to avoid flash
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-earth-900">
@@ -56,22 +54,39 @@ export default function Home() {
     );
   }
 
-  // Authenticated users get redirected above, this only renders for guests
   if (isAuthenticated) return null;
 
   return (
     <main>
       <Header />
+      {/* Hero */}
       <Hero />
+      {/* Section 1 — Hook */}
       <BetweenChapters />
-      
-      <DesignedDeliberately />
+      {/* Section 2 — Filter */}
+      <HomeFilter />
+      {/* Section 3 — What This Is */}
+      <HomeWhatThisIs />
+      {/* Section 4 & 5 — The System + Depth */}
       <VoidAndFormats />
-      <AboutAttentionCycle />
+      {/* Section 6 — Bridge */}
+      <HomeBridge />
+      {/* Section 8 — Estate */}
       <DiningVariant />
+      {/* Section 9 — Designed Deliberately */}
+      <DesignedDeliberately />
+      {/* Section 10 — Location */}
       <Location />
+      {/* Section 11 — FAQ */}
+      <FaqSection items={homeFaqs} title="Before You Come" />
+      <section className="py-8 px-4 md:px-16 bg-earth-900 text-center">
+        <p className="text-earth-300 text-base md:text-lg leading-loose">
+          Most people arrive with questions.<br />
+          Few leave with the same ones.
+        </p>
+      </section>
+      {/* Section 12 — Final Close */}
       <RequestConversation />
-      <FaqSection items={homeFaqs} title="Common Questions" />
       <Footer />
     </main>
   );

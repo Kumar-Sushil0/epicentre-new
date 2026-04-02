@@ -16,12 +16,8 @@ export default function Location() {
           <h3 className="text-3xl font-normal mb-3 text-earth-900" style={{ fontFamily: 'Outfit, sans-serif' }}>
             Location
           </h3>
-          <p className="text-earth-900 font-body text-base md:text-lg font-medium">
-            Remote enough for silence.
-            Close enough to remain accessible.
-          </p>
-          <p className="text-earth-900 font-body text-sm md:text-base mt-2 max-w-2xl mx-auto">
-            Set beside the Bhigwan Bird Sanctuary on the Ujjani reservoir, one of the quietest stretches of landscape within reach of Pune and Mumbai.
+          <p className="text-earth-900 font-body text-base md:text-lg font-medium mt-1">
+            You can reach it in hours.  Most people take years.
           </p>
         </div>
 
@@ -47,6 +43,7 @@ export default function Location() {
           <div className="w-full md:w-1/2 flex items-center h-[300px]">
             <div className="bg-earth-900 border border-earth-900/30 rounded-lg p-8 w-full h-full flex items-center">
               <div className="space-y-6 text-gold-500">
+                <p className="text-earth-400 text-xs uppercase tracking-widest">For convenience its suggested to travel from Pune or Mumbai</p>
                 <p className="text-2xl font-normal text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>
                   Bhigwan, Maharashtra.
                 </p>
@@ -68,10 +65,12 @@ export default function Location() {
           </div>
         </div>
 
+        {/* Travel Info */}
+
         {/* Postal Address & Phone */}
-        <div className="mt-8 text-center">
+        <div className="mt-6 text-center">
           <p className="text-earth-900 font-body text-sm">
-           Our Postal Address: The Silent Club, Kumbhar Goan, Bird Sanctuary, Bhigwan, Maharashtra 413104. | Phone: +91 98903 22494
+            Our Postal Address :- The Silent Club, Kumbhar Goan, Bird Sanctuary, Bhigwan, Maharashtra 413104. | +91 98903 22494
           </p>
         </div>
       </div>

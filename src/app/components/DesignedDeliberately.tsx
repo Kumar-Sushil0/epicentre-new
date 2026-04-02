@@ -4,7 +4,6 @@ export default function DesignedDeliberately() {
       <div className="w-full">
         {/* Top Section */}
         <div className="text-center mb-12 md:mb-16">
-          <div className="w-10 md:w-12 h-px mx-auto mb-4 md:mb-6 bg-earth-700/80" />
           <h2
             className="text-2xl md:text-3xl font-normal text-gold-500 mb-4 md:mb-5 "
             style={{ fontFamily: "Outfit, sans-serif" }}
@@ -12,15 +11,7 @@ export default function DesignedDeliberately() {
             Designed Deliberately
           </h2>
 
-          <div className="space-y-3 px-4">
-            <p className="text-earth-300 text-base md:text-lg leading-normal">
-              Every constraint here protects your attention.
-            </p>
-            <p className="text-earth-300 text-base md:text-lg leading-normal">
-              Nothing here is accidental. Interference is removed by design.
-            </p>
           </div>
-        </div>
 
         {/* Bottom Section - Icon Row */}
         <div className="text-center">
@@ -39,8 +30,7 @@ export default function DesignedDeliberately() {
                 Designed Silence
               </h3>
               <p className="text-earth-300 text-xs md:text-sm leading-relaxed">
-                Sound, pace, and signal are reduced.<br />
-                Distraction is edited out of the environment.
+                Distraction is removed — by design.
               </p>
             </div>
 
@@ -58,8 +48,7 @@ export default function DesignedDeliberately() {
                 Designed Anonymity
               </h3>
               <p className="text-earth-300 text-xs md:text-sm leading-relaxed">
-                External roles pause.<br />
-                Only first names remain.
+                No roles. No labels. Just presence.
               </p>
             </div>
 
@@ -77,8 +66,7 @@ export default function DesignedDeliberately() {
                 Designed Withdrawal
               </h3>
               <p className="text-earth-300 text-xs md:text-sm leading-relaxed">
-                Distance from constant input restores cognitive space.<br />
-                Thought stabilizes without interference.
+                You step away long enough to see clearly.
               </p>
             </div>
           </div>

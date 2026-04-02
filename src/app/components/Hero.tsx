@@ -64,35 +64,25 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-20 container px-4 md:px-16 max-w-7xl">
         <div className="max-w-6xl border-l-2 border-gold-500/50 pl-4 md:pl-8 lg:pl-12 py-4 animate-in slide-in-from-left-4 duration-1000">
+          <p className="text-gold-500/70 text-sm uppercase tracking-[0.2em] mb-4" style={{ fontFamily: "Outfit, sans-serif" }}>
+            The Silent Club
+          </p>
           <h1
-            className="text-earth-100 text-4xl md:text-7xl lg:text-8xl font-display font-normal leading-[1.1] tracking-tight mb-6 md:mb-8 drop-shadow-2xl"
+            className="text-earth-100 text-4xl md:text-7xl lg:text-8xl font-display font-normal leading-[1.1] tracking-tight mb-4 md:mb-6 drop-shadow-2xl whitespace-nowrap"
             style={{ fontFamily: "Outfit, sans-serif" }}
           >
-            <span className="italic text-gold-500">Silence as a Service.</span>
+            <span className="italic text-gold-500">Because the Noise</span>
+            <span className="text-earth-100"> Never Did.</span>
           </h1>
 
-          <div className="space-y-3 md:space-y-4 text-[#E7DFD3] font-body">
-            <p className="text-lg md:text-2xl font-normal leading-relaxed">
-              A private estate designed for structured silence, deep work, and decision clarity.
-              <br /> 
-            </p>
-           
-           
-
-           
-          </div>
-
-          {/* CTA Buttons */}
+          {/* CTA */}
           <div className="flex flex-col gap-3 mt-8 md:mt-10 items-start">
             <Link
-              href="/cycles"              className="inline-flex items-center gap-2 text-gold-500 hover:text-gold-400 hover:border-gold-400 transition-colors duration-300 text-base md:text-lg font-normal border-2 border-gold-500 rounded-lg px-5 md:px-6 py-2.5 md:py-3 bg-earth-950/50 backdrop-blur-sm"
-              
+              href="/cycles"
+              className="inline-flex items-center gap-2 text-gold-500 hover:text-gold-400 hover:border-gold-400 transition-colors duration-300 text-base md:text-lg font-normal border-2 border-gold-500 rounded-lg px-5 md:px-6 py-2.5 md:py-3 bg-earth-950/50 backdrop-blur-sm"
             >
-             View Plans →
+              Choose Your Depth →
             </Link>
-            <p className="text-earth-300/80">
-            <span className="text-gold-500 font-bold">2026 Cohort</span>: Post-Exit Founders.
-            </p>
           </div>
         </div>
       </div>
