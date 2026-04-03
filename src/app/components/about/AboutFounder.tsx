@@ -81,12 +81,12 @@ export default function AboutFounder() {
               ></div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
               
-              {/* Gold Background Overlay - Slides up from bottom like CarouselCard */}
-              <div className="absolute left-0 right-0 bottom-0 bg-gold-500 h-[22%] transition-all duration-700 ease-in-out translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100" style={{ zIndex: 15 }}>
+              {/* Gold Background Overlay */}
+              <div className="absolute left-0 right-0 bottom-0 bg-gold-500 h-[22%]" style={{ zIndex: 15 }}>
               </div>
 
               {/* Social Icons - Extreme right of image, side by side */}
-              <div className="absolute bottom-6 right-6 z-20 flex gap-3 transition-all duration-700 opacity-0 group-hover:opacity-100">
+              <div className="absolute bottom-6 right-6 z-20 flex gap-3">
                 <a 
                   href="https://www.linkedin.com/in/digenrvarma/"
                   target="_blank"
@@ -103,10 +103,10 @@ export default function AboutFounder() {
 
               {/* Name and Designation - Name always visible, designation only on hover */}
               <div className="absolute bottom-6 left-6 z-20">
-                <h2 className="text-3xl font-normal mb-2 transition-colors duration-700 group-hover:text-earth-900 text-[#e7dfd3]" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                <h2 className="text-3xl font-normal mb-2 text-earth-900" style={{ fontFamily: 'Outfit, sans-serif' }}>
                   D.D
                 </h2>
-                <p className="text-xs font-normal tracking-widest uppercase transition-all duration-700 opacity-0 group-hover:opacity-100 group-hover:text-earth-900 text-earth-300">
+                <p className="text-xs font-normal tracking-widest uppercase text-earth-900">
                 
                
                 Liberation Designer<br/>

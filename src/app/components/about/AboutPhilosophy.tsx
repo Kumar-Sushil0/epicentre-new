@@ -8,7 +8,7 @@ interface PhilosophyItem {
 }
 
 export default function AboutPhilosophy() {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [expandedIndices, setExpandedIndices] = useState<Set<number>>(new Set());
 
   const philosophies: PhilosophyItem[] = [
     {
@@ -36,7 +36,11 @@ export default function AboutPhilosophy() {
   const icons = ['account_tree', 'volume_off', 'groups', 'landscape', 'science'];
 
   const toggleDropdown = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
+    setExpandedIndices(prev => {
+      const next = new Set(prev);
+      next.has(index) ? next.delete(index) : next.add(index);
+      return next;
+    });
   };
 
   return (
@@ -56,7 +60,7 @@ export default function AboutPhilosophy() {
             <div key={index}>
               {/* Dropdown Header */}
               <div
-                className={`flex items-center gap-4 cursor-pointer ${expandedIndex === index ? 'mb-6' : 'mb-0'}`}
+                className={`flex items-center gap-4 cursor-pointer ${expandedIndices.has(index) ? 'mb-6' : 'mb-0'}`}
                 onClick={() => toggleDropdown(index)}
               >
                 <h2 className="text-2xl font-normal text-gold-500 tracking-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>
@@ -66,13 +70,13 @@ export default function AboutPhilosophy() {
                 <span className="material-symbols-outlined text-gold-500 text-3xl">{icons[index]}</span>
                 <button className="text-gold-500 hover:text-gold-400 transition-colors">
                   <span className="material-symbols-outlined text-3xl">
-                    {expandedIndex === index ? 'expand_less' : 'expand_more'}
+                    {expandedIndices.has(index) ? 'expand_less' : 'expand_more'}
                   </span>
                 </button>
               </div>
 
               {/* Dropdown Content */}
-              {expandedIndex === index && (
+              {expandedIndices.has(index) && (
                 <div className="mb-8">
                   <p className="text-earth-300 text-base leading-relaxed whitespace-pre-line">
                     {philosophy.description}
