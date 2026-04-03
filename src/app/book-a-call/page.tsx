@@ -5,6 +5,7 @@ export const dynamic = "force-dynamic";
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import CallDateTimePicker from "../components/CallDateTimePicker";
+import toast from "react-hot-toast";
 
 const CALL_QUESTIONS = [
   "When nothing is expected of you—do you know what to do with your time?",
@@ -69,9 +70,9 @@ function BookACallInner() {
   };
 
   return (
-    <main className="h-screen bg-earth-950 text-earth-100 flex flex-col overflow-hidden">
-      <section className="flex-1 px-4 md:px-16 py-6 overflow-hidden">
-        <div className="max-w-6xl mx-auto h-full flex flex-col gap-4">
+    <main className="min-h-screen bg-earth-950 text-earth-100 flex flex-col">
+      <section className="flex-1 px-4 md:px-16 py-6">
+        <div className="max-w-6xl mx-auto flex flex-col gap-4">
 
           {/* Page header */}
           <div>
@@ -84,15 +85,15 @@ function BookACallInner() {
           </div>
 
           {/* Two-column layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-1 min-h-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
 
             {/* Left — Date + time picker */}
-            <div className="bg-earth-900/60 border border-earth-800 rounded-2xl p-4 overflow-y-auto">
+            <div className="bg-earth-900/60 border border-earth-800 rounded-2xl p-4">
               <CallDateTimePicker value={callDateTime} onChange={setCallDateTime} />
             </div>
 
             {/* Right — cycle pill + questions + CTA */}
-            <div className="bg-earth-900/60 border border-earth-800 rounded-2xl p-4 flex flex-col gap-3 overflow-y-auto">
+            <div className="bg-earth-900/60 border border-earth-800 rounded-2xl p-4 flex flex-col gap-3">
 
               {/* Booking summary */}
               {cycle && (
@@ -194,27 +195,33 @@ function BookACallInner() {
 
               {/* CTA — opens modal */}
               <div className="space-y-1.5 pt-1">
-                <div className={!canBook ? "cursor-not-allowed" : undefined}>
-                  <button
-                    type="button"
-                    tabIndex={canBook ? 0 : -1}
-                    aria-disabled={!canBook}
-                    onClick={() => {
-                      if (!canBook) return;
-                      setModalStep("form");
-                      setShowModal(true);
-                    }}
-                    onKeyDown={(e) => {
-                      if (!canBook && (e.key === "Enter" || e.key === " ")) {
-                        e.preventDefault();
-                      }
-                    }}
-                    className={`w-full inline-flex items-center justify-center gap-2 px-6 py-3 text-[0.8rem] tracking-[0.14em] uppercase border border-gold-500 text-gold-400 hover:bg-gold-500/10 rounded-lg transition-colors ${!canBook ? "pointer-events-none" : "cursor-pointer"}`}
-                  >
-                    Request an Invite →
-                  </button>
-                </div>
-               
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (!callDateTime.date) {
+                      toast.error("Pick a date for your call first.");
+                      return;
+                    }
+                    if (!callDateTime.time) {
+                      toast.error("Select a time slot to continue.");
+                      return;
+                    }
+                    const unanswered = answers.findIndex((a) => a === "");
+                    if (unanswered !== -1) {
+                      toast.error(`Answer question ${unanswered + 1} before proceeding.`);
+                      return;
+                    }
+                    setModalStep("form");
+                    setShowModal(true);
+                  }}
+                  className={`w-full inline-flex items-center justify-center gap-2 px-6 py-3 text-[0.8rem] tracking-[0.14em] uppercase border rounded-lg transition-colors cursor-pointer ${
+                    canBook
+                      ? "border-gold-500 text-gold-400 hover:bg-gold-500/10"
+                      : "border-earth-700 text-earth-600 bg-earth-900/50"
+                  }`}
+                >
+                  Request an Invite →
+                </button>
                 <p className="text-center text-[0.72rem] text-grey-100">
                   A short conversation decides if this is for you.
                 </p>

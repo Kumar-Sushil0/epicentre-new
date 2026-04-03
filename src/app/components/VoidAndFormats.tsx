@@ -65,7 +65,7 @@ export default function VoidAndFormats() {
                     style={{ fontFamily: "Outfit, sans-serif" }}
                   >
                     {s.name}
-                  </h3>
+               h   </h3>
                   <p className="text-earth-400 text-xs mb-3"> {s.action}</p>
                   <p className="text-earth-300 text-sm">{s.desc}</p>
                 </div>

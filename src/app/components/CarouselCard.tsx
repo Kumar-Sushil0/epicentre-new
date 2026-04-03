@@ -242,7 +242,7 @@ export default function CarouselCard({
                     </div>
 
                     {/* Description and Category - Revealed on Hover using grid approach */}
-                    <div className={`grid transition-all duration-700 ease-in-out grid-rows-[1fr]`}>
+                    <div className={`grid transition-all duration-700 ease-in-out ${shouldShowHoverState ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
                         <div className="overflow-hidden">
                             <div ref={contentRef} className={`${showBorderLine && overlayColor !== 'gold-solid' ? 'border-t border-gold-500/30 pt-4' : ''}`}>
                                 {/* Category tag - appears on hover */}

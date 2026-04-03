@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const DAYS = ["Su","Mo","Tu","We","Th","Fr","Sa"];
@@ -150,7 +151,10 @@ export default function ServicesOffering({
   const dayOptions = Array.from({ length: 7 }, (_, i) => i + 1);
 
   const goToDesignYourStay = () => {
-    if (!selectedDates.length) return;
+    if (!selectedDates.length) {
+      toast.error("Select your dates before continuing.");
+      return;
+    }
     const params = new URLSearchParams();
     if (pendingSelection) {
       params.set("cycle", pendingSelection.label);
@@ -326,83 +330,8 @@ export default function ServicesOffering({
 
           </div>
 
-          {/* Weekday/Weekend toggle + Full Cycle BELOW the three cards */}
+          {/* Full Cycle BELOW the three cards */}
           <div className="mt-2.5 space-y-2.5">
-            {/* Weekday/Weekend Toggle */}
-            <div className="flex justify-center">
-              <div className="inline-flex items-center gap-2 bg-earth-800/50 rounded-lg p-1 border border-earth-700/50">
-                <button
-                  onClick={() => setCycleType('weekday')}
-                  className={`px-4 md:px-6 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium transition-all ${
-                    cycleType === 'weekday'
-                      ? 'bg-gold-500 text-earth-950'
-                      : 'text-earth-300 hover:text-gold-500'
-                  }`}
-                  style={{ fontFamily: 'Outfit, sans-serif' }}
-                >
-                  Weekday
-                </button>
-                <button
-                  onClick={() => setCycleType('weekend')}
-                  className={`px-4 md:px-6 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium transition-all ${
-                    cycleType === 'weekend'
-                      ? 'bg-gold-500 text-earth-950'
-                      : 'text-earth-300 hover:text-gold-500'
-                  }`}
-                  style={{ fontFamily: 'Outfit, sans-serif' }}
-                >
-                  Weekend
-                </button>
-              </div>
-            </div>
-
-            {/* Day Selection Visual Indicator - mobile-only, under toggle */}
-            <div className="flex justify-center md:hidden">
-              <div className="inline-flex items-center gap-2 bg-earth-800/50 rounded-lg p-1 border border-earth-700/50 mt-2">
-                {/* Weekdays */}
-                <div className="flex items-center gap-1 pr-2 border-r-2 border-gold-500/30">
-                  {[
-                    { label: 'M', value: 'M' as const },
-                    { label: 'T', value: 'T' as const },
-                    { label: 'W', value: 'W' as const },
-                    { label: 'T', value: 'Th' as const }
-                  ].map((day) => (
-                    <div
-                      key={day.value}
-                      className={`w-6 h-6 rounded-md flex items-center justify-center text-xs font-medium transition-all ${
-                        cycleType === 'weekday'
-                          ? 'bg-gold-500 text-earth-950'
-                          : 'text-earth-400'
-                      }`}
-                      style={{ fontFamily: 'Outfit, sans-serif' }}
-                    >
-                      {day.label}
-                    </div>
-                  ))}
-                </div>
-
-                {/* Weekends */}
-                <div className="flex items-center gap-1 pl-2">
-                  {[
-                    { label: 'F', value: 'F' as const },
-                    { label: 'S', value: 'S' as const },
-                    { label: 'S', value: 'Su' as const }
-                  ].map((day) => (
-                    <div
-                      key={day.value}
-                      className={`w-6 h-6 rounded-md flex items-center justify-center text-xs font-medium transition-all ${
-                        cycleType === 'weekend'
-                          ? 'bg-gold-500 text-earth-950'
-                          : 'text-earth-400'
-                      }`}
-                      style={{ fontFamily: 'Outfit, sans-serif' }}
-                    >
-                      {day.label}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
 
             {/* Full Cycle card */}
             <div
@@ -706,8 +635,11 @@ export default function ServicesOffering({
                 <button
                   type="button"
                   onClick={goToDesignYourStay}
-                  disabled={!selectedDates.length}
-                  className="w-full px-4 py-3 rounded-lg bg-gold-500 text-earth-950 text-sm font-medium hover:bg-gold-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gold-500"
+                  className={`w-full px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                    selectedDates.length
+                      ? "bg-gold-500 text-earth-950 hover:bg-gold-400"
+                      : "bg-earth-800 text-earth-600 cursor-pointer"
+                  }`}
                   style={{ fontFamily: 'Outfit, sans-serif' }}
                 >
                   Shape Your Stay →
@@ -718,6 +650,10 @@ export default function ServicesOffering({
                 <button
                   type="button"
                   onClick={() => {
+                    if (!selectedDates.length) {
+                      toast.error("Select your dates before requesting an invite.");
+                      return;
+                    }
                     const params = new URLSearchParams();
                     if (pendingSelection) {
                       params.set("cycle", pendingSelection.label);
@@ -727,8 +663,11 @@ export default function ServicesOffering({
                     if (selectedDates.length) params.set("dates", selectedDates.join(","));
                     router.push(`/book-a-call${params.toString() ? `?${params.toString()}` : ""}`);
                   }}
-                  disabled={!selectedDates.length}
-                  className="w-full px-4 py-3 rounded-lg border border-gold-500 text-gold-500 text-sm font-medium hover:bg-gold-500/10 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className={`w-full px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                    selectedDates.length
+                      ? "border border-gold-500 text-gold-500 hover:bg-gold-500/10"
+                      : "border border-earth-700 text-earth-600 cursor-pointer"
+                  }`}
                   style={{ fontFamily: 'Outfit, sans-serif' }}
                 >
                   Request an Invite →

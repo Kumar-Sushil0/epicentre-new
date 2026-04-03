@@ -8,6 +8,7 @@ import StructuredData from "@/components/StructuredData";
 import { organizationSchema, websiteSchema } from "@/utils/structuredData";
 import { GoogleAnalytics } from '@next/third-parties/google';
 import Script from "next/script";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "The Silent Club | Private Estate for Structured Silence & Deep Work",
@@ -74,6 +75,17 @@ export default function RootLayout({
           <ShopProvider>
             <SmoothScroll />
             {children}
+            <Toaster
+              position="top-right"
+              toastOptions={{
+                style: {
+                  background: '#1A120B',
+                  color: '#C5A065',
+                  border: '1px solid #3E2A20',
+                  fontFamily: 'Quicksand, sans-serif',
+                },
+              }}
+            />
             <NewsletterPopup />
 
 
