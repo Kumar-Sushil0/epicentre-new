@@ -13,103 +13,31 @@ const breadcrumbItems = [
 ];
 
 export default function VenuePage() {
-  const [expandedSection, setExpandedSection] = useState<string>("wildlife");
+  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(["wildlife"]));
 
   const toggleSection = (id: string) => {
-    const newSection = expandedSection === id ? "" : id;
-    setExpandedSection(newSection);
-    
-    // Scroll to the section header when expanding
-    if (newSection) {
-      setTimeout(() => {
-        const element = document.getElementById(id);
-        if (element) {
-          const headerOffset = 120; // Account for sticky header
-          const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-        }
-      }, 50);
-    }
+    setExpandedSections(prev => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
   };
 
   const venueCategories = [
     {
-      id: "wildlife",
-      number: "01",
-      title: "Wildlife & Nature",
-      subtitle: "The Land Reduces Noise",
-      icon: "nature",
-      introText: "Natural environments and wildlife observation areas.",
-      singleLine: "Open Land | Natural Silence — The surrounding terrain lowers visual and auditory interference without deliberate intervention.",
-      usedFor: ["Horizon exposure", "Nature walks", "Ecological awareness", "Nervous system decompression"],
-      closingText: "",
-      venues: [
-        {
-          title: "Forest Safari",
-          description: "Guided passage through natural habitat and open terrain.\n\nYou are present in the wild, not in control of it.",
-          image: [
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/grasslandsafari1.png",
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/grasslandsafari2.png",
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/grasslandsafari3.png"
-          ],
-          imageAlt: "Forest Safari - Guided walking trails across open grassland terrain at The Silent Club",
-          area: "3 km trail",
-          capacity: "20 ppl",
-          icon: "forest",
-          category: "Wildlife Observation",
-          href: "/venue#wildlife",
-        },
-        {
-          title: "Bird Watching",
-          description: "Designated quiet observation areas near natural habitats.\n\nObservation without interference sharpens perception.",
-          image: [
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/bird1.png",
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/bird2.png",
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/bird3.png"
-          ],
-          imageAlt: "Bird Watching - Quiet observation areas near natural bird habitats",
-          area: "500 sqft",
-          capacity: "15 ppl",
-          icon: "flutter",
-          category: "Wildlife Observation",
-          href: "/venue#wildlife",
-        },
-        {
-          title: "Boat Joyrides",
-          description: "Slow-paced lake movement along open water.\n\nWater environments reduce sensory fragmentation.",
-          image: [
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/boat1.png",
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/boat2.png",
-            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/boat3.png"
-          ],
-          imageAlt: "Boat Joy Rides - Slow-paced boat rides on the lake for visual horizon reset",
-          area: "Lake access",
-          capacity: "6 ppl",
-          icon: "sailing",
-          category: "Water Activity",
-          href: "/venue#wildlife",
-        },
-      ],
-    },
-    {
       id: "collective",
-      number: "02",
+      number: "01",
       title: "Accommodation",
-      subtitle: "Sleep Is Non-Negotiable",
+      subtitle: "Minimal spaces designed for rest without stimulation.",
       icon: "bed",
       introText: "Living environments for restoration and sleep.",
-      singleLine: "Private Rooms | Protected Sleep — Environments designed to remove stimulation and preserve uninterrupted rest.",
+      singleLine: "Minimal spaces designed for rest without stimulation.",
       usedFor: ["Deep rest", "Extended silence", "Sensory withdrawal", "Private integration"],
       closingText: "",
       venues: [
         {
-          title: "Private Room",
-          description: "Enclosed room designed for rest, work, and quiet reflection.\n\nHere, withdrawal can happen without concern for others.",
+          title: "Private Rooms",
+          description: "Withdrawal\n\nEnclosed space where stimulation drops and thinking slows.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/room1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/room2.png",
@@ -124,7 +52,7 @@ export default function VenuePage() {
         },
         {
           title: "Dark Room",
-          description: "Light- and sound-controlled chamber for uninterrupted withdrawal.\n\nFood and essentials are provided without breaking isolation.",
+          description: "Isolation\n\nNo light. No noise. Perception resets without interruption.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/darkroom.png",
           imageAlt: "Dark Room - Total light isolation space for sensory withdrawal and deep rest",
@@ -135,8 +63,8 @@ export default function VenuePage() {
           href: "/venue#collective",
         },
         {
-          title: "Shared Dorm",
-          description: "Quiet dormitory with individual beds and personal desks.\n\nA shared room designed for solitary work and reflection.",
+          title: "Shared Dorms",
+          description: "Collective Silence\n\nOthers are present. Interaction is not required.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/dorm1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/dorm2.png",
@@ -151,7 +79,7 @@ export default function VenuePage() {
         },
         {
           title: "Minimalist Tents",
-          description: "Lightweight sleeping tents placed directly on the land.\n\nSleep closer to the ground and away from built comfort.",
+          description: "Grounding\n\nCloser to the land. Further from built comfort.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/tent1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/tent2.png",
@@ -180,18 +108,18 @@ export default function VenuePage() {
     },
     {
       id: "food",
-      number: "03",
+      number: "02",
       title: "Food",
-      subtitle: "Stability Over Stimulation",
+      subtitle: "Fixed meals. Simple food. No decisions to make.",
       icon: "restaurant",
       introText: "Dining spaces and culinary environments.",
-      singleLine: "Simple Meals | Stable Energy — Food structured to regulate energy and support sustained mental clarity.",
+      singleLine: "Fixed meals. Simple food. No decisions to make.",
       usedFor: ["Shared meals", "Mindful eating", "Nutritional awareness", "Rhythmic reset"],
       closingText: "",
       venues: [
         {
-          title: "Satvik Home Food",
-          description: "Traditional Indian meals prepared with low-stimulation ingredients.\n\nMeals support clarity, not indulgence.",
+          title: "Satvik Meals",
+          description: "Stability\n\nSimple food that sustains energy without distraction.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/homefood1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/homefood2.png",
@@ -205,8 +133,8 @@ export default function VenuePage() {
           href: "/venue#food",
         },
         {
-          title: "Salads, Smoothies & Sandwiches",
-          description: "Light meal options focused on simplicity and freshness.\n\nDesigned to sustain focus.",
+          title: "Light Meals",
+          description: "Sustain\n\nMinimal intake to keep attention steady.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/sss1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/sss2.png",
@@ -220,8 +148,8 @@ export default function VenuePage() {
           href: "/venue#food",
         },
         {
-          title: "Barbeque, Pizzas & Sushi",
-          description: "Occasional shared meals prepared intentionally.\n\nMoments where the estate briefly gathers.",
+          title: "Shared Meals",
+          description: "Gathering\n\nThe estate comes together—briefly, without performance.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/pbs1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/pbs2.png",
@@ -235,8 +163,8 @@ export default function VenuePage() {
           href: "/venue#food",
         },
         {
-          title: "Fruits, Juices & Fresh Bites",
-          description: "Fresh fruit and juices for light, flexible nourishment.\n\nSome eat. Some fast. The body decides.",
+          title: "Fruits & Juices",
+          description: "Flexibility\n\nEat less. Eat light. Let the body decide.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/fjs1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/fjs2.png",
@@ -250,8 +178,8 @@ export default function VenuePage() {
           href: "/venue#food",
         },
         {
-          title: "Self Serve Pantry",
-          description: "Designated kitchen access for simple personal preparation.\n\nAutonomy within rhythm.",
+          title: "Self-Serve Pantry",
+          description: "Autonomy\n\nAccess what you need, without breaking rhythm.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/ssp1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/ssp2.png",
@@ -266,7 +194,7 @@ export default function VenuePage() {
         },
         {
           title: "Outdoor Kitchen",
-          description: "Open-air cooking space used for occasional communal meals and curated events.\n\nFood can gather people without accelerating them.",
+          description: "Communal\n\nFood brings people together—without accelerating them.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/ok1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/ok2.png",
@@ -283,12 +211,12 @@ export default function VenuePage() {
     },
     {
       id: "intimate",
-      number: "04",
-      title: "Practice",
-      subtitle: "The Body Must Discharge",
+      number: "03",
+      title: "Time & Spaces",
+      subtitle: "Unstructured time across spaces designed for uninterrupted thought",
       icon: "fitness_center",
       introText: "Movement, recovery, and regulation environments.",
-      singleLine: "Movement Spaces | Physical Reset — Areas designed for effort that clears residual tension from the nervous system.",
+      singleLine: "Unstructured time across spaces designed for uninterrupted thought.",
       usedFor: ["Physical reset", "Stress discharge", "Endurance training", "Body recalibration"],
       closingText: "",
       venues: [
@@ -371,8 +299,8 @@ export default function VenuePage() {
           href: "/venue#intimate",
         },
         {
-          title: "Tree houses",
-          description: "Elevated solo structure with desk and minimal amenities.\n\nWithdrawal within withdrawal.",
+          title: "Tree Houses",
+          description: "Deep Work\n\nElevated solitude removes you from ground-level noise.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/treehouse.jpeg",
           imageAlt: "Tree House - Elevated solo workspace for writing, focused thinking and creative work",
@@ -384,7 +312,7 @@ export default function VenuePage() {
         },
         {
           title: "Zen Garden",
-          description: "Minimalist stone and sand installation.\n\nAttention stabilizes through repetition.",
+          description: "Attention\n\nRepetition stabilizes the wandering mind.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/zen1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/zen2.png",
@@ -411,7 +339,7 @@ export default function VenuePage() {
         },
         {
           title: "Practice Platform",
-          description: "Stone deck under a neem tree overlooking open water.\n\nSkill deepens when environment is undisturbed.",
+          description: "Focus\n\nSkill deepens when nothing competes for attention.",
           image: [
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/pp1.png",
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/pp2.png",
@@ -440,18 +368,18 @@ export default function VenuePage() {
     },
     {
       id: "creative",
-      number: "05",
+      number: "04",
       title: "Assembly",
-      subtitle: "Interaction Is Intentional",
+      subtitle: "Limited, optional interaction. Nothing is expected.",
       icon: "groups",
       introText: "Primary collective environments for structured or unstructured gathering.",
-      singleLine: "Shared Rooms | Contained Dialogue — Spaces where interaction happens deliberately within defined limits.",
+      singleLine: "Limited, optional interaction. Nothing is expected.",
       usedFor: ["Inquiry sessions", "Intentional dialogue", "Quiet collaboration", "Shared silence"],
       closingText: "",
       venues: [
         {
           title: "Design Dome",
-          description: "Central dome used for meditation, work, and exhibition.\n\nThe space adapts as the day unfolds.",
+          description: "Gathering\n\nShared space that adapts without forcing interaction.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Assembly/designdome.png",
           imageAlt: "Design Dome - Architectural installation for identity examination and transitional awareness",
@@ -463,7 +391,7 @@ export default function VenuePage() {
         },
         {
           title: "Library Lounge",
-          description: "Glasshouse lounge with pool, books, and horizon views.\n\nThe space invites reading, resting, and quiet observation.",
+          description: "Observation\n\nRead, sit, or rest without urgency.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Assembly/library.png",
           imageAlt: "Library Lounge - Multi-purpose hall for meditation, co-working and writing workshops",
@@ -475,7 +403,7 @@ export default function VenuePage() {
         },
         {
           title: "Front Lawn",
-          description: "Wide grass lawn shaded by mango trees.\n\nHere, time is spent slowly and without instruction.",
+          description: "Pause\n\nOpen ground where time slows naturally.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Assembly/lawn.jpeg",
           imageAlt: "Front Lawn - Open grass field for grounding, informal sitting and open-air screenings",
@@ -487,7 +415,7 @@ export default function VenuePage() {
         },
         {
           title: "Central Courtyard",
-          description: "Central ground connecting the estate's structures.\n\nEveryone passes through, yet silence remains intact.",
+          description: "Flow\n\nMovement passes through. Silence remains intact.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Assembly/courtyard.png",
           imageAlt: "Courtyard - Central open space for grounding and informal outdoor engagement",
@@ -499,7 +427,7 @@ export default function VenuePage() {
         },
         {
           title: "Signal Deck",
-          description: "Elevated semi-private outdoor cabins designed for limited external communication.\n\nThis is not a social space. It is a boundary space.",
+          description: "Boundary\n\nLimited communication without re-entering noise.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/treehouse.jpeg",
           imageAlt: "Signal Deck - Elevated cabins for essential calls and controlled external communication",
@@ -512,19 +440,77 @@ export default function VenuePage() {
       ],
     },
     {
+      id: "wildlife",
+      number: "05",
+      title: "Environment",
+      subtitle: "When interference is low, life becomes visible.",
+      icon: "nature",
+      introText: "Natural environments and wildlife observation areas.",
+      singleLine: "When interference is low, life becomes visible.",
+      usedFor: ["Horizon exposure", "Nature walks", "Ecological awareness", "Nervous system decompression"],
+      closingText: "",
+      venues: [
+        {
+          title: "Birdlife",
+          description: "Signal\n\nMovement becomes visible when you slow down.",
+          image: [
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/grasslandsafari1.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/grasslandsafari2.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/grasslandsafari3.png"
+          ],
+          imageAlt: "Forest Safari - Guided walking trails across open grassland terrain at The Silent Club",
+          area: "3 km trail",
+          capacity: "20 ppl",
+          icon: "forest",
+          category: "Wildlife Observation",
+          href: "/venue#wildlife",
+        },
+        {
+          title: "Open Landscapes",
+          description: "Distance\n\nSpace interrupts habitual thinking patterns.",
+          image: [
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/bird1.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/bird2.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/bird3.png"
+          ],
+          imageAlt: "Bird Watching - Quiet observation areas near natural bird habitats",
+          area: "500 sqft",
+          capacity: "15 ppl",
+          icon: "flutter",
+          category: "Wildlife Observation",
+          href: "/venue#wildlife",
+        },
+        {
+          title: "Still Water",
+          description: "Reflection\n\nWhat you see depends on how still you are.",
+          image: [
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/boat1.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/boat2.png",
+            "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/boat3.png"
+          ],
+          imageAlt: "Boat Joy Rides - Slow-paced boat rides on the lake for visual horizon reset",
+          area: "Lake access",
+          capacity: "6 ppl",
+          icon: "sailing",
+          category: "Water Activity",
+          href: "/venue#wildlife",
+        },
+      ],
+    },
+    {
       id: "living",
       number: "06",
       title: "Symbolic",
-      subtitle: "Identity Is Interrupted",
+      subtitle: "What you see here, depends on what you're ready to notice.",
       icon: "brush",
       introText: "Architectural structures designed for reflection and declaration.",
-      singleLine: "Architectural Markers | Perspective Shift — Spatial cues that interrupt routine perception without imposing interpretation.",
+      singleLine: "What you see here, depends on what you're ready to notice.",
       usedFor: ["Identity examination", "Personal release", "Perspective shift"],
       closingText: "",
       venues: [
         {
           title: "Identity Cemetery",
-          description: "Graves at the entrance of the estate.\n\nPast identities that no longer serve may be buried here.",
+          description: "Release\n\nWhat no longer serves you can be left behind.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Symbolic/cemetary.jpg",
           imageAlt: "Identity Cemetery - Circular threshold structure for psychological transition and symbolic crossing",
@@ -536,7 +522,7 @@ export default function VenuePage() {
         },
         {
           title: "Moon Gate",
-          description: "Moon gate framing the entrance to the estate.\n\nSilence begins on one side. A different person may return on the other.",
+          description: "Threshold\n\nCrossing marks a shift—without needing explanation.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Symbolic/moongate.png",
           imageAlt: "Moon Gate - Boundary installation for perspective inquiry and cognitive interruption",
@@ -547,8 +533,8 @@ export default function VenuePage() {
           href: "/venue#living",
         },
         {
-          title: "Truman's Wall",
-          description: "Wall installation referencing constructed reality.\n\nCrossing it marks the end of performative life.",
+          title: "Truman Wall",
+          description: "Break\n\nThe edge between constructed life and lived experience.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Symbolic/trumanwall.png",
           imageAlt: "Truman's Wall - Sculptural installation for reflective pause and cognitive priming",
@@ -560,7 +546,7 @@ export default function VenuePage() {
         },
         {
           title: "Thinking Man",
-          description: "Sculptural marker at the entrance of the estate.\n\nIt marks a place where thinking resumes without interference.",
+          description: "Return\n\nA point where thought resumes without interference.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Symbolic/thinkingman.png",
           imageAlt: "Thinking Man - Perimeter platform for solitude, sunset viewing and boundary awareness",
@@ -573,7 +559,7 @@ export default function VenuePage() {
         },
         {
           title: "Edgeless Gallery",
-          description: "Open platform overlooking the Ujni landscape.\n\nHere the horizon is unobstructed and unguarded.",
+          description: "Perspective\n\nHorizon without boundary changes how you see.",
           image:
             "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Symbolic/edgelessgallery.jpeg",
           imageAlt: "Edgeless Gallery - Perimeter viewing platform facing open landscape for spatial reset",
@@ -597,11 +583,11 @@ export default function VenuePage() {
         {venueCategories.map((category) => (
           <section 
             key={category.id} 
-            className={`transition-all duration-300 ${expandedSection === category.id ? 'mb-24' : 'mb-6'}`}
+            className={`transition-all duration-300 ${expandedSections.has(category.id) ? 'mb-24' : 'mb-6'}`}
           >
             <VenueSection 
               {...category} 
-              expanded={expandedSection === category.id}
+              expanded={expandedSections.has(category.id)}
               onToggle={() => toggleSection(category.id)}
             />
           </section>

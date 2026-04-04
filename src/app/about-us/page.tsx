@@ -84,6 +84,7 @@ export default function AboutUsPage() {
         <AboutCollective />
 
         <AboutAttentionCycle />
+        
 
         <AboutFounder />
 
