@@ -46,8 +46,17 @@ function BookACallInner() {
     if (!canBook) return;
     setSubmitting(true);
     try {
+      const d = callDateTime.date;
+      const t = callDateTime.time;
+      let scheduledAt: string | undefined;
+      if (d && t) {
+        const [h, m] = t.split(":").map((x) => parseInt(x, 10));
+        const combined = new Date(d);
+        combined.setHours(Number.isFinite(h) ? h : 0, Number.isFinite(m) ? m : 0, 0, 0);
+        scheduledAt = combined.toISOString();
+      }
       const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
-      await fetch(`${apiBase}/call-request`, {
+      const res = await fetch(`${apiBase}/call-request`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -57,10 +66,16 @@ function BookACallInner() {
           cycleLabel: cycle,
           callDate: callDateTime.date?.toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" }),
           callTime: callDateTime.time,
+          scheduledAt,
           questions: CALL_QUESTIONS,
           answers,
         }),
       });
+      if (!res.ok) {
+        const errBody = await res.json().catch(() => ({}));
+        toast.error((errBody as { error?: string }).error || "Request failed");
+        return;
+      }
       setModalStep("confirmed");
     } catch (err) {
       console.error(err);
@@ -273,10 +288,10 @@ function BookACallInner() {
                     Meeting scheduled
                   </h3>
                   <p className="text-[0.85rem] text-earth-400 leading-relaxed">
-                    A meeting link with D.D. has been sent to{" "}
-                    <span className="text-earth-200">{email}</span>.
+                    A confirmation has been sent to{" "}
+                    <span className="text-earth-200">{email}</span>. You will receive a short note shortly before your time, and your Google Meet link at the scheduled time.
                   </p>
-                  <p className="text-[0.75rem] text-earth-600">Check your spam if you don't see it.</p>
+                  <p className="text-[0.75rem] text-earth-600">Check your spam if you don&apos;t see it.</p>
                 </div>
                 <a href="/" className="inline-block text-[0.78rem] tracking-[0.12em] uppercase text-gold-400 hover:text-gold-300 border border-gold-500/40 rounded-lg px-5 py-2.5 hover:bg-gold-500/10 transition-colors">
                   Return home

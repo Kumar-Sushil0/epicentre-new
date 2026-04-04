@@ -1,28 +1,28 @@
 const cohorts = [
   {
     year: "2026",
-    label: "Post-Exit Founders",
-    description: "Designing what comes after completion.",
+    label: "Founders and Academicians",
+    description: "Designing their next decade without pressure.",
   },
   {
     year: "2027",
     label: "Designers & Developers",
-    description: "Designing beyond trend cycles.",
+    description: "Designing work that outlives trends.",
   },
   {
     year: "2028",
     label: "Musicians & Singers",
-    description: "Designing what you can't think—only hear.",
+    description: "Designing sounds you are obsessed about.",
   },
   {
     year: "2029",
     label: "Writers & Thinkers",
-    description: "Designing ideas that hold under silence.",
+    description: "Designing ideas too dangerous for blogs.",
   },
   {
     year: "2030",
     label: "Artists & Actors",
-    description: "Designing expression without audience dependence.",
+    description: "Designing performances beyond applause.",
   },
 ] as const;
 

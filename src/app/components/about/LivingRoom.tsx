@@ -119,7 +119,7 @@ const LivingRoom = () => {
                     <h2 className="text-3xl font-normal mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
                         The Evidence Base
                     </h2>
-                    <p className="text-xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                    <p className="text-base mt-4 text-earth-900/70" style={{ fontFamily: 'Outfit, sans-serif' }}>
                         This is not belief. It has been observed. Silence here is not an idea. It is a condition—studied across attention, cognition, and behaviour. What you experience here has been seen before. Just rarely protected.
                     </p>
                     <p className="text-base mt-4 text-earth-900/70" style={{ fontFamily: 'Outfit, sans-serif' }}>
