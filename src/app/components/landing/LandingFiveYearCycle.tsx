@@ -2,22 +2,27 @@ const cohorts = [
   {
     year: "2026",
     label: "Post-Exit Founders",
+    description: "Designing their next decade without pressure.",
   },
   {
     year: "2027",
     label: "Designers & Developers",
+    description: "Designing work that outlives trends.",
   },
   {
     year: "2028",
     label: "Musicians & Singers",
+    description: "Designing sounds you are obsessed about.",
   },
   {
     year: "2029",
-    label: "Writers & Thinkers",
+    label: "Long-form Writers & Thinkers",
+    description: "Designing ideas too dangerous for blogs.",
   },
   {
     year: "2030",
     label: "Artists & Actors",
+    description: "Designing performances beyond applause.",
   },
 ] as const;
 
@@ -64,10 +69,13 @@ export default function LandingFiveYearCycle() {
                   <div className="absolute left-[-5px] top-0 w-2 h-2 rounded-full bg-gold-500 ring-4 ring-earth-950" />
                   <div className="bg-earth-900/40 rounded-lg border border-earth-800/80 p-4">
                     <p
-                      className="text-sm md:text-base text-earth-100 font-medium"
+                      className="text-sm md:text-base text-earth-100 font-medium mb-1"
                       style={{ fontFamily: "Outfit, sans-serif" }}
                     >
                       {cohort.label}
+                    </p>
+                    <p className="text-xs md:text-sm text-earth-300 font-body">
+                      {cohort.description}
                     </p>
                   </div>
                 </div>
