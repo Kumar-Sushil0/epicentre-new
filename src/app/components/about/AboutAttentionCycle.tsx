@@ -38,17 +38,10 @@ export default function AboutAttentionCycle() {
         </h2>
 
         <p className="text-earth-300/80 text-base md:text-lg mb-2 text-center font-body">
-          This is not a membership model. It is a staged observation.
+          100 participants each year.
         </p>
         <p className="text-earth-300/80 text-base md:text-lg mb-2 text-center font-body">
-          Each year, the same environment holds. But the lens shifts.<br />
-          Not to expand. But to understand.
-        </p>
-        <p className="text-earth-300/80 text-base md:text-lg mb-2 text-center font-body">
-          One group at a time. One context at a time. One pattern at a time.
-        </p>
-        <p className="text-earth-300/80 text-base md:text-lg mb-2 text-center font-body">
-          100 memberships each year. Not to scale the system—but to study it without distortion.
+          Not to scale the system—but to study it without distortion.
         </p>
         <p className="text-earth-300/80 text-base md:text-lg mb-4 text-center font-body">
           Different lives. Different pressures. Different relationships with silence.<br />
@@ -90,16 +83,16 @@ export default function AboutAttentionCycle() {
         </div>
 
         <p className="text-gold-500 text-base md:text-lg font-normal font-body mb-2 text-center">
-          The environment does not change. Only the lens does.
+          Entry is limited for a reason.
         </p>
         <p className="text-gold-500 text-base md:text-lg font-normal font-body mb-2 text-center">
-          Over five years, patterns begin to stabilize. Not from assumption. But from repetition.
+          Those who enter are not treated lightly.
         </p>
         <p className="text-gold-500 text-base md:text-lg font-normal font-body mb-2 text-center">
-          Five years. Five lenses. One structure, tested across many lives.
+          Their experience is not consumed—it is examined.
         </p>
         <p className="text-gold-500 text-base md:text-lg font-normal font-body text-center">
-          After five years, the signal is no longer scattered. It holds.
+          And what they return with shapes the system itself.
         </p>
       </div>
     </section>
