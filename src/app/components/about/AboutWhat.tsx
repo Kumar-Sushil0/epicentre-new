@@ -14,22 +14,12 @@ export default function AboutWhat() {
 
         {/* Combined content */}
         <div className="space-y-4 text-earth-300 font-body text-base md:text-lg leading-relaxed">
-          <p>
-            A private estate in Bhigwan, Maharashtra. Engineered to reduce interference — sound, pace, social obligation, and digital input — so that your thinking can proceed on its own terms.
-          No programme. No facilitator. No guided experience. Silence here is functional. Clarity is what emerges when the conditions that prevent it are removed.</p>
-          
-          
-          <p>
-            The estate is for individuals between major chapters. You have built something real. It ended — not in failure, but in completion. The calendar is lighter. The pressure is absent. And yet the mind keeps running.
-         This is the moment The Silent Club is designed for. Not the burnout. The in-between.
-         </p>
-          
-
-            
-          
-          <p className="pt-2">
-            The 2026 cohort is for post-exit founders. 100 memberships. Application-based. Continuation depends on behavioural alignment, not status, wealth, or industry.
-          </p>
+          <p>The Silent Club is a private estate designed for people who no longer need more input—but cannot yet sit still without it.</p>
+          <p>It removes what most environments add: noise, pace, expectation, performance.</p>
+          <p>No programme. No facilitator. No one telling you what to do with your time.<br />Because if you still need that—this is not for you.</p>
+          <p>This is for those in-between chapters.<br />You've built something real. It ended—not in failure, but in completion.<br />The calendar is lighter. The pressure is gone. But the mind hasn't caught up.</p>
+          <p>Silence here is not an experience. It is a condition.<br />Clarity is not delivered. It emerges—when interference is removed.</p>
+          <p className="pt-2 text-earth-100">The Silent Club is not for burnout.<br />It is for what comes after.</p>
         </div>
       </div>
     </section>

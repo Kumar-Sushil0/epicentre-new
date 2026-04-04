@@ -208,7 +208,7 @@ function BookACallInner() {
                     }
                     const unanswered = answers.findIndex((a) => a === "");
                     if (unanswered !== -1) {
-                      toast.error(`Answer question ${unanswered + 1} before proceeding.`);
+                      toast.error("Please answer all 3 questions before proceeding.");
                       return;
                     }
                     setModalStep("form");

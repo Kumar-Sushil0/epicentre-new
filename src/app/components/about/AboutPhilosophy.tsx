@@ -14,22 +14,22 @@ export default function AboutPhilosophy() {
     {
       title: "Why Silence",
       description:
-        "Most environments amplify input. Silence reduces distortion. Clear thinking requires signal control. The estate is built on this principle.",
+        "Most environments amplify input. More noise. More opinion. More interruption. Clarity does not survive in that.\nSilence is not absence. It is filtration. When signal is protected, thinking stabilizes.",
     },
     {
       title: "Why Club",
       description:
-        "Attention requires cultural coherence. Limited membership preserves the density of the environment, protects the anonymity of members, and prevents cultural drift. When the room changes every day, the environment cannot stabilize. Membership solves this.",
+        "Attention is not only individual. It is cultural. The people around you shape what is normal.\nOpen environments dilute this. Constant turnover resets the room. A club preserves it. Same standards. Same understanding. No explanation required.",
     },
     {
       title: "Why Bhigwan",
       description:
-        "Distance matters. Bhigwan is far enough from Pune and Mumbai to interrupt routine, and close enough to remain accessible. The location is not incidental, it is a design decision.",
+        "Distance is part of the design. Far enough to interrupt routine. Close enough to not require escape.\nYou don't disappear to come here. You arrive differently.",
     },
     {
-      title: "Why Cohorts",
+      title: "Why Open-Source Research",
       description:
-        "Cohorts shape culture. Each annual cohort centres a specific life-stage group so that the shared context among members remains deep and the clarity of intent is preserved. Mixing life stages dilutes both.",
+        "This is not a finished system. It is being discovered.\nSilence does not produce the same outcome for everyone. What works cannot be assumed. It has to be observed.\nThe system stays open—not in code, but in experience. Each person who enters becomes part of that observation. What returns is not feedback. It is signal.",
     },
   ];
 
@@ -51,7 +51,7 @@ export default function AboutPhilosophy() {
             Why This Structure
           </h2>
           <p className="text-earth-300 text-base leading-relaxed mt-2 ">
-            These decisions exist to protect what the estate calls cognitive sovereignty, the condition in which your attention belongs entirely to you.
+            This is not a format. It is a response. To what breaks attention. To what fragments thinking. To what makes clarity unreliable.
           </p>
         </div>
         {/* Dropdown Bars */}

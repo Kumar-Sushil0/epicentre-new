@@ -6,99 +6,95 @@ export default function OurPhilosophy() {
           Philosophy
         </h2>
         <p className="text-earth-300 text-sm md:text-base font-body max-w-2xl mb-10">
-          Four principles govern the design of The Silent Club.
+          The Silent Club is not built on preferences. It is built on principles.
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Clarity Through Subtraction */}
-          <div className="relative h-auto bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg overflow-hidden">
-            <div className="p-6 flex flex-col items-center text-center">
-              <div className="mb-4">
+          <div className="group relative h-64 bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg overflow-hidden cursor-pointer">
+            <div className="absolute inset-0 p-6 flex flex-col justify-end items-center text-center">
+              <div className="mb-4 transition-all duration-500 group-hover:-translate-y-2">
                 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M32 16V48M16 32H48" stroke="#C9A961" strokeWidth="2" strokeLinecap="round"/>
                   <circle cx="32" cy="32" r="12" stroke="#C9A961" strokeWidth="2"/>
                 </svg>
               </div>
-              <h3
-                className="text-gold-500 text-base font-normal mb-1"
-                style={{ fontFamily: 'Outfit, sans-serif' }}
-              >
+              <h3 className="text-gold-500 text-base font-normal mb-1 transition-all duration-500 group-hover:-translate-y-2 group-hover:text-gold-400" style={{ fontFamily: 'Outfit, sans-serif' }}>
                 Clarity Through Subtraction
               </h3>
-              <div className="mt-2 w-full border-t border-gold-500/30 pt-3">
-                <p className="text-earth-300 text-sm font-body leading-relaxed">
-                  We remove before we add. Noise is edited so that perception can stabilize. The environment works by taking away, not by providing.
-                </p>
+              <div className="mt-2 grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out w-full border-t border-gold-500/30 pt-3">
+                <div className="overflow-hidden">
+                  <p className="text-earth-300 text-sm font-body leading-relaxed">
+                    We remove before we add. Most environments compete for your attention. This one protects it. Noise is not reduced for comfort—it is removed so perception can stabilize. What remains is not emptiness. It is signal.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Constraint Creates Autonomy */}
-          <div className="relative h-auto bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg overflow-hidden">
-            <div className="p-6 flex flex-col items-center text-center">
-              <div className="mb-4">
+          <div className="group relative h-64 bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg overflow-hidden cursor-pointer">
+            <div className="absolute inset-0 p-6 flex flex-col justify-end items-center text-center">
+              <div className="mb-4 transition-all duration-500 group-hover:-translate-y-2">
                 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect x="16" y="16" width="32" height="32" stroke="#C9A961" strokeWidth="2"/>
                   <path d="M24 24V40M32 24V40M40 24V40" stroke="#C9A961" strokeWidth="2" strokeLinecap="round"/>
                 </svg>
               </div>
-              <h3
-                className="text-gold-500 text-base font-normal mb-1"
-                style={{ fontFamily: 'Outfit, sans-serif' }}
-              >
+              <h3 className="text-gold-500 text-base font-normal mb-1 transition-all duration-500 group-hover:-translate-y-2 group-hover:text-gold-400" style={{ fontFamily: 'Outfit, sans-serif' }}>
                 Constraint Creates Autonomy
               </h3>
-              <div className="mt-2 w-full border-t border-gold-500/30 pt-3">
-                <p className="text-earth-300 text-sm font-body leading-relaxed">
-                  Freedom without structure drifts. The estate&apos;s structure is what creates genuine agency; it holds the conditions so you are not required to manage them yourself.
-                </p>
+              <div className="mt-2 grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out w-full border-t border-gold-500/30 pt-3">
+                <div className="overflow-hidden">
+                  <p className="text-earth-300 text-sm font-body leading-relaxed">
+                    Freedom without structure drifts. The estate is designed so you don&apos;t have to manage your environment—only your attention. Fewer choices. Fewer variables. More agency.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Identity Is Authored */}
-          <div className="relative h-auto bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg overflow-hidden">
-            <div className="p-6 flex flex-col items-center text-center">
-              <div className="mb-4">
+          <div className="group relative h-64 bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg overflow-hidden cursor-pointer">
+            <div className="absolute inset-0 p-6 flex flex-col justify-end items-center text-center">
+              <div className="mb-4 transition-all duration-500 group-hover:-translate-y-2">
                 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M20 32L28 24M28 24L36 16M28 24V44M44 32C44 38.6274 38.6274 44 32 44C25.3726 44 20 38.6274 20 32" stroke="#C9A961" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   <circle cx="36" cy="16" r="4" stroke="#C9A961" strokeWidth="2"/>
                 </svg>
               </div>
-              <h3
-                className="text-gold-500 text-base font-normal mb-1"
-                style={{ fontFamily: 'Outfit, sans-serif' }}
-              >
+              <h3 className="text-gold-500 text-base font-normal mb-1 transition-all duration-500 group-hover:-translate-y-2 group-hover:text-gold-400" style={{ fontFamily: 'Outfit, sans-serif' }}>
                 Identity Is Authored
               </h3>
-              <div className="mt-2 w-full border-t border-gold-500/30 pt-3">
-                <p className="text-earth-300 text-sm font-body leading-relaxed">
-                  Inherited roles pause here. The estate makes no demands on who you are in the outside world. Deliberate identity resumes at your own pace.
-                </p>
+              <div className="mt-2 grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out w-full border-t border-gold-500/30 pt-3">
+                <div className="overflow-hidden">
+                  <p className="text-earth-300 text-sm font-body leading-relaxed">
+                    Nothing here reinforces who you are outside. No roles. No expectations. No performance. You are not guided. You are not interpreted. You decide what this time means.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Attention Is Sovereignty */}
-          <div className="relative h-auto bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg overflow-hidden">
-            <div className="p-6 flex flex-col items-center text-center">
-              <div className="mb-4">
+          <div className="group relative h-64 bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg overflow-hidden cursor-pointer">
+            <div className="absolute inset-0 p-6 flex flex-col justify-end items-center text-center">
+              <div className="mb-4 transition-all duration-500 group-hover:-translate-y-2">
                 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="32" cy="32" r="16" stroke="#C9A961" strokeWidth="2"/>
                   <circle cx="32" cy="32" r="8" stroke="#C9A961" strokeWidth="2"/>
                   <circle cx="32" cy="32" r="3" fill="#C9A961"/>
                 </svg>
               </div>
-              <h3
-                className="text-gold-500 text-base font-normal mb-1"
-                style={{ fontFamily: 'Outfit, sans-serif' }}
-              >
+              <h3 className="text-gold-500 text-base font-normal mb-1 transition-all duration-500 group-hover:-translate-y-2 group-hover:text-gold-400" style={{ fontFamily: 'Outfit, sans-serif' }}>
                 Attention Is Sovereignty
               </h3>
-              <div className="mt-2 w-full border-t border-gold-500/30 pt-3">
-                <p className="text-earth-300 text-sm font-body leading-relaxed">
-                  What you protect shapes you. Attention is the primary resource being safeguarded here—not comfort, not productivity, not experience.
-                </p>
+              <div className="mt-2 grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out w-full border-t border-gold-500/30 pt-3">
+                <div className="overflow-hidden">
+                  <p className="text-earth-300 text-sm font-body leading-relaxed">
+                    What you protect, shapes you. This environment is not optimized for comfort, nor productivity, nor experience. It is optimized for one thing: uninterrupted attention.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

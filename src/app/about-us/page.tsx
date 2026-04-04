@@ -58,7 +58,7 @@ import RequestConversation from "../components/RequestConversation";
 import AboutWhat from "../components/about/AboutWhat";
 import AboutWho from "../components/about/AboutWho";
 
-import IconStrip from "../components/IconStrip";
+import AboutAttentionCycle from "../components/about/AboutAttentionCycle";
 
 export default function AboutUsPage() {
   return (
@@ -81,12 +81,13 @@ export default function AboutUsPage() {
         <AboutPhilosophy />
         <LivingRoom />
 
-
         <AboutCollective />
+
+        <AboutAttentionCycle />
 
         <AboutFounder />
 
-        <RequestConversation />
+        <RequestConversation pageName="about" />
         <Footer />
       </main>
     </>

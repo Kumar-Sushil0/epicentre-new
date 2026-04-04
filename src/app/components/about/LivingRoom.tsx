@@ -120,7 +120,10 @@ const LivingRoom = () => {
                         The Evidence Base
                     </h2>
                     <p className="text-xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                        The Silent Club is not built on ideology. It is informed by research in cognitive science and psychology.
+                        This is not belief. It has been observed. Silence here is not an idea. It is a condition—studied across attention, cognition, and behaviour. What you experience here has been seen before. Just rarely protected.
+                    </p>
+                    <p className="text-base mt-4 text-earth-900/70" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                        Expand only if you need explanation.
                     </p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">

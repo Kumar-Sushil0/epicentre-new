@@ -2,27 +2,27 @@ const cohorts = [
   {
     year: "2026",
     label: "Post-Exit Founders",
-    description: "Designing their next decade without pressure.",
+    description: "Designing what comes after completion.",
   },
   {
     year: "2027",
     label: "Designers & Developers",
-    description: "Designing work that outlives trends.",
+    description: "Designing beyond trend cycles.",
   },
   {
     year: "2028",
     label: "Musicians & Singers",
-    description: "Designing sounds you are obsessed about",
+    description: "Designing what you can't think—only hear.",
   },
   {
     year: "2029",
     label: "Writers & Thinkers",
-    description: "Designing Ideas too dangerous for blogs",
+    description: "Designing ideas that hold under silence.",
   },
   {
     year: "2030",
     label: "Artists & Actors",
-    description: "Designing performances beyond applause",
+    description: "Designing expression without audience dependence.",
   },
 ] as const;
 
@@ -38,16 +38,21 @@ export default function AboutAttentionCycle() {
         </h2>
 
         <p className="text-earth-300/80 text-base md:text-lg mb-2 text-center font-body">
-          Each year, The Silent Club centers one life-stage cohort.
-        </p>
-        <p className="text-earth-100 text-base md:text-lg mb-4 text-center font-body font-medium">
-          100 memberships are released annually. One cohort. One shared chapter.
+          This is not a membership model. It is a staged observation.
         </p>
         <p className="text-earth-300/80 text-base md:text-lg mb-2 text-center font-body">
-          This sequencing is deliberate. Depth requires cultural coherence. Unstructured growth dilutes it.
+          Each year, the same environment holds. But the lens shifts.<br />
+          Not to expand. But to understand.
         </p>
         <p className="text-earth-300/80 text-base md:text-lg mb-2 text-center font-body">
-          The first five years are staged intentionally.
+          One group at a time. One context at a time. One pattern at a time.
+        </p>
+        <p className="text-earth-300/80 text-base md:text-lg mb-2 text-center font-body">
+          100 memberships each year. Not to scale the system—but to study it without distortion.
+        </p>
+        <p className="text-earth-300/80 text-base md:text-lg mb-4 text-center font-body">
+          Different lives. Different pressures. Different relationships with silence.<br />
+          What changes is the person. What remains is the condition.
         </p>
 
         {/* Timeline-style layout - 5 columns on desktop, no scrolling */}
@@ -84,11 +89,17 @@ export default function AboutAttentionCycle() {
           </div>
         </div>
 
-        <p className="text-earth-200 text-sm md:text-base font-body mb-2 max-w-3xl mx-auto">
-          The environment remains constant. The cultural lens shifts. After five years, the standard stabilizes.
+        <p className="text-gold-500 text-base md:text-lg font-normal font-body mb-2 text-center">
+          The environment does not change. Only the lens does.
         </p>
-        <p className="text-earth-200 text-sm md:text-base font-body max-w-3xl mx-auto">
-          Five cohorts. Five hundred individuals. One preserved structure.
+        <p className="text-gold-500 text-base md:text-lg font-normal font-body mb-2 text-center">
+          Over five years, patterns begin to stabilize. Not from assumption. But from repetition.
+        </p>
+        <p className="text-gold-500 text-base md:text-lg font-normal font-body mb-2 text-center">
+          Five years. Five lenses. One structure, tested across many lives.
+        </p>
+        <p className="text-gold-500 text-base md:text-lg font-normal font-body text-center">
+          After five years, the signal is no longer scattered. It holds.
         </p>
       </div>
     </section>
