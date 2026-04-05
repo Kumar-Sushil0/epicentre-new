@@ -43,9 +43,9 @@ export default function Location() {
           <div className="w-full md:w-1/2 flex items-center h-[300px]">
             <div className="bg-earth-900 border border-earth-900/30 rounded-lg p-8 w-full h-full flex items-center">
               <div className="space-y-6 text-gold-500">
-                <p className="text-earth-400 text-xs uppercase tracking-widest">For convenience its suggested to travel from Pune or Mumbai</p>
+                <p className="text-earth-400 text-xs uppercase tracking-widest">Best accessed via Pune or Mumbai</p>
                 <p className="text-2xl font-normal text-gold-500" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                  Bhigwan, Maharashtra.
+                  Bhigwan, Maharashtra
                 </p>
                 <div className="space-y-3 text-lg">
                   <div className="flex items-center gap-3">
@@ -55,6 +55,14 @@ export default function Location() {
                   <div className="flex items-center gap-3">
                     <span className="text-gold-500">•</span>
                     <p>5.5 hours from Mumbai</p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-gold-500">•</span>
+                    <p>Nearest railway junction: Daund</p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-gold-500">•</span>
+                    <p>Nearest town: Baramati</p>
                   </div>
                   <p className="pt-3 border-t border-gold-500/30">
                     Accessed by taxi, bus, or train.

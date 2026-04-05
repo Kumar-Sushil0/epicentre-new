@@ -13,7 +13,7 @@ const breadcrumbItems = [
 ];
 
 export default function VenuePage() {
-  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(["wildlife"]));
+  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(["collective"]));
 
   const toggleSection = (id: string) => {
     setExpandedSections(prev => {
