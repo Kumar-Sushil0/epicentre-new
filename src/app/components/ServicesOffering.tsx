@@ -222,7 +222,7 @@ export default function ServicesOffering({
             <h3 className="text-lg md:text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Silence as a Service
             </h3>
-            <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>4 Hours — Day Cycle</p>
+            <p className="text-earth-300 text-md mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>Day Cycle — 4 Hours</p>
             
             <p className="text-gold-500 text-xs md:text-sm leading-snug mb-2">
               Step out of noise. Return with direction.
@@ -258,7 +258,7 @@ export default function ServicesOffering({
             <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Residency as a Service
             </h3>
-            <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>2N–3D — Weekend Cycle</p>
+            <p className="text-earth-300 text-md mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>Weekend Cycle — 2N–3D</p>
             
             <p className="text-gold-500 text-sm leading-snug mb-2">
               Step away long enough to question everything.
@@ -298,7 +298,7 @@ export default function ServicesOffering({
             <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Solitude as a Service
             </h3>
-            <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>4N–5D — Weekday Cycle</p>
+            <p className="text-earth-300 text-md mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>Weekday Cycle — 4N–5D </p>
             <p className="text-gold-500 text-sm leading-snug mb-2">
               When silence stays, so do your thoughts.
             </p>
@@ -397,7 +397,7 @@ export default function ServicesOffering({
                   <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
                     Creation as a Service
                   </h3>
-                  <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>Collective Cycle — All Days</p>
+                  <p className="text-earth-300 text-md mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>Collective Cycle — All Days</p>
                   
                   <p className="text-gold-500 text-sm leading-snug mb-2">
                     When clarity becomes something real.
@@ -573,7 +573,7 @@ export default function ServicesOffering({
                 <div className="border border-earth-700/50 rounded-lg p-4 flex flex-col">
                   <div className="text-center mb-3">
                     <p className="text-earth-200 text-xs uppercase tracking-widest">
-                      {isDayCyclePlan ? "1 Day Access" : isResidencyPlan ? "2 Nights / 3 Days Access" : isSolitudePlan ? "4 Nights / 5 Days Access" : "24 Hours — Full Estate Access"}
+                      {isDayCyclePlan ? "4 Hour Access" : isResidencyPlan ? "2 Nights / 3 Days Access" : isSolitudePlan ? "4 Nights / 5 Days Access" : "24 Hours — Full Estate Access"}
                     </p>
                     <p className="text-gold-500 text-xs mt-0.5">
                       {isDayCyclePlan ? "Available all days" : isResidencyPlan ? "Available weekends only (Fri – Sun)" : isSolitudePlan ? "Available weekdays only (Mon – Fri)" : "Available all days"}
@@ -628,22 +628,21 @@ export default function ServicesOffering({
 
             <div className="flex gap-3 w-full">
               <div className="flex-1 flex flex-col gap-1">
-                <p className="text-earth-400 text-xs text-center">Shape how you want to experience this</p>
                 <button
                   type="button"
                   onClick={goToDesignYourStay}
-                  className={`w-full px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                  className={`w-full px-4 py-3 rounded-lg text-sm font-medium transition-colors flex flex-col items-center gap-0.5 ${
                     selectedDates.length
                       ? "bg-gold-500 text-earth-950 hover:bg-gold-400"
                       : "bg-earth-800 text-earth-600 cursor-pointer"
                   }`}
                   style={{ fontFamily: 'Outfit, sans-serif' }}
                 >
-                  Shape Your Stay →
+                  <span>Shape Your Stay →</span>
+                  <span className="text-xs font-normal opacity-70">Shape how you want to experience this</span>
                 </button>
               </div>
               <div className="flex-1 flex flex-col gap-1">
-                <p className="text-earth-400 text-xs text-center">Proceed to confirmation</p>
                 <button
                   type="button"
                   onClick={() => {
@@ -660,14 +659,15 @@ export default function ServicesOffering({
                     if (selectedDates.length) params.set("dates", selectedDates.join(","));
                     router.push(`/book-a-call${params.toString() ? `?${params.toString()}` : ""}`);
                   }}
-                  className={`w-full px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                  className={`w-full px-4 py-3 rounded-lg text-sm font-medium transition-colors flex flex-col items-center gap-0.5 ${
                     selectedDates.length
                       ? "border border-gold-500 text-gold-500 hover:bg-gold-500/10"
                       : "border border-earth-700 text-earth-600 cursor-pointer"
                   }`}
                   style={{ fontFamily: 'Outfit, sans-serif' }}
                 >
-                  Request an Invite →
+                  <span>Request an Invite →</span>
+                  <span className="text-xs font-normal opacity-70">Proceed to confirmation</span>
                 </button>
                 <p className="text-gold-500 text-xs text-center mt-1">* Includes a short alignment call</p>
               </div>

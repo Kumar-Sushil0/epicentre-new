@@ -52,7 +52,7 @@ export default function AboutPrinciples() {
               <div className="mt-2 grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out w-full border-t border-gold-500/30 pt-3">
                 <div className="overflow-hidden">
                   <p className="text-earth-300 text-sm font-body leading-relaxed">
-                    More fragments attention. The estate offers less—deliberately. Fewer inputs. Fewer interactions. Fewer demands. Because excess does not enhance clarity. It interrupts it.
+                    More fragments attention. The estate offers less, deliberately. Fewer inputs. Fewer interactions. Fewer demands. Because excess does not enhance clarity. It interrupts it.
                   </p>
                 </div>
               </div>
@@ -76,7 +76,7 @@ export default function AboutPrinciples() {
               <div className="mt-2 grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out w-full border-t border-gold-500/30 pt-3">
                 <div className="overflow-hidden">
                   <p className="text-earth-300 text-sm font-body leading-relaxed">
-                    Nothing is imposed. Silence works through consent. Everyone here chose these conditions. No one needs to enforce them—because no one is here by accident.
+                    Nothing is imposed. Silence works through consent. Everyone here chose these conditions. No one needs to enforce them, because no one is here by accident.
                   </p>
                 </div>
               </div>
@@ -148,7 +148,7 @@ export default function AboutPrinciples() {
               <div className="mt-2 grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out w-full border-t border-gold-500/30 pt-3">
                 <div className="overflow-hidden">
                   <p className="text-earth-300 text-sm font-body leading-relaxed">
-                    Thinking requires time. Urgency distorts it. Days here are slow by design—not as a preference, but as a requirement.
+                    Thinking requires time. Urgency distorts it. Days here are slow by design, not as a preference, but as a requirement.
                   </p>
                 </div>
               </div>

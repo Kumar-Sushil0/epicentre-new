@@ -27,7 +27,7 @@ function DesignYourStayInner() {
       <section className="pt-4 px-4 md:px-16">
         <div className="max-w-3xl mx-auto text-center space-y-3">
           <h1
-            className="text-2xl md:text-3xl font-normal text-earth-100"
+            className="text-xl md:text-2xl font-normal text-gold-500"
             style={{ fontFamily: "Outfit, sans-serif" }}
           >
             Ways Silence Can Be Used

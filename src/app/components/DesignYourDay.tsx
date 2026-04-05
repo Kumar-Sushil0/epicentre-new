@@ -366,14 +366,12 @@ export default function DesignYourDay({ cycle, accommodation, price, quantity, d
     <section className="py-2 px-3 md:px-6 bg-earth-950 flex-1 flex flex-col">
       <div className="w-full flex-1 flex flex-col">
         {/* Activities Grid */}
-        <div className="mb-2">
-          <h3 className="text-sm md:text-base font-normal text-gold-500 mb-0.5 text-center" style={{ fontFamily: "Outfit, sans-serif" }}>
-            Ways to Spend Your Time
-          </h3>
-          <p className="text-earth-400 text-xs text-center mb-2">Nothing here is required. That's the point.</p>
-          <div className="grid grid-cols-2 lg:grid-cols-6 gap-1">
+        <div className="mb-16">
+          <p className="text-earth-400 text-xs text-center  mb-4">Nothing here is required. That's the point.</p>
+          <div className="flex justify-center">
+          <div className="grid grid-cols-2 lg:grid-cols-6 gap-1 w-fit">
             {activityGroups.map((group) => (
-              <div key={group.title} className="bg-earth-900/40 border border-earth-700/50 rounded-md overflow-hidden">
+              <div key={group.title} className="bg-earth-900/40 border border-earth-700/50 rounded-md overflow-hidden w-52">
                 <div className="px-2 py-1 border-b border-earth-700/50 bg-earth-900/70">
                   <p className={`text-xs md:text-sm font-semibold leading-tight ${group.iconClass}`}>{group.title}</p>
                 </div>
@@ -396,16 +394,17 @@ export default function DesignYourDay({ cycle, accommodation, price, quantity, d
               </div>
             ))}
           </div>
+          </div>
         </div>
 
-        <h3 className="text-sm md:text-base font-normal text-gold-500 mb-1 text-center" style={{ fontFamily: "Outfit, sans-serif" }}>
+        <h3 className="text-xl md:text-2xl font-normal text-gold-500 mb-1 text-center" style={{ fontFamily: "Outfit, sans-serif" }}>
           Structure
         </h3>
         <p className="text-earth-300 text-xs text-center mb-2">You can design your days. Or leave them completely empty.</p>
 
         {/* Schedule Grid */}
-        <div className={`overflow-x-auto ${!selectedDates.length ? "opacity-40 pointer-events-none" : ""}`}>
-          <div className="min-w-[700px]">
+        <div className={`overflow-x-auto flex justify-center ${!selectedDates.length ? "opacity-40 pointer-events-none" : ""}`}>
+          <div style={{ width: '1268px' }}>
             {/* Time Header */}
             <div className="grid grid-cols-[90px_repeat(14,1fr)] gap-1 mb-1">
               <div className="bg-earth-800/40 rounded-md p-1"></div>
@@ -546,15 +545,15 @@ export default function DesignYourDay({ cycle, accommodation, price, quantity, d
 
         {selectedDates.length ? (
           <>
-            <p className="text-earth-300 text-xs text-center mt-3">If you've made it this far, you already know you need this.</p>
             <div className="mt-auto pt-3 pb-4 flex flex-col items-center gap-1.5">
+              <p className="text-earth-300 text-xs text-center">If this made sense, you already know what to do.</p>
               <a
                 href={bookCallHref}
-                className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-gold-500 text-gold-500 text-sm font-medium hover:bg-gold-500/10 transition-colors"
+                className="inline-flex flex-col items-center justify-center px-6 py-3 rounded-lg border border-gold-500 text-gold-500 text-sm font-medium hover:bg-gold-500/10 transition-colors"
               >
-                Request an Invite →
+                <span>Request an Invite →</span>
+                <span className="text-xs font-normal opacity-70">A short conversation decides if this is for you</span>
               </a>
-              <p className="text-gold-500 text-xs">A short conversation decides if this is for you</p>
             </div>
           </>
         ) : null}

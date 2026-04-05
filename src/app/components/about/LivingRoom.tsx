@@ -120,7 +120,7 @@ const LivingRoom = () => {
                         The Evidence Base
                     </h2>
                     <p className="text-base mt-4 text-earth-900/70" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                        This is not belief. It has been observed. Silence here is not an idea. It is a condition—studied across attention, cognition, and behaviour. What you experience here has been seen before. Just rarely protected.
+                        This is not belief. It has been observed. Silence here is not an idea. It is a condition, studied across attention, cognition, and behaviour. What you experience here has been seen before. Just rarely protected.
                     </p>
                     <p className="text-base mt-4 text-earth-900/70" style={{ fontFamily: 'Outfit, sans-serif' }}>
                         Expand only if you need explanation.

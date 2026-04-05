@@ -29,7 +29,7 @@ export default function AboutPhilosophy() {
     {
       title: "Why Open-Source Research",
       description:
-        "This is not a finished system. It is being discovered.\nSilence does not produce the same outcome for everyone. What works cannot be assumed. It has to be observed.\nThe system stays open—not in code, but in experience. Each person who enters becomes part of that observation. What returns is not feedback. It is signal.",
+        "This is not a finished system. It is being discovered.\nSilence does not produce the same outcome for everyone. What works cannot be assumed. It has to be observed.\nThe system stays open, not in code, but in experience. Each person who enters becomes part of that observation. What returns is not feedback. It is signal.",
     },
   ];
 

@@ -587,7 +587,7 @@ export default function TestPage() {
             <section className={`order-2 w-full px-4 md:px-16 transition-all duration-300 ${expandedSection === "residency" ? 'mb-24' : 'mb-6'}`}>
                 <div id="section-header-residency" className="flex items-center gap-4 cursor-pointer mb-6" onClick={() => toggleSection("residency")}>
                         <h2 className="text-2xl font-normal text-gold-500 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                            02. Residency — As a Service
+                            02. Residency as a Service
                         </h2>
                         <div className="h-[1px] bg-earth-700 flex-grow"></div>
                         <span className="material-symbols-outlined text-gold-500 text-3xl">school</span>

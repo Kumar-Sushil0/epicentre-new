@@ -14,7 +14,7 @@ export default function AboutWho() {
             For individuals between major chapters. Accomplished, self-directed, and who have earned the right to think without being managed.
           </p>
           <p className="text-base md:text-lg text-earth-300 font-light mt-3">
-            2026 Cohort: Specifically structured for post-exit founders — individuals who have recently exited a company, completed a significant transition, or are navigating an inflection point that requires uninterrupted clarity.
+            2026 Cohort: Specifically structured for post-exit founders, individuals who have recently exited a company, completed a significant transition, or are navigating an inflection point that requires uninterrupted clarity.
           </p>
         </div>
 
@@ -22,7 +22,7 @@ export default function AboutWho() {
         <div className="mb-5">
           <div className="flex items-center gap-2 mb-4">
             <p className="text-earth-300 font-body text-sm italic">This is not for everyone.</p>
-            <span className="text-earth-700">—</span>
+            <span className="text-earth-700"> </span>
             <p className="text-gold-500/90 text-sm" style={{ fontFamily: "Outfit, sans-serif" }}>It is for those who:</p>
           </div>
           

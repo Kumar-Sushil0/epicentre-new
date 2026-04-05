@@ -27,12 +27,12 @@ export const faqData = [
   {
     question: "FAQ 06 · Who is the 2026 cohort specifically?",
     answer:
-      "The 2026 cohort is designed for post-exit founders—individuals who have recently exited a company, completed a significant professional transition, or are at an inflection point that requires uninterrupted thinking rather than more input.\n\nThe cohort model exists because shared context among members preserves the quality of the environment. When everyone in a room is navigating a similar life stage, the unspoken social dynamics are simpler, the anonymity is more credible, and the silence is easier to hold collectively.\n\nFuture cohorts will centre different life-stage groups. Each year is a distinct environment.",
+      "The 2026 cohort is designed for post-exit founders, individuals who have recently exited a company, completed a significant professional transition, or are at an inflection point that requires uninterrupted thinking rather than more input.\n\nThe cohort model exists because shared context among members preserves the quality of the environment. When everyone in a room is navigating a similar life stage, the unspoken social dynamics are simpler, the anonymity is more credible, and the silence is easier to hold collectively.\n\nFuture cohorts will centre different life-stage groups. Each year is a distinct environment.",
   },
   {
     question: "FAQ 07 · Why Bhigwan? What is significant about the location?",
     answer:
-      "Distance matters. Bhigwan is two and a half hours from Pune and accessible from Mumbai—far enough to interrupt routine, close enough to remain reachable.\n\nMore specifically: the Ujani backwaters at Bhigwan offer a natural environment with low sensory demand. Open water, flat terrain, minimal ambient sound, and a sky that is dark enough at night to see the Milky Way without equipment. These are not incidental features. They are structural ones.\n\nThe location was not chosen for its aesthetics. It was chosen because the environment already does much of what the estate's design is attempting before any deliberate intervention.",
+      "Distance matters. Bhigwan is two and a half hours from Pune and accessible from Mumbai, far enough to interrupt routine, close enough to remain reachable.\n\nMore specifically: the Ujani backwaters at Bhigwan offer a natural environment with low sensory demand. Open water, flat terrain, minimal ambient sound, and a sky that is dark enough at night to see the Milky Way without equipment. These are not incidental features. They are structural ones.\n\nThe location was not chosen for its aesthetics. It was chosen because the environment already does much of what the estate's design is attempting before any deliberate intervention.",
   },
   {
     question: "FAQ 08 · What is The Silent Club not?",

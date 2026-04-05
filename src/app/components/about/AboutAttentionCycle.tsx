@@ -41,7 +41,7 @@ export default function AboutAttentionCycle() {
           100 participants each year.
         </p>
         <p className="text-earth-300/80 text-base md:text-lg mb-2 text-center font-body">
-          Not to scale the system—but to study it without distortion.
+          Not to scale the system but to study it without distortion.
         </p>
         <p className="text-earth-300/80 text-base md:text-lg mb-4 text-center font-body">
           Different lives. Different pressures. Different relationships with silence.<br />

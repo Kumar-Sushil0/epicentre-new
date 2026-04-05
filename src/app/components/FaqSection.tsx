@@ -66,7 +66,7 @@ export default function FaqSection({
               </button>
               {openIndex === i && (
                 <div className="pb-5 pr-8">
-                  <p className="text-earth-400 text-base leading-relaxed whitespace-pre-line">
+                  <p className="text-earth-300 text-base leading-relaxed whitespace-pre-line">
                     {item.answer}
                   </p>
                 </div>

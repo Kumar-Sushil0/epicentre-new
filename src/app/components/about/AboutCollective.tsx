@@ -46,7 +46,7 @@ export default function AboutCollective() {
               <p>As attention becomes scarce, environments that protect it become essential.</p>
               <p>Modern tourism amplifies stimulation. Silent tourism reduces it. The Silent Club is a pilot for this shift.</p>
               <p>
-                The Silent Tourism Foundation documents and open-sources this architecture—not as a franchise, but as a contribution to how environments are designed.
+                The Silent Tourism Foundation documents and open-sources this architecture, not as a franchise, but as a contribution to how environments are designed.
               </p>
               <p className="font-semibold text-earth-100">Designed deliberately. Built to endure.</p>
             </div>
