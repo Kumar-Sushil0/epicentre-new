@@ -32,7 +32,7 @@ const states = [
 ];
 
 const depths = [
-  { name: "Encounter", desc: "A brief interruption — just enough to notice what's been running.", icon: "radio_button_checked" },
+  { name: "Encounter", desc: "A brief interruption just enough to notice what's been running.", icon: "radio_button_checked" },
   { name: "Immersion", desc: "Time expands. Patterns begin to reveal themselves.", icon: "water" },
   { name: "Withdrawal", desc: "The noise fades. What remains gets harder to ignore.", icon: "dark_mode" },
   { name: "Occupation", desc: "You take control. And build from what you've seen.", icon: "construction" },
@@ -49,7 +49,7 @@ export default function VoidAndFormats() {
               className="text-2xl md:text-3xl font-normal text-gold-500 mb-4"
               style={{ fontFamily: "Outfit, sans-serif" }}
             >
-              The Four States
+              The Four levels of depths
             </h2>
           </div>
 
@@ -65,7 +65,7 @@ export default function VoidAndFormats() {
                     style={{ fontFamily: "Outfit, sans-serif" }}
                   >
                     {s.name}
-               h   </h3>
+                  </h3>
                   <p className="text-earth-400 text-xs mb-3"> {s.action}</p>
                   <p className="text-earth-300 text-sm">{s.desc}</p>
                 </div>

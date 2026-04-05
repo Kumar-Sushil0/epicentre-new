@@ -219,11 +219,11 @@ export default function ServicesOffering({
               })
             }
           >
-            <h3 className="text-lg md:text-xl font-normal text-gold-500 mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            <h3 className="text-lg md:text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Silence as a Service
             </h3>
-            <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>4 Hours — Full Access — Any Day</p>
-            <p className="text-earth-600 text-[10px] mb-2">All Days</p>
+            <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>4 Hours — Day Cycle</p>
+            
             <p className="text-gold-500 text-xs md:text-sm leading-snug mb-2">
               Step out of noise. Return with direction.
             </p>
@@ -234,7 +234,7 @@ export default function ServicesOffering({
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
-                <span className="text-earth-300 text-sm">All meals included — nothing to think about</span>
+                <span className="text-earth-300 text-sm">Full access + all meals included</span>
               </div>
             </div>
 
@@ -255,11 +255,11 @@ export default function ServicesOffering({
               })
             }
           >
-            <h3 className="text-xl font-normal text-gold-500 mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Residency as a Service
             </h3>
-            <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>2N–3D — Weekends</p>
-            <p className="text-earth-600 text-[10px] mb-2">Weekends Only</p>
+            <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>2N–3D — Weekend Cycle</p>
+            
             <p className="text-gold-500 text-sm leading-snug mb-2">
               Step away long enough to question everything.
             </p>
@@ -270,7 +270,7 @@ export default function ServicesOffering({
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
-                <span className="text-earth-300 text-sm">Shared environment. No performance expected.</span>
+                <span className="text-earth-300 text-sm">Shared non-preformative environment.</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-gold-500">•</span>
@@ -295,11 +295,10 @@ export default function ServicesOffering({
               })
             }
           >
-            <h3 className="text-xl font-normal text-gold-500 mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Solitude as a Service
             </h3>
-            <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>4N–5D — Weekdays</p>
-            <p className="text-earth-600 text-[10px] mb-2">Weekdays Only</p>
+            <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>4N–5D — Weekday Cycle</p>
             <p className="text-gold-500 text-sm leading-snug mb-2">
               When silence stays, so do your thoughts.
             </p>
@@ -333,6 +332,55 @@ export default function ServicesOffering({
           {/* Full Cycle BELOW the three cards */}
           <div className="mt-2.5 space-y-2.5">
 
+            {/* Day toggle above the card */}
+            <div className="flex justify-center">
+              <div className="inline-flex items-center gap-2 bg-earth-800/50 rounded-lg p-1 border border-earth-700/50">
+                {/* Weekdays */}
+                <div className="flex items-center gap-1 pr-2 border-r-2 border-gold-500/30">
+                  {[
+                    { label: "M", value: "M" as const },
+                    { label: "T", value: "T" as const },
+                    { label: "W", value: "W" as const },
+                    { label: "T", value: "Th" as const },
+                  ].map((day) => (
+                    <button
+                      key={day.value}
+                      onClick={() => setSelectedDay(day.value)}
+                      className={`w-8 h-8 rounded-md flex items-center justify-center text-xs font-medium transition-all ${
+                        selectedDay === day.value
+                          ? "bg-gold-500 text-earth-950"
+                          : "text-earth-400 hover:text-gold-500"
+                      }`}
+                      style={{ fontFamily: "Outfit, sans-serif" }}
+                    >
+                      {day.label}
+                    </button>
+                  ))}
+                </div>
+                {/* Weekends */}
+                <div className="flex items-center gap-1 pl-2">
+                  {[
+                    { label: "F", value: "F" as const },
+                    { label: "S", value: "S" as const },
+                    { label: "S", value: "Su" as const },
+                  ].map((day) => (
+                    <button
+                      key={day.value}
+                      onClick={() => setSelectedDay(day.value)}
+                      className={`w-8 h-8 rounded-md flex items-center justify-center text-xs font-medium transition-all ${
+                        selectedDay === day.value
+                          ? "bg-gold-500 text-earth-950"
+                          : "text-earth-400 hover:text-gold-500"
+                      }`}
+                      style={{ fontFamily: "Outfit, sans-serif" }}
+                    >
+                      {day.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
             {/* Full Cycle card */}
             <div
               className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-3 cursor-pointer hover:border-gold-500/70 transition-colors"
@@ -346,11 +394,11 @@ export default function ServicesOffering({
             >
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
                 <div className="flex-1">
-                  <h3 className="text-xl font-normal text-gold-500 mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                  <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
                     Creation as a Service
                   </h3>
-                  <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>24 Hours — Any Day</p>
-                  <p className="text-earth-600 text-[10px] mb-2">All Days</p>
+                  <p className="text-earth-300 text-xs mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>Collective Cycle — All Days</p>
+                  
                   <p className="text-gold-500 text-sm leading-snug mb-2">
                     When clarity becomes something real.
                   </p>
@@ -365,7 +413,7 @@ export default function ServicesOffering({
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-gold-500">•</span>
-                      <span className="text-earth-300 text-sm">15 comfortably, up to 40 with flexible sleeping</span>
+                      <span className="text-earth-300 text-sm">Accomodation Capacity:- 15 pax comfortabily  Max up to 40 with flexible sleeping options</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-gold-500">•</span>
@@ -374,57 +422,6 @@ export default function ServicesOffering({
                     <div className="flex items-center gap-2">
                       <span className="text-gold-500">•</span>
                       <span className="text-earth-300 text-sm">Full access + all meals included</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Right side: Day selector */}
-                <div className="flex flex-col items-end h-full min-h-[92px]">
-                  {/* Day Selection Toggle Container - Top */}
-                  <div className="inline-flex items-center gap-2 bg-earth-800/50 rounded-lg p-1 border border-earth-700/50">
-                    {/* Weekdays */}
-                    <div className="flex items-center gap-1 pr-2 border-r-2 border-gold-500/30">
-                      {[
-                        { label: "M", value: "M" as const },
-                        { label: "T", value: "T" as const },
-                        { label: "W", value: "W" as const },
-                        { label: "T", value: "Th" as const },
-                      ].map((day) => (
-                        <button
-                          key={day.value}
-                          onClick={(e) => { e.stopPropagation(); setSelectedDay(day.value); }}
-                          className={`w-6 h-6 rounded-md flex items-center justify-center text-xs font-medium transition-all ${
-                            selectedDay === day.value
-                              ? "bg-gold-500 text-earth-950"
-                              : "text-earth-400 hover:text-gold-500"
-                          }`}
-                          style={{ fontFamily: "Outfit, sans-serif" }}
-                        >
-                          {day.label}
-                        </button>
-                      ))}
-                    </div>
-
-                    {/* Weekends */}
-                    <div className="flex items-center gap-1 pl-2">
-                      {[
-                        { label: "F", value: "F" as const },
-                        { label: "S", value: "S" as const },
-                        { label: "S", value: "Su" as const },
-                      ].map((day) => (
-                        <button
-                          key={day.value}
-                          onClick={(e) => { e.stopPropagation(); setSelectedDay(day.value); }}
-                          className={`w-6 h-6 rounded-md flex items-center justify-center text-xs font-medium transition-all ${
-                            selectedDay === day.value
-                              ? "bg-gold-500 text-earth-950"
-                              : "text-earth-400 hover:text-gold-500"
-                          }`}
-                          style={{ fontFamily: "Outfit, sans-serif" }}
-                        >
-                          {day.label}
-                        </button>
-                      ))}
                     </div>
                   </div>
                 </div>

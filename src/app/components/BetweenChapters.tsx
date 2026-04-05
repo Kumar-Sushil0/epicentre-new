@@ -7,7 +7,7 @@ export default function BetweenChapters() {
         <p>Not because you need more.<br />But because you've never had less.</p>
         <p>We don't add more.</p>
         <p>We remove.</p>
-        <p className="text-gold-500 text-xl md:text-2xl">Silence — as a Service.</p>
+        <p className="text-gold-500 text-xl md:text-2xl">Silence as a Service.</p>
       </div>
     </section>
   );

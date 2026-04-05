@@ -30,7 +30,7 @@ export default function DesignedDeliberately() {
                 Designed Silence
               </h3>
               <p className="text-earth-300 text-xs md:text-sm leading-relaxed">
-                Distraction is removed — by design.
+                Distraction is removed by design.
               </p>
             </div>
 

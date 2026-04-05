@@ -66,12 +66,12 @@ export default function Hero() {
         <div className="max-w-6xl border-l-2 border-gold-500/50 pl-4 md:pl-8 lg:pl-12 animate-in slide-in-from-left-4 duration-1000">
           
           <h1
-            className="text-earth-100 text-2xl md:text-4xl lg:text-5xl font-display font-normal leading-[1.1] tracking-tight mb-1 drop-shadow-2xl"
+            className="text-earth-100 text-2xl md:text-4xl lg:text-5xl font-display font-normal leading-[1.1] tracking-tight drop-shadow-2xl"
             style={{ fontFamily: "Outfit, sans-serif" }}
           >
             <span className="italic text-gold-500">Silence reveals direction</span>
           </h1>
-          <p className="text-earth-100 font-normal -mt-2 mb-8" style={{ fontSize: '1.5rem' }}>The rest is up to you.</p>
+          <p className="text-earth-100 font-normal" style={{ fontSize: '1.5rem' }}>The rest is up to you.</p>
 
           {/* CTA */}
           <div className="flex flex-col gap-3 mt-4 items-start">

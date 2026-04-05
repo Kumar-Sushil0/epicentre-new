@@ -20,10 +20,10 @@ export default function VenueHero() {
       {/* Content */}
       <div className="relative z-20 container px-4 md:px-16 max-w-7xl">
         <div className="max-w-6xl border-l-2 border-gold-500/50 pl-4 md:pl-8 lg:pl-12 py-4 animate-in slide-in-from-left-4 duration-1000">
-          <h1 className="text-earth-100 text-4xl md:text-7xl lg:text-8xl font-display font-normal leading-[1.1] tracking-tight mb-6 md:mb-8 drop-shadow-2xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
+          <h1 className="text-earth-100 text-2xl md:text-4xl lg:text-5xl font-display font-normal leading-[1.1] tracking-tight drop-shadow-2xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
             <span className="italic text-gold-500">Nothing is asking for your attention</span>
           </h1>
-          <p className="text-earth-300/80 text-lg md:text-2xl font-light leading-relaxed w-full font-body">
+          <p className="text-earth-100 font-normal" style={{ fontSize: '1.5rem' }}>
             And that changes everything.
           </p>
         </div>

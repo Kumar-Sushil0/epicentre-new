@@ -187,7 +187,7 @@ export default function DiningVariant() {
             Everything here is chosen for one reason: to support sustained, undistracted presence.
           </p>
           <p className="text-[#e7dfd3] font-body text-sm md:text-base max-w-full mt-2">
-            Accommodation, food, and physical recovery — nothing more, nothing less.
+            Accommodation, food, and physical recovery, nothing more, nothing less.
           </p>
         </div>
 

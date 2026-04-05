@@ -637,7 +637,7 @@ export default function AdminDdDashboardPage() {
                   </span>
                 </div>
                 <p className="text-sm text-earth-400 mb-6 max-w-xl">
-                  Not numbers for a board deck — just enough signal to know if
+                  Not numbers for a board deck just enough signal to know if
                   the silent, self-directed quality of the space is holding.
                 </p>
                 <div className="grid md:grid-cols-3 gap-4 text-sm">
