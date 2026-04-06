@@ -443,11 +443,11 @@ export default function ServicesOffering({
       {/* Modal — appears when a card is selected */}
       {pendingSelection && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-start md:items-center justify-center bg-black/70 backdrop-blur-sm overflow-y-auto py-4"
           onClick={() => setPendingSelection(null)}
         >
           <div
-            className="relative bg-earth-900 border border-gold-500/40 rounded-2xl p-8 mx-4 max-w-3xl w-full shadow-2xl animate-in zoom-in-95 duration-200 max-h-[90vh] overflow-y-auto"
+            className="relative bg-earth-900 border border-gold-500/40 rounded-2xl p-8 mx-4 md:max-w-3xl w-full shadow-2xl animate-in zoom-in-95 duration-200 overflow-y-auto h-screen md:h-auto md:max-h-[90vh]"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -462,7 +462,7 @@ export default function ServicesOffering({
             {/* Plan + pricing + calendar in 2-col layout */}
             <div className="mb-5">
               <p className="text-gold-500 text-xl font-normal text-center mb-5" style={{ fontFamily: 'Outfit, sans-serif' }}>Select Your Stay</p>
-              <div className="grid grid-cols-2 gap-5 items-stretch">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch">
                 {/* Left: pricing breakdown */}
                 {(() => {
                   const fmt = (n: number) => "₹" + n.toLocaleString("en-IN");
