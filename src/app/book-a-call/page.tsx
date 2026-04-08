@@ -4,7 +4,6 @@ export const dynamic = "force-dynamic";
 
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import CallDateTimePicker from "../components/CallDateTimePicker";
 import toast from "react-hot-toast";
 
 const CALL_QUESTIONS = [
@@ -12,6 +11,8 @@ const CALL_QUESTIONS = [
   "Without noise, distraction, or input—do you move closer to yourself… or away?",
   "If left completely alone with your thoughts—would you stay, or reach for escape?",
 ];
+
+type Step = 0 | 1 | 2 | 3 | 4;
 
 function BookACallInner() {
   const searchParams = useSearchParams();
@@ -21,62 +22,43 @@ function BookACallInner() {
   const quantity = searchParams.get("quantity");
   const dates = searchParams.get("dates");
 
-  const [callDateTime, setCallDateTime] = useState<{ date: Date | null; time: string | null }>({ date: null, time: null });
+  const [step, setStep] = useState<Step>(0);
   const [answers, setAnswers] = useState(["", "", ""]);
+  const [bestTime, setBestTime] = useState("");
 
-  // Modal state
-  const [showModal, setShowModal] = useState(false);
-  const [modalStep, setModalStep] = useState<"form" | "confirmed">("form");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [confirmed, setConfirmed] = useState(false);
 
   const handleAnswer = (idx: number, val: string) => {
-    setAnswers((prev) => { const c = [...prev]; c[idx] = val; return c; });
+    const updated = [...answers]; updated[idx] = val; setAnswers(updated);
   };
 
-  const dateTimeComplete =
-    callDateTime.date != null && callDateTime.time != null;
-  const allQuestionsAnswered = answers.every((a) => a !== "");
-  const canBook = dateTimeComplete && allQuestionsAnswered;
-
-  const handleModalSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!canBook) return;
     setSubmitting(true);
     try {
-      const d = callDateTime.date;
-      const t = callDateTime.time;
-      let scheduledAt: string | undefined;
-      if (d && t) {
-        const [h, m] = t.split(":").map((x) => parseInt(x, 10));
-        const combined = new Date(d);
-        combined.setHours(Number.isFinite(h) ? h : 0, Number.isFinite(m) ? m : 0, 0, 0);
-        scheduledAt = combined.toISOString();
-      }
       const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
       const res = await fetch(`${apiBase}/call-request`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name,
-          email,
-          phone,
+          name, email, phone,
           cycleLabel: cycle,
-          callDate: callDateTime.date?.toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" }),
-          callTime: callDateTime.time,
-          scheduledAt,
+          bestTime,
+          scheduledAt: new Date().toISOString(),
           questions: CALL_QUESTIONS,
           answers,
         }),
       });
       if (!res.ok) {
-        const errBody = await res.json().catch(() => ({}));
-        toast.error((errBody as { error?: string }).error || "Request failed");
+        const err = await res.json().catch(() => ({}));
+        toast.error((err as { error?: string }).error || "Request failed");
         return;
       }
-      setModalStep("confirmed");
+      setConfirmed(true);
     } catch (err) {
       console.error(err);
     } finally {
@@ -84,223 +66,126 @@ function BookACallInner() {
     }
   };
 
+  const stepLabels = ["Question 1 of 3", "Question 2 of 3", "Question 3 of 3", "Availability", "Your details"];
+
   return (
-    <main className="min-h-screen bg-earth-950 text-earth-100 flex flex-col">
-      <section className="flex-1 px-4 md:px-16 py-6">
-        <div className="max-w-6xl mx-auto flex flex-col gap-4">
+    <main className="min-h-screen bg-earth-950 text-earth-100 flex flex-col items-center justify-center px-4 py-12">
+      <div className="w-full max-w-lg">
 
-          {/* Page header */}
-          <div>
-            <h1 className="text-xl md:text-2xl font-normal text-earth-50" style={{ fontFamily: "Cormorant Garamond, serif" }}>
-              Request an Invite
-            </h1>
-            <p className="text-[0.8rem] text-earth-400 mt-0.5">
-              Not everyone who reaches here is meant to enter.
+        <div className="text-center mb-8">
+          <h1 className="text-xl md:text-2xl font-normal text-earth-50 mb-1" style={{ fontFamily: "Cormorant Garamond, serif" }}>
+            Request an Invite
+          </h1>
+          <p className="text-xs text-earth-500">Not everyone who reaches here is meant to enter.</p>
+        </div>
+
+        {!confirmed && (
+          <>
+            <p className="text-center text-xs text-earth-500 uppercase tracking-widest mb-6">{stepLabels[step]}</p>
+          </>
+        )}
+
+        {/* CONFIRMED */}
+        {confirmed ? (
+          <div className="text-center space-y-5 py-4">
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gold-500/10 border border-gold-500/30 mx-auto">
+              <span className="material-symbols-outlined text-gold-400 text-2xl">mark_email_read</span>
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-xl font-normal text-earth-50" style={{ fontFamily: "Cormorant Garamond, serif" }}>Request received</h3>
+              <p className="text-sm text-earth-400 leading-relaxed">
+                A confirmation has been sent to <span className="text-earth-200">{email}</span>. We'll be in touch.
+              </p>
+              <p className="text-xs text-earth-600">Check your spam if you don't see it.</p>
+            </div>
+            <a href="/" className="inline-block text-xs tracking-widest uppercase text-gold-400 hover:text-gold-300 border border-gold-500/40 rounded-lg px-5 py-2.5 hover:bg-gold-500/10 transition-colors">
+              Return home
+            </a>
+          </div>
+
+        /* QUESTIONS */
+        ) : step <= 2 ? (
+          <div className="bg-earth-900/60 border border-earth-800 rounded-2xl p-6 space-y-5">
+            <p className="text-sm text-gold-500 text-center">Answer honestly. It matters.</p>
+            <p className="text-sm text-earth-300 leading-relaxed text-center">
+              <span className="text-gold-500 mr-1">{String(step + 1).padStart(2, "0")}.</span>
+              {CALL_QUESTIONS[step]}
             </p>
-          </div>
-
-          {/* Two-column layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-
-            {/* Left — Date + time picker */}
-            <div className="bg-earth-900/60 border border-earth-800 rounded-2xl p-4">
-              <CallDateTimePicker value={callDateTime} onChange={setCallDateTime} />
-            </div>
-
-            {/* Right — cycle pill + questions + CTA */}
-            <div className="bg-earth-900/60 border border-earth-800 rounded-2xl p-4 flex flex-col gap-3">
-
-              {/* Booking summary */}
-              {cycle && (
-                <div className="border border-gold-500/30 bg-gold-500/5 rounded-xl overflow-hidden">
-                  <div className="flex items-center gap-2 px-4 py-2.5 border-b border-gold-500/20">
-                    <span className="material-symbols-outlined text-gold-400 text-[1rem]">event_available</span>
-                    <p className="text-[0.65rem] tracking-[0.14em] uppercase text-earth-500">Your Selection</p>
-                  </div>
-                  <div className="divide-y divide-earth-800/60 text-[0.82rem]">
-                    <div className="flex justify-between px-4 py-2">
-                      <span className="text-earth-400">Cycle</span>
-                      <span className="text-gold-300">{cycle}</span>
-                    </div>
-                    {dates && (
-                      <div className="flex justify-between px-4 py-2">
-                        <span className="text-earth-400">Dates</span>
-                        <span className="text-earth-200 text-right">
-                          {dates.split(",").map(d => new Date(`${d}T00:00:00`).toLocaleDateString("en-IN", { day: "2-digit", month: "short" })).join(", ")}
-                        </span>
-                      </div>
-                    )}
-                    {accommodation && (
-                      <div className="flex justify-between px-4 py-2">
-                        <span className="text-earth-400">Accommodation</span>
-                        <span className="text-earth-200">{accommodation === "dorm" ? "Shared Dorm" : "Private Room"}</span>
-                      </div>
-                    )}
-                    {quantity && (
-                      <div className="flex justify-between px-4 py-2">
-                        <span className="text-earth-400">Guests</span>
-                        <span className="text-earth-200">{quantity}</span>
-                      </div>
-                    )}
-                    {(() => {
-                      const rawMatch = (price || "").match(/₹([\d,]+)/);
-                      const baseNum = rawMatch ? parseInt(rawMatch[1].replace(/,/g, ""), 10) : null;
-                      const gst = baseNum ? Math.round(baseNum * 0.18) : null;
-                      const total = baseNum && gst ? baseNum + gst : null;
-                      const fmt = (n: number) => "₹" + n.toLocaleString("en-IN");
-                      if (!baseNum) return price ? (
-                        <div className="flex justify-between px-4 py-2">
-                          <span className="text-earth-400">Price</span>
-                          <span className="text-gold-300">{price}</span>
-                        </div>
-                      ) : null;
-                      return (
-                        <>
-                          <div className="flex justify-between px-4 py-2">
-                            <span className="text-earth-400">Base rate</span>
-                            <span className="text-gold-300">{fmt(baseNum)}</span>
-                          </div>
-                          <div className="flex justify-between px-4 py-2">
-                            <span className="text-earth-400">GST (18%)</span>
-                            <span className="text-earth-300">{fmt(gst!)}</span>
-                          </div>
-                          <div className="flex justify-between px-4 py-2.5 bg-gold-500/5">
-                            <span className="text-earth-200 font-medium">Total Amount</span>
-                            <span className="text-gold-400 font-semibold">{fmt(total!)}</span>
-                          </div>
-                          <div className="px-4 py-1.5">
-                            <p className="text-earth-600 text-[0.68rem]">Incl. all taxes · Subject to confirmation</p>
-                          </div>
-                        </>
-                      );
-                    })()}
-                  </div>
-                </div>
-              )}
-
-              {/* 3 questions */}
-              <div className="space-y-3 flex-1">
-                <div className="flex items-center gap-2">
-                  <p className="text-sm text-gold-500">Answer honestly. It matters.</p>
-                </div>
-                {CALL_QUESTIONS.map((q, idx) => (
-                  <div key={idx} className="space-y-1.5">
-                    <label className="text-[0.78rem] text-earth-400 leading-relaxed block">
-                      <span className="text-gold-500">{String(idx + 1).padStart(2, "0")}.</span> {q}
-                    </label>
-                    <div className="flex gap-2">
-                      {["Yes","Can Try","No"].map((opt) => (
-                        <button
-                          key={opt}
-                          type="button"
-                          onClick={() => handleAnswer(idx, opt)}
-                          className={`flex-1 py-2 rounded-lg text-[0.8rem] border transition-colors ${
-                            answers[idx] === opt
-                              ? "bg-gold-500/20 border-gold-500 text-gold-300"
-                              : "bg-earth-950/60 border-earth-700 text-earth-400 hover:border-earth-500"
-                          }`}
-                        >
-                          {opt}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* CTA — opens modal */}
-              <div className="space-y-1.5 pt-1">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (!callDateTime.date) {
-                      toast.error("Pick a date for your call first.");
-                      return;
-                    }
-                    if (!callDateTime.time) {
-                      toast.error("Select a time slot to continue.");
-                      return;
-                    }
-                    const unanswered = answers.findIndex((a) => a === "");
-                    if (unanswered !== -1) {
-                      toast.error("Please answer all 3 questions before proceeding.");
-                      return;
-                    }
-                    setModalStep("form");
-                    setShowModal(true);
-                  }}
-                  className={`w-full inline-flex items-center justify-center gap-2 px-6 py-3 text-[0.8rem] tracking-[0.14em] uppercase border rounded-lg transition-colors cursor-pointer ${
-                    canBook
-                      ? "border-gold-500 text-gold-400 hover:bg-gold-500/10"
-                      : "border-earth-700 text-earth-600 bg-earth-900/50"
-                  }`}
-                >
-                  Request an Invite →
+            <div className="flex gap-3">
+              {["Yes", "Can Try", "No"].map(opt => (
+                <button key={opt} type="button" onClick={() => handleAnswer(step, opt)}
+                  className={`flex-1 py-3 rounded-lg text-sm border transition-colors ${
+                    answers[step] === opt
+                      ? "bg-gold-500/20 border-gold-500 text-gold-300"
+                      : "bg-earth-950/60 border-earth-700 text-earth-400 hover:border-earth-500"
+                  }`}>
+                  {opt}
                 </button>
-                <p className="text-center text-[0.72rem] text-grey-100">
-                  A short conversation decides if this is for you.
-                </p>
-              </div>
+              ))}
             </div>
+            <button type="button" disabled={!answers[step]}
+              onClick={() => setStep((s) => (s + 1) as Step)}
+              className={`w-full py-3 rounded-lg text-sm font-medium transition-colors ${
+                answers[step] ? "bg-gold-500 text-earth-950 hover:bg-gold-400" : "bg-earth-800 text-earth-600 cursor-not-allowed"
+              }`}>
+              Continue →
+            </button>
           </div>
-        </div>
-      </section>
 
-      {/* Modal */}
-      {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
-          <div className="w-full max-w-md bg-earth-950 border border-earth-800 rounded-2xl p-7 shadow-2xl">
-
-            {modalStep === "form" ? (
-              <>
-                <div className="flex items-start justify-between gap-4 mb-5">
-                  <div>
-                    <h3 className="text-xl font-normal text-earth-50" style={{ fontFamily: "Cormorant Garamond, serif" }}>
-                      Your details
-                    </h3>
-                    <p className="text-[0.8rem] text-earth-500 mt-1">We'll use these to confirm the call.</p>
-                  </div>
-                  <button type="button" onClick={() => setShowModal(false)} className="text-earth-500 hover:text-earth-200 transition-colors">
-                    <span className="material-symbols-outlined text-[1.3rem]">close</span>
-                  </button>
-                </div>
-
-                <form onSubmit={handleModalSubmit} className="space-y-4">
-                  <input required type="text" placeholder="Full name" value={name} onChange={(e) => setName(e.target.value)}
-                    className="w-full bg-earth-900 border border-earth-700 rounded-lg px-4 py-3 text-[0.85rem] text-earth-100 placeholder:text-earth-600 focus:outline-none focus:border-gold-500/50 transition-colors" />
-                  <input required type="email" placeholder="Email address" value={email} onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-earth-900 border border-earth-700 rounded-lg px-4 py-3 text-[0.85rem] text-earth-100 placeholder:text-earth-600 focus:outline-none focus:border-gold-500/50 transition-colors" />
-                  <input type="tel" placeholder="Phone (optional)" value={phone} onChange={(e) => setPhone(e.target.value)}
-                    className="w-full bg-earth-900 border border-earth-700 rounded-lg px-4 py-3 text-[0.85rem] text-earth-100 placeholder:text-earth-600 focus:outline-none focus:border-gold-500/50 transition-colors" />
-                  <button type="submit" disabled={submitting}
-                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 text-[0.8rem] tracking-[0.14em] uppercase bg-gold-500 hover:bg-gold-400 text-earth-950 font-medium rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
-                    {submitting ? "Submitting..." : "Confirm →"}
-                  </button>
-                </form>
-              </>
-            ) : (
-              <div className="text-center space-y-5 py-2">
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gold-500/10 border border-gold-500/30 mx-auto">
-                  <span className="material-symbols-outlined text-gold-400 text-2xl">mark_email_read</span>
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-xl font-normal text-earth-50" style={{ fontFamily: "Cormorant Garamond, serif" }}>
-                    Meeting scheduled
-                  </h3>
-                  <p className="text-[0.85rem] text-earth-400 leading-relaxed">
-                    A confirmation has been sent to{" "}
-                    <span className="text-earth-200">{email}</span>. You will receive a short note shortly before your time, and your Google Meet link at the scheduled time.
-                  </p>
-                  <p className="text-[0.75rem] text-earth-600">Check your spam if you don&apos;t see it.</p>
-                </div>
-                <a href="/" className="inline-block text-[0.78rem] tracking-[0.12em] uppercase text-gold-400 hover:text-gold-300 border border-gold-500/40 rounded-lg px-5 py-2.5 hover:bg-gold-500/10 transition-colors">
-                  Return home
-                </a>
-              </div>
-            )}
+        /* AVAILABILITY */
+        ) : step === 3 ? (
+          <div className="bg-earth-900/60 border border-earth-800 rounded-2xl p-6 space-y-4">
+            <p className="text-sm text-earth-300 text-center">When will be the best time to reach out to you?</p>
+            <textarea
+              rows={3}
+              placeholder="e.g. Weekday mornings, after 6pm, weekends..."
+              value={bestTime}
+              onChange={e => setBestTime(e.target.value)}
+              className="w-full bg-earth-900 border border-earth-700 rounded-lg px-4 py-3 text-sm text-earth-100 placeholder:text-earth-600 focus:outline-none focus:border-gold-500/50 transition-colors resize-none"
+            />
+            <button type="button" disabled={!bestTime.trim()}
+              onClick={() => setStep(4)}
+              className={`w-full py-3 rounded-lg text-sm font-medium transition-colors ${
+                bestTime.trim() ? "bg-gold-500 text-earth-950 hover:bg-gold-400" : "bg-earth-800 text-earth-600 cursor-not-allowed"
+              }`}>
+              Continue →
+            </button>
+            <button type="button" onClick={() => setStep(2)} className="w-full text-xs text-earth-600 hover:text-earth-400 transition-colors">← Back</button>
           </div>
-        </div>
-      )}
+
+        /* DETAILS */
+        ) : (
+          <div className="bg-earth-900/60 border border-earth-800 rounded-2xl p-6 space-y-4">
+            <div>
+              <h3 className="text-lg font-normal text-earth-50 mb-1" style={{ fontFamily: "Cormorant Garamond, serif" }}>Your details</h3>
+              <p className="text-xs text-earth-500">We'll use these to confirm the call.</p>
+            </div>
+            <form onSubmit={handleSubmit} className="space-y-3">
+              <input required type="text" placeholder="Full name" value={name} onChange={e => setName(e.target.value)}
+                className="w-full bg-earth-900 border border-earth-700 rounded-lg px-4 py-3 text-sm text-earth-100 placeholder:text-earth-600 focus:outline-none focus:border-gold-500/50 transition-colors" />
+              <input required type="email" placeholder="Email address" value={email} onChange={e => setEmail(e.target.value)}
+                className="w-full bg-earth-900 border border-earth-700 rounded-lg px-4 py-3 text-sm text-earth-100 placeholder:text-earth-600 focus:outline-none focus:border-gold-500/50 transition-colors" />
+              <input type="tel" placeholder="Phone (optional)" value={phone} onChange={e => setPhone(e.target.value)}
+                className="w-full bg-earth-900 border border-earth-700 rounded-lg px-4 py-3 text-sm text-earth-100 placeholder:text-earth-600 focus:outline-none focus:border-gold-500/50 transition-colors" />
+              <button type="submit" disabled={submitting}
+                className="w-full py-3 rounded-lg text-sm font-medium bg-gold-500 hover:bg-gold-400 text-earth-950 transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
+                {submitting ? "Submitting..." : "Confirm →"}
+              </button>
+            </form>
+            <button type="button" onClick={() => setStep(3)} className="w-full text-xs text-earth-600 hover:text-earth-400 transition-colors">← Back</button>
+          </div>
+        )}
+
+        {!confirmed && (
+          <div className="flex items-center justify-center gap-2 mt-6">
+            {[0,1,2,3,4].map(s => (
+              <div key={s} className={`rounded-full transition-all duration-300 ${
+                s === step ? "w-6 h-2 bg-gold-500" : s < step ? "w-2 h-2 bg-gold-500/60" : "w-2 h-2 bg-earth-700"
+              }`} />
+            ))}
+          </div>
+        )}
+      </div>
     </main>
   );
 }

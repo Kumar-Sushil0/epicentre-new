@@ -547,13 +547,22 @@ export default function DesignYourDay({ cycle, accommodation, price, quantity, d
           <>
             <div className="mt-auto pt-3 pb-4 flex flex-col items-center gap-1.5">
               <p className="text-earth-300 text-xs text-center">If this made sense, you already know what to do.</p>
-              <a
-                href={bookCallHref}
-                className="inline-flex flex-col items-center justify-center px-6 py-3 rounded-lg border border-gold-500 text-gold-500 text-sm font-medium hover:bg-gold-500/10 transition-colors"
-              >
-                <span>Request an Invite →</span>
-                <span className="text-xs font-normal opacity-70">A short conversation decides if this is for you</span>
-              </a>
+              <div className="flex gap-3">
+                <a
+                  href={bookCallHref}
+                  className="inline-flex flex-col items-center justify-center px-6 py-3 rounded-lg border border-gold-500 text-gold-500 text-sm font-medium hover:bg-gold-500/10 transition-colors"
+                >
+                  <span>Request an Invite →</span>
+                  <span className="text-xs font-normal opacity-70">A short conversation decides if this is for you</span>
+                </a>
+                <a
+                  href={bookCallHref}
+                  className="inline-flex flex-col items-center justify-center px-6 py-3 rounded-lg border border-earth-700 text-earth-400 text-sm font-medium hover:border-earth-500 hover:text-earth-300 transition-colors"
+                >
+                  <span>Skip →</span>
+                  <span className="text-xs font-normal opacity-70">Proceed without customising</span>
+                </a>
+              </div>
             </div>
           </>
         ) : null}

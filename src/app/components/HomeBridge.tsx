@@ -6,7 +6,9 @@ export default function HomeBridge() {
           This isn't an idea.<br />
           It's a place you can arrive at.<br />
           Not to escape.<br />
-          To see clearly.
+          To find depth and direction for the next decade of your life
+
+
         </p>
       </div>
     </section>

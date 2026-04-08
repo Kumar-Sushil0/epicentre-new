@@ -68,10 +68,10 @@ export default function ServicesOffering({
   };
 
   const normalizedCycle = (pendingSelection?.label ?? "").toLowerCase();
-  const isDayCyclePlan = normalizedCycle === "silence as a service";
-  const isResidencyPlan = normalizedCycle === "residency as a service";
-  const isSolitudePlan = normalizedCycle === "solitude as a service";
-  const isExperimentPlan = normalizedCycle === "creation as a service";
+  const isDayCyclePlan = normalizedCycle === "silence";
+  const isResidencyPlan = normalizedCycle === "residency";
+  const isSolitudePlan = normalizedCycle === "solitude";
+  const isExperimentPlan = normalizedCycle === "creation";
   const maxSelectableDays = isDayCyclePlan ? 1 : 7;
 
   const isDateAllowedByPlan = (d: Date) => {
@@ -213,19 +213,19 @@ export default function ServicesOffering({
             className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-3 flex flex-col cursor-pointer hover:border-gold-500/70 transition-colors"
             onClick={() =>
               handlePlanClick({
-                label: "Silence as a Service",
+                label: "Silence",
                 accommodationType,
                 priceLabel: `₹1,000 per person`,
               })
             }
           >
             <h3 className="text-lg md:text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Silence as a Service
+              Silence
             </h3>
-            <p className="text-earth-300 text-md mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>Day Cycle — 4 Hours</p>
+            <p className="text-earth-300 text-md mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>Day Cycle: 4 Hours</p>
             
             <p className="text-gold-500 text-xs md:text-sm leading-snug mb-2">
-              Step out of noise. Return with direction.
+              4 hours to step out and reset.
             </p>
             <div className="space-y-1 mb-1.5 flex-1">
               <div className="flex items-center gap-2">
@@ -249,19 +249,19 @@ export default function ServicesOffering({
             className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-3 flex flex-col cursor-pointer hover:border-gold-500/70 transition-colors"
             onClick={() =>
               handlePlanClick({
-                label: "Residency as a Service",
+                label: "Residency",
                 accommodationType,
                 priceLabel: `${accommodationType === "dorm" ? "₹10,000" : "₹15,000"} per person`,
               })
             }
           >
             <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Residency as a Service
+              Residency
             </h3>
-            <p className="text-earth-300 text-md mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>Weekend Cycle — 2N–3D</p>
+            <p className="text-earth-300 text-md mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>Weekend Cycle: 2N/3D</p>
             
             <p className="text-gold-500 text-sm leading-snug mb-2">
-              Step away long enough to question everything.
+              3 days to question what you believe.
             </p>
             <div className="space-y-1 mb-1.5 flex-1">
               <div className="flex items-center gap-2">
@@ -289,18 +289,18 @@ export default function ServicesOffering({
             className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-3 flex flex-col cursor-pointer hover:border-gold-500/70 transition-colors"
             onClick={() =>
               handlePlanClick({
-                label: "Solitude as a Service",
+                label: "Solitude",
                 accommodationType,
                 priceLabel: `${accommodationType === "dorm" ? "₹20,000" : "₹30,000"} per person`,
               })
             }
           >
             <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Solitude as a Service
+              Solitude
             </h3>
-            <p className="text-earth-300 text-md mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>Weekday Cycle — 4N–5D </p>
+            <p className="text-earth-300 text-md mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>Weekday Cycle: 4N/5D </p>
             <p className="text-gold-500 text-sm leading-snug mb-2">
-              When silence stays, so do your thoughts.
+              5 days to face what you've been avoiding.
             </p>
             <div className="space-y-1 mb-1.5 flex-1">
               <div className="flex items-center gap-2">
@@ -335,49 +335,28 @@ export default function ServicesOffering({
             {/* Day toggle above the card */}
             <div className="flex justify-center">
               <div className="inline-flex items-center gap-2 bg-earth-800/50 rounded-lg p-1 border border-earth-700/50">
-                {/* Weekdays */}
-                <div className="flex items-center gap-1 pr-2 border-r-2 border-gold-500/30">
-                  {[
-                    { label: "M", value: "M" as const },
-                    { label: "T", value: "T" as const },
-                    { label: "W", value: "W" as const },
-                    { label: "T", value: "Th" as const },
-                  ].map((day) => (
-                    <button
-                      key={day.value}
-                      onClick={() => setSelectedDay(day.value)}
-                      className={`w-8 h-8 rounded-md flex items-center justify-center text-xs font-medium transition-all ${
-                        selectedDay === day.value
-                          ? "bg-gold-500 text-earth-950"
-                          : "text-earth-400 hover:text-gold-500"
-                      }`}
-                      style={{ fontFamily: "Outfit, sans-serif" }}
-                    >
-                      {day.label}
-                    </button>
-                  ))}
-                </div>
-                {/* Weekends */}
-                <div className="flex items-center gap-1 pl-2">
-                  {[
-                    { label: "F", value: "F" as const },
-                    { label: "S", value: "S" as const },
-                    { label: "S", value: "Su" as const },
-                  ].map((day) => (
-                    <button
-                      key={day.value}
-                      onClick={() => setSelectedDay(day.value)}
-                      className={`w-8 h-8 rounded-md flex items-center justify-center text-xs font-medium transition-all ${
-                        selectedDay === day.value
-                          ? "bg-gold-500 text-earth-950"
-                          : "text-earth-400 hover:text-gold-500"
-                      }`}
-                      style={{ fontFamily: "Outfit, sans-serif" }}
-                    >
-                      {day.label}
-                    </button>
-                  ))}
-                </div>
+                <button
+                  onClick={() => setSelectedDay('M')}
+                  className={`px-4 md:px-6 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium transition-all ${
+                    !['F','S','Su'].includes(selectedDay)
+                      ? 'bg-gold-500 text-earth-950'
+                      : 'text-earth-300 hover:text-gold-500'
+                  }`}
+                  style={{ fontFamily: 'Outfit, sans-serif' }}
+                >
+                  Weekday
+                </button>
+                <button
+                  onClick={() => setSelectedDay('F')}
+                  className={`px-4 md:px-6 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium transition-all ${
+                    ['F','S','Su'].includes(selectedDay)
+                      ? 'bg-gold-500 text-earth-950'
+                      : 'text-earth-300 hover:text-gold-500'
+                  }`}
+                  style={{ fontFamily: 'Outfit, sans-serif' }}
+                >
+                  Weekend
+                </button>
               </div>
             </div>
 
@@ -386,7 +365,7 @@ export default function ServicesOffering({
               className="bg-earth-800/40 backdrop-blur-sm border border-earth-700/50 rounded-lg p-3 cursor-pointer hover:border-gold-500/70 transition-colors"
               onClick={() =>
                 handlePlanClick({
-                  label: "Creation as a Service",
+                  label: "Creation",
                   accommodationType,
                   priceLabel: `${["F", "S", "Su"].includes(selectedDay) ? "₹1,20,000" : "₹1,00,000"} per night (full estate)`,
                 })
@@ -395,12 +374,12 @@ export default function ServicesOffering({
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
                 <div className="flex-1">
                   <h3 className="text-xl font-normal text-gold-500 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                    Creation as a Service
+                    Creation
                   </h3>
-                  <p className="text-earth-300 text-md mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>Collective Cycle — All Days</p>
+                  <p className="text-earth-300 text-md mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>Collective Cycle: All Days</p>
                   
                   <p className="text-gold-500 text-sm leading-snug mb-2">
-                    When clarity becomes something real.
+                    Full control to make something real.
                   </p>
                   <div className="flex flex-wrap gap-1.5">
                     <div className="flex items-center gap-2">
@@ -641,35 +620,6 @@ export default function ServicesOffering({
                   <span>Shape Your Stay →</span>
                   <span className="text-xs font-normal opacity-70">Shape how you want to experience this</span>
                 </button>
-              </div>
-              <div className="flex-1 flex flex-col gap-1">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (!selectedDates.length) {
-                      toast.error("Select your dates before requesting an invite.");
-                      return;
-                    }
-                    const params = new URLSearchParams();
-                    if (pendingSelection) {
-                      params.set("cycle", pendingSelection.label);
-                      params.set("accommodation", pendingSelection.accommodationType);
-                      params.set("price", pendingSelection.priceLabel);
-                    }
-                    if (selectedDates.length) params.set("dates", selectedDates.join(","));
-                    router.push(`/book-a-call${params.toString() ? `?${params.toString()}` : ""}`);
-                  }}
-                  className={`w-full px-4 py-3 rounded-lg text-sm font-medium transition-colors flex flex-col items-center gap-0.5 ${
-                    selectedDates.length
-                      ? "border border-gold-500 text-gold-500 hover:bg-gold-500/10"
-                      : "border border-earth-700 text-earth-600 cursor-pointer"
-                  }`}
-                  style={{ fontFamily: 'Outfit, sans-serif' }}
-                >
-                  <span>Request an Invite →</span>
-                  <span className="text-xs font-normal opacity-70">Proceed to confirmation</span>
-                </button>
-                <p className="text-gold-500 text-xs text-center mt-1">* Includes a short alignment call</p>
               </div>
             </div>
           </div>
