@@ -7,7 +7,6 @@ export default function NewsletterPopup() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
-  const [hasShownOnScroll, setHasShownOnScroll] = useState(false);
 
   useEffect(() => {
     // Check if user has already subscribed or seen the popup
@@ -23,27 +22,10 @@ export default function NewsletterPopup() {
       setIsVisible(true);
     }, 10000);
 
-    // Show popup when user scrolls to bottom (only once per page)
-    const handleScroll = () => {
-      if (hasShownOnScroll) return; // Don't show again if already shown on this page
-      
-      const scrollPosition = window.innerHeight + window.scrollY;
-      const documentHeight = document.documentElement.scrollHeight;
-      
-      // If user is within 100px of the bottom
-      if (documentHeight - scrollPosition < 100) {
-        setIsVisible(true);
-        setHasShownOnScroll(true); // Mark as shown for this page
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
     return () => {
       clearTimeout(timer);
-      window.removeEventListener("scroll", handleScroll);
     };
-  }, [hasShownOnScroll]);
+  }, []);
 
   const handleClose = () => {
     setIsVisible(false);
