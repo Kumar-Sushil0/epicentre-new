@@ -239,25 +239,17 @@ export default function DiningVariant() {
               ))}
             </div>
 
-            {/* Navigation Arrows */}
-            <button
-              onClick={handlePrev}
-              className="hidden absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-earth-900/90 hover:bg-earth-800 border border-gold-500/50 hover:border-gold-500 flex items-center justify-center text-gold-500 hover:text-gold-400 transition-all z-20 shadow-lg"
-              aria-label="Previous"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-            <button
-              onClick={handleNext}
-              className="hidden absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-earth-900/90 hover:bg-earth-800 border border-gold-500/50 hover:border-gold-500 flex items-center justify-center text-gold-500 hover:text-gold-400 transition-all z-20 shadow-lg"
-              aria-label="Next"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
+            {/* Dots */}
+            <div className="flex justify-center gap-2 mt-4">
+              {items.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentIndex(i)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${i === currentIndex ? 'bg-gold-500 w-4' : 'bg-earth-600 hover:bg-earth-400'}`}
+                  aria-label={`Go to slide ${i + 1}`}
+                />
+              ))}
+            </div>
 
           </div>
 
@@ -308,25 +300,17 @@ export default function DiningVariant() {
               ))}
             </div>
 
-            {/* Navigation Arrows */}
-            <button
-              onClick={handleAccommodationPrev}
-              className="hidden absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-earth-900/90 hover:bg-earth-800 border border-gold-500/50 hover:border-gold-500 flex items-center justify-center text-gold-500 hover:text-gold-400 transition-all z-20 shadow-lg"
-              aria-label="Previous"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-            <button
-              onClick={handleAccommodationNext}
-              className="hidden absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-earth-900/90 hover:bg-earth-800 border border-gold-500/50 hover:border-gold-500 flex items-center justify-center text-gold-500 hover:text-gold-400 transition-all z-20 shadow-lg"
-              aria-label="Next"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
+            {/* Dots */}
+            <div className="flex justify-center gap-2 mt-4">
+              {accommodationItems.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentAccommodationIndex(i)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${i === currentAccommodationIndex ? 'bg-gold-500 w-4' : 'bg-earth-600 hover:bg-earth-400'}`}
+                  aria-label={`Go to slide ${i + 1}`}
+                />
+              ))}
+            </div>
 
           </div>
 
@@ -377,27 +361,18 @@ export default function DiningVariant() {
               ))}
             </div>
 
-            {/* Navigation Arrows */}
-            <button
-              onClick={handleExperiencePrev}
-              className="hidden absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-earth-900/90 hover:bg-earth-800 border border-gold-500/50 hover:border-gold-500 flex items-center justify-center text-gold-500 hover:text-gold-400 transition-all z-20 shadow-lg"
-              aria-label="Previous"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-            <button
-              onClick={handleExperienceNext}
-              className="hidden absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-earth-900/90 hover:bg-earth-800 border border-gold-500/50 hover:border-gold-500 flex items-center justify-center text-gold-500 hover:text-gold-400 transition-all z-20 shadow-lg"
-              aria-label="Next"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
+            {/* Dots */}
+            <div className="flex justify-center gap-2 mt-4">
+              {experienceItems.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentExperienceIndex(i)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${i === currentExperienceIndex ? 'bg-gold-500 w-4' : 'bg-earth-600 hover:bg-earth-400'}`}
+                  aria-label={`Go to slide ${i + 1}`}
+                />
+              ))}
+            </div>
 
-            {/* Dots Indicator - removed */}
           </div>
         </div>
       </div>

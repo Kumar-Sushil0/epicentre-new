@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import Breadcrumb from "../components/Breadcrumb";
 import VenueHero from "../components/venue/VenueHero";
 import VenueSection from "../components/venue/VenueSection";
-import RequestConversation from "../components/RequestConversation";
+
 
 const breadcrumbItems = [
   { label: "Estate", href: "/venue" }
@@ -593,7 +593,6 @@ export default function VenuePage() {
           </section>
         ))}
       </div>
-      <RequestConversation />
       <Footer />
     </main>
   );

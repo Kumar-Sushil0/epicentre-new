@@ -54,7 +54,7 @@ import WhoThisIsFor from "../components/about/WhoThisIsFor";
 import TeamSection from "../components/TeamSection";
 import OurPhilosophy from "../components/OurPhilosophy";
 import LivingRoom from "../components/about/LivingRoom";
-import RequestConversation from "../components/RequestConversation";
+
 import AboutWhat from "../components/about/AboutWhat";
 import AboutWho from "../components/about/AboutWho";
 
@@ -73,22 +73,22 @@ export default function AboutUsPage() {
       >
         <Header />
         <AboutHero />
-
-        <AboutWhat />
-
-        <OurPhilosophy />
-        <AboutPrinciples />
         <AboutPhilosophy />
-        <LivingRoom />
-
+        <OurPhilosophy />
+        <AboutFounder />
         <AboutCollective />
-
         <AboutAttentionCycle />
         
+        
+        <LivingRoom />
 
-        <AboutFounder />
+        
 
-        <RequestConversation pageName="about" />
+       
+        
+
+        
+
         <Footer />
       </main>
     </>

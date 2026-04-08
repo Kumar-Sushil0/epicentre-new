@@ -11,7 +11,7 @@ import { experiences } from "../content/experiences";
 import { expressionPillars } from "../content/expression";
 import { solitudePractices } from "../content/solitude";
 import { residencies } from "../content/residency";
-import RequestConversation from "../components/RequestConversation";
+
 
 const breadcrumbItems = [
   { label: "Services", href: "/services" }
@@ -706,7 +706,6 @@ export default function TestPage() {
             </section >
             </div>
 
-            <RequestConversation />
             <Footer />
         </main >
     );

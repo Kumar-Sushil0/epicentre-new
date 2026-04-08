@@ -4,7 +4,7 @@ import WellnessHero from "../components/wellness/WellnessHero";
 import WellnessPhilosophy from "../components/wellness/WellnessPhilosophy";
 import WellnessGrid from "../components/wellness/WellnessGrid";
 import WellnessCTA from "../components/wellness/WellnessCTA";
-import RequestConversation from "../components/RequestConversation";
+
 
 export default function WellnessPage() {
   const practices = [
@@ -108,7 +108,6 @@ export default function WellnessPage() {
         </section>
        
       </div>
-      <RequestConversation />
       <Footer />
     </main>
   );

@@ -112,15 +112,14 @@ export default function Header() {
               >
                 Estate
               </Link>
-              <Link 
-                href="/services" 
-                className={`text-sm uppercase tracking-wider transition-colors ${
+              <Link
+                href="/services"
+                className={`hidden text-sm uppercase tracking-wider transition-colors ${
                   isActive("/services") ? "text-white" : "text-gold-500 hover:text-[#e7dfd3]"
                 }`}
               >
-               Services
+                Services
               </Link>
-             
               <Link 
                 href="/about-us" 
                 className={`text-sm uppercase tracking-wider transition-colors ${
@@ -157,6 +156,12 @@ export default function Header() {
                 </>
               ) : null}
             </nav>
+            <Link
+              href="/cycles"
+              className="inline-flex items-center gap-2 text-gold-500 hover:text-gold-400 hover:border-gold-400 transition-colors duration-300 text-sm font-normal border-2 border-gold-500 rounded-lg px-4 py-2 bg-earth-950/50 backdrop-blur-sm"
+            >
+              Choose Your Depth →
+            </Link>
           </div>
         </div>
       </header>
@@ -204,7 +209,7 @@ export default function Header() {
             </Link>
             <Link
               href="/services"
-              className={`block px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/services") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
+              className={`hidden px-4 py-3 mb-1 text-base hover:bg-gold-500/10 rounded-lg transition-all ${isActive("/services") ? "text-white bg-gold-500/20" : "text-[#e7dfd3] hover:text-gold-500"
                 }`}
             >
               Services
@@ -242,6 +247,13 @@ export default function Header() {
                 </button>
               </>
             ) : null}
+            <Link
+              href="/cycles"
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-4 py-3 mt-4 text-base text-center border-2 border-gold-500 rounded-lg text-gold-500 hover:text-gold-400 hover:border-gold-400 transition-all"
+            >
+              Choose Your Depth →
+            </Link>
           </nav>
         </div>
       </aside>

@@ -7,7 +7,7 @@ import Breadcrumb from "../components/Breadcrumb";
 import FAQItem from "../components/FAQItem";
 import FAQHero from "../components/faq/FAQHero";
 import FAQPhilosophy from "../components/faq/FAQPhilosophy";
-import RequestConversation from "../components/RequestConversation";
+
 
 const breadcrumbItems = [
   { label: "FAQ", href: "/faq" }
@@ -356,7 +356,6 @@ export default function FAQPage() {
         </div>
       </section>
 
-      <RequestConversation />
       <Footer />
     </div>
   );

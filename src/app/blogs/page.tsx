@@ -1,45 +1,23 @@
-"use client";
-
-import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import BlogHero from "../components/blogs/BlogHero";
-import StoriesSection from "../components/stories/StoriesSection";
+import StoriesCard from "../components/stories/StoriesCard";
 import { blogCategories } from "../content/blogs";
-import RequestConversation from "../components/RequestConversation";
+
+
+const allPosts = blogCategories.flatMap((cat) => cat.stories);
 
 export default function BlogsPage() {
-    const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
-        silence: true,
-        identity: false,
-        environment: false,
-        decision: false,
-    });
-
-    const toggleSection = (id: string) => {
-        setExpandedSections(prev => ({ ...prev, [id]: !prev[id] }));
-    };
-
-    return (
-        <main className="min-h-screen bg-earth-900 text-earth-100">
-            <Header />
-            <BlogHero />
-            <div className="w-full px-4 md:px-16 py-12">
-                {blogCategories.map((category) => (
-                    <section
-                        key={category.id}
-                        className={`transition-all duration-300 ${expandedSections[category.id] ? 'mb-24' : 'mb-6'}`}
-                    >
-                        <StoriesSection
-                            {...category}
-                            expanded={expandedSections[category.id]}
-                            onToggle={() => toggleSection(category.id)}
-                        />
-                    </section>
-                ))}
-            </div>
-            <RequestConversation />
-            <Footer />
-        </main>
-    );
+  return (
+    <main className="min-h-screen bg-earth-900 text-earth-100">
+      <Header />
+      <div className="w-full px-4 md:px-16 pt-32 pb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {allPosts.map((post, index) => (
+            <StoriesCard key={index} {...post} />
+          ))}
+        </div>
+      </div>
+      <Footer />
+    </main>
+  );
 }

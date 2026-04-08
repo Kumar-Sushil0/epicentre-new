@@ -1,7 +1,7 @@
 export default function AboutWhat() {
   return (
     <section className="py-16 md:py-20 bg-earth-950 border-b border-earth-800">
-      <div className="w-full px-4 md:px-16">
+      <div className="w-full px-4 md:px-16 text-center">
         {/* Title at top */}
         <div className="mb-8 md:mb-10">
           <h2

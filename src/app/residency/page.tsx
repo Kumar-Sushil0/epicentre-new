@@ -4,7 +4,7 @@ import ResidencyHero from "../components/residency/ResidencyHero";
 import ResidencyPhilosophy from "../components/residency/ResidencyPhilosophy";
 import ResidencyGrid from "../components/residency/ResidencyGrid";
 import ResidencySelection from "../components/residency/ResidencySelection";
-import RequestConversation from "../components/RequestConversation";
+
 
 export default function ResidencyPage() {
   const residencies = [
@@ -125,7 +125,6 @@ export default function ResidencyPage() {
       <ResidencyPhilosophy />
       <ResidencyGrid residencies={residencies} />
       
-      <RequestConversation />
       <Footer />
     </main>
   );

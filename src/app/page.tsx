@@ -14,8 +14,9 @@ import DiningVariant from "./components/DiningVariant";
 import DesignedDeliberately from "./components/DesignedDeliberately";
 import Location from "./components/Location";
 import FaqSection from "./components/FaqSection";
-import RequestConversation from "./components/RequestConversation";
+
 import Footer from "./components/Footer";
+import AboutWhat from "./components/about/AboutWhat";
 
 const homeFaqs = [
   {
@@ -62,11 +63,13 @@ export default function Home() {
       {/* Hero */}
       <Hero />
       {/* Section 1 — Hook */}
-      <BetweenChapters />
+     
+      <AboutWhat/>
       {/* Section 2 — Filter */}
+      <DesignedDeliberately />
       <HomeFilter />
       {/* Section 3 — What This Is */}
-      <HomeWhatThisIs />
+      
       {/* Section 4 & 5 — The System + Depth */}
       <VoidAndFormats />
       {/* Section 6 — Bridge */}
@@ -74,13 +77,12 @@ export default function Home() {
       {/* Section 8 — Estate */}
       <DiningVariant />
       {/* Section 9 — Designed Deliberately */}
-      <DesignedDeliberately />
+     
       {/* Section 10 — Location */}
       <Location />
       {/* Section 11 — FAQ */}
       <FaqSection items={homeFaqs} title="Before You Come" subtitle="Most people arrive with questions. Few leave with the same ones." />
-      {/* Section 12 — Final Close */}
-      <RequestConversation />
+
       <Footer />
     </main>
   );

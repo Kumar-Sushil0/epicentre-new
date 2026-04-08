@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import SolitudeHero from "../components/solitude/SolitudeHero";
 import SolitudePhilosophy from "../components/solitude/SolitudePhilosophy";
 import CarouselCard from "../components/CarouselCard"; // Import CarouselCard
-import RequestConversation from "../components/RequestConversation";
+
 
 export default function SolitudePage() {
   const practices = [
@@ -133,7 +133,6 @@ export default function SolitudePage() {
           ))}
         </div>
       </div>
-      <RequestConversation />
       <Footer />
     </main>
   );

@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import ExperiencesHero from "../components/experiences/ExperiencesHero";
 import ExperiencesPhilosophy from "../components/experiences/ExperiencesPhilosophy";
 import CarouselCard from "../components/CarouselCard";
-import RequestConversation from "../components/RequestConversation";
+
 
 // Helper function to generate a slug from title
 function generateId(title: string): string {
@@ -313,7 +313,6 @@ export default function ExperiencesPage() {
           ))}
         </div>
       </div>
-      <RequestConversation />
       <Footer />
     </main>
   );

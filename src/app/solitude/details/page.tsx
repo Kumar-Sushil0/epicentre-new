@@ -9,7 +9,7 @@ import SolitudeDetailsPhilosophy from "../../components/solitude/details/Solitud
 import SolitudeDetailsInfo from "../../components/solitude/details/SolitudeDetailsInfo";
 import SolitudeDetailsContentComponent from "../../components/solitude/details/SolitudeDetailsContent";
 import SolitudeDetailsBooking from "../../components/solitude/details/SolitudeDetailsBooking";
-import RequestConversation from "../../components/RequestConversation";
+
 
 const solitudePractices: Record<
   string,
@@ -891,7 +891,6 @@ function SolitudeDetailsPageContent() {
           <SolitudeDetailsBooking stationName={practice.stationName} price={practice.price} />
         </div>
       </section>
-      <RequestConversation pageName={practice.title} />
       <Footer />
     </main>
   );
