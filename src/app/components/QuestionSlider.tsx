@@ -2,20 +2,19 @@
 
 import { useState, useRef, useEffect } from 'react';
 
-// Exactly 3 valid values: -1, 0, 1
-const VALID_VALUES = [-1, 0, 1];
+// Exactly 10 valid values: 1 to 10
+const VALID_VALUES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 const getEmoji = (val: number) => {
-  switch (val) {
-    case -1: return '😞';
-    case  0: return '😐';
-    case  1: return '🙂';
-    default: return '😐';
-  }
+  if (val <= 2) return '😞';
+  if (val <= 4) return '😕';
+  if (val <= 6) return '😐';
+  if (val <= 8) return '🙂';
+  return '😄';
 };
 
 interface QuestionSliderProps {
-  value: number;           // always a number, default 0
+  value: number;
   onChange: (value: number) => void;
 }
 
@@ -24,54 +23,21 @@ export default function QuestionSlider({ value, onChange }: QuestionSliderProps)
   const [isDragging, setIsDragging] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
 
-  // ── position helpers ────────────────────────────────────────────────────────
-
-  // Map value → percentage (0%, 50%, 100%)
-  const calculateThumbPosition = () => {
-    const idx = VALID_VALUES.indexOf(value);
-    const percentage = (idx / (VALID_VALUES.length - 1)) * 100; // 0, 50, 100
-
-    if (sliderRef.current && sliderRef.current.offsetWidth > 0) {
-      const sliderWidth = sliderRef.current.offsetWidth;
-      const thumbWidth = 40;
-      const thumbWidthPercent = (thumbWidth / sliderWidth) * 100;
-      const minPos = thumbWidthPercent / 2;
-      const maxPos = 100 - thumbWidthPercent / 2;
-      return `${Math.max(minPos, Math.min(maxPos, percentage))}%`;
-    }
-
-    // Fallback before DOM is measured
-    const est = 8;
-    return `${Math.max(est / 2, Math.min(100 - est / 2, percentage))}%`;
+  const calcPos = (val: number) => {
+    const idx = VALID_VALUES.indexOf(val);
+    const pct = (idx / (VALID_VALUES.length - 1)) * 100;
+    // Inset by 20px (half of 40px marker) so edge markers aren't clipped
+    return `calc(${pct}% * (100% - 40px) / 100% + 20px)`;
   };
-
-  const calculateMarkerPosition = (markerValue: number) => {
-    const idx = VALID_VALUES.indexOf(markerValue);
-    const percentage = (idx / (VALID_VALUES.length - 1)) * 100;
-
-    if (sliderRef.current && sliderRef.current.offsetWidth > 0) {
-      const sliderWidth = sliderRef.current.offsetWidth;
-      const thumbWidth = 40;
-      const thumbWidthPercent = (thumbWidth / sliderWidth) * 100;
-      const minPos = thumbWidthPercent / 2;
-      const maxPos = 100 - thumbWidthPercent / 2;
-      return `${Math.max(minPos, Math.min(maxPos, percentage))}%`;
-    }
-
-    const est = 8;
-    return `${Math.max(est / 2, Math.min(100 - est / 2, percentage))}%`;
-  };
-
-  // ── pixel → value ───────────────────────────────────────────────────────────
 
   const pixelToValue = (pixelX: number) => {
     if (!sliderRef.current) return value;
     const rect = sliderRef.current.getBoundingClientRect();
-    const percentage = ((pixelX - rect.left) / rect.width) * 100;
-    const stepSize = 100 / (VALID_VALUES.length - 1); // 50
-    const step = Math.round(percentage / stepSize);
-    const clamped = Math.max(0, Math.min(VALID_VALUES.length - 1, step));
-    return VALID_VALUES[clamped];
+    const inset = 20;
+    const usableWidth = rect.width - inset * 2;
+    const ratio = Math.max(0, Math.min(1, (pixelX - rect.left - inset) / usableWidth));
+    const step = Math.round(ratio * (VALID_VALUES.length - 1));
+    return VALID_VALUES[step];
   };
 
   // ── event handlers ──────────────────────────────────────────────────────────
@@ -135,7 +101,6 @@ export default function QuestionSlider({ value, onChange }: QuestionSliderProps)
             borderRadius: '22px',
             cursor: 'pointer',
             userSelect: 'none',
-            overflow: 'hidden',
           }}
           onMouseDown={handleMouseDown}
           onTouchStart={handleTouchStart}
@@ -154,7 +119,7 @@ export default function QuestionSlider({ value, onChange }: QuestionSliderProps)
             opacity: 0.6,
           }} />
 
-          {/* Markers — plain grey circles, always visible */}
+          {/* Markers — 40px circles, always visible */}
           <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 1 }}>
             {VALID_VALUES.map((v) => (
               <div
@@ -162,7 +127,7 @@ export default function QuestionSlider({ value, onChange }: QuestionSliderProps)
                 style={{
                   position: 'absolute',
                   top: '50%',
-                  left: calculateMarkerPosition(v),
+                  left: calcPos(v),
                   transform: 'translate(-50%, -50%)',
                   width: '40px',
                   height: '40px',
@@ -179,7 +144,7 @@ export default function QuestionSlider({ value, onChange }: QuestionSliderProps)
             style={{
               position: 'absolute',
               top: '50%',
-              left: calculateThumbPosition(),
+              left: calcPos(value),
               transform: 'translate(-50%, -50%)',
               width: '40px',
               height: '40px',
@@ -213,18 +178,18 @@ export default function QuestionSlider({ value, onChange }: QuestionSliderProps)
 
       {/* Tick labels */}
       <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', marginTop: '8px', padding: '0 4px' }}>
-        {[['1', '-1'], ['5', '0'], ['10', '1']].map(([label, v]) => (
+        {[1, 5, 10].map((v) => (
           <span
             key={v}
             style={{
               fontSize: '0.6rem',
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: String(value) === v ? '#C5A065' : '#3E2A20',
+              color: value === v ? '#C5A065' : '#3E2A20',
               transition: 'color 0.15s',
             }}
           >
-            {label}
+            {v}
           </span>
         ))}
       </div>

@@ -5,6 +5,7 @@ export const dynamic = "force-dynamic";
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
+import QuestionSlider from "../components/QuestionSlider";
 
 const CALL_QUESTIONS = [
   "When nothing is expected of you—do you know what to do with your time?",
@@ -23,7 +24,7 @@ function BookACallInner() {
   const dates = searchParams.get("dates");
 
   const [step, setStep] = useState<Step>(0);
-  const [answers, setAnswers] = useState(["", "", ""]);
+  const [answers, setAnswers] = useState<number[]>([5, 5, 5]);
   const [bestTime, setBestTime] = useState("");
 
   const [name, setName] = useState("");
@@ -32,7 +33,7 @@ function BookACallInner() {
   const [submitting, setSubmitting] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
 
-  const handleAnswer = (idx: number, val: string) => {
+  const handleAnswer = (idx: number, val: number) => {
     const updated = [...answers]; updated[idx] = val; setAnswers(updated);
   };
 
@@ -48,7 +49,6 @@ function BookACallInner() {
           name, email, phone,
           cycleLabel: cycle,
           bestTime,
-          scheduledAt: new Date().toISOString(),
           questions: CALL_QUESTIONS,
           answers,
         }),
@@ -70,7 +70,7 @@ function BookACallInner() {
 
   return (
     <main className="min-h-screen bg-earth-950 text-earth-100 flex flex-col items-center justify-center px-4 py-12">
-      <div className="w-full max-w-lg">
+      <div className="w-full max-w-2xl">
 
         <div className="text-center mb-8">
           <h1 className="text-xl md:text-2xl font-normal text-earth-50 mb-1" style={{ fontFamily: "Cormorant Garamond, serif" }}>
@@ -111,23 +111,12 @@ function BookACallInner() {
               <span className="text-gold-500 mr-1">{String(step + 1).padStart(2, "0")}.</span>
               {CALL_QUESTIONS[step]}
             </p>
-            <div className="flex gap-3">
-              {["Yes", "Can Try", "No"].map(opt => (
-                <button key={opt} type="button" onClick={() => handleAnswer(step, opt)}
-                  className={`flex-1 py-3 rounded-lg text-sm border transition-colors ${
-                    answers[step] === opt
-                      ? "bg-gold-500/20 border-gold-500 text-gold-300"
-                      : "bg-earth-950/60 border-earth-700 text-earth-400 hover:border-earth-500"
-                  }`}>
-                  {opt}
-                </button>
-              ))}
+            <div className="py-2">
+              <QuestionSlider value={answers[step]} onChange={(val) => handleAnswer(step, val)} />
             </div>
-            <button type="button" disabled={!answers[step]}
+            <button type="button"
               onClick={() => setStep((s) => (s + 1) as Step)}
-              className={`w-full py-3 rounded-lg text-sm font-medium transition-colors ${
-                answers[step] ? "bg-gold-500 text-earth-950 hover:bg-gold-400" : "bg-earth-800 text-earth-600 cursor-not-allowed"
-              }`}>
+              className="w-full py-3 rounded-lg text-sm font-medium transition-colors bg-gold-500 text-earth-950 hover:bg-gold-400">
               Continue →
             </button>
           </div>

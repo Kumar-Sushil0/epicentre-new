@@ -24,8 +24,10 @@ interface AppUser {
 interface Application {
   id: string;
   user: AppUser;
+  cycleLabel?: string;
+  bestTime?: string;
   questions: string[];
-  answers: string[];
+  answers: (string | number)[];
   status: string;
   reviewerNotes?: string;
   decidedAt?: string;
@@ -300,6 +302,14 @@ export default function AdminDdDashboardPage() {
                         <div className="text-earth-100">{selectedApp.user?.email ?? '—'}</div>
                       </div>
                       <div>
+                        <div className="text-[0.65rem] tracking-[0.18em] uppercase text-earth-500 mb-1">Cycle</div>
+                        <div className="text-earth-100">{selectedApp.cycleLabel ?? '—'}</div>
+                      </div>
+                      <div>
+                        <div className="text-[0.65rem] tracking-[0.18em] uppercase text-earth-500 mb-1">Best time to reach</div>
+                        <div className="text-earth-100">{selectedApp.bestTime ?? '—'}</div>
+                      </div>
+                      <div>
                         <div className="text-[0.65rem] tracking-[0.18em] uppercase text-earth-500 mb-1">Cohort applied</div>
                         <div className="text-earth-100">{selectedApp.user?.cohortLabel ?? '—'}</div>
                       </div>
@@ -314,7 +324,9 @@ export default function AdminDdDashboardPage() {
                           <div className="text-[0.65rem] tracking-[0.14em] uppercase text-gold-400 mb-2">
                             {String(i + 1).padStart(2, '0')} — {q}
                           </div>
-                          <p className="text-sm text-earth-200 italic leading-relaxed">{a || '—'}</p>
+                          <p className="text-sm text-earth-200 italic leading-relaxed">
+                            {typeof a === 'number' ? `${a} / 10` : (a || '—')}
+                          </p>
                         </div>
                       ))}
                     </div>
