@@ -100,7 +100,7 @@ export function InviteModal(props: Props) {
                       const daysInMonth = new Date(modalCalY, modalCalM + 1, 0).getDate();
                       const today = new Date();
                       today.setHours(0, 0, 0, 0);
-                      const cells: JSX.Element[] = [];
+                      const cells = [];
                       for (let i = 0; i < firstDay; i += 1) cells.push(<div key={`e-${i}`} />);
                       for (let day = 1; day <= daysInMonth; day += 1) {
                         const date = new Date(modalCalY, modalCalM, day);
