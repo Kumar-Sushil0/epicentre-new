@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Estate — The Silent Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f0b08;--bg-2:#160f0a;--bg-3:#1c1410;--bg-4:#221814;
+  --gold:#c5a065;--gold-dim:#8a6e42;--gold-pale:#e8d5b0;
+  --text-2:#b09070;--text-3:#7a6048;
+  --rule:#2a1f17;--rule-2:#3a2a1f;
+  --serif:'Cormorant',Georgia,serif;
+  --sans:'Jost',sans-serif;
+  --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+  --g:6vw;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--gold-pale);font-family:var(--sans);font-weight:300;-webkit-font-smoothing:antialiased;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4;}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(15,11,8,0.0);backdrop-filter:blur(0px);border-bottom:1px solid transparent;transition:all 0.4s;}
+.nav.scrolled{background:rgba(15,11,8,0.96);backdrop-filter:blur(16px);border-bottom-color:var(--rule);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:1400px;margin:0 auto;padding:0 var(--g);}
+.nav-brand{font-family:var(--serif);font-size:1.1rem;font-weight:400;color:var(--gold-pale);letter-spacing:0.04em;text-decoration:none;}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
+.nav-links a{font-size:0.68rem;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;color:rgba(232,213,176,0.6);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold-pale);}
+.nav-cta{font-size:0.65rem;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:9px 22px;border:none;cursor:pointer;font-family:var(--sans);transition:background 0.2s;}
+.nav-cta:hover{background:var(--gold-pale);}
+@media(max-width:860px){.nav-links{display:none;}}
+
+/* HERO */
+.hero{
+  position:relative;height:100vh;
+  display:flex;align-items:flex-end;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:var(--bg-3);
+  display:flex;align-items:center;justify-content:center;
+}
+.hero-bg-placeholder{font-family:var(--serif);font-size:1.2rem;font-style:italic;color:var(--rule-2);}
+.hero-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,11,8,0.75) 0%,rgba(15,11,8,0.1) 50%,transparent 100%);}
+.hero-content{
+  position:relative;z-index:2;
+  padding:clamp(48px,6vw,80px) var(--g);
+  display:flex;align-items:flex-end;gap:24px;
+}
+.hero-rule{width:2px;height:clamp(60px,8vw,100px);background:var(--gold);flex-shrink:0;}
+.hero-text{}
+.hero-headline{
+  font-family:var(--serif);font-weight:300;font-style:italic;
+  font-size:clamp(2.4rem,5.5vw,5.5rem);
+  color:var(--gold);line-height:1;
+  letter-spacing:-0.02em;margin-bottom:10px;
+}
+.hero-sub{
+  font-size:clamp(0.875rem,1.2vw,1rem);
+  font-weight:300;color:var(--gold-pale);
+  letter-spacing:0.04em;opacity:0.85;
+}
+
+/* INTRO */
+.intro{
+  padding:clamp(56px,7vw,88px) var(--g);
+  display:grid;grid-template-columns:1fr 1.8fr;
+  gap:0 100px;align-items:center;
+  border-bottom:1px solid var(--rule);
+  background:var(--bg-2);
+}
+.intro-label{font-size:0.6rem;font-weight:400;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-3);}
+.intro-body{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(1.1rem,1.8vw,1.5rem);
+  line-height:1.65;color:var(--text-2);
+  letter-spacing:0.01em;
+}
+.intro-body em{font-style:italic;color:var(--gold-pale);}
+@media(max-width:860px){.intro{grid-template-columns:1fr;gap:20px;}}
+
+/* CATEGORY SECTIONS */
+.cat-section{border-bottom:1px solid var(--rule);}
+
+.cat-header{
+  padding:clamp(48px,6vw,72px) var(--g) clamp(28px,3.5vw,40px);
+  display:grid;grid-template-columns:1fr 1.8fr;
+  gap:0 100px;align-items:end;
+  border-bottom:1px solid var(--rule);
+}
+.cat-num{font-size:0.6rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-3);margin-bottom:14px;}
+.cat-title{font-family:var(--serif);font-weight:300;font-size:clamp(2rem,4vw,3.6rem);color:var(--gold-pale);line-height:1;letter-spacing:-0.02em;}
+.cat-desc{font-size:0.875rem;font-weight:300;line-height:1.85;color:var(--text-2);font-family:var(--serif);font-style:italic;}
+@media(max-width:860px){.cat-header{grid-template-columns:1fr;gap:16px;}}
+
+/* CARDS GRID */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--rule);
+}
+.cards.two-col{grid-template-columns:repeat(2,1fr);}
+.cards.four-col{grid-template-columns:repeat(4,1fr);}
+
+.card{
+  background:var(--bg);
+  display:flex;flex-direction:column;
+  transition:background 0.3s;
+  cursor:default;
+}
+.card:hover{background:var(--bg-2);}
+
+.card-img{
+  aspect-ratio:4/3;
+  background:var(--bg-3);
+  position:relative;overflow:hidden;
+  flex-shrink:0;
+}
+.card-img-placeholder{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:0.9rem;font-style:italic;
+  color:var(--rule-2);text-align:center;padding:16px;
+}
+.card-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+
+.card-body{padding:20px 22px 24px;}
+.card-name{
+  font-family:var(--serif);font-size:1.1rem;font-weight:400;
+  color:var(--gold-pale);margin-bottom:6px;line-height:1.2;
+}
+.card-desc{font-size:0.76rem;font-weight:300;color:var(--text-3);line-height:1.65;}
+
+/* SYMBOLICA special — darker, more atmospheric */
+.cat-section.symbolica{background:var(--bg-2);}
+.cat-section.symbolica .cards{background:var(--rule);}
+.cat-section.symbolica .card{background:var(--bg-3);}
+.cat-section.symbolica .card:hover{background:var(--bg-4);}
+.cat-section.symbolica .cat-title{font-style:italic;}
+.cat-section.symbolica .card-name{color:var(--gold);}
+.cat-section.symbolica .card-img{background:var(--bg-4);}
+
+/* NUMBERS STRIP */
+.numbers{
+  display:grid;grid-template-columns:repeat(6,1fr);
+  gap:1px;background:var(--rule);
+  border-bottom:1px solid var(--rule);
+}
+.number-item{
+  background:var(--bg-2);padding:28px 24px;
+  transition:background 0.3s;
+}
+.number-item:hover{background:var(--bg-3);}
+.number-val{font-family:var(--serif);font-size:2.4rem;font-weight:300;color:var(--gold);line-height:1;margin-bottom:6px;}
+.number-label{font-size:0.62rem;font-weight:300;letter-spacing:0.08em;color:var(--text-3);line-height:1.5;}
+@media(max-width:900px){.numbers{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:540px){.numbers{grid-template-columns:repeat(2,1fr);}}
+
+/* CTA BAND */
+.cta-band{
+  padding:clamp(80px,10vw,120px) var(--g);
+  text-align:center;position:relative;overflow:hidden;
+  border-bottom:1px solid var(--rule);
+  background:var(--bg-2);
+}
+.cta-band::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(197,160,101,0.05) 0%,transparent 65%);pointer-events:none;}
+.cta-headline{font-family:var(--serif);font-weight:300;font-size:clamp(2rem,4vw,4rem);color:var(--gold-pale);line-height:1.15;letter-spacing:-0.01em;margin-bottom:36px;}
+.cta-headline em{font-style:italic;color:var(--gold);}
+.btn-gold{display:inline-block;background:var(--gold);color:var(--bg);font-size:0.68rem;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;padding:14px 36px;border:none;cursor:pointer;font-family:var(--sans);transition:background 0.2s;}
+.btn-gold:hover{background:var(--gold-pale);}
+.cta-sub{margin-top:16px;font-family:var(--serif);font-style:italic;font-size:0.9rem;color:var(--text-3);}
+
+/* FOOTER */
+.footer{background:var(--bg);border-top:1px solid var(--rule);}
+.footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:1px;background:var(--rule);border-bottom:1px solid var(--rule);}
+.footer-col{background:var(--bg);padding:clamp(36px,4vw,52px) clamp(24px,3vw,36px);}
+.footer-brand{font-family:var(--serif);font-size:1.1rem;color:var(--gold-pale);margin-bottom:4px;}
+.footer-tagline{font-size:0.66rem;color:var(--text-3);letter-spacing:0.06em;margin-bottom:24px;}
+.footer-collab{padding:14px 18px;border:1px solid var(--rule-2);}
+.footer-collab-text{font-size:0.72rem;color:var(--text-3);line-height:1.5;margin-bottom:8px;}
+.footer-collab-link{font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-dim);cursor:pointer;background:none;border:none;font-family:var(--sans);padding:0;transition:color 0.2s;}
+.footer-collab-link:hover{color:var(--gold);}
+.footer-col-label{font-size:0.56rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-3);margin-bottom:14px;}
+.footer-link{display:block;font-size:0.78rem;color:var(--text-3);padding:3px 0;text-decoration:none;transition:color 0.2s;}
+.footer-link:hover{color:var(--gold);}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px var(--g);flex-wrap:wrap;}
+.footer-copy{font-size:0.62rem;color:var(--text-3);letter-spacing:0.06em;}
+@media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr;}}
+@media(max-width:540px){.footer-top{grid-template-columns:1fr;}}
+
+/* CARDS RESPONSIVE */
+@media(max-width:900px){
+  .cards{grid-template-columns:repeat(2,1fr);}
+  .cards.four-col{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:540px){
+  .cards,.cards.two-col,.cards.four-col{grid-template-columns:1fr;}
+}
+
+/* MODAL */
+.modal{display:none;position:fixed;inset:0;z-index:9000;background:rgba(15,11,8,0.88);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:24px;}
+.modal.show{display:flex;}
+.modal-box{background:#160f0a;border:1px solid #3a2a1f;max-width:480px;width:100%;padding:44px;position:relative;max-height:90vh;overflow-y:auto;}
+.modal-x{position:absolute;top:14px;right:18px;background:none;border:none;color:#7a6048;font-size:1.3rem;cursor:pointer;}
+.m-lbl{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:#7a6048;margin-bottom:12px;font-family:'Jost',sans-serif;}
+.m-h{font-family:'Cormorant',serif;font-size:1.7rem;font-weight:300;color:#e8d5b0;margin-bottom:6px;}
+.m-p{font-size:0.82rem;color:#7a6048;line-height:1.65;margin-bottom:22px;font-family:'Jost',sans-serif;}
+.m-f{margin-bottom:13px;}
+.m-f label{display:block;font-size:0.56rem;letter-spacing:0.14em;text-transform:uppercase;color:#7a6048;margin-bottom:5px;font-family:'Jost',sans-serif;}
+.m-f input,.m-f textarea{width:100%;background:#1c1410;border:1px solid #2a1f17;padding:10px 12px;font-family:'Jost',sans-serif;font-size:0.84rem;color:#e8d5b0;outline:none;box-sizing:border-box;}
+.m-f textarea{resize:vertical;line-height:1.55;}
+.m-btn{width:100%;background:#c5a065;color:#0f0b08;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;padding:12px;border:none;cursor:pointer;font-family:'Jost',sans-serif;margin-top:6px;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#">The Silent Club</a>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#" class="active">Estate</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Journal</a></li>
+    </ul>
+    <button class="nav-cta" onclick="openModal()">Request Invite &rarr;</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <span class="hero-bg-placeholder">Lake photograph — dawn, Ujni, Bhigwan</span>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-rule"></div>
+    <div class="hero-text">
+      <h1 class="hero-headline">Nothing is asking<br>for your attention.</h1>
+      <p class="hero-sub">And that changes everything.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="intro-label">The Estate</div>
+  <p class="intro-body">Every decision about this estate was made to support one thing — <em>uninterrupted thinking.</em> Not comfort for its own sake. Not aesthetics for their own sake. Each space removes something that would otherwise compete for your attention.</p>
+</section>
+
+<!-- NUMBERS -->
+<div class="numbers">
+  <div class="number-item"><div class="number-val">7</div><div class="number-label">Acres overlooking Ujni Lake</div></div>
+  <div class="number-item"><div class="number-val">20</div><div class="number-label">Maximum members at any time</div></div>
+  <div class="number-item"><div class="number-val">100+</div><div class="number-label">Migratory bird species</div></div>
+  <div class="number-item"><div class="number-val">2.5h</div><div class="number-label">From Pune city centre</div></div>
+  <div class="number-item"><div class="number-val">3</div><div class="number-label">Treehouses on the hill</div></div>
+  <div class="number-item"><div class="number-val">24h</div><div class="number-label">Kitchen access, every day</div></div>
+</div>
+
+<!-- 01 NATURE -->
+<section class="cat-section">
+  <div class="cat-header">
+    <div>
+      <div class="cat-num">01</div>
+      <div class="cat-title">Nature</div>
+    </div>
+    <div class="cat-desc">The setting that does the work before you've unpacked.</div>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-img"><div class="card-img-placeholder">Bird Walks</div></div>
+      <div class="card-body"><div class="card-name">Bird Walks</div><div class="card-desc">Dawn on the lake. Over 100 migratory species. Binoculars provided. No guide, no commentary, no schedule.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="card-img-placeholder">Wildlife Encounters</div></div>
+      <div class="card-body"><div class="card-name">Wildlife Encounters</div><div class="card-desc">Hyenas, foxes, jackals, deer in the forest nearby. Not curated. Not behind glass. Simply present.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="card-img-placeholder">Lake Fishing</div></div>
+      <div class="card-body"><div class="card-name">Lake Fishing</div><div class="card-desc">Ujni Lake at your pace. Still water, still mind. The catch is optional.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="card-img-placeholder">Farm &amp; Animals</div></div>
+      <div class="card-body"><div class="card-name">Farm &amp; Animals</div><div class="card-desc">Dogs, chickens, goats, cows, buffalo. A working farm. The animals were here before you and will be here after.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="card-img-placeholder">Dawn &amp; Dusk Decks</div></div>
+      <div class="card-body"><div class="card-name">Dawn &amp; Dusk Decks</div><div class="card-desc">The lake faces west. The light does something different here twice a day. Both are worth staying still for.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="card-img-placeholder">Star Gazing</div></div>
+      <div class="card-body"><div class="card-name">Star Gazing</div><div class="card-desc">No light pollution. Telescope on the deck. The sky here is the original silence.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 SPACES -->
+<section class="cat-section">
+  <div class="cat-header">
+    <div>
+      <div class="cat-num">02</div>
+      <div class="cat-title">Spaces</div>
+    </div>
+    <div class="cat-desc">Every room removes a decision.</div>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-img"><div class="card-img-placeholder">Private Room</div></div>
+      <div class="card-body"><div class="card-name">Private Room</div><div class="card-desc">Bed, desk, attached bath. Nothing on the walls that asks you to feel something.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="card-img-placeholder">Shared Dorm</div></div>
+      <div class="card-body"><div class="card-name">Shared Dorm</div><div class="card-desc">Two dorms, five beds each. Same silence, same access. The room does not decide what kind of thinker you are.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="card-img-placeholder">Contemplation Garden</div></div>
+      <div class="card-body"><div class="card-name">Contemplation Garden</div><div class="card-desc">Open-air. Nothing to do. Nowhere to be. The most honest space on the estate.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="card-img-placeholder">Deep Thought Lounge</div></div>
+      <div class="card-body"><div class="card-name">Deep Thought Lounge</div><div class="card-desc">Poolside, overlooking the lake. For the kind of thinking that needs a horizon to land on.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="card-img-placeholder">Central Courtyard</div></div>
+      <div class="card-body"><div class="card-name">Central Courtyard</div><div class="card-desc">The heart of the estate. Where paths cross without requiring conversation.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="card-img-placeholder">The Treehouses</div></div>
+      <div class="card-body"><div class="card-name">The Treehouses</div><div class="card-desc">Three of them. Elevated, private, above the noise that was never really there to begin with.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 PRACTICE -->
+<section class="cat-section">
+  <div class="cat-header">
+    <div>
+      <div class="cat-num">03</div>
+      <div class="cat-title">Practice</div>
+    </div>
+    <div class="cat-desc">Food and movement. Both designed to sustain thinking, not interrupt it.</div>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-img"><div class="card-img-placeholder">Satvik Kitchen</div></div>
+      <div class="card-body"><div class="card-name">Satvik Kitchen</div><div class="card-desc">Vegetarian, eggs, select vegan. Prepared fresh each morning. No menu, no ordering, no decisions.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="card-img-placeholder">The Pantry</div></div>
+      <div class="card-body"><div class="card-name">The Pantry</div><div class="card-desc">Open all day. Smoothies, sandwiches, light bites. For when the body needs something without making it an event.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="card-img-placeholder">The Outdoor Kitchen</div></div>
+      <div class="card-body"><div class="card-name">The Outdoor Kitchen</div><div class="card-desc">Barbecue and pizza. Outdoor evenings. Shared in silence, or near it.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="card-img-placeholder">Gym &amp; Pool</div></div>
+      <div class="card-body"><div class="card-name">Gym &amp; Pool</div><div class="card-desc">Open all day. No classes, no instructors, no one watching. Regulate, then create.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="card-img-placeholder">Meditation Deck</div></div>
+      <div class="card-body"><div class="card-name">Meditation Deck</div><div class="card-desc">Structured stillness for those who need a container before they can sit with themselves.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="card-img-placeholder">Contrast Therapy</div></div>
+      <div class="card-body"><div class="card-name">Contrast Therapy</div><div class="card-desc">For the body that has been sitting still long enough to need the opposite.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="card-img-placeholder">Kayaks &amp; Cycling</div></div>
+      <div class="card-body"><div class="card-name">Kayaks &amp; Cycling</div><div class="card-desc">On the lake and the open road. Movement that doesn't require conversation.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 SYMBOLICA -->
+<section class="cat-section symbolica">
+  <div class="cat-header">
+    <div>
+      <div class="cat-num">04</div>
+      <div class="cat-title">Symbolica</div>
+    </div>
+    <div class="cat-desc">The parts of the estate that don't have a function. That's the point.</div>
+  </div>
+  <div class="cards four-col">
+    <div class="card">
+      <div class="card-img"><div class="card-img-placeholder">Identity Cemetery</div></div>
+      <div class="card-body"><div class="card-name">Identity Cemetery</div><div class="card-desc">A place to set down what you've been performing. Your title, your role, your reputation. None of it followed you here.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="card-img-placeholder">Moon Gate</div></div>
+      <div class="card-body"><div class="card-name">Moon Gate</div><div class="card-desc">A circular opening in the estate wall. What you see through it changes with the light. So does what you're thinking about.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="card-img-placeholder">Thinking Man</div></div>
+      <div class="card-body"><div class="card-name">Thinking Man</div><div class="card-desc">A figure. Seated. Not doing anything. The only honest role model on the premises.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="card-img-placeholder">Edgeless Gallery</div></div>
+      <div class="card-body"><div class="card-name">Edgeless Gallery</div><div class="card-desc">No frames, no labels, no curator's note. The estate itself is the exhibit. You are both the visitor and the work.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <h2 class="cta-headline">The infrastructure is ready.<br><em>The thinking is yours.</em></h2>
+  <button class="btn-gold" onclick="openModal()">Request Invite &rarr;</button>
+  <p class="cta-sub">Two questions. A short conversation. Your first invite.</p>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-col">
+      <div class="footer-brand">The Silent Club</div>
+      <div class="footer-tagline">Silence as a Service · Bhigwan, Pune</div>
+      <div class="footer-collab">
+        <p class="footer-collab-text">Artist, musician, or experience creator? Host an event here.</p>
+        <button class="footer-collab-link">Collaborate with us &rarr;</button>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-label">Explore</div>
+      <a class="footer-link" href="#">Home</a>
+      <a class="footer-link" href="#">About</a>
+      <a class="footer-link" href="#">The Estate</a>
+      <a class="footer-link" href="#">Journal</a>
+      <a class="footer-link" href="#">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-label">Stay</div>
+      <a class="footer-link" href="#">Silence — Day Cycle</a>
+      <a class="footer-link" href="#">Residency — Weekend</a>
+      <a class="footer-link" href="#">Solitude — Weekday</a>
+      <a class="footer-link" href="#">Creation — Full Estate</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-label">Connect</div>
+      <a class="footer-link" href="#">Instagram</a>
+      <a class="footer-link" href="#">Substack</a>
+      <a class="footer-link" href="#">Request Invite</a>
+      <a class="footer-link" href="#">Host an Event</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2026 The Silent Club. All rights reserved.</div>
+    <div class="footer-copy">The Silent Club, Kumbhar Goan, Bird Sanctuary, Bhigwan, Maharashtra 413104</div>
+    <div class="footer-copy">A registered initiative of Silent Tourism Foundation.</div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="invModal">
+  <div class="modal-box">
+    <button class="modal-x" onclick="closeModal()">&times;</button>
+    <div class="m-lbl">Request Invite</div>
+    <div class="m-h">Two questions.<br>No pitch.</div>
+    <div class="m-p">We respond within 72 hours.</div>
+    <div class="m-f"><label>Your name</label><input type="text" placeholder="Full name"></div>
+    <div class="m-f"><label>Your email</label><input type="email" placeholder="email@example.com"></div>
+    <div class="m-f"><label>What do you do, and what kind of quiet do you need?</label><textarea rows="3"></textarea></div>
+    <div class="m-f"><label>Describe the last time you were truly alone with a thought.</label><textarea rows="3"></textarea></div>
+    <button class="m-btn">Submit &rarr;</button>
+  </div>
+</div>
+
+<script>
+window.addEventListener('scroll', function(){
+  var nav = document.getElementById('nav');
+  if(nav) nav.classList.toggle('scrolled', window.scrollY > 80);
+});
+function openModal(){ document.getElementById('invModal').classList.add('show'); document.body.style.overflow='hidden'; }
+function closeModal(){ document.getElementById('invModal').classList.remove('show'); document.body.style.overflow=''; }
+document.getElementById('invModal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
+</script>
+
+</body>
+</html>

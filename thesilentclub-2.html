@@ -1,0 +1,2764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Silent Club — A Private Estate for Thinking Without Interruption</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root {
+  /* Epicentre homepage palette (see src/app/globals.css @theme) */
+  --earth-950: #0f0b08;
+  --earth-900: #1A120B;
+  --earth-800: #261b14;
+  --earth-700: #3E2A20;
+  --earth-300: #BCAAA4;
+  --earth-100: #E6DCCF;
+  --gold-400: #D4AF37;
+  --gold-500: #C5A065;
+  --gold-600: #A68552;
+
+  /* Surfaces & text (dark earth + warm copy) */
+  --ivory:      var(--earth-900);
+  --ivory-2:    var(--earth-800);
+  --ivory-3:    var(--earth-700);
+  --ink:        var(--earth-100);
+  --ink-2:      var(--earth-300);
+  --ink-3:      rgba(230, 220, 207, 0.72);
+  --ink-4:      rgba(197, 160, 101, 0.55);
+  --rule:       rgba(197, 160, 101, 0.35);
+  --rule-light: rgba(197, 160, 101, 0.18);
+  --accent:     var(--gold-500);
+  --accent-2:   var(--gold-400);
+
+  /* Inverse / fills that were “dark ink” in the light theme */
+  --void:       var(--earth-800);
+  --void-deep:  var(--earth-950);
+  --on-void:    var(--earth-100);
+  --on-accent:  var(--earth-900);
+
+  --serif: 'Cormorant', Georgia, serif;
+  --sans:  'Jost', sans-serif;
+
+  --max:   1140px;
+  --gutter: 6vw;
+  --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.35;
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+.t-display {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  line-height: 1.0;
+  letter-spacing: -0.01em;
+}
+
+.t-heading {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(1.9rem, 3.5vw, 3.2rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.t-subheading {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(1.3rem, 2vw, 1.75rem);
+  line-height: 1.3;
+}
+
+.t-label {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.t-body {
+  font-family: var(--sans);
+  font-size: 0.9375rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--ink-3);
+}
+
+.t-small {
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  font-weight: 300;
+  color: var(--ink-4);
+  line-height: 1.6;
+}
+
+em { font-style: italic; }
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.container {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--rule);
+}
+
+.divider-short {
+  width: 48px;
+  height: 1px;
+  background: var(--accent);
+  margin: 28px 0;
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background: var(--ivory);
+  border-bottom: 1px solid var(--rule-light);
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.nav.scrolled {
+  background: rgba(26, 18, 11, 0.92);
+  backdrop-filter: blur(12px);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.nav-brand {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.nav-brand:hover { opacity: 0.6; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  transition: color 0.2s;
+  cursor: pointer;
+}
+.nav-links a:hover,
+.nav-links a.active { color: var(--ink); }
+
+.nav-cta {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--on-accent);
+  background: var(--accent);
+  padding: 10px 22px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+}
+.nav-cta:hover { background: var(--gold-600); }
+
+/* Mobile nav toggle */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: var(--accent);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* ============================================================
+   PAGES — SPA routing
+   ============================================================ */
+.page { display: none; padding-top: 64px; }
+.page.active { display: block; }
+
+/* ============================================================
+   PAGE: LANDING
+   ============================================================ */
+
+/* HERO */
+.hero {
+  min-height: 92vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--rule);
+}
+
+.hero-left {
+  padding: clamp(56px, 8vw, 96px) var(--gutter) clamp(56px, 8vw, 96px) var(--gutter);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-right: 1px solid var(--rule);
+}
+
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(40px, 6vw, 80px) var(--gutter);
+}
+
+.hero-eyebrow {
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hero-eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.hero-headline {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(3.2rem, 6.5vw, 6.8rem);
+  line-height: 0.97;
+  letter-spacing: -0.02em;
+  margin-bottom: 48px;
+  color: var(--ink);
+}
+
+.hero-headline .line { display: block; overflow: hidden; }
+.hero-headline .line span {
+  display: block;
+  transform: translateY(100%);
+  animation: slideUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.hero-headline .line:nth-child(1) span { animation-delay: 0.1s; }
+.hero-headline .line:nth-child(2) span { animation-delay: 0.2s; }
+.hero-headline .line:nth-child(3) span { animation-delay: 0.3s; }
+
+@keyframes slideUp {
+  to { transform: translateY(0); }
+}
+
+.hero-statement {
+  font-family: var(--sans);
+  font-size: 0.9375rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--ink-3);
+  max-width: 420px;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards 0.55s;
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 280px;
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards 0.7s;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.btn-primary {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 16px 28px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-align: center;
+  font-family: var(--sans);
+}
+.btn-primary:hover { background: var(--accent-2); }
+
+.btn-ghost {
+  display: inline-block;
+  background: transparent;
+  color: var(--ink-3);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 15px 28px;
+  border: 1px solid var(--rule);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  text-align: center;
+  font-family: var(--sans);
+}
+.btn-ghost:hover { border-color: var(--ink-3); color: var(--ink); }
+
+.hero-right-top {
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards 0.5s;
+}
+
+.hero-location {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink-4);
+  margin-top: 8px;
+}
+
+.hero-right-middle {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards 0.9s;
+}
+
+.hero-emblem {
+  width: 160px;
+  height: 160px;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-emblem::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid var(--rule-light);
+  border-radius: 50%;
+}
+
+.hero-emblem-text {
+  font-family: var(--serif);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  text-align: center;
+  line-height: 1.8;
+}
+
+.hero-right-bottom {
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards 1.1s;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--rule-light);
+  border: 1px solid var(--rule-light);
+}
+
+.hero-stat {
+  background: var(--ivory);
+  padding: 20px;
+}
+
+.hero-stat-num {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.hero-stat-label {
+  font-size: 0.72rem;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: var(--ink-4);
+  line-height: 1.4;
+}
+
+.scarcity-bar {
+  background: var(--ivory-2);
+  border-bottom: 1px solid var(--rule);
+  padding: 14px var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.scarcity-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold-500);
+  animation: pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* MANIFESTO */
+.manifesto {
+  padding: clamp(72px, 10vw, 120px) var(--gutter);
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.manifesto-label-col { padding-top: 8px; }
+
+.manifesto-quote {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+  font-weight: 300;
+  line-height: 1.45;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.manifesto-quote em { color: var(--accent); }
+
+.manifesto-body {
+  margin-top: 28px;
+  font-size: 0.9375rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--ink-3);
+}
+
+/* WHO ITS FOR */
+.who {
+  border-bottom: 1px solid var(--rule);
+}
+
+.who-header {
+  padding: clamp(56px, 7vw, 96px) var(--gutter) 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: clamp(40px, 5vw, 64px);
+}
+
+.who-intro { font-size: 0.9375rem; font-weight: 300; line-height: 1.8; color: var(--ink-3); }
+
+.who-members {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--rule);
+}
+
+.who-member {
+  padding: clamp(32px, 4vw, 48px) var(--gutter);
+  border-right: 1px solid var(--rule);
+  transition: background var(--transition);
+}
+
+.who-member:last-child { border-right: none; }
+.who-member:hover { background: var(--ivory-2); }
+
+.who-member-type {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 20px 0 16px;
+}
+
+.who-member-desc {
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--ink-3);
+  margin-bottom: 24px;
+}
+
+.who-member-quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--ink-4);
+  line-height: 1.6;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule-light);
+}
+
+/* EXPERIENCE */
+.experience {
+  padding: clamp(72px, 10vw, 120px) var(--gutter);
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 100px;
+  align-items: start;
+}
+
+.experience-sticky { position: sticky; top: 96px; }
+
+.experience-list { display: flex; flex-direction: column; }
+
+.exp-item {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  gap: 0 24px;
+  align-items: start;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--rule-light);
+  cursor: default;
+  transition: background var(--transition);
+  padding-left: 0;
+}
+
+.exp-item:first-child { border-top: 1px solid var(--rule-light); }
+
+.exp-num {
+  font-family: var(--serif);
+  font-size: 0.85rem;
+  color: var(--ink-4);
+  padding-top: 3px;
+}
+
+.exp-name {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.exp-desc {
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--ink-3);
+}
+
+.exp-badge {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  background: var(--ivory-2);
+  border: 1px solid var(--rule-light);
+  padding: 4px 10px;
+  white-space: nowrap;
+  margin-top: 4px;
+}
+
+/* FOUR PILLARS */
+.pillars {
+  border-bottom: 1px solid var(--rule);
+}
+
+.pillars-header {
+  padding: clamp(56px, 7vw, 96px) var(--gutter) clamp(40px, 5vw, 64px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+  border-bottom: 1px solid var(--rule);
+}
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: none;
+}
+
+.pillar {
+  padding: clamp(40px, 5vw, 64px) var(--gutter);
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  transition: background var(--transition);
+}
+.pillar:nth-child(2n) { border-right: none; }
+.pillar:nth-child(3),
+.pillar:nth-child(4) { border-bottom: none; }
+.pillar:hover { background: var(--ivory-2); }
+
+.pillar-roman {
+  font-family: var(--serif);
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--ink-4);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.pillar-roman::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule-light);
+}
+
+.pillar-title {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.pillar-desc {
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--ink-3);
+}
+
+/* THE COMPACT / RULES */
+.compact {
+  padding: clamp(72px, 10vw, 120px) var(--gutter);
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 100px;
+}
+
+.compact-rules {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.rule-item {
+  display: flex;
+  gap: 28px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--rule-light);
+  align-items: flex-start;
+}
+
+.rule-item:first-child { border-top: 1px solid var(--rule-light); }
+
+.rule-num {
+  font-family: var(--serif);
+  font-size: 0.9rem;
+  color: var(--ink-4);
+  flex-shrink: 0;
+  padding-top: 2px;
+  min-width: 24px;
+}
+
+.rule-text {
+  font-size: 0.9375rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--ink-2);
+}
+
+/* MEMBERSHIP */
+.membership {
+  padding: clamp(72px, 10vw, 120px) var(--gutter);
+  border-bottom: 1px solid var(--rule);
+}
+
+.membership-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: clamp(48px, 6vw, 72px);
+  align-items: end;
+}
+
+.membership-note {
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--ink-3);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+
+.price-card {
+  background: var(--ivory);
+  padding: clamp(32px, 4vw, 52px);
+  transition: background var(--transition);
+}
+
+.price-card.featured { background: var(--void-deep); }
+.price-card.featured .price-tier,
+.price-card.featured .price-amount,
+.price-card.featured .price-period,
+.price-card.featured .price-desc,
+.price-card.featured .feature-item,
+.price-card.featured .price-cta { color: var(--on-void); }
+.price-card.featured .price-divider { background: rgba(197, 160, 101, 0.25); }
+.price-card.featured .feature-dash { color: var(--accent-2); }
+.price-card.featured .feature-sub { color: rgba(230, 220, 207, 0.45); }
+
+.price-tier {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  margin-bottom: 28px;
+}
+
+.price-amount {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 4vw, 3.5rem);
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.price-period {
+  font-size: 0.8rem;
+  color: var(--ink-4);
+  margin-bottom: 20px;
+}
+
+.price-desc {
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--ink-3);
+}
+
+.price-divider {
+  height: 1px;
+  background: var(--rule-light);
+  margin: 28px 0;
+}
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.feature-item {
+  display: flex;
+  gap: 14px;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: var(--ink-2);
+  align-items: flex-start;
+}
+
+.feature-dash {
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.price-cta {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  padding: 14px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  background: transparent;
+  font-family: var(--sans);
+}
+.price-cta:hover { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.price-card.featured .price-cta {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: var(--accent);
+}
+.price-card.featured .price-cta:hover { background: var(--accent-2); border-color: var(--accent-2); color: var(--on-accent); }
+
+.membership-application {
+  margin-top: 32px;
+  padding: 28px 36px;
+  border: 1px solid var(--rule-light);
+  background: var(--ivory-2);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+}
+
+.application-text-label {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  margin-bottom: 8px;
+}
+
+.application-text-body {
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--ink-3);
+}
+
+/* TESTIMONIALS */
+.testimonials {
+  padding: clamp(72px, 10vw, 120px) var(--gutter);
+  border-bottom: 1px solid var(--rule);
+}
+
+.testimonials-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 56px;
+  align-items: end;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: var(--rule-light);
+  border: 1px solid var(--rule-light);
+}
+
+.testimonial {
+  background: var(--ivory);
+  padding: 36px 32px;
+  transition: background var(--transition);
+}
+
+.testimonial:hover { background: var(--ivory-2); }
+
+.testimonial-quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin-bottom: 24px;
+}
+
+.testimonial-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+
+.testimonial-role {
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--ink-4);
+  margin-top: 3px;
+}
+
+/* FAQ */
+.faq {
+  padding: clamp(72px, 10vw, 120px) var(--gutter);
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 100px;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--rule-light);
+}
+.faq-item:first-child { border-top: 1px solid var(--rule-light); }
+
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 22px 0;
+  font-family: var(--sans);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  transition: color 0.2s;
+}
+.faq-question:hover { color: var(--accent); }
+
+.faq-icon {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: var(--ink-4);
+  transition: transform 0.3s, background 0.2s;
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: var(--accent);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.faq-answer-inner {
+  padding: 0 0 24px;
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--ink-3);
+}
+
+.faq-item.open .faq-answer { max-height: 300px; }
+
+/* ============================================================
+   PAGE: ABOUT
+   ============================================================ */
+
+.about-hero {
+  padding: clamp(72px, 10vw, 120px) var(--gutter);
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 100px;
+  align-items: end;
+  min-height: 60vh;
+}
+
+.about-hero-left { display: flex; flex-direction: column; justify-content: flex-end; }
+
+.about-hero-body {
+  font-size: 0.9375rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--ink-3);
+}
+
+.about-hero-body + .about-hero-body { margin-top: 20px; }
+
+.about-origin {
+  padding: clamp(72px, 10vw, 120px) var(--gutter);
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+}
+
+.about-origin-text {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.about-origin-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-top: 8px;
+}
+
+.sidebar-label {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  margin-bottom: 12px;
+}
+
+.sidebar-value {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.sidebar-desc {
+  font-size: 0.84rem;
+  font-weight: 300;
+  color: var(--ink-3);
+  line-height: 1.6;
+}
+
+.about-beliefs {
+  border-bottom: 1px solid var(--rule);
+}
+
+.about-beliefs-header {
+  padding: clamp(56px, 7vw, 96px) var(--gutter) 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.beliefs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.belief-item {
+  padding: clamp(36px, 4vw, 52px) var(--gutter);
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  transition: background var(--transition);
+}
+
+.belief-item:nth-child(2n) { border-right: none; }
+.belief-item:nth-last-child(-n+2) { border-bottom: none; }
+.belief-item:hover { background: var(--ivory-2); }
+
+.belief-num {
+  font-family: var(--serif);
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--rule);
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.belief-title {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.belief-body {
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--ink-3);
+}
+
+.about-team {
+  padding: clamp(72px, 10vw, 120px) var(--gutter);
+  border-bottom: 1px solid var(--rule);
+}
+
+.team-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 56px;
+  align-items: end;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--rule-light);
+  border: 1px solid var(--rule-light);
+}
+
+.team-member {
+  background: var(--ivory);
+  padding: 40px 36px;
+  transition: background var(--transition);
+}
+.team-member:hover { background: var(--ivory-2); }
+
+.team-initial {
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--ink-3);
+  margin-bottom: 20px;
+}
+
+.team-name {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.team-role {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  margin-bottom: 20px;
+}
+
+.team-bio {
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--ink-3);
+}
+
+/* ============================================================
+   PAGE: ESTATE
+   ============================================================ */
+
+.estate-hero {
+  padding: clamp(72px, 10vw, 120px) var(--gutter);
+  border-bottom: 1px solid var(--rule);
+  min-height: 55vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.estate-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: end;
+  margin-top: 56px;
+}
+
+.estate-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--rule-light);
+  border: 1px solid var(--rule-light);
+}
+
+.estate-fact {
+  background: var(--ivory);
+  padding: 20px 24px;
+}
+
+.estate-fact-num {
+  font-family: var(--serif);
+  font-size: 1.9rem;
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.estate-fact-label {
+  font-size: 0.72rem;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: var(--ink-4);
+  line-height: 1.4;
+}
+
+/* SPACES */
+.spaces {
+  border-bottom: 1px solid var(--rule);
+}
+
+.spaces-header {
+  padding: clamp(56px, 7vw, 96px) var(--gutter) clamp(40px, 5vw, 64px);
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+}
+
+.space-item {
+  display: grid;
+  grid-template-columns: 56px 1fr 1fr;
+  gap: 0 40px;
+  padding: clamp(32px, 4vw, 48px) var(--gutter);
+  border-bottom: 1px solid var(--rule-light);
+  align-items: start;
+  transition: background var(--transition);
+  cursor: default;
+}
+
+.space-item:first-child { border-top: 1px solid var(--rule-light); }
+.space-item:hover { background: var(--ivory-2); }
+
+.space-num {
+  font-family: var(--serif);
+  font-size: 0.9rem;
+  color: var(--ink-4);
+  padding-top: 4px;
+}
+
+.space-name {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+.space-desc {
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--ink-3);
+}
+
+.space-detail { padding-top: 4px; }
+
+.space-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.space-tag {
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--ink-4);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.space-tag::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--rule);
+  flex-shrink: 0;
+}
+
+/* ROOMS */
+.rooms {
+  padding: clamp(72px, 10vw, 120px) var(--gutter);
+  border-bottom: 1px solid var(--rule);
+}
+
+.rooms-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 56px;
+  align-items: end;
+}
+
+.rooms-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: var(--rule-light);
+  border: 1px solid var(--rule-light);
+}
+
+.room-card {
+  background: var(--ivory);
+  padding: 36px 28px;
+  transition: background var(--transition);
+}
+.room-card:hover { background: var(--ivory-2); }
+
+.room-name {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.room-desc {
+  font-size: 0.84rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--ink-3);
+  margin-bottom: 20px;
+}
+
+.room-amenities {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule-light);
+}
+
+.room-amenity {
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--ink-4);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.room-amenity::before {
+  content: '';
+  width: 16px;
+  height: 1px;
+  background: var(--rule);
+}
+
+/* GROUNDS */
+.grounds {
+  padding: clamp(72px, 10vw, 120px) var(--gutter);
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 100px;
+}
+
+.grounds-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.ground-item {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--rule-light);
+}
+.ground-item:first-child { border-top: 1px solid var(--rule-light); }
+
+.ground-name {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.ground-desc {
+  font-size: 0.84rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--ink-3);
+}
+
+/* DAILY RHYTHM */
+.rhythm {
+  padding: clamp(72px, 10vw, 120px) var(--gutter);
+  border-bottom: 1px solid var(--rule);
+}
+
+.rhythm-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 56px;
+  align-items: end;
+}
+
+.rhythm-timeline {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 0 32px;
+  position: relative;
+}
+
+.rhythm-line {
+  position: absolute;
+  left: 99px;
+  top: 12px;
+  bottom: 12px;
+  width: 1px;
+  background: var(--rule-light);
+}
+
+.rhythm-time {
+  font-family: var(--serif);
+  font-size: 0.85rem;
+  color: var(--ink-4);
+  padding: 16px 0;
+  text-align: right;
+  border-bottom: 1px solid var(--rule-light);
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.rhythm-time::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  background: var(--ivory);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.rhythm-event {
+  padding: 16px 0 16px 24px;
+  border-bottom: 1px solid var(--rule-light);
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}
+
+.rhythm-event-name {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.rhythm-event-note {
+  font-size: 0.8rem;
+  color: var(--ink-4);
+  margin-top: 2px;
+}
+
+/* ============================================================
+   SHARED — VISIT CTA BAND
+   ============================================================ */
+.cta-band {
+  padding: clamp(72px, 10vw, 120px) var(--gutter);
+  background: var(--void-deep);
+  text-align: center;
+}
+
+.cta-band-headline {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(2rem, 4vw, 3.8rem);
+  color: var(--on-void);
+  line-height: 1.15;
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+
+.cta-band-sub {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(197, 160, 101, 0.65);
+  max-width: 480px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+}
+
+.cta-band-btn {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: var(--sans);
+}
+.cta-band-btn:hover { background: var(--accent-2); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  padding: clamp(40px, 5vw, 56px) var(--gutter);
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.footer-brand {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.footer-tagline {
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: var(--ink-4);
+  margin-top: 4px;
+  letter-spacing: 0.06em;
+}
+
+.footer-center {
+  font-size: 0.72rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--ink-4);
+  text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+  justify-content: flex-end;
+}
+
+.footer-link {
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.footer-link:hover { color: var(--ink); }
+
+/* ============================================================
+   SCROLL REVEALS
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  :root { --gutter: 5vw; }
+
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 56px var(--gutter) 48px; border-right: none; border-bottom: 1px solid var(--rule); }
+  .hero-right { padding: 40px var(--gutter); }
+
+  .manifesto { grid-template-columns: 1fr; gap: 32px; }
+  .who-header { grid-template-columns: 1fr; gap: 24px; }
+  .who-members { grid-template-columns: 1fr; }
+  .who-member { border-right: none; border-bottom: 1px solid var(--rule); }
+
+  .experience { grid-template-columns: 1fr; gap: 48px; }
+  .experience-sticky { position: static; }
+  .exp-item { grid-template-columns: 36px 1fr auto; }
+
+  .pillars-header { grid-template-columns: 1fr; gap: 24px; }
+  .pillars-grid { grid-template-columns: 1fr; }
+  .pillar { border-right: none !important; border-bottom: 1px solid var(--rule) !important; }
+
+  .compact { grid-template-columns: 1fr; gap: 48px; }
+  .membership-header { grid-template-columns: 1fr; gap: 24px; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .testimonials-header { grid-template-columns: 1fr; gap: 24px; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .faq { grid-template-columns: 1fr; gap: 48px; }
+
+  .about-hero { grid-template-columns: 1fr; gap: 40px; min-height: auto; }
+  .about-origin { grid-template-columns: 1fr; gap: 48px; }
+  .about-beliefs-header { padding-bottom: clamp(36px, 4vw, 52px); }
+  .beliefs-grid { grid-template-columns: 1fr; }
+  .belief-item { border-right: none !important; border-bottom: 1px solid var(--rule) !important; }
+  .belief-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule) !important; }
+  .belief-item:last-child { border-bottom: none !important; }
+  .team-header { grid-template-columns: 1fr; gap: 24px; }
+  .team-grid { grid-template-columns: 1fr; }
+
+  .estate-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .spaces-header { grid-template-columns: 1fr; gap: 24px; }
+  .space-item { grid-template-columns: 36px 1fr; }
+  .space-detail { display: none; }
+  .rooms-header { grid-template-columns: 1fr; gap: 24px; }
+  .rooms-grid { grid-template-columns: 1fr; }
+  .grounds { grid-template-columns: 1fr; gap: 48px; }
+  .rhythm-header { grid-template-columns: 1fr; gap: 24px; }
+
+  .footer { grid-template-columns: 1fr; gap: 20px; text-align: center; }
+  .footer-links { justify-content: center; }
+  .footer-center { order: 3; }
+
+  .membership-application { grid-template-columns: 1fr; gap: 20px; }
+
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: var(--ivory);
+    border-bottom: 1px solid var(--rule);
+    padding: 16px var(--gutter) 24px;
+    gap: 16px;
+  }
+
+  .nav-cta { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <div class="nav-brand" onclick="showPage('landing')">The Silent Club</div>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a onclick="showPage('landing')" data-page="landing" class="active">Home</a></li>
+      <li><a onclick="showPage('about')" data-page="about">About</a></li>
+      <li><a onclick="showPage('estate')" data-page="estate">The Estate</a></li>
+      <li><a onclick="showPage('landing'); setTimeout(()=>document.getElementById('membership-section').scrollIntoView({behavior:'smooth'}),100)" data-page="membership">Membership</a></li>
+    </ul>
+
+    <button class="nav-cta" onclick="openApplication()">Request access →</button>
+
+    <button class="nav-toggle" id="navToggle" onclick="toggleMobileNav()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+
+<!-- ============================================================
+     PAGE: LANDING
+     ============================================================ -->
+<div class="page active" id="page-landing">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-dot"></div>
+        <span class="t-label">Private Estate · Pune · Members Only</span>
+      </div>
+
+      <h1 class="hero-headline">
+        <span class="line"><span>A place</span></span>
+        <span class="line"><span>to think</span></span>
+        <span class="line"><span><em>without</em></span></span>
+        <span class="line"><span>interruption.</span></span>
+      </h1>
+
+      <p class="hero-statement">The Silent Club is a members-only private estate for thinkers, artists, and entrepreneurs who do their best work in quiet. No meetings. No notifications. No noise. Just the rarest luxury in modern life — uninterrupted time with your own mind.</p>
+
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="openApplication()">Apply for membership</button>
+        <button class="btn-ghost" onclick="showPage('estate')">See what a day looks like</button>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-right-top">
+        <div class="t-label">Est. 2024</div>
+        <div class="hero-location">Kalyani Nagar, Pune</div>
+      </div>
+
+      <div class="hero-right-middle">
+        <div class="hero-emblem">
+          <div class="hero-emblem-text">
+            Silence<br>as a<br>Service
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right-bottom">
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num">20</div>
+            <div class="hero-stat-label">Maximum members at any time</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">4</div>
+            <div class="hero-stat-label">Acres of private grounds</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">6</div>
+            <div class="hero-stat-label">Private overnight rooms</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">0</div>
+            <div class="hero-stat-label">WiFi zones or phone signals</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCARCITY BAR -->
+  <div class="scarcity-bar">
+    <div class="scarcity-dot"></div>
+    <span>Founding memberships open now — 20 members maximum, always</span>
+  </div>
+
+  <!-- MANIFESTO -->
+  <section class="manifesto">
+    <div class="manifesto-label-col reveal">
+      <div class="divider-short"></div>
+      <div class="t-label">The case for quiet</div>
+    </div>
+    <div class="reveal">
+      <p class="manifesto-quote">
+        Your best thinking doesn't happen in meetings.<br>
+        It doesn't happen in open offices,<br>
+        on Slack, or between notifications.<br><br>
+        It happens in the quiet moments<br>
+        <em>you can never quite find</em> — until now.
+      </p>
+      <p class="manifesto-body">
+        The Silent Club is a private estate for thinkers, artists, and entrepreneurs who understand that silence is not the absence of productivity — it is the condition for the only kind that matters. We built the place we always needed and could never find.
+      </p>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section class="who">
+    <div class="who-header">
+      <div class="reveal">
+        <div class="t-label" style="margin-bottom:20px">Who belongs here</div>
+        <h2 class="t-heading">Built for people whose best work requires solitude</h2>
+      </div>
+      <div class="reveal">
+        <p class="who-intro">We are not a co-working space. We are not a wellness retreat. We are the place that serious people have always needed — a private estate calibrated to produce the conditions for deep, original thought. There is no programme here. No schedule. No aspiration to improve you. Just time, and quiet, and whatever you make of them.</p>
+      </div>
+    </div>
+
+    <div class="who-members">
+      <div class="who-member reveal">
+        <div class="t-label">01</div>
+        <div class="who-member-type">Writers &amp; Journalists</div>
+        <p class="who-member-desc">Those who need hours of unbroken time to hear themselves think — and write.</p>
+        <p class="who-member-quote">"I wrote 40 pages here in three days. The only place I've been able to disappear completely."</p>
+      </div>
+      <div class="who-member reveal">
+        <div class="t-label">02</div>
+        <div class="who-member-type">Founders &amp; Strategists</div>
+        <p class="who-member-desc">Those whose most consequential decisions deserve more than a 45-minute calendar slot.</p>
+        <p class="who-member-quote">"I come when a decision is too important for the noise of the office. I've never left without clarity."</p>
+      </div>
+      <div class="who-member reveal">
+        <div class="t-label">03</div>
+        <div class="who-member-type">Artists &amp; Designers</div>
+        <p class="who-member-desc">Those whose creative work requires a quality of attention that the world rarely permits.</p>
+        <p class="who-member-quote">"Four months as a member. More original work than in the previous two years combined."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="experience">
+    <div class="experience-sticky reveal">
+      <div class="t-label" style="margin-bottom:20px">The experience</div>
+      <h2 class="t-heading">Silence,<br><em>designed</em><br>with care</h2>
+      <div class="divider-short"></div>
+      <p class="t-body" style="margin-top:0">Every element of the estate is considered. Not to impress you — to leave you alone with your mind.</p>
+    </div>
+
+    <div class="experience-list reveal">
+      <div class="exp-item">
+        <div class="exp-num">01</div>
+        <div>
+          <div class="exp-name">Structured silence zones</div>
+          <p class="exp-desc">Four distinct spaces — a deep work library, a contemplation garden, a creative studio, and a reading parlour. Each calibrated for a different quality of thought. You move between them according to what you need, not what's scheduled.</p>
+        </div>
+        <div class="exp-badge">Always on</div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-num">02</div>
+        <div>
+          <div class="exp-name">Device-free by default</div>
+          <p class="exp-desc">No WiFi in common areas. A lockable phone drawer at entry. An optional digital concierge for truly urgent messages — checked twice daily by staff on your behalf. Most members find they need it far less than they expected.</p>
+        </div>
+        <div class="exp-badge">Policy</div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-num">03</div>
+        <div>
+          <div class="exp-name">Silent dining</div>
+          <p class="exp-desc">Meals served communally but eaten in silence. No menus, no ordering. Seasonal and local — prepared each morning. The rhythm of meals marks the day without the intrusion of choice.</p>
+        </div>
+        <div class="exp-badge">Daily</div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-num">04</div>
+        <div>
+          <div class="exp-name">The Friday conversation</div>
+          <p class="exp-desc">One hour per week — Friday at dusk — when members may speak with one another. Optional, never mandatory. For those who want it, an hour of conversation earns its depth from the silence that precedes it.</p>
+        </div>
+        <div class="exp-badge">Weekly</div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-num">05</div>
+        <div>
+          <div class="exp-name">Overnight residencies</div>
+          <p class="exp-desc">Six private rooms for 48 and 72-hour residencies. Designed to reach the deeper creative states that a single day visit cannot. The first morning back is always the strangest — and the most productive.</p>
+        </div>
+        <div class="exp-badge">Bookable</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUR PILLARS -->
+  <section class="pillars">
+    <div class="pillars-header">
+      <div class="reveal">
+        <div class="t-label" style="margin-bottom:20px">Why it works</div>
+        <h2 class="t-heading">The four conditions of deep thought</h2>
+      </div>
+      <div class="reveal">
+        <p class="t-body">The estate is built around four environmental conditions that cognitive science consistently links to high-quality, original thinking. Not productivity. Thinking.</p>
+      </div>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar reveal">
+        <div class="pillar-roman">I</div>
+        <div class="pillar-title">Acoustic quiet</div>
+        <p class="pillar-desc">Noise levels below 35dB across all spaces. Natural sound only — wind, water, birds. Never ambient music. Never another person's keyboard.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-roman">II</div>
+        <div class="pillar-title">Visual calm</div>
+        <p class="pillar-desc">No screens, no signage, no visual clutter. Minimal furnishing. Natural materials and light throughout. Nothing that demands your attention.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-roman">III</div>
+        <div class="pillar-title">Temporal freedom</div>
+        <p class="pillar-desc">No clocks visible anywhere on the estate. No scheduled interruptions. You decide when your session begins and when it ends. Time here is yours.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-roman">IV</div>
+        <div class="pillar-title">Social relief</div>
+        <p class="pillar-desc">No obligation to perform, socialise, or network. You are anonymous to other members unless you actively choose otherwise. Nobody here wants anything from you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE COMPACT -->
+  <section class="compact">
+    <div class="reveal">
+      <div class="t-label" style="margin-bottom:20px">The compact</div>
+      <h2 class="t-heading">What you agree to<br>when you walk in</h2>
+      <div class="divider-short"></div>
+      <p class="t-body" style="margin-top:0">The Silent Club runs on a social contract. These are not rules in the enforcement sense — they are the shared understanding that makes this place possible for everyone who enters.</p>
+    </div>
+
+    <div class="compact-rules reveal">
+      <div class="rule-item">
+        <div class="rule-num">01</div>
+        <div class="rule-text">No voice calls, video calls, or voice notes — anywhere on the estate, at any time.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">02</div>
+        <div class="rule-text">No unsolicited conversation with other members. A nod is permitted. Kindness is assumed. Connection, if desired, waits for Friday.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">03</div>
+        <div class="rule-text">No devices in common areas. Laptops are permitted in the deep work library only, on silent mode.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">04</div>
+        <div class="rule-text">No productivity theatre. Staring at the ceiling is as valid as writing. You are not here to perform working hard.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">05</div>
+        <div class="rule-text">What you make here belongs entirely to you. The club takes no interest in your work, your outcomes, or your results.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBERSHIP -->
+  <section class="membership" id="membership-section">
+    <div class="membership-header">
+      <div class="reveal">
+        <div class="t-label" style="margin-bottom:20px">Membership</div>
+        <h2 class="t-heading">Two ways to belong</h2>
+      </div>
+      <div class="reveal">
+        <p class="membership-note">Membership is by application only. We keep the community small by design — never more than 20 active members at any time. The waitlist is real and the selection unhurried.</p>
+      </div>
+    </div>
+
+    <div class="pricing-grid reveal">
+      <div class="price-card">
+        <div class="price-tier">Resident</div>
+        <div class="price-amount">₹8,000</div>
+        <div class="price-period">per month</div>
+        <p class="price-desc">For those who visit regularly — a standing reservation in the day programme, with access to all spaces during estate hours.</p>
+        <div class="price-divider"></div>
+        <ul class="feature-list">
+          <li class="feature-item"><span class="feature-dash">—</span>8 full day visits per month</li>
+          <li class="feature-item"><span class="feature-dash">—</span>Access to all day spaces</li>
+          <li class="feature-item"><span class="feature-dash">—</span>Silent breakfast and lunch included</li>
+          <li class="feature-item"><span class="feature-dash">—</span>Priority booking for residencies</li>
+          <li class="feature-item"><span class="feature-dash">—</span>Use of dedicated personal locker</li>
+        </ul>
+        <button class="price-cta" onclick="openApplication()">Apply as Resident</button>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-tier">Fellow</div>
+        <div class="price-amount">₹18,000</div>
+        <div class="price-period">per month</div>
+        <p class="price-desc">For those whose most serious work happens here. Full and unlimited access, including overnight residencies and guest privileges.</p>
+        <div class="price-divider"></div>
+        <ul class="feature-list">
+          <li class="feature-item"><span class="feature-dash">—</span>Unlimited day visits</li>
+          <li class="feature-item"><span class="feature-dash">—</span>Two overnight residencies per month</li>
+          <li class="feature-item"><span class="feature-dash">—</span>Dedicated personal workspace locker</li>
+          <li class="feature-item"><span class="feature-dash">—</span>Two guest day passes per month</li>
+          <li class="feature-item"><span class="feature-dash">—</span>Founding Fellow recognition</li>
+          <li class="feature-item"><span class="feature-dash">—</span>Annual private residency week</li>
+        </ul>
+        <button class="price-cta" onclick="openApplication()">Apply as Fellow</button>
+      </div>
+    </div>
+
+    <div class="membership-application reveal">
+      <div>
+        <div class="application-text-label">The application</div>
+        <p class="application-text-body">Two questions. No pitch required, no credentials needed. We are looking for a genuine relationship with solitude and quiet work — not a notable biography. Most people who apply honestly are accepted. Decisions within 72 hours.</p>
+      </div>
+      <button class="btn-primary" onclick="openApplication()">Begin application</button>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="testimonials-header">
+      <div class="reveal">
+        <div class="t-label" style="margin-bottom:20px">Members speak</div>
+        <h2 class="t-heading">What quiet<br>makes possible</h2>
+      </div>
+      <div class="reveal">
+        <p class="t-body">We don't ask for testimonials. These arrived on their own.</p>
+      </div>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial reveal">
+        <p class="testimonial-quote">"I came to finish the last chapter of a book I'd been working on for three years. I finished it in two days. Not because I worked harder — because I finally stopped being interrupted by my own noise."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-name">Priya R.</div>
+          <div class="testimonial-role">Author</div>
+        </div>
+      </div>
+      <div class="testimonial reveal">
+        <p class="testimonial-quote">"The decision that changed the direction of our company happened on a Tuesday afternoon in the reading parlour. I hadn't planned to make any decisions. I was just sitting quietly. That's the thing about this place."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-name">Arjun M.</div>
+          <div class="testimonial-role">Founder, Series B startup</div>
+        </div>
+      </div>
+      <div class="testimonial reveal">
+        <p class="testimonial-quote">"I've tried meditation retreats, silent workshops, productivity systems. None of it worked the way one afternoon here did. It's not about technique. It's about having a place where the world agrees to leave you alone."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-name">Meera S.</div>
+          <div class="testimonial-role">Independent designer</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="reveal">
+      <div class="t-label" style="margin-bottom:20px">Questions</div>
+      <h2 class="t-heading">What people<br>ask before<br>they apply</h2>
+    </div>
+    <div class="faq-list reveal" id="faqList">
+      <div class="faq-item">
+        <button class="faq-question">Is this a meditation retreat?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">No. There is no guided practice, no programme, and no spiritual framing of any kind. This is a place to work, think, create, or simply be. What you do with the silence is entirely your own. We impose nothing on the time you spend here.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Can I bring my laptop?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Yes, in the deep work library only. Devices are placed in a personal lockable drawer at the entrance to all other spaces. We provide notebooks, pens, printed reference materials, and reading copies on request.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">What if I receive an urgent call?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">There is a single private telephone booth at the entrance for genuine emergencies. Our staff receive messages on your behalf and alert you if something truly requires your attention — twice daily by default. Most members find they need this far less than they expected.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Can I bring a guest?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Fellow members may bring two guests per month. Guests agree to the same compact as members before entering. Guest passes are non-transferable. We ask that guests be people you believe will genuinely value and respect the silence — for the sake of everyone else present.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How selective is the application process?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">We are not selecting for notable people. We are selecting for people with a genuine relationship to solitude and quiet work. The application asks two questions. We respond within 72 hours. Most people who apply honestly are accepted. Those who are not are welcome to reapply.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Is this only for introverts?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">No. Many of our members are deeply extroverted people who have simply discovered that their best thinking happens alone. The need for quiet is not a personality type. It is a condition of serious work — one that extroverts and introverts share equally.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <h2 class="cta-band-headline">The rarest luxury<br>in modern life is<br><em>uninterrupted time.</em></h2>
+    <p class="cta-band-sub">You already know you need it. The only question is whether you're willing to protect it.</p>
+    <button class="cta-band-btn" onclick="openApplication()">Apply for membership</button>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div>
+      <div class="footer-brand">The Silent Club</div>
+      <div class="footer-tagline">Silence as a Service · Kalyani Nagar, Pune</div>
+    </div>
+    <div class="footer-center">© 2025 The Silent Club. All rights reserved.</div>
+    <div class="footer-links">
+      <span class="footer-link" onclick="showPage('about')">About</span>
+      <span class="footer-link" onclick="showPage('estate')">Estate</span>
+      <span class="footer-link" onclick="openApplication()">Apply</span>
+      <span class="footer-link">Instagram</span>
+    </div>
+  </footer>
+
+</div><!-- end page-landing -->
+
+
+<!-- ============================================================
+     PAGE: ABOUT
+     ============================================================ -->
+<div class="page" id="page-about">
+
+  <!-- ABOUT HERO -->
+  <section class="about-hero">
+    <div class="about-hero-left">
+      <div class="t-label" style="margin-bottom:20px">About</div>
+      <h1 class="t-display" style="line-height:0.95"><em>Why</em><br>silence?</h1>
+    </div>
+    <div class="about-hero-right">
+      <p class="about-hero-body">We live in a culture that has made noise the default — open offices, constant connectivity, the ambient hum of notifications that never quite stops. We have optimised for collaboration, for speed, for presence, for always being available. We have built a world in which it is nearly impossible to be alone with a thought long enough to finish it.</p>
+      <p class="about-hero-body">The Silent Club exists because we believe this is a problem worth solving with a place, not an app. Not a technique. Not a mindset. A physical, beautiful, protected place where the default is silence and the departure from it requires a conscious choice.</p>
+      <p class="about-hero-body">That is all we are. That is enough.</p>
+    </div>
+  </section>
+
+  <!-- ORIGIN STORY -->
+  <section class="about-origin">
+    <div class="reveal">
+      <div class="t-label" style="margin-bottom:20px">The origin</div>
+      <p class="about-origin-text">"I kept booking flights to places I could be alone. It took me too long to realise I was looking for something that should exist five kilometres from my house."</p>
+      <div class="divider-short"></div>
+      <p class="t-body" style="margin-top:0">The Silent Club began as a private arrangement between a small group of writers, founders, and artists in Pune who shared one frustration: there was nowhere to go. No café quiet enough. No library open enough. No retreat without a programme attached to the silence. In 2024, we built the place ourselves.</p>
+    </div>
+    <div class="about-origin-sidebar reveal">
+      <div class="sidebar-block">
+        <div class="sidebar-label">Founded</div>
+        <div class="sidebar-value">January 2024</div>
+        <div class="sidebar-desc">The estate opened to founding members after 14 months of thoughtful construction and curation.</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label">Location</div>
+        <div class="sidebar-value">Kalyani Nagar, Pune</div>
+        <div class="sidebar-desc">A 4-acre private estate, 20 minutes from the city centre. Accessible, but genuinely apart.</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label">Community</div>
+        <div class="sidebar-value">Always ≤ 20 members</div>
+        <div class="sidebar-desc">A deliberate constraint. We believe the community is most valuable when it remains small enough that its silence is collective.</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label">Philosophy</div>
+        <div class="sidebar-value">No programme. No improvement.</div>
+        <div class="sidebar-desc">We have no aspiration to make you more productive, more mindful, or more anything. We simply protect the conditions in which you become more yourself.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BELIEFS -->
+  <section class="about-beliefs">
+    <div class="about-beliefs-header reveal" style="padding-bottom: clamp(40px, 5vw, 64px);">
+      <div class="t-label" style="margin-bottom:20px">What we believe</div>
+      <h2 class="t-heading" style="max-width:560px">Six convictions that shaped every decision we made about this place</h2>
+    </div>
+    <div class="beliefs-grid">
+      <div class="belief-item reveal">
+        <div class="belief-num">01</div>
+        <div class="belief-title">Silence is not the absence of something</div>
+        <p class="belief-body">It is a presence in itself. The best thinkers have always known this. It is the condition that allows you to hear ideas that cannot compete with noise — your own most important ones.</p>
+      </div>
+      <div class="belief-item reveal">
+        <div class="belief-num">02</div>
+        <div class="belief-title">Solitude is a skill that atrophies without practice</div>
+        <p class="belief-body">We have built a world that trains people out of their ability to be alone. What we offer is not merely a space — it is repeated practice in the art of being present with yourself.</p>
+      </div>
+      <div class="belief-item reveal">
+        <div class="belief-num">03</div>
+        <div class="belief-title">The body must be still before the mind can move</div>
+        <p class="belief-body">Design matters more than intention. An environment that asks nothing of your senses gives everything to your thinking. We built the estate to be physically unremarkable so that your mind can be remarkable.</p>
+      </div>
+      <div class="belief-item reveal">
+        <div class="belief-num">04</div>
+        <div class="belief-title">Productivity is the wrong frame for what happens here</div>
+        <p class="belief-body">The most valuable things that occur in this space — the realisations, the course-corrections, the questions finally faced honestly — are not measurable. They are also not accidental.</p>
+      </div>
+      <div class="belief-item reveal">
+        <div class="belief-num">05</div>
+        <div class="belief-title">A place is different from a practice</div>
+        <p class="belief-body">Meditation apps, productivity systems, and wellness routines all require will. A place simply requires arrival. We built something you can walk into, not something you have to remember to do.</p>
+      </div>
+      <div class="belief-item reveal">
+        <div class="belief-num">06</div>
+        <div class="belief-title">Small is the only way this works</div>
+        <p class="belief-body">The moment a space like this scales, it becomes a co-working space with a no-phones policy. We will always be twenty members. The waitlist exists because we mean it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="about-team">
+    <div class="team-header">
+      <div class="reveal">
+        <div class="t-label" style="margin-bottom:20px">The people</div>
+        <h2 class="t-heading">Who built this and why</h2>
+      </div>
+      <div class="reveal">
+        <p class="t-body">Four people who each needed a place like this and decided to stop waiting for someone else to build it.</p>
+      </div>
+    </div>
+    <div class="team-grid">
+      <div class="team-member reveal">
+        <div class="team-initial">A</div>
+        <div class="team-name">Ananya Krishnamurthy</div>
+        <div class="team-role">Founder</div>
+        <p class="team-bio">Former architect, now primarily a writer. Spent seven years designing spaces for other people before deciding to design one for herself — and for the forty people who said they'd needed the same thing.</p>
+      </div>
+      <div class="team-member reveal">
+        <div class="team-initial">R</div>
+        <div class="team-name">Rohan Mehta</div>
+        <div class="team-role">Co-Founder, Operations</div>
+        <p class="team-bio">Ran two companies before deciding that what he'd learned from both of them was the importance of thinking well before acting. The estate is his answer to that lesson.</p>
+      </div>
+      <div class="team-member reveal">
+        <div class="team-initial">S</div>
+        <div class="team-name">Shalini Nair</div>
+        <div class="team-role">Estate Curator</div>
+        <p class="team-bio">Trained in landscape architecture. Responsible for the grounds, the seasonal menus, and the general sensory quality of the estate. Her rule: if it asks for your attention, it doesn't belong here.</p>
+      </div>
+      <div class="team-member reveal">
+        <div class="team-initial">V</div>
+        <div class="team-name">Vikram Iyer</div>
+        <div class="team-role">Member Relations</div>
+        <p class="team-bio">Manages the application process, the community, and the Friday conversation circles. Has read every application ever submitted. Insists the two-question format is the most revealing he's encountered.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <h2 class="cta-band-headline">Come and see<br>what quiet<br><em>feels like.</em></h2>
+    <p class="cta-band-sub">Applications take five minutes. We respond within 72 hours. The only question that matters is whether you need this.</p>
+    <button class="cta-band-btn" onclick="openApplication()">Apply for membership</button>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div>
+      <div class="footer-brand">The Silent Club</div>
+      <div class="footer-tagline">Silence as a Service · Kalyani Nagar, Pune</div>
+    </div>
+    <div class="footer-center">© 2025 The Silent Club. All rights reserved.</div>
+    <div class="footer-links">
+      <span class="footer-link" onclick="showPage('landing')">Home</span>
+      <span class="footer-link" onclick="showPage('estate')">Estate</span>
+      <span class="footer-link" onclick="openApplication()">Apply</span>
+      <span class="footer-link">Instagram</span>
+    </div>
+  </footer>
+
+</div><!-- end page-about -->
+
+
+<!-- ============================================================
+     PAGE: ESTATE
+     ============================================================ -->
+<div class="page" id="page-estate">
+
+  <!-- ESTATE HERO -->
+  <section class="estate-hero">
+    <div class="t-label">The Estate</div>
+    <h1 class="t-display" style="margin-top:24px; line-height:0.95; max-width:600px">Four acres of<br><em>deliberate</em> quiet</h1>
+
+    <div class="estate-hero-grid">
+      <div class="reveal">
+        <p class="t-body">A private walled estate in Kalyani Nagar — close enough to the city to arrive without ceremony, far enough inside to leave it entirely. Everything here was chosen to ask nothing of you.</p>
+        <div class="divider-short"></div>
+        <p class="t-small">The estate is not architecturally dramatic. It is not Instagram-worthy. It is comfortable, considered, and quiet in the way that genuinely old buildings are quiet. The silence here predates us.</p>
+      </div>
+      <div class="reveal">
+        <div class="estate-facts">
+          <div class="estate-fact">
+            <div class="estate-fact-num">4</div>
+            <div class="estate-fact-label">Acres of private grounds</div>
+          </div>
+          <div class="estate-fact">
+            <div class="estate-fact-num">6</div>
+            <div class="estate-fact-label">Private overnight rooms</div>
+          </div>
+          <div class="estate-fact">
+            <div class="estate-fact-num">4</div>
+            <div class="estate-fact-label">Distinct work spaces</div>
+          </div>
+          <div class="estate-fact">
+            <div class="estate-fact-num">1938</div>
+            <div class="estate-fact-label">Year the main building was built</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE SPACES -->
+  <section class="spaces">
+    <div class="spaces-header">
+      <div class="reveal">
+        <div class="t-label" style="margin-bottom:20px">The spaces</div>
+        <h2 class="t-heading">Four rooms.<br>Each one<br>for a different<br>kind of quiet.</h2>
+      </div>
+      <div class="reveal">
+        <p class="t-body">We did not build a single open space and call it a library. Each space was designed for a specific quality of attention. You will find the one that fits how you think today — and a different one may fit tomorrow.</p>
+      </div>
+    </div>
+
+    <div class="spaces-list">
+      <div class="space-item reveal">
+        <div class="space-num">I</div>
+        <div>
+          <div class="space-name">The Deep Work Library</div>
+          <p class="space-desc">The largest space on the estate. Floor-to-ceiling bookshelves, individual writing desks positioned against the walls, and the only space where laptops are permitted. Noise levels maintained below 30dB. Natural north light throughout the day. No windows onto the garden — designed to prevent the seductive distraction of beauty.</p>
+        </div>
+        <div class="space-detail">
+          <div class="space-tags">
+            <div class="space-tag">Laptops permitted</div>
+            <div class="space-tag">6 individual desks</div>
+            <div class="space-tag">North-facing light</div>
+            <div class="space-tag">Reference library: 400+ volumes</div>
+          </div>
+        </div>
+      </div>
+      <div class="space-item reveal">
+        <div class="space-num">II</div>
+        <div>
+          <div class="space-name">The Reading Parlour</div>
+          <p class="space-desc">A smaller, warmer space for reading, journalling, and thinking without a screen. Deep armchairs, side tables, and a low window onto the inner courtyard. For the kind of reading that requires complete stillness — where you re-read the same sentence four times not because you didn't understand it, but because it keeps opening.</p>
+        </div>
+        <div class="space-detail">
+          <div class="space-tags">
+            <div class="space-tag">No devices</div>
+            <div class="space-tag">8 armchairs</div>
+            <div class="space-tag">Courtyard view</div>
+            <div class="space-tag">Personal reading light</div>
+          </div>
+        </div>
+      </div>
+      <div class="space-item reveal">
+        <div class="space-num">III</div>
+        <div>
+          <div class="space-name">The Creative Studio</div>
+          <p class="space-desc">A longer, lighter space for work that needs floor, walls, and movement. Whiteboards on two walls. A drafting table. Bare wooden floor. For the founders who think while pacing, the designers who need to pin things up and step back, the writers who need to write on paper and spread the pages out. Chaos is permitted here. It is cleaned each evening and begins blank each morning.</p>
+        </div>
+        <div class="space-detail">
+          <div class="space-tags">
+            <div class="space-tag">Full-wall whiteboards</div>
+            <div class="space-tag">Drafting table</div>
+            <div class="space-tag">Supplies provided</div>
+            <div class="space-tag">Cleared nightly</div>
+          </div>
+        </div>
+      </div>
+      <div class="space-item reveal">
+        <div class="space-num">IV</div>
+        <div>
+          <div class="space-name">The Contemplation Garden</div>
+          <p class="space-desc">Three acres of walled grounds including a stone path, a reflecting pool, and seven sitting positions placed at deliberate distances from one another. No two members can see each other from any sitting position. For thinking that cannot happen indoors — the kind that requires moving through air, or watching light change on water. The garden has no beginning and no end. You are not expected to do anything in it.</p>
+        </div>
+        <div class="space-detail">
+          <div class="space-tags">
+            <div class="space-tag">3 acres</div>
+            <div class="space-tag">7 private positions</div>
+            <div class="space-tag">Reflecting pool</div>
+            <div class="space-tag">No devices</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERNIGHT ROOMS -->
+  <section class="rooms">
+    <div class="rooms-header">
+      <div class="reveal">
+        <div class="t-label" style="margin-bottom:20px">Overnight residencies</div>
+        <h2 class="t-heading">Stay long enough<br>to go somewhere<br>a day visit cannot reach</h2>
+      </div>
+      <div class="reveal">
+        <p class="t-body">There is a quality of thought that only becomes available after the first night. After the internal noise of your regular life has had time to settle. Six private rooms for 48 and 72-hour residencies, available to Fellow members and Resident members on priority booking.</p>
+      </div>
+    </div>
+
+    <div class="rooms-grid">
+      <div class="room-card reveal">
+        <div class="room-name">The Garden Room</div>
+        <p class="room-desc">East-facing, opens directly onto the contemplation garden. The first light of morning comes through two floor-to-ceiling windows. Minimal furnishing: a bed, a writing desk, a chair. Nothing else competes for your attention.</p>
+        <div class="room-amenities">
+          <div class="room-amenity">King bed, natural linen</div>
+          <div class="room-amenity">Writing desk + reading lamp</div>
+          <div class="room-amenity">Private garden access</div>
+          <div class="room-amenity">En suite with stone bath</div>
+        </div>
+      </div>
+      <div class="room-card reveal">
+        <div class="room-name">The Library Room</div>
+        <p class="room-desc">Above the deep work library, with the same north light. A scholar's room — bookshelves on two walls, a wide desk positioned to face them. For residencies that are specifically about sustained reading or writing over multiple days.</p>
+        <div class="room-amenities">
+          <div class="room-amenity">Queen bed</div>
+          <div class="room-amenity">Wide writing desk</div>
+          <div class="room-amenity">Personal bookshelves (curated)</div>
+          <div class="room-amenity">En suite</div>
+        </div>
+      </div>
+      <div class="room-card reveal">
+        <div class="room-name">The Courtyard Room</div>
+        <p class="room-desc">Overlooking the inner courtyard, with an outdoor sitting space private to the room. A quieter, smaller room — for residencies focused on rest and recovery alongside work. The courtyard fountain is audible from the bed.</p>
+        <div class="room-amenities">
+          <div class="room-amenity">Queen bed</div>
+          <div class="room-amenity">Private courtyard terrace</div>
+          <div class="room-amenity">Hammock on terrace</div>
+          <div class="room-amenity">En suite</div>
+        </div>
+      </div>
+      <div class="room-card reveal">
+        <div class="room-name">The High Room</div>
+        <p class="room-desc">The top floor, with views across the tree canopy to the city edge. The most remote room on the estate. For members who need complete separation — from other members, from staff, from the feeling of proximity to anything.</p>
+        <div class="room-amenities">
+          <div class="room-amenity">King bed</div>
+          <div class="room-amenity">Panoramic views</div>
+          <div class="room-amenity">Private staircase access</div>
+          <div class="room-amenity">En suite with outdoor shower</div>
+        </div>
+      </div>
+      <div class="room-card reveal">
+        <div class="room-name">The Poolside Room</div>
+        <p class="room-desc">Adjacent to the reflecting pool, with a low window that makes the water visible from the writing desk. For afternoons when thought and stillness become the same thing. The light off the water changes throughout the day.</p>
+        <div class="room-amenities">
+          <div class="room-amenity">Queen bed</div>
+          <div class="room-amenity">Pool-level writing desk</div>
+          <div class="room-amenity">Direct pool access</div>
+          <div class="room-amenity">En suite</div>
+        </div>
+      </div>
+      <div class="room-card reveal">
+        <div class="room-name">The Studio Room</div>
+        <p class="room-desc">Adjoins the creative studio — for residencies where the work is physical and iterative and requires the ability to return to it at 2am. A larger room with a secondary work surface and wall pinning space in addition to the main desk.</p>
+        <div class="room-amenities">
+          <div class="room-amenity">Queen bed</div>
+          <div class="room-amenity">Secondary work surface</div>
+          <div class="room-amenity">Wall pinning / display space</div>
+          <div class="room-amenity">Adjacent studio access</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GROUNDS -->
+  <section class="grounds">
+    <div class="reveal">
+      <div class="t-label" style="margin-bottom:20px">The grounds</div>
+      <h2 class="t-heading">What the<br>land does<br>for the mind</h2>
+      <div class="divider-short"></div>
+      <p class="t-body" style="margin-top:0">Three acres of walled garden, designed around the principle that beauty should be available without being insistent. You can walk for an hour and not repeat a path. The garden does not try to impress you — it simply continues.</p>
+    </div>
+    <div class="grounds-items reveal">
+      <div class="ground-item">
+        <div class="ground-name">The stone path</div>
+        <p class="ground-desc">1.2 kilometres of continuous stone path winding through the full extent of the estate. For thinking that needs movement — not exercise, but the particular clarity that comes from walking slowly without a destination.</p>
+      </div>
+      <div class="ground-item">
+        <div class="ground-name">The reflecting pool</div>
+        <p class="ground-desc">A 24-metre pool fed by natural spring water. Still in the morning, lit in the evening. Seven stones placed at the water's edge — the only invitation to sit that the garden makes.</p>
+      </div>
+      <div class="ground-item">
+        <div class="ground-name">The fig grove</div>
+        <p class="ground-desc">Twelve fig trees planted in 1942, now large enough to shade a reader on the hottest afternoon. The oldest living things on the estate. A bench beneath each one.</p>
+      </div>
+      <div class="ground-item">
+        <div class="ground-name">The kitchen garden</div>
+        <p class="ground-desc">A walled kitchen garden producing the seasonal ingredients for each day's meals. Members are welcome to walk through it. Nobody will ask them to help, or to admire it, or to comment on it.</p>
+      </div>
+      <div class="ground-item">
+        <div class="ground-name">The night garden</div>
+        <p class="ground-desc">A small enclosed garden planted entirely with night-blooming species. Open after 8pm. No lighting except the moon. For overnight members only. The garden has no benches — you stand, or you don't come.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAILY RHYTHM -->
+  <section class="rhythm">
+    <div class="rhythm-header">
+      <div class="reveal">
+        <div class="t-label" style="margin-bottom:20px">A day here</div>
+        <h2 class="t-heading">The rhythm of the estate</h2>
+      </div>
+      <div class="reveal">
+        <p class="t-body">There is no mandatory programme. This is how the day flows for those who stay for the full rhythm — but every element is optional. Including all of them.</p>
+      </div>
+    </div>
+    <div class="rhythm-timeline reveal">
+      <div class="rhythm-line"></div>
+      <div class="rhythm-time">6:30</div>
+      <div class="rhythm-event">
+        <div>
+          <div class="rhythm-event-name">The garden opens</div>
+          <div class="rhythm-event-note">Optional. First light, stone path, silence.</div>
+        </div>
+      </div>
+      <div class="rhythm-time">8:00</div>
+      <div class="rhythm-event">
+        <div>
+          <div class="rhythm-event-name">Silent breakfast</div>
+          <div class="rhythm-event-note">Communal table, no conversation, no menus. Seasonal.</div>
+        </div>
+      </div>
+      <div class="rhythm-time">9:00</div>
+      <div class="rhythm-event">
+        <div>
+          <div class="rhythm-event-name">Spaces open</div>
+          <div class="rhythm-event-note">All four spaces available. Go where you need to go.</div>
+        </div>
+      </div>
+      <div class="rhythm-time">13:00</div>
+      <div class="rhythm-event">
+        <div>
+          <div class="rhythm-event-name">Silent lunch</div>
+          <div class="rhythm-event-note">Optional. Light, local, 45 minutes.</div>
+        </div>
+      </div>
+      <div class="rhythm-time">16:00</div>
+      <div class="rhythm-event">
+        <div>
+          <div class="rhythm-event-name">Tea set out</div>
+          <div class="rhythm-event-note">In the reading parlour. No announcement made.</div>
+        </div>
+      </div>
+      <div class="rhythm-time">18:30</div>
+      <div class="rhythm-event">
+        <div>
+          <div class="rhythm-event-name">Estate day closes</div>
+          <div class="rhythm-event-note">Day members depart. Overnight residents continue.</div>
+        </div>
+      </div>
+      <div class="rhythm-time">19:30</div>
+      <div class="rhythm-event">
+        <div>
+          <div class="rhythm-event-name">Silent dinner</div>
+          <div class="rhythm-event-note">Overnight members only. The best meal of the day.</div>
+        </div>
+      </div>
+      <div class="rhythm-time">Fri 19:00</div>
+      <div class="rhythm-event">
+        <div>
+          <div class="rhythm-event-name">The conversation circle</div>
+          <div class="rhythm-event-note">One hour. Optional. The only time words are invited.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <h2 class="cta-band-headline">The estate is waiting.<br><em>Quietly.</em></h2>
+    <p class="cta-band-sub">Apply for membership. See the estate on a guided visit before you decide. The visit itself is conducted in silence.</p>
+    <button class="cta-band-btn" onclick="openApplication()">Apply for membership</button>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div>
+      <div class="footer-brand">The Silent Club</div>
+      <div class="footer-tagline">Silence as a Service · Kalyani Nagar, Pune</div>
+    </div>
+    <div class="footer-center">© 2025 The Silent Club. All rights reserved.</div>
+    <div class="footer-links">
+      <span class="footer-link" onclick="showPage('landing')">Home</span>
+      <span class="footer-link" onclick="showPage('about')">About</span>
+      <span class="footer-link" onclick="openApplication()">Apply</span>
+      <span class="footer-link">Instagram</span>
+    </div>
+  </footer>
+
+</div><!-- end page-estate -->
+
+
+<!-- ============================================================
+     APPLICATION MODAL
+     ============================================================ -->
+<div id="appModal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(15,11,8,0.82); backdrop-filter:blur(4px); align-items:center; justify-content:center; padding:24px;">
+  <div style="background:var(--ivory); max-width:560px; width:100%; padding:clamp(36px,5vw,56px); position:relative; max-height:90vh; overflow-y:auto;">
+    <button onclick="closeApplication()" style="position:absolute; top:20px; right:24px; background:none; border:none; font-size:1.4rem; color:var(--ink-4); cursor:pointer; font-family:var(--sans);">×</button>
+
+    <div class="t-label" style="margin-bottom:16px">Application</div>
+    <h2 style="font-family:var(--serif); font-size:1.8rem; font-weight:300; color:var(--ink); margin-bottom:8px;">Two questions.<br>No pitch.</h2>
+    <p style="font-size:0.875rem; font-weight:300; color:var(--ink-3); line-height:1.7; margin-bottom:36px;">We respond within 72 hours. We are not looking for credentials — we are looking for genuine need.</p>
+
+    <div style="display:flex; flex-direction:column; gap:24px;">
+      <div>
+        <label style="font-size:0.72rem; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-4); display:block; margin-bottom:10px;">Your name</label>
+        <input type="text" placeholder="Full name" style="width:100%; border:1px solid var(--rule); background:transparent; padding:14px 16px; font-family:var(--sans); font-size:0.9rem; color:var(--ink); outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--ink)'" onblur="this.style.borderColor='var(--rule)'">
+      </div>
+      <div>
+        <label style="font-size:0.72rem; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-4); display:block; margin-bottom:10px;">Your email</label>
+        <input type="email" placeholder="email@example.com" style="width:100%; border:1px solid var(--rule); background:transparent; padding:14px 16px; font-family:var(--sans); font-size:0.9rem; color:var(--ink); outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--ink)'" onblur="this.style.borderColor='var(--rule)'">
+      </div>
+      <div>
+        <label style="font-size:0.72rem; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-4); display:block; margin-bottom:10px;">Question 1 — What do you do, and what kind of quiet do you need that you cannot currently find?</label>
+        <textarea rows="4" placeholder="Answer honestly. Credentials are irrelevant here." style="width:100%; border:1px solid var(--rule); background:transparent; padding:14px 16px; font-family:var(--sans); font-size:0.9rem; color:var(--ink); outline:none; resize:vertical; line-height:1.6; transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--ink)'" onblur="this.style.borderColor='var(--rule)'"></textarea>
+      </div>
+      <div>
+        <label style="font-size:0.72rem; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-4); display:block; margin-bottom:10px;">Question 2 — Describe the last time you were truly alone with a thought. What happened?</label>
+        <textarea rows="4" placeholder="Take your time with this one." style="width:100%; border:1px solid var(--rule); background:transparent; padding:14px 16px; font-family:var(--sans); font-size:0.9rem; color:var(--ink); outline:none; resize:vertical; line-height:1.6; transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--ink)'" onblur="this.style.borderColor='var(--rule)'"></textarea>
+      </div>
+      <div>
+        <label style="font-size:0.72rem; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-4); display:block; margin-bottom:10px;">Membership preference</label>
+        <select style="width:100%; border:1px solid var(--rule); background:var(--ivory); padding:14px 16px; font-family:var(--sans); font-size:0.9rem; color:var(--ink); outline:none; appearance:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--ink)'" onblur="this.style.borderColor='var(--rule)'">
+          <option value="">Select membership type</option>
+          <option value="resident">Resident — ₹8,000 / month</option>
+          <option value="fellow">Fellow — ₹18,000 / month</option>
+          <option value="unsure">Not sure yet</option>
+        </select>
+      </div>
+      <button onclick="submitApplication()" style="background:var(--accent); color:var(--on-accent); border:none; padding:16px; font-family:var(--sans); font-size:0.72rem; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; cursor:pointer; transition:background 0.2s; margin-top:8px;" onmouseover="this.style.background='var(--accent-2)'" onmouseout="this.style.background='var(--accent)'">Submit application</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+  // Page routing
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    const link = document.querySelector('.nav-links a[data-page="' + id + '"]');
+    if (link) link.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(checkReveal, 100);
+  }
+
+  // Nav scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Mobile nav
+  function toggleMobileNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // FAQ
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+    checkReveal();
+  });
+
+  // Scroll reveal
+  function checkReveal() {
+    const reveals = document.querySelectorAll('.page.active .reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(el => {
+      el.classList.remove('visible');
+      observer.observe(el);
+    });
+  }
+
+  window.addEventListener('scroll', checkReveal, { passive: true });
+
+  // Modal
+  function openApplication() {
+    const modal = document.getElementById('appModal');
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeApplication() {
+    document.getElementById('appModal').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('appModal').addEventListener('click', function(e) {
+    if (e.target === this) closeApplication();
+  });
+
+  function submitApplication() {
+    const modal = document.getElementById('appModal');
+    modal.querySelector('div:last-child div').innerHTML = `
+      <div style="text-align:center; padding:40px 0;">
+        <div style="font-family:var(--serif); font-size:2rem; color:var(--ink); margin-bottom:16px;">Thank you.</div>
+        <p style="font-size:0.9rem; font-weight:300; color:var(--ink-3); line-height:1.7;">Your application has been received. We will respond within 72 hours — by email, with a quiet yes or a graceful no.</p>
+        <button onclick="closeApplication()" style="margin-top:28px; background:none; border:1px solid var(--rule); padding:12px 28px; font-family:var(--sans); font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; cursor:pointer; color:var(--ink);">Close</button>
+      </div>
+    `;
+  }
+
+  // Trigger first reveal
+  setTimeout(checkReveal, 200);
+</script>
+
+</body>
+</html>

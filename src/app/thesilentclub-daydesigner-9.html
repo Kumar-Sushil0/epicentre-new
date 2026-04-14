@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Your Day — The Silent Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f0b08;--bg-2:#160f0a;--bg-3:#1c1410;--bg-4:#221814;
+  --gold:#c5a065;--gold-dim:#8a6e42;--gold-pale:#e8d5b0;
+  --text-2:#b09070;--text-3:#7a6048;
+  --rule:#2a1f17;--rule-2:#3a2a1f;
+  --serif:'Cormorant',Georgia,serif;
+  --sans:'Jost',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;font-size:16px;}
+body{background:var(--bg);color:var(--gold-pale);font-family:var(--sans);font-weight:300;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;overflow:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4;}
+
+/* HEADER */
+.hdr{flex-shrink:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 6vw;background:var(--bg-2);border-bottom:1px solid var(--rule);}
+.hdr-brand{font-family:var(--serif);font-size:0.95rem;color:var(--gold-pale);}
+.hdr-title{font-family:var(--serif);font-size:clamp(1.1rem,2vw,1.5rem);font-weight:300;color:var(--gold-pale);letter-spacing:-0.01em;}
+.hdr-close{background:none;border:1px solid var(--rule-2);color:var(--text-3);padding:5px 14px;font-family:var(--sans);font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
+.hdr-close:hover{border-color:var(--gold-dim);color:var(--gold);}
+
+/* STEPS */
+.steps{flex-shrink:0;display:flex;border-bottom:1px solid var(--rule);}
+.step{flex:1;padding:9px 16px;border-right:1px solid var(--rule);font-size:0.55rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3);display:flex;align-items:center;gap:8px;}
+.step:last-child{border-right:none;}
+.step-n{width:17px;height:17px;border-radius:50%;border:1px solid var(--rule-2);display:flex;align-items:center;justify-content:center;font-size:0.5rem;flex-shrink:0;transition:all 0.2s;}
+.step.active{color:var(--gold-pale);background:var(--bg-2);}
+.step.active .step-n{background:var(--gold);border-color:var(--gold);color:var(--bg);}
+.step.done{color:var(--gold-dim);}
+.step.done .step-n{background:var(--gold-dim);border-color:var(--gold-dim);color:var(--bg);}
+
+/* PANELS */
+.panels{flex:1;overflow:hidden;position:relative;}
+.panel{position:absolute;inset:0;display:none;flex-direction:column;overflow:hidden;}
+.panel.active{display:flex;}
+.p-inner{padding:14px 6vw;flex:1;display:flex;flex-direction:column;overflow:hidden;}
+
+/* SHARED */
+.p-h{font-family:var(--serif);font-size:clamp(1.1rem,1.8vw,1.6rem);font-weight:300;color:var(--gold-pale);margin-bottom:4px;flex-shrink:0;}
+.p-sub{font-size:0.7rem;color:var(--text-3);margin-bottom:12px;font-family:var(--serif);font-style:italic;flex-shrink:0;}
+.btn{background:var(--gold);color:var(--bg);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;padding:10px 22px;border:none;cursor:pointer;font-family:var(--sans);transition:background 0.2s;}
+.btn:hover{background:var(--gold-pale);}
+.btn:disabled{background:var(--rule-2);color:var(--text-3);cursor:default;}
+.btn-g{background:none;color:var(--text-3);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;padding:10px 18px;border:1px solid var(--rule-2);cursor:pointer;font-family:var(--sans);transition:all 0.2s;}
+.btn-g:hover{border-color:var(--gold-dim);color:var(--gold);}
+
+/* STEP 1 */
+.p-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);margin-bottom:10px;flex-shrink:0;}
+.pc{background:var(--bg-2);padding:12px 14px;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;}
+.pc:hover{background:var(--bg-3);}
+.pc.sel{background:var(--bg-3);border-bottom-color:var(--gold);}
+.pc-n{font-family:var(--serif);font-size:1.3rem;color:var(--rule-2);line-height:1;margin-bottom:3px;}
+.pc-name{font-family:var(--serif);font-size:0.95rem;color:var(--gold-pale);margin-bottom:2px;}
+.pc-cycle{font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:3px;}
+.pc-desc{font-size:0.65rem;color:var(--text-3);line-height:1.4;}
+
+/* CALENDAR */
+.cal-wrap{flex:1;display:none;overflow:hidden;}
+.cal-wrap.show{display:grid;grid-template-columns:1fr 200px;gap:20px;align-items:start;}
+.cal-box{background:var(--bg-2);border:1px solid var(--rule);padding:14px 16px;}
+.cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;}
+.cal-nav-btn{background:none;border:none;color:var(--text-3);font-size:1rem;cursor:pointer;padding:2px 8px;transition:color 0.2s;}
+.cal-nav-btn:hover{color:var(--gold);}
+.cal-month{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-2);}
+.cal-rule{font-size:0.6rem;color:var(--gold);text-align:center;margin-bottom:10px;font-family:var(--serif);font-style:italic;}
+.cal-days-hdr{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:6px;}
+.cal-dh{text-align:center;font-size:0.5rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);padding:3px 0;}
+.cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
+.cal-right{display:flex;flex-direction:column;}
+.cal-right-lbl{font-size:0.54rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px;}
+.cal-pills{display:flex;flex-direction:column;gap:4px;margin-bottom:16px;flex:1;}
+.cal-pill{padding:4px 10px;border:1px solid var(--rule-2);font-size:0.6rem;color:var(--gold-dim);letter-spacing:0.04em;}
+
+/* STEP 2 */
+.c-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);margin-bottom:12px;flex-shrink:0;}
+.cc{background:var(--bg-2);padding:18px 20px;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;position:relative;}
+.cc:hover{background:var(--bg-3);}
+.cc.sel{background:var(--bg-3);border-bottom-color:var(--gold);}
+.cc-icon{font-size:1.2rem;margin-bottom:6px;}
+.cc-title{font-family:var(--serif);font-size:1rem;color:var(--gold-pale);margin-bottom:3px;}
+.cc-desc{font-size:0.7rem;color:var(--text-3);line-height:1.5;}
+.cc-badge{position:absolute;top:12px;right:12px;font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-dim);border:1px solid var(--rule-2);padding:2px 7px;}
+.ai-qs{display:none;border:1px solid var(--rule);background:var(--bg-2);padding:14px;overflow-y:auto;flex:1;}
+.ai-qs.show{display:block;}
+.ai-q{margin-bottom:12px;}
+.ai-q-lbl{font-size:0.54rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;display:block;}
+.ai-opts{display:flex;gap:5px;flex-wrap:wrap;}
+.ai-opt{background:var(--bg-3);border:1px solid var(--rule-2);padding:4px 10px;font-family:var(--sans);font-size:0.66rem;color:var(--text-3);cursor:pointer;transition:all 0.2s;}
+.ai-opt:hover{border-color:var(--gold-dim);color:var(--text-2);}
+.ai-opt.on{background:rgba(197,160,101,0.1);border-color:var(--gold-dim);color:var(--gold-pale);}
+.ai-load{display:none;padding:16px;text-align:center;border:1px solid var(--rule);background:var(--bg-2);margin-bottom:12px;}
+.ai-load.show{display:block;}
+.ai-load-t{font-family:var(--serif);font-style:italic;font-size:0.9rem;color:var(--text-3);}
+.dot{animation:blink 1.4s infinite both;}.dot:nth-child(2){animation-delay:.2s;}.dot:nth-child(3){animation-delay:.4s;}
+@keyframes blink{0%,80%,100%{opacity:0}40%{opacity:1}}
+
+/* STEP 3 LAYOUT */
+.s3{display:flex;flex-direction:column;height:100%;}
+
+/* PALETTE */
+.pal{flex-shrink:0;border-bottom:1px solid var(--rule);background:var(--bg-2);overflow:hidden;}
+.pal-hdr{display:flex;align-items:center;justify-content:space-between;padding:7px 6vw 7px;border-bottom:1px solid var(--rule);}
+.pal-title{font-size:0.56rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-3);}
+.pal-hint{font-family:var(--serif);font-style:italic;font-size:0.66rem;color:var(--text-3);margin-left:10px;}
+.pal-clear{background:none;border:none;font-size:0.54rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-3);cursor:pointer;font-family:var(--sans);transition:color 0.2s;padding:0;}
+.pal-clear:hover{color:var(--gold-dim);}
+.pal-cats{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--rule);margin:0 6vw;}
+.pal-cat{background:var(--bg-2);}
+.pal-cat-n{padding:5px 8px;font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-dim);border-bottom:1px solid var(--rule);background:var(--bg-3);}
+.pal-items{padding:4px 8px;display:flex;flex-direction:column;gap:1px;}
+.pill{font-size:0.62rem;font-weight:300;color:var(--text-2);padding:2px 6px;border:1px solid transparent;cursor:pointer;transition:all 0.15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pill:hover{border-color:var(--gold-dim);color:var(--gold-pale);}
+.pill.active{background:rgba(197,160,101,0.12);border-color:var(--gold);color:var(--gold-pale);}
+
+/* STATUS BAR */
+.status{flex-shrink:0;height:28px;display:flex;align-items:center;padding:0 6vw;border-bottom:1px solid var(--rule);background:var(--bg);font-size:0.6rem;color:var(--text-3);}
+
+/* TIMELINE */
+.tl-wrap{flex:1;overflow:hidden;display:flex;flex-direction:column;}
+.tl-scroll{flex:1;overflow-x:auto;overflow-y:auto;padding:12px 0;}
+.tl{width:calc(100% - 12vw);margin:0 6vw;display:table;border-collapse:collapse;}
+
+/* CTA BAR */
+.cta-bar{flex-shrink:0;border-top:1px solid var(--rule);background:var(--bg-2);padding:12px 6vw;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.cta-txt{font-family:var(--serif);font-style:italic;font-size:0.88rem;color:var(--text-3);}
+.cta-txt em{color:var(--gold-pale);font-style:normal;}
+.cta-acts{display:flex;gap:8px;}
+
+/* MODAL */
+.modal{display:none;position:fixed;inset:0;z-index:9000;background:rgba(15,11,8,0.88);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:24px;}
+.modal.show{display:flex;}
+.modal-box{background:#160f0a;border:1px solid #3a2a1f;max-width:440px;width:100%;padding:40px;position:relative;max-height:90vh;overflow-y:auto;}
+.modal-x{position:absolute;top:12px;right:16px;background:none;border:none;color:#7a6048;font-size:1.3rem;cursor:pointer;}
+.m-lbl{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:#7a6048;margin-bottom:10px;font-family:'Jost',sans-serif;}
+.m-h{font-family:'Cormorant',serif;font-size:1.6rem;font-weight:300;color:#e8d5b0;margin-bottom:6px;}
+.m-p{font-size:0.8rem;color:#7a6048;line-height:1.65;margin-bottom:20px;font-family:'Jost',sans-serif;}
+.m-f{margin-bottom:12px;}
+.m-f label{display:block;font-size:0.56rem;letter-spacing:0.14em;text-transform:uppercase;color:#7a6048;margin-bottom:5px;font-family:'Jost',sans-serif;}
+.m-f input,.m-f textarea{width:100%;background:#1c1410;border:1px solid #2a1f17;padding:9px 12px;font-family:'Jost',sans-serif;font-size:0.82rem;color:#e8d5b0;outline:none;box-sizing:border-box;}
+.m-f textarea{resize:vertical;line-height:1.55;}
+.m-btn{width:100%;background:#c5a065;color:#0f0b08;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;padding:11px;border:none;cursor:pointer;font-family:'Jost',sans-serif;margin-top:6px;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-brand">The Silent Club</div>
+  <div class="hdr-title">Design Your Day</div>
+  <button class="hdr-close">← Back to site</button>
+</div>
+
+<!-- STEPS -->
+<div class="steps">
+  <div class="step active" id="si1"><div class="step-n">1</div>Choose your stay</div>
+  <div class="step" id="si2"><div class="step-n">2</div>How to design</div>
+  <div class="step" id="si3"><div class="step-n">3</div>Design your days</div>
+</div>
+
+<!-- PANELS -->
+<div class="panels">
+
+<!-- STEP 1 -->
+<div class="panel active" id="panel-1">
+<div class="p-inner">
+  <h2 class="p-h">Which experience are you considering?</h2>
+  <p class="p-sub">Select a product, then choose your arrival date.</p>
+  <div class="p-grid">
+    <div class="pc" onclick="selProduct(this,'silence',1)"><div class="pc-n">—</div><div class="pc-name">Silence</div><div class="pc-cycle">Day Cycle · 4 Hours</div><div class="pc-desc">Any 4 hours. Any day.</div></div>
+    <div class="pc" onclick="selProduct(this,'residency',3)"><div class="pc-n">3</div><div class="pc-name">Residency</div><div class="pc-cycle">Weekend · 2N / 3D</div><div class="pc-desc">A structured weekend.</div></div>
+    <div class="pc" onclick="selProduct(this,'solitude',5)"><div class="pc-n">5</div><div class="pc-name">Solitude</div><div class="pc-cycle">Weekday · 4N / 5D</div><div class="pc-desc">Five days of genuine solitude.</div></div>
+    <div class="pc" onclick="selProduct(this,'creation',1)"><div class="pc-n">1</div><div class="pc-name">Creation</div><div class="pc-cycle">Noon to Noon · 24H</div><div class="pc-desc">Full estate. Your terms.</div></div>
+  </div>
+
+  <div class="cal-wrap" id="calWrap">
+    <!-- LEFT: calendar -->
+    <div class="cal-box">
+      <div class="cal-nav">
+        <button class="cal-nav-btn" onclick="prevM()">&#8249;</button>
+        <div class="cal-month" id="calMY"></div>
+        <button class="cal-nav-btn" onclick="nextM()">&#8250;</button>
+      </div>
+      <div class="cal-rule" id="calRule"></div>
+      <div class="cal-days-hdr">
+        <div class="cal-dh">Su</div><div class="cal-dh">Mo</div><div class="cal-dh">Tu</div>
+        <div class="cal-dh">We</div><div class="cal-dh">Th</div><div class="cal-dh">Fr</div><div class="cal-dh">Sa</div>
+      </div>
+      <div class="cal-days" id="calDays"></div>
+    </div>
+    <!-- RIGHT: pills + button -->
+    <div class="cal-right">
+      <div class="cal-right-lbl">Selected dates</div>
+      <div class="cal-pills" id="calPills"></div>
+      <button class="btn" id="s1btn" disabled onclick="goStep(2)" style="width:100%;">Continue →</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- STEP 2 -->
+<div class="panel" id="panel-2">
+<div class="p-inner">
+  <h2 style="font-size:0.85rem;color:var(--text-3);font-family:var(--sans);font-weight:300;margin-bottom:3px;flex-shrink:0;letter-spacing:0.04em;">How would you like to design your stay?</h2>
+  <p style="font-size:0.6rem;color:var(--text-3);margin-bottom:12px;flex-shrink:0;letter-spacing:0.06em;">Let AI suggest a rhythm, or start with a blank schedule.</p>
+  <div class="c-grid">
+    <div class="cc" onclick="selMode(this,'ai')">
+      <div class="cc-badge">Recommended</div>
+      <div class="cc-icon">◎</div>
+      <div class="cc-title">Let AI suggest my days</div>
+      <div class="cc-desc">Answer 6 quick questions. We pre-fill a suggested schedule. Override anything.</div>
+    </div>
+    <div class="cc" onclick="selMode(this,'manual')">
+      <div class="cc-icon">◻</div>
+      <div class="cc-title">I'll design it myself</div>
+      <div class="cc-desc">Start with a blank grid. Pick activities and place them. Or leave everything empty.</div>
+    </div>
+  </div>
+  <div class="ai-qs" id="aiQs">
+    <div class="ai-q"><label class="ai-q-lbl">01 — What are you coming here to do?</label><div class="ai-opts"><div class="ai-opt" onclick="this.classList.toggle('on')">Finish something I've started</div><div class="ai-opt" onclick="this.classList.toggle('on')">Think without interruption</div><div class="ai-opt" onclick="this.classList.toggle('on')">Rest and recover</div><div class="ai-opt" onclick="this.classList.toggle('on')">I don't know yet</div></div></div>
+    <div class="ai-q"><label class="ai-q-lbl">02 — How do you want your body to feel each day?</label><div class="ai-opts"><div class="ai-opt" onclick="this.classList.toggle('on')">Physically active</div><div class="ai-opt" onclick="this.classList.toggle('on')">Rested and still</div><div class="ai-opt" onclick="this.classList.toggle('on')">A mix of both</div></div></div>
+    <div class="ai-q"><label class="ai-q-lbl">03 — When does your thinking feel sharpest?</label><div class="ai-opts"><div class="ai-opt" onclick="this.classList.toggle('on')">Early morning</div><div class="ai-opt" onclick="this.classList.toggle('on')">Late morning</div><div class="ai-opt" onclick="this.classList.toggle('on')">Afternoon</div><div class="ai-opt" onclick="this.classList.toggle('on')">Evening</div></div></div>
+    <div class="ai-q"><label class="ai-q-lbl">04 — Any activities you already want?</label><div class="ai-opts"><div class="ai-opt" onclick="this.classList.toggle('on')">Bird Watching</div><div class="ai-opt" onclick="this.classList.toggle('on')">Writing</div><div class="ai-opt" onclick="this.classList.toggle('on')">Swimming</div><div class="ai-opt" onclick="this.classList.toggle('on')">Star Gazing</div><div class="ai-opt" onclick="this.classList.toggle('on')">Long Walks</div><div class="ai-opt" onclick="this.classList.toggle('on')">Gym</div><div class="ai-opt" onclick="this.classList.toggle('on')">Reading</div></div></div>
+    <div class="ai-q"><label class="ai-q-lbl">05 — How structured should your days feel?</label><div class="ai-opts"><div class="ai-opt" onclick="this.classList.toggle('on')">Fill most slots</div><div class="ai-opt" onclick="this.classList.toggle('on')">A few anchors only</div><div class="ai-opt" onclick="this.classList.toggle('on')">Almost empty</div></div></div>
+    <div class="ai-q"><label class="ai-q-lbl">06 — How are you arriving?</label><div class="ai-opts"><div class="ai-opt" onclick="this.classList.toggle('on')">Still carrying the noise of the week</div><div class="ai-opt" onclick="this.classList.toggle('on')">Somewhere in between</div><div class="ai-opt" onclick="this.classList.toggle('on')">Already quiet, ready to go deep</div></div></div>
+  </div>
+  <div class="ai-load" id="aiLoad"><div class="ai-load-t">Building your days<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></div></div>
+  <div style="display:flex;gap:8px;margin-top:10px;flex-shrink:0;">
+    <button class="btn-g" onclick="goStep(1)">← Back</button>
+    <button class="btn" id="s2btn" onclick="handleS2()">Shape my Stay →</button>
+  </div>
+</div>
+</div>
+
+<!-- STEP 3 -->
+<div class="panel" id="panel-3">
+<div class="s3">
+  <!-- PALETTE -->
+  <div class="pal">
+    <div class="pal-hdr">
+      <div><span class="pal-title">Activities</span><span class="pal-hint">— select one, then click an open slot</span></div>
+      <button class="pal-clear" onclick="clearAll()">Clear all</button>
+    </div>
+    <div class="pal-cats" id="palCats"></div>
+  </div>
+  <!-- STATUS -->
+  <div class="status" id="statusBar">No activity selected.</div>
+  <!-- TIMELINE -->
+  <div class="tl-wrap">
+    <div class="tl-scroll">
+      <div class="tl" id="tl"></div>
+    </div>
+  </div>
+  <!-- CTA -->
+  <div class="cta-bar">
+    <div class="cta-txt">If this made sense, <em>you already know what to do.</em></div>
+    <div class="cta-acts">
+      <button class="btn-g" onclick="goStep(2)">← Redesign</button>
+      <button class="btn" onclick="openModal()">Request Invite →</button>
+    </div>
+  </div>
+</div>
+</div>
+
+</div><!-- end panels -->
+
+<!-- MODAL -->
+<div class="modal" id="invModal">
+  <div class="modal-box">
+    <button class="modal-x" onclick="closeModal()">×</button>
+    <div class="m-lbl">Request Invite</div>
+    <div class="m-h">Two questions.<br>No pitch.</div>
+    <div class="m-p">We respond within 72 hours.</div>
+    <div class="m-f"><label>Your name</label><input type="text" placeholder="Full name"></div>
+    <div class="m-f"><label>Your email</label><input type="email" placeholder="email@example.com"></div>
+    <div class="m-f"><label>What do you do, and what kind of quiet do you need?</label><textarea rows="3"></textarea></div>
+    <div class="m-f"><label>Describe the last time you were truly alone with a thought.</label><textarea rows="3"></textarea></div>
+    <button class="m-btn">Submit →</button>
+  </div>
+</div>
+
+<script>
+var CATS = {
+  'Deep Work':         ['Writing','Reading','Journalling','Thinking','Idea Sketching','Long Walks'],
+  'Quiet Exploration': ['Bird Watching','Forest Safari','Sunrise','Boat Rides','Kayaking','Star Gazing'],
+  'Body Reset':        ['Gym','Running','Cycling','Swimming','Recovery','Stretching'],
+  'Creative':          ['Drawing','Sketching','Photography','Zen Garden','Farm Work','Plant Obs.'],
+  'Gentle Social':     ['Board Games','Cooking','Lawn Games','Conversations','Shared Dinner','Letters'],
+  'Subtraction':       ['Silence Block','Dark Room','Digital Fast','Anon. Presence','Horizon Gazing','Long Bath']
+};
+
+var SLOTS = [
+  {id:'s1', t:'06:00', period:'Dawn'},
+  {id:'s2', t:'07:30', period:'Dawn'},
+  {id:'s3', t:'09:00', period:'Morning', fixed:'Breakfast', ftype:'meal'},
+  {id:'s4', t:'09:30', period:'Morning'},
+  {id:'s5', t:'11:00', period:'Morning'},
+  {id:'s6', t:'12:30', period:'Afternoon', fixed:'Lunch', ftype:'meal'},
+  {id:'s7', t:'13:00', period:'Afternoon'},
+  {id:'s8', t:'14:30', period:'Afternoon'},
+  {id:'s9', t:'16:00', period:'Evening', fixed:'High Tea', ftype:'meal'},
+  {id:'s10',t:'16:30', period:'Evening'},
+  {id:'s11',t:'18:00', period:'Evening'},
+  {id:'s12',t:'19:30', period:'Night', fixed:'Dinner', ftype:'meal'},
+  {id:'s13',t:'20:00', period:'Night'},
+  {id:'s14',t:'21:30', period:'Night', fixed:'Voice Window', ftype:'voice'}
+];
+
+var product=null, numDays=1, arrivalDate=null;
+var designMode='manual';
+var selectedAct=null;
+var schedule={};
+var selDates=[], calY, calM;
+
+function goStep(n){
+  for(var i=1;i<=3;i++){
+    document.getElementById('panel-'+i).classList.toggle('active',i===n);
+    var s=document.getElementById('si'+i);
+    s.classList.remove('active','done');
+    if(i<n) s.classList.add('done');
+    if(i===n) s.classList.add('active');
+  }
+  if(n===3) buildS3();
+}
+
+// STEP 1
+function selProduct(el,p,days){
+  document.querySelectorAll('.pc').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  product=p; numDays=days; selDates=[]; arrivalDate=null;
+  var cw=document.getElementById('calWrap');
+  cw.classList.add('show');
+  var rules={silence:'Available any day',residency:'Available weekends only (Fri – Sun)',solitude:'Available weekdays only (Mon – Fri)',creation:'Available any day'};
+  document.getElementById('calRule').textContent=rules[p];
+  var t=new Date(); calY=t.getFullYear(); calM=t.getMonth();
+  renderCal(); checkS1();
+}
+
+function isSelectable(d){
+  var today=new Date(); today.setHours(0,0,0,0);
+  if(d<today) return false;
+  var dow=d.getDay();
+  if(product==='residency') return dow===5||dow===6||dow===0;
+  if(product==='solitude') return dow>=1&&dow<=5;
+  return true;
+}
+function isValidStart(d){
+  if(product==='residency') return d.getDay()===5;
+  if(product==='solitude') return d.getDay()===1;
+  return true;
+}
+function getDatesRange(start){
+  var arr=[];
+  for(var i=0;i<numDays;i++){var d=new Date(start);d.setDate(d.getDate()+i);arr.push(d);}
+  return arr;
+}
+function fmtDate(d){
+  var m=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return d.getDate().toString().padStart(2,'0')+' '+m[d.getMonth()]+' '+d.getFullYear();
+}
+function renderCal(){
+  var MN=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('calMY').textContent=MN[calM]+' '+calY;
+  var g=document.getElementById('calDays'); g.innerHTML='';
+  var fd=new Date(calY,calM,1).getDay();
+  var dm=new Date(calY,calM+1,0).getDate();
+  for(var i=0;i<fd;i++) g.appendChild(document.createElement('div'));
+  for(var d=1;d<=dm;d++){
+    var date=new Date(calY,calM,d);
+    var c=document.createElement('div');
+    c.style.cssText='text-align:center;padding:7px 3px;font-size:0.78rem;font-weight:300;border-radius:2px;transition:all 0.15s;';
+    var sel=isSelectable(date), vs=isValidStart(date);
+    var inR=selDates.some(function(sd){return sd.toDateString()===date.toDateString();});
+    var isSt=selDates.length&&selDates[0].toDateString()===date.toDateString();
+    var isEn=selDates.length&&selDates[selDates.length-1].toDateString()===date.toDateString();
+    if(!sel){c.style.color='var(--rule-2)';c.style.cursor='default';}
+    else if(inR){c.style.background=isSt||isEn?'var(--gold-dim)':'rgba(197,160,101,0.15)';c.style.color=isSt||isEn?'var(--bg)':'var(--gold-pale)';}
+    else if(vs){c.style.color='var(--gold-pale)';c.style.cursor='pointer';}
+    else{c.style.color='var(--text-3)';c.style.cursor='default';}
+    c.textContent=d;
+    if(sel&&vs){
+      (function(dt){
+        c.addEventListener('click',function(){clickDate(dt);});
+        if(!inR){c.onmouseover=function(){this.style.background='rgba(197,160,101,0.08)';};c.onmouseout=function(){this.style.background='';}}
+      })(new Date(date));
+    }
+    g.appendChild(c);
+  }
+}
+function clickDate(date){
+  selDates=getDatesRange(date);
+  arrivalDate=date.toISOString().split('T')[0];
+  renderCal(); renderPills(); checkS1();
+}
+function renderPills(){
+  var c=document.getElementById('calPills'); c.innerHTML='';
+  selDates.forEach(function(d){
+    var p=document.createElement('div');
+    p.className='cal-pill'; p.textContent=fmtDate(d); c.appendChild(p);
+  });
+}
+function prevM(){calM--;if(calM<0){calM=11;calY--;}renderCal();}
+function nextM(){calM++;if(calM>11){calM=0;calY++;}renderCal();}
+function checkS1(){document.getElementById('s1btn').disabled=!(product&&arrivalDate);}
+
+// STEP 2
+function selMode(el,mode){
+  document.querySelectorAll('.cc').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel'); designMode=mode;
+  document.getElementById('aiQs').classList.toggle('show',mode==='ai');
+}
+function handleS2(){
+  if(designMode==='ai'){
+    document.getElementById('aiLoad').classList.add('show');
+    document.getElementById('s2btn').disabled=true;
+    setTimeout(function(){
+      document.getElementById('aiLoad').classList.remove('show');
+      document.getElementById('s2btn').disabled=false;
+      applyAI(); goStep(3);
+    },1600);
+  } else { goStep(3); }
+}
+
+// STEP 3
+function buildS3(){ buildPalette(); buildTL(); }
+
+function buildPalette(){
+  var c=document.getElementById('palCats'); c.innerHTML='';
+  Object.keys(CATS).forEach(function(cat){
+    var items=CATS[cat];
+    var div=document.createElement('div');
+    div.className='pal-cat';
+    var html='<div class="pal-cat-n">'+cat+'</div><div class="pal-items">';
+    items.forEach(function(item){
+      html+='<div class="pill" data-name="'+item+'" onclick="selAct(this)">'+item+'</div>';
+    });
+    html+='</div>';
+    div.innerHTML=html;
+    c.appendChild(div);
+  });
+}
+
+function getDays(){
+  var days=[];
+  var start=arrivalDate?new Date(arrivalDate+'T12:00:00'):new Date();
+  var dn=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  var mn=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  for(var i=0;i<numDays;i++){
+    var d=new Date(start); d.setDate(d.getDate()+i);
+    days.push({label:dn[d.getDay()]+' '+d.getDate(), sub:mn[d.getMonth()]});
+  }
+  return days;
+}
+
+function slotLocked(di,sid){
+  var slot=null;
+  for(var i=0;i<SLOTS.length;i++){if(SLOTS[i].id===sid){slot=SLOTS[i];break;}}
+  if(!slot) return false;
+  if(slot.fixed) return true;
+  var si=SLOTS.indexOf(slot);
+  // Check-in at index of s6 (14:00) on day 0 — slots before index 5 (s6) locked on day 0
+  // Check-out at index of s4 (10:30) on last day — slots after index 3 (s4) locked on last day
+  var checkinIdx=6; // s7 = index 6
+  var checkoutIdx=3; // s4 = index 3
+  if(di===0 && si<checkinIdx && sid!=='s6') return true;
+  if(numDays>1 && di===numDays-1 && si>checkoutIdx) return true;
+  return false;
+}
+
+function buildTL(){
+  var tl=document.getElementById('tl'); tl.innerHTML='';
+  var days=getDays();
+  var LW='66px';
+  var SW='54px';
+  var FW='72px';
+  var cols=LW+' '+SLOTS.map(function(s){return s.fixed?FW:SW;}).join(' ');
+
+  // PERIOD ROW
+  var pr=document.createElement('div');
+  pr.style.cssText='display:grid;grid-template-columns:'+cols+';border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:10;';
+  var ph='<div style="background:var(--bg-3);border-right:1px solid var(--rule);"></div>';
+  var periods=[],cur=null,cnt=0;
+  SLOTS.forEach(function(s){
+    if(s.period!==cur){if(cur)periods.push({n:cur,c:cnt});cur=s.period;cnt=1;}else{cnt++;}
+  });
+  if(cur) periods.push({n:cur,c:cnt});
+  periods.forEach(function(p){
+    ph+='<div style="grid-column:span '+p.c+';text-align:center;padding:5px 0;font-size:0.46rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3);border-right:1px solid var(--rule);background:var(--bg-3);">'+p.n+'</div>';
+  });
+  pr.innerHTML=ph; tl.appendChild(pr);
+
+  // TIME ROW
+  var tr=document.createElement('div');
+  tr.style.cssText='display:grid;grid-template-columns:'+cols+';border-bottom:1px solid var(--rule);background:var(--bg-2);position:sticky;top:26px;z-index:10;';
+  var th='<div style="border-right:1px solid var(--rule);"></div>';
+  SLOTS.forEach(function(s){
+    var bg=s.fixed?'rgba(197,160,101,0.05)':'';
+    var col=s.fixed?'var(--gold-dim)':'var(--text-3)';
+    th+='<div style="text-align:center;padding:4px 2px;font-size:0.5rem;color:'+col+';letter-spacing:0.04em;border-right:1px solid var(--rule);background:'+bg+';">'+s.t+'</div>';
+  });
+  tr.innerHTML=th; tl.appendChild(tr);
+
+  // DAY ROWS
+  days.forEach(function(day,di){
+    var row=document.createElement('div');
+    row.style.cssText='display:grid;grid-template-columns:'+cols+';border-bottom:1px solid var(--rule);';
+    var html='<div style="padding:0 8px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--rule);background:var(--bg-2);min-height:36px;">'
+      +'<span style="font-size:0.66rem;color:var(--text-2);white-space:nowrap;">'+day.label+'</span>'
+      +'<span style="font-size:0.5rem;color:var(--text-3);">'+day.sub+'</span>'
+      +'</div>';
+
+    SLOTS.forEach(function(slot,si){
+      var key=di+'_'+slot.id;
+      var locked=slotLocked(di,slot.id);
+      var isCI=(di===0 && slot.id==='s7');
+      var isCO=(di===numDays-1 && slot.id==='s4' && numDays>1);
+
+      if(isCI){
+        html+='<div style="display:flex;align-items:center;justify-content:center;min-height:36px;border-right:1px solid var(--rule);background:rgba(197,160,101,0.14);">'
+          +'<span style="font-size:0.52rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-pale);">Check-in<br><span style="font-size:0.46rem;color:var(--gold-dim);">1:00 pm</span></span>'
+          +'</div>';
+      } else if(isCO){
+        html+='<div style="display:flex;align-items:center;justify-content:center;min-height:36px;border-right:1px solid var(--rule);background:rgba(197,160,101,0.14);">'
+          +'<span style="font-size:0.52rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-pale);text-align:center;">Check-out<br><span style="font-size:0.46rem;color:var(--gold-dim);">11:00 am</span></span>'
+          +'</div>';
+      } else if(slot.fixed){
+        var mbg=slot.ftype==='voice'?'rgba(107,155,94,0.08)':'rgba(197,160,101,0.05)';
+        var mc=slot.ftype==='voice'?'#6b9b5e':'var(--gold)';
+        html+='<div style="display:flex;align-items:center;justify-content:center;min-height:36px;border-right:1px solid var(--rule);background:'+mbg+';">'
+          +'<span style="font-size:0.52rem;letter-spacing:0.08em;text-transform:uppercase;color:'+mc+';">'+slot.fixed+'</span>'
+          +'</div>';
+      } else if(locked){
+        html+='<div style="min-height:36px;border-right:1px solid var(--rule);background:repeating-linear-gradient(45deg,transparent,transparent 3px,rgba(42,31,23,0.5) 3px,rgba(42,31,23,0.5) 6px);cursor:not-allowed;"></div>';
+      } else if(schedule[key]){
+        html+='<div data-key="'+key+'" onclick="removeAct(\''+key+'\')" style="display:flex;align-items:center;justify-content:center;min-height:36px;border-right:1px solid var(--rule);background:rgba(197,160,101,0.09);cursor:pointer;position:relative;transition:background 0.15s;" onmouseover="this.style.background=\'rgba(197,160,101,0.16)\'" onmouseout="this.style.background=\'rgba(197,160,101,0.09)\'">'
+          +'<span style="font-size:0.58rem;color:var(--text-2);text-align:center;padding:0 3px;line-height:1.3;">'+schedule[key]+'</span>'
+          +'<span style="position:absolute;top:2px;right:3px;font-size:0.48rem;color:var(--text-3);">×</span>'
+          +'</div>';
+      } else {
+        html+='<div data-key="'+key+'" onclick="assignAct(\''+key+'\')" style="min-height:36px;border-right:1px solid var(--rule);cursor:pointer;transition:background 0.15s;" onmouseover="if(window.selectedAct)this.style.background=\'rgba(197,160,101,0.08)\'" onmouseout="this.style.background=\'\'"></div>';
+      }
+    });
+
+    row.innerHTML=html; tl.appendChild(row);
+  });
+}
+
+function selAct(el){
+  var name=el.dataset.name;
+  if(selectedAct===name){
+    selectedAct=null;
+    document.querySelectorAll('.pill').forEach(function(p){p.classList.remove('active');});
+    setStatus(null); return;
+  }
+  selectedAct=name;
+  document.querySelectorAll('.pill').forEach(function(p){p.classList.remove('active');});
+  el.classList.add('active');
+  setStatus(name);
+}
+
+function setStatus(act){
+  var sb=document.getElementById('statusBar');
+  if(act){
+    sb.innerHTML='<span style="color:var(--gold-pale);font-family:var(--serif);font-size:0.78rem;">'+act+'</span>&nbsp;&nbsp;<span style="color:var(--text-3);">selected — click any open slot to place it.&nbsp;</span><span style="border:1px solid var(--rule-2);padding:1px 5px;font-size:0.5rem;color:var(--text-3);">Esc</span><span style="color:var(--text-3);"> to cancel</span>';
+  } else {
+    sb.innerHTML='<span style="color:var(--text-3);font-size:0.58rem;letter-spacing:0.04em;">Select an activity above, then click an open slot in the timeline.</span>';
+  }
+}
+
+function assignAct(key){
+  if(!selectedAct) return;
+  schedule[key]=selectedAct;
+  selectedAct=null;
+  document.querySelectorAll('.pill').forEach(function(p){p.classList.remove('active');});
+  setStatus(null);
+  buildTL();
+}
+
+function removeAct(key){ delete schedule[key]; buildTL(); }
+function clearAll(){ schedule={}; buildTL(); }
+
+function applyAI(){
+  var answers={};
+  document.querySelectorAll('.ai-opt.on').forEach(function(el){answers[el.textContent.trim()]=true;});
+  var days=getDays();
+  var density=answers['Fill most slots']?3:answers['Almost empty']?1:2;
+  var acts=[];
+  if(answers['Bird Watching']) acts.push('Bird Watching');
+  if(answers['Writing']) acts.push('Writing');
+  if(answers['Swimming']) acts.push('Swimming');
+  if(answers['Star Gazing']) acts.push('Star Gazing');
+  if(answers['Long Walks']) acts.push('Long Walks');
+  if(answers['Gym']) acts.push('Gym');
+  if(answers['Reading']) acts.push('Reading');
+  if(!acts.length) acts=answers['Physically active']?['Bird Watching','Swimming','Running','Long Walks']:answers['Rested and still']?['Reading','Journalling','Horizon Gazing','Long Bath']:['Bird Watching','Reading','Long Walks','Star Gazing'];
+  if(answers['Still carrying the noise of the week']){acts=['Long Bath','Horizon Gazing','Long Walks'].concat(acts);density=Math.max(1,density-1);}
+  else if(answers['Already quiet, ready to go deep']){acts=['Writing','Journalling','Thinking'].concat(acts);}
+  var freeSids=SLOTS.filter(function(s){return !s.fixed;}).map(function(s){return s.id;});
+  days.forEach(function(_,di){
+    var placed=0;
+    freeSids.forEach(function(sid,i){
+      if(placed>=density) return;
+      if(slotLocked(di,sid)) return;
+      var key=di+'_'+sid;
+      if(!schedule[key]){schedule[key]=acts[i%acts.length];placed++;}
+    });
+  });
+}
+
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    selectedAct=null;
+    document.querySelectorAll('.pill').forEach(function(p){p.classList.remove('active');});
+    setStatus(null);
+  }
+});
+
+function openModal(){document.getElementById('invModal').classList.add('show');}
+function closeModal(){document.getElementById('invModal').classList.remove('show');}
+document.getElementById('invModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

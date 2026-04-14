@@ -78,17 +78,7 @@ export default function AboutUsPage() {
         <AboutFounder />
         <AboutCollective />
         <AboutAttentionCycle />
-        
-        
         <LivingRoom />
-
-        
-
-       
-        
-
-        
-
         <Footer />
       </main>
     </>

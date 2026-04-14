@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Silent Club — Bhigwan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:        #0f0b08;
+  --bg-2:      #160f0a;
+  --bg-3:      #1c1410;
+  --bg-4:      #241a14;
+  --gold:      #c5a065;
+  --gold-dim:  #8a6e42;
+  --gold-pale: #e8d5b0;
+  --text:      #e8d5b0;
+  --text-2:    #b09070;
+  --text-3:    #7a6048;
+  --rule:      #2a1f17;
+  --rule-2:    #3a2a1f;
+
+  --serif: 'Cormorant', Georgia, serif;
+  --sans:  'Jost', sans-serif;
+  --max:   1200px;
+  --g:     6vw;
+  --ease:  cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ── TYPOGRAPHY ── */
+.t-display {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(3rem, 7vw, 7rem);
+  line-height: 0.93;
+  letter-spacing: -0.02em;
+  color: var(--gold-pale);
+}
+.t-display em { font-style: italic; color: var(--gold); }
+
+.t-heading {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--gold-pale);
+}
+.t-heading em { font-style: italic; color: var(--gold); }
+
+.t-sub {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  line-height: 1.4;
+  color: var(--text-2);
+}
+
+.t-label {
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+}
+
+.t-body {
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--text-2);
+}
+
+/* ── LAYOUT ── */
+.container { max-width: var(--max); margin: 0 auto; padding: 0 var(--g); }
+.rule { width: 100%; height: 1px; background: var(--rule); }
+.rule-short { width: 40px; height: 1px; background: var(--gold-dim); margin: 24px 0; }
+
+/* ── NAV ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+  background: rgba(15,11,8,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--rule);
+  transition: all 0.4s var(--ease);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px; max-width: var(--max); margin: 0 auto; padding: 0 var(--g);
+}
+.nav-brand {
+  font-family: var(--serif); font-size: 1.1rem; font-weight: 400;
+  color: var(--gold-pale); letter-spacing: 0.04em; cursor: pointer;
+}
+.nav-brand span { color: var(--gold); }
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a {
+  font-size: 0.68rem; font-weight: 400; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--text-3);
+  transition: color 0.2s; cursor: pointer;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-cta {
+  font-size: 0.65rem; font-weight: 400; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--bg);
+  background: var(--gold); padding: 9px 20px; border: none; cursor: pointer;
+  transition: background 0.2s; font-family: var(--sans);
+}
+.nav-cta:hover { background: var(--gold-pale); }
+
+/* ── BUTTONS ── */
+.btn-gold {
+  display: inline-block; background: var(--gold); color: var(--bg);
+  font-size: 0.65rem; font-weight: 400; letter-spacing: 0.18em;
+  text-transform: uppercase; padding: 14px 28px; border: none;
+  cursor: pointer; transition: background 0.2s; font-family: var(--sans);
+}
+.btn-gold:hover { background: var(--gold-pale); }
+
+.btn-outline {
+  display: inline-block; background: transparent; color: var(--text-2);
+  font-size: 0.65rem; font-weight: 400; letter-spacing: 0.18em;
+  text-transform: uppercase; padding: 13px 28px;
+  border: 1px solid var(--rule-2); cursor: pointer;
+  transition: border-color 0.2s, color 0.2s; font-family: var(--sans);
+}
+.btn-outline:hover { border-color: var(--gold-dim); color: var(--gold); }
+
+.btn-ghost {
+  background: none; border: none; color: var(--gold-dim);
+  font-size: 0.65rem; font-weight: 400; letter-spacing: 0.18em;
+  text-transform: uppercase; cursor: pointer; font-family: var(--sans);
+  padding: 0; transition: color 0.2s;
+}
+.btn-ghost:hover { color: var(--gold); }
+
+/* ── PAGES ── */
+.page { display: none; padding-top: 60px; }
+.page.active { display: block; }
+
+/* ══════════════════════════════════════
+   PAGE: HOME
+══════════════════════════════════════ */
+
+/* HERO */
+.hero {
+  min-height: 95vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--rule);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(197,160,101,0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero-left {
+  padding: clamp(60px,9vw,110px) var(--g) clamp(60px,9vw,110px) var(--g);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  border-right: 1px solid var(--rule); position: relative;
+}
+.hero-eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 36px; }
+.hero-eyebrow-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--gold); flex-shrink: 0;
+  animation: pulse 3s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.hero-headline {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(3.2rem, 6.5vw, 7rem);
+  line-height: 0.93; letter-spacing: -0.02em;
+  color: var(--gold-pale); margin-bottom: 32px;
+}
+.hero-headline em { color: var(--gold); font-style: italic; }
+.hero-headline .line { display: block; overflow: hidden; }
+.hero-headline .line span {
+  display: block; transform: translateY(100%);
+  animation: slideUp 1s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.hero-headline .line:nth-child(1) span { animation-delay: 0.1s; }
+.hero-headline .line:nth-child(2) span { animation-delay: 0.2s; }
+.hero-headline .line:nth-child(3) span { animation-delay: 0.3s; }
+.hero-headline .line:nth-child(4) span { animation-delay: 0.4s; }
+@keyframes slideUp { to { transform: translateY(0); } }
+
+.hero-statement {
+  font-size: 0.875rem; font-weight: 300; line-height: 1.85;
+  color: var(--text-2); max-width: 400px; margin-bottom: 40px;
+  opacity: 0; animation: fadeIn 0.8s ease forwards 0.6s;
+}
+.hero-actions {
+  display: flex; flex-direction: column; gap: 12px; max-width: 260px;
+  opacity: 0; animation: fadeIn 0.8s ease forwards 0.8s;
+}
+@keyframes fadeIn { to { opacity: 1; } }
+
+.hero-right {
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: clamp(48px,6vw,80px) var(--g);
+  opacity: 0; animation: fadeIn 1s ease forwards 0.5s;
+}
+.hero-location {
+  font-family: var(--serif); font-style: italic;
+  font-size: 1rem; color: var(--text-3); margin-top: 6px;
+}
+.hero-emblem {
+  width: 140px; height: 140px; border: 1px solid var(--rule-2);
+  border-radius: 50%; display: flex; align-items: center;
+  justify-content: center; margin: auto; position: relative;
+}
+.hero-emblem::before {
+  content: ''; position: absolute; inset: 8px;
+  border: 1px solid var(--rule); border-radius: 50%;
+}
+.hero-emblem-text {
+  font-family: var(--serif); font-size: 0.7rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--text-3); text-align: center; line-height: 2;
+}
+.hero-stats {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+}
+.hero-stat { background: var(--bg-2); padding: 18px 20px; }
+.hero-stat-num {
+  font-family: var(--serif); font-size: 2rem; font-weight: 300;
+  color: var(--gold); line-height: 1; margin-bottom: 4px;
+}
+.hero-stat-label {
+  font-size: 0.68rem; font-weight: 300;
+  letter-spacing: 0.04em; color: var(--text-3); line-height: 1.4;
+}
+
+/* WAITLIST BAR */
+.waitlist-bar {
+  background: var(--bg-2); border-bottom: 1px solid var(--rule);
+  padding: 12px var(--g); display: flex; align-items: center;
+  justify-content: center; gap: 10px;
+}
+.waitlist-bar-text {
+  font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-3);
+}
+.waitlist-form {
+  display: flex; gap: 0; margin-left: 24px;
+}
+.waitlist-input {
+  background: var(--bg-3); border: 1px solid var(--rule-2);
+  border-right: none; padding: 8px 16px; font-family: var(--sans);
+  font-size: 0.78rem; color: var(--text); outline: none; width: 220px;
+}
+.waitlist-input::placeholder { color: var(--text-3); }
+.waitlist-submit {
+  background: var(--gold-dim); color: var(--bg); border: none;
+  padding: 8px 16px; font-family: var(--sans); font-size: 0.65rem;
+  letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer;
+  transition: background 0.2s;
+}
+.waitlist-submit:hover { background: var(--gold); }
+
+/* MANIFESTO */
+.manifesto {
+  padding: clamp(72px,10vw,120px) var(--g);
+  display: grid; grid-template-columns: 1fr 2fr;
+  gap: 80px; align-items: start;
+  border-bottom: 1px solid var(--rule);
+}
+.manifesto-quote {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+  line-height: 1.5; color: var(--gold-pale); letter-spacing: -0.01em;
+}
+.manifesto-quote em { color: var(--gold); font-style: italic; }
+.manifesto-body {
+  margin-top: 24px; font-size: 0.9rem; font-weight: 300;
+  line-height: 1.85; color: var(--text-2);
+}
+
+/* WHO */
+.who { border-bottom: 1px solid var(--rule); }
+.who-header {
+  padding: clamp(56px,7vw,96px) var(--g) 0;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: end;
+  margin-bottom: clamp(40px,5vw,60px);
+}
+.who-members {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  border-top: 1px solid var(--rule);
+}
+.who-member {
+  padding: clamp(32px,4vw,48px) var(--g);
+  border-right: 1px solid var(--rule);
+  transition: background 0.4s var(--ease);
+}
+.who-member:last-child { border-right: none; }
+.who-member:hover { background: var(--bg-2); }
+.who-member-type {
+  font-family: var(--serif); font-size: 1.4rem;
+  font-weight: 400; color: var(--gold-pale); margin: 16px 0 12px;
+}
+.who-member-desc {
+  font-size: 0.875rem; font-weight: 300;
+  line-height: 1.7; color: var(--text-2); margin-bottom: 20px;
+}
+.who-member-quote {
+  font-family: var(--serif); font-style: italic;
+  font-size: 0.875rem; color: var(--text-3); line-height: 1.6;
+  padding-top: 20px; border-top: 1px solid var(--rule);
+}
+
+/* PRODUCTS */
+.products { border-bottom: 1px solid var(--rule); }
+.products-header {
+  padding: clamp(56px,7vw,96px) var(--g) clamp(40px,5vw,60px);
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: end;
+  border-bottom: 1px solid var(--rule);
+}
+.products-grid {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 1px; background: var(--rule);
+}
+.product-card {
+  background: var(--bg); padding: clamp(32px,4vw,48px) 28px;
+  transition: background 0.4s var(--ease); cursor: default;
+}
+.product-card:hover { background: var(--bg-2); }
+.product-card.featured { background: var(--bg-2); }
+.product-name {
+  font-family: var(--serif); font-size: 1.4rem;
+  font-weight: 400; color: var(--gold-pale); margin: 16px 0 8px;
+}
+.product-cycle {
+  font-size: 0.72rem; font-weight: 400; letter-spacing: 0.1em;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 16px;
+}
+.product-desc {
+  font-size: 0.84rem; font-weight: 300; line-height: 1.7;
+  color: var(--text-2); margin-bottom: 24px;
+}
+.product-price {
+  font-family: var(--serif); font-size: 1.6rem;
+  font-weight: 300; color: var(--gold); line-height: 1;
+}
+.product-price-note {
+  font-size: 0.68rem; color: var(--text-3);
+  letter-spacing: 0.06em; margin-top: 4px;
+}
+
+/* DAY DESIGNER TEASER */
+.day-designer-teaser {
+  padding: clamp(72px,10vw,120px) var(--g);
+  border-bottom: 1px solid var(--rule);
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+.day-designer-preview {
+  background: var(--bg-2); border: 1px solid var(--rule);
+  padding: 32px; position: relative; overflow: hidden;
+}
+.day-designer-preview::before {
+  content: 'INTERACTIVE'; position: absolute;
+  top: 16px; right: 16px;
+  font-size: 0.6rem; letter-spacing: 0.2em;
+  color: var(--gold-dim); font-family: var(--sans);
+}
+.day-slot-row {
+  display: flex; gap: 4px; margin-bottom: 8px; align-items: center;
+}
+.day-slot-time {
+  font-size: 0.6rem; color: var(--text-3);
+  width: 40px; flex-shrink: 0; letter-spacing: 0.06em;
+}
+.day-slot {
+  height: 28px; border-radius: 2px; flex: 1;
+  background: var(--bg-3); border: 1px solid var(--rule);
+  display: flex; align-items: center; padding: 0 8px;
+}
+.day-slot.filled {
+  background: rgba(197,160,101,0.08);
+  border-color: var(--gold-dim);
+}
+.day-slot-label {
+  font-size: 0.6rem; color: var(--text-3); letter-spacing: 0.06em;
+}
+.day-slot.filled .day-slot-label { color: var(--gold-dim); }
+
+/* COMPACT */
+.compact {
+  padding: clamp(72px,10vw,120px) var(--g);
+  display: grid; grid-template-columns: 1fr 1.6fr;
+  gap: 100px; border-bottom: 1px solid var(--rule);
+}
+.compact-rules { display: flex; flex-direction: column; }
+.rule-item {
+  display: flex; gap: 28px; padding: 20px 0;
+  border-bottom: 1px solid var(--rule); align-items: flex-start;
+}
+.rule-item:first-child { border-top: 1px solid var(--rule); }
+.rule-num {
+  font-family: var(--serif); font-size: 0.85rem;
+  color: var(--text-3); flex-shrink: 0; padding-top: 2px; min-width: 24px;
+}
+.rule-text {
+  font-size: 0.9rem; font-weight: 300; line-height: 1.7; color: var(--text-2);
+}
+
+/* PILLARS */
+.pillars { border-bottom: 1px solid var(--rule); }
+.pillars-header {
+  padding: clamp(56px,7vw,96px) var(--g) clamp(40px,5vw,60px);
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: end;
+  border-bottom: 1px solid var(--rule);
+}
+.pillars-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+}
+.pillar {
+  padding: clamp(40px,5vw,60px) var(--g);
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.4s var(--ease);
+}
+.pillar:nth-child(2n) { border-right: none; }
+.pillar:nth-child(3), .pillar:nth-child(4) { border-bottom: none; }
+.pillar:hover { background: var(--bg-2); }
+.pillar-roman {
+  font-family: var(--serif); font-size: 0.85rem;
+  color: var(--text-3); margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
+}
+.pillar-roman::after {
+  content: ''; flex: 1; height: 1px; background: var(--rule);
+}
+.pillar-title {
+  font-family: var(--serif); font-size: 1.4rem;
+  font-weight: 400; color: var(--gold-pale); margin-bottom: 12px;
+}
+.pillar-desc {
+  font-size: 0.875rem; font-weight: 300;
+  line-height: 1.7; color: var(--text-2);
+}
+
+/* TESTIMONIALS */
+.testimonials {
+  padding: clamp(72px,10vw,120px) var(--g);
+  border-bottom: 1px solid var(--rule);
+}
+.testimonials-header {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; margin-bottom: 56px; align-items: end;
+}
+.testimonials-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+}
+.testimonial {
+  background: var(--bg); padding: 36px 28px;
+  transition: background 0.4s var(--ease);
+}
+.testimonial:hover { background: var(--bg-2); }
+.testimonial-quote {
+  font-family: var(--serif); font-style: italic;
+  font-size: 1rem; font-weight: 300; line-height: 1.7;
+  color: var(--text-2); margin-bottom: 24px;
+}
+.testimonial-name {
+  font-size: 0.78rem; font-weight: 400;
+  color: var(--gold-pale); letter-spacing: 0.06em;
+}
+.testimonial-role {
+  font-size: 0.72rem; color: var(--text-3); margin-top: 2px;
+}
+
+/* FAQ */
+.faq {
+  padding: clamp(72px,10vw,120px) var(--g);
+  display: grid; grid-template-columns: 1fr 1.8fr;
+  gap: 100px; border-bottom: 1px solid var(--rule);
+}
+.faq-list { display: flex; flex-direction: column; }
+.faq-item { border-bottom: 1px solid var(--rule); }
+.faq-item:first-child { border-top: 1px solid var(--rule); }
+.faq-question {
+  width: 100%; background: none; border: none;
+  padding: 20px 0; display: flex; align-items: center;
+  justify-content: space-between; cursor: pointer;
+  font-size: 0.9rem; font-weight: 300; color: var(--text-2);
+  font-family: var(--sans); text-align: left; transition: color 0.2s;
+}
+.faq-question:hover { color: var(--gold-pale); }
+.faq-icon { color: var(--gold-dim); font-size: 1.2rem; flex-shrink: 0; }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease); }
+.faq-answer-inner {
+  padding: 0 0 20px; font-size: 0.875rem; font-weight: 300;
+  line-height: 1.75; color: var(--text-3);
+}
+.faq-item.open .faq-answer { max-height: 200px; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-icon { transition: transform 0.3s var(--ease); }
+
+/* CTA BAND */
+.cta-band {
+  padding: clamp(72px,10vw,120px) var(--g);
+  background: var(--bg-2); text-align: center;
+  border-bottom: 1px solid var(--rule);
+}
+.cta-band-headline {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  color: var(--gold-pale); line-height: 1.15;
+  margin-bottom: 20px; letter-spacing: -0.01em;
+}
+.cta-band-headline em { color: var(--gold); font-style: italic; }
+.cta-band-sub {
+  font-size: 0.875rem; font-weight: 300; color: var(--text-3);
+  max-width: 440px; margin: 0 auto 36px; line-height: 1.75;
+}
+.cta-band-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* ══════════════════════════════════════
+   PAGE: ABOUT
+══════════════════════════════════════ */
+.about-hero {
+  min-height: 70vh; position: relative;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: clamp(72px,10vw,120px) var(--g);
+  border-bottom: 1px solid var(--rule); overflow: hidden;
+}
+.about-hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(15,11,8,0.3) 0%, rgba(15,11,8,0.85) 60%, var(--bg) 100%);
+  z-index: 1;
+}
+.about-hero-bg-img {
+  position: absolute; inset: 0;
+  background: var(--bg-2);
+  z-index: 0;
+}
+.about-hero-content { position: relative; z-index: 2; }
+.about-hero-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: end; margin-top: 48px;
+}
+
+.about-origin {
+  padding: clamp(72px,10vw,120px) var(--g);
+  display: grid; grid-template-columns: 1.4fr 1fr;
+  gap: 100px; border-bottom: 1px solid var(--rule);
+}
+.about-origin-quote {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(1.2rem,2vw,1.7rem); font-weight: 300;
+  color: var(--gold-pale); line-height: 1.5; margin-bottom: 24px;
+}
+.sidebar-block { margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--rule); }
+.sidebar-block:last-child { border-bottom: none; }
+.sidebar-label { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-3); margin-bottom: 6px; }
+.sidebar-value { font-family: var(--serif); font-size: 1.1rem; color: var(--gold-pale); margin-bottom: 6px; }
+.sidebar-desc { font-size: 0.84rem; font-weight: 300; color: var(--text-3); line-height: 1.65; }
+
+.founder-section {
+  padding: clamp(72px,10vw,120px) var(--g);
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: 100px; align-items: start;
+  border-bottom: 1px solid var(--rule);
+}
+.founder-photo-frame {
+  aspect-ratio: 3/4; background: var(--bg-3);
+  border: 1px solid var(--rule); position: relative; overflow: hidden;
+}
+.founder-photo-placeholder {
+  position: absolute; inset: 0; display: flex;
+  align-items: center; justify-content: center;
+  font-family: var(--serif); font-size: 4rem;
+  color: var(--text-3); font-style: italic;
+}
+.founder-name {
+  font-family: var(--serif); font-size: 2rem;
+  font-weight: 300; color: var(--gold-pale); margin-bottom: 4px;
+}
+.founder-role {
+  font-size: 0.68rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gold-dim); margin-bottom: 28px;
+}
+.founder-statement {
+  font-size: 0.9rem; font-weight: 300;
+  line-height: 1.85; color: var(--text-2);
+}
+.founder-statement p { margin-bottom: 16px; }
+
+.about-beliefs { border-bottom: 1px solid var(--rule); }
+.about-beliefs-header {
+  padding: clamp(56px,7vw,96px) var(--g) clamp(40px,5vw,60px);
+  border-bottom: 1px solid var(--rule);
+}
+.beliefs-grid { display: grid; grid-template-columns: 1fr 1fr; }
+.belief-item {
+  padding: clamp(40px,5vw,60px) var(--g);
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.4s var(--ease);
+}
+.belief-item:nth-child(2n) { border-right: none; }
+.belief-item:nth-last-child(-n+2) { border-bottom: none; }
+.belief-item:hover { background: var(--bg-2); }
+.belief-num {
+  font-family: var(--serif); font-size: 2.5rem;
+  font-weight: 300; color: var(--rule-2); line-height: 1; margin-bottom: 16px;
+}
+.belief-title {
+  font-family: var(--serif); font-size: 1.2rem;
+  font-weight: 400; color: var(--gold-pale); margin-bottom: 10px;
+}
+.belief-body {
+  font-size: 0.875rem; font-weight: 300;
+  line-height: 1.7; color: var(--text-2);
+}
+
+.stf-section {
+  padding: clamp(72px,10vw,120px) var(--g);
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+  border-bottom: 1px solid var(--rule);
+  background: var(--bg-2);
+}
+.stf-logo {
+  font-family: var(--serif); font-size: 0.7rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold-dim); margin-top: 16px;
+}
+
+/* ══════════════════════════════════════
+   PAGE: ESTATE
+══════════════════════════════════════ */
+.estate-hero {
+  min-height: 60vh; display: flex;
+  flex-direction: column; justify-content: flex-end;
+  padding: clamp(72px,10vw,120px) var(--g);
+  border-bottom: 1px solid var(--rule);
+  background: linear-gradient(to bottom, var(--bg-3), var(--bg));
+}
+.estate-hero-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: end; margin-top: 48px;
+}
+.estate-facts {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+}
+.estate-fact { background: var(--bg-2); padding: 18px 22px; }
+.estate-fact-num {
+  font-family: var(--serif); font-size: 1.8rem;
+  font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 4px;
+}
+.estate-fact-label {
+  font-size: 0.68rem; font-weight: 300;
+  letter-spacing: 0.06em; color: var(--text-3); line-height: 1.4;
+}
+
+.setting {
+  padding: clamp(72px,10vw,120px) var(--g);
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; border-bottom: 1px solid var(--rule);
+}
+
+.spaces { border-bottom: 1px solid var(--rule); }
+.spaces-header {
+  padding: clamp(56px,7vw,96px) var(--g) clamp(40px,5vw,60px);
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: end;
+  border-bottom: 1px solid var(--rule);
+}
+.spaces-grid { display: grid; grid-template-columns: repeat(2,1fr); }
+.space-card {
+  padding: clamp(40px,5vw,56px) var(--g);
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.4s var(--ease);
+}
+.space-card:nth-child(2n) { border-right: none; }
+.space-card:nth-last-child(-n+2) { border-bottom: none; }
+.space-card:hover { background: var(--bg-2); }
+.space-icon {
+  font-family: var(--serif); font-size: 0.7rem;
+  letter-spacing: 0.2em; color: var(--gold-dim);
+  text-transform: uppercase; margin-bottom: 20px;
+}
+.space-name {
+  font-family: var(--serif); font-size: 1.4rem;
+  font-weight: 400; color: var(--gold-pale); margin-bottom: 10px;
+}
+.space-desc {
+  font-size: 0.875rem; font-weight: 300;
+  line-height: 1.7; color: var(--text-2);
+}
+
+.day-designer-feature {
+  padding: clamp(56px,7vw,80px) var(--g);
+  border-bottom: 1px solid var(--rule);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 40px; background: var(--bg-2);
+}
+
+/* ══════════════════════════════════════
+   PAGE: BLOG
+══════════════════════════════════════ */
+.blog-hero {
+  padding: clamp(72px,10vw,120px) var(--g);
+  border-bottom: 1px solid var(--rule);
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: end;
+}
+.blog-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; background: var(--rule);
+  border: 1px solid var(--rule); border-top: none;
+}
+.blog-card {
+  background: var(--bg); padding: 36px 28px;
+  transition: background 0.4s var(--ease); cursor: pointer;
+}
+.blog-card:hover { background: var(--bg-2); }
+.blog-card.featured {
+  grid-column: span 2; background: var(--bg-2);
+}
+.blog-num {
+  font-size: 0.65rem; letter-spacing: 0.18em;
+  color: var(--text-3); margin-bottom: 20px;
+}
+.blog-title {
+  font-family: var(--serif); font-size: 1.3rem;
+  font-weight: 400; color: var(--gold-pale);
+  line-height: 1.3; margin-bottom: 12px;
+}
+.blog-card.featured .blog-title { font-size: 1.8rem; }
+.blog-excerpt {
+  font-size: 0.84rem; font-weight: 300;
+  line-height: 1.7; color: var(--text-2); margin-bottom: 20px;
+}
+.blog-meta {
+  font-size: 0.68rem; color: var(--text-3); letter-spacing: 0.08em;
+}
+.blog-substack {
+  padding: clamp(56px,7vw,80px) var(--g);
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 40px;
+  border-top: 1px solid var(--rule);
+}
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+.footer {
+  padding: clamp(40px,5vw,56px) var(--g);
+  background: var(--bg-2); border-top: 1px solid var(--rule);
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  gap: 40px; align-items: start;
+}
+.footer-brand {
+  font-family: var(--serif); font-size: 1.1rem;
+  font-weight: 400; color: var(--gold-pale);
+}
+.footer-tagline {
+  font-size: 0.68rem; font-weight: 300;
+  color: var(--text-3); margin-top: 4px; letter-spacing: 0.06em;
+}
+.footer-links-label {
+  font-size: 0.6rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--text-3); margin-bottom: 12px;
+}
+.footer-link {
+  display: block; font-size: 0.78rem; font-weight: 300;
+  color: var(--text-3); cursor: pointer; padding: 3px 0;
+  transition: color 0.2s;
+}
+.footer-link:hover { color: var(--gold); }
+.footer-collab {
+  padding: 16px 20px; border: 1px solid var(--rule-2);
+  margin-top: 16px;
+}
+.footer-collab-text {
+  font-size: 0.72rem; font-weight: 300; color: var(--text-3);
+  line-height: 1.5; margin-bottom: 10px;
+}
+.footer-bottom {
+  grid-column: 1/-1; border-top: 1px solid var(--rule);
+  padding-top: 24px; display: flex;
+  align-items: center; justify-content: space-between;
+}
+.footer-copy {
+  font-size: 0.68rem; font-weight: 300;
+  letter-spacing: 0.08em; color: var(--text-3);
+}
+
+/* ══════════════════════════════════════
+   MODALS
+══════════════════════════════════════ */
+.modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 9000;
+  background: rgba(15,11,8,0.85); backdrop-filter: blur(8px);
+  align-items: center; justify-content: center; padding: 24px;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: var(--bg-2); border: 1px solid var(--rule-2);
+  max-width: 520px; width: 100%; padding: clamp(36px,5vw,52px);
+  position: relative; max-height: 90vh; overflow-y: auto;
+}
+.modal-close {
+  position: absolute; top: 16px; right: 20px;
+  background: none; border: none; color: var(--text-3);
+  font-size: 1.4rem; cursor: pointer; font-family: var(--sans);
+  transition: color 0.2s;
+}
+.modal-close:hover { color: var(--gold); }
+.modal-field { margin-bottom: 20px; }
+.modal-label {
+  display: block; font-size: 0.65rem; font-weight: 400;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--text-3); margin-bottom: 8px;
+}
+.modal-input, .modal-textarea, .modal-select {
+  width: 100%; background: var(--bg-3); border: 1px solid var(--rule);
+  padding: 12px 14px; font-family: var(--sans); font-size: 0.875rem;
+  color: var(--text); outline: none; transition: border-color 0.2s;
+  appearance: none;
+}
+.modal-input:focus, .modal-textarea:focus, .modal-select:focus {
+  border-color: var(--gold-dim);
+}
+.modal-input::placeholder, .modal-textarea::placeholder { color: var(--text-3); }
+.modal-textarea { resize: vertical; line-height: 1.6; }
+
+/* ══════════════════════════════════════
+   REVEAL ANIMATIONS
+══════════════════════════════════════ */
+.reveal {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 900px) {
+  :root { --g: 5vw; }
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { border-right: none; border-bottom: 1px solid var(--rule); }
+  .manifesto { grid-template-columns: 1fr; gap: 32px; }
+  .who-header { grid-template-columns: 1fr; gap: 24px; }
+  .who-members { grid-template-columns: 1fr; }
+  .who-member { border-right: none; border-bottom: 1px solid var(--rule); }
+  .products-grid { grid-template-columns: 1fr 1fr; }
+  .day-designer-teaser { grid-template-columns: 1fr; gap: 48px; }
+  .compact { grid-template-columns: 1fr; gap: 48px; }
+  .pillars-header { grid-template-columns: 1fr; gap: 24px; }
+  .pillars-grid { grid-template-columns: 1fr; }
+  .pillar { border-right: none !important; }
+  .testimonials-header { grid-template-columns: 1fr; gap: 24px; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .faq { grid-template-columns: 1fr; gap: 48px; }
+  .about-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .about-origin { grid-template-columns: 1fr; gap: 48px; }
+  .founder-section { grid-template-columns: 1fr; gap: 48px; }
+  .beliefs-grid { grid-template-columns: 1fr; }
+  .belief-item { border-right: none !important; border-bottom: 1px solid var(--rule) !important; }
+  .stf-section { grid-template-columns: 1fr; gap: 48px; }
+  .estate-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .setting { grid-template-columns: 1fr; gap: 48px; }
+  .spaces-header { grid-template-columns: 1fr; gap: 24px; }
+  .spaces-grid { grid-template-columns: 1fr; }
+  .space-card { border-right: none !important; }
+  .day-designer-feature { flex-direction: column; }
+  .blog-hero { grid-template-columns: 1fr; gap: 24px; }
+  .blog-grid { grid-template-columns: 1fr; }
+  .blog-card.featured { grid-column: span 1; }
+  .blog-substack { flex-direction: column; gap: 24px; }
+  .footer { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .products-header { grid-template-columns: 1fr; gap: 24px; }
+  .waitlist-bar { flex-direction: column; gap: 12px; }
+  .waitlist-form { width: 100%; }
+  .waitlist-input { flex: 1; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <div class="nav-brand" onclick="showPage('home')">The Silent Club</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a onclick="showPage('home')" data-page="home">Home</a></li>
+      <li><a onclick="showPage('about')" data-page="about">About</a></li>
+      <li><a onclick="showPage('estate')" data-page="estate">The Estate</a></li>
+      <li><a onclick="showPage('blog')" data-page="blog">Journal</a></li>
+    </ul>
+    <button class="nav-cta" onclick="openInvite()">Request Invite →</button>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════
+     PAGE: HOME
+══════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-dot"></div>
+        <span class="t-label">Private Estate · Bhigwan, Pune · Members Only</span>
+      </div>
+      <h1 class="hero-headline">
+        <span class="line"><span>A place</span></span>
+        <span class="line"><span>to think</span></span>
+        <span class="line"><span><em>without</em></span></span>
+        <span class="line"><span>interruption.</span></span>
+      </h1>
+      <p class="hero-statement">The Silent Club is a members-only private estate for thinkers, artists, and entrepreneurs who do their best work in quiet. No meetings. No notifications. No noise. Just the rarest luxury in modern life — uninterrupted time with your own mind.</p>
+      <div class="hero-actions">
+        <button class="btn-gold" onclick="openInvite()">Request Invite →</button>
+        <button class="btn-outline" onclick="openDayDesigner()">See what a day looks like</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-right-top">
+        <div class="t-label">Est. 2025</div>
+        <div class="hero-location">Bhigwan, Pune — 2 hours from the city</div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;flex:1;padding:40px 0;">
+        <div class="hero-emblem">
+          <div class="hero-emblem-text">Silence<br>as a<br>Service</div>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">20</div>
+          <div class="hero-stat-label">Maximum members at any time</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">0</div>
+          <div class="hero-stat-label">WiFi zones or phone signals</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">4</div>
+          <div class="hero-stat-label">Acres of private grounds</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">2h</div>
+          <div class="hero-stat-label">From Pune city centre</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAITLIST BAR -->
+  <div class="waitlist-bar">
+    <div class="waitlist-dot" style="width:5px;height:5px;border-radius:50%;background:#6b9b5e;animation:pulse 2s infinite;flex-shrink:0;"></div>
+    <span class="waitlist-bar-text">Founding memberships open — not ready yet? Stay close.</span>
+    <div class="waitlist-form">
+      <input type="email" class="waitlist-input" placeholder="your@email.com">
+      <button class="waitlist-submit">Notify me</button>
+    </div>
+  </div>
+
+  <!-- MANIFESTO -->
+  <section class="manifesto reveal">
+    <div>
+      <div class="rule-short"></div>
+      <div class="t-label">The case for quiet</div>
+    </div>
+    <div>
+      <p class="manifesto-quote">
+        Your best thinking doesn't happen in meetings.<br>
+        It doesn't happen in open offices,<br>
+        on Slack, or between notifications.<br><br>
+        It happens in the quiet moments<br>
+        <em>you can never quite find</em> — until now.
+      </p>
+      <p class="manifesto-body">The Silent Club is a private estate for thinkers, artists, and entrepreneurs who understand that silence is not the absence of productivity — it is the condition for the only kind that matters. We built the place we always needed and could never find.</p>
+    </div>
+  </section>
+
+  <!-- WHO -->
+  <section class="who">
+    <div class="who-header">
+      <div class="reveal">
+        <div class="t-label" style="margin-bottom:16px">Who belongs here</div>
+        <h2 class="t-heading">Built for people whose best work requires solitude</h2>
+      </div>
+      <div class="reveal">
+        <p class="t-body">We are not a co-working space. We are not a wellness retreat. We are the place that serious people have always needed — a private estate calibrated to produce the conditions for deep, original thought. There is no programme here. No schedule. No aspiration to improve you. Just time, and quiet, and whatever you make of them.</p>
+      </div>
+    </div>
+    <div class="who-members">
+      <div class="who-member reveal">
+        <div class="t-label">01</div>
+        <div class="who-member-type">Writers & Journalists</div>
+        <p class="who-member-desc">Those who need hours of unbroken time to hear themselves think — and write.</p>
+        <p class="who-member-quote">"I wrote 40 pages here in three days. The only place I've been able to disappear completely."</p>
+      </div>
+      <div class="who-member reveal">
+        <div class="t-label">02</div>
+        <div class="who-member-type">Founders & Strategists</div>
+        <p class="who-member-desc">Those whose most consequential decisions deserve more than a 45-minute calendar slot.</p>
+        <p class="who-member-quote">"I come when a decision is too important for the noise of the office. I've never left without clarity."</p>
+      </div>
+      <div class="who-member reveal">
+        <div class="t-label">03</div>
+        <div class="who-member-type">Artists & Designers</div>
+        <p class="who-member-desc">Those whose creative work requires a quality of attention that the world rarely permits.</p>
+        <p class="who-member-quote">"Four months as a member. More original work than in the previous two years combined."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products">
+    <div class="products-header">
+      <div class="reveal">
+        <div class="t-label" style="margin-bottom:16px">Choose your depth</div>
+        <h2 class="t-heading">The environment stays the same.<br><em>The depth changes.</em></h2>
+      </div>
+      <div class="reveal">
+        <p class="t-body">Four ways to be here. Each designed around a different relationship with time, silence, and solitude. None of them require you to know in advance what you'll do with either.</p>
+      </div>
+    </div>
+    <div class="products-grid reveal">
+      <div class="product-card">
+        <div class="t-label">01</div>
+        <div class="product-name">Silence</div>
+        <div class="product-cycle">Day Cycle · 4 Hours</div>
+        <p class="product-desc">4 hours to step out and reset. No schedule. Full estate access. One meal included. The entry point — and for many, the most honest form of the experience.</p>
+        <div class="product-price">₹1,000</div>
+        <div class="product-price-note">Per person · All meals · Taxes applicable</div>
+      </div>
+      <div class="product-card featured">
+        <div class="t-label">02</div>
+        <div class="product-name">Residency</div>
+        <div class="product-cycle">Weekend Cycle · 2N / 3D</div>
+        <p class="product-desc">3 days around a theme. Structured or open. Collaborative events, artist residencies, curated weekends. The social product — built with and for people with audiences.</p>
+        <div class="product-price">₹10,000</div>
+        <div class="product-price-note">Per person · All meals · Taxes applicable</div>
+      </div>
+      <div class="product-card">
+        <div class="t-label">03</div>
+        <div class="product-name">Solitude</div>
+        <div class="product-cycle">Weekday Cycle · 4N / 5D</div>
+        <p class="product-desc">5 days of strict silence. 30 minutes of communication daily. Self-led activities — angling, bird watching, star gazing, forest trails. For people between chapters.</p>
+        <div class="product-price">₹20,000</div>
+        <div class="product-price-note">Per person · All meals · Taxes applicable</div>
+      </div>
+      <div class="product-card">
+        <div class="t-label">04</div>
+        <div class="product-name">Creation</div>
+        <div class="product-cycle">Full Estate · All Days</div>
+        <p class="product-desc">The entire estate is yours. Noon to noon. 15 comfortable, up to 40 with flexible arrangements. For private gatherings, offsites, and events that need the whole space.</p>
+        <div class="product-price">₹1,00,000</div>
+        <div class="product-price-note">Per night · Full estate · Taxes applicable</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAY DESIGNER TEASER -->
+  <section class="day-designer-teaser">
+    <div class="reveal">
+      <div class="t-label" style="margin-bottom:16px">Design your stay</div>
+      <h2 class="t-heading">See what a day<br><em>could look like.</em></h2>
+      <div class="rule-short"></div>
+      <p class="t-body" style="margin-top:0; margin-bottom:32px;">Answer 5 questions. Our AI builds your day. Override anything. Every slot is yours — including the empty ones.</p>
+      <button class="btn-gold" onclick="openDayDesigner()">Design your day →</button>
+    </div>
+    <div class="day-designer-preview reveal">
+      <div class="t-label" style="margin-bottom:20px">Sample day — Solitude</div>
+      <div class="day-slot-row"><span class="day-slot-time">06:00</span><div class="day-slot"><span class="day-slot-label">—</span></div></div>
+      <div class="day-slot-row"><span class="day-slot-time">07:30</span><div class="day-slot filled"><span class="day-slot-label">Bird watching · Lake trail</span></div></div>
+      <div class="day-slot-row"><span class="day-slot-time">09:00</span><div class="day-slot filled"><span class="day-slot-label">Breakfast · Silent</span></div></div>
+      <div class="day-slot-row"><span class="day-slot-time">09:30</span><div class="day-slot filled"><span class="day-slot-label">Deep work · Library</span></div></div>
+      <div class="day-slot-row"><span class="day-slot-time">12:30</span><div class="day-slot filled"><span class="day-slot-label">Lunch · Silent</span></div></div>
+      <div class="day-slot-row"><span class="day-slot-time">13:00</span><div class="day-slot"><span class="day-slot-label">—</span></div></div>
+      <div class="day-slot-row"><span class="day-slot-time">16:00</span><div class="day-slot filled"><span class="day-slot-label">High Tea</span></div></div>
+      <div class="day-slot-row"><span class="day-slot-time">16:30</span><div class="day-slot filled"><span class="day-slot-label">Star gazing prep · Deck</span></div></div>
+      <div class="day-slot-row"><span class="day-slot-time">19:30</span><div class="day-slot filled"><span class="day-slot-label">Dinner · Silent</span></div></div>
+      <div class="day-slot-row"><span class="day-slot-time">21:30</span><div class="day-slot filled"><span class="day-slot-label">Voice window · 30 min</span></div></div>
+    </div>
+  </section>
+
+  <!-- COMPACT -->
+  <section class="compact">
+    <div class="reveal">
+      <div class="t-label" style="margin-bottom:16px">The compact</div>
+      <h2 class="t-heading">What you agree to<br>when you walk in</h2>
+      <div class="rule-short"></div>
+      <p class="t-body" style="margin-top:0">These are not rules in the enforcement sense — they are the shared understanding that makes this place possible for everyone who enters.</p>
+    </div>
+    <div class="compact-rules reveal">
+      <div class="rule-item"><div class="rule-num">01</div><div class="rule-text">No voice calls, video calls, or voice notes — anywhere on the estate, at any time.</div></div>
+      <div class="rule-item"><div class="rule-num">02</div><div class="rule-text">No unsolicited conversation with other members. A nod is permitted. Kindness is assumed. Connection, if desired, waits for Friday.</div></div>
+      <div class="rule-item"><div class="rule-num">03</div><div class="rule-text">No devices in common areas. Laptops are permitted in the deep work library only, on silent mode.</div></div>
+      <div class="rule-item"><div class="rule-num">04</div><div class="rule-text">No productivity theatre. Staring at the ceiling is as valid as writing. You are not here to perform working hard.</div></div>
+      <div class="rule-item"><div class="rule-num">05</div><div class="rule-text">What you make here belongs entirely to you. The club takes no interest in your work, your outcomes, or your results.</div></div>
+    </div>
+  </section>
+
+  <!-- PILLARS -->
+  <section class="pillars">
+    <div class="pillars-header">
+      <div class="reveal">
+        <div class="t-label" style="margin-bottom:16px">Why it works</div>
+        <h2 class="t-heading">The four conditions<br>of deep thought</h2>
+      </div>
+      <div class="reveal">
+        <p class="t-body">The estate is built around four environmental conditions that cognitive science consistently links to high-quality, original thinking. Not productivity. Thinking.</p>
+      </div>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar reveal"><div class="pillar-roman">I</div><div class="pillar-title">Acoustic quiet</div><p class="pillar-desc">Noise levels below 35dB across all spaces. Natural sound only — wind, water, birds. Never ambient music. Never another person's keyboard.</p></div>
+      <div class="pillar reveal"><div class="pillar-roman">II</div><div class="pillar-title">Visual calm</div><p class="pillar-desc">No screens, no signage, no visual clutter. Minimal furnishing. Natural materials and light throughout. Nothing that demands your attention.</p></div>
+      <div class="pillar reveal"><div class="pillar-roman">III</div><div class="pillar-title">Temporal freedom</div><p class="pillar-desc">No clocks visible anywhere on the estate. No scheduled interruptions. You decide when your session begins and when it ends. Time here is yours.</p></div>
+      <div class="pillar reveal"><div class="pillar-roman">IV</div><div class="pillar-title">Social relief</div><p class="pillar-desc">No obligation to perform, socialise, or network. You are anonymous to other members unless you actively choose otherwise. Nobody here wants anything from you.</p></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="testimonials-header">
+      <div class="reveal">
+        <div class="t-label" style="margin-bottom:16px">Members speak</div>
+        <h2 class="t-heading">What quiet<br><em>makes possible</em></h2>
+      </div>
+      <div class="reveal">
+        <p class="t-body">We don't ask for testimonials. These arrived on their own.</p>
+      </div>
+    </div>
+    <div class="testimonials-grid reveal">
+      <div class="testimonial"><p class="testimonial-quote">"I came to finish the last chapter of a book I'd been working on for three years. I finished it in two days. Not because I worked harder — because I finally stopped being interrupted by my own noise."</p><div class="testimonial-name">Priya R.</div><div class="testimonial-role">Author</div></div>
+      <div class="testimonial"><p class="testimonial-quote">"The decision that changed the direction of our company happened on a Tuesday afternoon in the reading parlour. I hadn't planned to make any decisions. I was just sitting quietly. That's the thing about this place."</p><div class="testimonial-name">Arjun M.</div><div class="testimonial-role">Founder, Series B</div></div>
+      <div class="testimonial"><p class="testimonial-quote">"I've tried meditation retreats, silent workshops, productivity systems. None of it worked the way one afternoon here did. It's not about technique. It's about having a place where the world agrees to leave you alone."</p><div class="testimonial-name">Meera S.</div><div class="testimonial-role">Independent designer</div></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="reveal">
+      <div class="t-label" style="margin-bottom:16px">Questions</div>
+      <h2 class="t-heading">What people ask<br>before they apply</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item"><button class="faq-question">Is this a meditation retreat?<span class="faq-icon">+</span></button><div class="faq-answer"><div class="faq-answer-inner">No. There is no guided practice, no programme, and no spiritual framing of any kind. This is a place to work, think, create, or simply be. What you do with the silence is entirely your own.</div></div></div>
+      <div class="faq-item"><button class="faq-question">Can I bring my laptop?<span class="faq-icon">+</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes, in the deep work library only. Devices are placed in a personal lockable drawer at the entrance to all other spaces. We provide notebooks, pens, and printed reference materials on request.</div></div></div>
+      <div class="faq-item"><button class="faq-question">What if I receive an urgent call?<span class="faq-icon">+</span></button><div class="faq-answer"><div class="faq-answer-inner">There is a single private telephone booth at the entrance for genuine emergencies. Our staff receive messages on your behalf and alert you if something truly requires your attention. Most members find they need this far less than they expected.</div></div></div>
+      <div class="faq-item"><button class="faq-question">Is this only for introverts?<span class="faq-icon">+</span></button><div class="faq-answer"><div class="faq-answer-inner">No. Many of our members are deeply extroverted people who have simply discovered that their best thinking happens alone. The need for quiet is not a personality type. It is a condition of serious work.</div></div></div>
+      <div class="faq-item"><button class="faq-question">How does the invite work?<span class="faq-icon">+</span></button><div class="faq-answer"><div class="faq-answer-inner">Two questions. A short conversation with the founder. If it feels right for both sides, you receive your first invite. We are not selecting for impressive people — we are looking for people with a genuine relationship to solitude and quiet work.</div></div></div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <h2 class="cta-band-headline">The rarest luxury<br>in modern life is<br><em>uninterrupted time.</em></h2>
+    <p class="cta-band-sub">You already know you need it. The only question is whether you're willing to protect it.</p>
+    <div class="cta-band-actions">
+      <button class="btn-gold" onclick="openInvite()">Request Invite →</button>
+      <button class="btn-outline" onclick="openDayDesigner()">Design your day first</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div>
+      <div class="footer-brand">The Silent Club</div>
+      <div class="footer-tagline">Silence as a Service · Bhigwan, Pune</div>
+      <div class="footer-collab">
+        <p class="footer-collab-text">Artist, musician, or experience creator? Host an event here.</p>
+        <button class="btn-ghost" onclick="openCollab()">Collaborate with us →</button>
+      </div>
+    </div>
+    <div>
+      <div class="footer-links-label">Explore</div>
+      <span class="footer-link" onclick="showPage('home')">Home</span>
+      <span class="footer-link" onclick="showPage('about')">About</span>
+      <span class="footer-link" onclick="showPage('estate')">The Estate</span>
+      <span class="footer-link" onclick="showPage('blog')">Journal</span>
+    </div>
+    <div>
+      <div class="footer-links-label">Connect</div>
+      <span class="footer-link">Instagram</span>
+      <span class="footer-link">Substack</span>
+      <span class="footer-link" onclick="openInvite()">Request Invite</span>
+      <span class="footer-link" onclick="openCollab()">Host an Event</span>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 The Silent Club. All rights reserved.</div>
+      <div class="footer-copy">The Silent Club is a registered initiative of Silent Tourism Foundation.</div>
+    </div>
+  </footer>
+
+</div><!-- end page-home -->
+
+
+<!-- ══════════════════════════════════════
+     PAGE: ABOUT
+══════════════════════════════════════ -->
+<div class="page" id="page-about">
+
+  <section class="about-hero">
+    <div class="about-hero-bg-img"></div>
+    <div class="about-hero-bg"></div>
+    <div class="about-hero-content">
+      <div class="t-label" style="margin-bottom:20px">About</div>
+      <h1 class="t-display"><em>Designed</em><br>Deliberately.</h1>
+      <div class="about-hero-grid">
+        <div>
+          <p class="t-body">We live in a culture that has made noise the default — open offices, constant connectivity, the ambient hum of notifications that never quite stops. We have optimised for collaboration, for speed, for presence, for always being available.</p>
+          <p class="t-body" style="margin-top:16px">The Silent Club exists because we believe this is a problem worth solving with a place, not an app. Not a technique. Not a mindset. A physical, protected place where the default is silence and the departure from it requires a conscious choice.</p>
+        </div>
+        <div>
+          <p class="t-body">That is all we are. That is enough.</p>
+          <div class="rule-short"></div>
+          <p class="t-body"><em style="font-family:var(--serif);font-size:1rem;color:var(--gold-pale)">"Not for everyone."</em><br>We mean this kindly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORIGIN -->
+  <section class="about-origin">
+    <div class="reveal">
+      <div class="t-label" style="margin-bottom:20px">The origin</div>
+      <p class="about-origin-quote">"I kept booking flights to places I could be alone. It took me too long to realise I was looking for something that should exist two hours from my house."</p>
+      <div class="rule-short"></div>
+      <p class="t-body">The Silent Club began as a personal frustration. As a founder in Pune, I could find a meeting room, a co-working desk, a meditation app, a productivity course. I could not find a place that simply asked nothing of me — a place where I could think without performing, work without interruption, and exist without an agenda attached.<br><br>I spent a year looking. Then I stopped looking and started building.</p>
+    </div>
+    <div class="reveal">
+      <div class="sidebar-block">
+        <div class="sidebar-label">Founded</div>
+        <div class="sidebar-value">2025</div>
+        <div class="sidebar-desc">Built by a founder who needed this and couldn't find it anywhere.</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label">Location</div>
+        <div class="sidebar-value">Bhigwan, Pune</div>
+        <div class="sidebar-desc">A private estate, 2 hours from the city centre. Accessible, but genuinely apart.</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label">Community</div>
+        <div class="sidebar-value">Always ≤ 20 members</div>
+        <div class="sidebar-desc">A deliberate constraint. The community is most valuable when its silence is collective.</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label">Philosophy</div>
+        <div class="sidebar-value">No programme. No improvement.</div>
+        <div class="sidebar-desc">We have no aspiration to make you more productive or more anything. We protect the conditions in which you become more yourself.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER -->
+  <section class="founder-section">
+    <div class="reveal">
+      <div class="founder-photo-frame">
+        <div class="founder-photo-placeholder">D</div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="t-label" style="margin-bottom:16px">The founder</div>
+      <div class="founder-name">Your Name</div>
+      <div class="founder-role">Founder, The Silent Club</div>
+      <div class="founder-statement">
+        <p>I did not build this to teach silence.</p>
+        <p>I built it because I had no clarity in the environments I was succeeding in. Too much input. Too much performance. Too many distracted roles. Clarity did not come from more strategy. It came from removing interference. And I started designing conditions.</p>
+        <p>My role here is not to guide you. It is to protect the structure. I do not tell you what to do. I do not interpret what you experience. I maintain the environment so you can see clearly for yourself.</p>
+        <p>I am not the answer. I am the condition.<br>You decide.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BELIEFS -->
+  <section class="about-beliefs">
+    <div class="about-beliefs-header reveal">
+      <div class="t-label" style="margin-bottom:16px">What we believe</div>
+      <h2 class="t-heading" style="max-width:540px">Six convictions that shaped every decision we made about this place</h2>
+    </div>
+    <div class="beliefs-grid">
+      <div class="belief-item reveal"><div class="belief-num">01</div><div class="belief-title">Silence is not the absence of something</div><p class="belief-body">It is a presence in itself. The best thinkers have always known this. It is the condition that allows you to hear ideas that cannot compete with noise — your own most important ones.</p></div>
+      <div class="belief-item reveal"><div class="belief-num">02</div><div class="belief-title">Solitude is a skill that atrophies without practice</div><p class="belief-body">We have built a world that trains people out of their ability to be alone. What we offer is not merely a space — it is repeated practice in the art of being present with yourself.</p></div>
+      <div class="belief-item reveal"><div class="belief-num">03</div><div class="belief-title">The body must be still before the mind can move</div><p class="belief-body">Design matters more than intention. An environment that asks nothing of your senses gives everything to your thinking. We built the estate to be physically unremarkable so that your mind can be remarkable.</p></div>
+      <div class="belief-item reveal"><div class="belief-num">04</div><div class="belief-title">Productivity is the wrong frame for what happens here</div><p class="belief-body">The most valuable things that occur in this space — the realisations, the course-corrections, the questions finally faced honestly — are not measurable. They are also not accidental.</p></div>
+      <div class="belief-item reveal"><div class="belief-num">05</div><div class="belief-title">A place is different from a practice</div><p class="belief-body">Meditation apps, productivity systems, and wellness routines all require will. A place simply requires arrival. We built something you can walk into, not something you have to remember to do.</p></div>
+      <div class="belief-item reveal"><div class="belief-num">06</div><div class="belief-title">Small is the only way this works</div><p class="belief-body">The moment a space like this scales, it becomes a co-working space with a no-phones policy. We will always be twenty members. The waitlist exists because we mean it.</p></div>
+    </div>
+  </section>
+
+  <!-- STF -->
+  <section class="stf-section">
+    <div class="reveal">
+      <div class="t-label" style="margin-bottom:16px">The larger intention</div>
+      <h2 class="t-heading" style="max-width:400px">BIGवन: A Case for<br><em>Silent Tourism</em></h2>
+      <div class="rule-short"></div>
+      <p class="t-body">Silence is cognitive infrastructure. As attention becomes scarce, environments that protect it become essential. Modern tourism amplifies stimulation. Silent tourism reduces it. The Silent Club is a pilot for this shift. The Silent Tourism Foundation documents and open-sources this architecture — not as a franchise, but as a contribution to how environments are designed.<br><br><em style="color:var(--gold-pale)">Designed deliberately. Built to endure.</em></p>
+      <button class="btn-outline" style="margin-top:28px">Download the white paper ↓</button>
+    </div>
+    <div class="reveal" style="text-align:right;">
+      <div style="font-family:var(--serif);font-size:3rem;color:var(--gold-dim);letter-spacing:0.1em;line-height:1;">✦ ✦<br>✦ ✦</div>
+      <div class="stf-logo">Silent Tourism Foundation</div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <h2 class="cta-band-headline">Come and see<br>what quiet<br><em>feels like.</em></h2>
+    <p class="cta-band-sub">Two questions. A short conversation. If it feels right, you'll receive your first invite.</p>
+    <div class="cta-band-actions">
+      <button class="btn-gold" onclick="openInvite()">Request Invite →</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div><div class="footer-brand">The Silent Club</div><div class="footer-tagline">Silence as a Service · Bhigwan, Pune</div></div>
+    <div><div class="footer-links-label">Explore</div><span class="footer-link" onclick="showPage('home')">Home</span><span class="footer-link" onclick="showPage('estate')">Estate</span><span class="footer-link" onclick="showPage('blog')">Journal</span></div>
+    <div><div class="footer-links-label">Connect</div><span class="footer-link">Instagram</span><span class="footer-link">Substack</span><span class="footer-link" onclick="openInvite()">Request Invite</span></div>
+    <div class="footer-bottom"><div class="footer-copy">© 2025 The Silent Club.</div><div class="footer-copy">A registered initiative of Silent Tourism Foundation.</div></div>
+  </footer>
+
+</div><!-- end page-about -->
+
+
+<!-- ══════════════════════════════════════
+     PAGE: ESTATE
+══════════════════════════════════════ -->
+<div class="page" id="page-estate">
+
+  <section class="estate-hero">
+    <div class="t-label">The Estate</div>
+    <h1 class="t-display" style="margin-top:20px"><em>Held,</em><br>Not Hired.</h1>
+    <div class="estate-hero-grid">
+      <div class="reveal">
+        <p class="t-body">A private estate on the edge of Bhigwan — one of Maharashtra's most ecologically rare landscapes. Four acres. Designed to ask nothing of you. Built to hold whatever you bring.</p>
+      </div>
+      <div class="reveal">
+        <div class="estate-facts">
+          <div class="estate-fact"><div class="estate-fact-num">4</div><div class="estate-fact-label">Acres of private grounds</div></div>
+          <div class="estate-fact"><div class="estate-fact-num">6+</div><div class="estate-fact-label">Accommodation options</div></div>
+          <div class="estate-fact"><div class="estate-fact-num">2h</div><div class="estate-fact-label">From Pune city centre</div></div>
+          <div class="estate-fact"><div class="estate-fact-num">0</div><div class="estate-fact-label">WiFi zones anywhere</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SETTING -->
+  <section class="setting">
+    <div class="reveal">
+      <div class="t-label" style="margin-bottom:16px">Why Bhigwan</div>
+      <h2 class="t-heading">One of Maharashtra's<br><em>most ecologically rare</em><br>landscapes.</h2>
+    </div>
+    <div class="reveal">
+      <p class="t-body">Bhigwan is known for its migratory birds — flamingos, painted storks, pelicans — and its particular quality of stillness. Two hours from Pune. Far enough to be genuinely apart. Close enough to be a decision, not an expedition.<br><br>Most visitors come for bird watching at dawn or dusk. We built The Silent Club for what happens in between — the hours when the lake is still, the light is flat, and there is nothing asking for your attention except your own thoughts.</p>
+      <div class="rule-short"></div>
+      <p class="t-body"><em style="font-family:var(--serif);color:var(--gold-pale)">"Distance is part of the design. Far enough to interrupt routine. Close enough to not require escape."</em></p>
+    </div>
+  </section>
+
+  <!-- SPACES -->
+  <section class="spaces">
+    <div class="spaces-header">
+      <div class="reveal">
+        <div class="t-label" style="margin-bottom:16px">The spaces</div>
+        <h2 class="t-heading">Every space designed<br>for a different<br><em>quality of thought.</em></h2>
+      </div>
+      <div class="reveal">
+        <p class="t-body">Four categories. Each calibrated for a different relationship between body, mind, and environment. You move between them according to what you need — not what's scheduled.</p>
+      </div>
+    </div>
+    <div class="spaces-grid">
+      <div class="space-card reveal">
+        <div class="space-icon">01 · Accommodation</div>
+        <div class="space-name">Where you sleep</div>
+        <p class="space-desc">Private rooms, shared dorms, mud hut, treehouse. Each designed for undistracted rest. Accommodation is chosen at booking — room or dorm depending on your need for solitude or economy.</p>
+      </div>
+      <div class="space-card reveal">
+        <div class="space-icon">02 · Nature</div>
+        <div class="space-name">Where you move</div>
+        <p class="space-desc">The lake. The forest trail. The bird watching deck. The farm. Bhigwan's landscape is the estate's largest room. We provide gear — binoculars, fishing rods, telescope, trail maps. Everything self-led.</p>
+      </div>
+      <div class="space-card reveal">
+        <div class="space-icon">03 · Practice</div>
+        <div class="space-name">Where you work</div>
+        <p class="space-desc">Deep work library. Creative studio. Reading parlour. Contemplation garden. Each calibrated for a different quality of attention. The library is the only space where laptops are permitted.</p>
+      </div>
+      <div class="space-card reveal">
+        <div class="space-icon">04 · Food</div>
+        <div class="space-name">Where you eat</div>
+        <p class="space-desc">Silent meals. No menu, no ordering. Seasonal and local — prepared each morning. Breakfast, lunch, high tea, dinner. The rhythm of meals marks the day without the intrusion of choice.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <h2 class="cta-band-headline">See it for<br><em>yourself.</em></h2>
+    <p class="cta-band-sub">Two questions. A short conversation. If it feels right, you'll receive your first invite.</p>
+    <div class="cta-band-actions">
+      <button class="btn-gold" onclick="openInvite()">Request Invite →</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div><div class="footer-brand">The Silent Club</div><div class="footer-tagline">Silence as a Service · Bhigwan, Pune</div></div>
+    <div><div class="footer-links-label">Explore</div><span class="footer-link" onclick="showPage('home')">Home</span><span class="footer-link" onclick="showPage('about')">About</span><span class="footer-link" onclick="showPage('estate')">The Estate</span><span class="footer-link" onclick="showPage('blog')">Journal</span></div>
+    <div><div class="footer-links-label">Connect</div><span class="footer-link">Instagram</span><span class="footer-link">Substack</span><span class="footer-link" onclick="openInvite()">Request Invite</span></div>
+    <div class="footer-bottom"><div class="footer-copy">© 2025 The Silent Club.</div><div class="footer-copy">A registered initiative of Silent Tourism Foundation.</div></div>
+  </footer>
+
+</div><!-- end page-estate -->
+
+
+<div class="page" id="page-blog">
+  <section class="container" style="padding:clamp(80px,12vw,140px) 0;">
+    <div class="t-label" style="margin-bottom:16px">Journal</div>
+    <h1 class="t-display" style="margin-bottom:24px">Notes from<br><em>the quiet.</em></h1>
+    <p class="t-body" style="max-width:520px">Essays and field notes are in progress. Check back soon, or leave your email on the home page to hear when we publish.</p>
+  </section>
+</div>
+
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modalInvite" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <button type="button" class="modal-close" onclick="closeModal('modalInvite')" aria-label="Close">×</button>
+    <div class="t-label" style="margin-bottom:12px">Request invite</div>
+    <h2 class="t-heading" style="margin-bottom:16px;font-size:1.6rem">Two questions.<br>No pitch.</h2>
+    <p class="t-body" style="margin-bottom:24px">We respond within a few days. This form is a placeholder — wire it to your backend when ready.</p>
+    <div class="modal-field"><label class="modal-label">Email</label><input type="email" class="modal-input" placeholder="you@example.com"></div>
+    <button type="button" class="btn-gold" style="width:100%" onclick="closeModal('modalInvite')">Submit (demo)</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalDay" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <button type="button" class="modal-close" onclick="closeModal('modalDay')" aria-label="Close">×</button>
+    <div class="t-label" style="margin-bottom:12px">Day designer</div>
+    <h2 class="t-heading" style="margin-bottom:16px;font-size:1.6rem">What a day<br><em>might</em> look like</h2>
+    <p class="t-body">Morning: walk the trail. Midday: deep work in the library. Afternoon: lake or reading parlour. Evening: silent meal. No two days need match — the estate is yours to sequence.</p>
+    <button type="button" class="btn-outline" style="margin-top:24px" onclick="closeModal('modalDay')">Close</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalCollab" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <button type="button" class="modal-close" onclick="closeModal('modalCollab')" aria-label="Close">×</button>
+    <div class="t-label" style="margin-bottom:12px">Collaborate</div>
+    <h2 class="t-heading" style="margin-bottom:16px;font-size:1.6rem">Host an event</h2>
+    <p class="t-body">For artists, musicians, and experience creators. Tell us what you have in mind — this modal is a placeholder for a full inquiry form.</p>
+    <button type="button" class="btn-gold" style="margin-top:24px" onclick="closeModal('modalCollab')">Close</button>
+  </div>
+</div>
+
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(function (p) { p.classList.remove('active'); });
+    var page = document.getElementById('page-' + id);
+    if (page) page.classList.add('active');
+    document.querySelectorAll('.nav-links a').forEach(function (a) { a.classList.remove('active'); });
+    var link = document.querySelector('.nav-links a[data-page="' + id + '"]');
+    if (link) link.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(checkReveal, 100);
+  }
+
+  function openInvite() {
+    document.getElementById('modalInvite').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function openDayDesigner() {
+    document.getElementById('modalDay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function openCollab() {
+    document.getElementById('modalCollab').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.modal-overlay').forEach(function (overlay) {
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeModal(overlay.id);
+    });
+  });
+
+  window.addEventListener('scroll', function () {
+    var nav = document.getElementById('nav');
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  var revealObserver = null;
+  function checkReveal() {
+    if (revealObserver) revealObserver.disconnect();
+    revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+
+    document.querySelectorAll('.page.active .reveal').forEach(function (el) {
+      el.classList.remove('visible');
+      revealObserver.observe(el);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.faq-question').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var item = btn.parentElement;
+        var wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(function (i) { i.classList.remove('open'); });
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+    var homeLink = document.querySelector('.nav-links a[data-page="home"]');
+    if (homeLink) homeLink.classList.add('active');
+    checkReveal();
+  });
+
+  setTimeout(checkReveal, 200);
+</script>
+
+</body>
+</html>

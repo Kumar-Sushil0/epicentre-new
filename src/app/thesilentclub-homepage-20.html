@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Silent Club &mdash; Bhigwan, Pune</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f0b08;--bg-2:#160f0a;--bg-3:#1c1410;--bg-4:#241a14;
+  --gold:#c5a065;--gold-dim:#8a6e42;--gold-pale:#e8d5b0;
+  --text-2:#b09070;--text-3:#7a6048;
+  --rule:#2a1f17;--rule-2:#3a2a1f;
+  --serif:'Cormorant',Georgia,serif;
+  --sans:'Jost',sans-serif;
+  --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+  --g:6vw;--max:1200px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--gold-pale);font-family:var(--sans);font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4;}
+a{color:inherit;text-decoration:none;}
+.reveal{opacity:1;transform:translateY(0);transition:opacity 0.8s ease,transform 0.8s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.btn-gold{display:inline-block;background:var(--gold);color:var(--bg);font-size:0.65rem;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;padding:14px 26px;border:none;cursor:pointer;font-family:var(--sans);transition:background 0.2s;text-align:center;}
+.btn-gold:hover{background:var(--gold-pale);}
+.btn-gold:disabled{background:var(--rule-2);color:var(--text-3);cursor:default;}
+.btn-outline{display:inline-block;background:transparent;color:var(--text-2);font-size:0.65rem;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;padding:13px 26px;border:1px solid var(--rule-2);cursor:pointer;font-family:var(--sans);transition:border-color 0.2s,color 0.2s;text-align:center;}
+.btn-outline:hover{border-color:var(--gold-dim);color:var(--gold);}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(15,11,8,0.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--rule);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:var(--max);margin:0 auto;padding:0 var(--g);}
+.nav-brand{font-family:var(--serif);font-size:1.1rem;font-weight:400;color:var(--gold-pale);letter-spacing:0.04em;cursor:pointer;}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
+.nav-links a{font-size:0.68rem;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3);cursor:pointer;transition:color 0.2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{font-size:0.65rem;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:9px 22px;border:none;cursor:pointer;font-family:var(--sans);transition:background 0.2s;}
+.nav-cta:hover{background:var(--gold-pale);}
+@media(max-width:860px){.nav-links{display:none;}}
+
+/* HERO */
+.hero{min-height:calc(100vh - 60px);display:grid;grid-template-columns:1fr 1fr;padding-top:60px;border-bottom:1px solid var(--rule);position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 75% 60%,rgba(197,160,101,0.05) 0%,transparent 55%);pointer-events:none;}
+.hero-left{padding:clamp(32px,4vw,56px) var(--g) clamp(32px,4vw,56px);display:flex;flex-direction:column;justify-content:flex-end;}
+.hero-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:40px;}
+.hero-eyebrow-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;animation:pulse 3s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.25}}
+.hero-eyebrow-text{font-size:0.63rem;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-3);}
+.hero-headline{font-family:var(--serif);font-weight:300;font-size:clamp(3.4rem,6.8vw,7.2rem);line-height:0.93;letter-spacing:-0.02em;color:var(--gold-pale);margin-bottom:36px;}
+.hero-headline em{font-style:italic;color:var(--gold);}
+.hero-headline .line{display:block;overflow:hidden;}
+.hero-headline .line span{display:block;transform:translateY(105%);animation:slideUp 1s cubic-bezier(0.22,1,0.36,1) forwards;}
+.hero-headline .line:nth-child(1) span{animation-delay:0.08s;}
+.hero-headline .line:nth-child(2) span{animation-delay:0.18s;}
+.hero-headline .line:nth-child(3) span{animation-delay:0.28s;}
+.hero-headline .line:nth-child(4) span{animation-delay:0.38s;}
+@keyframes slideUp{to{transform:translateY(0);}}
+.hero-statement{font-size:0.9rem;font-weight:300;line-height:1.85;color:var(--text-2);max-width:400px;margin-bottom:44px;}
+@keyframes fadeIn{to{opacity:1;}}
+.hero-actions{display:flex;flex-direction:column;gap:10px;max-width:260px;}
+.hero-right{display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:clamp(32px,4vw,56px) var(--g);}
+.hero-est{font-size:0.63rem;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-3);}
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);width:260px;}
+.hero-stat{background:var(--bg-2);padding:0 12px;height:44px;display:flex;flex-direction:column;justify-content:center;transition:background 0.3s;}
+.hero-stat:hover{background:var(--bg-3);}
+.hero-stat-num{font-family:var(--serif);font-size:1.1rem;font-weight:300;color:var(--gold);line-height:1;margin-bottom:1px;}
+.hero-stat-label{font-size:0.52rem;font-weight:300;letter-spacing:0.04em;color:var(--text-3);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+@media(max-width:860px){.hero{grid-template-columns:1fr;min-height:auto;}.hero-left{border-bottom:1px solid var(--rule);}}
+
+/* WAITLIST */
+.waitlist-bar{background:var(--bg-2);border-bottom:1px solid var(--rule);padding:13px var(--g);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.waitlist-left{display:flex;align-items:center;gap:10px;}
+.waitlist-dot{width:5px;height:5px;border-radius:50%;background:#6b9b5e;flex-shrink:0;animation:pulse 2.5s infinite;}
+.waitlist-text{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-3);}
+.waitlist-form{display:flex;}
+.waitlist-input{background:var(--bg-3);border:1px solid var(--rule-2);border-right:none;padding:8px 16px;font-family:var(--sans);font-size:0.78rem;color:var(--gold-pale);outline:none;width:220px;}
+.waitlist-input::placeholder{color:var(--text-3);}
+.waitlist-submit{background:var(--gold-dim);color:var(--bg);border:none;padding:8px 18px;font-family:var(--sans);font-size:0.63rem;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;transition:background 0.2s;}
+.waitlist-submit:hover{background:var(--gold);}
+
+/* MANIFESTO */
+.manifesto{padding:clamp(96px,12vw,140px) var(--g);display:grid;grid-template-columns:200px 1fr;gap:0 80px;align-items:start;border-bottom:1px solid var(--rule);position:relative;}
+.manifesto::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(197,160,101,0.03) 0%,transparent 60%);pointer-events:none;}
+.manifesto-label{padding-top:8px;position:sticky;top:80px;}
+.manifesto-rule{width:36px;height:1px;background:var(--gold-dim);margin-bottom:18px;}
+.manifesto-label-text{font-size:0.6rem;font-weight:400;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-3);line-height:1.6;}
+.manifesto-quote{font-family:var(--serif);font-weight:300;font-size:clamp(1.6rem,3vw,2.6rem);line-height:1.5;color:var(--gold-pale);letter-spacing:-0.01em;}
+.manifesto-quote .line-break{display:block;}
+.manifesto-quote .gap{display:block;height:0.6em;}
+.manifesto-quote em{font-style:italic;color:var(--gold);}
+@media(max-width:860px){.manifesto{grid-template-columns:1fr;gap:36px;}.manifesto-label{position:static;}}
+
+/* WHAT IS TSC */
+.what-is{padding:clamp(96px,12vw,140px) var(--g);display:grid;grid-template-columns:1fr 1.5fr;gap:0 100px;align-items:start;border-bottom:1px solid var(--rule);background:var(--bg-2);position:relative;}
+.what-is::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 60%,rgba(197,160,101,0.03) 0%,transparent 55%);pointer-events:none;}
+.what-is-left{position:sticky;top:80px;}
+.what-is-direction{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(1.8rem,3.2vw,3rem);color:var(--gold-pale);line-height:1.15;letter-spacing:-0.01em;margin-bottom:12px;}
+.what-is-rest{font-size:0.6rem;font-weight:400;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-3);}
+.what-is-rule{width:36px;height:1px;background:var(--gold-dim);margin:24px 0;}
+.what-is-note{font-family:var(--serif);font-style:italic;font-size:0.875rem;color:var(--text-3);line-height:1.65;max-width:220px;}
+.what-is-body p{font-size:0.925rem;font-weight:300;line-height:1.9;color:var(--text-2);margin-bottom:20px;}
+.what-is-body p:last-child{margin-bottom:0;}
+.what-is-closing{font-family:var(--serif);font-style:italic;font-size:1.05rem;font-weight:300;color:var(--gold-pale);line-height:1.5;padding-top:24px;border-top:1px solid var(--rule);margin-top:8px;}
+@media(max-width:860px){.what-is{grid-template-columns:1fr;gap:48px;}.what-is-left{position:static;}}
+
+/* SAAS */
+.saas{padding:clamp(40px,5vw,60px) var(--g);text-align:center;position:relative;border-bottom:none;}
+.saas::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(197,160,101,0.04) 0%,transparent 65%);pointer-events:none;}
+.saas-line{font-family:var(--serif);font-weight:300;font-size:clamp(2.4rem,5vw,5rem);color:var(--gold-pale);line-height:1;letter-spacing:-0.01em;display:flex;align-items:baseline;justify-content:center;gap:0.25em;flex-wrap:wrap;}
+.saas-line em{font-style:italic;color:var(--gold);}
+.saas-line .saas-as{font-size:0.38em;font-family:var(--serif);font-weight:300;font-style:italic;letter-spacing:0.04em;color:var(--text-3);align-self:center;}
+
+/* WHO */
+.who{border-bottom:1px solid var(--rule);}
+.who-header{padding:clamp(64px,8vw,96px) var(--g) clamp(48px,5vw,64px);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;}
+.who-label{font-size:0.6rem;font-weight:400;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;}
+.who-heading{font-family:var(--serif);font-weight:300;font-size:clamp(1.9rem,3.5vw,3.2rem);color:var(--gold-pale);line-height:1.1;letter-spacing:-0.01em;}
+.who-intro{font-size:0.9rem;font-weight:300;line-height:1.85;color:var(--text-2);}
+.who-members{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--rule);align-items:stretch;}
+.who-member{padding:clamp(36px,4vw,52px) var(--g);border-right:1px solid var(--rule);transition:background 0.4s;display:flex;flex-direction:column;}
+.who-member:last-child{border-right:none;}
+.who-member:hover{background:var(--bg-2);}
+.who-member-type{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--gold-pale);margin-bottom:12px;}
+.who-member-desc{font-size:0.875rem;font-weight:300;line-height:1.75;color:var(--text-2);margin-bottom:24px;flex:1;}
+.who-member-quote{font-family:var(--serif);font-style:italic;font-size:0.875rem;color:var(--text-3);line-height:1.65;padding-top:20px;border-top:1px solid var(--rule);}
+@media(max-width:860px){.who-header{grid-template-columns:1fr;gap:24px;}.who-members{grid-template-columns:1fr;}.who-member{border-right:none;border-bottom:1px solid var(--rule);}}
+
+/* DESIGNED */
+.designed{padding:clamp(80px,10vw,120px) var(--g);border-bottom:1px solid var(--rule);background:var(--bg-2);}
+.designed-header{text-align:center;margin-bottom:clamp(56px,7vw,80px);}
+.designed-heading{font-family:var(--serif);font-weight:300;font-size:clamp(1.9rem,3.5vw,3.2rem);color:var(--gold-pale);letter-spacing:-0.01em;margin-bottom:12px;}
+.designed-sub{font-size:0.875rem;font-weight:300;color:var(--text-3);font-family:var(--serif);font-style:italic;}
+.designed-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0 clamp(40px,5vw,80px);}
+.designed-card{padding-top:32px;border-top:1px solid var(--rule-2);transition:border-color 0.3s;}
+.designed-card:hover{border-color:var(--gold-dim);}
+.designed-icon{width:44px;height:44px;border-radius:50%;border:1px solid var(--rule-2);display:flex;align-items:center;justify-content:center;margin-bottom:20px;transition:border-color 0.3s;}
+.designed-card:hover .designed-icon{border-color:var(--gold-dim);}
+.designed-icon svg{width:18px;height:18px;stroke:var(--gold-dim);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.designed-card-title{font-family:var(--serif);font-weight:400;font-size:1.3rem;color:var(--gold-pale);margin-bottom:12px;}
+.designed-card-desc{font-size:0.875rem;font-weight:300;line-height:1.8;color:var(--text-3);}
+.designed-closing{margin-top:clamp(56px,7vw,80px);text-align:center;padding-top:clamp(48px,6vw,72px);border-top:1px solid var(--rule);}
+.designed-closing-label{font-size:0.6rem;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-3);margin-bottom:20px;}
+.designed-closing-line{font-family:var(--serif);font-weight:300;font-size:clamp(1.6rem,3vw,2.8rem);color:var(--gold-pale);line-height:1.3;letter-spacing:-0.01em;}
+.designed-closing-line em{font-style:italic;color:var(--gold);}
+@media(max-width:860px){.designed-grid{grid-template-columns:1fr;gap:40px;}}
+
+/* DEPTH */
+.depth{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);}
+.depth-header{padding:clamp(64px,8vw,100px) var(--g) clamp(40px,5vw,56px);text-align:center;border-bottom:1px solid var(--rule);}
+.depth-label{font-size:0.6rem;font-weight:400;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;}
+.depth-heading{font-family:var(--serif);font-weight:300;font-size:clamp(1.8rem,3.2vw,3rem);color:var(--gold-pale);letter-spacing:-0.01em;margin-bottom:10px;}
+.depth-sub{font-size:0.875rem;font-weight:300;color:var(--text-3);font-style:italic;font-family:var(--serif);}
+.depth-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);align-items:stretch;}
+.depth-card{background:var(--bg);padding:clamp(32px,4vw,48px) clamp(24px,3vw,36px);display:flex;flex-direction:column;cursor:pointer;position:relative;border-bottom:2px solid transparent;transition:background 0.3s,border-color 0.3s;height:100%;}
+.depth-card:hover{background:var(--bg-2);}
+.depth-card.selected{background:var(--bg-2);border-bottom-color:var(--gold);}
+.depth-card-check{position:absolute;top:20px;right:20px;width:18px;height:18px;border-radius:50%;border:1px solid var(--rule-2);display:flex;align-items:center;justify-content:center;transition:background 0.2s,border-color 0.2s;}
+.depth-card.selected .depth-card-check{background:var(--gold);border-color:var(--gold);}
+.depth-card-check::after{content:'';width:5px;height:5px;border-radius:50%;background:var(--bg);opacity:0;transition:opacity 0.2s;}
+.depth-card.selected .depth-card-check::after{opacity:1;}
+.depth-card-num{font-size:2.4rem;font-family:var(--serif);font-weight:300;color:var(--rule-2);line-height:1;margin-bottom:16px;letter-spacing:0;}
+.depth-card-name{font-family:var(--serif);font-size:1.8rem;font-weight:300;color:var(--gold-pale);margin-bottom:4px;line-height:1;}
+.depth-card-cycle{font-size:0.6rem;font-weight:400;letter-spacing:0.14em;color:var(--gold-dim);text-transform:uppercase;margin-bottom:16px;}
+.depth-card-for{font-size:0.8rem;font-weight:300;color:var(--text-3);line-height:1.65;margin-bottom:20px;}
+.depth-card-features{list-style:none;margin-bottom:20px;flex:1;}
+.depth-card-features li{font-size:0.78rem;font-weight:300;color:var(--text-3);padding:7px 0;border-bottom:1px solid var(--rule);display:flex;gap:10px;align-items:baseline;line-height:1.5;}
+.depth-card-features li::before{content:'—';color:var(--gold-dim);flex-shrink:0;font-size:0.62rem;}
+.depth-toggle{display:flex;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:20px;width:100%;}
+.depth-toggle-btn{flex:1;background:var(--bg-3);color:var(--text-3);border:none;padding:7px 8px;font-family:var(--sans);font-size:0.58rem;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:background 0.2s,color 0.2s;}
+.depth-toggle-btn.active{background:var(--gold-dim);color:var(--bg);}
+.depth-price-block{margin-top:auto;padding-top:20px;border-top:1px solid var(--rule);min-height:64px;}.depth-price{font-family:var(--serif);font-size:1.6rem;font-weight:300;color:var(--gold);line-height:1;margin-bottom:4px;}
+.depth-price-note{font-size:0.6rem;color:var(--text-3);letter-spacing:0.04em;line-height:1.5;}
+.depth-cta-bar{padding:24px var(--g);display:flex;align-items:center;justify-content:space-between;gap:24px;border-top:1px solid var(--rule);background:var(--bg-2);flex-wrap:wrap;}
+.depth-cta-label{font-family:var(--serif);font-size:1rem;color:var(--text-3);font-style:italic;}
+.depth-cta-label span{color:var(--gold-pale);font-style:normal;}
+@media(max-width:900px){.depth-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:540px){.depth-grid{grid-template-columns:1fr;}}
+
+/* HOW IT WORKS */
+.how{padding:clamp(80px,10vw,120px) var(--g);display:grid;grid-template-columns:1fr 1.8fr;gap:0 100px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);}
+.how-left{position:sticky;top:80px;align-self:start;}
+.how-label{font-size:0.6rem;font-weight:400;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;}
+.how-heading{font-family:var(--serif);font-weight:300;font-size:clamp(1.8rem,3vw,2.8rem);color:var(--gold-pale);line-height:1.1;letter-spacing:-0.01em;margin-bottom:20px;}
+.how-intro{font-size:0.875rem;font-weight:300;line-height:1.8;color:var(--text-3);}
+.how-rules{display:flex;flex-direction:column;}
+.how-rule-item{display:grid;grid-template-columns:28px 1fr;gap:0 24px;padding:24px 0;border-bottom:1px solid var(--rule);align-items:start;}
+.how-rule-item:first-child{border-top:1px solid var(--rule);}
+.how-rule-num{font-family:var(--serif);font-size:0.85rem;color:var(--text-3);padding-top:2px;}
+.how-rule-text{font-size:0.9rem;font-weight:300;line-height:1.75;color:var(--text-2);}
+.how-closing{margin-top:32px;font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--text-3);padding-left:52px;}
+@media(max-width:860px){.how{grid-template-columns:1fr;gap:48px;}.how-left{position:static;}.how-closing{padding-left:0;}}
+
+/* ESTATE PROVIDES */
+.provides{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);}
+.provides-header{padding:clamp(64px,8vw,100px) var(--g) clamp(40px,5vw,56px);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;border-bottom:1px solid var(--rule);}
+.provides-label{font-size:0.6rem;font-weight:400;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;}
+.provides-heading{font-family:var(--serif);font-weight:300;font-size:clamp(1.8rem,3.2vw,3rem);color:var(--gold-pale);letter-spacing:-0.01em;line-height:1.1;}
+.provides-inclusive{font-size:0.9rem;font-weight:300;line-height:1.85;color:var(--text-2);}
+.provides-inclusive em{font-family:var(--serif);font-style:italic;color:var(--gold-pale);font-size:1rem;}
+.provides-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);}
+.provides-col{background:var(--bg);}
+.col-label{padding:18px var(--g);border-bottom:1px solid var(--rule);font-family:var(--serif);font-size:1rem;font-weight:400;color:var(--gold-pale);letter-spacing:0;text-transform:none;}
+.slideshow{position:relative;overflow:hidden;aspect-ratio:4/3;background:var(--bg-3);}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 0.5s var(--ease);}
+.slide.active{opacity:1;}
+.slide-placeholder{position:absolute;inset:0;background:var(--bg-3);display:flex;align-items:center;justify-content:center;}
+.slide-placeholder-label{font-family:var(--serif);font-size:1.3rem;font-style:italic;color:var(--rule-2);text-align:center;padding:20px;line-height:1.4;}
+.slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.slide::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(15,11,8,0.88) 0%,rgba(15,11,8,0.1) 55%,transparent 100%);pointer-events:none;}
+.slide-caption{position:absolute;bottom:0;left:0;right:0;padding:18px 22px;z-index:2;}
+.slide-caption-name{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--gold-pale);margin-bottom:3px;}
+.slide-caption-desc{font-size:0.72rem;font-weight:300;color:var(--text-2);line-height:1.45;}
+.slide-prev,.slide-next{position:absolute;top:50%;z-index:3;transform:translateY(-50%);background:rgba(15,11,8,0.55);border:1px solid var(--rule-2);color:var(--text-2);width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;opacity:0;transition:opacity 0.2s,background 0.2s;}
+.slideshow:hover .slide-prev,.slideshow:hover .slide-next{opacity:1;}
+.slide-prev:hover,.slide-next:hover{background:var(--gold-dim);color:var(--bg);}
+.slide-prev{left:10px;}.slide-next{right:10px;}
+.slide-dots{padding:14px var(--g);display:flex;gap:6px;align-items:center;border-top:1px solid var(--rule);background:var(--bg);}
+.slide-dot{width:6px;height:6px;border-radius:50%;background:var(--rule-2);cursor:pointer;transition:background 0.2s,transform 0.2s;border:none;padding:0;}
+.slide-dot.active{background:var(--gold-dim);transform:scale(1.35);}
+.provides-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border-top:1px solid var(--rule);}
+.strip-item{background:var(--bg-2);padding:22px 28px;transition:background 0.3s;}
+.strip-item:hover{background:var(--bg-3);}
+.strip-name{font-family:var(--serif);font-size:1rem;font-weight:400;color:var(--gold-pale);margin-bottom:3px;}
+.strip-desc{font-size:0.72rem;font-weight:300;color:var(--text-3);line-height:1.5;}
+@media(max-width:860px){.provides-header{grid-template-columns:1fr;gap:28px;}.provides-cols{grid-template-columns:1fr;}.provides-strip{grid-template-columns:1fr 1fr;}}
+
+/* LOCATION */
+.location{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--bg-2);}
+.location-main{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);}
+.location-left{padding:20px var(--g) clamp(48px,6vw,72px);background:var(--bg-2);}
+.location-label{font-size:0.6rem;font-weight:400;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-3);margin-bottom:20px;}
+.location-heading{font-family:var(--serif);font-weight:300;font-size:clamp(1.8rem,3.2vw,3rem);color:var(--gold-pale);line-height:1.15;letter-spacing:-0.01em;margin-bottom:24px;}
+.location-heading em{font-style:italic;color:var(--gold);}
+.location-body{font-size:0.9rem;font-weight:300;line-height:1.85;color:var(--text-2);margin-bottom:36px;}
+.location-facts{display:flex;flex-direction:column;}
+.location-fact{display:grid;grid-template-columns:120px 1fr;gap:0 24px;padding:16px 0;border-bottom:1px solid var(--rule);align-items:baseline;}
+.location-fact:first-child{border-top:1px solid var(--rule);}
+.location-fact-label{font-size:0.6rem;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3);padding-top:2px;}
+.location-fact-value{font-size:0.875rem;font-weight:300;color:var(--text-2);line-height:1.5;}
+.location-right{background:var(--bg-3);position:relative;min-height:auto;display:flex;flex-direction:column;}
+.location-map-wrap{flex:1;position:relative;min-height:280px;}
+.location-map-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none;display:block;filter:grayscale(30%) contrast(1.1);}
+.location-map-top{padding:20px var(--g);border-bottom:1px solid var(--rule);background:var(--bg-2);}.location-map-single{font-size:0.6rem;font-weight:400;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-3);}
+
+
+
+
+.location-address{padding:20px var(--g);border-top:1px solid var(--rule);background:var(--bg);display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;}
+.location-address-label{font-size:0.6rem;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-3);margin-bottom:4px;}
+.location-address-text{font-size:0.84rem;font-weight:300;color:var(--text-2);line-height:1.5;}
+@media(max-width:860px){.location-main{grid-template-columns:1fr;}.location-right{min-height:360px;}.location-map-wrap{min-height:300px;}}
+
+/* FAQ */
+.faq{padding:clamp(80px,10vw,120px) var(--g);display:grid;grid-template-columns:1fr 1.8fr;gap:0 100px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);}
+.faq-left{position:sticky;top:80px;align-self:start;}
+.faq-label{font-size:0.6rem;font-weight:400;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;}
+.faq-heading{font-family:var(--serif);font-weight:300;font-size:clamp(1.8rem,3vw,2.8rem);color:var(--gold-pale);line-height:1.1;letter-spacing:-0.01em;margin-bottom:20px;}
+.faq-intro{font-size:0.875rem;font-weight:300;line-height:1.8;color:var(--text-3);}
+.faq-list{display:flex;flex-direction:column;}
+.faq-item{border-bottom:1px solid var(--rule);}
+.faq-item:first-child{border-top:1px solid var(--rule);}
+.faq-question{width:100%;background:none;border:none;padding:22px 0;display:flex;align-items:flex-start;justify-content:space-between;gap:24px;cursor:pointer;font-family:var(--serif);font-size:1.15rem;font-weight:400;color:var(--text-2);text-align:left;transition:color 0.2s;line-height:1.3;}
+.faq-question:hover,.faq-item.open .faq-question{color:var(--gold-pale);}
+.faq-icon{font-size:1.1rem;color:var(--gold-dim);flex-shrink:0;margin-top:2px;transition:transform 0.35s var(--ease),color 0.2s;line-height:1;}
+.faq-item.open .faq-icon{transform:rotate(45deg);color:var(--gold);}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.45s var(--ease);}
+.faq-answer-inner{padding:0 48px 24px 0;font-size:0.9rem;font-weight:300;line-height:1.85;color:#d4c4a8 !important;}
+.faq-item.open .faq-answer{max-height:300px;}
+.faq-closing{margin-top:32px;}
+.faq-more{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-dim);cursor:pointer;background:none;border:none;font-family:var(--sans);transition:color 0.2s;padding:0;}
+.faq-more:hover{color:var(--gold);}
+.faq-more-arrow{transition:transform 0.2s;}
+.faq-more:hover .faq-more-arrow{transform:translateX(4px);}
+@media(max-width:860px){.faq{grid-template-columns:1fr;gap:48px;}.faq-left{position:static;}.faq-answer-inner{padding-right:24px;}}
+
+/* CTA BAND */
+.cta-band{padding:clamp(96px,12vw,140px) var(--g);background:var(--bg-2);border-top:1px solid var(--rule);text-align:center;position:relative;overflow:hidden;}
+.cta-band::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(197,160,101,0.05) 0%,transparent 65%);pointer-events:none;}
+.cta-band-headline{font-family:var(--serif);font-weight:300;font-size:clamp(2.2rem,5vw,4.5rem);color:var(--gold-pale);line-height:1.15;letter-spacing:-0.01em;margin-bottom:40px;}
+.cta-band-headline em{font-style:italic;color:var(--gold);}
+.cta-band-sub{font-size:0.9rem;font-weight:300;color:var(--text-3);margin-top:20px;line-height:1.7;font-family:var(--serif);font-style:italic;}
+
+/* FOOTER */
+.footer{background:var(--bg);border-top:1px solid var(--rule);}
+.footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:1px;background:var(--rule);border-bottom:1px solid var(--rule);}
+.footer-col{background:var(--bg);padding:clamp(40px,5vw,56px) clamp(28px,3vw,40px);}
+.footer-brand{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--gold-pale);margin-bottom:4px;}
+.footer-tagline{font-size:0.68rem;font-weight:300;color:var(--text-3);letter-spacing:0.06em;margin-bottom:28px;}
+.footer-collab{padding:16px 20px;border:1px solid var(--rule-2);}
+.footer-collab-text{font-size:0.75rem;font-weight:300;color:var(--text-3);line-height:1.55;margin-bottom:10px;}
+.footer-collab-link{font-size:0.62rem;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-dim);cursor:pointer;background:none;border:none;font-family:var(--sans);transition:color 0.2s;padding:0;}
+.footer-collab-link:hover{color:var(--gold);}
+.footer-col-label{font-size:0.58rem;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;}
+.footer-link{display:block;font-size:0.8rem;font-weight:300;color:var(--text-3);cursor:pointer;padding:4px 0;transition:color 0.2s;}
+.footer-link:hover{color:var(--gold);}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px var(--g);flex-wrap:wrap;}
+.footer-copy{font-size:0.65rem;font-weight:300;letter-spacing:0.08em;color:var(--text-3);line-height:1.6;}
+@media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr;}.footer-bottom{flex-direction:column;align-items:flex-start;}}
+@media(max-width:540px){.footer-top{grid-template-columns:1fr;}}
+
+/* MODAL BASE */
+.modal-base{display:none;position:fixed;inset:0;z-index:9000;background:rgba(15,11,8,0.88);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:24px;}
+.modal-box{background:var(--bg-2);border:1px solid var(--rule-2);max-width:520px;width:100%;padding:clamp(36px,5vw,52px);position:relative;max-height:90vh;overflow-y:auto;}
+.modal-close{position:absolute;top:16px;right:20px;background:none;border:none;color:var(--text-3);font-size:1.4rem;cursor:pointer;transition:color 0.2s;}
+.modal-close:hover{color:var(--gold);}
+.modal-lbl{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-3);margin-bottom:14px;font-family:var(--sans);}
+.modal-h{font-family:var(--serif);font-size:1.8rem;font-weight:300;color:var(--gold-pale);margin-bottom:8px;}
+.modal-p{font-size:0.84rem;font-weight:300;color:var(--text-3);line-height:1.7;margin-bottom:32px;}
+.modal-field{margin-bottom:18px;}
+.modal-field label{display:block;font-size:0.63rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px;font-family:var(--sans);}
+.modal-field input,.modal-field textarea,.modal-field select{width:100%;background:var(--bg-3);border:1px solid var(--rule);padding:12px 14px;font-family:var(--sans);font-size:0.875rem;color:var(--gold-pale);outline:none;box-sizing:border-box;appearance:none;}
+.modal-field textarea{resize:vertical;line-height:1.6;}
+.modal-field input:focus,.modal-field textarea:focus,.modal-field select:focus{border-color:var(--gold-dim);}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">The Silent Club</div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">The Estate</a></li>
+      <li><a href="#">Journal</a></li>
+    </ul>
+    <button class="nav-cta" onclick="openInvite()">Request Invite &rarr;</button>
+  </div>
+</nav>
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">The Silent Club</div>
+    <ul class="nav-links">
+      <li><a>Home</a></li>
+      <li><a>About</a></li>
+      <li><a>The Estate</a></li>
+      <li><a>Journal</a></li>
+    </ul>
+    <button class="nav-cta">Request Invite →</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="hero-left">
+
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      <span class="hero-eyebrow-text">Private Estate · Bhigwan, Pune · Invite Only</span>
+    </div>
+
+    <h1 class="hero-headline">
+      <span class="line"><span>A place</span></span>
+      <span class="line"><span>to think</span></span>
+      <span class="line"><span><em>without</em></span></span>
+      <span class="line"><span>interruption.</span></span>
+    </h1>
+
+    <p class="hero-statement">The Silent Club is an invite-only estate for thinkers, artists, and entrepreneurs who do their best work in quiet. No meetings. No notifications. No noise. Just the rarest luxury in modern life — uninterrupted time with your own mind.</p>
+
+    <div class="hero-actions">
+      <button class="btn-gold">Request Invite →</button>
+      <button class="btn-outline">See what a day looks like</button>
+    </div>
+
+  </div>
+
+  <div class="hero-right">
+
+    <div class="hero-right-top">
+    </div>
+
+    </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">7</div>
+        <div class="hero-stat-label">Acres overlooking Ujni Lake</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">4</div>
+        <div class="hero-stat-label">Dedicated silence zones</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">2h</div>
+        <div class="hero-stat-label">From Pune city centre</div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- WAITLIST BAR -->
+<div class="waitlist-bar">
+  <div class="waitlist-left">
+    <div class="waitlist-dot"></div>
+    <span class="waitlist-text">Founding memberships open — not ready yet? Stay close.</span>
+  </div>
+  <div class="waitlist-form">
+    <input type="email" class="waitlist-input" placeholder="your@email.com">
+    <button class="waitlist-submit">Notify me</button>
+  </div>
+</div>
+
+<!-- SECTION 1: THE CASE FOR QUIET -->
+<section class="manifesto">
+  <div class="manifesto-label reveal">
+    <div class="manifesto-rule"></div>
+    <div class="manifesto-label-text">The case<br>for quiet</div>
+  </div>
+
+  <div class="manifesto-content reveal">
+    <p class="manifesto-quote">
+      <span class="line-break">Your best thinking doesn't happen in meetings.</span>
+      <span class="line-break">It doesn't happen in open offices,</span>
+      <span class="line-break">on Slack, or between notifications.</span>
+      <span class="gap"></span>
+      <span class="line-break">It happens in the quiet moments</span>
+      <span class="line-break"><em>you can never quite find</em> — until now.</span>
+    </p>
+  </div>
+</section>
+
+
+<!-- SECTION 2: SILENCE REVEALS DIRECTION -->
+<section class="what-is">
+
+  <div class="what-is-left reveal">
+    <div class="what-is-direction">Silence reveals<br>direction.</div>
+    <div class="what-is-rest">The rest is up to you.</div>
+    <div class="what-is-rule"></div>
+    <p class="what-is-note">A private estate for people between major chapters of their life.</p>
+  </div>
+
+  <div class="what-is-body reveal">
+    <p>The Silent Club is a private estate designed for people who no longer need more input, but cannot yet sit still without it. It removes what most environments add: noise, pace, expectation, performance.</p>
+    <p>No programme. No facilitator. No one telling you what to do with your time. Because if you still need that, this is not for you.</p>
+    <p>This is for those in-between chapters. You've built something real. It ended, not in failure, but in completion. The calendar is lighter. The pressure is gone. But the mind hasn't caught up.</p>
+    <p>Silence here is not an experience. It is a condition. Clarity is not delivered. It emerges, when interference is removed.</p>
+    <p class="what-is-closing">The Silent Club is not for burnout.<br>It is for what comes after.</p>
+  </div>
+
+</section>
+
+<!-- SILENCE AS A SERVICE -->
+<div class="saas reveal">
+  <div class="saas-line">
+    Silence
+    <span class="saas-as">as a</span>
+    <em>Service.</em>
+  </div>
+</div>
+
+
+<!-- WHO BELONGS HERE -->
+<section class="who">
+  <div class="who-header">
+    <div class="reveal">
+      <div class="who-label">Who belongs here</div>
+      <h2 class="who-heading">Built for people whose best work requires solitude</h2>
+    </div>
+    <div class="reveal">
+      <p class="who-intro">We are not a co-working space. We are not a wellness retreat. We are the place that serious people have always needed — a private estate calibrated to produce the conditions for deep, original thought. There is no programme here. No schedule. No aspiration to improve you. Just time, and quiet, and whatever you make of them.</p>
+    </div>
+  </div>
+
+  <div class="who-members">
+    <div class="who-member reveal">
+      <div class="who-member-type">Writers & Thinkers</div>
+      <p class="who-member-desc">Those who need hours of unbroken time to hear themselves think — and finally put it into words.</p>
+      <p class="who-member-quote">"I wrote 40 pages here in three days. The only place I've been able to disappear completely."</p>
+    </div>
+    <div class="who-member reveal">
+      <div class="who-member-type">Founders & Strategists</div>
+      <p class="who-member-desc">Those whose most consequential decisions deserve more than a 45-minute calendar slot.</p>
+      <p class="who-member-quote">"I come when a decision is too important for the noise of the office. I've never left without clarity."</p>
+    </div>
+    <div class="who-member reveal">
+      <div class="who-member-type">Artists & Designers</div>
+      <p class="who-member-desc">Those whose creative work requires a quality of attention that the world rarely permits.</p>
+      <p class="who-member-quote">"Four months as a member. More original work than in the previous two years combined."</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- DESIGNED DELIBERATELY -->
+<section class="designed">
+  <div class="designed-header reveal">
+    <h2 class="designed-heading">Designed Deliberately</h2>
+    <p class="designed-sub">Three conditions. Removed by design, not willpower.</p>
+  </div>
+
+  <div class="designed-grid reveal">
+
+    <div class="designed-card">
+      <div class="designed-icon">
+        <svg viewBox="0 0 24 24">
+          <line x1="1" y1="1" x2="23" y2="23"/>
+          <path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"/>
+          <path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"/>
+          <line x1="12" y1="19" x2="12" y2="23"/>
+          <line x1="8" y1="23" x2="16" y2="23"/>
+        </svg>
+      </div>
+      <div class="designed-card-title">Designed Silence</div>
+      <p class="designed-card-desc">Every space asks nothing of your senses. Dedicated zones calibrated for different qualities of thought. Silence here is structural — not a rule you have to remember to follow.</p>
+    </div>
+
+    <div class="designed-card">
+      <div class="designed-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <line x1="23" y1="11" x2="17" y2="11"/>
+        </svg>
+      </div>
+      <div class="designed-card-title">Designed Anonymity</div>
+      <p class="designed-card-desc">No roles. No titles. No one who knows what you do or what you've built. You arrive as a person, not a position. Nobody here wants anything from you.</p>
+    </div>
+
+    <div class="designed-card">
+      <div class="designed-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+          <polyline points="16 17 21 12 16 7"/>
+          <line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+      </div>
+      <div class="designed-card-title">Designed Withdrawal</div>
+      <p class="designed-card-desc">Far enough to interrupt the pattern. Close enough to not feel like escape. You step away long enough to finally see what you've been too close to notice.</p>
+    </div>
+
+  </div>
+
+  <div class="designed-closing reveal">
+    <div class="designed-closing-label">The design principle</div>
+    <p class="designed-closing-line">
+      There are no surprises outside.<br>
+      <em>Only inside.</em>
+    </p>
+  </div>
+
+</section>
+
+<section class="depth">
+
+  <div class="depth-header reveal">
+    <div class="depth-label">Choose your depth</div>
+    <h2 class="depth-heading">The environment stays the same. The depth changes.</h2>
+    <p class="depth-sub">You don't choose a plan. You choose how deep you're willing to go.</p>
+  </div>
+
+  <div class="depth-grid reveal">
+
+    <!-- 01 SILENCE -->
+    <div class="depth-card" onclick="selectCard(this,'silence')">
+      <div class="depth-card-check"></div>
+      <div class="depth-card-num">01</div>
+      <div class="depth-card-name">Silence</div>
+      <div class="depth-card-cycle">Day Cycle · Any 4 Hours</div>
+      <div class="depth-card-for">For your first visit, or your next reset.</div>
+      <ul class="depth-card-features">
+        <li>Any 4 continuous hours of your choosing</li>
+        <li>Full estate access</li>
+        <li>One meal included</li>
+        <li>No schedule. Move at your own pace</li>
+      </ul>
+      <div class="depth-price">₹1,000</div>
+      <div class="depth-price-note">Per person · 1 meal · Taxes applicable</div>
+    </div>
+
+    <!-- 02 RESIDENCY -->
+    <div class="depth-card" onclick="selectCard(this,'residency')">
+      <div class="depth-card-check"></div>
+      <div class="depth-card-num">02</div>
+      <div class="depth-card-name">Residency</div>
+      <div class="depth-card-cycle">Weekend Cycle · 2N / 3D</div>
+      <div class="depth-card-for">For those who want structure and company around silence.</div>
+      <ul class="depth-card-features">
+        <li>Structured or themed weekend experience</li>
+        <li>Shared non-performative environment</li>
+        <li>Full estate access + all meals</li>
+        <li>Friday conversation circle included</li>
+      </ul>
+      <div class="depth-toggle" onclick="event.stopPropagation()">
+        <button class="depth-toggle-btn active" onclick="setToggle(this,'residency','dorm')">Dorm</button>
+        <button class="depth-toggle-btn" onclick="setToggle(this,'residency','room')">Private Room</button>
+      </div>
+      <div class="depth-price" id="residency-price">₹10,000</div>
+      <div class="depth-price-note">Per person · All meals · Taxes applicable</div>
+    </div>
+
+    <!-- 03 SOLITUDE -->
+    <div class="depth-card" onclick="selectCard(this,'solitude')">
+      <div class="depth-card-check"></div>
+      <div class="depth-card-num">03</div>
+      <div class="depth-card-name">Solitude</div>
+      <div class="depth-card-cycle">Weekday Cycle · 4N / 5D</div>
+      <div class="depth-card-for">For those between chapters who need to go deep.</div>
+      <ul class="depth-card-features">
+        <li>Minimal communication — 30 min/day</li>
+        <li>Self-guided activities + gear provided</li>
+        <li>Curated resource library access</li>
+        <li>Full estate access + all meals</li>
+      </ul>
+      <div class="depth-toggle" onclick="event.stopPropagation()">
+        <button class="depth-toggle-btn active" onclick="setToggle(this,'solitude','dorm')">Dorm</button>
+        <button class="depth-toggle-btn" onclick="setToggle(this,'solitude','room')">Private Room</button>
+      </div>
+      <div class="depth-price" id="solitude-price">₹20,000</div>
+      <div class="depth-price-note">Per person · All meals · Taxes applicable</div>
+    </div>
+
+    <!-- 04 CREATION -->
+    <div class="depth-card" onclick="selectCard(this,'creation')">
+      <div class="depth-card-check"></div>
+      <div class="depth-card-num">04</div>
+      <div class="depth-card-name">Creation</div>
+      <div class="depth-card-cycle">Noon to Noon Cycle · 24 Hours</div>
+      <div class="depth-card-for">For groups who want the whole place to themselves.</div>
+      <ul class="depth-card-features">
+        <li>Full estate — noon to noon</li>
+        <li>All rooms, dorms, decks + shared spaces</li>
+        <li>Accommodation up to 20 people max</li>
+        <li>Full access + all meals included</li>
+      </ul>
+      <div class="depth-toggle" onclick="event.stopPropagation()">
+        <button class="depth-toggle-btn active" onclick="setToggle(this,'creation','weekday')">Weekday</button>
+        <button class="depth-toggle-btn" onclick="setToggle(this,'creation','weekend')">Weekend</button>
+      </div>
+      <div class="depth-price" id="creation-price">₹1,00,000</div>
+      <div class="depth-price-note" id="creation-note">Per night · Full estate · Mon–Thu · Taxes applicable</div>
+    </div>
+
+  </div>
+
+  <!-- SINGLE CTA BAR -->
+  <div class="depth-cta-bar">
+    <div class="depth-cta-label" id="cta-label">Select a depth above to continue.</div>
+    <button class="btn-gold" id="cta-btn" disabled>Request Invite →</button>
+  </div>
+
+</section>
+
+<section class="how">
+
+  <div class="how-left reveal">
+    <div class="how-label">How it works here</div>
+    <h2 class="how-heading">What you agree to when you walk in</h2>
+    <p class="how-intro">These are not rules in the enforcement sense — they are the shared understanding that makes this place possible for everyone who enters. Read them before you apply.</p>
+  </div>
+
+  <div class="how-rules reveal">
+
+    <div class="how-rule-item">
+      <div class="how-rule-num">01</div>
+      <div class="how-rule-text">Calls and video meetings in designated zones only. Not in shared spaces. Not in rooms others can hear.</div>
+    </div>
+
+    <div class="how-rule-item">
+      <div class="how-rule-num">02</div>
+      <div class="how-rule-text">No unsolicited conversation with other members. A nod is enough. There is a 30-minute community window each evening if you want more.</div>
+    </div>
+
+    <div class="how-rule-item">
+      <div class="how-rule-num">03</div>
+      <div class="how-rule-text">Devices in your room or personal desk only. Earphones are fine. No speakers, anywhere on the estate.</div>
+    </div>
+
+    <div class="how-rule-item">
+      <div class="how-rule-num">04</div>
+      <div class="how-rule-text">No performance of working. Staring at the ceiling counts. You are here for yourself, not an audience.</div>
+    </div>
+
+    <div class="how-rule-item">
+      <div class="how-rule-num">05</div>
+      <div class="how-rule-text">What you create here is entirely yours. We have no interest in your work, your process, or your results.</div>
+    </div>
+
+    <div class="how-rule-item">
+      <div class="how-rule-num">06</div>
+      <div class="how-rule-text">What you witness here stays here. Don't seek out other members outside. Anonymity is something we protect together.</div>
+    </div>
+
+    <p class="how-closing">If these feel natural to you, you probably belong here.</p>
+
+  </div>
+
+</section>
+
+<section class="provides">
+  <div class="provides-header reveal">
+    <div>
+      <div class="provides-label">What the estate provides</div>
+      <h2 class="provides-heading">Everything included.<br>Nothing to decide.</h2>
+    </div>
+    <div>
+      <p class="provides-inclusive">Every stay includes accommodation, all meals, and full access to the estate and activities. <em>There is nothing to add, nothing to upgrade, and nothing to decide once you arrive.</em> You bring yourself. We take care of the rest.</p>
+    </div>
+  </div>
+  <div class="provides-cols reveal">
+    <!-- COL 1: SPACES -->
+    <div class="provides-col">
+      <div class="col-label">Spaces to sit, think &amp; withdraw</div>
+      <div class="slideshow" id="ss-spaces">
+        <div class="slide active"><div class="slide-placeholder"><div class="slide-placeholder-label">Private Room</div></div><div class="slide-caption"><div class="slide-caption-name">Private Room</div><div class="slide-caption-desc">Your own space. Bed, desk, attached bath. Designed for rest, not distraction.</div></div></div>
+        <div class="slide"><div class="slide-placeholder"><div class="slide-placeholder-label">Shared Dorm</div></div><div class="slide-caption"><div class="slide-caption-name">Shared Dorm</div><div class="slide-caption-desc">Communal sleeping. Personal locker. Shared in silence.</div></div></div>
+        <div class="slide"><div class="slide-placeholder"><div class="slide-placeholder-label">Deep Work Library</div></div><div class="slide-caption"><div class="slide-caption-name">Deep Work Library</div><div class="slide-caption-desc">The only space where laptops are permitted.</div></div></div>
+        <div class="slide"><div class="slide-placeholder"><div class="slide-placeholder-label">Contemplation Garden</div></div><div class="slide-caption"><div class="slide-caption-name">Contemplation Garden</div><div class="slide-caption-desc">Open-air. Nothing to do. Nowhere to be.</div></div></div>
+        <div class="slide"><div class="slide-placeholder"><div class="slide-placeholder-label">Reading Parlour</div></div><div class="slide-caption"><div class="slide-caption-name">Reading Parlour</div><div class="slide-caption-desc">Books, light, and the particular silence of an afternoon.</div></div></div>
+        <button class="slide-prev" onclick="prevSlide('spaces')">&#8249;</button>
+        <button class="slide-next" onclick="nextSlide('spaces')">&#8250;</button>
+      </div>
+      <div class="slide-dots" id="dots-spaces"></div>
+    </div>
+    <!-- COL 2: FOOD -->
+    <div class="provides-col">
+      <div class="col-label">Food that doesn&apos;t demand attention</div>
+      <div class="slideshow" id="ss-food">
+        <div class="slide active"><div class="slide-placeholder"><div class="slide-placeholder-label">Satvik Home Food</div></div><div class="slide-caption"><div class="slide-caption-name">Satvik Home Food</div><div class="slide-caption-desc">Seasonal, local. Prepared fresh each morning. No menu, no ordering.</div></div></div>
+        <div class="slide"><div class="slide-placeholder"><div class="slide-placeholder-label">Salads &amp; Smoothies</div></div><div class="slide-caption"><div class="slide-caption-name">Salads, Smoothies &amp; Sandwiches</div><div class="slide-caption-desc">Light meals that sustain focus without heaviness.</div></div></div>
+        <div class="slide"><div class="slide-placeholder"><div class="slide-placeholder-label">Barbecue &amp; Pizza</div></div><div class="slide-caption"><div class="slide-caption-name">Barbecue &amp; Pizza</div><div class="slide-caption-desc">Outdoor evenings. Shared in silence, or near it.</div></div></div>
+        <div class="slide"><div class="slide-placeholder"><div class="slide-placeholder-label">Sushi</div></div><div class="slide-caption"><div class="slide-caption-name">Sushi &amp; Light Bites</div><div class="slide-caption-desc">For evenings that ask for something quieter on the palate.</div></div></div>
+        <div class="slide"><div class="slide-placeholder"><div class="slide-placeholder-label">High Tea</div></div><div class="slide-caption"><div class="slide-caption-name">High Tea</div><div class="slide-caption-desc">Set out at 4pm. No announcement made.</div></div></div>
+        <button class="slide-prev" onclick="prevSlide('food')">&#8249;</button>
+        <button class="slide-next" onclick="nextSlide('food')">&#8250;</button>
+      </div>
+      <div class="slide-dots" id="dots-food"></div>
+    </div>
+    <!-- COL 3: ACTIVITIES -->
+    <div class="provides-col">
+      <div class="col-label">Environments that regulate, not stimulate</div>
+      <div class="slideshow" id="ss-activities">
+        <div class="slide active"><div class="slide-placeholder"><div class="slide-placeholder-label">Bird Watching</div></div><div class="slide-caption"><div class="slide-caption-name">Bird Watching</div><div class="slide-caption-desc">Ujni Lake at dawn. Flamingos, painted storks. Binoculars provided.</div></div></div>
+        <div class="slide"><div class="slide-placeholder"><div class="slide-placeholder-label">Gym &amp; Sauna</div></div><div class="slide-caption"><div class="slide-caption-name">Gym &amp; Sauna</div><div class="slide-caption-desc">Physical recovery. Open all day. No classes, no instructors.</div></div></div>
+        <div class="slide"><div class="slide-placeholder"><div class="slide-placeholder-label">Swimming Pool</div></div><div class="slide-caption"><div class="slide-caption-name">Swimming Pool</div><div class="slide-caption-desc">Quiet laps. No lane rage.</div></div></div>
+        <div class="slide"><div class="slide-placeholder"><div class="slide-placeholder-label">Forest Trails</div></div><div class="slide-caption"><div class="slide-caption-name">Forest Trails</div><div class="slide-caption-desc">Self-guided. Trail maps provided. Walk alone.</div></div></div>
+        <div class="slide"><div class="slide-placeholder"><div class="slide-placeholder-label">Kayaking &amp; Boats</div></div><div class="slide-caption"><div class="slide-caption-name">Kayaking &amp; Boat Rides</div><div class="slide-caption-desc">On Ujni Lake. Gear provided. No guide needed.</div></div></div>
+        <div class="slide"><div class="slide-placeholder"><div class="slide-placeholder-label">Star Gazing</div></div><div class="slide-caption"><div class="slide-caption-name">Star Gazing</div><div class="slide-caption-desc">Telescope on the deck. No light pollution. No commentary.</div></div></div>
+        <button class="slide-prev" onclick="prevSlide('activities')">&#8249;</button>
+        <button class="slide-next" onclick="nextSlide('activities')">&#8250;</button>
+      </div>
+      <div class="slide-dots" id="dots-activities"></div>
+    </div>
+  </div>
+  <!-- BOTTOM STRIP -->
+  <div class="provides-strip reveal">
+    <div class="strip-item"><div class="strip-name">Accommodation</div><div class="strip-desc">Private rooms &amp; shared dorms. Your choice at booking.</div></div>
+    <div class="strip-item"><div class="strip-name">All Meals</div><div class="strip-desc">Breakfast, lunch, high tea, dinner. Always included.</div></div>
+    <div class="strip-item"><div class="strip-name">All Activities</div><div class="strip-desc">Every activity and all gear. Nothing extra to pay.</div></div>
+    <div class="strip-item"><div class="strip-name">Full Estate Access</div><div class="strip-desc">Every space, every hour. No restrictions, no upgrades.</div></div>
+  </div>
+</section>
+
+<section class="location">
+
+  <div class="location-main">
+
+    <!-- LEFT: COPY + FACTS -->
+    <div class="location-left reveal">
+      <div class="location-label">Location</div>
+      <h2 class="location-heading">
+        You can reach it in hours.<br>
+        <em>Most people take years.</em>
+      </h2>
+      <p class="location-body">Bhigwan sits on the backwaters of Ujni Dam — one of Maharashtra's most significant bird sanctuaries. Over 100 species visit its shores, including flamingos, painted storks, and pelicans that arrive each winter from across Asia. The lake is still. The mornings are unlike anywhere else in the region.</p>
+
+      <div class="location-facts">
+        <div class="location-fact">
+          <div class="location-fact-label">From Pune</div>
+          <div class="location-fact-value">2.5 hours via Pune–Solapur Highway</div>
+        </div>
+        <div class="location-fact">
+          <div class="location-fact-label">From Mumbai</div>
+          <div class="location-fact-value">5.5 hours via Mumbai–Pune Expressway</div>
+        </div>
+        <div class="location-fact">
+          <div class="location-fact-label">Getting here</div>
+          <div class="location-fact-value">Taxi, bus, or train. Pickup arrangements available on request.</div>
+        </div>
+        <div class="location-fact">
+          <div class="location-fact-label">Postal Address</div>
+          <div class="location-fact-value">The Silent Club, Kumbhar Goan, Bird Sanctuary, Bhigwan, Maharashtra 413104</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT: MAP -->
+    <div class="location-right reveal">
+      <div class="location-map-top">
+        <div class="location-map-single">The Silent Club &middot; Overlooking Ujni Lake &middot; Bhigwan, Maharashtra</div>
+      </div>
+      <div class="location-map-wrap">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.8!2d74.9700!3d18.3200!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc4a0b2c1234567%3A0xabcdef1234567890!2sBhigwan%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1234567890"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      
+    </div>
+
+  </div>
+
+  <!-- POSTAL ADDRESS -->
+  
+
+</section>
+
+<section class="faq">
+
+  <!-- LEFT -->
+  <div class="faq-left reveal">
+    <div class="faq-label">Before you come</div>
+    <h2 class="faq-heading">What people ask before they apply</h2>
+    <p class="faq-intro">Most people arrive with questions. Few leave with the same ones.</p>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="faq-list reveal">
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Is this a meditation retreat?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">No. There is no programme, no facilitator, no spiritual framing of any kind. The Silent Club is a private estate that removes interference — noise, pace, expectation, performance. What you do with the silence that remains is entirely yours. We impose nothing on your time here.</div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        What actually happens when I arrive?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Nothing is waiting for you. You check in, put your phone in a drawer, and the day is yours. Meals are prepared and set out. Spaces are open. There is no orientation, no schedule, no one to report to. By the second day, the mental noise that arrived with you begins to slow. Most people find that surprising.</div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Can I work while I'm here?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Yes. The deep work library is designed for exactly this. What changes is not whether you can work — it is why you work. The estate removes the ambient conditions that make work compulsive rather than chosen. Members who arrive intending to work often find the first day produces very little output and considerably more clarity about what the work should actually be.</div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How does the invite process work?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Two questions. No CV, no credentials, no pitch. A short conversation with the founder — 15 minutes. If it feels right on both sides, you receive your first invite. We are not selecting for impressive people. We are looking for people with a genuine relationship to solitude and quiet work.</div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Is everything really included?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Yes. Accommodation, all meals, full estate access, all activities, all gear. There is nothing to add, nothing to upgrade, and nothing to decide once you arrive. The price you see is the price you pay.</div>
+      </div>
+    </div>
+
+    <p class="faq-closing">
+      <button class="faq-more">
+        More FAQ
+        <span class="faq-more-arrow">→</span>
+      </button>
+    </p>
+
+  </div>
+
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band reveal">
+  <h2 class="cta-band-headline">
+    The rarest luxury in modern life<br>
+    is <em>uninterrupted time.</em><br>
+    You already know you need it.
+  </h2>
+  <button class="btn-gold">Request Invite →</button>
+  <p class="cta-band-sub">Two questions. A short conversation. Your first invite.</p>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+
+  <div class="footer-top">
+
+    <!-- BRAND -->
+    <div class="footer-col">
+      <div class="footer-brand">The Silent Club</div>
+      <div class="footer-tagline">Silence as a Service · Bhigwan, Pune</div>
+      <div class="footer-collab">
+        <p class="footer-collab-text">Artist, musician, or experience creator? Host an event here.</p>
+        <button class="footer-collab-link">Collaborate with us →</button>
+      </div>
+    </div>
+
+    <!-- EXPLORE -->
+    <div class="footer-col">
+      <div class="footer-col-label">Explore</div>
+      <span class="footer-link">Home</span>
+      <span class="footer-link">About</span>
+      <span class="footer-link">The Estate</span>
+      <span class="footer-link">Journal</span>
+      <span class="footer-link">FAQ</span>
+    </div>
+
+    <!-- STAY -->
+    <div class="footer-col">
+      <div class="footer-col-label">Stay</div>
+      <span class="footer-link">Silence — Day Cycle</span>
+      <span class="footer-link">Residency — Weekend</span>
+      <span class="footer-link">Solitude — Weekday</span>
+      <span class="footer-link">Creation — Full Estate</span>
+    </div>
+
+    <!-- CONNECT -->
+    <div class="footer-col">
+      <div class="footer-col-label">Connect</div>
+      <span class="footer-link">Instagram</span>
+      <span class="footer-link">Substack</span>
+      <span class="footer-link">Request Invite</span>
+      <span class="footer-link">Host an Event</span>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 The Silent Club. All rights reserved.</div>
+    <div class="footer-copy">The Silent Club, Kumbhar Goan, Bird Sanctuary, Bhigwan, Maharashtra 413104</div>
+    <div class="footer-copy">A registered initiative of Silent Tourism Foundation.</div>
+  </div>
+
+</footer>
+
+<!-- INVITE MODAL -->
+<div class="modal-base" id="inviteModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('inviteModal')">&times;</button>
+    <div class="modal-lbl">Request Invite</div>
+    <h2 class="modal-h">Two questions.<br>No pitch.</h2>
+    <p class="modal-p">We respond within 72 hours. If it feels right, we schedule a short conversation with the founder. We are not looking for credentials &mdash; we are looking for genuine need.</p>
+    <div class="modal-field"><label>Your name</label><input type="text" placeholder="Full name"></div>
+    <div class="modal-field"><label>Your email</label><input type="email" placeholder="email@example.com"></div>
+    <div class="modal-field"><label>What do you do, and what kind of quiet do you need that you cannot currently find?</label><textarea rows="4" placeholder="Answer honestly. Credentials are irrelevant here."></textarea></div>
+    <div class="modal-field"><label>Describe the last time you were truly alone with a thought. What happened?</label><textarea rows="4" placeholder="Take your time with this one."></textarea></div>
+    <div class="modal-field" style="margin-bottom:24px"><label>Which experience interests you?</label>
+    <select><option value="">Select one</option><option>Silence &mdash; &#8377;1,000</option><option>Residency &mdash; from &#8377;10,000</option><option>Solitude &mdash; from &#8377;20,000</option><option>Creation &mdash; from &#8377;1,00,000</option><option>Not sure yet</option></select></div>
+    <button class="btn-gold" style="width:100%" onclick="submitInvite()">Submit &rarr;</button>
+  </div>
+</div>
+
+<!-- COLLAB MODAL -->
+<div class="modal-base" id="collabModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('collabModal')">&times;</button>
+    <div class="modal-lbl">Collaborate</div>
+    <h2 class="modal-h">Host an event here.</h2>
+    <p class="modal-p">We work with artists, musicians, photographers, poets, supper clubs, and experience creators. Revenue share or full estate rental.</p>
+    <div class="modal-field"><label>Your name</label><input type="text" placeholder="Full name"></div>
+    <div class="modal-field"><label>Your email</label><input type="email" placeholder="email@example.com"></div>
+    <div class="modal-field"><label>What do you create or curate?</label><input type="text" placeholder="e.g. photography walks, supper club, poetry nights..."></div>
+    <div class="modal-field"><label>Instagram or website</label><input type="text" placeholder="@handle or URL"></div>
+    <div class="modal-field" style="margin-bottom:24px"><label>Your idea in a few lines</label><textarea rows="3" placeholder="What kind of experience would you create here?"></textarea></div>
+    <button class="btn-gold" style="width:100%">Send &rarr;</button>
+  </div>
+</div>
+
+<script>
+// ── PRICING DATA ──
+const prices = {
+  residency:{dorm:'&#8377;10,000',room:'&#8377;15,000'},
+  solitude:{dorm:'&#8377;20,000',room:'&#8377;30,000'},
+  creation:{
+    weekday:{price:'&#8377;1,00,000',note:'Per night · Full estate · Mon–Thu · Taxes applicable'},
+    weekend:{price:'&#8377;1,20,000',note:'Per night · Full estate · Fri–Sun · Taxes applicable'}
+  }
+};
+const labels = {
+  silence:'Silence — Day Cycle',
+  residency:'Residency — Weekend',
+  solitude:'Solitude — Weekday',
+  creation:'Creation — Full Estate'
+};
+
+// ── DEPTH CARDS ──
+function selectCard(card, product) {
+  document.querySelectorAll('.depth-card').forEach(function(c){ c.classList.remove('selected'); });
+  card.classList.add('selected');
+  var lbl = document.getElementById('cta-label');
+  if(lbl) lbl.innerHTML = "You've selected <span>" + labels[product] + "</span>";
+  var btn = document.getElementById('cta-btn');
+  if(btn) btn.disabled = false;
+}
+
+function setToggle(btn, product, variant) {
+  btn.parentElement.querySelectorAll('.depth-toggle-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  if(product === 'residency'){
+    var el = document.getElementById('residency-price');
+    if(el) el.textContent = prices.residency[variant];
+  }
+  if(product === 'solitude'){
+    var el = document.getElementById('solitude-price');
+    if(el) el.textContent = prices.solitude[variant];
+  }
+  if(product === 'creation'){
+    var el = document.getElementById('creation-price');
+    var note = document.getElementById('creation-note');
+    if(el) el.textContent = prices.creation[variant].price;
+    if(note) note.textContent = prices.creation[variant].note;
+  }
+}
+
+// ── SLIDESHOW ──
+var slideState = {spaces:0, food:0, activities:0};
+
+function getSS(id){ return document.querySelectorAll('#ss-' + id + ' .slide'); }
+
+function buildDots(id){
+  var dots = document.getElementById('dots-' + id);
+  if(!dots) return;
+  var slides = getSS(id);
+  dots.innerHTML = '';
+  slides.forEach(function(_, i){
+    var btn = document.createElement('button');
+    btn.className = 'slide-dot' + (i === 0 ? ' active' : '');
+    btn.onclick = function(){ goTo(id, i); };
+    dots.appendChild(btn);
+  });
+}
+
+function goTo(id, index){
+  var slides = getSS(id);
+  if(!slides.length) return;
+  slides[slideState[id]].classList.remove('active');
+  slideState[id] = (index + slides.length) % slides.length;
+  slides[slideState[id]].classList.add('active');
+  var dotEls = document.querySelectorAll('#dots-' + id + ' .slide-dot');
+  dotEls.forEach(function(d, i){ d.classList.toggle('active', i === slideState[id]); });
+}
+
+function nextSlide(id){ goTo(id, slideState[id] + 1); }
+function prevSlide(id){ goTo(id, slideState[id] - 1); }
+
+// ── FAQ ──
+function toggleFaq(btn){
+  var item = btn.parentElement;
+  var wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(i){ i.classList.remove('open'); });
+  if(!wasOpen) item.classList.add('open');
+}
+
+// ── NAV ──
+window.addEventListener('scroll', function(){
+  var nav = document.getElementById('nav');
+  if(nav) nav.style.background = window.scrollY > 40 ? 'rgba(15,11,8,0.98)' : 'rgba(15,11,8,0.94)';
+});
+
+// ── MODALS ──
+function openInvite(){ openModal('inviteModal'); }
+function openCollab(){ openModal('collabModal'); }
+function openDayDesigner(){ openModal('inviteModal'); }
+function openModal(id){
+  var m = document.getElementById(id);
+  if(m){ m.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+}
+function closeModal(id){
+  var m = document.getElementById(id);
+  if(m){ m.style.display = 'none'; document.body.style.overflow = ''; }
+}
+function submitInvite(){
+  var box = document.querySelector('#inviteModal .modal-box');
+  if(box) box.innerHTML = '<div style="text-align:center;padding:48px 0"><div style="font-family:Cormorant,serif;font-size:2.2rem;color:#e8d5b0;margin-bottom:16px">Thank you.</div><p style="font-size:0.875rem;color:#7a6048;line-height:1.7;max-width:300px;margin:0 auto;font-family:Jost,sans-serif">Your request has been received. We will be in touch within 72 hours.</p><button onclick="closeModal(\'inviteModal\')" style="margin-top:28px;background:none;border:1px solid #3a2a1f;padding:10px 24px;font-family:Jost,sans-serif;font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;color:#b09070">Close</button></div>';
+}
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', function(){
+  // Slideshow dots
+  buildDots('spaces');
+  buildDots('food');
+  buildDots('activities');
+
+  // Auto-advance slideshows
+  setInterval(function(){ nextSlide('spaces'); }, 3800);
+  setInterval(function(){ nextSlide('food'); }, 4200);
+  setInterval(function(){ nextSlide('activities'); }, 4600);
+
+  // Scroll reveal
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, {threshold:0.06});
+  document.querySelectorAll('.reveal').forEach(function(el){ observer.observe(el); });
+
+  // Close modals on overlay click
+  document.querySelectorAll('.modal-base').forEach(function(m){
+    m.addEventListener('click', function(e){
+      if(e.target === this) closeModal(this.id);
+    });
+  });
+
+  // Collab links
+  document.querySelectorAll('.footer-collab-link').forEach(function(b){
+    b.addEventListener('click', openCollab);
+  });
+});
+</script>
+</body>
+</html>
