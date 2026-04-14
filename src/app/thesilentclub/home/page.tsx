@@ -74,20 +74,20 @@ export default function TheSilentClubHomepage20Page() {
     return () => clearInterval(timer);
   }, []);
 
-  const getDepthPrice = (id: DepthId) => {
+  const getDepthPrice = (id: DepthId): { price: string; note: string } => {
     const depth = depthCards.find((card) => card.id === id);
     if (!depth) return { price: "", note: "" };
-    if ("basePrice" in depth) return { price: depth.basePrice, note: depth.note };
+    if ("basePrice" in depth) return { price: depth.basePrice ?? "", note: depth.note };
     if (id === "residency" || id === "solitude") {
       const selected =
         depth.toggles[depthVariant[id] as "dorm" | "room"] ?? depth.toggles.dorm;
       if (!selected) return { price: "", note: depth.note };
-      return { price: selected.price, note: depth.note };
+      return { price: selected.price ?? "", note: depth.note };
     }
     const selected =
       depth.toggles[depthVariant.creation as "weekday" | "weekend"] ?? depth.toggles.weekday;
     if (!selected) return { price: "", note: depth.note };
-    return { price: selected.price, note: selected.note ?? depth.note };
+    return { price: selected.price ?? "", note: selected.note ?? depth.note };
   };
 
   return (
