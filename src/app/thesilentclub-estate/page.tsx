@@ -9,7 +9,7 @@ const natureCards = [
   ["Farm & Animals", "Dogs, chickens, goats, cows, buffalo. A working farm. The animals were here before you and will be here after."],
   ["Dawn & Dusk Decks", "The lake faces west. The light does something different here twice a day. Both are worth staying still for."],
   ["Star Gazing", "No light pollution. Telescope on the deck. The sky here is the original silence."],
-];
+] as const;
 
 const spacesCards = [
   ["Private Room", "Bed, desk, attached bath. Nothing on the walls that asks you to feel something."],
@@ -18,7 +18,7 @@ const spacesCards = [
   ["Deep Thought Lounge", "Poolside, overlooking the lake. For the kind of thinking that needs a horizon to land on."],
   ["Central Courtyard", "The heart of the estate. Where paths cross without requiring conversation."],
   ["The Treehouses", "Three of them. Elevated, private, above the noise that was never really there to begin with."],
-];
+] as const;
 
 const practiceCards = [
   ["Satvik Kitchen", "Vegetarian, eggs, select vegan. Prepared fresh each morning. No menu, no ordering, no decisions."],
@@ -28,14 +28,14 @@ const practiceCards = [
   ["Meditation Deck", "Structured stillness for those who need a container before they can sit with themselves."],
   ["Contrast Therapy", "For the body that has been sitting still long enough to need the opposite."],
   ["Kayaks & Cycling", "On the lake and the open road. Movement that doesn't require conversation."],
-];
+] as const;
 
 const symbolicaCards = [
   ["Identity Cemetery", "A place to set down what you've been performing. Your title, your role, your reputation. None of it followed you here."],
   ["Moon Gate", "A circular opening in the estate wall. What you see through it changes with the light. So does what you're thinking about."],
   ["Thinking Man", "A figure. Seated. Not doing anything. The only honest role model on the premises."],
   ["Edgeless Gallery", "No frames, no labels, no curator's note. The estate itself is the exhibit. You are both the visitor and the work."],
-];
+] as const;
 
 const heroImage =
   "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/boat1.png";
