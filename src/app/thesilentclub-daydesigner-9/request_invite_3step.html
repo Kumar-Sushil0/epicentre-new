@@ -1,0 +1,247 @@
+
+<div style="min-height:600px;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;padding:24px;border-radius:var(--border-radius-lg);">
+<div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);width:100%;max-width:480px;overflow:hidden;">
+
+  <!-- HEADER — fixed across all steps -->
+  <div style="padding:16px 20px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;justify-content:space-between;">
+    <div style="display:flex;gap:10px;align-items:center;">
+      <div class="step-dot" id="d1" style="width:24px;height:24px;border-radius:50%;background:var(--color-background-info);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:var(--color-text-info);">1</div>
+      <div style="height:1px;width:24px;background:var(--color-border-tertiary);" id="line1"></div>
+      <div class="step-dot" id="d2" style="width:24px;height:24px;border-radius:50%;border:0.5px solid var(--color-border-secondary);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:var(--color-text-tertiary);">2</div>
+      <div style="height:1px;width:24px;background:var(--color-border-tertiary);" id="line2"></div>
+      <div class="step-dot" id="d3" style="width:24px;height:24px;border-radius:50%;border:0.5px solid var(--color-border-secondary);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:var(--color-text-tertiary);">3</div>
+    </div>
+    <button onclick="closeDemo()" style="border:none;background:none;cursor:pointer;font-size:16px;color:var(--color-text-tertiary);padding:4px 8px;border-radius:var(--border-radius-md);" onmouseover="this.style.background='var(--color-background-secondary)'" onmouseout="this.style.background='none'">×</button>
+  </div>
+
+  <!-- BODY — same fixed height across all steps -->
+  <div style="height:440px;display:flex;flex-direction:column;">
+
+    <!-- STEP 1 -->
+    <div id="s1" style="flex:1;display:flex;flex-direction:column;padding:24px 20px 0;">
+      <div style="margin-bottom:4px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-tertiary);">Before we speak</div>
+      <h2 style="font-size:20px;font-weight:500;margin:0 0 20px;color:var(--color-text-primary);">Two questions</h2>
+      <div style="flex:1;display:flex;flex-direction:column;gap:14px;overflow-y:auto;">
+        <div>
+          <label style="display:block;font-size:12px;color:var(--color-text-secondary);margin-bottom:6px;">What are you hoping to get from this stay?</label>
+          <textarea id="q1" rows="3" placeholder="Take your time..." style="width:100%;resize:none;font-size:14px;padding:10px 12px;border-radius:var(--border-radius-md);box-sizing:border-box;line-height:1.6;"></textarea>
+        </div>
+        <div>
+          <label style="display:block;font-size:12px;color:var(--color-text-secondary);margin-bottom:6px;">Anything we should know before we speak?</label>
+          <textarea id="q2" rows="3" placeholder="Share any context..." style="width:100%;resize:none;font-size:14px;padding:10px 12px;border-radius:var(--border-radius-md);box-sizing:border-box;line-height:1.6;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div id="s2" style="flex:1;display:none;flex-direction:column;padding:24px 20px 0;">
+      <div style="margin-bottom:4px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-tertiary);">Pick a time</div>
+      <h2 style="font-size:20px;font-weight:500;margin:0 0 16px;color:var(--color-text-primary);">15-minute conversation</h2>
+      <div style="flex:1;overflow-y:auto;">
+        <!-- Mini calendar -->
+        <div style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);overflow:hidden;margin-bottom:14px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--color-background-secondary);">
+            <button onclick="prevM()" style="border:none;background:none;cursor:pointer;font-size:16px;color:var(--color-text-secondary);padding:2px 6px;">‹</button>
+            <span id="mLabel" style="font-size:13px;font-weight:500;color:var(--color-text-primary);"></span>
+            <button onclick="nextM()" style="border:none;background:none;cursor:pointer;font-size:16px;color:var(--color-text-secondary);padding:2px 6px;">›</button>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(7,1fr);padding:6px 8px 2px;gap:2px;">
+            <div style="text-align:center;font-size:11px;color:var(--color-text-tertiary);padding:3px 0;">S</div>
+            <div style="text-align:center;font-size:11px;color:var(--color-text-tertiary);padding:3px 0;">M</div>
+            <div style="text-align:center;font-size:11px;color:var(--color-text-tertiary);padding:3px 0;">T</div>
+            <div style="text-align:center;font-size:11px;color:var(--color-text-tertiary);padding:3px 0;">W</div>
+            <div style="text-align:center;font-size:11px;color:var(--color-text-tertiary);padding:3px 0;">T</div>
+            <div style="text-align:center;font-size:11px;color:var(--color-text-tertiary);padding:3px 0;">F</div>
+            <div style="text-align:center;font-size:11px;color:var(--color-text-tertiary);padding:3px 0;">S</div>
+          </div>
+          <div id="calGrid" style="display:grid;grid-template-columns:repeat(7,1fr);padding:2px 8px 8px;gap:2px;"></div>
+        </div>
+        <!-- Time slots -->
+        <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px;">Choose a slot</div>
+        <div id="slots" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;"></div>
+        <div id="selDisplay" style="display:none;margin-top:12px;padding:8px 12px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);font-size:13px;color:var(--color-text-primary);"></div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div id="s3" style="flex:1;display:none;flex-direction:column;padding:24px 20px 0;">
+      <div style="margin-bottom:4px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-tertiary);">Your details</div>
+      <h2 style="font-size:20px;font-weight:500;margin:0 0 6px;color:var(--color-text-primary);">Almost done</h2>
+      <p style="font-size:13px;color:var(--color-text-secondary);margin:0 0 20px;line-height:1.5;">We'll confirm your conversation within 24 hours.</p>
+      <div style="flex:1;display:flex;flex-direction:column;gap:14px;">
+        <div>
+          <label style="display:block;font-size:12px;color:var(--color-text-secondary);margin-bottom:6px;">Full name</label>
+          <input type="text" id="iname" placeholder="Your full name" style="width:100%;font-size:14px;padding:10px 12px;border-radius:var(--border-radius-md);box-sizing:border-box;">
+        </div>
+        <div>
+          <label style="display:block;font-size:12px;color:var(--color-text-secondary);margin-bottom:6px;">Email</label>
+          <input type="email" id="iemail" placeholder="email@example.com" style="width:100%;font-size:14px;padding:10px 12px;border-radius:var(--border-radius-md);box-sizing:border-box;">
+        </div>
+        <div>
+          <label style="display:block;font-size:12px;color:var(--color-text-secondary);margin-bottom:6px;">Phone</label>
+          <input type="tel" id="iphone" placeholder="+91 XXXXX XXXXX" style="width:100%;font-size:14px;padding:10px 12px;border-radius:var(--border-radius-md);box-sizing:border-box;">
+        </div>
+      </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div id="s4" style="flex:1;display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px 0;text-align:center;">
+      <div style="width:48px;height:48px;border-radius:50%;background:var(--color-background-success);display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px;color:var(--color-text-success);">✓</div>
+      <h2 style="font-size:20px;font-weight:500;margin:0 0 8px;color:var(--color-text-primary);">Application received</h2>
+      <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.6;max-width:280px;">We'll confirm your conversation within 24 hours.</p>
+    </div>
+
+  </div>
+
+  <!-- FOOTER — fixed position, same across all steps -->
+  <div id="footer" style="padding:16px 20px;border-top:0.5px solid var(--color-border-tertiary);display:flex;gap:8px;">
+    <button id="backBtn" onclick="goBack()" style="display:none;flex:1;padding:11px;border-radius:var(--border-radius-md);font-size:13px;cursor:pointer;border:0.5px solid var(--color-border-secondary);background:none;color:var(--color-text-secondary);">← Back</button>
+    <button id="nextBtn" onclick="goNext()" style="flex:2;padding:11px;border-radius:var(--border-radius-md);font-size:13px;font-weight:500;cursor:pointer;border:none;background:var(--color-background-info);color:var(--color-text-info);">Continue →</button>
+  </div>
+
+</div>
+</div>
+
+<script>
+var step = 1;
+var selDate = null;
+var selTime = null;
+var calY, calM;
+
+function init() {
+  var now = new Date();
+  calY = now.getFullYear();
+  calM = now.getMonth();
+  renderCal();
+  renderSlots();
+}
+
+function updateHeader() {
+  var dots = [document.getElementById('d1'), document.getElementById('d2'), document.getElementById('d3')];
+  dots.forEach(function(d, i) {
+    var n = i + 1;
+    if(n < step) {
+      d.style.background = 'var(--color-background-success)';
+      d.style.color = 'var(--color-text-success)';
+      d.style.border = 'none';
+      d.textContent = '✓';
+    } else if(n === step) {
+      d.style.background = 'var(--color-background-info)';
+      d.style.color = 'var(--color-text-info)';
+      d.style.border = 'none';
+      d.textContent = n;
+    } else {
+      d.style.background = 'none';
+      d.style.border = '0.5px solid var(--color-border-secondary)';
+      d.style.color = 'var(--color-text-tertiary)';
+      d.textContent = n;
+    }
+  });
+}
+
+function showStep(n) {
+  step = n;
+  ['s1','s2','s3','s4'].forEach(function(id, i) {
+    var el = document.getElementById(id);
+    el.style.display = (i+1 === n || (n===99 && id==='s4')) ? 'flex' : 'none';
+  });
+  updateHeader();
+  var back = document.getElementById('backBtn');
+  var next = document.getElementById('nextBtn');
+  var footer = document.getElementById('footer');
+  if(n === 99) {
+    footer.style.display = 'none';
+    return;
+  }
+  footer.style.display = 'flex';
+  back.style.display = n > 1 ? 'block' : 'none';
+  next.textContent = n === 3 ? 'Submit →' : 'Continue →';
+}
+
+function goNext() {
+  if(step === 1) {
+    showStep(2);
+  } else if(step === 2) {
+    if(!selDate || !selTime) { alert('Please select a date and time.'); return; }
+    showStep(3);
+  } else if(step === 3) {
+    showStep(99);
+  }
+}
+
+function goBack() {
+  if(step > 1) showStep(step - 1);
+}
+
+function closeDemo() {
+  showStep(1);
+  document.getElementById('q1').value = '';
+  document.getElementById('q2').value = '';
+  selDate = null; selTime = null;
+  renderCal(); renderSlots();
+  document.getElementById('selDisplay').style.display = 'none';
+}
+
+// Calendar
+var MN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+var TIMES = ['09:00','10:30','12:00','14:00','16:00','18:00'];
+
+function renderCal() {
+  document.getElementById('mLabel').textContent = MN[calM] + ' ' + calY;
+  var g = document.getElementById('calGrid');
+  g.innerHTML = '';
+  var fd = new Date(calY, calM, 1).getDay();
+  var dm = new Date(calY, calM+1, 0).getDate();
+  var today = new Date(); today.setHours(0,0,0,0);
+  for(var i=0;i<fd;i++) { var e=document.createElement('div'); g.appendChild(e); }
+  for(var d=1;d<=dm;d++) {
+    var dt = new Date(calY, calM, d);
+    var c = document.createElement('div');
+    var past = dt < today;
+    var isSel = selDate && selDate.toDateString()===dt.toDateString();
+    c.textContent = d;
+    c.style.cssText = 'text-align:center;padding:5px 2px;font-size:13px;border-radius:var(--border-radius-md);cursor:' + (past?'default':'pointer') + ';color:' + (past?'var(--color-text-tertiary)':(isSel?'var(--color-text-info)':'var(--color-text-primary)')) + ';background:' + (isSel?'var(--color-background-info)':'none') + ';font-weight:' + (isSel?'500':'400') + ';';
+    if(!past) {
+      (function(date) {
+        c.addEventListener('click', function() {
+          selDate = date; selTime = null;
+          renderCal(); renderSlots(); updateSelDisplay();
+        });
+        c.addEventListener('mouseover', function() { if(!isSel) this.style.background='var(--color-background-secondary)'; });
+        c.addEventListener('mouseout', function() { if(selDate && selDate.toDateString()!==date.toDateString()) this.style.background='none'; });
+      })(new Date(dt));
+    }
+    g.appendChild(c);
+  }
+}
+
+function renderSlots() {
+  var c = document.getElementById('slots');
+  c.innerHTML = '';
+  TIMES.forEach(function(t) {
+    var btn = document.createElement('button');
+    btn.textContent = t;
+    var isSel = selTime === t;
+    btn.style.cssText = 'padding:8px 4px;font-size:13px;border-radius:var(--border-radius-md);cursor:pointer;border:0.5px solid ' + (isSel?'var(--color-border-info)':'var(--color-border-tertiary)') + ';background:' + (isSel?'var(--color-background-info)':'none') + ';color:' + (isSel?'var(--color-text-info)':'var(--color-text-primary)') + ';font-weight:' + (isSel?'500':'400') + ';';
+    btn.addEventListener('click', function() { selTime = t; renderSlots(); updateSelDisplay(); });
+    c.appendChild(btn);
+  });
+}
+
+function updateSelDisplay() {
+  var el = document.getElementById('selDisplay');
+  if(selDate && selTime) {
+    var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var ms = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    el.style.display = 'block';
+    el.textContent = days[selDate.getDay()] + ' ' + selDate.getDate() + ' ' + ms[selDate.getMonth()] + ' · ' + selTime;
+  } else {
+    el.style.display = 'none';
+  }
+}
+
+function prevM() { calM--; if(calM<0){calM=11;calY--;} renderCal(); }
+function nextM() { calM++; if(calM>11){calM=0;calY++;} renderCal(); }
+
+init();
+</script>

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work as Volunteer — The Silent Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f0b08;--bg-2:#160f0a;--bg-3:#1c1410;--bg-4:#221814;
+  --gold:#c5a065;--gold-dim:#8a6e42;--gold-pale:#e8d5b0;
+  --text-2:#b09070;--text-3:#7a6048;
+  --rule:#2a1f17;--rule-2:#3a2a1f;
+  --serif:'Cormorant',Georgia,serif;
+  --sans:'Jost',sans-serif;
+  --g:6vw;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--gold-pale);font-family:var(--sans);font-weight:300;-webkit-font-smoothing:antialiased;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4;}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(15,11,8,0.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--rule);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:1400px;margin:0 auto;padding:0 var(--g);}
+.nav-brand{font-family:var(--serif);font-size:1.1rem;color:var(--gold-pale);text-decoration:none;}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
+.nav-links a{font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:9px 22px;border:none;cursor:pointer;font-family:var(--sans);transition:background 0.2s;}
+.nav-cta:hover{background:var(--gold-pale);}
+@media(max-width:860px){.nav-links{display:none;}}
+
+/* HERO */
+.hero{
+  padding-top:60px;
+  min-height:50vh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  border-bottom:1px solid var(--rule);
+  position:relative;overflow:hidden;
+  background:var(--bg-2);
+}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 40%,rgba(197,160,101,0.04) 0%,transparent 60%);pointer-events:none;}
+.hero-inner{
+  position:relative;z-index:2;
+  padding:clamp(48px,6vw,80px) var(--g);
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:end;
+}
+.hero-label{font-size:0.6rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;}
+.hero-heading{font-family:var(--serif);font-weight:300;font-size:clamp(2.4rem,5vw,4.8rem);line-height:0.95;letter-spacing:-0.02em;color:var(--gold-pale);margin-bottom:16px;}
+.hero-heading em{font-style:italic;color:var(--gold);}
+.hero-duration{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-dim);border:1px solid var(--rule-2);display:inline-block;padding:4px 12px;}
+.hero-right{}
+.hero-desc{font-size:0.9rem;font-weight:300;line-height:1.85;color:var(--text-2);font-family:var(--serif);}
+.hero-desc em{font-style:italic;color:var(--gold-pale);}
+@media(max-width:860px){.hero-inner{grid-template-columns:1fr;gap:28px;}}
+
+/* MAIN LAYOUT */
+.main{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1px;background:var(--rule);
+  border-bottom:1px solid var(--rule);
+}
+
+/* LEFT — details */
+.details{background:var(--bg);padding:clamp(48px,6vw,72px) var(--g);}
+
+.detail-block{margin-bottom:40px;}
+.detail-block:last-child{margin-bottom:0;}
+.detail-label{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-3);margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.detail-label::after{content:'';flex:1;height:1px;background:var(--rule);}
+.detail-heading{font-family:var(--serif);font-weight:300;font-size:clamp(1.4rem,2.2vw,2rem);color:var(--gold-pale);margin-bottom:16px;letter-spacing:-0.01em;line-height:1.1;}
+
+.exchange-list{display:flex;flex-direction:column;gap:0;}
+.exchange-item{
+  display:flex;align-items:baseline;gap:16px;
+  padding:14px 0;border-bottom:1px solid var(--rule);
+  font-size:0.875rem;font-weight:300;color:var(--text-2);line-height:1.5;
+}
+.exchange-item:first-child{border-top:1px solid var(--rule);}
+.exchange-dot{width:4px;height:4px;border-radius:50%;background:var(--gold-dim);flex-shrink:0;margin-top:7px;}
+
+.roles-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+.role-card{
+  background:var(--bg-2);padding:18px 20px;
+  transition:background 0.2s;
+}
+.role-card:hover{background:var(--bg-3);}
+.role-card-name{font-family:var(--serif);font-size:1rem;color:var(--gold-pale);margin-bottom:4px;}
+.role-card-desc{font-size:0.72rem;color:var(--text-3);line-height:1.5;}
+
+.contact-block{display:flex;flex-direction:column;gap:12px;}
+.contact-item{
+  display:flex;align-items:center;gap:16px;
+  padding:14px 18px;border:1px solid var(--rule-2);
+  transition:border-color 0.2s;
+  text-decoration:none;
+}
+.contact-item:hover{border-color:var(--gold-dim);}
+.contact-icon{width:36px;height:36px;border:1px solid var(--rule-2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0;}
+.contact-label{font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3);margin-bottom:2px;}
+.contact-value{font-size:0.84rem;font-weight:300;color:var(--text-2);}
+
+/* RIGHT — form */
+.form-wrap{background:var(--bg-2);padding:clamp(48px,6vw,72px) var(--g);}
+.form-label-top{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-3);margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.form-label-top::after{content:'';flex:1;height:1px;background:var(--rule);}
+.form-heading{font-family:var(--serif);font-weight:300;font-size:clamp(1.4rem,2.2vw,2rem);color:var(--gold-pale);margin-bottom:28px;letter-spacing:-0.01em;line-height:1.1;}
+
+.form{display:flex;flex-direction:column;gap:16px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-field{display:flex;flex-direction:column;gap:6px;}
+.form-field label{font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3);font-family:var(--sans);}
+.form-field input,
+.form-field textarea,
+.form-field select{
+  background:var(--bg-3);
+  border:1px solid var(--rule-2);
+  padding:11px 14px;
+  font-family:var(--sans);
+  font-size:0.84rem;
+  color:var(--gold-pale);
+  outline:none;
+  transition:border-color 0.2s;
+  width:100%;
+  appearance:none;
+}
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus{border-color:var(--gold-dim);}
+.form-field input::placeholder,
+.form-field textarea::placeholder{color:var(--text-3);}
+.form-field textarea{resize:vertical;line-height:1.6;}
+.form-field select{cursor:pointer;color-scheme:dark;}
+.form-field select option{background:var(--bg-3);}
+
+/* File upload */
+.file-upload{
+  border:1px solid var(--rule-2);padding:12px 14px;
+  display:flex;align-items:center;gap:12px;
+  cursor:pointer;transition:border-color 0.2s;
+  background:var(--bg-3);
+}
+.file-upload:hover{border-color:var(--gold-dim);}
+.file-upload input{display:none;}
+.file-upload-btn{
+  font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--bg);background:var(--gold-dim);padding:6px 12px;
+  cursor:pointer;white-space:nowrap;transition:background 0.2s;
+}
+.file-upload:hover .file-upload-btn{background:var(--gold);}
+.file-upload-name{font-size:0.78rem;color:var(--text-3);}
+.file-upload-note{font-size:0.6rem;color:var(--text-3);margin-top:4px;letter-spacing:0.04em;}
+
+.form-submit{
+  background:var(--gold);color:var(--bg);
+  font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;
+  padding:14px 28px;border:none;cursor:pointer;
+  font-family:var(--sans);transition:background 0.2s;
+  display:flex;align-items:center;gap:10px;
+  margin-top:8px;
+}
+.form-submit:hover{background:var(--gold-pale);}
+.form-submit-note{font-size:0.62rem;color:var(--text-3);font-family:var(--serif);font-style:italic;margin-top:6px;}
+
+/* SUCCESS STATE */
+.form-success{
+  display:none;
+  text-align:center;padding:48px 0;
+}
+.form-success.show{display:block;}
+.form-success-heading{font-family:var(--serif);font-size:2rem;color:var(--gold-pale);margin-bottom:12px;}
+.form-success-text{font-size:0.875rem;color:var(--text-3);line-height:1.7;max-width:320px;margin:0 auto;}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  .main{grid-template-columns:1fr;}
+  .roles-grid{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+}
+
+/* FOOTER */
+.footer{background:var(--bg);border-top:1px solid var(--rule);}
+.footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:1px;background:var(--rule);border-bottom:1px solid var(--rule);}
+.footer-col{background:var(--bg);padding:clamp(36px,4vw,52px) clamp(24px,3vw,36px);}
+.footer-brand{font-family:var(--serif);font-size:1.1rem;color:var(--gold-pale);margin-bottom:4px;}
+.footer-tagline{font-size:0.66rem;color:var(--text-3);letter-spacing:0.06em;margin-bottom:24px;}
+.footer-collab{padding:14px 18px;border:1px solid var(--rule-2);}
+.footer-collab-text{font-size:0.72rem;color:var(--text-3);line-height:1.5;margin-bottom:8px;}
+.footer-collab-link{font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-dim);cursor:pointer;background:none;border:none;font-family:var(--sans);padding:0;transition:color 0.2s;}
+.footer-collab-link:hover{color:var(--gold);}
+.footer-col-label{font-size:0.56rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-3);margin-bottom:14px;}
+.footer-link{display:block;font-size:0.78rem;color:var(--text-3);padding:3px 0;text-decoration:none;transition:color 0.2s;}
+.footer-link:hover{color:var(--gold);}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px var(--g);flex-wrap:wrap;}
+.footer-copy{font-size:0.62rem;color:var(--text-3);}
+@media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr;}}
+@media(max-width:540px){.footer-top{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="thesilentclub-homepage.html">The Silent Club</a>
+    <ul class="nav-links">
+      <li><a href="thesilentclub-homepage.html">Home</a></li>
+      <li><a href="thesilentclub-estate.html">Estate</a></li>
+      <li><a href="thesilentclub-about.html">About</a></li>
+      <li><a href="thesilentclub-journal.html">Journal</a></li>
+    </ul>
+    <button class="nav-cta" onclick="openInvite()">Request Invite &rarr;</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-label">Volunteer</div>
+      <h1 class="hero-heading">Work here.<br><em>Live here.</em><br>Think here.</h1>
+      <div class="hero-duration" style="margin-top:20px;">Minimum 3 months</div>
+    </div>
+    <div class="hero-right">
+      <p class="hero-desc">This is not an internship. There is no syllabus, no performance review, no certificate at the end. <em>You contribute to what makes this place possible — and in return, you get to live inside it.</em> That exchange is the whole arrangement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- LEFT: DETAILS -->
+  <div class="details">
+
+    <!-- EXCHANGE -->
+    <div class="detail-block">
+      <div class="detail-label">What you receive</div>
+      <h2 class="detail-heading">The exchange</h2>
+      <div class="exchange-list">
+        <div class="exchange-item"><div class="exchange-dot"></div>Food and accommodation for the full duration of your volunteer period</div>
+        <div class="exchange-item"><div class="exchange-dot"></div>Full access to the estate — all spaces, all activities, all meals</div>
+        <div class="exchange-item"><div class="exchange-dot"></div>An immersive experience inside a practice of silence and intentional living</div>
+        <div class="exchange-item"><div class="exchange-dot"></div>Time. Unstructured, protected time to think, create, and be</div>
+      </div>
+    </div>
+
+    <!-- ROLES -->
+    <div class="detail-block">
+      <div class="detail-label">What you contribute</div>
+      <h2 class="detail-heading">Volunteer roles</h2>
+      <div class="roles-grid">
+        <div class="role-card">
+          <div class="role-card-name">Facility Management</div>
+          <div class="role-card-desc">Keeping the estate running quietly and without friction.</div>
+        </div>
+        <div class="role-card">
+          <div class="role-card-name">Vendor Communication</div>
+          <div class="role-card-desc">Coordinating with external suppliers and service providers.</div>
+        </div>
+        <div class="role-card">
+          <div class="role-card-name">Guest Hospitality</div>
+          <div class="role-card-desc">Ensuring members arrive and settle in without needing to ask for anything.</div>
+        </div>
+        <div class="role-card">
+          <div class="role-card-name">Content & Documentation</div>
+          <div class="role-card-desc">Capturing what happens here — in words, photographs, or film.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="detail-block">
+      <div class="detail-label">Questions</div>
+      <h2 class="detail-heading">Get in touch</h2>
+      <div class="contact-block">
+        <a class="contact-item" href="mailto:hello@thesilent.club">
+          <div class="contact-icon">✉</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value">hello@thesilent.club</div>
+          </div>
+        </a>
+        <a class="contact-item" href="https://wa.me/919890322494">
+          <div class="contact-icon">◎</div>
+          <div>
+            <div class="contact-label">WhatsApp</div>
+            <div class="contact-value">+91 98903 22494</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: FORM -->
+  <div class="form-wrap">
+    <div class="form-label-top">Apply</div>
+    <h2 class="form-heading">Volunteer application</h2>
+
+    <div class="form" id="volForm">
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>Full name *</label>
+          <input type="text" placeholder="Your full name" id="vName">
+        </div>
+        <div class="form-field">
+          <label>Email *</label>
+          <input type="email" placeholder="your@email.com" id="vEmail">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>Phone number *</label>
+          <input type="tel" placeholder="+91 XXXXX XXXXX" id="vPhone">
+        </div>
+        <div class="form-field">
+          <label>Current location *</label>
+          <input type="text" placeholder="City, Country" id="vLocation">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>Preferred duration *</label>
+          <select id="vDuration">
+            <option value="">Select duration</option>
+            <option>3 months</option>
+            <option>3–6 months</option>
+            <option>6 months</option>
+            <option>6 months or more</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>When can you start? *</label>
+          <input type="text" placeholder="e.g., Immediately, After June 2026" id="vStart">
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label>Relevant skills *</label>
+        <textarea rows="3" placeholder="e.g., Gardening, cooking, maintenance, hospitality, content creation, photography..." id="vSkills"></textarea>
+      </div>
+
+      <div class="form-field">
+        <label>Previous experience</label>
+        <textarea rows="3" placeholder="Any relevant volunteer or work experience..." id="vExp"></textarea>
+      </div>
+
+      <div class="form-field">
+        <label>Why do you want to volunteer here? *</label>
+        <textarea rows="4" placeholder="Tell us what draws you to The Silent Club and what you hope to contribute and gain from this experience..." id="vWhy"></textarea>
+      </div>
+
+      <div class="form-field">
+        <label>Attach CV / Résumé</label>
+        <div class="file-upload" onclick="document.getElementById('vFile').click()">
+          <input type="file" id="vFile" accept=".pdf,.doc,.docx" onchange="updateFileName(this)">
+          <div class="file-upload-btn">Choose file</div>
+          <div class="file-upload-name" id="vFileName">No file chosen</div>
+        </div>
+        <div class="file-upload-note">Accepted formats: PDF, DOC, DOCX &middot; Max 5MB</div>
+      </div>
+
+      <div>
+        <button class="form-submit" onclick="submitForm()">
+          Submit Application &rarr;
+        </button>
+        <div class="form-submit-note">We review all applications within 72 hours.</div>
+      </div>
+
+    </div>
+
+    <div class="form-success" id="formSuccess">
+      <div class="form-success-heading">Application received.</div>
+      <p class="form-success-text">Thank you for applying. We review every application carefully and will be in touch within 72 hours.</p>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-col">
+      <div class="footer-brand">The Silent Club</div>
+      <div class="footer-tagline">Silence as a Service · Bhigwan, Pune</div>
+      <div class="footer-collab">
+        <p class="footer-collab-text">Artist, musician, or experience creator? Host an event here.</p>
+        <button class="footer-collab-link">Collaborate with us &rarr;</button>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-label">Explore</div>
+      <a class="footer-link" href="thesilentclub-homepage.html">Home</a>
+      <a class="footer-link" href="thesilentclub-about.html">About</a>
+      <a class="footer-link" href="thesilentclub-estate.html">The Estate</a>
+      <a class="footer-link" href="thesilentclub-journal.html">Journal</a>
+      <a class="footer-link" href="thesilentclub-faq.html">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-label">Stay</div>
+      <a class="footer-link" href="#">Silence — Day Cycle</a>
+      <a class="footer-link" href="#">Residency — Weekend</a>
+      <a class="footer-link" href="#">Solitude — Weekday</a>
+      <a class="footer-link" href="#">Creation — Full Estate</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-label">Connect</div>
+      <a class="footer-link" href="#">Instagram</a>
+      <a class="footer-link" href="#">Substack</a>
+      <a class="footer-link" href="#">Request Invite</a>
+      <a class="footer-link" href="thesilentclub-volunteer.html">Work as Volunteer</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2026 The Silent Club. All rights reserved.</div>
+    <div class="footer-copy">The Silent Club, Kumbhar Goan, Bird Sanctuary, Bhigwan, Maharashtra 413104</div>
+    <div class="footer-copy">A registered initiative of Silent Tourism Foundation.</div>
+  </div>
+</footer>
+
+<!-- INVITE MODAL -->
+<div id="inviteModal" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(15,11,8,0.88);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:24px;">
+  <div style="background:#160f0a;border:1px solid #3a2a1f;max-width:480px;width:100%;padding:44px;position:relative;max-height:90vh;overflow-y:auto;">
+    <button onclick="closeInvite()" style="position:absolute;top:14px;right:18px;background:none;border:none;color:#7a6048;font-size:1.3rem;cursor:pointer;">&times;</button>
+    <div style="font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:#7a6048;margin-bottom:12px;font-family:'Jost',sans-serif;">Request Invite</div>
+    <div style="font-family:'Cormorant',serif;font-size:1.7rem;font-weight:300;color:#e8d5b0;margin-bottom:6px;">Two questions.<br>No pitch.</div>
+    <p style="font-size:0.82rem;color:#7a6048;line-height:1.65;margin-bottom:22px;font-family:'Jost',sans-serif;">We respond within 72 hours.</p>
+    <div style="margin-bottom:13px;"><label style="display:block;font-size:0.56rem;letter-spacing:0.14em;text-transform:uppercase;color:#7a6048;margin-bottom:5px;font-family:'Jost',sans-serif;">Your name</label><input type="text" placeholder="Full name" style="width:100%;background:#1c1410;border:1px solid #2a1f17;padding:10px 12px;font-family:'Jost',sans-serif;font-size:0.84rem;color:#e8d5b0;outline:none;box-sizing:border-box;"></div>
+    <div style="margin-bottom:13px;"><label style="display:block;font-size:0.56rem;letter-spacing:0.14em;text-transform:uppercase;color:#7a6048;margin-bottom:5px;font-family:'Jost',sans-serif;">Your email</label><input type="email" placeholder="email@example.com" style="width:100%;background:#1c1410;border:1px solid #2a1f17;padding:10px 12px;font-family:'Jost',sans-serif;font-size:0.84rem;color:#e8d5b0;outline:none;box-sizing:border-box;"></div>
+    <div style="margin-bottom:13px;"><label style="display:block;font-size:0.56rem;letter-spacing:0.14em;text-transform:uppercase;color:#7a6048;margin-bottom:5px;font-family:'Jost',sans-serif;">What do you do, and what kind of quiet do you need?</label><textarea rows="3" style="width:100%;background:#1c1410;border:1px solid #2a1f17;padding:10px 12px;font-family:'Jost',sans-serif;font-size:0.84rem;color:#e8d5b0;outline:none;box-sizing:border-box;resize:vertical;line-height:1.55;"></textarea></div>
+    <div style="margin-bottom:13px;"><label style="display:block;font-size:0.56rem;letter-spacing:0.14em;text-transform:uppercase;color:#7a6048;margin-bottom:5px;font-family:'Jost',sans-serif;">Describe the last time you were truly alone with a thought.</label><textarea rows="3" style="width:100%;background:#1c1410;border:1px solid #2a1f17;padding:10px 12px;font-family:'Jost',sans-serif;font-size:0.84rem;color:#e8d5b0;outline:none;box-sizing:border-box;resize:vertical;line-height:1.55;"></textarea></div>
+    <button style="width:100%;background:#c5a065;color:#0f0b08;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;padding:12px;border:none;cursor:pointer;font-family:'Jost',sans-serif;margin-top:6px;">Submit &rarr;</button>
+  </div>
+</div>
+
+<script>
+function updateFileName(input) {
+  var name = input.files.length ? input.files[0].name : 'No file chosen';
+  document.getElementById('vFileName').textContent = name;
+}
+
+function submitForm() {
+  var name = document.getElementById('vName').value.trim();
+  var email = document.getElementById('vEmail').value.trim();
+  var why = document.getElementById('vWhy').value.trim();
+  if(!name || !email || !why) {
+    alert('Please fill in your name, email and tell us why you want to volunteer.');
+    return;
+  }
+  document.getElementById('volForm').style.display = 'none';
+  document.getElementById('formSuccess').classList.add('show');
+}
+
+function openInvite() {
+  document.getElementById('inviteModal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeInvite() {
+  document.getElementById('inviteModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.getElementById('inviteModal').addEventListener('click', function(e) {
+  if(e.target === this) closeInvite();
+});
+
+window.addEventListener('scroll', function() {
+  var nav = document.querySelector('.nav');
+  if(nav) nav.style.background = window.scrollY > 40 ? 'rgba(15,11,8,0.98)' : 'rgba(15,11,8,0.94)';
+});
+</script>
+
+</body>
+</html>

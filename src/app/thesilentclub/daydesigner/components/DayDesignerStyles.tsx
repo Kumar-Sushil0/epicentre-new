@@ -32,9 +32,9 @@ export function DayDesignerStyles() {
       .pal{flex-shrink:0;border-bottom:1px solid var(--rule);background:var(--bg);overflow:hidden}
       .pal-cats{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--rule);margin:0 6vw}
       .pal-cat{background:var(--bg)}
-      .pal-cat-n{padding:7px 10px;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid var(--rule);background:var(--bg);font-weight:500}
-      .pal-items{padding:6px 10px;display:flex;flex-direction:column;gap:2px}
-      .pill{font-size:.82rem;color:var(--text-2);padding:4px 8px;border:1px solid transparent;cursor:pointer;text-align:left;display:flex;align-items:center;gap:5px;background:none;width:100%}
+      .pal-cat-n{padding:7px 10px 7px 78px;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid var(--rule);background:var(--bg);font-weight:500}
+      .pal-items{padding:6px 10px 6px 78px;display:flex;flex-direction:column;gap:2px}
+      .pill{font-size:.82rem;color:var(--text-2);padding:4px 8px 4px 4px;border:1px solid transparent;cursor:pointer;text-align:left;display:flex;align-items:center;gap:5px;background:none;width:100%}
       .pill:hover{color:var(--gold-pale)}
       .arrow-slot{
         min-height:48px;display:flex;align-items:center;justify-content:center;padding:0 8px;position:relative;
@@ -59,7 +59,7 @@ export function DayDesignerStyles() {
       .date-col{width:90px;flex-shrink:0;display:flex;align-items:center;padding-right:10px}
       .date-label{font-size:.72rem;color:var(--text-2);line-height:1.4;text-align:right;width:100%}
       .tl-wrap{flex:1;overflow:hidden;display:flex;flex-direction:column}
-      .tl-scroll{flex:1;overflow:auto;padding:16px 0}
+      .tl-scroll{flex:1;overflow:auto;padding:0}
       .cta-bar{flex-shrink:0;border-top:1px solid var(--rule);background:var(--bg-2);padding:16px 6vw;display:flex;align-items:center;justify-content:space-between;gap:16px}
       .modal{position:fixed;inset:0;background:rgba(15,11,8,.88);display:grid;place-items:center}
     `}</style>

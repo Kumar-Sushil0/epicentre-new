@@ -15,7 +15,7 @@ export function FooterSection() {
           </div>
         </div>
         <div className="footer-col"><div className="footer-col-label">Explore</div><a className="footer-link" href="#">Home</a><a className="footer-link" href="#">About</a><a className="footer-link" href="#">The Estate</a><a className="footer-link" href="#">Journal</a><a className="footer-link" href="#">FAQ</a></div>
-        <div className="footer-col"><div className="footer-col-label">Stay</div><a className="footer-link" href="#">Silence — Day Cycle</a><a className="footer-link" href="#">Residency — Weekend</a><a className="footer-link" href="#">Solitude — Weekday</a><a className="footer-link" href="#">Creation — Full Estate</a></div>
+        <div className="footer-col"><div className="footer-col-label">Stay</div><a className="footer-link" href="#">Silence Day Cycle</a><a className="footer-link" href="#">Residency Weekend</a><a className="footer-link" href="#">Solitude Weekday</a><a className="footer-link" href="#">Creation Full Estate</a></div>
         <div className="footer-col"><div className="footer-col-label">Connect</div><a className="footer-link" href="#">Instagram</a><a className="footer-link" href="#">Substack</a><a className="footer-link" href="#">Request Invite</a><a className="footer-link" href="#">Host an Event</a></div>
       </div>
       <div className="footer-bottom">

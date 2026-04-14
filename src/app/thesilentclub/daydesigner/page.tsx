@@ -65,6 +65,16 @@ export default function TheSilentClubDayDesigner9Page() {
   }, [calM, calY]);
 
   const canStep1Continue = Boolean(product && arrivalDate);
+  const dayCycleLimitReached = product?.id === "silence" && Object.keys(schedule).length >= 2;
+  const dayCycleSelectedPeriod = useMemo(() => {
+    if (product?.id !== "silence") return null;
+    for (const key of Object.keys(schedule)) {
+      const sid = key.split("_")[1];
+      const slot = SLOTS.find((s) => s.id === sid);
+      if (slot && !slot.fixed) return slot.period;
+    }
+    return null;
+  }, [product?.id, schedule]);
 
   const days = useMemo(() => {
     const n = product?.days ?? 1;
@@ -100,6 +110,7 @@ export default function TheSilentClubDayDesigner9Page() {
     const slot = SLOTS.find((s) => s.id === sid);
     if (!slot) return false;
     if (slot.fixed) return true;
+    if (product?.id === "silence") return false;
     const si = SLOTS.findIndex((s) => s.id === sid);
     // On arrival day: lock slots before check-in (s7 = 13:00, index 6)
     const checkInIndex = SLOTS.findIndex((s) => s.id === "s7");
@@ -120,7 +131,25 @@ export default function TheSilentClubDayDesigner9Page() {
   };
 
   const placeActivity = (key: string, activity: string) => {
-    setSchedule((prev) => ({ ...prev, [key]: activity }));
+    setSchedule((prev) => {
+      if (product?.id === "silence" && !prev[key]) {
+        const totalPlaced = Object.keys(prev).length;
+        if (totalPlaced >= 2) return prev;
+        const sid = key.split("_")[1];
+        const targetSlot = SLOTS.find((s) => s.id === sid);
+        if (!targetSlot || targetSlot.fixed) return prev;
+        const existingPeriods = new Set(
+          Object.keys(prev)
+            .map((k) => {
+              const existingSid = k.split("_")[1];
+              return SLOTS.find((s) => s.id === existingSid && !s.fixed)?.period ?? null;
+            })
+            .filter((p): p is string => Boolean(p)),
+        );
+        if (existingPeriods.size > 0 && !existingPeriods.has(targetSlot.period)) return prev;
+      }
+      return { ...prev, [key]: activity };
+    });
   };
 
   const handleDropToSlot = (e: React.DragEvent<HTMLDivElement>, key: string) => {
@@ -156,15 +185,33 @@ export default function TheSilentClubDayDesigner9Page() {
       }
 
       const next = { ...schedule };
+      let totalPlaced = Object.keys(next).length;
+      let silencePeriod =
+        product?.id === "silence"
+          ? Object.keys(next)
+              .map((k) => {
+                const sid = k.split("_")[1];
+                return SLOTS.find((s) => s.id === sid && !s.fixed)?.period ?? null;
+              })
+              .find((p): p is string => Boolean(p)) ?? null
+          : null;
       const free = SLOTS.filter((s) => !s.fixed).map((s) => s.id);
       days.forEach((_, di) => {
         let placed = 0;
         free.forEach((sid, i) => {
           if (placed >= density || slotLocked(di, sid)) return;
+          if (product?.id === "silence" && totalPlaced >= 2) return;
+          if (product?.id === "silence") {
+            const slot = SLOTS.find((s) => s.id === sid);
+            if (!slot || slot.fixed) return;
+            if (!silencePeriod) silencePeriod = slot.period;
+            if (slot.period !== silencePeriod) return;
+          }
           const key = `${di}_${sid}`;
           if (!next[key]) {
             next[key] = acts[i % acts.length];
             placed += 1;
+            totalPlaced += 1;
           }
         });
       });
@@ -180,8 +227,49 @@ export default function TheSilentClubDayDesigner9Page() {
   const nextMonth = () => {
     if (calM === 11) { setCalY(calY + 1); setCalM(0); } else { setCalM(calM + 1); }
   };
+  const downloadPlan = () => {
+    const lines: string[] = [];
+    lines.push("The Silent Club - Day Designer");
+    lines.push("");
+    lines.push(`Plan: ${product ? `${product.name} (${product.cycle})` : "Not selected"}`);
+    lines.push(`Mode: ${mode === "ai" ? "AI" : "Selfdesign"}`);
+    lines.push("");
+    lines.push("Schedule:");
+    if (!days.length) {
+      lines.push("- No dates selected.");
+    } else {
+      days.forEach((d, di) => {
+        lines.push(`${dayNames[d.getDay()]}, ${d.getDate()} ${shortMonths[d.getMonth()]}`);
+        SLOTS.forEach((slot) => {
+          const key = `${di}_${slot.id}`;
+          const value = slot.fixed || schedule[key];
+          if (value) lines.push(`  ${slot.t} - ${value}`);
+        });
+      });
+    }
+    const blob = new Blob([lines.join("\n")], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `day-designer-${new Date().toISOString().slice(0, 10)}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  };
 
   const stepClass = (n: number) => `step ${step === n ? "active" : ""} ${n < step ? "done" : ""}`;
+  const stepOneLabel = useMemo(() => {
+    if (!product || selectedDates.length === 0) return "Choose your stay";
+    const firstDate = fmtDate(selectedDates[0]);
+    const lastDate = fmtDate(selectedDates[selectedDates.length - 1]);
+    const dateLabel = selectedDates.length === 1 ? firstDate : `${firstDate} to ${lastDate}`;
+    return `Choose your stay: ${product.name} ${dateLabel}`;
+  }, [product, selectedDates]);
+  const stepTwoLabel = useMemo(() => {
+    if (mode === "ai") return "How to design: AI";
+    return "How to design: Selfdesign";
+  }, [mode]);
 
   return (
     <main>
@@ -189,6 +277,8 @@ export default function TheSilentClubDayDesigner9Page() {
       <DesignerHeader
         stepClass={stepClass}
         onBackToSite={() => router.push("/thesilentclub/home")}
+        stepOneLabel={stepOneLabel}
+        stepTwoLabel={stepTwoLabel}
       />
 
       {step === 1 && (
@@ -255,12 +345,12 @@ export default function TheSilentClubDayDesigner9Page() {
           {mode === "ai" && (
             <div style={{ border: "1px solid var(--rule)", background: "var(--bg-2)", padding: 20, marginTop: 16 }}>
               {[
-                ["01 — What are you coming here to do?", ["Finish something I've started", "Think without interruption", "Rest and recover", "I don't know yet"]],
-                ["02 — How do you want your body to feel each day?", ["Physically active", "Rested and still", "A mix of both"]],
-                ["03 — When does your thinking feel sharpest?", ["Early morning", "Late morning", "Afternoon", "Evening"]],
-                ["04 — Any activities you already want?", ["Bird Watching", "Writing", "Swimming", "Star Gazing", "Long Walks", "Gym", "Reading"]],
-                ["05 — How structured should your days feel?", ["Fill most slots", "A few anchors only", "Almost empty"]],
-                ["06 — How are you arriving?", ["Still carrying the noise of the week", "Somewhere in between", "Already quiet, ready to go deep"]],
+                ["01: What are you coming here to do?", ["Finish something I've started", "Think without interruption", "Rest and recover", "I don't know yet"]],
+                ["02: How do you want your body to feel each day?", ["Physically active", "Rested and still", "A mix of both"]],
+                ["03: When does your thinking feel sharpest?", ["Early morning", "Late morning", "Afternoon", "Evening"]],
+                ["04: Any activities you already want?", ["Bird Watching", "Writing", "Swimming", "Star Gazing", "Long Walks", "Gym", "Reading"]],
+                ["05: How structured should your days feel?", ["Fill most slots", "A few anchors only", "Almost empty"]],
+                ["06: How are you arriving?", ["Still carrying the noise of the week", "Somewhere in between", "Already quiet, ready to go deep"]],
               ].map(([q, opts]) => (
                 <div key={q as string} style={{ marginBottom: 16 }}>
                   <div style={{ fontSize: ".75rem", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 8 }}>{q as string}</div>
@@ -292,11 +382,23 @@ export default function TheSilentClubDayDesigner9Page() {
                     {catData.items.map((item) => (
                       <button
                         key={item.name}
-                        draggable
-                        onDragStart={(e) => e.dataTransfer.setData("text/plain", item.name)}
+                        draggable={!dayCycleLimitReached}
+                        onDragStart={(e) => {
+                          if (dayCycleLimitReached) {
+                            e.preventDefault();
+                            return;
+                          }
+                          e.dataTransfer.setData("text/plain", item.name);
+                        }}
                         className={`pill ${selectedAct === item.name ? "active" : ""}`}
-                        style={selectedAct === item.name ? { borderColor: catData.color, color: catData.color, background: catData.bg } : {}}
-                        onClick={() => setSelectedAct((prev) => (prev === item.name ? null : item.name))}
+                        style={{
+                          ...(selectedAct === item.name ? { borderColor: catData.color, color: catData.color, background: catData.bg } : {}),
+                          ...(dayCycleLimitReached ? { opacity: 0.45, cursor: "not-allowed" } : {}),
+                        }}
+                        onClick={() => {
+                          if (dayCycleLimitReached) return;
+                          setSelectedAct((prev) => (prev === item.name ? null : item.name));
+                        }}
                       >
                         <span className="material-symbols-outlined" style={{ fontSize: "13px", color: catData.color, verticalAlign: "middle", marginRight: 4 }}>{item.icon}</span>
                         {item.name}
@@ -381,7 +483,7 @@ export default function TheSilentClubDayDesigner9Page() {
                         padding: "6px 2px",
                         borderRight: "1px solid var(--rule)",
                         background: s.fixed ? "rgba(197,160,101,.06)" : "transparent",
-                        fontWeight: s.fixed ? 500 : 300,
+                        fontWeight: 700,
                       }}
                     >
                       {s.t}
@@ -395,24 +497,30 @@ export default function TheSilentClubDayDesigner9Page() {
                   {/* Date label column */}
                   <div className="date-col">
                     <div className="date-label">
-                      <div style={{ color: "var(--gold-dim)", fontWeight: 400 }}>{dayNames[d.getDay()]}</div>
-                      <div>{d.getDate()} {shortMonths[d.getMonth()]}</div>
+                      <div style={{ color: "var(--gold-dim)", fontWeight: 700 }}>{dayNames[d.getDay()]}</div>
+                      <div style={{ fontWeight: 700 }}>{d.getDate()} {shortMonths[d.getMonth()]}</div>
                     </div>
                   </div>
                   {/* Arrow slots */}
-                  <div style={{ flex: 1, display: "grid", gridTemplateColumns: cols, gap: 6 }}>
+                  <div style={{ flex: 1, display: "grid", gridTemplateColumns: cols, gap: 6, pointerEvents: dayCycleLimitReached ? "none" : "auto", opacity: dayCycleLimitReached ? 0.7 : 1 }}>
                   {SLOTS.map((slot) => {
                     const key = `${di}_${slot.id}`;
-                    const isCI = di === 0 && slot.id === "s7";
-                    const isCO = di === days.length - 1 && slot.id === "s4" && days.length > 1;
+                    const showCheckBlocks = product?.id !== "silence";
+                    const isCI = showCheckBlocks && di === 0 && slot.id === "s7";
+                    const isCO = showCheckBlocks && di === days.length - 1 && slot.id === "s4" && days.length > 1;
                     const locked = slotLocked(di, slot.id);
+                    const periodLockedByDayCycle =
+                      product?.id === "silence" &&
+                      Boolean(dayCycleSelectedPeriod) &&
+                      !slot.fixed &&
+                      slot.period !== dayCycleSelectedPeriod;
                     if (isCI) {
                       return (
                         <div key={slot.id} className="arrow-slot arrow-checkin">
-                          <span style={{ textAlign: "center", fontSize: ".58rem", letterSpacing: ".12em", textTransform: "uppercase", lineHeight: 1.2, fontWeight: 600, fontFamily: "var(--sans)" }}>
+                          <span style={{ textAlign: "center", fontSize: ".68rem", letterSpacing: ".12em", textTransform: "uppercase", lineHeight: 1.2, fontWeight: 600, fontFamily: "var(--sans)" }}>
                             Check-in
                             <br />
-                            <span style={{ fontSize: ".58rem", fontWeight: 500, letterSpacing: ".06em" }}>1:00 pm</span>
+                            <span style={{ fontSize: ".64rem", fontWeight: 700, letterSpacing: ".06em" }}>1:00 pm</span>
                           </span>
                         </div>
                       );
@@ -420,20 +528,20 @@ export default function TheSilentClubDayDesigner9Page() {
                     if (isCO) {
                       return (
                         <div key={slot.id} className="arrow-slot arrow-checkout">
-                          <span style={{ textAlign: "center", fontSize: ".58rem", letterSpacing: ".12em", textTransform: "uppercase", lineHeight: 1.2, fontWeight: 600, fontFamily: "var(--sans)" }}>
+                          <span style={{ textAlign: "center", fontSize: ".68rem", letterSpacing: ".12em", textTransform: "uppercase", lineHeight: 1.2, fontWeight: 600, fontFamily: "var(--sans)" }}>
                             Check-out
                             <br />
-                            <span style={{ fontSize: ".58rem", fontWeight: 500, letterSpacing: ".06em" }}>11:00 am</span>
+                            <span style={{ fontSize: ".64rem", fontWeight: 700, letterSpacing: ".06em" }}>11:00 am</span>
                           </span>
                         </div>
                       );
                     }
                     if (slot.fixed) return (
                       <div key={slot.id} className="arrow-slot arrow-fixed">
-                        <span style={{ fontSize: ".72rem", textAlign: "center", fontWeight: 500 }}>{slot.fixed}</span>
+                        <span style={{ fontSize: ".72rem", textAlign: "center", fontWeight: 700 }}>{slot.fixed}</span>
                       </div>
                     );
-                    if (locked) return <div key={slot.id} className="arrow-slot arrow-locked" />;
+                    if (locked || periodLockedByDayCycle) return <div key={slot.id} className="arrow-slot arrow-locked" />;
                     return (
                       <div
                         key={slot.id}
@@ -489,6 +597,15 @@ export default function TheSilentClubDayDesigner9Page() {
             <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: "1rem", color: "var(--text-3)" }}>If this made sense, <em style={{ color: "var(--gold-pale)", fontStyle: "normal" }}>you already know what to do.</em></div>
             <div style={{ display: "flex", gap: 8 }}>
               <button className="btn-g" onClick={() => setStep(2)}>← Redesign</button>
+              <button
+                className="btn-g"
+                onClick={downloadPlan}
+                aria-label="Download plan"
+                title="Download plan"
+                style={{ width: 44, padding: 0, display: "grid", placeItems: "center" }}
+              >
+                <span className="material-symbols-outlined" style={{ fontSize: "18px" }}>download</span>
+              </button>
               <button
                 className="btn"
                 onClick={() => {

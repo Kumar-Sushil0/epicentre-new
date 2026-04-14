@@ -12,15 +12,8 @@ import { TopNav } from "./components/TopNav";
 import { WhySection } from "./components/WhySection";
 
 export default function TheSilentClubAbout3Page() {
-  const [openAcc, setOpenAcc] = useState("acc1");
+  const [openAcc, setOpenAcc] = useState("");
   const [openModal, setOpenModal] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = openModal ? "hidden" : "";
@@ -32,7 +25,7 @@ export default function TheSilentClubAbout3Page() {
   return (
     <main>
       <AboutStyles />
-      <TopNav scrolled={scrolled} onOpenModal={() => setOpenModal(true)} />
+      <TopNav scrolled={false} onOpenModal={() => setOpenModal(true)} />
       <HeroSection />
       <WhySection openAcc={openAcc} setOpenAcc={setOpenAcc} />
       <FounderSection />

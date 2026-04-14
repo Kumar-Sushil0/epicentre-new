@@ -10,10 +10,10 @@ export function FooterSection() {
           ["Explore", "Home", "About", "The Estate", "Journal", "FAQ"],
           [
             "Stay",
-            "Silence — Day Cycle",
-            "Residency — Weekend",
-            "Solitude — Weekday",
-            "Creation — Full Estate",
+            "Silence Day Cycle",
+            "Residency Weekend",
+            "Solitude Weekday",
+            "Creation Full Estate",
           ],
           ["Connect", "Instagram", "Substack", "Request Invite", "Host an Event"],
         ].map(([heading, ...items]) => (

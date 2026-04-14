@@ -11,7 +11,7 @@ export const navLinks = [
 export const whoMembers = [
   {
     type: "Writers & Thinkers",
-    desc: "Those who need hours of unbroken time to hear themselves think — and finally put it into words.",
+    desc: "Those who need hours of unbroken time to hear themselves think and finally put it into words.",
     reviews: [
       {
         quote:
@@ -77,24 +77,17 @@ export const whoMembers = [
 export const designedCards = [
   {
     title: "Designed Silence",
-    desc: `Every space asks nothing of your senses.
-Dedicated zones calibrated for different qualities of thought.
-Silence here is structural - not a rule you have to remember to follow.`,
+    desc: "Every space asks nothing of your senses. Dedicated zones calibrated for different qualities of thought. Silence here is structural - not a rule you have to remember to follow.",
     icon: "M3 3l18 18M9 9v3a3 3 0 005.12 2.12M15 9.34V4a3 3 0 00-5.94-.6M17 16.95A7 7 0 015 12v-2m14 0v2a7 7 0 01-.11 1.23M12 19v4M8 23h8",
   },
   {
     title: "Designed Anonymity",
-    desc: `No roles. No titles.
-No one who knows what you do or what you've built.
-You arrive as a person, not a position.
-Nobody here wants anything from you.`,
+    desc: "No roles. No titles. No one who knows what you do or what you've built. You arrive as a person, not a position. Nobody here wants anything from you.",
     icon: "M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8M17 11h6",
   },
   {
     title: "Designed Withdrawal",
-    desc: `Far enough to interrupt the pattern.
-Close enough to not feel like escape.
-You step away long enough to finally see what you've been too close to notice.`,
+    desc: "Far enough to interrupt the pattern. Close enough to not feel like escape. You step away long enough to finally see what you've been too close to notice.",
     icon: "M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9",
   },
 ];
@@ -140,7 +133,7 @@ export const depthCards = [
     cycle: "Weekday Cycle · 4N / 5D",
     forText: "For those between chapters who need to go deep.",
     features: [
-      "Minimal communication — 30 min/day",
+      "Minimal communication, 30 min/day",
       "Self-guided activities + gear provided",
       "Curated resource library access",
       "Full estate access + all meals",
@@ -158,7 +151,7 @@ export const depthCards = [
     cycle: "Noon to Noon Cycle · 24 Hours",
     forText: "For groups who want the whole place to themselves.",
     features: [
-      "Full estate — noon to noon",
+      "Full estate, noon to noon",
       "All rooms, dorms, decks + shared spaces",
       "Accommodation up to 20 people max",
       "Full access + all meals included",
@@ -297,13 +290,13 @@ export const stripItems = [
   { name: "Accommodation", desc: "Private rooms & shared dorms. Your choice at booking." },
   { name: "All Meals", desc: "Breakfast, lunch, high tea, dinner. Always included." },
   { name: "All Activities", desc: "Every activity and all gear. Nothing extra to pay." },
-  { name: "Full Estate Access", desc: "Every space, every hour. No restrictions, no upgrades." },
+  
 ];
 
 export const faqItems = [
   {
     q: "Is this a meditation retreat?",
-    a: "No. There is no programme, no facilitator, no spiritual framing of any kind. The Silent Club is a private estate that removes interference — noise, pace, expectation, performance. What you do with the silence that remains is entirely yours.",
+    a: "No. There is no programme, no facilitator, no spiritual framing of any kind. The Silent Club is a private estate that removes interference: noise, pace, expectation, performance. What you do with the silence that remains is entirely yours.",
   },
   {
     q: "What actually happens when I arrive?",
@@ -311,11 +304,11 @@ export const faqItems = [
   },
   {
     q: "Can I work while I'm here?",
-    a: "Yes. The deep work library is designed for exactly this. What changes is not whether you can work — it is why you work. The estate removes the ambient conditions that make work compulsive rather than chosen.",
+    a: "Yes. The deep work library is designed for exactly this. What changes is not whether you can work, it is why you work. The estate removes the ambient conditions that make work compulsive rather than chosen.",
   },
   {
     q: "How does the invite process work?",
-    a: "Two questions. No CV, no credentials, no pitch. A short conversation with the founder — 15 minutes. If it feels right on both sides, you receive your first invite.",
+    a: "Two questions. No CV, no credentials, no pitch. A short 15-minute conversation with the founder. If it feels right on both sides, you receive your first invite.",
   },
   {
     q: "Is everything really included?",

@@ -40,7 +40,7 @@ export function DepthSection({
             <article
               key={card.id}
               onClick={() => setSelectedDepth(card.id)}
-              className={`cursor-pointer border-b-2 p-7 transition ${
+              className={`flex cursor-pointer flex-col border-b-2 p-7 transition ${
                 selected ? "border-[#c5a065] bg-[#160f0a]" : "border-transparent bg-[#0f0b08]"
               }`}
             >
@@ -120,8 +120,10 @@ export function DepthSection({
                   ))}
                 </div>
               )}
-              <p className="font-serif text-3xl text-[#c5a065]">{pricing.price}</p>
-              <p className="text-[11px] text-[#7a6048]">{pricing.note}</p>
+              <div className="mt-auto pt-2">
+                <p className="font-serif text-3xl text-[#c5a065]">{pricing.price}</p>
+                <p className="text-[11px] text-[#7a6048]">{pricing.note}</p>
+              </div>
             </article>
           );
         })}

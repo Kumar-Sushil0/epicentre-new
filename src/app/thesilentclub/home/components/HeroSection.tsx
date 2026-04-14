@@ -29,7 +29,7 @@ export function HeroSection() {
         <p className="max-w-xl text-sm leading-8 text-[#b09070]">
           The Silent Club is an invite-only estate for thinkers, artists, and entrepreneurs who do
           their best work in quiet. No meetings. No notifications. No noise. Just the rarest
-          luxury in modern life — uninterrupted time with your own mind.
+          luxury in modern life is uninterrupted time with your own mind.
         </p>
         <div className="flex max-w-xs flex-col gap-2">
           <button className="bg-[#c5a065] px-6 py-3 text-[11px] uppercase tracking-[0.16em] text-[#0f0b08]">

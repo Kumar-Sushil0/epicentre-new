@@ -24,7 +24,7 @@ export function EstateStyles() {
       .numbers{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--rule);border-bottom:1px solid var(--rule)}
       .number-item{background:var(--bg-2);padding:28px 24px}.number-val{font-family:var(--serif);font-size:2.4rem;color:var(--gold)}
       .number-label{font-size:.62rem;color:var(--text-3)}
-      .cat-section{border-bottom:1px solid var(--rule)} .cat-header{padding:clamp(48px,6vw,72px) var(--g) clamp(28px,3.5vw,40px);display:grid;grid-template-columns:1fr 1.8fr;gap:0 100px;align-items:end;border-bottom:1px solid var(--rule)}
+      .cat-section{border-bottom:1px solid var(--rule)} .cat-header{padding:clamp(40px,5vw,56px) var(--g);display:grid;grid-template-columns:1fr 1.8fr;gap:0 100px;align-items:end;border-bottom:1px solid var(--rule)}
       .cat-trigger{width:100%;background:none;border:none;color:inherit;text-align:left;cursor:pointer;padding:0}
       .cat-header-wrap{position:relative}
       .cat-toggle{position:absolute;right:var(--g);top:50%;transform:translateY(-50%);font-size:1.15rem;color:var(--gold-dim);transition:transform .25s ease}
@@ -32,7 +32,7 @@ export function EstateStyles() {
       .cat-body{max-height:2000px;overflow:hidden;transition:max-height .45s ease}
       .cat-body.closed{max-height:0}
       .cat-num{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--text-3);margin-bottom:14px}
-      .cat-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.6rem);line-height:1}
+      .cat-title{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.7rem);line-height:1}
       .cat-desc{font-size:.875rem;line-height:1.85;color:var(--text-2);font-family:var(--serif);font-style:italic}
       .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:28px var(--g);background:transparent}
       .cards.four-col{grid-template-columns:repeat(4,1fr)}
@@ -41,7 +41,7 @@ export function EstateStyles() {
       .card-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
       .card-img-placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-style:italic;color:var(--rule-2)}
       .card-body{padding:20px 22px 24px}.card-name{font-family:var(--serif);font-size:1.1rem;margin-bottom:6px}.card-desc{font-size:.76rem;color:var(--text-3);line-height:1.65}
-      .symbolica{background:var(--bg-2)} .symbolica .card{background:var(--bg-3)} .symbolica .cat-title{font-style:italic}
+      .symbolica .cat-title{font-style:italic}
       .cta-band{padding:clamp(80px,10vw,120px) var(--g);text-align:center;border-bottom:1px solid var(--rule);background:var(--bg-2)}
       .cta-headline{font-family:var(--serif);font-size:clamp(2rem,4vw,4rem);line-height:1.15;margin-bottom:36px}.btn-gold{background:var(--gold);color:var(--bg);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;padding:14px 36px;border:none}
       .cta-sub{margin-top:16px;font-family:var(--serif);font-style:italic;font-size:.9rem;color:var(--text-3)}

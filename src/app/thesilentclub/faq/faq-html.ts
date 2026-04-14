@@ -96,10 +96,12 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .faq-index-section{
   margin-bottom:32px;
 }
+.faq-index-section.active .faq-index-heading{color:var(--gold);}
 .faq-index-heading{
   font-size:0.58rem;font-weight:400;
   letter-spacing:0.22em;text-transform:uppercase;
   color:var(--text-3);margin-bottom:12px;
+  transition:color 0.2s;
 }
 .faq-index-link{
   display:block;font-size:0.8rem;font-weight:300;
@@ -250,7 +252,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 <div class="faq-body">
   <!-- INDEX -->
   <div class="faq-index" id="faqIndex">
-    <div class="faq-index-section">
+    <div class="faq-index-section" data-section="decide">
       <div class="faq-index-heading">Before you decide</div>
       <button class="faq-index-link" onclick="scrollToQ('q1')">Is this a meditation retreat?</button>
       <button class="faq-index-link" onclick="scrollToQ('q2')">Is this a co-working space?</button>
@@ -259,7 +261,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       <button class="faq-index-link" onclick="scrollToQ('q5')">Is this only for introverts?</button>
       <button class="faq-index-link" onclick="scrollToQ('q6')">Do I need to be in transition?</button>
     </div>
-    <div class="faq-index-section">
+    <div class="faq-index-section" data-section="book">
       <div class="faq-index-heading">Before you book</div>
       <button class="faq-index-link" onclick="scrollToQ('q7')">How does the invite process work?</button>
       <button class="faq-index-link" onclick="scrollToQ('q8')">Is everything included?</button>
@@ -269,20 +271,20 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       <button class="faq-index-link" onclick="scrollToQ('q12')">What is the cancellation policy?</button>
       <button class="faq-index-link" onclick="scrollToQ('q13')">Are children permitted?</button>
     </div>
-    <div class="faq-index-section">
+    <div class="faq-index-section" data-section="bring">
       <div class="faq-index-heading">What to bring</div>
       <button class="faq-index-link" onclick="scrollToQ('q14')">What should I pack?</button>
       <button class="faq-index-link" onclick="scrollToQ('q15')">Why solid colours?</button>
       <button class="faq-index-link" onclick="scrollToQ('q16')">What should I leave at home?</button>
     </div>
-    <div class="faq-index-section">
+    <div class="faq-index-section" data-section="arrive">
       <div class="faq-index-heading">When you arrive</div>
       <button class="faq-index-link" onclick="scrollToQ('q17')">What actually happens when I arrive?</button>
       <button class="faq-index-link" onclick="scrollToQ('q18')">What are the meal timings?</button>
       <button class="faq-index-link" onclick="scrollToQ('q19')">What food is served?</button>
       <button class="faq-index-link" onclick="scrollToQ('q20')">Is there parking?</button>
     </div>
-    <div class="faq-index-section">
+    <div class="faq-index-section" data-section="experience">
       <div class="faq-index-heading">The experience</div>
       <button class="faq-index-link" onclick="scrollToQ('q21')">What do people actually do all day?</button>
       <button class="faq-index-link" onclick="scrollToQ('q22')">Can I work while I'm here?</button>
@@ -300,7 +302,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       <button class="faq-index-link" onclick="scrollToQ('q34')">Medical and safety</button>
       <button class="faq-index-link" onclick="scrollToQ('q35')">Is it safe for solo women?</button>
     </div>
-    <div class="faq-index-section">
+    <div class="faq-index-section" data-section="products">
       <div class="faq-index-heading">The products</div>
       <button class="faq-index-link" onclick="scrollToQ('q36')">Residency vs Solitude</button>
       <button class="faq-index-link" onclick="scrollToQ('q37')">Who is Silence for?</button>
@@ -452,40 +454,47 @@ function toggleFaq(btn) {
   var item = btn.parentElement;
   var wasOpen = item.classList.contains('open');
   document.querySelectorAll('.faq-item.open').forEach(function(i){ i.classList.remove('open'); });
-  if(!wasOpen) item.classList.add('open');
+  if(!wasOpen) {
+    item.classList.add('open');
+    if (item.id) setActiveQuestion(item.id);
+  } else {
+    setActiveQuestion('');
+  }
 }
 
 function scrollToSection(id) {
   var el = document.getElementById('section-' + id);
   if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-  document.querySelectorAll('.faq-tab').forEach(function(t){ t.classList.remove('active'); });
-  event.currentTarget.classList.add('active');
+  setActiveSection(id);
 }
 
 function scrollToQ(id) {
   var el = document.getElementById(id);
   if(el) {
     el.scrollIntoView({behavior:'smooth', block:'center'});
+    var sectionEl = el.closest('.faq-section');
+    if (sectionEl && sectionEl.id) {
+      setActiveSection(sectionEl.id.replace('section-', ''));
+    }
     var btn = el.querySelector('.faq-question');
     if(btn) {
       var item = btn.parentElement;
       document.querySelectorAll('.faq-item.open').forEach(function(i){ i.classList.remove('open'); });
       item.classList.add('open');
+      setActiveQuestion(id);
     }
   }
 }
 
 window.addEventListener('scroll', function() {
   var sections = ['decide','book','bring','arrive','experience','products'];
-  var tabs = document.querySelectorAll('.faq-tab');
   var offset = 160;
   sections.forEach(function(id, i) {
     var el = document.getElementById('section-' + id);
     if(el) {
       var rect = el.getBoundingClientRect();
       if(rect.top <= offset && rect.bottom > offset) {
-        tabs.forEach(function(t){ t.classList.remove('active'); });
-        if(tabs[i]) tabs[i].classList.add('active');
+        setActiveSection(id);
       }
     }
   });
@@ -493,6 +502,48 @@ window.addEventListener('scroll', function() {
   var nav = document.querySelector('.nav');
   if(nav) nav.style.background = window.scrollY > 40 ? 'rgba(15,11,8,0.98)' : 'rgba(15,11,8,0.94)';
 });
+
+function setActiveSection(activeId) {
+  var sections = ['decide','book','bring','arrive','experience','products'];
+  var tabs = document.querySelectorAll('.faq-tab');
+  var indexSections = document.querySelectorAll('.faq-index-section');
+  var activeSectionEl = null;
+
+  tabs.forEach(function(t){ t.classList.remove('active'); });
+  indexSections.forEach(function(s){ s.classList.remove('active'); });
+
+  var tabIdx = sections.indexOf(activeId);
+  if (tabIdx >= 0 && tabs[tabIdx]) tabs[tabIdx].classList.add('active');
+
+  indexSections.forEach(function(sectionEl){
+    if (sectionEl.getAttribute('data-section') === activeId) {
+      sectionEl.classList.add('active');
+      activeSectionEl = sectionEl;
+    }
+  });
+
+  if (activeSectionEl) {
+    activeSectionEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
+function setActiveQuestion(activeQId) {
+  var questionLinks = document.querySelectorAll('.faq-index-link');
+  var activeLinkEl = null;
+  questionLinks.forEach(function(link){
+    link.classList.remove('active');
+    var onclickAttr = link.getAttribute('onclick') || '';
+    var match = onclickAttr.match(/scrollToQ\('([^']+)'\)/);
+    if (match && match[1] === activeQId) {
+      link.classList.add('active');
+      activeLinkEl = link;
+    }
+  });
+
+  if (activeLinkEl) {
+    activeLinkEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
 
 function openInvite() {
   document.getElementById('inviteModal').style.display = 'flex';
@@ -508,6 +559,8 @@ function submitInvite() {
 document.getElementById('inviteModal').addEventListener('click', function(e) {
   if(e.target === this) closeInvite();
 });
+setActiveSection('decide');
+setActiveQuestion('');
 </script>
 </body>
 </html>`;

@@ -1,5 +1,6 @@
 import { heroImage } from "../content";
 import { CardGrid } from "./CardGrid";
+import { SiteHeader } from "../../components/SiteHeader";
 
 type GroupKey = "nature" | "spaces" | "practice" | "symbolica";
 
@@ -10,30 +11,16 @@ export function TopNav({
   scrolled: boolean;
   onOpenModal: () => void;
 }) {
-  return (
-    <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
-      <div className="nav-inner">
-        <a className="nav-brand" href="/thesilentclub/home">
-          The Silent Club
-        </a>
-        <ul className="nav-links">
-          <li><a href="/thesilentclub/home">Home</a></li>
-          <li><a href="/thesilentclub/estate" className="active">Estate</a></li>
-          <li><a href="/thesilentclub/about">About</a></li>
-          <li><a href="/thesilentclub/faq">FAQ</a></li>
-          <li><a href="/blogs">Journal</a></li>
-        </ul>
-        <button className="nav-cta" onClick={onOpenModal}>Request Invite →</button>
-      </div>
-    </nav>
-  );
+  void scrolled;
+  void onOpenModal;
+  return <SiteHeader active="estate" />;
 }
 
 export function HeroSection() {
   return (
     <section className="hero">
       <div className="hero-bg">
-        <img src={heroImage} alt="Lake photograph — dawn, Ujni, Bhigwan" />
+        <img src={heroImage} alt="Lake photograph, dawn, Ujni, Bhigwan" />
       </div>
       <div className="hero-overlay" />
       <div className="hero-content">
@@ -53,7 +40,7 @@ export function IntroAndNumbers() {
       <section className="intro">
         <div className="intro-label">The Estate</div>
         <p className="intro-body">
-          Every decision about this estate was made to support one thing —{" "}
+          Every decision about this estate was made to support one thing:{" "}
           <em>uninterrupted thinking.</em> Not comfort for its own sake. Not aesthetics for their own
           sake. Each space removes something that would otherwise compete for your attention.
         </p>

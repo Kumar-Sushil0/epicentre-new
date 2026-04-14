@@ -22,7 +22,7 @@ export type CatItem = { name: string; icon: string };
 export type Cat = { color: string; bg: string; items: CatItem[] };
 
 export const PRODUCTS: Product[] = [
-  { id: "silence", count: "—", name: "Silence", cycle: "Day Cycle · 4 Hours", desc: "Any 4 hours. Any day.", days: 1 },
+  { id: "silence", count: "-", name: "Silence", cycle: "Day Cycle · 4 Hours", desc: "Any 4 hours. Any day.", days: 1 },
   { id: "residency", count: "3", name: "Residency", cycle: "Weekend · 2N / 3D", desc: "A structured weekend.", days: 3 },
   { id: "solitude", count: "5", name: "Solitude", cycle: "Weekday · 4N / 5D", desc: "Five days of genuine solitude.", days: 5 },
   { id: "creation", count: "1", name: "Creation", cycle: "Full Estate · Up to 7D", desc: "Full estate. Your terms.", days: 7 },

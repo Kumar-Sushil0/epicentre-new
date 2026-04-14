@@ -32,10 +32,10 @@ export default function TheSilentClubHomepage20Page() {
   const depthLabel = useMemo(() => {
     if (!selectedDepth) return "Select a depth above to continue.";
     const map: Record<DepthId, string> = {
-      silence: "Silence — Day Cycle",
-      residency: "Residency — Weekend",
-      solitude: "Solitude — Weekday",
-      creation: "Creation — Full Estate",
+      silence: "Silence Day Cycle",
+      residency: "Residency Weekend",
+      solitude: "Solitude Weekday",
+      creation: "Creation Full Estate",
     };
     return `You've selected ${map[selectedDepth]}`;
   }, [selectedDepth]);
@@ -97,7 +97,7 @@ export default function TheSilentClubHomepage20Page() {
 
       <section className="flex flex-wrap items-center justify-between gap-4 border-b border-[#2a1f17] bg-[#160f0a] px-6 py-4">
         <p className="text-xs uppercase tracking-[0.14em] text-[#7a6048]">
-          Founding memberships open — not ready yet? Stay close.
+          Founding memberships nowopen 
         </p>
         <div className="flex">
           <input
@@ -106,7 +106,7 @@ export default function TheSilentClubHomepage20Page() {
             className="w-56 border border-r-0 border-[#3a2a1f] bg-[#1c1410] px-3 py-2 text-sm text-[#e8d5b0] outline-none"
           />
           <button className="bg-[#8a6e42] px-4 py-2 text-[11px] uppercase tracking-[0.14em] text-[#0f0b08]">
-            Notify me
+            Know More
           </button>
         </div>
       </section>
@@ -118,7 +118,7 @@ export default function TheSilentClubHomepage20Page() {
         </div>
         <p className="max-w-4xl font-serif text-3xl leading-[1.45] md:text-5xl">
           Your best thinking doesn't happen in meetings. It happens in the quiet moments{" "}
-          <em className="text-[#c5a065]">you can never quite find</em><br/> — until now.
+          <em className="text-[#c5a065]">you can never quite find</em><br/> until now.
         </p>
       </section>
 
@@ -219,13 +219,13 @@ export default function TheSilentClubHomepage20Page() {
         <div className="flex h-full flex-col justify-between px-6 pb-5 pt-5 md:px-10">
           <div className="space-y-5">
             <p className="text-[10px] uppercase tracking-[0.24em] text-[#7a6048]">Location</p>
-            <h2 className="mt-12 mb-10 font-serif text-4xl">
+            <h2 className="mt mb-10 font-serif text-4xl">
               You can reach it in hours.
               <br />
               <em className="text-[#c5a065]">Most people take years.</em>
             </h2>
             <p className="text-sm leading-8 text-[#b09070]">
-              Bhigwan sits on the backwaters of Ujni Dam — one of Maharashtra's most significant
+              Bhigwan sits on the backwaters of Ujni Dam, one of Maharashtra's most significant
               bird sanctuaries.
             </p>
           </div>
@@ -253,9 +253,9 @@ export default function TheSilentClubHomepage20Page() {
           </div>
           <iframe
             title="Bhigwan Map"
-            className="h-[360px] w-full grayscale"
+            className="h-[360px] w-full"
             loading="lazy"
-            src="https://www.google.com/maps?q=Bhigwan,%20Maharashtra&output=embed"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3788.8023952143494!2d74.78934330608215!3d18.264878020717468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc379a78540dae5%3A0x1887106e21d5085d!2sThe%20Silent%20Club!5e0!3m2!1sen!2sin!4v1772105560153!5m2!1sen!2sin"
           />
           <div className="border-t border-[#2a1f17] px-6 py-4">
             <p className="mb-1 text-[10px] uppercase tracking-[0.16em] text-[#7a6048]">

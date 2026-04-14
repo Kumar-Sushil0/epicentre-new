@@ -33,10 +33,10 @@ export function FooterSection() {
         </div>
         <div className="footer-col">
           <div className="footer-col-label">Stay</div>
-          <a className="footer-link" href="#">Silence — Day Cycle</a>
-          <a className="footer-link" href="#">Residency — Weekend</a>
-          <a className="footer-link" href="#">Solitude — Weekday</a>
-          <a className="footer-link" href="#">Creation — Full Estate</a>
+          <a className="footer-link" href="#">Silence Day Cycle</a>
+          <a className="footer-link" href="#">Residency Weekend</a>
+          <a className="footer-link" href="#">Solitude Weekday</a>
+          <a className="footer-link" href="#">Creation Full Estate</a>
         </div>
         <div className="footer-col">
           <div className="footer-col-label">Connect</div>

@@ -49,55 +49,51 @@ export function ProvidesSection({ provideSlideIndex, setProvideSlideIndex }: Pro
             heading: "Environments that regulate, not stimulate",
             cards: providesSlides.activities,
           },
-        ].map(({ key, heading, cards }) => {
+        ].map(({ key, heading, cards }, index) => {
           const activeIndex = provideSlideIndex[key];
           const card = cards[activeIndex];
+          const stripItem = stripItems[index];
           return (
-            <div
-              key={heading}
-              className="overflow-hidden rounded-sm border border-[#2a1f17] bg-[#0f0b08]"
-            >
-              <p className="border-b border-[#2a1f17] px-6 py-4 font-serif text-lg">{heading}</p>
-              <div className="relative aspect-[4/3] bg-[#1c1410]">
-                <img
-                  src={card.image}
-                  alt={card.name}
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0f0b08]/90 via-[#0f0b08]/30 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-6">
-                  <p className="font-serif text-2xl">{card.name}</p>
-                  <p className="mt-1 text-xs text-[#b09070]">{card.desc}</p>
-                </div>
+            <div key={heading} className="space-y-3">
+              <div>
+                <p className="font-serif text-xl">{stripItem.name}</p>
+                <p className="mt-1 text-xs text-[#7a6048]">{stripItem.desc}</p>
               </div>
-              <div className="flex items-center justify-center gap-2 border-t border-[#2a1f17] px-6 py-3">
-                {cards.map((slide, idx) => (
-                  <button
-                    key={slide.name}
-                    onClick={() =>
-                      setProvideSlideIndex((prev) => ({
-                        ...prev,
-                        [key]: idx,
-                      }))
-                    }
-                    className={`h-2 w-2 rounded-full transition-all ${
-                      idx === activeIndex ? "scale-125 bg-[#8a6e42]" : "bg-[#3a2a1f]"
-                    }`}
-                    aria-label={`Show ${slide.name}`}
+              <p className="font-serif text-lg leading-tight">{heading}</p>
+              <div className="overflow-hidden rounded-sm border border-[#2a1f17] bg-[#0f0b08]">
+                <div className="relative aspect-[4/3] bg-[#1c1410]">
+                  <img
+                    src={card.image}
+                    alt={card.name}
+                    className="absolute inset-0 h-full w-full object-cover"
                   />
-                ))}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f0b08]/90 via-[#0f0b08]/30 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-6">
+                    <p className="font-serif text-2xl">{card.name}</p>
+                    <p className="mt-1 text-xs text-[#b09070]">{card.desc}</p>
+                  </div>
+                </div>
+                <div className="flex items-center justify-center gap-2 border-t border-[#2a1f17] px-6 py-3">
+                  {cards.map((slide, idx) => (
+                    <button
+                      key={slide.name}
+                      onClick={() =>
+                        setProvideSlideIndex((prev) => ({
+                          ...prev,
+                          [key]: idx,
+                        }))
+                      }
+                      className={`h-2 w-2 rounded-full transition-all ${
+                        idx === activeIndex ? "scale-125 bg-[#8a6e42]" : "bg-[#3a2a1f]"
+                      }`}
+                      aria-label={`Show ${slide.name}`}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           );
         })}
-      </div>
-      <div className="grid gap-px bg-[#2a1f17] sm:grid-cols-2 lg:grid-cols-4">
-        {stripItems.map((item) => (
-          <div key={item.name} className="bg-[#160f0a] p-6">
-            <p className="mb-1 font-serif text-xl">{item.name}</p>
-            <p className="text-xs text-[#7a6048]">{item.desc}</p>
-          </div>
-        ))}
       </div>
     </section>
   );
