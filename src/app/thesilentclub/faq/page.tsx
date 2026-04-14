@@ -215,12 +215,13 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <a class="nav-brand" href="#">The Silent Club</a>
+    <a class="nav-brand" href="/thesilentclub/home">The Silent Club</a>
     <ul class="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">The Estate</a></li>
-      <li><a href="#">Journal</a></li>
+      <li><a href="/thesilentclub/home">Home</a></li>
+      <li><a href="/thesilentclub/about">About</a></li>
+      <li><a href="/thesilentclub/estate">The Estate</a></li>
+      <li><a href="/thesilentclub/faq" class="active">FAQ</a></li>
+      <li><a href="/blogs">Journal</a></li>
     </ul>
     <button class="nav-cta" onclick="openInvite()">Request Invite &rarr;</button>
   </div>

@@ -371,7 +371,7 @@ export default function TheSilentClubDayDesigner9Page() {
       <div className="hdr">
         <div style={{ fontFamily: "var(--serif)", fontSize: "1.1rem" }}>The Silent Club</div>
         <div style={{ fontFamily: "var(--serif)", fontSize: "1.7rem" }}>Design Your Day</div>
-        <button className="btn-g" onClick={() => router.push("/")}>← Back to site</button>
+        <button className="btn-g" onClick={() => router.push("/thesilentclub/home")}>← Back to site</button>
       </div>
 
       <div className="steps">

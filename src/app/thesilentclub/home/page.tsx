@@ -4,7 +4,13 @@ import { useEffect, useMemo, useState } from "react";
 
 type DepthId = "silence" | "residency" | "solitude" | "creation";
 
-const navLinks = ["Home", "About", "The Estate", "Journal"];
+const navLinks = [
+  { label: "Home", href: "/thesilentclub/home" },
+  { label: "About", href: "/thesilentclub/about" },
+  { label: "The Estate", href: "/thesilentclub/estate" },
+  { label: "FAQ", href: "/thesilentclub/faq" },
+  { label: "Journal", href: "/blogs" },
+];
 
 const whoMembers = [
   {
@@ -401,17 +407,19 @@ export default function TheSilentClubHomepage20Page() {
     <main className="min-h-screen bg-[#0f0b08] text-[#e8d5b0]">
       <nav className="sticky top-0 z-50 border-b border-[#2a1f17] bg-[#0f0b08]/95 backdrop-blur">
         <div className="mx-auto flex h-14 w-full max-w-[1200px] items-center justify-between px-6">
-          <div className="font-serif text-lg">The Silent Club</div>
+          <a href="/thesilentclub/home" className="font-serif text-lg hover:text-[#c5a065] transition-colors">The Silent Club</a>
           <ul className="hidden items-center gap-8 md:flex">
             {navLinks.map((link) => (
-              <li key={link} className="text-xs uppercase tracking-[0.16em] text-[#7a6048]">
-                {link}
+              <li key={link.href}>
+                <a href={link.href} className="text-xs uppercase tracking-[0.16em] text-[#7a6048] hover:text-[#c5a065] transition-colors">
+                  {link.label}
+                </a>
               </li>
             ))}
           </ul>
-          <button className="bg-[#c5a065] px-4 py-2 text-[11px] uppercase tracking-[0.16em] text-[#0f0b08]">
+          <a href="/book-a-call" className="bg-[#c5a065] px-4 py-2 text-[11px] uppercase tracking-[0.16em] text-[#0f0b08] hover:bg-[#d4b07a] transition-colors">
             Request Invite →
-          </button>
+          </a>
         </div>
       </nav>
 
