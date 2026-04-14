@@ -21,8 +21,14 @@ export default function TheSilentClubDayDesigner9Page() {
   const [selectedAct, setSelectedAct] = useState<string | null>(null);
   const [schedule, setSchedule] = useState<Record<string, string>>({});
   const [showModal, setShowModal] = useState(false);
+  const [modalStep, setModalStep] = useState<1 | 2 | 3>(1);
+  const [modalCalY, setModalCalY] = useState(new Date().getFullYear());
+  const [modalCalM, setModalCalM] = useState(new Date().getMonth());
+  const [modalDate, setModalDate] = useState("");
+  const [modalTime, setModalTime] = useState("");
   const [modalName, setModalName] = useState("");
   const [modalEmail, setModalEmail] = useState("");
+  const [modalPhone, setModalPhone] = useState("");
   const [modalQ1, setModalQ1] = useState("");
   const [modalQ2, setModalQ2] = useState("");
   const [modalSubmitted, setModalSubmitted] = useState(false);
@@ -483,7 +489,19 @@ export default function TheSilentClubDayDesigner9Page() {
             <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: "1rem", color: "var(--text-3)" }}>If this made sense, <em style={{ color: "var(--gold-pale)", fontStyle: "normal" }}>you already know what to do.</em></div>
             <div style={{ display: "flex", gap: 8 }}>
               <button className="btn-g" onClick={() => setStep(2)}>← Redesign</button>
-              <button className="btn" onClick={() => setShowModal(true)}>Request Invite →</button>
+              <button
+                className="btn"
+                onClick={() => {
+                  setModalSubmitted(false);
+                  setModalStep(1);
+                  const now = new Date();
+                  setModalCalY(now.getFullYear());
+                  setModalCalM(now.getMonth());
+                  setShowModal(true);
+                }}
+              >
+                Request Invite →
+              </button>
             </div>
           </div>
         </div>
@@ -492,12 +510,24 @@ export default function TheSilentClubDayDesigner9Page() {
       <InviteModal
         showModal={showModal}
         setShowModal={setShowModal}
+        modalStep={modalStep}
+        setModalStep={setModalStep}
+        modalCalY={modalCalY}
+        setModalCalY={setModalCalY}
+        modalCalM={modalCalM}
+        setModalCalM={setModalCalM}
+        modalDate={modalDate}
+        setModalDate={setModalDate}
+        modalTime={modalTime}
+        setModalTime={setModalTime}
         modalSubmitted={modalSubmitted}
         setModalSubmitted={setModalSubmitted}
         modalName={modalName}
         setModalName={setModalName}
         modalEmail={modalEmail}
         setModalEmail={setModalEmail}
+        modalPhone={modalPhone}
+        setModalPhone={setModalPhone}
         modalQ1={modalQ1}
         setModalQ1={setModalQ1}
         modalQ2={modalQ2}

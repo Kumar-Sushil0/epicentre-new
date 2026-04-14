@@ -146,8 +146,10 @@ export default function TheSilentClubDayDesigner9Page() {
   const [selectedAct, setSelectedAct] = useState<string | null>(null);
   const [schedule, setSchedule] = useState<Record<string, string>>({});
   const [showModal, setShowModal] = useState(false);
+  const [modalStep, setModalStep] = useState<1 | 2 | 3>(1);
   const [modalName, setModalName] = useState("");
   const [modalEmail, setModalEmail] = useState("");
+  const [modalPhone, setModalPhone] = useState("");
   const [modalQ1, setModalQ1] = useState("");
   const [modalQ2, setModalQ2] = useState("");
   const [modalSubmitted, setModalSubmitted] = useState(false);
@@ -301,6 +303,11 @@ export default function TheSilentClubDayDesigner9Page() {
   };
 
   const stepClass = (n: number) => `step ${step === n ? "active" : ""} ${n < step ? "done" : ""}`;
+  const openInviteModal = () => {
+    setShowModal(true);
+    setModalSubmitted(false);
+    setModalStep(1);
+  };
 
   return (
     <main>
@@ -678,7 +685,7 @@ export default function TheSilentClubDayDesigner9Page() {
             <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: "1rem", color: "var(--text-3)" }}>If this made sense, <em style={{ color: "var(--gold-pale)", fontStyle: "normal" }}>you already know what to do.</em></div>
             <div style={{ display: "flex", gap: 8 }}>
               <button className="btn-g" onClick={() => setStep(2)}>← Redesign</button>
-              <button className="btn" onClick={() => setShowModal(true)}>Request Invite →</button>
+              <button className="btn" onClick={openInviteModal}>Request Invite →</button>
             </div>
           </div>
         </div>
@@ -696,46 +703,83 @@ export default function TheSilentClubDayDesigner9Page() {
               </div>
             ) : (
               <>
-                <div style={{ fontSize: ".58rem", letterSpacing: ".18em", textTransform: "uppercase", color: "#7a6048", marginBottom: 10 }}>Request Invite</div>
-                <div style={{ fontFamily: "var(--serif)", fontSize: "1.6rem", marginBottom: 6 }}>Two questions.<br />No pitch.</div>
-                <div style={{ fontSize: ".8rem", color: "#7a6048", marginBottom: 20 }}>We respond within 72 hours.</div>
-                <input
-                  placeholder="Full name"
-                  value={modalName}
-                  onChange={(e) => setModalName(e.target.value)}
-                  style={{ width: "100%", marginBottom: 8, background: "#1c1410", border: "1px solid #2a1f17", padding: "9px 12px", color: "#e8d5b0", boxSizing: "border-box" }}
-                />
-                <input
-                  placeholder="email@example.com"
-                  type="email"
-                  value={modalEmail}
-                  onChange={(e) => setModalEmail(e.target.value)}
-                  style={{ width: "100%", marginBottom: 12, background: "#1c1410", border: "1px solid #2a1f17", padding: "9px 12px", color: "#e8d5b0", boxSizing: "border-box" }}
-                />
-                <div style={{ fontSize: ".54rem", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 5 }}>What are you hoping to get out of this stay?</div>
-                <textarea
-                  rows={3}
-                  placeholder="Take your time..."
-                  value={modalQ1}
-                  onChange={(e) => setModalQ1(e.target.value)}
-                  style={{ width: "100%", marginBottom: 12, background: "#1c1410", border: "1px solid #2a1f17", padding: "9px 12px", color: "#e8d5b0", resize: "none", boxSizing: "border-box" }}
-                />
-                <div style={{ fontSize: ".54rem", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 5 }}>Is there anything we should know before we speak?</div>
-                <textarea
-                  rows={3}
-                  placeholder="Optional..."
-                  value={modalQ2}
-                  onChange={(e) => setModalQ2(e.target.value)}
-                  style={{ width: "100%", marginBottom: 16, background: "#1c1410", border: "1px solid #2a1f17", padding: "9px 12px", color: "#e8d5b0", resize: "none", boxSizing: "border-box" }}
-                />
-                <button
-                  className="btn"
-                  style={{ width: "100%" }}
-                  disabled={!modalName.trim() || !modalEmail.trim() || !modalQ1.trim()}
-                  onClick={() => setModalSubmitted(true)}
-                >
-                  Submit →
-                </button>
+                <div style={{ fontSize: ".58rem", letterSpacing: ".18em", textTransform: "uppercase", color: "#7a6048", marginBottom: 10 }}>
+                  Request Invite · Step {modalStep} of 3
+                </div>
+                {modalStep === 1 && (
+                  <>
+                    <div style={{ fontFamily: "var(--serif)", fontSize: "1.6rem", marginBottom: 6 }}>Question 1</div>
+                    <div style={{ fontSize: ".8rem", color: "#7a6048", marginBottom: 12 }}>What are you hoping to get out of this stay?</div>
+                    <textarea
+                      rows={4}
+                      placeholder="Take your time..."
+                      value={modalQ1}
+                      onChange={(e) => setModalQ1(e.target.value)}
+                      style={{ width: "100%", marginBottom: 16, background: "#1c1410", border: "1px solid #2a1f17", padding: "9px 12px", color: "#e8d5b0", resize: "none", boxSizing: "border-box" }}
+                    />
+                    <button className="btn" style={{ width: "100%" }} disabled={!modalQ1.trim()} onClick={() => setModalStep(2)}>
+                      Next →
+                    </button>
+                  </>
+                )}
+
+                {modalStep === 2 && (
+                  <>
+                    <div style={{ fontFamily: "var(--serif)", fontSize: "1.6rem", marginBottom: 6 }}>Question 2</div>
+                    <div style={{ fontSize: ".8rem", color: "#7a6048", marginBottom: 12 }}>Is there anything we should know before we speak?</div>
+                    <textarea
+                      rows={4}
+                      placeholder="Share any context..."
+                      value={modalQ2}
+                      onChange={(e) => setModalQ2(e.target.value)}
+                      style={{ width: "100%", marginBottom: 16, background: "#1c1410", border: "1px solid #2a1f17", padding: "9px 12px", color: "#e8d5b0", resize: "none", boxSizing: "border-box" }}
+                    />
+                    <div style={{ display: "flex", gap: 8 }}>
+                      <button className="btn-g" style={{ flex: 1 }} onClick={() => setModalStep(1)}>← Back</button>
+                      <button className="btn" style={{ flex: 1 }} disabled={!modalQ2.trim()} onClick={() => setModalStep(3)}>
+                        Next →
+                      </button>
+                    </div>
+                  </>
+                )}
+
+                {modalStep === 3 && (
+                  <>
+                    <div style={{ fontFamily: "var(--serif)", fontSize: "1.6rem", marginBottom: 6 }}>Your details</div>
+                    <div style={{ fontSize: ".8rem", color: "#7a6048", marginBottom: 20 }}>We respond within 72 hours.</div>
+                    <input
+                      placeholder="Full name"
+                      value={modalName}
+                      onChange={(e) => setModalName(e.target.value)}
+                      style={{ width: "100%", marginBottom: 8, background: "#1c1410", border: "1px solid #2a1f17", padding: "9px 12px", color: "#e8d5b0", boxSizing: "border-box" }}
+                    />
+                    <input
+                      placeholder="email@example.com"
+                      type="email"
+                      value={modalEmail}
+                      onChange={(e) => setModalEmail(e.target.value)}
+                      style={{ width: "100%", marginBottom: 8, background: "#1c1410", border: "1px solid #2a1f17", padding: "9px 12px", color: "#e8d5b0", boxSizing: "border-box" }}
+                    />
+                    <input
+                      placeholder="Phone number"
+                      type="tel"
+                      value={modalPhone}
+                      onChange={(e) => setModalPhone(e.target.value)}
+                      style={{ width: "100%", marginBottom: 16, background: "#1c1410", border: "1px solid #2a1f17", padding: "9px 12px", color: "#e8d5b0", boxSizing: "border-box" }}
+                    />
+                    <div style={{ display: "flex", gap: 8 }}>
+                      <button className="btn-g" style={{ flex: 1 }} onClick={() => setModalStep(2)}>← Back</button>
+                      <button
+                        className="btn"
+                        style={{ flex: 1 }}
+                        disabled={!modalName.trim() || !modalEmail.trim() || !modalPhone.trim()}
+                        onClick={() => setModalSubmitted(true)}
+                      >
+                        Submit →
+                      </button>
+                    </div>
+                  </>
+                )}
               </>
             )}
           </div>
