@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 type Props = {
   showModal: boolean;
   setShowModal: (v: boolean) => void;
@@ -23,6 +25,7 @@ type Props = {
   setModalQ1: (v: string) => void;
   modalQ2: string;
   setModalQ2: (v: string) => void;
+  cycleLabel?: string;
 };
 
 const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -31,15 +34,65 @@ const timeOptions = ["09:00", "10:30", "12:00", "13:30", "15:00", "16:30", "18:0
 export function InviteModal(props: Props) {
   const {
     showModal, setShowModal, modalStep, setModalStep, modalCalY, setModalCalY, modalCalM, setModalCalM, modalDate, setModalDate, modalTime, setModalTime, modalSubmitted, setModalSubmitted,
-    modalName, setModalName, modalEmail, setModalEmail, modalPhone, setModalPhone, modalQ1, setModalQ1, modalQ2, setModalQ2,
+    modalName, setModalName, modalEmail, setModalEmail, modalPhone, setModalPhone, modalQ1, setModalQ1, modalQ2, setModalQ2, cycleLabel,
   } = props;
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+
+  const handleSubmit = async () => {
+    if (!modalName.trim() || !modalEmail.trim() || !modalPhone.trim() || !modalDate.trim() || !modalTime.trim()) return;
+    setSubmitting(true);
+    setSubmitError("");
+    try {
+      const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
+      const res = await fetch(`${apiBase}/call-request`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: modalName.trim(),
+          email: modalEmail.trim(),
+          phone: modalPhone.trim(),
+          cycleLabel: cycleLabel || "Day Designer",
+          callDate: modalDate,
+          callTime: modalTime,
+          questions: [
+            "What are you hoping to get out of this stay?",
+            "Is there anything we should know before we speak?",
+          ],
+          answers: [modalQ1.trim(), modalQ2.trim()],
+        }),
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        setSubmitError((err as { error?: string }).error || "Failed to submit request.");
+        return;
+      }
+      setModalSubmitted(true);
+    } catch {
+      setSubmitError("Could not connect to the server.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   if (!showModal) return null;
 
   return (
     <div className="modal" onClick={() => setShowModal(false)}>
-      <div style={{ background: "#160f0a", border: "1px solid #3a2a1f", maxWidth: 440, width: "100%", padding: 40 }} onClick={(e) => e.stopPropagation()}>
-        <button className="btn-g" onClick={() => setShowModal(false)} style={{ float: "right" }}>×</button>
+      <div
+        style={{
+          background: "#160f0a",
+          border: "1px solid #3a2a1f",
+          maxWidth: 440,
+          width: "100%",
+          padding: 40,
+          display: "flex",
+          flexDirection: "column",
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button className="btn-g" onClick={() => setShowModal(false)} style={{ alignSelf: "flex-end", marginBottom: 8 }}>×</button>
+        <div style={{ minHeight: 560, display: "flex", flexDirection: "column" }}>
         {modalSubmitted ? (
           <div style={{ textAlign: "center", padding: "20px 0" }}>
             <div style={{ fontFamily: "var(--serif)", fontSize: "1.6rem", marginBottom: 10 }}>We'll be in touch.</div>
@@ -53,7 +106,7 @@ export function InviteModal(props: Props) {
             </div>
 
             {modalStep === 1 && (
-              <>
+              <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
                 <div style={{ fontFamily: "var(--serif)", fontSize: "1.6rem", marginBottom: 6 }}>Questions</div>
                 <div style={{ fontSize: ".8rem", color: "#7a6048", marginBottom: 12 }}>What are you hoping to get out of this stay?</div>
                 <textarea
@@ -69,16 +122,18 @@ export function InviteModal(props: Props) {
                   placeholder="Share any context..."
                   value={modalQ2}
                   onChange={(e) => setModalQ2(e.target.value)}
-                  style={{ width: "100%", marginBottom: 16, background: "#1c1410", border: "1px solid #2a1f17", padding: "9px 12px", color: "#e8d5b0", resize: "none", boxSizing: "border-box" }}
+                  style={{ width: "100%", marginBottom: 0, background: "#1c1410", border: "1px solid #2a1f17", padding: "9px 12px", color: "#e8d5b0", resize: "none", boxSizing: "border-box" }}
                 />
-                <button className="btn" style={{ width: "100%" }} disabled={!modalQ1.trim() || !modalQ2.trim()} onClick={() => setModalStep(2)}>
-                  Next →
-                </button>
-              </>
+                <div style={{ marginTop: "auto", paddingTop: 16 }}>
+                  <button className="btn" style={{ width: "100%" }} disabled={!modalQ1.trim() || !modalQ2.trim()} onClick={() => setModalStep(2)}>
+                    Next →
+                  </button>
+                </div>
+              </div>
             )}
 
             {modalStep === 2 && (
-              <>
+              <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
                 <div style={{ fontFamily: "var(--serif)", fontSize: "1.6rem", marginBottom: 6 }}>Preferred date & time</div>
                 <div style={{ fontSize: ".8rem", color: "#7a6048", marginBottom: 20 }}>Pick when you'd like us to reach out.</div>
                 <div style={{ background: "#1c1410", border: "1px solid #2a1f17", padding: 12, marginBottom: 12 }}>
@@ -148,17 +203,17 @@ export function InviteModal(props: Props) {
                     </button>
                   ))}
                 </div>
-                <div style={{ display: "flex", gap: 8 }}>
+                <div style={{ marginTop: "auto", paddingTop: 16, display: "flex", gap: 8 }}>
                   <button className="btn-g" style={{ flex: 1 }} onClick={() => setModalStep(1)}>← Back</button>
                   <button className="btn" style={{ flex: 1 }} disabled={!modalDate.trim() || !modalTime.trim()} onClick={() => setModalStep(3)}>
                     Next →
                   </button>
                 </div>
-              </>
+              </div>
             )}
 
             {modalStep === 3 && (
-              <>
+              <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
                 <div style={{ fontFamily: "var(--serif)", fontSize: "1.6rem", marginBottom: 6 }}>Your details</div>
                 <div style={{ fontSize: ".8rem", color: "#7a6048", marginBottom: 20 }}>We respond within 72 hours.</div>
                 <input
@@ -179,23 +234,27 @@ export function InviteModal(props: Props) {
                   type="tel"
                   value={modalPhone}
                   onChange={(e) => setModalPhone(e.target.value)}
-                  style={{ width: "100%", marginBottom: 16, background: "#1c1410", border: "1px solid #2a1f17", padding: "9px 12px", color: "#e8d5b0", boxSizing: "border-box" }}
+                  style={{ width: "100%", marginBottom: 0, background: "#1c1410", border: "1px solid #2a1f17", padding: "9px 12px", color: "#e8d5b0", boxSizing: "border-box" }}
                 />
-                <div style={{ display: "flex", gap: 8 }}>
+                <div style={{ marginTop: "auto", paddingTop: 16, display: "flex", gap: 8 }}>
                   <button className="btn-g" style={{ flex: 1 }} onClick={() => setModalStep(2)}>← Back</button>
                   <button
                     className="btn"
                     style={{ flex: 1 }}
-                    disabled={!modalName.trim() || !modalEmail.trim() || !modalPhone.trim()}
-                    onClick={() => setModalSubmitted(true)}
+                    disabled={!modalName.trim() || !modalEmail.trim() || !modalPhone.trim() || submitting}
+                    onClick={handleSubmit}
                   >
-                    Submit →
+                    {submitting ? "Submitting..." : "Submit →"}
                   </button>
                 </div>
-              </>
+                {submitError && (
+                  <div style={{ marginTop: 10, fontSize: ".75rem", color: "#d1917b" }}>{submitError}</div>
+                )}
+              </div>
             )}
           </>
         )}
+        </div>
       </div>
     </div>
   );

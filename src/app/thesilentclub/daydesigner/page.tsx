@@ -532,6 +532,7 @@ export default function TheSilentClubDayDesigner9Page() {
         setModalQ1={setModalQ1}
         modalQ2={modalQ2}
         setModalQ2={setModalQ2}
+        cycleLabel={product ? `${product.name} · ${product.cycle}` : "Day Designer"}
       />
     </main>
   );
