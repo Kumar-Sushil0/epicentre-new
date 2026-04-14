@@ -1,11 +1,136 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { CATS, dayNames, fmtDate, Mode, monthNames, Product, ProductId, PRODUCTS, RULES, shortMonths, SLOTS } from "./content";
-import { DayDesignerStyles } from "./components/DayDesignerStyles";
-import { DesignerHeader } from "./components/DesignerHeader";
-import { InviteModal } from "./components/InviteModal";
+
+type ProductId = "silence" | "residency" | "solitude" | "creation";
+type Mode = "manual" | "ai";
+
+type Product = {
+  id: ProductId;
+  count: string;
+  name: string;
+  cycle: string;
+  desc: string;
+  days: number;
+};
+
+type Slot = {
+  id: string;
+  t: string;
+  period: string;
+  fixed?: string;
+  ftype?: "meal" | "voice";
+};
+
+const PRODUCTS: Product[] = [
+  { id: "silence", count: "—", name: "Silence", cycle: "Day Cycle · 4 Hours", desc: "Any 4 hours. Any day.", days: 1 },
+  { id: "residency", count: "3", name: "Residency", cycle: "Weekend · 2N / 3D", desc: "A structured weekend.", days: 3 },
+  { id: "solitude", count: "5", name: "Solitude", cycle: "Weekday · 4N / 5D", desc: "Five days of genuine solitude.", days: 5 },
+  { id: "creation", count: "1", name: "Creation", cycle: "Full Estate · Up to 7D", desc: "Full estate. Your terms.", days: 7 },
+];
+
+const RULES: Record<ProductId, string> = {
+  silence: "Available any day",
+  residency: "Available weekends only (Fri – Sun)",
+  solitude: "Available weekdays only (Mon – Fri)",
+  creation: "Available any day",
+};
+
+const SLOTS: Slot[] = [
+  { id: "s1", t: "06:00", period: "Dawn" },
+  { id: "s2", t: "07:30", period: "Dawn" },
+  { id: "s3", t: "09:00", period: "Morning", fixed: "Breakfast", ftype: "meal" },
+  { id: "s4", t: "09:30", period: "Morning" },
+  { id: "s5", t: "11:00", period: "Morning" },
+  { id: "s6", t: "12:30", period: "Afternoon", fixed: "Lunch", ftype: "meal" },
+  { id: "s7", t: "13:00", period: "Afternoon" },
+  { id: "s8", t: "14:30", period: "Afternoon" },
+  { id: "s9", t: "16:00", period: "Evening", fixed: "High Tea", ftype: "meal" },
+  { id: "s10", t: "16:30", period: "Evening" },
+  { id: "s11", t: "18:00", period: "Evening" },
+  { id: "s12", t: "19:30", period: "Night", fixed: "Dinner", ftype: "meal" },
+  { id: "s13", t: "20:00", period: "Night" },
+  { id: "s14", t: "21:30", period: "Night", fixed: "Voice Window", ftype: "voice" },
+];
+
+type CatItem = { name: string; icon: string };
+type Cat = { color: string; bg: string; items: CatItem[] };
+
+const CATS: Record<string, Cat> = {
+  "Deep Work": {
+    color: "#a5b4fc", bg: "rgba(99,102,241,.12)",
+    items: [
+      { name: "Writing", icon: "edit_note" },
+      { name: "Reading", icon: "menu_book" },
+      { name: "Journalling", icon: "book" },
+      { name: "Thinking", icon: "psychology" },
+      { name: "Idea Sketching", icon: "draw" },
+      { name: "Long Walks", icon: "directions_walk" },
+    ],
+  },
+  "Quiet Exploration": {
+    color: "#6ee7b7", bg: "rgba(16,185,129,.12)",
+    items: [
+      { name: "Bird Watching", icon: "flutter" },
+      { name: "Forest Safari", icon: "forest" },
+      { name: "Sunrise", icon: "wb_twilight" },
+      { name: "Boat Rides", icon: "sailing" },
+      { name: "Kayaking", icon: "kayaking" },
+      { name: "Star Gazing", icon: "nightlight" },
+    ],
+  },
+  "Body Reset": {
+    color: "#7dd3fc", bg: "rgba(14,165,233,.12)",
+    items: [
+      { name: "Gym", icon: "fitness_center" },
+      { name: "Running", icon: "directions_run" },
+      { name: "Cycling", icon: "pedal_bike" },
+      { name: "Swimming", icon: "pool" },
+      { name: "Recovery", icon: "self_improvement" },
+      { name: "Stretching", icon: "accessibility_new" },
+    ],
+  },
+  "Creative": {
+    color: "#fcd34d", bg: "rgba(245,158,11,.12)",
+    items: [
+      { name: "Drawing", icon: "brush" },
+      { name: "Sketching", icon: "ink_pen" },
+      { name: "Photography", icon: "photo_camera" },
+      { name: "Zen Garden", icon: "spa" },
+      { name: "Farm Work", icon: "agriculture" },
+      { name: "Plant Obs.", icon: "local_florist" },
+    ],
+  },
+  "Gentle Social": {
+    color: "#fca5a5", bg: "rgba(239,68,68,.12)",
+    items: [
+      { name: "Board Games", icon: "casino" },
+      { name: "Cooking", icon: "cooking" },
+      { name: "Lawn Games", icon: "sports_cricket" },
+      { name: "Conversations", icon: "forum" },
+      { name: "Shared Dinner", icon: "dinner_dining" },
+      { name: "Letters", icon: "mail" },
+    ],
+  },
+  "Subtraction": {
+    color: "#c4b5fd", bg: "rgba(139,92,246,.12)",
+    items: [
+      { name: "Silence Block", icon: "hearing_disabled" },
+      { name: "Dark Room", icon: "visibility_off" },
+      { name: "Digital Fast", icon: "phonelink_off" },
+      { name: "Anon. Presence", icon: "person_off" },
+      { name: "Horizon Gazing", icon: "landscape" },
+      { name: "Long Bath", icon: "water" },
+    ],
+  },
+};
+
+const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const shortMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+const fmtDate = (d: Date) => `${String(d.getDate()).padStart(2, "0")} ${shortMonths[d.getMonth()]} ${d.getFullYear()}`;
 
 export default function TheSilentClubDayDesigner9Page() {
   const router = useRouter();
@@ -179,11 +304,81 @@ export default function TheSilentClubDayDesigner9Page() {
 
   return (
     <main>
-      <DayDesignerStyles />
-      <DesignerHeader
-        stepClass={stepClass}
-        onBackToSite={() => router.push("/thesilentclub/home")}
-      />
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,300,0,0');
+        .material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;font-size:inherit;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-smoothing:antialiased;}
+        :root{--bg:#0f0b08;--bg-2:#160f0a;--bg-3:#1c1410;--gold:#c5a065;--gold-dim:#8a6e42;--gold-pale:#e8d5b0;--text-2:#b09070;--text-3:#7a6048;--rule:#2a1f17;--rule-2:#3a2a1f;--serif:'Cormorant',Georgia,serif;--sans:'Jost',sans-serif;}
+        body{background:var(--bg);color:var(--gold-pale);font-family:var(--sans);font-weight:300;overflow:hidden;font-size:14px}
+        .hdr{height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 6vw;background:var(--bg-2);border-bottom:1px solid var(--rule)}
+        .steps{display:flex;border-bottom:1px solid var(--rule)}
+        .step{flex:1;padding:12px 20px;border-right:1px solid var(--rule);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);display:flex;align-items:center;gap:10px}
+        .step.active{color:var(--gold-pale);background:var(--bg-2)} .step.done{color:var(--gold-dim)}
+        .step-n{width:22px;height:22px;border-radius:50%;border:1px solid var(--rule-2);display:grid;place-items:center;font-size:.7rem}
+        .step.active .step-n{background:var(--gold);color:var(--bg)} .step.done .step-n{background:var(--gold-dim);color:var(--bg)}
+        .p-inner{padding:24px 6vw;height:calc(100vh - 108px);overflow:auto}
+        .p-grid,.c-grid{display:grid;gap:1px;background:var(--rule)}
+        .p-grid{grid-template-columns:repeat(4,1fr)} .c-grid{grid-template-columns:1fr 1fr}
+        .pc,.cc{background:var(--bg-2);cursor:pointer;transition:.2s}
+        .pc{padding:20px 22px;border-bottom:2px solid transparent}.cc{padding:24px 26px;border-bottom:2px solid transparent;position:relative}
+        .pc:hover,.cc:hover{background:var(--bg-3)} .pc.sel,.cc.sel{background:var(--bg-3);border-bottom-color:var(--gold)}
+        .btn{background:var(--gold);color:var(--bg);font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;padding:12px 28px;border:none;cursor:pointer;font-weight:500}
+        .btn-g{background:none;color:var(--text-3);font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;padding:12px 22px;border:1px solid var(--rule-2);cursor:pointer}
+        .btn:disabled{opacity:.4;cursor:not-allowed}
+        .btn-g:hover{color:var(--gold-pale);border-color:var(--gold-dim)}
+        .cal-wrap{display:grid;grid-template-columns:1fr 220px;gap:24px;margin-top:16px}
+        .cal-box{background:var(--bg-2);border:1px solid var(--rule);padding:18px 20px}
+        .cal-days-hdr,.cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+        .cal-dh{text-align:center;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);padding:5px 0}
+        .ai-opt{background:var(--bg-3);border:1px solid var(--rule-2);padding:6px 14px;font-size:.82rem;color:var(--text-3);cursor:pointer}
+        .ai-opt.on{background:rgba(197,160,101,.1);border-color:var(--gold-dim);color:var(--gold-pale)}
+        .s3{display:flex;flex-direction:column;height:calc(100vh - 108px)}
+        .pal{flex-shrink:0;border-bottom:1px solid var(--rule);background:var(--bg);overflow:hidden}
+        .pal-cats{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--rule);margin:0 6vw}
+        .pal-cat{background:var(--bg)}
+        .pal-cat-n{padding:7px 10px;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid var(--rule);background:var(--bg);font-weight:500}
+        .pal-items{padding:6px 10px;display:flex;flex-direction:column;gap:2px}
+        .pill{font-size:.82rem;color:var(--text-2);padding:4px 8px;border:1px solid transparent;cursor:pointer;text-align:left;display:flex;align-items:center;gap:5px;background:none;width:100%}
+        .pill:hover{color:var(--gold-pale)}
+        .arrow-slot{
+          min-height:48px;display:flex;align-items:center;justify-content:center;padding:0 8px;position:relative;
+          --arrow-border:#3a2a1f;--arrow-fill:#1c1410;color:#e8d5b0;
+        }
+        .arrow-slot::before,
+        .arrow-slot::after{
+          content:"";position:absolute;top:0;left:0;right:0;bottom:0;
+          clip-path:polygon(0 0,84% 0,100% 50%,84% 100%,0 100%,10% 50%);
+          pointer-events:none;
+        }
+        .arrow-slot::before{background:var(--arrow-border);}
+        .arrow-slot::after{top:1px;left:1px;right:1px;bottom:1px;background:var(--arrow-fill);}
+        .arrow-slot > *{position:relative;z-index:2}
+        .arrow-empty{--arrow-border:#3a2a1f;--arrow-fill:#160f0a;color:#7a6048}
+        .arrow-empty.drag-over{--arrow-border:var(--gold);--arrow-fill:rgba(197,160,101,.14);color:#e8d5b0}
+        .arrow-filled{--arrow-border:#5a3e28;--arrow-fill:#1c1410;color:#e8d5b0}
+        .arrow-fixed{--arrow-border:#5a3e28;--arrow-fill:#1c1410;color:#c5a065}
+        .arrow-checkin{--arrow-border:#c5a065;--arrow-fill:#c5a065;color:#3a1f08}
+        .arrow-checkout{--arrow-border:#c5a065;--arrow-fill:#c5a065;color:#3a1f08}
+        .arrow-locked{--arrow-border:#2a1f17;--arrow-fill:#0f0b08;color:#3a2a1f;opacity:.7}
+        .date-col{width:90px;flex-shrink:0;display:flex;align-items:center;padding-right:10px}
+        .date-label{font-size:.72rem;color:var(--text-2);line-height:1.4;text-align:right;width:100%}
+        .tl-wrap{flex:1;overflow:hidden;display:flex;flex-direction:column}
+        .tl-scroll{flex:1;overflow:auto;padding:16px 0}
+        .cta-bar{flex-shrink:0;border-top:1px solid var(--rule);background:var(--bg-2);padding:16px 6vw;display:flex;align-items:center;justify-content:space-between;gap:16px}
+        .modal{position:fixed;inset:0;background:rgba(15,11,8,.88);display:grid;place-items:center}
+      `}</style>
+
+      <div className="hdr">
+        <div style={{ fontFamily: "var(--serif)", fontSize: "1.1rem" }}>The Silent Club</div>
+        <div style={{ fontFamily: "var(--serif)", fontSize: "1.7rem" }}>Design Your Day</div>
+        <button className="btn-g" onClick={() => router.push("/")}>← Back to site</button>
+      </div>
+
+      <div className="steps">
+        <div className={stepClass(1)}><div className="step-n">1</div>Choose your stay</div>
+        <div className={stepClass(2)}><div className="step-n">2</div>How to design</div>
+        <div className={stepClass(3)} style={{ borderRight: "none" }}><div className="step-n">3</div>Design your days</div>
+      </div>
 
       {step === 1 && (
         <div className="p-inner">
@@ -489,20 +684,63 @@ export default function TheSilentClubDayDesigner9Page() {
         </div>
       )}
 
-      <InviteModal
-        showModal={showModal}
-        setShowModal={setShowModal}
-        modalSubmitted={modalSubmitted}
-        setModalSubmitted={setModalSubmitted}
-        modalName={modalName}
-        setModalName={setModalName}
-        modalEmail={modalEmail}
-        setModalEmail={setModalEmail}
-        modalQ1={modalQ1}
-        setModalQ1={setModalQ1}
-        modalQ2={modalQ2}
-        setModalQ2={setModalQ2}
-      />
+      {showModal && (
+        <div className="modal" onClick={() => setShowModal(false)}>
+          <div style={{ background: "#160f0a", border: "1px solid #3a2a1f", maxWidth: 440, width: "100%", padding: 40 }} onClick={(e) => e.stopPropagation()}>
+            <button className="btn-g" onClick={() => setShowModal(false)} style={{ float: "right" }}>×</button>
+            {modalSubmitted ? (
+              <div style={{ textAlign: "center", padding: "20px 0" }}>
+                <div style={{ fontFamily: "var(--serif)", fontSize: "1.6rem", marginBottom: 10 }}>We'll be in touch.</div>
+                <div style={{ fontSize: ".75rem", color: "var(--text-3)" }}>Within 72 hours.</div>
+                <button className="btn" style={{ marginTop: 20 }} onClick={() => { setShowModal(false); setModalSubmitted(false); }}>Close</button>
+              </div>
+            ) : (
+              <>
+                <div style={{ fontSize: ".58rem", letterSpacing: ".18em", textTransform: "uppercase", color: "#7a6048", marginBottom: 10 }}>Request Invite</div>
+                <div style={{ fontFamily: "var(--serif)", fontSize: "1.6rem", marginBottom: 6 }}>Two questions.<br />No pitch.</div>
+                <div style={{ fontSize: ".8rem", color: "#7a6048", marginBottom: 20 }}>We respond within 72 hours.</div>
+                <input
+                  placeholder="Full name"
+                  value={modalName}
+                  onChange={(e) => setModalName(e.target.value)}
+                  style={{ width: "100%", marginBottom: 8, background: "#1c1410", border: "1px solid #2a1f17", padding: "9px 12px", color: "#e8d5b0", boxSizing: "border-box" }}
+                />
+                <input
+                  placeholder="email@example.com"
+                  type="email"
+                  value={modalEmail}
+                  onChange={(e) => setModalEmail(e.target.value)}
+                  style={{ width: "100%", marginBottom: 12, background: "#1c1410", border: "1px solid #2a1f17", padding: "9px 12px", color: "#e8d5b0", boxSizing: "border-box" }}
+                />
+                <div style={{ fontSize: ".54rem", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 5 }}>What are you hoping to get out of this stay?</div>
+                <textarea
+                  rows={3}
+                  placeholder="Take your time..."
+                  value={modalQ1}
+                  onChange={(e) => setModalQ1(e.target.value)}
+                  style={{ width: "100%", marginBottom: 12, background: "#1c1410", border: "1px solid #2a1f17", padding: "9px 12px", color: "#e8d5b0", resize: "none", boxSizing: "border-box" }}
+                />
+                <div style={{ fontSize: ".54rem", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 5 }}>Is there anything we should know before we speak?</div>
+                <textarea
+                  rows={3}
+                  placeholder="Optional..."
+                  value={modalQ2}
+                  onChange={(e) => setModalQ2(e.target.value)}
+                  style={{ width: "100%", marginBottom: 16, background: "#1c1410", border: "1px solid #2a1f17", padding: "9px 12px", color: "#e8d5b0", resize: "none", boxSizing: "border-box" }}
+                />
+                <button
+                  className="btn"
+                  style={{ width: "100%" }}
+                  disabled={!modalName.trim() || !modalEmail.trim() || !modalQ1.trim()}
+                  onClick={() => setModalSubmitted(true)}
+                >
+                  Submit →
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </main>
   );
 }
