@@ -93,7 +93,8 @@ export function AboutStyles() {
       .modal.show{display:flex}
       .modal-box{background:#160f0a;border:1px solid #3a2a1f;max-width:480px;width:100%;padding:44px;position:relative}
       .modal-x{position:absolute;top:14px;right:18px;background:none;border:none;color:#7a6048;font-size:1.3rem;cursor:pointer}
-      @media(max-width:860px){.nav-links{display:none}.hero{grid-template-columns:1fr}.hero-right{display:none}.why-header,.founder,.stf-idea{grid-template-columns:1fr;gap:24px}.founder-left,.stf-idea-left{border-right:none;border-bottom:1px solid var(--rule)}.acc-trigger{grid-template-columns:auto 1fr auto;gap:0 20px}.acc-body-inner{grid-template-columns:1fr}.acc-body-text{grid-column:1}}
+      @media(max-width:860px){.nav-links{display:none}.hero{grid-template-columns:1fr}.hero-right{display:none}.why-header,.founder,.stf-idea{grid-template-columns:1fr;gap:24px}.founder-left,.stf-idea-left{border-right:none;border-bottom:1px solid var(--rule)}.acc-trigger{grid-template-columns:auto 1fr auto;gap:0 20px}.acc-body-inner{grid-template-columns:1fr}.acc-body-text{grid-column:1}.stf-cohorts-h{grid-template-columns:1fr 1fr}.stf-cohort-h{padding:16px 16px 20px}.footer-top{grid-template-columns:1fr 1fr}.footer-bottom{flex-direction:column;gap:8px}}
+      @media(max-width:480px){.stf-cohorts-h{grid-template-columns:1fr}.stf-cohort-h{padding:16px 16px 20px}.footer-top{grid-template-columns:1fr}}
     `}</style>
   );
 }

@@ -145,8 +145,9 @@ export default function TheSilentClubBlogsPage() {
         .featured-meta{display:flex;align-items:center;justify-content:space-between;padding-top:20px;border-top:1px solid var(--rule)}
         .featured-date{font-size:.62rem;letter-spacing:.1em;color:var(--text-3)}
         .featured-read{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dim)}
-        .filter-bar{display:flex;align-items:center;gap:1px;background:var(--rule);border-bottom:1px solid var(--rule)}
-        .filter-btn{background:var(--bg-2);border:none;padding:14px 20px;font-family:var(--sans);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-3);cursor:pointer;border-bottom:2px solid transparent}
+        .filter-bar{display:flex;align-items:center;gap:1px;background:var(--rule);border-bottom:1px solid var(--rule);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+        .filter-bar::-webkit-scrollbar{display:none}
+        .filter-btn{background:var(--bg-2);border:none;padding:14px 20px;font-family:var(--sans);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-3);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;flex-shrink:0}
         .filter-btn.active{background:var(--bg);color:var(--gold-pale);border-bottom-color:var(--gold)}
         .filter-count{font-size:.5rem;color:var(--text-3);margin-left:6px}
         .posts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border-bottom:1px solid var(--rule)}
@@ -181,7 +182,7 @@ export default function TheSilentClubBlogsPage() {
         .m-f label{display:block;font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:#7a6048;margin-bottom:5px}
         .m-f input,.m-f textarea{width:100%;background:#1c1410;border:1px solid #2a1f17;padding:10px 12px;font-size:.84rem;color:#e8d5b0;outline:none}
         .m-btn{width:100%;background:#c5a065;color:#0f0b08;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;padding:12px;border:none;cursor:pointer;margin-top:6px}
-        @media(max-width:860px){.nav-links{display:none}.hero-inner,.featured{grid-template-columns:1fr}.featured-img{border-right:none;border-bottom:1px solid var(--rule)}.posts-grid{grid-template-columns:1fr 1fr}}
+        @media(max-width:860px){.nav-links{display:none}.hero-inner,.featured{grid-template-columns:1fr}.featured-img{border-right:none;border-bottom:1px solid var(--rule)}.posts-grid{grid-template-columns:1fr 1fr}.footer-top{grid-template-columns:1fr 1fr}.footer-bottom{flex-direction:column;gap:8px}}
         @media(max-width:540px){.posts-grid{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr}}
       `}</style>
 
