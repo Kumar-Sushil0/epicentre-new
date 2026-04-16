@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events — The Silent Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f0b08;--bg-2:#160f0a;--bg-3:#1c1410;--gold:#c5a065;--gold-dim:#8a6e42;--gold-pale:#e8d5b0;--text-2:#b09070;--text-3:#7a6048;--rule:#2a1f17;--rule-2:#3a2a1f;--serif:'Cormorant',Georgia,serif;--sans:'Jost',sans-serif;--g:6vw;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--gold-pale);font-family:var(--sans);font-weight:300;-webkit-font-smoothing:antialiased;min-height:100vh;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4;}
+.nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(15,11,8,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--rule);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:1400px;margin:0 auto;padding:0 var(--g);}
+.nav-brand{font-family:var(--serif);font-size:1.1rem;color:var(--gold-pale);text-decoration:none;}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
+.nav-links a{font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-cta{font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:9px 22px;border:none;cursor:pointer;font-family:var(--sans);transition:background 0.2s;}
+.nav-cta:hover{background:var(--gold-pale);}
+@media(max-width:860px){.nav-links{display:none;}}
+.page{padding-top:60px;min-height:100vh;display:flex;flex-direction:column;}
+.cal-header{padding:clamp(32px,4vw,48px) var(--g) clamp(20px,3vw,32px);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--rule);background:var(--bg-2);}
+.cal-label{font-size:0.58rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px;}
+.cal-title{font-family:var(--serif);font-weight:300;font-size:clamp(1.6rem,3vw,2.8rem);color:var(--gold-pale);letter-spacing:-0.01em;line-height:1;}
+.cal-nav{display:flex;align-items:center;gap:8px;}
+.cal-nav-btn{width:36px;height:36px;border:1px solid var(--rule-2);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-3);font-size:1.2rem;transition:all 0.2s;}
+.cal-nav-btn:hover{border-color:var(--gold-dim);color:var(--gold);}
+.cal-range{font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);padding:0 12px;}
+.calendar{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border-bottom:1px solid var(--rule);}
+.month-col{background:var(--bg);display:flex;flex-direction:column;}
+.month-header{padding:20px 20px 16px;border-bottom:1px solid var(--rule);background:var(--bg-2);position:sticky;top:60px;z-index:10;}
+.month-name{font-family:var(--serif);font-size:1.2rem;font-weight:300;color:var(--gold);line-height:1;}
+.month-year{font-size:0.56rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-3);margin-top:3px;}
+.month-count{font-size:0.56rem;letter-spacing:0.12em;color:var(--text-3);margin-top:6px;}
+.month-body{flex:1;}
+.month-empty{padding:28px 20px;font-family:var(--serif);font-style:italic;font-size:0.875rem;color:var(--rule-2);line-height:1.6;}
+.event-item{border-bottom:1px solid var(--rule);transition:background 0.2s;}
+.event-item:last-child{border-bottom:none;}
+.event-item:hover{background:var(--bg-2);}
+.event-trigger{width:100%;background:none;border:none;padding:14px 20px;display:flex;align-items:flex-start;gap:12px;cursor:pointer;text-align:left;}
+.event-dot{width:7px;height:7px;border-radius:50%;background:var(--gold-dim);flex-shrink:0;margin-top:5px;}
+.event-dot.open{background:var(--gold);}
+.event-dot.soon{background:var(--text-3);}
+.event-info{flex:1;min-width:0;}
+.event-name{font-family:var(--serif);font-size:1rem;font-weight:400;color:var(--gold-pale);line-height:1.2;margin-bottom:4px;}
+.event-date{font-size:0.62rem;letter-spacing:0.08em;color:var(--text-3);}
+.event-chevron{color:var(--text-3);font-size:0.75rem;transition:transform 0.3s;flex-shrink:0;margin-top:4px;}
+.event-item.open .event-chevron{transform:rotate(180deg);}
+.event-body{max-height:0;overflow:hidden;transition:max-height 0.45s cubic-bezier(0.25,0.46,0.45,0.94);}
+.event-item.open .event-body{max-height:400px;}
+.event-body-inner{padding:0 20px 20px 39px;}
+.event-type-tag{display:inline-block;font-size:0.52rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-dim);border:1px solid var(--rule-2);padding:3px 9px;margin-bottom:10px;}
+.event-desc{font-family:var(--serif);font-size:0.9rem;font-weight:300;color:var(--text-2);line-height:1.7;margin-bottom:12px;}
+.event-meta-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:10px;}
+.event-meta-item{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);}
+.event-meta-item span{color:var(--text-2);}
+.event-status{display:inline-block;font-size:0.52rem;letter-spacing:0.14em;text-transform:uppercase;padding:3px 9px;margin-bottom:14px;}
+.s-open{background:rgba(197,160,101,0.08);color:var(--gold);border:1px solid rgba(197,160,101,0.2);}
+.s-invite{background:rgba(138,110,66,0.08);color:var(--gold-dim);border:1px solid var(--rule-2);}
+.s-soon{background:rgba(122,96,72,0.08);color:var(--text-3);border:1px solid var(--rule);}
+.event-cta{display:inline-block;font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:8px 18px;border:none;cursor:pointer;font-family:var(--sans);transition:background 0.2s;}
+.event-cta:hover{background:var(--gold-pale);}
+.creator-cta{padding:clamp(48px,6vw,72px) var(--g);display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;background:var(--bg-2);border-top:1px solid var(--rule);}
+.creator-cta-label{font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-3);margin-bottom:10px;}
+.creator-cta-heading{font-family:var(--serif);font-weight:300;font-size:clamp(1.4rem,2.5vw,2.2rem);color:var(--gold-pale);line-height:1.1;letter-spacing:-0.01em;margin-bottom:8px;}
+.creator-cta-heading em{font-style:italic;color:var(--gold);}
+.creator-cta-desc{font-size:0.84rem;font-weight:300;color:var(--text-3);line-height:1.7;max-width:520px;}
+.creator-cta-btn{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:14px 28px;border:none;cursor:pointer;font-family:var(--sans);transition:background 0.2s;white-space:nowrap;flex-shrink:0;}
+.creator-cta-btn:hover{background:var(--gold-pale);}
+.cmodal{display:none;position:fixed;inset:0;z-index:8000;background:rgba(15,11,8,0.88);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:24px;}
+.cmodal.show{display:flex;}
+.cmodal-box{background:#160f0a;border:1px solid #3a2a1f;max-width:520px;width:100%;padding:44px;position:relative;max-height:90vh;overflow-y:auto;}
+.cmodal-x{position:absolute;top:14px;right:18px;background:none;border:1px solid #2a1f17;color:#7a6048;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;}
+.cmodal-label{font-size:0.56rem;letter-spacing:0.2em;text-transform:uppercase;color:#7a6048;margin-bottom:12px;font-family:'Jost',sans-serif;}
+.cmodal-heading{font-family:'Cormorant',serif;font-size:1.8rem;font-weight:300;color:#e8d5b0;margin-bottom:6px;}
+.cmodal-sub{font-size:0.8rem;color:#7a6048;line-height:1.65;margin-bottom:24px;font-family:'Jost',sans-serif;}
+.cmodal-form{display:flex;flex-direction:column;gap:14px;}
+.cmodal-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.cmodal-field label{display:block;font-size:0.56rem;letter-spacing:0.16em;text-transform:uppercase;color:#7a6048;margin-bottom:6px;font-family:'Jost',sans-serif;}
+.cmodal-field input,.cmodal-field textarea,.cmodal-field select{width:100%;background:#1c1410;border:1px solid #2a1f17;padding:10px 12px;font-family:'Jost',sans-serif;font-size:0.84rem;color:#e8d5b0;outline:none;box-sizing:border-box;appearance:none;}
+.cmodal-field textarea{resize:vertical;line-height:1.55;}
+.cmodal-submit{background:#c5a065;color:#0f0b08;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;padding:12px;border:none;cursor:pointer;font-family:'Jost',sans-serif;margin-top:4px;}
+.cmodal-success{display:none;text-align:center;padding:32px 0;}
+.cmodal-success.show{display:block;}
+@media(max-width:860px){.calendar{grid-template-columns:1fr 1fr;}.creator-cta{grid-template-columns:1fr;}.cmodal-row{grid-template-columns:1fr;}}
+@media(max-width:540px){.calendar{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="thesilentclub-homepage.html">The Silent Club</a>
+    <ul class="nav-links">
+      <li><a href="thesilentclub-homepage.html">Home</a></li>
+      <li><a href="thesilentclub-estate.html">Estate</a></li>
+      <li><a href="thesilentclub-about.html">About</a></li>
+      <li><a href="thesilentclub-journal.html">Journal</a></li>
+      <li><a href="#" class="active">Events</a></li>
+    </ul>
+    <button class="nav-cta" onclick="openInviteModal()">Request Invite</button>
+  </div>
+</nav>
+<div class="page">
+  <div class="cal-header">
+    <div>
+      <div class="cal-label">Weekend Events</div>
+      <div class="cal-title">What's happening here</div>
+    </div>
+    <div class="cal-nav">
+      <button class="cal-nav-btn" onclick="shiftCal(-1)">&#8249;</button>
+      <div class="cal-range" id="calRange"></div>
+      <button class="cal-nav-btn" onclick="shiftCal(1)">&#8250;</button>
+    </div>
+  </div>
+  <div class="calendar" id="calGrid"></div>
+  <div class="creator-cta">
+    <div>
+      <div class="creator-cta-label">For creators and experience designers</div>
+      <h2 class="creator-cta-heading">Have something in mind?<br><em>Bring it here.</em></h2>
+      <p class="creator-cta-desc">The Silent Club on weekends is a blank canvas. The right space, the right silence, and an audience that came here to feel something. If you are a musician, artist, filmmaker, facilitator or experience designer, we would love to hear what you are thinking.</p>
+    </div>
+    <button class="creator-cta-btn" onclick="openCollab()">Collaborate with us</button>
+  </div>
+</div>
+
+<!-- COLLAB MODAL -->
+<div class="cmodal" id="collabModal">
+  <div class="cmodal-box">
+    <button class="cmodal-x" onclick="closeCollab()">&times;</button>
+    <div class="cmodal-label">Collaboration Inquiry</div>
+    <h2 class="cmodal-heading">Tell us what you're building.</h2>
+    <p class="cmodal-sub">No brief required. Just tell us what you're imagining.</p>
+    <div class="cmodal-form" id="collabForm">
+      <div class="cmodal-row">
+        <div class="cmodal-field"><label>Your name</label><input type="text" placeholder="Full name"></div>
+        <div class="cmodal-field"><label>Email</label><input type="email" placeholder="email@example.com"></div>
+      </div>
+      <div class="cmodal-field"><label>Type of experience</label>
+        <select><option value="">Select type</option><option>Music performance</option><option>Art installation</option><option>Film screening</option><option>Workshop or facilitation</option><option>Creative residency</option><option>Spoken word / poetry</option><option>Other</option></select>
+      </div>
+      <div class="cmodal-row">
+        <div class="cmodal-field"><label>Expected audience size</label><input type="text" placeholder="e.g. 15-20 people"></div>
+        <div class="cmodal-field"><label>Preferred timeframe</label><input type="text" placeholder="e.g. July 2026"></div>
+      </div>
+      <div class="cmodal-field"><label>Tell us what you're imagining</label><textarea rows="4" placeholder="A paragraph is enough..."></textarea></div>
+      <button class="cmodal-submit" onclick="submitCollab()">Send inquiry</button>
+    </div>
+    <div class="cmodal-success" id="collabSuccess">
+      <div style="font-family:'Cormorant',serif;font-size:2rem;font-weight:300;color:#e8d5b0;margin-bottom:10px;">Received.</div>
+      <p style="font-size:0.84rem;color:#7a6048;line-height:1.7;max-width:280px;margin:0 auto;">We will be in touch within 48 hours.</p>
+    </div>
+  </div>
+</div>
+
+<!-- INVITE MODAL -->
+<div id="inviteModal" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(15,11,8,0.88);backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:24px;">
+<div style="background:#160f0a;border:1px solid #3a2a1f;border-radius:4px;max-width:500px;width:100%;overflow:hidden;max-height:92vh;">
+  <div style="padding:16px 20px;border-bottom:1px solid #2a1f17;display:flex;align-items:center;justify-content:space-between;">
+    <div style="display:flex;gap:10px;align-items:center;">
+      <div id="sd1" style="width:24px;height:24px;border-radius:50%;background:rgba(197,160,101,0.15);display:flex;align-items:center;justify-content:center;font-size:11px;color:#c5a065;font-family:'Jost',sans-serif;">1</div>
+      <div style="height:1px;width:20px;background:#2a1f17;"></div>
+      <div id="sd2" style="width:24px;height:24px;border-radius:50%;border:1px solid #2a1f17;display:flex;align-items:center;justify-content:center;font-size:11px;color:#7a6048;font-family:'Jost',sans-serif;">2</div>
+      <div style="height:1px;width:20px;background:#2a1f17;"></div>
+      <div id="sd3" style="width:24px;height:24px;border-radius:50%;border:1px solid #2a1f17;display:flex;align-items:center;justify-content:center;font-size:11px;color:#7a6048;font-family:'Jost',sans-serif;">3</div>
+    </div>
+    <button onclick="closeInviteModal()" style="border:1px solid #2a1f17;background:none;cursor:pointer;font-size:1rem;color:#7a6048;width:30px;height:30px;display:flex;align-items:center;justify-content:center;">&times;</button>
+  </div>
+  <div style="height:420px;display:flex;flex-direction:column;overflow:hidden;">
+    <div id="inv_s1" style="flex:1;display:flex;flex-direction:column;padding:24px 20px 0;overflow-y:auto;">
+      <div style="font-size:0.54rem;letter-spacing:0.22em;text-transform:uppercase;color:#7a6048;margin-bottom:8px;font-family:'Jost',sans-serif;">Before we speak</div>
+      <h2 style="font-family:'Cormorant',serif;font-size:1.8rem;font-weight:300;color:#e8d5b0;margin-bottom:20px;">Two questions</h2>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div><label style="display:block;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:#7a6048;margin-bottom:7px;font-family:'Jost',sans-serif;">What are you hoping to get from this stay?</label><textarea id="inv_q1" rows="3" placeholder="Take your time..." style="width:100%;background:#1c1410;border:1px solid #2a1f17;padding:10px 12px;font-family:'Cormorant',serif;font-size:1rem;color:#e8d5b0;outline:none;resize:none;line-height:1.6;box-sizing:border-box;"></textarea></div>
+        <div><label style="display:block;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:#7a6048;margin-bottom:7px;font-family:'Jost',sans-serif;">Anything we should know before we speak?</label><textarea id="inv_q2" rows="3" placeholder="Share any context..." style="width:100%;background:#1c1410;border:1px solid #2a1f17;padding:10px 12px;font-family:'Cormorant',serif;font-size:1rem;color:#e8d5b0;outline:none;resize:none;line-height:1.6;box-sizing:border-box;"></textarea></div>
+      </div>
+    </div>
+    <div id="inv_s2" style="flex:1;display:none;flex-direction:column;padding:24px 20px 0;overflow-y:auto;">
+      <div style="font-size:0.54rem;letter-spacing:0.22em;text-transform:uppercase;color:#7a6048;margin-bottom:8px;font-family:'Jost',sans-serif;">Pick a time</div>
+      <h2 style="font-family:'Cormorant',serif;font-size:1.8rem;font-weight:300;color:#e8d5b0;margin-bottom:16px;">15-minute conversation</h2>
+      <div style="border:1px solid #2a1f17;margin-bottom:12px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#1c1410;border-bottom:1px solid #2a1f17;">
+          <button onclick="invCalPrev()" style="border:1px solid #2a1f17;background:none;cursor:pointer;color:#7a6048;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;">&lsaquo;</button>
+          <span id="inv_calLabel" style="font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:#b09070;font-family:'Jost',sans-serif;"></span>
+          <button onclick="invCalNext()" style="border:1px solid #2a1f17;background:none;cursor:pointer;color:#7a6048;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;">&rsaquo;</button>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);padding:6px 8px 2px;background:#160f0a;">
+          <div style="text-align:center;font-size:0.5rem;color:#7a6048;padding:3px 0;font-family:'Jost',sans-serif;">S</div><div style="text-align:center;font-size:0.5rem;color:#7a6048;padding:3px 0;font-family:'Jost',sans-serif;">M</div><div style="text-align:center;font-size:0.5rem;color:#7a6048;padding:3px 0;font-family:'Jost',sans-serif;">T</div><div style="text-align:center;font-size:0.5rem;color:#7a6048;padding:3px 0;font-family:'Jost',sans-serif;">W</div><div style="text-align:center;font-size:0.5rem;color:#7a6048;padding:3px 0;font-family:'Jost',sans-serif;">T</div><div style="text-align:center;font-size:0.5rem;color:#7a6048;padding:3px 0;font-family:'Jost',sans-serif;">F</div><div style="text-align:center;font-size:0.5rem;color:#7a6048;padding:3px 0;font-family:'Jost',sans-serif;">S</div>
+        </div>
+        <div id="inv_calGrid" style="display:grid;grid-template-columns:repeat(7,1fr);padding:2px 8px 8px;background:#160f0a;gap:2px;"></div>
+      </div>
+      <div style="font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:#7a6048;margin-bottom:8px;font-family:'Jost',sans-serif;">Choose a slot</div>
+      <div id="inv_slots" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px;"></div>
+      <div id="inv_selDisplay" style="display:none;padding:8px 12px;background:#1c1410;border:1px solid #2a1f17;font-size:0.78rem;color:#b09070;font-family:'Jost',sans-serif;"></div>
+    </div>
+    <div id="inv_s3" style="flex:1;display:none;flex-direction:column;padding:24px 20px 0;overflow-y:auto;">
+      <div style="font-size:0.54rem;letter-spacing:0.22em;text-transform:uppercase;color:#7a6048;margin-bottom:8px;font-family:'Jost',sans-serif;">Your details</div>
+      <h2 style="font-family:'Cormorant',serif;font-size:1.8rem;font-weight:300;color:#e8d5b0;margin-bottom:6px;">Almost done</h2>
+      <p style="font-size:0.78rem;color:#7a6048;margin-bottom:20px;line-height:1.5;font-family:'Jost',sans-serif;">We will confirm your conversation within 24 hours.</p>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div><label style="display:block;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:#7a6048;margin-bottom:7px;font-family:'Jost',sans-serif;">Full name</label><input type="text" id="inv_name" placeholder="Your full name" style="width:100%;background:#1c1410;border:1px solid #2a1f17;padding:10px 12px;font-family:'Jost',sans-serif;font-size:0.875rem;color:#e8d5b0;outline:none;box-sizing:border-box;"></div>
+        <div><label style="display:block;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:#7a6048;margin-bottom:7px;font-family:'Jost',sans-serif;">Email</label><input type="email" id="inv_email" placeholder="email@example.com" style="width:100%;background:#1c1410;border:1px solid #2a1f17;padding:10px 12px;font-family:'Jost',sans-serif;font-size:0.875rem;color:#e8d5b0;outline:none;box-sizing:border-box;"></div>
+        <div><label style="display:block;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:#7a6048;margin-bottom:7px;font-family:'Jost',sans-serif;">Phone</label><input type="tel" id="inv_phone" placeholder="+91 XXXXX XXXXX" style="width:100%;background:#1c1410;border:1px solid #2a1f17;padding:10px 12px;font-family:'Jost',sans-serif;font-size:0.875rem;color:#e8d5b0;outline:none;box-sizing:border-box;"></div>
+      </div>
+    </div>
+    <div id="inv_s4" style="flex:1;display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;text-align:center;">
+      <div style="width:48px;height:48px;border-radius:50%;border:1px solid #8a6e42;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:1.2rem;color:#c5a065;">&#10003;</div>
+      <div style="font-family:'Cormorant',serif;font-size:2rem;font-weight:300;color:#e8d5b0;margin-bottom:10px;">Thank you.</div>
+      <p style="font-size:0.82rem;color:#7a6048;line-height:1.7;max-width:300px;margin:0 auto 24px;font-family:'Jost',sans-serif;">Application received. We will confirm within 24 hours.</p>
+      <button onclick="closeInviteModal()" style="border:1px solid #2a1f17;background:none;padding:9px 22px;font-family:'Jost',sans-serif;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;color:#b09070;">Close</button>
+    </div>
+  </div>
+  <div id="inv_footer" style="padding:16px 20px;border-top:1px solid #2a1f17;display:flex;gap:8px;">
+    <button id="inv_back" onclick="invBack()" style="display:none;flex:1;padding:12px;border:1px solid #2a1f17;background:none;font-family:'Jost',sans-serif;font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;color:#7a6048;">Back</button>
+    <button id="inv_next" onclick="invNext()" style="flex:2;padding:12px;background:#c5a065;color:#0f0b08;border:none;font-family:'Jost',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;">Continue</button>
+  </div>
+</div>
+</div>
+
+<script>
+var EVENTS = {
+  '2026-5':[
+    {name:'The Stillness Sessions',date:'Sat, 9 May 2026',type:'Sound and Breathwork',desc:'A guided evening of sound bath and breathwork. No experience required. Just a willingness to stop moving for two hours and notice what happens.',capacity:'12 guests',duration:'1 evening',status:'open'},
+    {name:'Letters to Your Future Self',date:'Sat, 23 May 2026',type:'Writing Workshop',desc:'A structured writing evening. You arrive with no brief and leave with a letter you will not open for a year. One of the simplest and most disorienting things you can do.',capacity:'16 guests',duration:'1 evening',status:'open'}
+  ],
+  '2026-6':[
+    {name:'The Silent Supper',date:'Sat, 6 June 2026',type:'Communal Experience',desc:'A full dinner in complete silence. No phones. No conversation. Just food, presence, and the strange intimacy of sharing a meal with strangers who are all trying the same thing.',capacity:'20 guests',duration:'1 evening',status:'invite'},
+    {name:'Dawn Photography Walk',date:'Sun, 14 June 2026',type:'Photography',desc:'Ujni Lake at first light with a photographer who knows when to stop talking. The brief: one image that required patience.',capacity:'8 guests',duration:'Dawn to Breakfast',status:'open'},
+    {name:'Spoken Word Under Stars',date:'Sat, 28 June 2026',type:'Performance Evening',desc:'An intimate performance evening on the estate grounds. Three voices, an open sky, and an audience that came here already prepared to listen.',capacity:'24 guests',duration:'1 evening',status:'soon'}
+  ],
+  '2026-7':[
+    {name:'The Thinking Room',date:'Sat-Sun, 11-12 July 2026',type:'Deep Work Weekend',desc:'A structured solo weekend. You bring one project, one question, or one decision. The estate provides everything else. No programme. No output required.',capacity:'10 guests',duration:'Full weekend',status:'invite'},
+    {name:'Clay and Quiet',date:'Sat, 25 July 2026',type:'Making Workshop',desc:'A pottery workshop with no instruction. Clay, tools, time. A facilitator present but not directing. What you make is yours. The process is the point.',capacity:'10 guests',duration:'1 day',status:'open'}
+  ],
+  '2026-8':[
+    {name:"Filmmaker's Residency",date:'Sat-Sun, 8-9 Aug 2026',type:'Creative Residency',desc:'A weekend for one filmmaker and their lens. Full estate access. No brief, no audience, no deliverable. Just the place and the light and two days to see what happens.',capacity:'1 filmmaker',duration:'Full weekend',status:'invite'},
+    {name:'The Last Sunday',date:'Sun, 30 Aug 2026',type:'Open Gathering',desc:'An open-format creative gathering to close the season. Artists, makers, thinkers, writers. No agenda. Doors open at noon. The estate does the rest.',capacity:'30 guests',duration:'Noon to night',status:'soon'}
+  ]
+};
+
+var MONTHS=[
+  {key:'2026-5',name:'May',year:'2026'},{key:'2026-6',name:'June',year:'2026'},
+  {key:'2026-7',name:'July',year:'2026'},{key:'2026-8',name:'August',year:'2026'},
+  {key:'2026-9',name:'September',year:'2026'},{key:'2026-10',name:'October',year:'2026'},
+  {key:'2026-11',name:'November',year:'2026'},{key:'2026-12',name:'December',year:'2026'}
+];
+var calOffset=0;
+
+function updateRange(){
+  var v=MONTHS.slice(calOffset,calOffset+4);
+  document.getElementById('calRange').textContent=v[0].name+' - '+v[3].name+' '+v[3].year;
+}
+
+function shiftCal(dir){
+  var n=calOffset+dir;
+  if(n<0||n>MONTHS.length-4)return;
+  calOffset=n;
+  renderCalendar();
+  updateRange();
+}
+
+function renderCalendar(){
+  var grid=document.getElementById('calGrid');
+  grid.innerHTML='';
+  MONTHS.slice(calOffset,calOffset+4).forEach(function(month){
+    var evs=EVENTS[month.key]||[];
+    var col=document.createElement('div');
+    col.className='month-col';
+    var cnt=evs.length>0?evs.length+' event'+(evs.length>1?'s':''):'Nothing scheduled';
+    col.innerHTML='<div class="month-header"><div class="month-name">'+month.name+'</div><div class="month-year">'+month.year+'</div><div class="month-count">'+cnt+'</div></div><div class="month-body" id="mb-'+month.key+'"></div>';
+    grid.appendChild(col);
+    var body=document.getElementById('mb-'+month.key);
+    if(evs.length===0){body.innerHTML='<div class="month-empty">No events this month.<br>Could be yours.</div>';return;}
+    evs.forEach(function(ev){
+      var dc=ev.status==='open'?'event-dot open':ev.status==='soon'?'event-dot soon':'event-dot';
+      var sc=ev.status==='open'?'s-open':ev.status==='invite'?'s-invite':'s-soon';
+      var st=ev.status==='open'?'Open':ev.status==='invite'?'Invite Only':'Coming Soon';
+      var item=document.createElement('div');
+      item.className='event-item';
+      item.innerHTML=
+        '<div class="event-trigger" onclick="toggleEv(this.parentElement)">'
+        +'<div class="'+dc+'"></div>'
+        +'<div class="event-info"><div class="event-name">'+ev.name+'</div><div class="event-date">'+ev.date+'</div></div>'
+        +'<div class="event-chevron">&#9662;</div>'
+        +'</div>'
+        +'<div class="event-body"><div class="event-body-inner">'
+        +'<div class="event-type-tag">'+ev.type+'</div>'
+        +'<p class="event-desc">'+ev.desc+'</p>'
+        +'<div class="event-meta-row"><div class="event-meta-item">Capacity <span>'+ev.capacity+'</span></div><div class="event-meta-item">Duration <span>'+ev.duration+'</span></div></div>'
+        +'<div class="event-status '+sc+'">'+st+'</div><br>'
+        +'<button class="event-cta" onclick="openInviteModal()">Express interest</button>'
+        +'</div></div>';
+      body.appendChild(item);
+    });
+  });
+}
+
+function toggleEv(item){
+  var isOpen=item.classList.contains('open');
+  document.querySelectorAll('.event-item.open').forEach(function(i){i.classList.remove('open');});
+  if(!isOpen)item.classList.add('open');
+}
+
+function openCollab(){document.getElementById('collabModal').classList.add('show');document.body.style.overflow='hidden';}
+function closeCollab(){document.getElementById('collabModal').classList.remove('show');document.body.style.overflow='';}
+function submitCollab(){document.getElementById('collabForm').style.display='none';document.getElementById('collabSuccess').classList.add('show');}
+document.getElementById('collabModal').addEventListener('click',function(e){if(e.target===this)closeCollab();});
+
+var _invStep=1,_invDate=null,_invTime=null,_invCalY,_invCalM;
+var _invMN=['January','February','March','April','May','June','July','August','September','October','November','December'];
+var _invTimes=['09:00','10:30','12:00','14:00','16:00','18:00'];
+
+function openInviteModal(){
+  _invStep=1;_invDate=null;_invTime=null;
+  var t=new Date();_invCalY=t.getFullYear();_invCalM=t.getMonth();
+  _invShowStep(1);
+  document.getElementById('inviteModal').style.display='flex';
+  document.body.style.overflow='hidden';
+  _invRenderCal();_invRenderSlots();
+}
+function closeInviteModal(){document.getElementById('inviteModal').style.display='none';document.body.style.overflow='';}
+
+function _invShowStep(n){
+  _invStep=n;
+  ['inv_s1','inv_s2','inv_s3','inv_s4'].forEach(function(id,i){
+    document.getElementById(id).style.display=(i+1===n||(n===99&&i===3))?'flex':'none';
+  });
+  [1,2,3].forEach(function(i){
+    var d=document.getElementById('sd'+i);
+    if(i<n&&n<99){d.style.background='rgba(107,155,94,0.15)';d.style.border='none';d.style.color='#6b9b5e';d.textContent='✓';}
+    else if(i===n){d.style.background='rgba(197,160,101,0.15)';d.style.border='none';d.style.color='#c5a065';d.textContent=i;}
+    else{d.style.background='none';d.style.border='1px solid #2a1f17';d.style.color='#7a6048';d.textContent=i;}
+  });
+  var footer=document.getElementById('inv_footer');
+  var back=document.getElementById('inv_back');
+  var next=document.getElementById('inv_next');
+  if(n===99){footer.style.display='none';return;}
+  footer.style.display='flex';
+  back.style.display=n>1?'block':'none';
+  next.textContent=n===3?'Submit':'Continue';
+}
+
+function invNext(){
+  if(_invStep===1){
+    if(!document.getElementById('inv_q1').value.trim()){alert('Please tell us what you are hoping to get from this stay.');return;}
+    _invShowStep(2);
+  }else if(_invStep===2){
+    if(!_invDate||!_invTime){alert('Please select a date and time slot.');return;}
+    _invShowStep(3);
+  }else if(_invStep===3){
+    if(!document.getElementById('inv_name').value.trim()||!document.getElementById('inv_email').value.trim()){alert('Please enter your name and email.');return;}
+    _invShowStep(99);
+  }
+}
+function invBack(){if(_invStep>1)_invShowStep(_invStep-1);}
+
+function _invRenderCal(){
+  document.getElementById('inv_calLabel').textContent=_invMN[_invCalM]+' '+_invCalY;
+  var g=document.getElementById('inv_calGrid');g.innerHTML='';
+  var fd=new Date(_invCalY,_invCalM,1).getDay();
+  var dm=new Date(_invCalY,_invCalM+1,0).getDate();
+  var today=new Date();today.setHours(0,0,0,0);
+  for(var i=0;i<fd;i++){g.appendChild(document.createElement('div'));}
+  for(var d=1;d<=dm;d++){
+    var dt=new Date(_invCalY,_invCalM,d);
+    var c=document.createElement('div');
+    var past=dt<today;
+    var isSel=_invDate&&_invDate.toDateString()===dt.toDateString();
+    c.textContent=d;
+    c.style.cssText='text-align:center;padding:5px 2px;font-size:0.78rem;font-family:Jost,sans-serif;border-radius:2px;cursor:'+(past?'default':'pointer')+';color:'+(past?'#3a2a1f':isSel?'#0f0b08':'#e8d5b0')+';background:'+(isSel?'#c5a065':'none')+';';
+    if(!past){(function(date){c.addEventListener('click',function(){_invDate=date;_invTime=null;_invRenderCal();_invRenderSlots();_invUpdateSel();});})(new Date(dt));}
+    g.appendChild(c);
+  }
+}
+
+function _invRenderSlots(){
+  var c=document.getElementById('inv_slots');c.innerHTML='';
+  _invTimes.forEach(function(t){
+    var btn=document.createElement('button');
+    btn.textContent=t;
+    var isSel=_invTime===t;
+    btn.style.cssText='padding:8px 4px;font-size:0.72rem;font-family:Jost,sans-serif;letter-spacing:0.06em;cursor:pointer;border:1px solid '+(isSel?'#8a6e42':'#2a1f17')+';background:'+(isSel?'rgba(197,160,101,0.1)':'#1c1410')+';color:'+(isSel?'#e8d5b0':'#b09070')+';';
+    btn.addEventListener('click',function(){_invTime=t;_invRenderSlots();_invUpdateSel();});
+    c.appendChild(btn);
+  });
+}
+
+function _invUpdateSel(){
+  var el=document.getElementById('inv_selDisplay');
+  if(_invDate&&_invTime){
+    var dn=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var mn=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    el.style.display='block';
+    el.textContent=dn[_invDate.getDay()]+' '+_invDate.getDate()+' '+mn[_invDate.getMonth()]+' - '+_invTime;
+  }else{el.style.display='none';}
+}
+
+function invCalPrev(){_invCalM--;if(_invCalM<0){_invCalM=11;_invCalY--;}_invRenderCal();}
+function invCalNext(){_invCalM++;if(_invCalM>11){_invCalM=0;_invCalY++;}_invRenderCal();}
+
+document.getElementById('inviteModal').addEventListener('click',function(e){if(e.target===this)closeInviteModal();});
+window.addEventListener('scroll',function(){document.querySelector('.nav').style.background=window.scrollY>40?'rgba(15,11,8,0.98)':'rgba(15,11,8,0.96)';});
+
+renderCalendar();
+updateRange();
+</script>
+</body>
+</html>
