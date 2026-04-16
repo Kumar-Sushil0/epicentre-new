@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-type HeaderPage = "home" | "about" | "estate" | "faq" | "journal";
+type HeaderPage = "home" | "about" | "estate" | "faq" | "journal" | "events";
 
 type Props = {
   active?: HeaderPage;
@@ -13,6 +13,7 @@ const links: { id: HeaderPage; label: string; href: string }[] = [
   { id: "home", label: "Home", href: "/thesilentclub/home" },
   { id: "about", label: "About", href: "/thesilentclub/about" },
   { id: "estate", label: "The Estate", href: "/thesilentclub/estate" },
+  { id: "events", label: "Events", href: "/thesilentclub/events" },
   { id: "faq", label: "FAQ", href: "/thesilentclub/faq" },
   { id: "journal", label: "Journal", href: "/thesilentclub/blogs" },
 ];
