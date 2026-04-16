@@ -17,7 +17,7 @@ export function ProvidesSection({ provideSlideIndex, setProvideSlideIndex }: Pro
     <section className="border-y border-[#2a1f17]">
       <div className="grid gap-8 border-b border-[#2a1f17] px-6 py-16 md:grid-cols-2 md:px-10">
         <div>
-          <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-[#7a6048]">
+          <p className="mb-3 text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">
             What the estate provides
           </p>
           <h2 className="font-serif text-4xl">
@@ -57,7 +57,7 @@ export function ProvidesSection({ provideSlideIndex, setProvideSlideIndex }: Pro
             <div key={heading} className="space-y-3">
               <div>
                 <p className="font-serif text-xl">{stripItem.name}</p>
-                <p className="mt-1 text-xs text-[#7a6048]">{stripItem.desc}</p>
+                <p className="mt-1 text-xs font-medium text-[#b09070]">{stripItem.desc}</p>
               </div>
               <p className="font-serif text-lg leading-tight">{heading}</p>
               <div className="overflow-hidden rounded-sm border border-[#2a1f17] bg-[#0f0b08]">

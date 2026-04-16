@@ -11,7 +11,7 @@ export function WhoBelongsSection({ whoReviewIndex, setWhoReviewIndex }: Props) 
     <section className="border-b border-[#2a1f17]">
       <div className="grid gap-8 px-6 py-16 md:grid-cols-2 md:px-10">
         <div>
-          <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-[#7a6048]">
+          <p className="mb-3 text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">
             Who belongs here
           </p>
           <h2 className="font-serif text-4xl">
@@ -35,7 +35,7 @@ export function WhoBelongsSection({ whoReviewIndex, setWhoReviewIndex }: Props) 
               <p className="min-h-[88px] font-serif text-sm italic leading-7 text-[#e8d5b0]">
                 {member.reviews[whoReviewIndex[memberIndex]].quote}
               </p>
-              <p className="mt-3 text-[11px] uppercase tracking-[0.14em] text-[#8a6e42]">
+              <p className="mt-3 text-xs font-medium uppercase tracking-[0.14em] text-[#b09070]">
                 {member.reviews[whoReviewIndex[memberIndex]].name}
               </p>
               <div className="mt-4 flex gap-2">

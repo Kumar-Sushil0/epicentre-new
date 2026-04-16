@@ -42,7 +42,7 @@ export function SiteHeader({ active = "home" }: Props) {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className={`text-xs uppercase tracking-[0.16em] transition-colors ${
+                  className={`text-xs font-bold uppercase tracking-[0.16em] transition-colors ${
                     active === link.id
                       ? "text-[#c5a065]"
                       : "text-[#7a6048] hover:text-[#c5a065]"
@@ -57,7 +57,7 @@ export function SiteHeader({ active = "home" }: Props) {
           {/* Desktop CTA */}
           <a
             href="/book-a-call"
-            className="hidden h-10 items-center bg-[#c5a065] px-4 text-[11px] uppercase tracking-[0.16em] text-[#0f0b08] transition-colors hover:bg-[#d4b07a] md:inline-flex"
+            className="hidden h-9 items-center bg-[#c5a065] px-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0f0b08] transition-colors hover:bg-[#d4b07a] md:inline-flex"
           >
             Request Invite →
           </a>
@@ -110,7 +110,7 @@ export function SiteHeader({ active = "home" }: Props) {
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className={`border-b border-[#2a1f17] px-5 py-4 text-xs uppercase tracking-[0.18em] transition-colors last:border-0 ${
+              className={`border-b border-[#2a1f17] px-5 py-4 text-xs font-bold uppercase tracking-[0.18em] transition-colors last:border-0 ${
                 active === link.id
                   ? "text-[#c5a065]"
                   : "text-[#7a6048] hover:text-[#c5a065]"
@@ -125,7 +125,7 @@ export function SiteHeader({ active = "home" }: Props) {
         <div className="p-5">
           <a
             href="/book-a-call"
-            className="flex w-full items-center justify-center bg-[#c5a065] py-3 text-[11px] uppercase tracking-[0.16em] text-[#0f0b08]"
+            className="flex w-full items-center justify-center bg-[#c5a065] py-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0f0b08]"
           >
             Request Invite →
           </a>

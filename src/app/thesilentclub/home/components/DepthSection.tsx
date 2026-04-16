@@ -27,7 +27,7 @@ export function DepthSection({
   return (
     <section className="border-y border-[#2a1f17]">
       <div className="border-b border-[#2a1f17] px-6 py-16 text-center md:px-10">
-        <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-[#7a6048]">
+        <p className="mb-3 text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">
           Choose your depth
         </p>
         <h2 className="font-serif text-4xl">The environment stays the same. The depth changes.</h2>
@@ -46,7 +46,7 @@ export function DepthSection({
             >
               <p className="mb-4 font-serif text-4xl text-[#3a2a1f]">{card.num}</p>
               <h3 className="font-serif text-3xl">{card.name}</h3>
-              <p className="mb-3 text-[10px] uppercase tracking-[0.14em] text-[#8a6e42]">
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.14em] text-[#b09070]">
                 {card.cycle}
               </p>
               <p className="mb-5 text-sm text-[#7a6048]">{card.forText}</p>
@@ -122,7 +122,7 @@ export function DepthSection({
               )}
               <div className="mt-auto pt-2">
                 <p className="font-serif text-3xl text-[#c5a065]">{pricing.price}</p>
-                <p className="text-[11px] text-[#7a6048]">{pricing.note}</p>
+                <p className="text-xs font-medium text-[#b09070]">{pricing.note}</p>
               </div>
             </article>
           );

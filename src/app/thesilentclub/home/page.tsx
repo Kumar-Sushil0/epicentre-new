@@ -96,8 +96,8 @@ export default function TheSilentClubHomepage20Page() {
       <HeroSection />
 
       <section className="flex flex-wrap items-center justify-between gap-4 border-b border-[#2a1f17] bg-[#160f0a] px-6 py-4">
-        <p className="text-xs uppercase tracking-[0.14em] text-[#7a6048]">
-          Founding memberships nowopen 
+        <p className="text-xs font-medium uppercase tracking-[0.14em] text-[#b09070]">
+          Founding memberships now open
         </p>
         <div className="flex">
           <input
@@ -114,7 +114,7 @@ export default function TheSilentClubHomepage20Page() {
       <section className="grid gap-10 border-b border-[#2a1f17] px-6 py-20 md:grid-cols-[200px,1fr] md:px-10">
         <div>
           <div className="mb-4 h-px w-10 bg-[#8a6e42]" />
-          <p className="text-[10px] uppercase tracking-[0.24em] text-[#7a6048]">The case for quiet</p>
+          <p className="text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">The case for quiet</p>
         </div>
         <p className="max-w-4xl font-serif text-3xl leading-[1.45] md:text-5xl">
           Your best thinking doesn't happen in meetings. It happens in the quiet moments{" "}
@@ -125,7 +125,7 @@ export default function TheSilentClubHomepage20Page() {
       <section className="grid gap-12 border-b border-[#2a1f17] bg-[#160f0a] px-6 py-20 md:grid-cols-[1fr,1.4fr] md:px-10">
         <div>
           <h2 className="mb-2 font-serif text-4xl italic">Silence reveals direction.</h2>
-          <p className="text-[10px] uppercase tracking-[0.24em] text-[#7a6048]">The rest is up to you.</p>
+          <p className="text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">The rest is up to you.</p>
         </div>
         <div className="space-y-4 text-[15px] leading-8 text-[#b09070]">
           <p>
@@ -190,7 +190,7 @@ export default function TheSilentClubHomepage20Page() {
 
       <section className="grid gap-10 border-y border-[#2a1f17] px-6 py-20 md:grid-cols-[1fr,1.6fr] md:px-10">
         <div>
-          <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-[#7a6048]">How it works here</p>
+          <p className="mb-3 text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">How it works here</p>
           <h2 className="mb-4 font-serif text-4xl">What you agree to when you walk in</h2>
         </div>
         <div>
@@ -218,7 +218,7 @@ export default function TheSilentClubHomepage20Page() {
       <section className="grid border-y border-[#2a1f17] bg-[#160f0a] md:grid-cols-2">
         <div className="flex h-full flex-col justify-between px-6 pb-5 pt-5 md:px-10">
           <div className="space-y-5">
-            <p className="text-[10px] uppercase tracking-[0.24em] text-[#7a6048]">Location</p>
+            <p className="text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">Location</p>
             <h2 className="mt mb-10 font-serif text-4xl">
               You can reach it in hours.
               <br />
@@ -241,14 +241,14 @@ export default function TheSilentClubHomepage20Page() {
                   index === arr.length - 1 ? "" : "border-b border-[#2a1f17]"
                 }`}
               >
-                <p className="text-[10px] uppercase tracking-[0.16em] text-[#7a6048]">{label}</p>
+                <p className="text-xs font-medium uppercase tracking-[0.16em] text-[#b09070]">{label}</p>
                 <p className="text-sm text-[#b09070]">{value}</p>
               </div>
             ))}
           </div>
         </div>
         <div className="border-l border-[#2a1f17]">
-          <div className="border-b border-[#2a1f17] px-6 py-5 text-[10px] uppercase tracking-[0.24em] text-[#7a6048]">
+          <div className="border-b border-[#2a1f17] px-6 py-5 text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">
             The Silent Club · Overlooking Ujni Lake · Bhigwan, Maharashtra
           </div>
           <iframe
@@ -258,7 +258,7 @@ export default function TheSilentClubHomepage20Page() {
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3788.8023952143494!2d74.78934330608215!3d18.264878020717468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc379a78540dae5%3A0x1887106e21d5085d!2sThe%20Silent%20Club!5e0!3m2!1sen!2sin!4v1772105560153!5m2!1sen!2sin"
           />
           <div className="border-t border-[#2a1f17] px-6 py-4">
-            <p className="mb-1 text-[10px] uppercase tracking-[0.16em] text-[#7a6048]">
+            <p className="mb-1 text-xs font-medium uppercase tracking-[0.16em] text-[#b09070]">
               Postal Address
             </p>
             <p className="text-sm text-[#b09070]">
