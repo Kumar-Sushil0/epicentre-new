@@ -151,7 +151,7 @@ export const depthCards = [
     cycle: "Noon to Noon Cycle · 24 Hours",
     forText: "For groups who want the whole place to themselves.",
     features: [
-      "Full estate, noon to noon",
+      "Full estate, Full Cycle",
       "All rooms, dorms, decks + shared spaces",
       "Accommodation up to 20 people max",
       "Full access + all meals included",
@@ -196,22 +196,10 @@ export const providesSlides = {
         "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/dorm1.png",
     },
     {
-      name: "Deep Work Library",
-      desc: "The only space where laptops are permitted.",
+      name: "Minimalist Tents",
+      desc: "Grounding. Closer to the land. Further from built comfort.",
       image:
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/hall.png",
-    },
-    {
-      name: "Contemplation Garden",
-      desc: "Open-air. Nothing to do. Nowhere to be.",
-      image:
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/yogaloft.png",
-    },
-    {
-      name: "Reading Parlour",
-      desc: "Books, light, and the particular silence of an afternoon.",
-      image:
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/gym3.png",
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/tent1.png",
     },
   ],
   food: [
@@ -219,13 +207,13 @@ export const providesSlides = {
       name: "Satvik Home Food",
       desc: "Seasonal, local. Prepared fresh each morning. No menu, no ordering.",
       image:
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/homefood1.png",
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/food1.png",
     },
     {
       name: "Salads, Smoothies & Sandwiches",
       desc: "Light meals that sustain focus without heaviness.",
       image:
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/sss1.png",
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/food2.png",
     },
     {
       name: "Barbecue & Pizza",
@@ -237,13 +225,13 @@ export const providesSlides = {
       name: "Sushi & Light Bites",
       desc: "For evenings that ask for something quieter on the palate.",
       image:
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/pbs1.png",
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/food4.png",
     },
     {
       name: "High Tea",
       desc: "Set out at 4pm. No announcement made.",
       image:
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/homefood1.png",
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/food5.png",
     },
   ],
   activities: [
@@ -251,7 +239,7 @@ export const providesSlides = {
       name: "Bird Watching",
       desc: "Ujni Lake at dawn. Flamingos, painted storks. Binoculars provided.",
       image:
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/yogaloft.png",
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/bird1.png",
     },
     {
       name: "Gym & Sauna",
@@ -263,33 +251,33 @@ export const providesSlides = {
       name: "Swimming Pool",
       desc: "Quiet laps. No lane rage.",
       image:
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/gym3.png",
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Experiences/Activities/pool.png",
     },
     {
       name: "Forest Trails",
       desc: "Self-guided. Trail maps provided. Walk alone.",
       image:
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/yogaloft.png",
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/grasslandsafari1.png",
     },
     {
       name: "Kayaking & Boat Rides",
       desc: "On Ujni Lake. Gear provided. No guide needed.",
       image:
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/hall.png",
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/boat1.png",
     },
     {
       name: "Star Gazing",
       desc: "Telescope on the deck. No light pollution. No commentary.",
       image:
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/rooms/room3.png",
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Experiences/Activities/star.png",
     },
   ],
 };
 
 export const stripItems = [
   { name: "Accommodation", desc: "Private rooms & shared dorms. Your choice at booking." },
-  { name: "All Meals", desc: "Breakfast, lunch, high tea, dinner. Always included." },
-  { name: "All Activities", desc: "Every activity and all gear. Nothing extra to pay." },
+  { name: "Meals", desc: "Breakfast, lunch, high tea, dinner. Always included." },
+  { name: "Activities", desc: "Every activity and all gear. Nothing extra to pay." },
   
 ];
 

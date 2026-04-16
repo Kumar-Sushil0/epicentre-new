@@ -35,10 +35,10 @@ export function WhoBelongsSection({ whoReviewIndex, setWhoReviewIndex }: Props) 
               <p className="min-h-[88px] font-serif text-sm italic leading-7 text-[#e8d5b0]">
                 {member.reviews[whoReviewIndex[memberIndex]].quote}
               </p>
-              <p className="mt-3 text-xs font-medium uppercase tracking-[0.14em] text-[#b09070]">
+              <p className="mt-3 text-right text-xs font-medium uppercase tracking-[0.14em] text-[#b09070]">
                 {member.reviews[whoReviewIndex[memberIndex]].name}
               </p>
-              <div className="mt-4 flex gap-2">
+              <div className="mt-4 flex justify-end gap-2">
                 {member.reviews.map((review, reviewIndex) => (
                   <button
                     key={review.quote}

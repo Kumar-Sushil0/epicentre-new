@@ -32,12 +32,12 @@ export default function TheSilentClubHomepage20Page() {
   const depthLabel = useMemo(() => {
     if (!selectedDepth) return "Select a depth above to continue.";
     const map: Record<DepthId, string> = {
-      silence: "Silence Day Cycle",
-      residency: "Residency Weekend",
-      solitude: "Solitude Weekday",
-      creation: "Creation Full Estate",
+      silence: "Day Cycle",
+      residency: "Weekend Cycle",
+      solitude: "Weekday Cycle",
+      creation: "Full Cycle",
     };
-    return `You've selected ${map[selectedDepth]}`;
+    return `You've selected : ${map[selectedDepth]}`;
   }, [selectedDepth]);
 
   useEffect(() => {
@@ -116,9 +116,9 @@ export default function TheSilentClubHomepage20Page() {
           <div className="mb-4 h-px w-10 bg-[#8a6e42]" />
           <p className="text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">The case for quiet</p>
         </div>
-        <p className="max-w-4xl font-serif text-3xl leading-[1.45] md:text-5xl">
-          Your best thinking doesn't happen in meetings. It happens in the quiet moments{" "}
-          <em className="text-[#c5a065]">you can never quite find</em><br/> until now.
+        <p className=" font-serif text-3xl leading-[1.45] md:text-5xl">
+          Your best thinking doesn't happen in meetings.<br/> It happens in the quiet moments{" "}
+          <br/><em className="text-[#c5a065]">you can never quite find</em> until now.
         </p>
       </section>
 
@@ -197,7 +197,7 @@ export default function TheSilentClubHomepage20Page() {
           {howRules.map((rule, index) => (
             <div key={rule} className="border-b border-[#2a1f17] py-5">
               <p className="text-sm leading-7 text-[#b09070]">
-                <span className="mr-2 font-serif text-sm text-[#7a6048]">
+                <span className="mr-2 font-serif text-sm font-bold text-[#c5a065]">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 - {rule}
