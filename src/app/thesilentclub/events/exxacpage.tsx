@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useMemo, useState } from "react";
+import { SiteHeader } from "../components/SiteHeader";
 
 type EventStatus = "open" | "invite" | "soon";
 
@@ -273,33 +274,7 @@ export default function ExxacPage() {
 
   return (
     <>
-      <nav className="nav">
-        <div className="nav-inner">
-          <Link className="nav-brand" href="/thesilentclub/home">
-            The Silent Club
-          </Link>
-          <ul className="nav-links">
-            <li>
-              <Link href="/thesilentclub/home">Home</Link>
-            </li>
-            <li>
-              <Link href="/thesilentclub/estate">Estate</Link>
-            </li>
-            <li>
-              <Link href="/thesilentclub/about">About</Link>
-            </li>
-            <li>
-              <Link href="/thesilentclub/blogs">Journal</Link>
-            </li>
-            <li>
-              <span className="active">Events</span>
-            </li>
-          </ul>
-          <button className="nav-cta" type="button" onClick={openInviteModal}>
-            Request Invite
-          </button>
-        </div>
-      </nav>
+      <SiteHeader active="events" />
 
       <div className="page">
         <div className="cal-header">

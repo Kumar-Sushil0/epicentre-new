@@ -15,14 +15,14 @@ export function HeroSection() {
         />
       </video>
       <div className="absolute inset-0 bg-gradient-to-r from-[#0f0b08]/90 via-[#0f0b08]/45 to-[#0f0b08]/70" />
-      <div className="relative z-10 mt-auto flex flex-col gap-6 px-6 py-12 md:px-10">
+      <div className="relative z-10 mt-auto flex flex-col gap-6 px-[56px] py-12">
         <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-[#c5a065]">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#c5a065]" />
           <span>Private Estate · Bhigwan, Pune · Invite Only</span>
         </div>
         <h1 className="font-serif text-6xl leading-[0.92] md:text-8xl">
           <span className="block">A place to think</span>
-          <span className="block italic text-[#c5a065]">without interruption.</span>
+          <span className="mt-3 block italic text-[#c5a065] md:mt-4">without interruption.</span>
         </h1>
         <p className="max-w-xl text-sm leading-8 text-[#b09070]">
           The Silent Club is an invite-only estate for thinkers, artists, and entrepreneurs<br/>  who do

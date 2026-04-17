@@ -95,7 +95,7 @@ export default function TheSilentClubHomepage20Page() {
       <TopNav />
       <HeroSection />
 
-      <section className="flex flex-wrap items-center justify-between gap-4 border-b border-[#2a1f17] bg-[#160f0a] px-6 py-4">
+      <section className="flex flex-wrap items-center justify-between gap-4 border-b border-[#2a1f17] bg-[#160f0a] px-[56px] py-4">
         <p className="text-xs font-medium uppercase tracking-[0.14em] text-[#b09070]">
           Founding memberships now open
         </p>
@@ -105,13 +105,13 @@ export default function TheSilentClubHomepage20Page() {
             placeholder="your@email.com"
             className="w-56 border border-r-0 border-[#3a2a1f] bg-[#1c1410] px-3 py-2 text-sm text-[#e8d5b0] outline-none"
           />
-          <button className="bg-[#8a6e42] px-4 py-2 text-[11px] uppercase tracking-[0.14em] text-[#0f0b08]">
+          <button className="bg-[#c5a065] px-4 py-2 text-[11px] uppercase tracking-[0.14em] text-[#0f0b08] font-bold hover:bg-[#d4b07a] transition-colors">
             Know More
           </button>
         </div>
       </section>
 
-      <section className="grid gap-10 border-b border-[#2a1f17] px-6 py-20 md:grid-cols-[200px,1fr] md:px-10">
+      <section className="grid gap-10 border-b border-[#2a1f17] px-[56px] py-20 md:grid-cols-[200px,1fr]">
         <div>
           <div className="mb-4 h-px w-10 bg-[#8a6e42]" />
           <p className="text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">The case for quiet</p>
@@ -122,7 +122,7 @@ export default function TheSilentClubHomepage20Page() {
         </p>
       </section>
 
-      <section className="grid gap-12 border-b border-[#2a1f17] bg-[#160f0a] px-6 py-20 md:grid-cols-[1fr,1.4fr] md:px-10">
+      <section className="grid gap-12 border-b border-[#2a1f17] bg-[#160f0a] px-[56px] py-20 md:grid-cols-[1fr,1.4fr]">
         <div>
           <h2 className="mb-2 font-serif text-4xl italic">Silence reveals direction.</h2>
           <p className="text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">The rest is up to you.</p>
@@ -142,7 +142,7 @@ export default function TheSilentClubHomepage20Page() {
         </div>
       </section>
 
-      <section className="px-6 py-10 text-center md:px-10">
+      <section className="px-[56px] py-10 text-center">
         <h2 className="font-serif text-5xl leading-none md:text-7xl">
           Silence <span className="text-base italic text-[#7a6048]">as a</span>{" "}
           <em className="italic text-[#c5a065]">Service.</em>
@@ -151,7 +151,7 @@ export default function TheSilentClubHomepage20Page() {
 
       <WhoBelongsSection whoReviewIndex={whoReviewIndex} setWhoReviewIndex={setWhoReviewIndex} />
 
-      <section className="border-b border-[#2a1f17] bg-[#160f0a] px-6 py-20 md:px-10">
+      <section className="border-b border-[#2a1f17] bg-[#160f0a] px-[56px] py-20">
         <div className="mb-14 text-center">
           <h2 className="font-serif text-5xl">Designed Deliberately</h2>
           <p className="mt-2 font-serif italic text-[#7a6048]">
@@ -188,8 +188,9 @@ export default function TheSilentClubHomepage20Page() {
         getDepthPrice={getDepthPrice}
       />
 
-      <section className="grid gap-10 border-y border-[#2a1f17] px-6 py-20 md:grid-cols-[1fr,1.6fr] md:px-10">
+      <section className="grid gap-10 border-y border-[#2a1f17] px-[56px] py-20 md:grid-cols-[1fr,1.6fr]">
         <div>
+          <div className="mb-4 h-px w-10 bg-[#8a6e42]" />
           <p className="mb-3 text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">How it works here</p>
           <h2 className="mb-4 font-serif text-4xl">What you agree to when you walk in</h2>
         </div>
@@ -204,8 +205,9 @@ export default function TheSilentClubHomepage20Page() {
               </p>
             </div>
           ))}
-          <p className="mt-6 font-serif italic text-[#7a6048]">
-            If these feel natural to you, you probably belong here.
+          <p className="mt-6 flex items-center gap-2 font-serif italic text-[#7a6048]">
+            <span className="text-[#c5a065]">★</span>
+            <span>If these feel natural to you, you probably belong here.</span>
           </p>
         </div>
       </section>
@@ -216,8 +218,9 @@ export default function TheSilentClubHomepage20Page() {
       />
 
       <section className="grid border-y border-[#2a1f17] bg-[#160f0a] md:grid-cols-2">
-        <div className="flex h-full flex-col justify-between px-6 pb-5 pt-5 md:px-10">
+        <div className="flex h-full flex-col justify-between px-[56px] pb-5 pt-5">
           <div className="space-y-5">
+            <div className="h-px w-10 bg-[#8a6e42]" />
             <p className="text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">Location</p>
             <h2 className="mt mb-10 font-serif text-4xl">
               You can reach it in hours.
@@ -248,7 +251,7 @@ export default function TheSilentClubHomepage20Page() {
           </div>
         </div>
         <div className="border-l border-[#2a1f17]">
-          <div className="border-b border-[#2a1f17] px-6 py-5 text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">
+          <div className="border-b border-[#2a1f17] px-[56px] py-5 text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">
             The Silent Club · Overlooking Ujni Lake · Bhigwan, Maharashtra
           </div>
           <iframe
@@ -257,7 +260,7 @@ export default function TheSilentClubHomepage20Page() {
             loading="lazy"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3788.8023952143494!2d74.78934330608215!3d18.264878020717468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc379a78540dae5%3A0x1887106e21d5085d!2sThe%20Silent%20Club!5e0!3m2!1sen!2sin!4v1772105560153!5m2!1sen!2sin"
           />
-          <div className="border-t border-[#2a1f17] px-6 py-4">
+          <div className="border-t border-[#2a1f17] px-[56px] py-4">
             <p className="mb-1 text-xs font-medium uppercase tracking-[0.16em] text-[#b09070]">
               Postal Address
             </p>
@@ -270,11 +273,11 @@ export default function TheSilentClubHomepage20Page() {
 
       <FaqSection openFaq={openFaq} setOpenFaq={setOpenFaq} />
 
-      <section className="border-t border-[#2a1f17] bg-[#160f0a] px-6 py-24 text-center md:px-10">
+      <section className="border-t border-[#2a1f17] bg-[#160f0a] px-[56px] py-24 text-center">
         <h2 className="mx-auto mb-8 max-w-4xl font-serif text-5xl leading-tight md:text-7xl">
           The rarest luxury in modern life is <em className="italic text-[#c5a065]">uninterrupted time.</em>
         </h2>
-        <button className="bg-[#c5a065] px-7 py-3 text-[11px] uppercase tracking-[0.16em] text-[#0f0b08]">
+        <button className="bg-[#c5a065] px-7 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0f0b08]">
           Request Invite →
         </button>
       </section>

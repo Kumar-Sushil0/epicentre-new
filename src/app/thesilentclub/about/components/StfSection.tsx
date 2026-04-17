@@ -5,12 +5,11 @@ export function StfSection() {
     <section className="stf">
       <div className="stf-idea">
         <div className="stf-idea-left">
-          <div className="stf-label">Initiative</div>
-          <h2 className="stf-heading">
-            Silent Tourism
-            <br />
-            Foundation
-          </h2>
+          <img
+            src="/silent.svg"
+            alt="Silent Tourism Foundation"
+            style={{ width: "100%", maxWidth: 320, height: "auto", display: "block" }}
+          />
         </div>
         <div className="stf-idea-right">
           <p className="stf-desc">
@@ -44,8 +43,10 @@ export function StfSection() {
         <div className="stf-cohorts-h">
           {cohorts.map(([year, title, desc, open]) => (
             <div className="stf-cohort-h" key={year}>
-              <div className="stf-cohort-year-h">{year}</div>
-              <div className={`stf-cohort-dot ${open ? "open" : ""}`} />
+              <div className="stf-cohort-year-row">
+                <div className={`stf-cohort-dot ${open ? "open" : ""}`} />
+                <div className="stf-cohort-year-h">{year}</div>
+              </div>
               <div className="stf-cohort-box-name">{title}</div>
               <div className="stf-cohort-box-desc">{desc}</div>
             </div>

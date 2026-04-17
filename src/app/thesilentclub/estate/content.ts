@@ -87,8 +87,7 @@ export const symbolicaCards = [
   ],
 ] as const;
 
-export const heroImage =
-  "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/boat1.png";
+export const heroImage = "/banner/2.png";
 
 export const estateImageMap: Record<string, string> = {
   "Bird Walks": "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/bird1.png",

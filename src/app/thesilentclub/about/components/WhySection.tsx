@@ -11,11 +11,10 @@ export function WhySection({ openAcc, setOpenAcc }: Props) {
     <section className="why-section">
       <div className="why-header">
         <div className="why-header-main">
+          <div className="why-tag-line" />
           <div className="why-label">The thinking behind it</div>
-          <h2 className="why-heading">
-            Why it's built
-            <br />
-            the way it is
+          <h2 className="why-heading" style={{ whiteSpace: "nowrap" }}>
+            Why it's built the way it is
           </h2>
           <div className="why-intro" style={{ marginTop: 12 }}>
             Four questions. The honest answers to each one are what became The Silent Club.

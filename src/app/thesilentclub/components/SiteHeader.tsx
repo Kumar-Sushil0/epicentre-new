@@ -24,7 +24,7 @@ export function SiteHeader({ active = "home" }: Props) {
   return (
     <>
       <nav className="sticky top-0 z-50 border-b border-[#2a1f17] bg-[#0f0b08]/95 backdrop-blur">
-        <div className="flex h-14 w-full items-center justify-between px-4 md:px-6">
+        <div className="flex h-14 w-full items-center justify-between px-4 md:px-[56px]">
           {/* Logo */}
           <a href="/thesilentclub/home" className="flex h-10 w-40 items-center justify-center">
             <Image

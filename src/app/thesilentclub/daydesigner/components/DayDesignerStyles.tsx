@@ -5,7 +5,7 @@ export function DayDesignerStyles() {
       @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,300,0,0');
       .material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;font-size:inherit;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-smoothing:antialiased;}
       :root{--bg:#0f0b08;--bg-2:#160f0a;--bg-3:#1c1410;--gold:#c5a065;--gold-dim:#8a6e42;--gold-pale:#e8d5b0;--text-2:#b09070;--text-3:#7a6048;--rule:#2a1f17;--rule-2:#3a2a1f;--serif:'Cormorant',Georgia,serif;--sans:'Jost',sans-serif;}
-      body{background:var(--bg);color:var(--gold-pale);font-family:var(--sans);font-weight:300;overflow-x:hidden;overflow-y:auto;font-size:14px}
+      body{background:var(--bg);color:var(--gold-pale);font-family:var(--sans);font-weight:300;overflow:hidden;font-size:14px}
       .hdr{height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 6vw;background:var(--bg-2);border-bottom:1px solid var(--rule)}
       .steps{display:flex;border-bottom:1px solid var(--rule)}
       .step{flex:1;padding:12px 20px;border-right:1px solid var(--rule);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);display:flex;align-items:center;gap:10px}

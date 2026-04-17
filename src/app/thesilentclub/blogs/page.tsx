@@ -15,81 +15,88 @@ type Post = {
 
 const posts: Post[] = [
   {
-    href: "thesilentclub-post-performing.html",
+    href: "/thesilentclub/blogs/performing",
     cat: "identity",
     tag: "Identity & Sovereignty",
     title: "You're Always Performing (Even When You're Alone)",
     sub: "Performance is internal, not public.",
   },
   {
-    href: "thesilentclub-post-environment.html",
+    href: "/thesilentclub/blogs/environment",
     cat: "decision",
     tag: "Decision & Clarity",
     title: "You Keep Blaming Yourself for What Your Environment Is Doing",
     sub: "Behaviour follows setup more than intention.",
   },
   {
-    href: "thesilentclub-post-sitting.html",
+    href: "/thesilentclub/blogs/sitting",
     cat: "silence",
     tag: "Silence & Attention",
     title: "You Can't Sit With a Thought",
     sub: "You have an interruption problem.",
   },
   {
-    href: "thesilentclub-post-discipline.html",
+    href: "/thesilentclub/blogs/discipline",
     cat: "silence",
     tag: "Silence & Attention",
     title: "You Don't Need Discipline",
     sub: "You need disgust.",
   },
   {
-    href: "thesilentclub-post-want.html",
+    href: "/thesilentclub/blogs/want",
     cat: "identity",
     tag: "Identity & Sovereignty",
     title: "You Don't Actually Know What You Want",
     sub: "You're crowded with voices, not options.",
   },
   {
-    href: "thesilentclub-post-chose.html",
+    href: "/thesilentclub/blogs/chose",
     cat: "environment",
     tag: "Environment & Structure",
     title: "You Keep Updating a Life You Never Actually Chose",
     sub: "Most identities are accumulated, not authored.",
   },
   {
-    href: "thesilentclub-post-commit.html",
+    href: "/thesilentclub/blogs/commit",
     cat: "environment",
     tag: "Environment & Structure",
     title: "You Keep Saying Yes So You Don't Have to Commit",
     sub: "You confuse openness with freedom.",
   },
   {
-    href: "thesilentclub-post-small.html",
+    href: "/thesilentclub/blogs/small",
     cat: "decision",
     tag: "Decision & Clarity",
     title: "You Keep Letting Small Things Decide Your Life",
     sub: "Attention compounds into direction.",
   },
   {
-    href: "thesilentclub-post-promises.html",
+    href: "/thesilentclub/blogs/promises",
     cat: "identity",
     tag: "Identity & Sovereignty",
     title: "You Keep Breaking Promises to Yourself",
     sub: "You have a credibility problem. With yourself.",
   },
   {
-    href: "thesilentclub-post-adding.html",
+    href: "/thesilentclub/blogs/adding",
     cat: "environment",
     tag: "Environment & Structure",
     title: "You Keep Adding So You Don't Have to Decide",
     sub: "You struggle with decision, not clarity.",
   },
   {
-    href: "thesilentclub-post-meaning.html",
+    href: "/thesilentclub/blogs/meaning",
     cat: "decision",
     tag: "Decision & Clarity",
     title: "You Keep Looking for Meaning Before You've Seen Enough",
     sub: "You rush interpretation before observation matures.",
+  },
+  {
+    href: "/thesilentclub/blogs/thinking-problem",
+    cat: "silence",
+    tag: "Silence & Attention",
+    title: "You Don't Have a Thinking Problem",
+    sub: "You have an intrusion problem.",
   },
 ];
 
@@ -124,9 +131,9 @@ export default function TheSilentClubBlogsPage() {
         .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
         .nav-links a{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-3);text-decoration:none}
         .nav-links a:hover,.nav-links a.active{color:var(--gold)}
-        .nav-cta{font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:9px 22px;border:none;cursor:pointer;font-family:var(--sans)}
+        .nav-cta{font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:9px 22px;border:none;cursor:pointer;font-family:var(--sans);font-weight:bold}
         .hero{padding-top:60px;border-bottom:1px solid var(--rule)}
-        .hero-inner{padding:clamp(56px,8vw,96px) var(--g) clamp(40px,5vw,56px);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;border-bottom:1px solid var(--rule)}
+        .hero-inner{padding:clamp(56px,8vw,96px) var(--g) clamp(40px,5vw,56px);display:flex;flex-direction:column;gap:24px;border-bottom:1px solid var(--rule)}
         .hero-label{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px}
         .hero-heading{font-family:var(--serif);font-weight:300;font-size:clamp(2.2rem,5vw,5rem);line-height:.95;letter-spacing:-.02em;color:var(--gold-pale)}
         .hero-heading em{font-style:italic;color:var(--gold)}
@@ -194,7 +201,7 @@ export default function TheSilentClubBlogsPage() {
             <div className="hero-label">Journal</div>
             <h1 className="hero-heading">
               On thinking.
-              <br />
+            
               <em>
                 On silence.
                 <br />
@@ -213,8 +220,8 @@ export default function TheSilentClubBlogsPage() {
 
       <div className="filter-bar">
         {[
-          { id: "all" as const, label: "All", count: 11 },
-          { id: "silence" as const, label: "Silence & Attention", count: 3 },
+          { id: "all" as const, label: "All", count: 12 },
+          { id: "silence" as const, label: "Silence & Attention", count: 4 },
           { id: "identity" as const, label: "Identity & Sovereignty", count: 3 },
           { id: "decision" as const, label: "Decision & Clarity", count: 3 },
           { id: "environment" as const, label: "Environment & Structure", count: 3 },

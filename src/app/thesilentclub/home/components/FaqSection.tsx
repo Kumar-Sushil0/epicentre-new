@@ -8,7 +8,7 @@ type Props = {
 
 export function FaqSection({ openFaq, setOpenFaq }: Props) {
   return (
-    <section className="grid gap-y-12 border-y border-[#2a1f17] px-6 py-20 md:grid-cols-[1fr,1.8fr] md:gap-x-[100px] md:px-10">
+    <section className="grid gap-y-12 border-y border-[#2a1f17] px-[56px] py-20 md:grid-cols-[1fr,1.8fr] md:gap-x-[100px]">
       <div className="md:sticky md:top-20 md:self-start">
         <p className="mb-4 text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">Before you come</p>
         <h2 className="mb-5 font-serif text-[clamp(1.8rem,3vw,2.8rem)] leading-[1.1]">

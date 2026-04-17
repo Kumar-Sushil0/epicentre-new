@@ -231,7 +231,7 @@ export const providesSlides = {
       name: "High Tea",
       desc: "Set out at 4pm. No announcement made.",
       image:
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/food5.png",
+        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/food3.png",
     },
   ],
   activities: [
@@ -239,7 +239,7 @@ export const providesSlides = {
       name: "Bird Watching",
       desc: "Ujni Lake at dawn. Flamingos, painted storks. Binoculars provided.",
       image:
-        "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Wildlife/bird1.png",
+        "https://static.punemirror.com/full/ecdf5da031e791031eb760d41d9be1bc471b4ad7.jpg",
     },
     {
       name: "Gym & Sauna",

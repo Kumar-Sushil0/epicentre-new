@@ -24,11 +24,15 @@ export function HeroSection() {
       </div>
       <div className="hero-overlay" />
       <div className="hero-content">
-        <div className="hero-rule" />
-        <div className="hero-text">
-          <h1 className="hero-headline">Nothing is asking<br />for your attention.</h1>
-          <p className="hero-sub">And that changes everything.</p>
+        <div className="hero-badge">
+          <span className="hero-badge-dot" />
+          <span>Private Estate · Bhigwan, Pune · Invite Only</span>
         </div>
+        <h1 className="hero-headline">
+          Nothing is asking
+          <em>for your attention.</em>
+        </h1>
+        <p className="hero-sub">And that changes everything.</p>
       </div>
     </section>
   );
@@ -48,7 +52,7 @@ export function IntroAndNumbers() {
 
       <div className="numbers">
         <div className="number-item"><div className="number-val">7</div><div className="number-label">Acres overlooking Ujni Lake</div></div>
-        <div className="number-item"><div className="number-val">20</div><div className="number-label">Maximum members at any time</div></div>
+        <div className="number-item"><div className="number-val">20</div><div className="number-label">Members at a time</div></div>
         <div className="number-item"><div className="number-val">100+</div><div className="number-label">Migratory bird species</div></div>
         <div className="number-item"><div className="number-val">2.5h</div><div className="number-label">From Pune city centre</div></div>
         <div className="number-item"><div className="number-val">3</div><div className="number-label">Treehouses on the hill</div></div>
@@ -84,9 +88,10 @@ export function CategorySection({
       <div className="cat-header-wrap">
         <button className="cat-trigger" onClick={() => onToggle(groupKey)}>
           <div className="cat-header">
-            <div>
-              <div className="cat-num">{num}</div>
-              <div className="cat-title">{title}</div>
+            <div className="cat-num-title">
+              <span className="cat-num">{num}</span>
+              <span className="cat-sep">—</span>
+              <span className="cat-title">{title}</span>
             </div>
             <div className="cat-desc">{desc}</div>
           </div>

@@ -15,8 +15,9 @@ type Props = {
 export function ProvidesSection({ provideSlideIndex, setProvideSlideIndex }: Props) {
   return (
     <section className="border-y border-[#2a1f17]">
-      <div className="grid gap-8 border-b border-[#2a1f17] px-6 py-16 md:grid-cols-2 md:px-10">
+      <div className="grid gap-8 px-[56px] pb-8 pt-16 md:grid-cols-2">
         <div>
+          <div className="mb-4 h-px w-10 bg-[#8a6e42]" />
           <p className="mb-3 text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">
             What the estate provides
           </p>
@@ -32,7 +33,7 @@ export function ProvidesSection({ provideSlideIndex, setProvideSlideIndex }: Pro
           <br /> <em className="font-serif text-[#e8d5b0]">There is nothing to add.</em>
         </p>
       </div>
-      <div className="grid gap-6 px-6 py-8 md:px-10 lg:grid-cols-3">
+      <div className="grid gap-6 px-[56px] py-8 lg:grid-cols-3">
         {[
           {
             key: "spaces" as const,

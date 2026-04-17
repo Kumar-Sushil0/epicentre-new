@@ -26,7 +26,7 @@ export function DepthSection({
 }: Props) {
   return (
     <section className="border-y border-[#2a1f17]">
-      <div className="border-b border-[#2a1f17] px-6 py-16 text-center md:px-10">
+      <div className="border-b border-[#2a1f17] px-[56px] py-16 text-center">
         <p className="mb-3 text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">
           Choose your depth
         </p>
@@ -128,7 +128,7 @@ export function DepthSection({
           );
         })}
       </div>
-      <div className="flex flex-wrap items-center justify-between gap-4 bg-[#160f0a] px-6 py-6 md:px-10">
+      <div className="flex flex-wrap items-center justify-between gap-4 bg-[#160f0a] px-[56px] py-6">
         <p className="font-serif italic text-[#7a6048]">
           {selectedDepth ? (
             <>
@@ -143,7 +143,7 @@ export function DepthSection({
         </p>
         <button
           disabled={!selectedDepth}
-          className="bg-[#c5a065] px-6 py-3 text-[11px] uppercase tracking-[0.16em] text-[#0f0b08] disabled:cursor-not-allowed disabled:bg-[#3a2a1f] disabled:text-[#7a6048]"
+          className="bg-[#c5a065] px-6 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0f0b08] disabled:cursor-not-allowed disabled:bg-[#3a2a1f] disabled:text-[#7a6048]"
         >
           Request Invite →
         </button>
