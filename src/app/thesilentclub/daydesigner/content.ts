@@ -1,5 +1,4 @@
 export type ProductId = "silence" | "residency" | "solitude" | "creation";
-export type Mode = "manual" | "ai";
 
 export type Product = {
   id: ProductId;

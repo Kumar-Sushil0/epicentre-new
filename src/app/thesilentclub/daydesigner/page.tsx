@@ -3,8 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ACTIVITY_PERIOD } from "./activityPeriods";
-import { ALL_ACTIVITY_NAMES, CATS, dayNames, fmtDate, Mode, monthNames, Product, ProductId, PRODUCTS, RULES, shortMonths, SLOTS } from "./content";
-import { fetchAiScheduleOrFallback, type SlotMeta } from "./suggestScheduleClient";
+import { CATS, dayNames, fmtDate, monthNames, Product, PRODUCTS, RULES, shortMonths, SLOTS } from "./content";
 import { DayDesignerStyles } from "./components/DayDesignerStyles";
 import { DesignerHeader } from "./components/DesignerHeader";
 import { InviteModal } from "./components/InviteModal";
@@ -28,15 +27,10 @@ export default function TheSilentClubDayDesigner9Page() {
   const router = useRouter();
   const [step, setStep] = useState(1);
   const [product, setProduct] = useState<Product | null>(null);
-  const [mode, setMode] = useState<Mode>("manual");
   const [calY, setCalY] = useState(new Date().getFullYear());
   const [calM, setCalM] = useState(new Date().getMonth());
   const [selectedDates, setSelectedDates] = useState<Date[]>([]);
   const [arrivalDate, setArrivalDate] = useState<string | null>(null);
-  const [aiAnswers, setAiAnswers] = useState<Record<string, boolean>>({});
-  const [aiContextActivities, setAiContextActivities] = useState("");
-  const [aiContextStructure, setAiContextStructure] = useState("");
-  const [aiContextArrival, setAiContextArrival] = useState("");
 
   const [selectedAct, setSelectedAct] = useState<string | null>(null);
   const [schedule, setSchedule] = useState<Record<string, string>>({});
@@ -53,13 +47,7 @@ export default function TheSilentClubDayDesigner9Page() {
   const [modalQ2, setModalQ2] = useState("");
   const [modalSubmitted, setModalSubmitted] = useState(false);
 
-  const [aiAutoPlacing, setAiAutoPlacing] = useState(false);
   const [aiDropFlashKey, setAiDropFlashKey] = useState<string | null>(null);
-  const [aiPlayId, setAiPlayId] = useState(0);
-  const [aiSuggestLoading, setAiSuggestLoading] = useState(false);
-  const [aiQuestionIndex, setAiQuestionIndex] = useState(0);
-  const [aiResultSource, setAiResultSource] = useState<"cohere" | "fallback" | null>(null);
-  const [aiResultNote, setAiResultNote] = useState<string>("");
   /** 0 = add demo, 1 = move demo, 2 = × highlight — advanced automatically in one sequence. */
   const [tableTutorialStep, setTableTutorialStep] = useState<number | null>(null);
   /** Fake mouse for the remove-phase demo (fixed px, viewport coords). */
@@ -68,7 +56,6 @@ export default function TheSilentClubDayDesigner9Page() {
   const [tutorialPingRemoveKey, setTutorialPingRemoveKey] = useState<string | null>(null);
   /** Bumped whenever the tutorial opens so the runner effect does not cancel mid-sequence. */
   const [tutorialRunKey, setTutorialRunKey] = useState(0);
-  const aiQueueRef = useRef<{ key: string; activity: string }[] | null>(null);
   const dragPreviewRef = useRef<HTMLDivElement | null>(null);
   const schedulePreTutorialRef = useRef<Record<string, string> | null>(null);
   const tutorialAutoOpenedRef = useRef(false);
@@ -100,23 +87,16 @@ export default function TheSilentClubDayDesigner9Page() {
 
   useEffect(() => {
     if (step !== 3) {
-      aiQueueRef.current = null;
-      setAiAutoPlacing(false);
       setAiDropFlashKey(null);
       document.querySelectorAll(".ai-drag-ghost").forEach((el) => el.remove());
     }
   }, [step]);
 
   useEffect(() => {
-    if (step !== 2 || mode !== "ai") setAiQuestionIndex(0);
-  }, [step, mode]);
-
-  useEffect(() => {
     if (step !== 3) {
       tutorialAutoOpenedRef.current = false;
       return;
     }
-    if (aiAutoPlacing) return;
     try {
       if (window.localStorage.getItem(TABLE_TUTORIAL_STORAGE_KEY)) return;
     } catch {
@@ -127,7 +107,7 @@ export default function TheSilentClubDayDesigner9Page() {
     schedulePreTutorialRef.current = { ...schedule };
     setTutorialRunKey((k) => k + 1);
     setTableTutorialStep(0);
-  }, [step, aiAutoPlacing, schedule]);
+  }, [step, schedule]);
 
   const openTableTutorial = () => {
     schedulePreTutorialRef.current = { ...schedule };
@@ -136,32 +116,6 @@ export default function TheSilentClubDayDesigner9Page() {
     setTutorialRunKey((k) => k + 1);
     setTableTutorialStep(0);
   };
-
-  useEffect(() => {
-    if (step !== 3 || aiPlayId === 0) return;
-    const queue = aiQueueRef.current;
-    if (!queue?.length) return;
-    aiQueueRef.current = null;
-    let cancelled = false;
-    (async () => {
-      setAiAutoPlacing(true);
-      for (const p of queue) {
-        if (cancelled) break;
-        await runAiDragGhostAnimation(p.activity, p.key);
-        if (cancelled) break;
-        setSchedule((prev) => ({ ...prev, [p.key]: p.activity }));
-        setAiDropFlashKey(p.key);
-        window.setTimeout(() => {
-          setAiDropFlashKey((cur) => (cur === p.key ? null : cur));
-        }, 400);
-      }
-      if (!cancelled) setAiAutoPlacing(false);
-    })();
-    return () => {
-      cancelled = true;
-      document.querySelectorAll(".ai-drag-ghost").forEach((el) => el.remove());
-    };
-  }, [step, aiPlayId]);
 
   const isSelectable = (d: Date) => {
     const today = new Date();
@@ -277,7 +231,7 @@ export default function TheSilentClubDayDesigner9Page() {
 
   /** One continuous run: N auto “drops”, loop ghosts, N auto moves, loop move ghosts, highlight N ×, then dismiss. */
   useEffect(() => {
-    if (step !== 3 || aiAutoPlacing) return;
+    if (step !== 3) return;
     if (tableTutorialStepForRunnerRef.current !== 0) return;
     let cancelled = false;
     const n = tutorialChipCount;
@@ -371,9 +325,11 @@ export default function TheSilentClubDayDesigner9Page() {
 
     return () => {
       cancelled = true;
+      setTutorialFakeCursor(null);
+      setTutorialPingRemoveKey(null);
     };
     // tableTutorialStep intentionally omitted so mid-sequence updates do not cancel the async run.
-  }, [step, aiAutoPlacing, tutorialRunKey, tutorialChipCount, dayCycleSelectedPeriod, days.length, product?.id]);
+  }, [step, tutorialRunKey, tutorialChipCount, dayCycleSelectedPeriod, days.length, product?.id]);
 
   // Helper: find icon and color for a placed activity
   const getActMeta = (name: string): { icon: string; color: string } => {
@@ -503,226 +459,6 @@ export default function TheSilentClubDayDesigner9Page() {
     e.dataTransfer.setDragImage(preview, 14, 14);
   };
 
-  // Deterministic schedule builder — no AI needed.
-  // Nested lookup: [intent][body][arrival] → base activity list
-  // Q3 (peak time) reorders slots so preferred period fills first
-  // Q4 (explicit picks) are injected at the front
-  // Q5 (density) controls how many slots per day get filled
-  const SCHEDULE_LOOKUP: Record<string, Record<string, Record<string, string[]>>> = {
-    "Finish something I've started": {
-      "Physically active": {
-        "Still carrying the noise of the week":   ["Long Bath", "Running", "Writing", "Journalling", "Reading"],
-        "Somewhere in between":                   ["Running", "Writing", "Journalling", "Thinking", "Reading"],
-        "Already quiet, ready to go deep":        ["Writing", "Journalling", "Thinking", "Running", "Idea Sketching"],
-      },
-      "Rested and still": {
-        "Still carrying the noise of the week":   ["Long Bath", "Horizon Gazing", "Writing", "Journalling", "Silence Block"],
-        "Somewhere in between":                   ["Writing", "Journalling", "Reading", "Thinking", "Silence Block"],
-        "Already quiet, ready to go deep":        ["Writing", "Thinking", "Journalling", "Idea Sketching", "Reading"],
-      },
-      "A mix of both": {
-        "Still carrying the noise of the week":   ["Long Bath", "Long Walks", "Writing", "Journalling", "Reading"],
-        "Somewhere in between":                   ["Long Walks", "Writing", "Journalling", "Thinking", "Reading"],
-        "Already quiet, ready to go deep":        ["Writing", "Journalling", "Long Walks", "Idea Sketching", "Thinking"],
-      },
-    },
-    "Think without interruption": {
-      "Physically active": {
-        "Still carrying the noise of the week":   ["Long Bath", "Running", "Thinking", "Long Walks", "Journalling"],
-        "Somewhere in between":                   ["Running", "Thinking", "Long Walks", "Journalling", "Idea Sketching"],
-        "Already quiet, ready to go deep":        ["Thinking", "Running", "Long Walks", "Journalling", "Idea Sketching"],
-      },
-      "Rested and still": {
-        "Still carrying the noise of the week":   ["Horizon Gazing", "Silence Block", "Thinking", "Journalling", "Long Walks"],
-        "Somewhere in between":                   ["Thinking", "Journalling", "Silence Block", "Long Walks", "Reading"],
-        "Already quiet, ready to go deep":        ["Thinking", "Silence Block", "Journalling", "Idea Sketching", "Long Walks"],
-      },
-      "A mix of both": {
-        "Still carrying the noise of the week":   ["Long Bath", "Long Walks", "Thinking", "Journalling", "Silence Block"],
-        "Somewhere in between":                   ["Long Walks", "Thinking", "Journalling", "Idea Sketching", "Reading"],
-        "Already quiet, ready to go deep":        ["Thinking", "Long Walks", "Journalling", "Idea Sketching", "Silence Block"],
-      },
-    },
-    "Rest and recover": {
-      "Physically active": {
-        "Still carrying the noise of the week":   ["Long Bath", "Recovery", "Stretching", "Long Walks", "Bird Watching"],
-        "Somewhere in between":                   ["Recovery", "Stretching", "Long Walks", "Bird Watching", "Sunrise"],
-        "Already quiet, ready to go deep":        ["Stretching", "Recovery", "Long Walks", "Bird Watching", "Horizon Gazing"],
-      },
-      "Rested and still": {
-        "Still carrying the noise of the week":   ["Long Bath", "Horizon Gazing", "Silence Block", "Dark Room", "Recovery"],
-        "Somewhere in between":                   ["Horizon Gazing", "Silence Block", "Recovery", "Long Walks", "Bird Watching"],
-        "Already quiet, ready to go deep":        ["Silence Block", "Horizon Gazing", "Recovery", "Star Gazing", "Long Walks"],
-      },
-      "A mix of both": {
-        "Still carrying the noise of the week":   ["Long Bath", "Recovery", "Long Walks", "Bird Watching", "Horizon Gazing"],
-        "Somewhere in between":                   ["Recovery", "Long Walks", "Bird Watching", "Stretching", "Horizon Gazing"],
-        "Already quiet, ready to go deep":        ["Long Walks", "Recovery", "Bird Watching", "Star Gazing", "Silence Block"],
-      },
-    },
-    "I don't know yet": {
-      "Physically active": {
-        "Still carrying the noise of the week":   ["Long Bath", "Long Walks", "Running", "Bird Watching", "Journalling"],
-        "Somewhere in between":                   ["Long Walks", "Running", "Bird Watching", "Reading", "Journalling"],
-        "Already quiet, ready to go deep":        ["Long Walks", "Bird Watching", "Running", "Journalling", "Star Gazing"],
-      },
-      "Rested and still": {
-        "Still carrying the noise of the week":   ["Long Bath", "Horizon Gazing", "Reading", "Journalling", "Silence Block"],
-        "Somewhere in between":                   ["Reading", "Journalling", "Long Walks", "Bird Watching", "Horizon Gazing"],
-        "Already quiet, ready to go deep":        ["Reading", "Journalling", "Bird Watching", "Star Gazing", "Silence Block"],
-      },
-      "A mix of both": {
-        "Still carrying the noise of the week":   ["Long Bath", "Long Walks", "Reading", "Bird Watching", "Journalling"],
-        "Somewhere in between":                   ["Long Walks", "Reading", "Bird Watching", "Journalling", "Sunrise"],
-        "Already quiet, ready to go deep":        ["Long Walks", "Bird Watching", "Reading", "Journalling", "Star Gazing"],
-      },
-    },
-  };
-
-  // Slot ordering by preferred peak time (Q3) — reorder free slots so preferred period comes first
-  const PEAK_PERIOD_ORDER: Record<string, string[]> = {
-    "Early morning":  ["Dawn", "Morning", "Afternoon", "Evening", "Night"],
-    "Late morning":   ["Morning", "Dawn", "Afternoon", "Evening", "Night"],
-    "Afternoon":      ["Afternoon", "Morning", "Evening", "Dawn", "Night"],
-    "Evening":        ["Evening", "Night", "Afternoon", "Morning", "Dawn"],
-  };
-
-  /** Rule-based schedule (used as fallback and as baseline for Cohere). */
-  const computeHeuristicPlacementOrder = (): { key: string; activity: string }[] => {
-    const a = aiAnswers;
-
-    const intent = ["Finish something I've started", "Think without interruption", "Rest and recover", "I don't know yet"]
-      .find((k) => a[k]) ?? "I don't know yet";
-
-    const body = ["Physically active", "Rested and still", "A mix of both"]
-      .find((k) => a[k]) ?? "A mix of both";
-
-    const arrivalText = aiContextArrival.trim().toLowerCase();
-    const arrival = arrivalText.includes("noise") || arrivalText.includes("overwhelm") || arrivalText.includes("drained")
-      ? "Still carrying the noise of the week"
-      : arrivalText.includes("quiet") || arrivalText.includes("deep") || arrivalText.includes("ready")
-        ? "Already quiet, ready to go deep"
-        : "Somewhere in between";
-
-    const structureText = aiContextStructure.trim().toLowerCase();
-    const density = structureText.includes("most") || structureText.includes("full") || structureText.includes("structured")
-      ? 3
-      : structureText.includes("empty") || structureText.includes("minimal") || structureText.includes("light")
-        ? 1
-        : 2;
-
-    const peakTime = ["Early morning", "Late morning", "Afternoon", "Evening"]
-      .find((k) => a[k]) ?? "Late morning";
-    const periodOrder = PEAK_PERIOD_ORDER[peakTime];
-
-    let baseActs: string[] = SCHEDULE_LOOKUP[intent]?.[body]?.[arrival]
-      ?? ["Reading", "Journalling", "Long Walks", "Bird Watching", "Thinking"];
-
-    const explicitText = aiContextActivities.trim().toLowerCase();
-    const explicit = ALL_ACTIVITY_NAMES.filter((name) => explicitText.includes(name.toLowerCase()));
-    if (explicit.length) {
-      baseActs = [...explicit, ...baseActs.filter((x) => !explicit.includes(x))];
-    }
-
-    const freeSlots = SLOTS.filter((s) => !s.fixed);
-    const sortedFree = [...freeSlots].sort((sa, sb) => {
-      const ai = periodOrder.indexOf(sa.period);
-      const bi = periodOrder.indexOf(sb.period);
-      return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
-    });
-
-    const next: Record<string, string> = {};
-    const placementOrder: { key: string; activity: string }[] = [];
-    let totalPlaced = 0;
-    let silencePeriod =
-      product?.id === "silence"
-        ? Object.keys(next)
-            .map((k) => {
-              const sid = k.split("_")[1];
-              return SLOTS.find((s) => s.id === sid && !s.fixed)?.period ?? null;
-            })
-            .find((p): p is string => Boolean(p)) ?? null
-        : null;
-
-    let actCursor = 0;
-
-    days.forEach((_, di) => {
-      let placed = 0;
-      sortedFree.forEach((slot) => {
-        if (placed >= density || slotLocked(di, slot.id)) return;
-        if (product?.id === "silence" && totalPlaced >= 2) return;
-        if (product?.id === "silence") {
-          if (!silencePeriod) silencePeriod = slot.period;
-          if (slot.period !== silencePeriod) return;
-        }
-        const key = `${di}_${slot.id}`;
-        if (!next[key]) {
-          let actToPlace: string | null = null;
-          for (let attempt = 0; attempt < baseActs.length; attempt++) {
-            const candidate = baseActs[(actCursor + attempt) % baseActs.length];
-            const allowed = ACTIVITY_PERIOD[candidate];
-            if (!allowed || allowed.includes(slot.period)) {
-              actToPlace = candidate;
-              actCursor = (actCursor + attempt + 1) % baseActs.length;
-              break;
-            }
-          }
-          if (!actToPlace) return;
-          next[key] = actToPlace;
-          placementOrder.push({ key, activity: actToPlace });
-          placed += 1;
-          totalPlaced += 1;
-        }
-      });
-    });
-
-    return placementOrder;
-  };
-
-  const handleS2 = async () => {
-    if (mode === "manual") {
-      setStep(3);
-      return;
-    }
-    if (!product) return;
-
-    setAiSuggestLoading(true);
-    setAiResultSource(null);
-    setAiResultNote("");
-    try {
-      const fallback = computeHeuristicPlacementOrder();
-      const slotMeta: SlotMeta[] = fallback.map(({ key }) => {
-        const sid = key.split("_")[1];
-        const slot = SLOTS.find((s) => s.id === sid);
-        return { key, period: slot?.period ?? "", time: slot?.t ?? "" };
-      });
-      const aiResult = await fetchAiScheduleOrFallback(
-        fallback,
-        product,
-        aiAnswers,
-        { q4: aiContextActivities, q5: aiContextStructure, q6: aiContextArrival },
-        slotMeta,
-      );
-      const placementOrder = aiResult.placements;
-      setAiResultSource(aiResult.source);
-      setAiResultNote(aiResult.note || "");
-
-      setSchedule({});
-      setStep(3);
-      setAiDropFlashKey(null);
-
-      if (placementOrder.length === 0) {
-        setAiAutoPlacing(false);
-        return;
-      }
-
-      aiQueueRef.current = placementOrder;
-      setAiPlayId((n) => n + 1);
-    } finally {
-      setAiSuggestLoading(false);
-    }
-  };
-
   const prevMonth = () => {
     if (calM === 0) { setCalY(calY - 1); setCalM(11); } else { setCalM(calM - 1); }
   };
@@ -734,7 +470,6 @@ export default function TheSilentClubDayDesigner9Page() {
     lines.push("The Silent Club - Day Designer");
     lines.push("");
     lines.push(`Plan: ${product ? `${product.name} (${product.cycle})` : "Not selected"}`);
-    lines.push(`Mode: ${mode === "ai" ? "AI" : "Selfdesign"}`);
     lines.push("");
     lines.push("Schedule:");
     if (!days.length) {
@@ -768,47 +503,6 @@ export default function TheSilentClubDayDesigner9Page() {
     const dateLabel = selectedDates.length === 1 ? firstDate : `${firstDate} to ${lastDate}`;
     return `Choose your stay: ${product.name} ${dateLabel}`;
   }, [product, selectedDates]);
-  const stepTwoLabel = useMemo(() => {
-    if (mode === "ai") return "How to design: AI";
-    return "How to design: Selfdesign";
-  }, [mode]);
-
-  /** Option-only groups (labels are numbered in `aiQuestionFlow` in display order 01–06). */
-  const aiOptionGroups = [
-    ["Finish something I've started", "Think without interruption", "Rest and recover", "I don't know yet"],
-    ["Physically active", "Rested and still", "A mix of both"],
-    ["Early morning", "Late morning", "Afternoon", "Evening"],
-  ] as const;
-  const aiQuestionFlow = [
-    { type: "option" as const, groupIndex: 0, title: "01: What are you coming here to do?" },
-    { type: "text" as const, key: "activities" as const, title: "02: Any activities you already want?", placeholder: "Example: Writing, Long Walks, Bird Watching" },
-    { type: "option" as const, groupIndex: 1, title: "03: How do you want your body to feel each day?" },
-    { type: "text" as const, key: "structure" as const, title: "04: How structured should your days feel?", placeholder: "Example: Keep it light, just a few anchors each day." },
-    { type: "option" as const, groupIndex: 2, title: "05: When does your thinking feel sharpest?" },
-    { type: "text" as const, key: "arrival" as const, title: "06: How are you arriving?", placeholder: "Example: Carrying a lot of noise and decision fatigue." },
-  ];
-  const aiQuestionsTotal = aiQuestionFlow.length;
-  const currentFlowQuestion = aiQuestionFlow[aiQuestionIndex];
-  const currentOptionGroup =
-    currentFlowQuestion?.type === "option" ? aiOptionGroups[currentFlowQuestion.groupIndex] : null;
-  const aiCurrentQuestionAnswered =
-    currentFlowQuestion?.type === "option"
-      ? Boolean(currentOptionGroup && currentOptionGroup.some((opt) => aiAnswers[opt]))
-      : currentFlowQuestion?.key === "activities"
-        ? aiContextActivities.trim().length > 0
-        : currentFlowQuestion?.key === "structure"
-          ? aiContextStructure.trim().length > 0
-          : aiContextArrival.trim().length > 0;
-
-  const selectSingleInGroup = (groupOpts: readonly string[], selected: string) => {
-    setAiAnswers((prev) => {
-      const next = { ...prev };
-      groupOpts.forEach((opt) => {
-        next[opt] = opt === selected;
-      });
-      return next;
-    });
-  };
 
   return (
     <main>
@@ -817,7 +511,6 @@ export default function TheSilentClubDayDesigner9Page() {
         stepClass={stepClass}
         onBackToSite={() => router.push("/thesilentclub/home")}
         stepOneLabel={stepOneLabel}
-        stepTwoLabel={stepTwoLabel}
       />
 
       {step === 1 && (
@@ -872,114 +565,7 @@ export default function TheSilentClubDayDesigner9Page() {
           )}
           </div>
           <div className="p-inner-footer">
-            <button className="btn" disabled={!canStep1Continue} style={{ width: "100%" }} onClick={() => setStep(2)}>Continue →</button>
-          </div>
-        </div>
-      )}
-
-      {step === 2 && (
-        <div className="p-inner">
-          <h2 style={{ fontSize: "1.1rem", color: "var(--text-2)", marginBottom: 6 }}>How would you like to design your stay?</h2>
-          <p style={{ fontSize: ".9rem", color: "var(--text-3)", marginBottom: 16 }}>Let AI suggest a rhythm, or start with a blank schedule.</p>
-          <div className="c-grid">
-            <div className={`cc ${mode === "ai" ? "sel" : ""}`} onClick={() => setMode("ai")}><div style={{ position: "absolute", top: 14, right: 14, fontSize: ".7rem", border: "1px solid var(--rule-2)", padding: "3px 9px" }}>Recommended</div><div style={{ fontSize: "1.2rem" }}>◎</div><div style={{ fontFamily: "var(--serif)", fontSize: "1.25rem", marginTop: 6 }}>Let AI suggest my days</div><div style={{ fontSize: ".88rem", color: "var(--text-3)", marginTop: 4 }}>Answer 6 quick questions. We pre-fill a suggested schedule. Override anything.</div></div>
-            <div className={`cc ${mode === "manual" ? "sel" : ""}`} onClick={() => setMode("manual")}><div style={{ fontSize: "1.2rem" }}>◻</div><div style={{ fontFamily: "var(--serif)", fontSize: "1.25rem", marginTop: 6 }}>I'll design it myself</div><div style={{ fontSize: ".88rem", color: "var(--text-3)", marginTop: 4 }}>Start with a blank grid. Pick activities and place them. Or leave everything empty.</div></div>
-          </div>
-          {mode === "ai" && (
-            <div style={{ border: "1px solid var(--rule)", background: "var(--bg-2)", padding: 20, marginTop: 16, minHeight: 200, maxHeight: 200, overflow: "auto", display: "flex", flexDirection: "column" }}>
-              <div style={{ marginBottom: 12, fontSize: ".62rem", letterSpacing: ".16em", textTransform: "uppercase", color: "var(--text-3)", flexShrink: 0 }}>
-                Question {aiQuestionIndex + 1} of {aiQuestionsTotal}
-              </div>
-              <div style={{ flex: 1 }}>
-              {currentFlowQuestion?.type === "option" ? (
-                <div style={{ marginBottom: 16 }}>
-                  <div style={{ fontSize: ".75rem", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 8 }}>
-                    {currentFlowQuestion.title}
-                  </div>
-                  <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-                    {(currentOptionGroup ?? []).map((opt) => (
-                      <button
-                        type="button"
-                        key={opt}
-                        className={`ai-opt ${aiAnswers[opt] ? "on" : ""}`}
-                        onClick={() => selectSingleInGroup(currentOptionGroup!, opt)}
-                      >
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              ) : currentFlowQuestion?.key === "activities" ? (
-                <div style={{ marginBottom: 4 }}>
-                  <div style={{ fontSize: ".75rem", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 8 }}>
-                    {currentFlowQuestion.title}
-                  </div>
-                  <textarea
-                    value={aiContextActivities}
-                    onChange={(e) => setAiContextActivities(e.target.value)}
-                    placeholder={currentFlowQuestion.placeholder}
-                    rows={3}
-                    style={{ width: "100%", minHeight: 100, maxHeight: 120, background: "var(--bg-3)", border: "1px solid var(--rule-2)", color: "var(--gold-pale)", padding: "10px 12px", resize: "none", outline: "none", fontFamily: "var(--sans)", fontSize: ".88rem", lineHeight: 1.5 }}
-                  />
-                </div>
-              ) : currentFlowQuestion?.key === "structure" ? (
-                <div style={{ marginBottom: 4 }}>
-                  <div style={{ fontSize: ".75rem", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 8 }}>
-                    {currentFlowQuestion.title}
-                  </div>
-                  <textarea
-                    value={aiContextStructure}
-                    onChange={(e) => setAiContextStructure(e.target.value)}
-                    placeholder={currentFlowQuestion.placeholder}
-                    rows={3}
-                    style={{ width: "100%", minHeight: 100, maxHeight: 120, background: "var(--bg-3)", border: "1px solid var(--rule-2)", color: "var(--gold-pale)", padding: "10px 12px", resize: "none", outline: "none", fontFamily: "var(--sans)", fontSize: ".88rem", lineHeight: 1.5 }}
-                  />
-                </div>
-              ) : currentFlowQuestion ? (
-                <div style={{ marginBottom: 4 }}>
-                  <div style={{ fontSize: ".75rem", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 8 }}>
-                    {currentFlowQuestion.title}
-                  </div>
-                  <textarea
-                    value={aiContextArrival}
-                    onChange={(e) => setAiContextArrival(e.target.value)}
-                    placeholder={currentFlowQuestion.placeholder}
-                    rows={3}
-                    style={{ width: "100%", minHeight: 100, maxHeight: 120, background: "var(--bg-3)", border: "1px solid var(--rule-2)", color: "var(--gold-pale)", padding: "10px 12px", resize: "none", outline: "none", fontFamily: "var(--sans)", fontSize: ".88rem", lineHeight: 1.5 }}
-                  />
-                </div>
-              ) : null}
-              </div>
-            </div>
-          )}
-
-          <div style={{ display: "flex", gap: 10, marginTop: 14 }}>
-            <button
-              className="btn-g"
-              onClick={() => {
-                if (mode === "ai" && aiQuestionIndex > 0) {
-                  setAiQuestionIndex((n) => n - 1);
-                  return;
-                }
-                setStep(1);
-              }}
-            >
-              {mode === "ai" && aiQuestionIndex > 0 ? "← Previous" : "← Back"}
-            </button>
-            <button
-              className="btn"
-              type="button"
-              disabled={aiSuggestLoading || (mode === "ai" && !aiCurrentQuestionAnswered)}
-              onClick={() => {
-                if (mode === "ai" && aiQuestionIndex < aiQuestionsTotal - 1) {
-                  setAiQuestionIndex((n) => n + 1);
-                  return;
-                }
-                void handleS2();
-              }}
-            >
-              {aiSuggestLoading ? "Shaping your stay…" : mode === "ai" && aiQuestionIndex < aiQuestionsTotal - 1 ? "Next →" : "Shape my Stay →"}
-            </button>
+            <button className="btn" disabled={!canStep1Continue} style={{ width: "100%" }} onClick={() => setStep(3)}>Continue →</button>
           </div>
         </div>
       )}
@@ -1018,42 +604,14 @@ export default function TheSilentClubDayDesigner9Page() {
               </span>
             </div>
           )}
-          {aiResultSource && (
-            <div style={{ position: "fixed", top: 72, right: 24, zIndex: tableTutorialActive ? 108 : 45, fontSize: ".68rem", letterSpacing: ".12em", textTransform: "uppercase", color: aiResultSource === "cohere" ? "#c5a065" : "#b09070" }}>
-              AI Source: {aiResultSource === "cohere" ? "Cohere" : "Fallback"}
-              {aiResultSource === "fallback" && aiResultNote && (
-                <span style={{ display: "block", marginTop: 4, fontSize: ".58rem", letterSpacing: ".08em", textTransform: "none", color: "#7a6048" }}>
-                  {aiResultNote}
-                </span>
-              )}
-            </div>
-          )}
-          {aiAutoPlacing && (
-            <div
-              style={{
-                position: "fixed",
-                bottom: 24,
-                left: "50%",
-                transform: "translateX(-50%)",
-                zIndex: 40,
-                fontSize: ".72rem",
-                letterSpacing: ".14em",
-                textTransform: "uppercase",
-                color: "var(--gold-dim)",
-                pointerEvents: "none",
-              }}
-            >
-              Placing your schedule…
-            </div>
-          )}
           <div
             className={`pal ${tableTutorialStep === 0 ? "table-tutorial-spotlight-pal" : ""}`}
             style={{
               position: tableTutorialActive ? "relative" : undefined,
               zIndex: tableTutorialActive ? (tableTutorialStep === 0 ? 110 : 40) : undefined,
               isolation: tableTutorialActive && tableTutorialStep === 0 ? "isolate" : undefined,
-              pointerEvents: aiAutoPlacing ? "none" : "auto",
-              opacity: aiAutoPlacing ? 0.7 : 1,
+              pointerEvents: "auto",
+              opacity: 1,
               transition: "opacity .3s",
             }}
           >
@@ -1105,7 +663,7 @@ export default function TheSilentClubDayDesigner9Page() {
               zIndex: tableTutorialActive ? (tableTutorialStep === 1 || tableTutorialStep === 2 ? 110 : 40) : undefined,
               isolation:
                 tableTutorialActive && (tableTutorialStep === 1 || tableTutorialStep === 2) ? "isolate" : undefined,
-              pointerEvents: aiAutoPlacing ? "none" : "auto",
+              pointerEvents: "auto",
             }}
           >
             <div className="tl-scroll">
@@ -1369,8 +927,8 @@ export default function TheSilentClubDayDesigner9Page() {
             style={{
               position: "relative",
               zIndex: tableTutorialActive ? 40 : undefined,
-              opacity: aiAutoPlacing ? 0.55 : tableTutorialActive ? 0.45 : 1,
-              pointerEvents: aiAutoPlacing ? "none" : "auto",
+              opacity: tableTutorialActive ? 0.45 : 1,
+              pointerEvents: "auto",
               transition: "opacity .25s",
             }}
           >
@@ -1379,11 +937,9 @@ export default function TheSilentClubDayDesigner9Page() {
               <button
                 className="btn-g"
                 onClick={() => {
-                  aiQueueRef.current = null;
-                  setAiAutoPlacing(false);
                   setAiDropFlashKey(null);
                   document.querySelectorAll(".ai-drag-ghost").forEach((el) => el.remove());
-                  setStep(2);
+                  setStep(1);
                 }}
               >
                 ← Redesign
