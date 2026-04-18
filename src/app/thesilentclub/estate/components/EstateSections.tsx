@@ -109,7 +109,7 @@ export function ClosingCta({ onOpenModal }: { onOpenModal: () => void }) {
   return (
     <section className="cta-band">
       <h2 className="cta-headline">The infrastructure is ready.<br /><em style={{ color: "var(--gold)" }}>The thinking is yours.</em></h2>
-      <button className="btn-gold" onClick={onOpenModal}>Request Invite →</button>
+      <a href="/thesilentclub/daydesigner" className="btn-gold">Request Invite →</a>
       <p className="cta-sub">Two questions. A short conversation. Your first invite.</p>
     </section>
   );

@@ -17,7 +17,7 @@ export default function TheSilentClubDayDesigner9Page() {
   const [selectedDates, setSelectedDates] = useState<Date[]>([]);
   const [arrivalDate, setArrivalDate] = useState<string | null>(null);
   const [aiAnswers, setAiAnswers] = useState<Record<string, boolean>>({});
-  const [showAiLoading, setShowAiLoading] = useState(false);
+
   const [selectedAct, setSelectedAct] = useState<string | null>(null);
   const [schedule, setSchedule] = useState<Record<string, string>>({});
   const [showModal, setShowModal] = useState(false);
@@ -161,64 +161,203 @@ export default function TheSilentClubDayDesigner9Page() {
     setSelectedAct(null);
   };
 
+  // Deterministic schedule builder — no AI needed.
+  // Nested lookup: [intent][body][arrival] → base activity list
+  // Q3 (peak time) reorders slots so preferred period fills first
+  // Q4 (explicit picks) are injected at the front
+  // Q5 (density) controls how many slots per day get filled
+  const SCHEDULE_LOOKUP: Record<string, Record<string, Record<string, string[]>>> = {
+    "Finish something I've started": {
+      "Physically active": {
+        "Still carrying the noise of the week":   ["Long Bath", "Running", "Writing", "Journalling", "Reading"],
+        "Somewhere in between":                   ["Running", "Writing", "Journalling", "Thinking", "Reading"],
+        "Already quiet, ready to go deep":        ["Writing", "Journalling", "Thinking", "Running", "Idea Sketching"],
+      },
+      "Rested and still": {
+        "Still carrying the noise of the week":   ["Long Bath", "Horizon Gazing", "Writing", "Journalling", "Silence Block"],
+        "Somewhere in between":                   ["Writing", "Journalling", "Reading", "Thinking", "Silence Block"],
+        "Already quiet, ready to go deep":        ["Writing", "Thinking", "Journalling", "Idea Sketching", "Reading"],
+      },
+      "A mix of both": {
+        "Still carrying the noise of the week":   ["Long Bath", "Long Walks", "Writing", "Journalling", "Reading"],
+        "Somewhere in between":                   ["Long Walks", "Writing", "Journalling", "Thinking", "Reading"],
+        "Already quiet, ready to go deep":        ["Writing", "Journalling", "Long Walks", "Idea Sketching", "Thinking"],
+      },
+    },
+    "Think without interruption": {
+      "Physically active": {
+        "Still carrying the noise of the week":   ["Long Bath", "Running", "Thinking", "Long Walks", "Journalling"],
+        "Somewhere in between":                   ["Running", "Thinking", "Long Walks", "Journalling", "Idea Sketching"],
+        "Already quiet, ready to go deep":        ["Thinking", "Running", "Long Walks", "Journalling", "Idea Sketching"],
+      },
+      "Rested and still": {
+        "Still carrying the noise of the week":   ["Horizon Gazing", "Silence Block", "Thinking", "Journalling", "Long Walks"],
+        "Somewhere in between":                   ["Thinking", "Journalling", "Silence Block", "Long Walks", "Reading"],
+        "Already quiet, ready to go deep":        ["Thinking", "Silence Block", "Journalling", "Idea Sketching", "Long Walks"],
+      },
+      "A mix of both": {
+        "Still carrying the noise of the week":   ["Long Bath", "Long Walks", "Thinking", "Journalling", "Silence Block"],
+        "Somewhere in between":                   ["Long Walks", "Thinking", "Journalling", "Idea Sketching", "Reading"],
+        "Already quiet, ready to go deep":        ["Thinking", "Long Walks", "Journalling", "Idea Sketching", "Silence Block"],
+      },
+    },
+    "Rest and recover": {
+      "Physically active": {
+        "Still carrying the noise of the week":   ["Long Bath", "Recovery", "Stretching", "Long Walks", "Bird Watching"],
+        "Somewhere in between":                   ["Recovery", "Stretching", "Long Walks", "Bird Watching", "Sunrise"],
+        "Already quiet, ready to go deep":        ["Stretching", "Recovery", "Long Walks", "Bird Watching", "Horizon Gazing"],
+      },
+      "Rested and still": {
+        "Still carrying the noise of the week":   ["Long Bath", "Horizon Gazing", "Silence Block", "Dark Room", "Recovery"],
+        "Somewhere in between":                   ["Horizon Gazing", "Silence Block", "Recovery", "Long Walks", "Bird Watching"],
+        "Already quiet, ready to go deep":        ["Silence Block", "Horizon Gazing", "Recovery", "Star Gazing", "Long Walks"],
+      },
+      "A mix of both": {
+        "Still carrying the noise of the week":   ["Long Bath", "Recovery", "Long Walks", "Bird Watching", "Horizon Gazing"],
+        "Somewhere in between":                   ["Recovery", "Long Walks", "Bird Watching", "Stretching", "Horizon Gazing"],
+        "Already quiet, ready to go deep":        ["Long Walks", "Recovery", "Bird Watching", "Star Gazing", "Silence Block"],
+      },
+    },
+    "I don't know yet": {
+      "Physically active": {
+        "Still carrying the noise of the week":   ["Long Bath", "Long Walks", "Running", "Bird Watching", "Journalling"],
+        "Somewhere in between":                   ["Long Walks", "Running", "Bird Watching", "Reading", "Journalling"],
+        "Already quiet, ready to go deep":        ["Long Walks", "Bird Watching", "Running", "Journalling", "Star Gazing"],
+      },
+      "Rested and still": {
+        "Still carrying the noise of the week":   ["Long Bath", "Horizon Gazing", "Reading", "Journalling", "Silence Block"],
+        "Somewhere in between":                   ["Reading", "Journalling", "Long Walks", "Bird Watching", "Horizon Gazing"],
+        "Already quiet, ready to go deep":        ["Reading", "Journalling", "Bird Watching", "Star Gazing", "Silence Block"],
+      },
+      "A mix of both": {
+        "Still carrying the noise of the week":   ["Long Bath", "Long Walks", "Reading", "Bird Watching", "Journalling"],
+        "Somewhere in between":                   ["Long Walks", "Reading", "Bird Watching", "Journalling", "Sunrise"],
+        "Already quiet, ready to go deep":        ["Long Walks", "Bird Watching", "Reading", "Journalling", "Star Gazing"],
+      },
+    },
+  };
+
+  // Hard period constraints — these activities must only land in allowed periods
+  const ACTIVITY_PERIOD: Record<string, string[]> = {
+    "Star Gazing":      ["Night"],
+    "Sunrise":          ["Dawn"],
+    "Bird Watching":    ["Dawn", "Morning"],
+    "Dark Room":        ["Evening", "Night"],
+    "Horizon Gazing":   ["Evening", "Night"],
+    "Long Bath":        ["Evening", "Night"],
+    "Running":          ["Dawn", "Morning"],
+    "Cycling":          ["Dawn", "Morning", "Afternoon"],
+    "Stretching":       ["Dawn", "Morning"],
+    "Gym":              ["Dawn", "Morning", "Afternoon"],
+    "Swimming":         ["Morning", "Afternoon"],
+    "Kayaking":         ["Morning", "Afternoon"],
+    "Boat Rides":       ["Morning", "Afternoon"],
+    "Forest Safari":    ["Dawn", "Morning"],
+    "Photography":      ["Dawn", "Morning", "Afternoon", "Evening"],
+  };
+
+  // Slot ordering by preferred peak time (Q3) — reorder free slots so preferred period comes first
+  const PEAK_PERIOD_ORDER: Record<string, string[]> = {
+    "Early morning":  ["Dawn", "Morning", "Afternoon", "Evening", "Night"],
+    "Late morning":   ["Morning", "Dawn", "Afternoon", "Evening", "Night"],
+    "Afternoon":      ["Afternoon", "Morning", "Evening", "Dawn", "Night"],
+    "Evening":        ["Evening", "Night", "Afternoon", "Morning", "Dawn"],
+  };
+
   const handleS2 = () => {
     if (mode === "manual") {
       setStep(3);
       return;
     }
-    setShowAiLoading(true);
-    setTimeout(() => {
-      const answers = aiAnswers;
-      let density = answers["Fill most slots"] ? 3 : answers["Almost empty"] ? 1 : 2;
-      let acts: string[] = [];
-      if (answers["Bird Watching"]) acts.push("Bird Watching");
-      if (answers["Writing"]) acts.push("Writing");
-      if (answers["Swimming"]) acts.push("Swimming");
-      if (answers["Star Gazing"]) acts.push("Star Gazing");
-      if (answers["Long Walks"]) acts.push("Long Walks");
-      if (answers["Gym"]) acts.push("Gym");
-      if (answers["Reading"]) acts.push("Reading");
-      if (!acts.length) acts = ["Reading", "Journalling", "Long Walks", "Bird Watching"];
-      if (answers["Still carrying the noise of the week"]) {
-        acts = ["Long Bath", "Horizon Gazing", "Long Walks", ...acts];
-        density = Math.max(1, density - 1);
-      }
 
-      const next = { ...schedule };
-      let totalPlaced = Object.keys(next).length;
-      let silencePeriod =
-        product?.id === "silence"
-          ? Object.keys(next)
-              .map((k) => {
-                const sid = k.split("_")[1];
-                return SLOTS.find((s) => s.id === sid && !s.fixed)?.period ?? null;
-              })
-              .find((p): p is string => Boolean(p)) ?? null
-          : null;
-      const free = SLOTS.filter((s) => !s.fixed).map((s) => s.id);
-      days.forEach((_, di) => {
-        let placed = 0;
-        free.forEach((sid, i) => {
-          if (placed >= density || slotLocked(di, sid)) return;
-          if (product?.id === "silence" && totalPlaced >= 2) return;
-          if (product?.id === "silence") {
-            const slot = SLOTS.find((s) => s.id === sid);
-            if (!slot || slot.fixed) return;
-            if (!silencePeriod) silencePeriod = slot.period;
-            if (slot.period !== silencePeriod) return;
+    const a = aiAnswers;
+
+    // Q1 intent
+    const intent = ["Finish something I've started", "Think without interruption", "Rest and recover", "I don't know yet"]
+      .find((k) => a[k]) ?? "I don't know yet";
+
+    // Q2 body
+    const body = ["Physically active", "Rested and still", "A mix of both"]
+      .find((k) => a[k]) ?? "A mix of both";
+
+    // Q6 arrival
+    const arrival = ["Still carrying the noise of the week", "Somewhere in between", "Already quiet, ready to go deep"]
+      .find((k) => a[k]) ?? "Somewhere in between";
+
+    // Q5 density
+    const density = a["Fill most slots"] ? 3 : a["Almost empty"] ? 1 : 2;
+
+    // Q3 peak time → slot order
+    const peakTime = ["Early morning", "Late morning", "Afternoon", "Evening"]
+      .find((k) => a[k]) ?? "Late morning";
+    const periodOrder = PEAK_PERIOD_ORDER[peakTime];
+
+    // Base activity list from lookup
+    let baseActs: string[] = SCHEDULE_LOOKUP[intent]?.[body]?.[arrival]
+      ?? ["Reading", "Journalling", "Long Walks", "Bird Watching", "Thinking"];
+
+    // Q4 explicit picks — inject at front, deduplicate
+    const explicit = ["Bird Watching", "Writing", "Swimming", "Star Gazing", "Long Walks", "Gym", "Reading"]
+      .filter((k) => a[k]);
+    if (explicit.length) {
+      baseActs = [...explicit, ...baseActs.filter((x) => !explicit.includes(x))];
+    }
+
+    // Sort free slots by preferred period order
+    const freeSlots = SLOTS.filter((s) => !s.fixed);
+    const sortedFree = [...freeSlots].sort((sa, sb) => {
+      const ai = periodOrder.indexOf(sa.period);
+      const bi = periodOrder.indexOf(sb.period);
+      return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+    });
+
+    const next = { ...schedule };
+    let totalPlaced = Object.keys(next).length;
+    let silencePeriod =
+      product?.id === "silence"
+        ? Object.keys(next)
+            .map((k) => {
+              const sid = k.split("_")[1];
+              return SLOTS.find((s) => s.id === sid && !s.fixed)?.period ?? null;
+            })
+            .find((p): p is string => Boolean(p)) ?? null
+        : null;
+
+    let actCursor = 0; // persists across all days so activities rotate evenly
+
+    days.forEach((_, di) => {
+      let placed = 0;
+      sortedFree.forEach((slot) => {
+        if (placed >= density || slotLocked(di, slot.id)) return;
+        if (product?.id === "silence" && totalPlaced >= 2) return;
+        if (product?.id === "silence") {
+          if (!silencePeriod) silencePeriod = slot.period;
+          if (slot.period !== silencePeriod) return;
+        }
+        const key = `${di}_${slot.id}`;
+        if (!next[key]) {
+          // Find the next activity compatible with this slot's period
+          // Allow repeating activities across days (e.g. Star Gazing every night)
+          let actToPlace: string | null = null;
+          for (let attempt = 0; attempt < baseActs.length; attempt++) {
+            const candidate = baseActs[(actCursor + attempt) % baseActs.length];
+            const allowed = ACTIVITY_PERIOD[candidate];
+            if (!allowed || allowed.includes(slot.period)) {
+              actToPlace = candidate;
+              actCursor = (actCursor + attempt + 1) % baseActs.length;
+              break;
+            }
           }
-          const key = `${di}_${sid}`;
-          if (!next[key]) {
-            next[key] = acts[i % acts.length];
-            placed += 1;
-            totalPlaced += 1;
-          }
-        });
+          if (!actToPlace) return;
+          next[key] = actToPlace;
+          placed += 1;
+          totalPlaced += 1;
+        }
       });
-      setSchedule(next);
-      setShowAiLoading(false);
-      setStep(3);
-    }, 1600);
+    });
+
+    setSchedule(next);
+    setStep(3);
   };
 
   const prevMonth = () => {
@@ -363,7 +502,7 @@ export default function TheSilentClubDayDesigner9Page() {
               ))}
             </div>
           )}
-          {showAiLoading && <div style={{ padding: 20, textAlign: "center", border: "1px solid var(--rule)", background: "var(--bg-2)", marginTop: 16, fontStyle: "italic", fontSize: ".9rem", color: "var(--text-3)" }}>Building your days...</div>}
+
           <div style={{ display: "flex", gap: 10, marginTop: 14 }}>
             <button className="btn-g" onClick={() => setStep(1)}>← Back</button>
             <button className="btn" onClick={handleS2}>Shape my Stay →</button>

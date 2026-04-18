@@ -10,9 +10,9 @@ export function ClosingCtaSection({ onOpenModal }: Props) {
         <br />
         <em style={{ color: "var(--gold)" }}>It robs you of the moment you're actually in.</em>"
       </div>
-      <button className="closing-btn" onClick={onOpenModal}>
+      <a href="/thesilentclub/daydesigner" className="closing-btn">
         Request Invite →
-      </button>
+      </a>
       <div className="closing-sub">Two questions. A short conversation. Your first invite.</div>
     </section>
   );

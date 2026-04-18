@@ -11,6 +11,7 @@ type Post = {
   tag: string;
   title: string;
   sub: string;
+  thumbnail: string;
 };
 
 const posts: Post[] = [
@@ -20,6 +21,7 @@ const posts: Post[] = [
     tag: "Identity & Sovereignty",
     title: "You're Always Performing (Even When You're Alone)",
     sub: "Performance is internal, not public.",
+    thumbnail: "/blog1.png",
   },
   {
     href: "/thesilentclub/blogs/environment",
@@ -27,6 +29,7 @@ const posts: Post[] = [
     tag: "Decision & Clarity",
     title: "You Keep Blaming Yourself for What Your Environment Is Doing",
     sub: "Behaviour follows setup more than intention.",
+    thumbnail: "/blog2.png",
   },
   {
     href: "/thesilentclub/blogs/sitting",
@@ -34,6 +37,7 @@ const posts: Post[] = [
     tag: "Silence & Attention",
     title: "You Can't Sit With a Thought",
     sub: "You have an interruption problem.",
+    thumbnail: "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/blogs/3.png",
   },
   {
     href: "/thesilentclub/blogs/discipline",
@@ -41,6 +45,7 @@ const posts: Post[] = [
     tag: "Silence & Attention",
     title: "You Don't Need Discipline",
     sub: "You need disgust.",
+    thumbnail: "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/blogs/2.png",
   },
   {
     href: "/thesilentclub/blogs/want",
@@ -48,6 +53,7 @@ const posts: Post[] = [
     tag: "Identity & Sovereignty",
     title: "You Don't Actually Know What You Want",
     sub: "You're crowded with voices, not options.",
+    thumbnail: "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/blogs/4.png",
   },
   {
     href: "/thesilentclub/blogs/chose",
@@ -55,6 +61,7 @@ const posts: Post[] = [
     tag: "Environment & Structure",
     title: "You Keep Updating a Life You Never Actually Chose",
     sub: "Most identities are accumulated, not authored.",
+    thumbnail: "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/blogs/8.png",
   },
   {
     href: "/thesilentclub/blogs/commit",
@@ -62,6 +69,7 @@ const posts: Post[] = [
     tag: "Environment & Structure",
     title: "You Keep Saying Yes So You Don't Have to Commit",
     sub: "You confuse openness with freedom.",
+    thumbnail: "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/blogs/7.png",
   },
   {
     href: "/thesilentclub/blogs/small",
@@ -69,6 +77,7 @@ const posts: Post[] = [
     tag: "Decision & Clarity",
     title: "You Keep Letting Small Things Decide Your Life",
     sub: "Attention compounds into direction.",
+    thumbnail: "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/blogs/9.png",
   },
   {
     href: "/thesilentclub/blogs/promises",
@@ -76,6 +85,7 @@ const posts: Post[] = [
     tag: "Identity & Sovereignty",
     title: "You Keep Breaking Promises to Yourself",
     sub: "You have a credibility problem. With yourself.",
+    thumbnail: "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/blogs/5.png",
   },
   {
     href: "/thesilentclub/blogs/adding",
@@ -83,6 +93,7 @@ const posts: Post[] = [
     tag: "Environment & Structure",
     title: "You Keep Adding So You Don't Have to Decide",
     sub: "You struggle with decision, not clarity.",
+    thumbnail: "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/blogs/6.png",
   },
   {
     href: "/thesilentclub/blogs/meaning",
@@ -90,6 +101,7 @@ const posts: Post[] = [
     tag: "Decision & Clarity",
     title: "You Keep Looking for Meaning Before You've Seen Enough",
     sub: "You rush interpretation before observation matures.",
+    thumbnail: "/blog11.png",
   },
   {
     href: "/thesilentclub/blogs/thinking-problem",
@@ -97,6 +109,7 @@ const posts: Post[] = [
     tag: "Silence & Attention",
     title: "You Don't Have a Thinking Problem",
     sub: "You have an intrusion problem.",
+    thumbnail: "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/blogs/1.png",
   },
 ];
 
@@ -239,7 +252,13 @@ export default function TheSilentClubBlogsPage() {
       <div className="posts-grid">
         {visiblePosts.map((post) => (
           <a className="post-card" href={post.href} key={post.title}>
-            <div className="post-card-img"><div className="post-card-img-ph">Post image</div></div>
+            <div className="post-card-img">
+              <img
+                src={post.thumbnail}
+                alt={post.title}
+                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </div>
             <div className="post-card-body">
               <div className="post-card-tag">{post.tag}</div>
               <div className="post-card-title">{post.title}</div>
@@ -278,7 +297,7 @@ export default function TheSilentClubBlogsPage() {
             <div className="footer-col-label">Connect</div>
             <a className="footer-link" href="#">Instagram</a>
             <a className="footer-link" href="#">Substack</a>
-            <a className="footer-link" href="#">Request Invite</a>
+            <a className="footer-link" href="/thesilentclub/daydesigner">Request Invite</a>
             <a className="footer-link" href="#">Host an Event</a>
           </div>
         </div>

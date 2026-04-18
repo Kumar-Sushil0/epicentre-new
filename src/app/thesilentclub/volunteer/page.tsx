@@ -233,7 +233,7 @@ export default function TheSilentClubVolunteerPage() {
           </div>
           <div className="footer-col"><div className="footer-col-label">Explore</div><a className="footer-link" href="/thesilentclub/home">Home</a><a className="footer-link" href="/thesilentclub/about">About</a><a className="footer-link" href="/thesilentclub/estate">The Estate</a><a className="footer-link" href="/thesilentclub/blogs">Journal</a><a className="footer-link" href="/thesilentclub/faq">FAQ</a></div>
           <div className="footer-col"><div className="footer-col-label">Stay</div><a className="footer-link" href="#">Silence Day Cycle</a><a className="footer-link" href="#">Residency Weekend</a><a className="footer-link" href="#">Solitude Weekday</a><a className="footer-link" href="#">Creation Full Estate</a></div>
-          <div className="footer-col"><div className="footer-col-label">Connect</div><a className="footer-link" href="#">Instagram</a><a className="footer-link" href="#">Substack</a><a className="footer-link" href="#">Request Invite</a><a className="footer-link" href="/thesilentclub/volunteer">Work as Volunteer</a></div>
+          <div className="footer-col"><div className="footer-col-label">Connect</div><a className="footer-link" href="#">Instagram</a><a className="footer-link" href="#">Substack</a><a className="footer-link" href="/thesilentclub/daydesigner">Request Invite</a><a className="footer-link" href="/thesilentclub/volunteer">Work as Volunteer</a></div>
         </div>
         <div className="footer-bottom">
           <div className="footer-copy">© 2026 The Silent Club. All rights reserved.</div>

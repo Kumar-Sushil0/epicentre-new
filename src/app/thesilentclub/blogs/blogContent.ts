@@ -5,6 +5,7 @@ export type BlogPost = {
   title: string;
   subtitle: string;
   readTime: string;
+  thumbnail: string;
   content: string[];
   ctaHeadline: string;
   sidebarCta: string;
@@ -18,6 +19,7 @@ export const blogPosts: BlogPost[] = [
     title: "You're Always Performing (Even When You're Alone)",
     subtitle: "Performance is internal, not public.",
     readTime: "6 min read",
+    thumbnail: "/blog1.png",
     ctaHeadline: "No audience.<br><em>No performance required.</em>",
     sidebarCta: "A place with no audience. No signal. No interpretation. Two hours from Pune.",
     content: [
@@ -122,6 +124,7 @@ export const blogPosts: BlogPost[] = [
     title: "You Keep Blaming Yourself for What Your Environment Is Doing",
     subtitle: "Behaviour follows setup more than intention.",
     readTime: "5 min read",
+    thumbnail: "/blog2.png",
     ctaHeadline: "Change the environment.<br><em>Everything else follows.</em>",
     sidebarCta: "An environment designed to make silence the default. Two hours from Pune.",
     content: [
@@ -214,6 +217,7 @@ export const blogPosts: BlogPost[] = [
     title: "You Can't Sit With a Thought",
     subtitle: "You have an interruption problem.",
     readTime: "5 min read",
+    thumbnail: "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/blogs/3.png",
     ctaHeadline: "Sit with it.<br><em>Without interruption.</em>",
     sidebarCta: "A place where thoughts can finish. Two hours from Pune.",
     content: [
@@ -281,6 +285,7 @@ export const blogPosts: BlogPost[] = [
     title: "You Don't Need Discipline",
     subtitle: "You need disgust.",
     readTime: "5 min read",
+    thumbnail: "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/blogs/2.png",
     ctaHeadline: "Stop negotiating<br><em>with yourself.</em>",
     sidebarCta: "A place where the standard is already set. Two hours from Pune.",
     content: [
@@ -355,6 +360,7 @@ export const blogPosts: BlogPost[] = [
     title: "You Don't Actually Know What You Want",
     subtitle: "You're crowded with voices, not options.",
     readTime: "5 min read",
+    thumbnail: "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/blogs/4.png",
     ctaHeadline: "Find out what<br><em>is actually yours.</em>",
     sidebarCta: "Time alone. No input. No reference. Just you. Two hours from Pune.",
     content: [
@@ -428,6 +434,7 @@ export const blogPosts: BlogPost[] = [
     title: "You Keep Updating a Life You Never Actually Chose",
     subtitle: "Most identities are accumulated, not authored.",
     readTime: "5 min read",
+    thumbnail: "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/blogs/8.png",
     ctaHeadline: "Author it.<br><em>From the beginning.</em>",
     sidebarCta: "Space to see what you've accumulated and what you actually chose. Two hours from Pune.",
     content: [
@@ -496,6 +503,7 @@ export const blogPosts: BlogPost[] = [
     title: "You Keep Saying Yes So You Don't Have to Commit",
     subtitle: "You confuse openness with freedom.",
     readTime: "5 min read",
+    thumbnail: "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/blogs/7.png",
     ctaHeadline: "Commit to something.<br><em>See what happens.</em>",
     sidebarCta: "A place that removes the option to keep options open. Two hours from Pune.",
     content: [
@@ -562,6 +570,7 @@ export const blogPosts: BlogPost[] = [
     title: "You Keep Letting Small Things Decide Your Life",
     subtitle: "Attention compounds into direction.",
     readTime: "5 min read",
+    thumbnail: "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/blogs/9.png",
     ctaHeadline: "Protect what<br><em>you let in.</em>",
     sidebarCta: "An environment that makes attention protection the default. Two hours from Pune.",
     content: [
@@ -629,6 +638,7 @@ export const blogPosts: BlogPost[] = [
     title: "You Keep Breaking Promises to Yourself",
     subtitle: "You have a credibility problem. With yourself.",
     readTime: "5 min read",
+    thumbnail: "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/blogs/5.png",
     ctaHeadline: "Rebuild the one relationship<br><em>that matters most.</em>",
     sidebarCta: "A place to stop negotiating with yourself. Two hours from Pune.",
     content: [
@@ -694,6 +704,7 @@ export const blogPosts: BlogPost[] = [
     title: "You Keep Adding So You Don't Have to Decide",
     subtitle: "You struggle with decision, not clarity.",
     readTime: "5 min read",
+    thumbnail: "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/blogs/6.png",
     ctaHeadline: "Stop adding.<br><em>Start deciding.</em>",
     sidebarCta: "A place that removes the option to keep adding. Two hours from Pune.",
     content: [
@@ -757,6 +768,7 @@ export const blogPosts: BlogPost[] = [
     title: "You Keep Looking for Meaning Before You've Seen Enough",
     subtitle: "You rush interpretation before observation matures.",
     readTime: "5 min read",
+    thumbnail: "/blog11.png",
     ctaHeadline: "Let it develop.<br><em>Before you name it.</em>",
     sidebarCta: "A place to observe without needing to conclude. Two hours from Pune.",
     content: [
@@ -814,6 +826,7 @@ export const blogPosts: BlogPost[] = [
     title: "You Don't Have a Thinking Problem",
     subtitle: "You have an intrusion problem.",
     readTime: "5 min read",
+    thumbnail: "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/blogs/1.png",
     ctaHeadline: "The environment exists.<br><em>Two hours from Pune.</em>",
     sidebarCta: "The environment that makes this kind of thinking possible exists. Two hours from Pune.",
     content: [

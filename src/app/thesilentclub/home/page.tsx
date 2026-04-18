@@ -277,9 +277,9 @@ export default function TheSilentClubHomepage20Page() {
         <h2 className="mx-auto mb-8 max-w-4xl font-serif text-5xl leading-tight md:text-7xl">
           The rarest luxury in modern life is <em className="italic text-[#c5a065]">uninterrupted time.</em>
         </h2>
-        <button className="bg-[#c5a065] px-7 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0f0b08]">
+        <a href="/thesilentclub/daydesigner" className="bg-[#c5a065] px-7 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0f0b08]">
           Request Invite →
-        </button>
+        </a>
       </section>
 
       <FooterSection />

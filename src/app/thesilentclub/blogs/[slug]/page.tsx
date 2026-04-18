@@ -88,9 +88,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div className="hidden lg:block pl-12 sticky top-24 self-start">
           <span className="block text-[0.56rem] uppercase tracking-[0.2em] text-[#7a6048] mb-3">If this landed</span>
           <p className="font-serif text-[0.9rem] text-[#b09070] leading-[1.6] mb-4">{post.sidebarCta}</p>
-          <button className="w-full bg-[#c5a065] text-[#0f0b08] text-[0.58rem] uppercase tracking-[0.14em] px-4 py-2.5 hover:bg-[#d4b07a] transition-colors">
+          <a href="/thesilentclub/daydesigner" className="w-full block text-center bg-[#c5a065] text-[#0f0b08] text-[0.58rem] font-bold uppercase tracking-[0.14em] px-4 py-2.5 hover:bg-[#d4b07a] transition-colors">
             Request Invite →
-          </button>
+          </a>
         </div>
       </div>
 
@@ -101,9 +101,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           className="relative font-serif font-light text-[clamp(1.8rem,3.5vw,3.4rem)] leading-[1.15] tracking-tight mb-8"
           dangerouslySetInnerHTML={{ __html: post.ctaHeadline }}
         />
-        <button className="relative bg-[#c5a065] text-[#0f0b08] text-[0.68rem] uppercase tracking-[0.18em] px-9 py-3.5 hover:bg-[#d4b07a] transition-colors">
+        <a href="/thesilentclub/daydesigner" className="relative bg-[#c5a065] text-[#0f0b08] text-[0.68rem] font-bold uppercase tracking-[0.18em] px-9 py-3.5 hover:bg-[#d4b07a] transition-colors">
           Request Invite →
-        </button>
+        </a>
         <p className="relative mt-4 font-serif italic text-[0.9rem] text-[#7a6048]">Two questions. A short conversation. Your first invite.</p>
       </section>
 

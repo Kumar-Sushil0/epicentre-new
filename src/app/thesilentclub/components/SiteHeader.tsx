@@ -57,7 +57,7 @@ export function SiteHeader({ active = "home" }: Props) {
 
           {/* Desktop CTA */}
           <a
-            href="/book-a-call"
+            href="/thesilentclub/daydesigner"
             className="hidden h-9 items-center bg-[#c5a065] px-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0f0b08] transition-colors hover:bg-[#d4b07a] md:inline-flex"
           >
             Request Invite →
@@ -125,7 +125,7 @@ export function SiteHeader({ active = "home" }: Props) {
         {/* CTA */}
         <div className="p-5">
           <a
-            href="/book-a-call"
+            href="/thesilentclub/daydesigner"
             className="flex w-full items-center justify-center bg-[#c5a065] py-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0f0b08]"
           >
             Request Invite →

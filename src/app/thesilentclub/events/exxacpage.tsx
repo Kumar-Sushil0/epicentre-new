@@ -352,9 +352,9 @@ export default function ExxacPage() {
                               </div>
                               <div className={`event-status ${statusClassMap[ev.status]}`}>{statusLabelMap[ev.status]}</div>
                               <br />
-                              <button className="event-cta" type="button" onClick={openInviteModal}>
+                              <a href="/thesilentclub/daydesigner" className="event-cta">
                                 Express interest
-                              </button>
+                              </a>
                             </div>
                           </div>
                         </div>

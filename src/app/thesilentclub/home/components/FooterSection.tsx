@@ -1,3 +1,12 @@
+const footerLinks: Record<string, string> = {
+  "Home": "/thesilentclub/home",
+  "About": "/thesilentclub/about",
+  "The Estate": "/thesilentclub/estate",
+  "Journal": "/thesilentclub/blogs",
+  "FAQ": "/thesilentclub/faq",
+  "Request Invite": "/thesilentclub/daydesigner",
+};
+
 export function FooterSection() {
   return (
     <footer className="border-t border-[#2a1f17]">
@@ -8,22 +17,20 @@ export function FooterSection() {
         </div>
         {[
           ["Explore", "Home", "About", "The Estate", "Journal", "FAQ"],
-          [
-            "Stay",
-            "Silence Day Cycle",
-            "Residency Weekend",
-            "Solitude Weekday",
-            "Creation Full Estate",
-          ],
+          ["Stay", "Silence Day Cycle", "Residency Weekend", "Solitude Weekday", "Creation Full Estate"],
           ["Connect", "Instagram", "Substack", "Request Invite", "Host an Event"],
         ].map(([heading, ...items]) => (
           <div key={heading} className="bg-[#0f0b08] p-8">
             <p className="mb-3 text-[10px] uppercase tracking-[0.22em] text-[#7a6048]">{heading}</p>
             <div className="space-y-1">
               {items.map((item) => (
-                <p key={item} className="text-sm text-[#7a6048]">
-                  {item}
-                </p>
+                footerLinks[item] ? (
+                  <a key={item} href={footerLinks[item]} className="block text-sm text-[#7a6048] hover:text-[#c5a065] transition-colors">
+                    {item}
+                  </a>
+                ) : (
+                  <p key={item} className="text-sm text-[#7a6048]">{item}</p>
+                )
               ))}
             </div>
           </div>

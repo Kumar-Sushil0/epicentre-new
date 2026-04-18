@@ -222,7 +222,7 @@ export const providesSlides = {
         "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/pbs1.png",
     },
     {
-      name: "Sushi & Light Bites",
+      name: "Fruits & Light Bites",
       desc: "For evenings that ask for something quieter on the palate.",
       image:
         "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Food/food4.png",
@@ -242,13 +242,13 @@ export const providesSlides = {
         "https://static.punemirror.com/full/ecdf5da031e791031eb760d41d9be1bc471b4ad7.jpg",
     },
     {
-      name: "Gym & Sauna",
+      name: "Gym ",
       desc: "Physical recovery. Open all day. No classes, no instructors.",
       image:
         "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Practice/gym1.png",
     },
     {
-      name: "Swimming Pool",
+      name: "Swimming Pool & Sauna",
       desc: "Quiet laps. No lane rage.",
       image:
         "https://lidbucketnew.s3.ap-south-1.amazonaws.com/TheSilentClub/Experiences/Activities/pool.png",

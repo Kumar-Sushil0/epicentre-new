@@ -143,6 +143,7 @@ export function DepthSection({
         </p>
         <button
           disabled={!selectedDepth}
+          onClick={() => { if (selectedDepth) window.location.href = "/thesilentclub/daydesigner"; }}
           className="bg-[#c5a065] px-6 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0f0b08] disabled:cursor-not-allowed disabled:bg-[#3a2a1f] disabled:text-[#7a6048]"
         >
           Request Invite →
