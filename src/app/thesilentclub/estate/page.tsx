@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { natureCards, practiceCards, spacesCards, symbolicaCards } from "./content";
 import { EstateStyles } from "./components/EstateStyles";
 import { ClosingCta, CategorySection, HeroSection, IntroAndNumbers, TopNav } from "./components/EstateSections";
-import { FooterSection, InviteModal } from "./components/FooterAndModal";
+import { InviteModal } from "./components/FooterAndModal";
+import { SiteFooter } from "../components/SiteFooter";
 
 export default function TheSilentClubEstatePage() {
   const [openModal, setOpenModal] = useState(false);
@@ -37,7 +38,7 @@ export default function TheSilentClubEstatePage() {
       <CategorySection groupKey="practice" num="03" title="Practice" desc="Food and movement. Both designed to sustain thinking, not interrupt it." open={openGroups.practice} onToggle={toggleGroup} cards={practiceCards} />
       <CategorySection groupKey="symbolica" num="04" title="Symbolica" desc="The parts of the estate that don't have a function. That's the point." open={openGroups.symbolica} onToggle={toggleGroup} cards={symbolicaCards} className="symbolica" />
       <ClosingCta onOpenModal={() => setOpenModal(true)} />
-      <FooterSection />
+      <SiteFooter />
       <InviteModal openModal={openModal} setOpenModal={setOpenModal} />
     </main>
   );

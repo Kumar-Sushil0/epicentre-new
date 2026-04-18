@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { SiteHeader } from "../../components/SiteHeader";
+import { SiteFooter } from "../../components/SiteFooter";
 import { blogPosts } from "../blogContent";
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -107,19 +108,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <p className="relative mt-4 font-serif italic text-[0.9rem] text-[#7a6048]">Two questions. A short conversation. Your first invite.</p>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-[#2a1f17]">
-        <div className="flex flex-wrap items-center justify-between gap-5 px-6 md:px-[56px] py-4">
-          <div className="text-[0.62rem] text-[#7a6048]">© 2026 The Silent Club · Bhigwan, Maharashtra</div>
-          <div className="flex gap-6">
-            <a href="/thesilentclub/home" className="text-[0.62rem] text-[#7a6048] hover:text-[#c5a065] transition-colors">Home</a>
-            <a href="/thesilentclub/estate" className="text-[0.62rem] text-[#7a6048] hover:text-[#c5a065] transition-colors">Estate</a>
-            <a href="/thesilentclub/about" className="text-[0.62rem] text-[#7a6048] hover:text-[#c5a065] transition-colors">About</a>
-            <a href="/thesilentclub/blogs" className="text-[0.62rem] text-[#7a6048] hover:text-[#c5a065] transition-colors">Journal</a>
-          </div>
-          <div className="text-[0.62rem] text-[#7a6048]">A registered initiative of Silent Tourism Foundation.</div>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }

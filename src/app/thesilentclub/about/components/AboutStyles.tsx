@@ -31,7 +31,7 @@ export function AboutStyles() {
       .acc-item{border-bottom:1px solid var(--rule)}
       .acc-trigger{width:100%;background:none;border:none;padding:28px var(--g);display:grid;grid-template-columns:1fr 1.6fr auto;gap:0 60px;text-align:left;cursor:pointer;align-items:center}
       .acc-trigger:hover,.acc-item.open .acc-trigger{background:var(--bg-2)}
-      .acc-num{font-size:.85rem;letter-spacing:.2em;color:var(--text-3);display:flex;align-items:center;line-height:1}
+      .acc-num{font-size:1.1rem;letter-spacing:.2em;color:var(--text-3);display:flex;align-items:center;line-height:1;font-weight:700}
       .acc-title{font-family:var(--serif);font-size:clamp(1.3rem,2vw,1.8rem);color:var(--text-2)}
       .acc-item.open .acc-title,.acc-trigger:hover .acc-title{color:var(--gold-pale)}
       .acc-icon{font-size:1.7rem;color:var(--gold-dim);transition:transform .35s var(--ease);display:flex;align-items:center;line-height:1}

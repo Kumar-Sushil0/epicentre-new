@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { AboutStyles } from "./components/AboutStyles";
 import { ClosingCtaSection } from "./components/ClosingCtaSection";
-import { FooterSection } from "./components/FooterSection";
+import { SiteFooter } from "../components/SiteFooter";
 import { FounderSection } from "./components/FounderSection";
 import { HeroSection } from "./components/HeroSection";
 import { InviteModal } from "./components/InviteModal";
@@ -31,7 +31,7 @@ export default function TheSilentClubAbout3Page() {
       <FounderSection />
       <StfSection />
       <ClosingCtaSection onOpenModal={() => setOpenModal(true)} />
-      <FooterSection />
+      <SiteFooter />
       <InviteModal openModal={openModal} setOpenModal={setOpenModal} />
     </main>
   );

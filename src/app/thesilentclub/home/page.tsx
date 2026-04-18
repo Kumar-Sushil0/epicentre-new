@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { DepthSection } from "./components/DepthSection";
 import { FaqSection } from "./components/FaqSection";
-import { FooterSection } from "./components/FooterSection";
+import { SiteFooter } from "../components/SiteFooter";
 import { HeroSection } from "./components/HeroSection";
 import { ProvidesSection } from "./components/ProvidesSection";
 import { TopNav } from "./components/TopNav";
@@ -282,7 +282,7 @@ export default function TheSilentClubHomepage20Page() {
         </a>
       </section>
 
-      <FooterSection />
+      <SiteFooter />
     </main>
   );
 }
