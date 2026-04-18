@@ -7,37 +7,39 @@ export function DayDesignerStyles() {
       :root{--bg:#0f0b08;--bg-2:#160f0a;--bg-3:#1c1410;--gold:#c5a065;--gold-dim:#8a6e42;--gold-pale:#e8d5b0;--text-2:#b09070;--text-3:#7a6048;--rule:#2a1f17;--rule-2:#3a2a1f;--serif:'Cormorant',Georgia,serif;--sans:'Jost',sans-serif;}
       body{background:var(--bg);color:var(--gold-pale);font-family:var(--sans);font-weight:300;overflow:hidden;font-size:14px}
       .hdr{height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 6vw;background:var(--bg-2);border-bottom:1px solid var(--rule)}
-      .steps{display:flex;border-bottom:1px solid var(--rule)}
-      .step{flex:1;padding:12px 20px;border-right:1px solid var(--rule);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);display:flex;align-items:center;gap:10px}
+      .steps{display:flex;border-bottom:1px solid var(--rule);overflow-x:auto}
+      .step{flex:1;min-width:0;padding:10px 12px;border-right:1px solid var(--rule);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);display:flex;align-items:center;gap:6px;white-space:nowrap}
       .step.active{color:var(--gold-pale);background:var(--bg-2)} .step.done{color:var(--gold-dim)}
-      .step-n{width:22px;height:22px;border-radius:50%;border:1px solid var(--rule-2);display:grid;place-items:center;font-size:.7rem}
+      .step-n{width:20px;height:20px;flex-shrink:0;border-radius:50%;border:1px solid var(--rule-2);display:grid;place-items:center;font-size:.65rem}
       .step.active .step-n{background:var(--gold);color:var(--bg)} .step.done .step-n{background:var(--gold-dim);color:var(--bg)}
-      .p-inner{padding:24px 6vw;height:calc(100vh - 108px);overflow:auto}
+      .p-inner{padding:16px 4vw;height:calc(100vh - 108px);overflow:auto;display:flex;flex-direction:column}
+      .p-inner-content{flex:1;overflow:auto}
+      .p-inner-footer{flex-shrink:0;padding-top:16px;border-top:1px solid var(--rule);margin-top:16px}
       .p-grid,.c-grid{display:grid;gap:1px;background:var(--rule)}
-      .p-grid{grid-template-columns:repeat(4,1fr)} .c-grid{grid-template-columns:1fr 1fr}
+      .p-grid{grid-template-columns:repeat(2,1fr)} .c-grid{grid-template-columns:1fr 1fr}
       .pc,.cc{background:var(--bg-2);cursor:pointer;transition:.2s}
-      .pc{padding:20px 22px;border-bottom:2px solid transparent}.cc{padding:24px 26px;border-bottom:2px solid transparent;position:relative}
+      .pc{padding:16px 18px;border-bottom:2px solid transparent}.cc{padding:18px 20px;border-bottom:2px solid transparent;position:relative}
       .pc:hover,.cc:hover{background:var(--bg-3)} .pc.sel,.cc.sel{background:var(--bg-3);border-bottom-color:var(--gold)}
-      .btn{background:var(--gold);color:var(--bg);font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;padding:12px 28px;border:none;cursor:pointer;font-weight:500}
-      .btn-g{background:none;color:var(--text-3);font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;padding:12px 22px;border:1px solid var(--rule-2);cursor:pointer}
+      .btn{background:var(--gold);color:var(--bg);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;padding:11px 22px;border:none;cursor:pointer;font-weight:500}
+      .btn-g{background:none;color:var(--text-3);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;padding:11px 18px;border:1px solid var(--rule-2);cursor:pointer}
       .btn:disabled{opacity:.4;cursor:not-allowed}
       .btn-g:hover{color:var(--gold-pale);border-color:var(--gold-dim)}
-      .cal-wrap{display:grid;grid-template-columns:1fr 220px;gap:24px;margin-top:16px}
-      .cal-box{background:var(--bg-2);border:1px solid var(--rule);padding:18px 20px}
+      .cal-wrap{display:grid;grid-template-columns:1fr;gap:16px;margin-top:16px}
+      .cal-box{background:var(--bg-2);border:1px solid var(--rule);padding:14px 16px}
       .cal-days-hdr,.cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
-      .cal-dh{text-align:center;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);padding:5px 0}
-      .ai-opt{background:var(--bg-3);border:1px solid var(--rule-2);padding:6px 14px;font-size:.82rem;color:var(--text-3);cursor:pointer}
+      .cal-dh{text-align:center;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);padding:4px 0}
+      .ai-opt{background:var(--bg-3);border:1px solid var(--rule-2);padding:6px 12px;font-size:.78rem;color:var(--text-3);cursor:pointer}
       .ai-opt.on{background:rgba(197,160,101,.1);border-color:var(--gold-dim);color:var(--gold-pale)}
       .s3{display:flex;flex-direction:column;height:calc(100vh - 108px)}
       .pal{flex-shrink:0;border-bottom:1px solid var(--rule);background:var(--bg);overflow:hidden}
-      .pal-cats{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--rule);margin:0 6vw}
+      .pal-cats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);margin:0 4vw}
       .pal-cat{background:var(--bg)}
-      .pal-cat-n{padding:7px 10px 7px 78px;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid var(--rule);background:var(--bg);font-weight:500}
-      .pal-items{padding:6px 10px 6px 78px;display:flex;flex-direction:column;gap:2px}
-      .pill{font-size:.82rem;color:var(--text-2);padding:4px 8px 4px 4px;border:1px solid transparent;cursor:pointer;text-align:left;display:flex;align-items:center;gap:5px;background:none;width:100%}
+      .pal-cat-n{padding:6px 8px;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--rule);background:var(--bg);font-weight:500}
+      .pal-items{padding:4px 6px;display:flex;flex-direction:column;gap:2px}
+      .pill{font-size:.75rem;color:var(--text-2);padding:4px 6px 4px 4px;border:1px solid transparent;cursor:pointer;text-align:left;display:flex;align-items:center;gap:4px;background:none;width:100%}
       .pill:hover{color:var(--gold-pale)}
       .arrow-slot{
-        min-height:48px;display:flex;align-items:center;justify-content:center;padding:0 8px;position:relative;
+        min-height:44px;display:flex;align-items:center;justify-content:center;padding:0 6px;position:relative;
         --arrow-border:#3a2a1f;--arrow-fill:#1c1410;color:#e8d5b0;
       }
       .arrow-slot::before,
@@ -56,12 +58,23 @@ export function DayDesignerStyles() {
       .arrow-checkin{--arrow-border:#c5a065;--arrow-fill:#c5a065;color:#3a1f08}
       .arrow-checkout{--arrow-border:#c5a065;--arrow-fill:#c5a065;color:#3a1f08}
       .arrow-locked{--arrow-border:#2a1f17;--arrow-fill:#0f0b08;color:#3a2a1f;opacity:.7}
-      .date-col{width:90px;flex-shrink:0;display:flex;align-items:center;padding-right:10px}
-      .date-label{font-size:.72rem;color:var(--text-2);line-height:1.4;text-align:right;width:100%}
+      .date-col{width:64px;flex-shrink:0;display:flex;align-items:center;padding-right:6px}
+      .date-label{font-size:.65rem;color:var(--text-2);line-height:1.4;text-align:right;width:100%}
       .tl-wrap{flex:1;overflow:hidden;display:flex;flex-direction:column}
       .tl-scroll{flex:1;overflow:auto;padding:0}
-      .cta-bar{flex-shrink:0;border-top:1px solid var(--rule);background:var(--bg-2);padding:16px 6vw;display:flex;align-items:center;justify-content:space-between;gap:16px}
-      .modal{position:fixed;inset:0;background:rgba(15,11,8,.88);display:grid;place-items:center}
+      .cta-bar{flex-shrink:0;border-top:1px solid var(--rule);background:var(--bg-2);padding:12px 4vw;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+      .modal{position:fixed;inset:0;background:rgba(15,11,8,.88);display:grid;place-items:center;padding:16px;z-index:9999}
+      @media(min-width:640px){
+        .p-grid{grid-template-columns:repeat(4,1fr)}
+        .pal-cats{grid-template-columns:repeat(6,1fr);margin:0 6vw}
+        .pal-cat-n{padding:7px 10px}
+        .pal-items{padding:6px 10px}
+        .cal-wrap{grid-template-columns:1fr 220px}
+        .date-col{width:90px;padding-right:10px}
+        .date-label{font-size:.72rem}
+        .p-inner{padding:24px 6vw}
+        .cta-bar{padding:16px 6vw}
+      }
     `}</style>
   );
 }

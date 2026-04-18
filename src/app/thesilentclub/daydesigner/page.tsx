@@ -422,6 +422,7 @@ export default function TheSilentClubDayDesigner9Page() {
 
       {step === 1 && (
         <div className="p-inner">
+          <div className="p-inner-content">
           <h2 style={{ fontFamily: "var(--serif)", fontSize: "2rem", fontWeight: 300 }}>Which experience are you considering?</h2>
           <p style={{ color: "var(--text-3)", fontStyle: "italic", marginBottom: 12 }}>Select a product, then choose your arrival date.</p>
           <div className="p-grid">
@@ -465,11 +466,14 @@ export default function TheSilentClubDayDesigner9Page() {
               </div>
               <div>
                 <div style={{ fontSize: ".75rem", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 10 }}>Selected dates</div>
-                <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 20 }}>{selectedDates.map((d) => <div key={d.toISOString()} style={{ padding: "7px 12px", border: "1px solid var(--rule-2)", fontSize: ".82rem", color: "var(--gold-dim)" }}>{fmtDate(d)}</div>)}</div>
-                <button className="btn" disabled={!canStep1Continue} style={{ width: "100%" }} onClick={() => setStep(2)}>Continue →</button>
+                <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>{selectedDates.map((d) => <div key={d.toISOString()} style={{ padding: "7px 12px", border: "1px solid var(--rule-2)", fontSize: ".82rem", color: "var(--gold-dim)" }}>{fmtDate(d)}</div>)}</div>
               </div>
             </div>
           )}
+          </div>
+          <div className="p-inner-footer">
+            <button className="btn" disabled={!canStep1Continue} style={{ width: "100%" }} onClick={() => setStep(2)}>Continue →</button>
+          </div>
         </div>
       )}
 
@@ -551,7 +555,7 @@ export default function TheSilentClubDayDesigner9Page() {
 
           <div className="tl-wrap">
             <div className="tl-scroll">
-            <div style={{ width: "calc((100% - 12vw) / 0.85)", margin: "0 6vw", transform: "scale(0.85)", transformOrigin: "top left" }}>
+            <div style={{ minWidth: "max-content", margin: "0 4vw", paddingBottom: 8 }}>
               {(() => {
                 const cols = `repeat(${SLOTS.length}, minmax(52px, 1fr))`;
                 const periods: { name: string; count: number }[] = [];

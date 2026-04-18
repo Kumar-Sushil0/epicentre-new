@@ -40,7 +40,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </section>
 
       {/* Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr_200px] gap-0 max-w-[1200px] mx-auto px-6 md:px-[56px] py-12 md:py-20">
+      <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr_200px] gap-0 px-6 md:px-[56px] py-12 md:py-20">
         {/* Left Sidebar */}
         <div className="hidden lg:block pr-12 sticky top-24 self-start">
           <span className="block text-[0.56rem] uppercase tracking-[0.2em] text-[#7a6048] mb-4">Share</span>

@@ -30,10 +30,10 @@ export function HeroSection() {
           luxury in modern life is uninterrupted time with your own mind.
         </p>
         <div className="flex max-w-xs flex-col gap-2">
-          <a href="/thesilentclub/daydesigner" className="bg-[#c5a065] px-6 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0f0b08]">
+          <a href="/thesilentclub/daydesigner" className="bg-[#c5a065] px-6 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0f0b08] text-center">
             Request Invite →
           </a>
-          <button className="border border-[#3a2a1f] bg-[#0f0b08] px-6 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[#b09070]">
+          <button className="border border-[#3a2a1f] bg-[#0f0b08] px-6 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[#b09070] text-center">
             See what a day looks like
           </button>
         </div>

@@ -719,8 +719,8 @@ export default function ExxacPage() {
           font-family: "Jost", sans-serif;
         }
         .page {
-          padding-top: 60px;
-          min-height: 100vh;
+          padding-top: 0;
+          height: calc(100vh - 56px);
           display: flex;
           flex-direction: column;
         }
