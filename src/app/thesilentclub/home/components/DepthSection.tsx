@@ -14,6 +14,7 @@ type Props = {
   setDepthVariant: Dispatch<SetStateAction<DepthVariant>>;
   depthLabel: string;
   getDepthPrice: (id: DepthId) => { price: string; note: string };
+  onOpenModal: () => void;
 };
 
 export function DepthSection({
@@ -23,6 +24,7 @@ export function DepthSection({
   setDepthVariant,
   depthLabel,
   getDepthPrice,
+  onOpenModal,
 }: Props) {
   return (
     <section className="border-y border-[#2a1f17]">
@@ -143,7 +145,7 @@ export function DepthSection({
         </p>
         <button
           disabled={!selectedDepth}
-          onClick={() => { if (selectedDepth) window.location.href = "/thesilentclub/daydesigner"; }}
+          onClick={() => { if (selectedDepth) onOpenModal(); }}
           className="bg-[#c5a065] px-6 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0f0b08] disabled:cursor-not-allowed disabled:bg-[#3a2a1f] disabled:text-[#7a6048]"
         >
           Request Invite →

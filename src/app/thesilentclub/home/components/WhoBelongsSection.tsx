@@ -25,6 +25,7 @@ export function WhoBelongsSection({ whoReviewIndex, setWhoReviewIndex }: Props) 
           <br /> # We are not a wellness retreat.
           <br /> # We are the place that serious people have always needed
           <br /> # A private estate calibrated to produce conditions for deep, original thought.
+          <br /> # We are a place for people moving between major chapters of their life.
         </p>
       </div>
       <div className="grid gap-px bg-[#2a1f17] md:grid-cols-3">

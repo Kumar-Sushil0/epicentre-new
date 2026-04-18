@@ -27,8 +27,11 @@ export function WhySection({ openAcc, setOpenAcc }: Props) {
           return (
             <div key={item.id} className={`acc-item ${isOpen ? "open" : ""}`}>
               <button className="acc-trigger" onClick={() => setOpenAcc(isOpen ? "" : item.id)}>
-                <div className="acc-num">{item.num}</div>
-                <div className="acc-title">{item.title}</div>
+                <div className="acc-num-title">
+                  <div className="acc-num">{item.num}</div>
+                  <div className="acc-sep">—</div>
+                  <div className="acc-title">{item.title}</div>
+                </div>
                 <div className="acc-icon">+</div>
               </button>
               <div className="acc-body">

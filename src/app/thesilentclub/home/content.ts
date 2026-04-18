@@ -172,13 +172,20 @@ export const depthCards = [
   },
 ];
 
-export const howRules = [
-  "Calls and video meetings in designated zones only. Not in shared spaces. Not in rooms others can hear.",
-  "No unsolicited conversation with other members. A nod is enough. There is a 30-minute community window each evening if you want more.",
-  "Devices in your room or personal desk only. Earphones are fine. No speakers, anywhere on the estate.",
+export const whoThisIsFor = [
+  "Your life looks fine from the outside. Internally, something doesn't land.",
+  "You've tried the retreats, the coaches, the frameworks. The searching became its own distraction.",
+  "You don't need to be told what to do. You need the conditions to actually do it.",
+  "You understand why silence matters. You just need a place that's built for it.",
+  "You know direction matters more than effort. You're done pretending otherwise.",
+];
+
+export const walkInRules = [
+  "Calls and video meetings in designated zones only. Not in shared spaces. Not where others can hear.",
+  "No unsolicited conversation. A nod is enough. There is a 30-minute community window each evening if you want more.",
+  "Devices in your room or at your desk only. Earphones are fine. No speakers on the estate.",
   "No performance of working. Staring at the ceiling counts. You are here for yourself, not an audience.",
-  "What you create here is entirely yours. We have no interest in your work, your process, or your results.",
-  "What you witness here stays here. Don't seek out other members outside. Anonymity is something we protect together.",
+  "What you witness here stays here. Anonymity is something we protect together.",
 ];
 
 export const providesSlides = {

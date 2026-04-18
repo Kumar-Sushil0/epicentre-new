@@ -649,6 +649,12 @@ export default function ExxacPage() {
       )}
 
       <style jsx>{`
+        :global(html),
+        :global(body) {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+        }
         :global(body) {
           background: #0f0b08;
           color: #e8d5b0;
@@ -656,6 +662,7 @@ export default function ExxacPage() {
           font-weight: 300;
           -webkit-font-smoothing: antialiased;
           min-height: 100vh;
+          overflow: hidden;
         }
         :global(body)::after {
           content: "";
@@ -719,13 +726,16 @@ export default function ExxacPage() {
           font-family: "Jost", sans-serif;
         }
         .page {
-          padding-top: 0;
+          margin: 0;
+          padding: 0;
           height: calc(100vh - 56px);
           display: flex;
           flex-direction: column;
+          overflow: hidden;
         }
         .cal-header {
-          padding: clamp(32px, 4vw, 48px) 6vw clamp(20px, 3vw, 32px);
+          padding: 0 6vw;
+          min-height: 96px;
           display: flex;
           align-items: center;
           justify-content: space-between;

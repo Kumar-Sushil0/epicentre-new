@@ -4,9 +4,8 @@ import { SiteHeader } from "../../components/SiteHeader";
 
 type Props = {
   scrolled: boolean;
-  onOpenModal: () => void;
 };
 
-export function TopNav({ scrolled: _scrolled, onOpenModal: _onOpenModal }: Props) {
+export function TopNav({ scrolled: _scrolled }: Props) {
   return <SiteHeader active="about" />;
 }

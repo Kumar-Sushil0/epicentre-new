@@ -9,13 +9,16 @@ type Props = {
 export function FaqSection({ openFaq, setOpenFaq }: Props) {
   return (
     <section className="grid gap-y-12 border-y border-[#2a1f17] px-[56px] py-20 md:grid-cols-[1fr,1.8fr] md:gap-x-[100px]">
-      <div className="md:sticky md:top-20 md:self-start">
+      <div>
         <p className="mb-4 text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">Before you come</p>
-        <h2 className="mb-5 font-serif text-[clamp(1.8rem,3vw,2.8rem)] leading-[1.1]">
-          What people ask before they apply
+        <h2 className="mb-4 font-serif text-[clamp(1.8rem,3vw,2.8rem)] leading-[1.02]">
+          <span className="block whitespace-nowrap">Most people arrive with questions.</span>
+          <em className="block text-[#c5a065]">Few leave with the same ones.</em>
         </h2>
-        <p className="text-sm leading-[1.8] text-[#7a6048]">
-          Most people arrive with questions. Few leave with the same ones.
+        <p className="max-w-[54ch] text-sm leading-[1.8] text-[#7a6048]">
+          Everything you need to know before you arrive — from what to pack to what to expect on day four.
+          Read through at your own pace. If a question isn't answered here, it probably gets answered by the
+          experience itself.
         </p>
       </div>
       <div>

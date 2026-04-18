@@ -121,6 +121,9 @@ export const CATS: Record<string, Cat> = {
   },
 };
 
+/** Every draggable activity name (for AI whitelist / validation). */
+export const ALL_ACTIVITY_NAMES: string[] = Object.values(CATS).flatMap((c) => c.items.map((i) => i.name));
+
 export const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 export const shortMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 export const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];

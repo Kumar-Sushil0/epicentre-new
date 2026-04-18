@@ -1,11 +1,14 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { CATS, dayNames, fmtDate, Mode, monthNames, Product, ProductId, PRODUCTS, RULES, shortMonths, SLOTS } from "./content";
+import { ACTIVITY_PERIOD } from "./activityPeriods";
+import { ALL_ACTIVITY_NAMES, CATS, dayNames, fmtDate, Mode, monthNames, Product, ProductId, PRODUCTS, RULES, shortMonths, SLOTS } from "./content";
+import { fetchAiScheduleOrFallback, type SlotMeta } from "./suggestScheduleClient";
 import { DayDesignerStyles } from "./components/DayDesignerStyles";
 import { DesignerHeader } from "./components/DesignerHeader";
 import { InviteModal } from "./components/InviteModal";
+import { runAiDragGhostAnimation } from "./aiDragAnimation";
 
 export default function TheSilentClubDayDesigner9Page() {
   const router = useRouter();
@@ -17,6 +20,9 @@ export default function TheSilentClubDayDesigner9Page() {
   const [selectedDates, setSelectedDates] = useState<Date[]>([]);
   const [arrivalDate, setArrivalDate] = useState<string | null>(null);
   const [aiAnswers, setAiAnswers] = useState<Record<string, boolean>>({});
+  const [aiContextActivities, setAiContextActivities] = useState("");
+  const [aiContextStructure, setAiContextStructure] = useState("");
+  const [aiContextArrival, setAiContextArrival] = useState("");
 
   const [selectedAct, setSelectedAct] = useState<string | null>(null);
   const [schedule, setSchedule] = useState<Record<string, string>>({});
@@ -33,6 +39,16 @@ export default function TheSilentClubDayDesigner9Page() {
   const [modalQ2, setModalQ2] = useState("");
   const [modalSubmitted, setModalSubmitted] = useState(false);
 
+  const [aiAutoPlacing, setAiAutoPlacing] = useState(false);
+  const [aiDropFlashKey, setAiDropFlashKey] = useState<string | null>(null);
+  const [aiPlayId, setAiPlayId] = useState(0);
+  const [aiSuggestLoading, setAiSuggestLoading] = useState(false);
+  const [aiQuestionStep, setAiQuestionStep] = useState<1 | 2>(1);
+  const [aiResultSource, setAiResultSource] = useState<"cohere" | "fallback" | null>(null);
+  const [aiResultNote, setAiResultNote] = useState<string>("");
+  const aiQueueRef = useRef<{ key: string; activity: string }[] | null>(null);
+  const dragPreviewRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     const onEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") setSelectedAct(null);
@@ -40,6 +56,45 @@ export default function TheSilentClubDayDesigner9Page() {
     window.addEventListener("keydown", onEsc);
     return () => window.removeEventListener("keydown", onEsc);
   }, []);
+
+  useEffect(() => {
+    if (step !== 3) {
+      aiQueueRef.current = null;
+      setAiAutoPlacing(false);
+      setAiDropFlashKey(null);
+      document.querySelectorAll(".ai-drag-ghost").forEach((el) => el.remove());
+    }
+  }, [step]);
+
+  useEffect(() => {
+    if (step !== 2 || mode !== "ai") setAiQuestionStep(1);
+  }, [step, mode]);
+
+  useEffect(() => {
+    if (step !== 3 || aiPlayId === 0) return;
+    const queue = aiQueueRef.current;
+    if (!queue?.length) return;
+    aiQueueRef.current = null;
+    let cancelled = false;
+    (async () => {
+      setAiAutoPlacing(true);
+      for (const p of queue) {
+        if (cancelled) break;
+        await runAiDragGhostAnimation(p.activity, p.key);
+        if (cancelled) break;
+        setSchedule((prev) => ({ ...prev, [p.key]: p.activity }));
+        setAiDropFlashKey(p.key);
+        window.setTimeout(() => {
+          setAiDropFlashKey((cur) => (cur === p.key ? null : cur));
+        }, 400);
+      }
+      if (!cancelled) setAiAutoPlacing(false);
+    })();
+    return () => {
+      cancelled = true;
+      document.querySelectorAll(".ai-drag-ghost").forEach((el) => el.remove());
+    };
+  }, [step, aiPlayId]);
 
   const isSelectable = (d: Date) => {
     const today = new Date();
@@ -155,10 +210,57 @@ export default function TheSilentClubDayDesigner9Page() {
   const handleDropToSlot = (e: React.DragEvent<HTMLDivElement>, key: string) => {
     e.preventDefault();
     const dragged = e.dataTransfer.getData("text/plain");
+    const sourceKey = e.dataTransfer.getData("application/x-tsc-source-key");
     const activity = dragged || selectedAct;
     if (!activity) return;
-    placeActivity(key, activity);
+    if (sourceKey && sourceKey !== key) {
+      setSchedule((prev) => {
+        const sourceValue = prev[sourceKey];
+        if (!sourceValue) return prev;
+        const next = { ...prev };
+        const targetValue = next[key];
+        next[key] = sourceValue;
+        if (targetValue) next[sourceKey] = targetValue;
+        else delete next[sourceKey];
+        return next;
+      });
+    } else {
+      placeActivity(key, activity);
+    }
     setSelectedAct(null);
+  };
+
+  const clearDragPreview = () => {
+    if (dragPreviewRef.current) {
+      dragPreviewRef.current.remove();
+      dragPreviewRef.current = null;
+    }
+  };
+
+  const setSlotDragPreview = (e: React.DragEvent, activity: string) => {
+    clearDragPreview();
+    const meta = getActMeta(activity);
+    const preview = document.createElement("div");
+    preview.style.position = "fixed";
+    preview.style.top = "-9999px";
+    preview.style.left = "-9999px";
+    preview.style.display = "flex";
+    preview.style.alignItems = "center";
+    preview.style.gap = "6px";
+    preview.style.padding = "6px 10px";
+    preview.style.border = "1px solid #5a3e28";
+    preview.style.background = "#1c1410";
+    preview.style.color = meta.color;
+    preview.style.fontSize = ".72rem";
+    preview.style.lineHeight = "1";
+    preview.style.whiteSpace = "nowrap";
+    preview.style.maxWidth = "220px";
+    preview.style.borderRadius = "6px";
+    preview.style.boxShadow = "0 8px 24px rgba(0,0,0,.45)";
+    preview.innerHTML = `<span class="material-symbols-outlined" style="font-size:13px;line-height:1;color:${meta.color}">${meta.icon}</span><span style="overflow:hidden;text-overflow:ellipsis">${activity}</span>`;
+    document.body.appendChild(preview);
+    dragPreviewRef.current = preview;
+    e.dataTransfer.setDragImage(preview, 14, 14);
   };
 
   // Deterministic schedule builder — no AI needed.
@@ -237,25 +339,6 @@ export default function TheSilentClubDayDesigner9Page() {
     },
   };
 
-  // Hard period constraints — these activities must only land in allowed periods
-  const ACTIVITY_PERIOD: Record<string, string[]> = {
-    "Star Gazing":      ["Night"],
-    "Sunrise":          ["Dawn"],
-    "Bird Watching":    ["Dawn", "Morning"],
-    "Dark Room":        ["Evening", "Night"],
-    "Horizon Gazing":   ["Evening", "Night"],
-    "Long Bath":        ["Evening", "Night"],
-    "Running":          ["Dawn", "Morning"],
-    "Cycling":          ["Dawn", "Morning", "Afternoon"],
-    "Stretching":       ["Dawn", "Morning"],
-    "Gym":              ["Dawn", "Morning", "Afternoon"],
-    "Swimming":         ["Morning", "Afternoon"],
-    "Kayaking":         ["Morning", "Afternoon"],
-    "Boat Rides":       ["Morning", "Afternoon"],
-    "Forest Safari":    ["Dawn", "Morning"],
-    "Photography":      ["Dawn", "Morning", "Afternoon", "Evening"],
-  };
-
   // Slot ordering by preferred peak time (Q3) — reorder free slots so preferred period comes first
   const PEAK_PERIOD_ORDER: Record<string, string[]> = {
     "Early morning":  ["Dawn", "Morning", "Afternoon", "Evening", "Night"],
@@ -264,46 +347,43 @@ export default function TheSilentClubDayDesigner9Page() {
     "Evening":        ["Evening", "Night", "Afternoon", "Morning", "Dawn"],
   };
 
-  const handleS2 = () => {
-    if (mode === "manual") {
-      setStep(3);
-      return;
-    }
-
+  /** Rule-based schedule (used as fallback and as baseline for Cohere). */
+  const computeHeuristicPlacementOrder = (): { key: string; activity: string }[] => {
     const a = aiAnswers;
 
-    // Q1 intent
     const intent = ["Finish something I've started", "Think without interruption", "Rest and recover", "I don't know yet"]
       .find((k) => a[k]) ?? "I don't know yet";
 
-    // Q2 body
     const body = ["Physically active", "Rested and still", "A mix of both"]
       .find((k) => a[k]) ?? "A mix of both";
 
-    // Q6 arrival
-    const arrival = ["Still carrying the noise of the week", "Somewhere in between", "Already quiet, ready to go deep"]
-      .find((k) => a[k]) ?? "Somewhere in between";
+    const arrivalText = aiContextArrival.trim().toLowerCase();
+    const arrival = arrivalText.includes("noise") || arrivalText.includes("overwhelm") || arrivalText.includes("drained")
+      ? "Still carrying the noise of the week"
+      : arrivalText.includes("quiet") || arrivalText.includes("deep") || arrivalText.includes("ready")
+        ? "Already quiet, ready to go deep"
+        : "Somewhere in between";
 
-    // Q5 density
-    const density = a["Fill most slots"] ? 3 : a["Almost empty"] ? 1 : 2;
+    const structureText = aiContextStructure.trim().toLowerCase();
+    const density = structureText.includes("most") || structureText.includes("full") || structureText.includes("structured")
+      ? 3
+      : structureText.includes("empty") || structureText.includes("minimal") || structureText.includes("light")
+        ? 1
+        : 2;
 
-    // Q3 peak time → slot order
     const peakTime = ["Early morning", "Late morning", "Afternoon", "Evening"]
       .find((k) => a[k]) ?? "Late morning";
     const periodOrder = PEAK_PERIOD_ORDER[peakTime];
 
-    // Base activity list from lookup
     let baseActs: string[] = SCHEDULE_LOOKUP[intent]?.[body]?.[arrival]
       ?? ["Reading", "Journalling", "Long Walks", "Bird Watching", "Thinking"];
 
-    // Q4 explicit picks — inject at front, deduplicate
-    const explicit = ["Bird Watching", "Writing", "Swimming", "Star Gazing", "Long Walks", "Gym", "Reading"]
-      .filter((k) => a[k]);
+    const explicitText = aiContextActivities.trim().toLowerCase();
+    const explicit = ALL_ACTIVITY_NAMES.filter((name) => explicitText.includes(name.toLowerCase()));
     if (explicit.length) {
       baseActs = [...explicit, ...baseActs.filter((x) => !explicit.includes(x))];
     }
 
-    // Sort free slots by preferred period order
     const freeSlots = SLOTS.filter((s) => !s.fixed);
     const sortedFree = [...freeSlots].sort((sa, sb) => {
       const ai = periodOrder.indexOf(sa.period);
@@ -311,8 +391,9 @@ export default function TheSilentClubDayDesigner9Page() {
       return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
     });
 
-    const next = { ...schedule };
-    let totalPlaced = Object.keys(next).length;
+    const next: Record<string, string> = {};
+    const placementOrder: { key: string; activity: string }[] = [];
+    let totalPlaced = 0;
     let silencePeriod =
       product?.id === "silence"
         ? Object.keys(next)
@@ -323,7 +404,7 @@ export default function TheSilentClubDayDesigner9Page() {
             .find((p): p is string => Boolean(p)) ?? null
         : null;
 
-    let actCursor = 0; // persists across all days so activities rotate evenly
+    let actCursor = 0;
 
     days.forEach((_, di) => {
       let placed = 0;
@@ -336,8 +417,6 @@ export default function TheSilentClubDayDesigner9Page() {
         }
         const key = `${di}_${slot.id}`;
         if (!next[key]) {
-          // Find the next activity compatible with this slot's period
-          // Allow repeating activities across days (e.g. Star Gazing every night)
           let actToPlace: string | null = null;
           for (let attempt = 0; attempt < baseActs.length; attempt++) {
             const candidate = baseActs[(actCursor + attempt) % baseActs.length];
@@ -350,14 +429,58 @@ export default function TheSilentClubDayDesigner9Page() {
           }
           if (!actToPlace) return;
           next[key] = actToPlace;
+          placementOrder.push({ key, activity: actToPlace });
           placed += 1;
           totalPlaced += 1;
         }
       });
     });
 
-    setSchedule(next);
-    setStep(3);
+    return placementOrder;
+  };
+
+  const handleS2 = async () => {
+    if (mode === "manual") {
+      setStep(3);
+      return;
+    }
+    if (!product) return;
+
+    setAiSuggestLoading(true);
+    setAiResultSource(null);
+    setAiResultNote("");
+    try {
+      const fallback = computeHeuristicPlacementOrder();
+      const slotMeta: SlotMeta[] = fallback.map(({ key }) => {
+        const sid = key.split("_")[1];
+        const slot = SLOTS.find((s) => s.id === sid);
+        return { key, period: slot?.period ?? "", time: slot?.t ?? "" };
+      });
+      const aiResult = await fetchAiScheduleOrFallback(
+        fallback,
+        product,
+        aiAnswers,
+        { q4: aiContextActivities, q5: aiContextStructure, q6: aiContextArrival },
+        slotMeta,
+      );
+      const placementOrder = aiResult.placements;
+      setAiResultSource(aiResult.source);
+      setAiResultNote(aiResult.note || "");
+
+      setSchedule({});
+      setStep(3);
+      setAiDropFlashKey(null);
+
+      if (placementOrder.length === 0) {
+        setAiAutoPlacing(false);
+        return;
+      }
+
+      aiQueueRef.current = placementOrder;
+      setAiPlayId((n) => n + 1);
+    } finally {
+      setAiSuggestLoading(false);
+    }
   };
 
   const prevMonth = () => {
@@ -409,6 +532,23 @@ export default function TheSilentClubDayDesigner9Page() {
     if (mode === "ai") return "How to design: AI";
     return "How to design: Selfdesign";
   }, [mode]);
+
+  const questionGroups = [
+    ["01: What are you coming here to do?", ["Finish something I've started", "Think without interruption", "Rest and recover", "I don't know yet"]],
+    ["02: How do you want your body to feel each day?", ["Physically active", "Rested and still", "A mix of both"]],
+    ["03: When does your thinking feel sharpest?", ["Early morning", "Late morning", "Afternoon", "Evening"]],
+  ] as const;
+  const aiFirstStepComplete = questionGroups.every(([, opts]) => opts.some((opt) => aiAnswers[opt]));
+
+  const selectSingleInGroup = (groupOpts: readonly string[], selected: string) => {
+    setAiAnswers((prev) => {
+      const next = { ...prev };
+      groupOpts.forEach((opt) => {
+        next[opt] = opt === selected;
+      });
+      return next;
+    });
+  };
 
   return (
     <main>
@@ -487,36 +627,125 @@ export default function TheSilentClubDayDesigner9Page() {
           </div>
           {mode === "ai" && (
             <div style={{ border: "1px solid var(--rule)", background: "var(--bg-2)", padding: 20, marginTop: 16 }}>
-              {[
-                ["01: What are you coming here to do?", ["Finish something I've started", "Think without interruption", "Rest and recover", "I don't know yet"]],
-                ["02: How do you want your body to feel each day?", ["Physically active", "Rested and still", "A mix of both"]],
-                ["03: When does your thinking feel sharpest?", ["Early morning", "Late morning", "Afternoon", "Evening"]],
-                ["04: Any activities you already want?", ["Bird Watching", "Writing", "Swimming", "Star Gazing", "Long Walks", "Gym", "Reading"]],
-                ["05: How structured should your days feel?", ["Fill most slots", "A few anchors only", "Almost empty"]],
-                ["06: How are you arriving?", ["Still carrying the noise of the week", "Somewhere in between", "Already quiet, ready to go deep"]],
-              ].map(([q, opts]) => (
-                <div key={q as string} style={{ marginBottom: 16 }}>
-                  <div style={{ fontSize: ".75rem", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 8 }}>{q as string}</div>
-                  <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-                    {(opts as string[]).map((opt) => (
-                      <button key={opt} className={`ai-opt ${aiAnswers[opt] ? "on" : ""}`} onClick={() => setAiAnswers((prev) => ({ ...prev, [opt]: !prev[opt] }))}>{opt}</button>
+              {aiQuestionStep === 1 ? (
+                <>
+                  {questionGroups.map(([q, opts]) => (
+                      <div key={q as string} style={{ marginBottom: 16 }}>
+                        <div style={{ fontSize: ".75rem", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 8 }}>{q as string}</div>
+                        <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                          {opts.map((opt) => (
+                            <button
+                              type="button"
+                              key={opt}
+                              className={`ai-opt ${aiAnswers[opt] ? "on" : ""}`}
+                              onClick={() => selectSingleInGroup(opts, opt)}
+                            >
+                              {opt}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
                     ))}
+                </>
+              ) : (
+                <>
+                  <div style={{ marginBottom: 16 }}>
+                    <button type="button" className="btn-g" onClick={() => setAiQuestionStep(1)}>← Previous 3</button>
                   </div>
-                </div>
-              ))}
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 14 }}>
+                    <div>
+                      <div style={{ fontSize: ".75rem", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 8 }}>
+                        04: Any activities you already want?
+                      </div>
+                      <textarea
+                        value={aiContextActivities}
+                        onChange={(e) => setAiContextActivities(e.target.value)}
+                        placeholder="Example: Writing, Long Walks, Bird Watching"
+                        rows={3}
+                        style={{ width: "100%", minHeight: 112, background: "var(--bg-3)", border: "1px solid var(--rule-2)", color: "var(--gold-pale)", padding: "10px 12px", resize: "vertical", outline: "none", fontFamily: "var(--sans)", fontSize: ".88rem", lineHeight: 1.5 }}
+                      />
+                    </div>
+                    <div>
+                      <div style={{ fontSize: ".75rem", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 8 }}>
+                        05: How structured should your days feel?
+                      </div>
+                      <textarea
+                        value={aiContextStructure}
+                        onChange={(e) => setAiContextStructure(e.target.value)}
+                        placeholder="Example: Keep it light, just a few anchors each day."
+                        rows={3}
+                        style={{ width: "100%", minHeight: 112, background: "var(--bg-3)", border: "1px solid var(--rule-2)", color: "var(--gold-pale)", padding: "10px 12px", resize: "vertical", outline: "none", fontFamily: "var(--sans)", fontSize: ".88rem", lineHeight: 1.5 }}
+                      />
+                    </div>
+                    <div>
+                      <div style={{ fontSize: ".75rem", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 8 }}>
+                        06: How are you arriving?
+                      </div>
+                      <textarea
+                        value={aiContextArrival}
+                        onChange={(e) => setAiContextArrival(e.target.value)}
+                        placeholder="Example: Carrying a lot of noise and decision fatigue."
+                        rows={3}
+                        style={{ width: "100%", minHeight: 112, background: "var(--bg-3)", border: "1px solid var(--rule-2)", color: "var(--gold-pale)", padding: "10px 12px", resize: "vertical", outline: "none", fontFamily: "var(--sans)", fontSize: ".88rem", lineHeight: 1.5 }}
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           )}
 
           <div style={{ display: "flex", gap: 10, marginTop: 14 }}>
             <button className="btn-g" onClick={() => setStep(1)}>← Back</button>
-            <button className="btn" onClick={handleS2}>Shape my Stay →</button>
+            <button
+              className="btn"
+              type="button"
+              disabled={aiSuggestLoading || (mode === "ai" && aiQuestionStep === 1 && !aiFirstStepComplete)}
+              onClick={() => {
+                if (mode === "ai" && aiQuestionStep === 1) {
+                  setAiQuestionStep(2);
+                  return;
+                }
+                void handleS2();
+              }}
+            >
+              {aiSuggestLoading ? "Shaping your stay…" : mode === "ai" && aiQuestionStep === 1 ? "Next →" : "Shape my Stay →"}
+            </button>
           </div>
         </div>
       )}
 
       {step === 3 && (
         <div className="s3">
-          <div className="pal">
+          {aiResultSource && (
+            <div style={{ position: "fixed", top: 72, right: 24, zIndex: 45, fontSize: ".68rem", letterSpacing: ".12em", textTransform: "uppercase", color: aiResultSource === "cohere" ? "#c5a065" : "#b09070" }}>
+              AI Source: {aiResultSource === "cohere" ? "Cohere" : "Fallback"}
+              {aiResultSource === "fallback" && aiResultNote && (
+                <span style={{ display: "block", marginTop: 4, fontSize: ".58rem", letterSpacing: ".08em", textTransform: "none", color: "#7a6048" }}>
+                  {aiResultNote}
+                </span>
+              )}
+            </div>
+          )}
+          {aiAutoPlacing && (
+            <div
+              style={{
+                position: "fixed",
+                bottom: 24,
+                left: "50%",
+                transform: "translateX(-50%)",
+                zIndex: 40,
+                fontSize: ".72rem",
+                letterSpacing: ".14em",
+                textTransform: "uppercase",
+                color: "var(--gold-dim)",
+                pointerEvents: "none",
+              }}
+            >
+              Placing your schedule…
+            </div>
+          )}
+          <div className="pal" style={{ pointerEvents: aiAutoPlacing ? "none" : "auto", opacity: aiAutoPlacing ? 0.7 : 1, transition: "opacity .3s" }}>
             <div className="pal-cats">
               {Object.entries(CATS).map(([cat, catData]) => (
                 <div key={cat} className="pal-cat">
@@ -525,6 +754,8 @@ export default function TheSilentClubDayDesigner9Page() {
                     {catData.items.map((item) => (
                       <button
                         key={item.name}
+                        type="button"
+                        data-ai-pill={item.name}
                         draggable={!dayCycleLimitReached}
                         onDragStart={(e) => {
                           if (dayCycleLimitReached) {
@@ -532,7 +763,9 @@ export default function TheSilentClubDayDesigner9Page() {
                             return;
                           }
                           e.dataTransfer.setData("text/plain", item.name);
+                          setSlotDragPreview(e, item.name);
                         }}
+                        onDragEnd={clearDragPreview}
                         className={`pill ${selectedAct === item.name ? "active" : ""}`}
                         style={{
                           ...(selectedAct === item.name ? { borderColor: catData.color, color: catData.color, background: catData.bg } : {}),
@@ -553,7 +786,7 @@ export default function TheSilentClubDayDesigner9Page() {
             </div>
           </div>
 
-          <div className="tl-wrap">
+          <div className="tl-wrap" style={{ pointerEvents: aiAutoPlacing ? "none" : "auto" }}>
             <div className="tl-scroll">
             <div style={{ minWidth: "max-content", margin: "0 4vw", paddingBottom: 8 }}>
               {(() => {
@@ -688,13 +921,25 @@ export default function TheSilentClubDayDesigner9Page() {
                     return (
                       <div
                         key={slot.id}
-                        className={`arrow-slot ${schedule[key] ? "arrow-filled" : "arrow-empty"}`}
+                        data-ai-slot={key}
+                        className={`arrow-slot ${schedule[key] ? "arrow-filled" : "arrow-empty"} ${aiDropFlashKey === key ? "ai-drop-flash" : ""}`}
+                        draggable={Boolean(schedule[key])}
+                        onDragStart={(e) => {
+                          if (!schedule[key]) return;
+                          e.dataTransfer.setData("text/plain", schedule[key]);
+                          e.dataTransfer.setData("application/x-tsc-source-key", key);
+                          e.dataTransfer.effectAllowed = "move";
+                          setSlotDragPreview(e, schedule[key]);
+                          setSelectedAct(null);
+                        }}
+                        onDragEnd={clearDragPreview}
                         onDragOver={(e) => e.preventDefault()}
                         onDragEnter={(e) => e.currentTarget.classList.add("drag-over")}
                         onDragLeave={(e) => e.currentTarget.classList.remove("drag-over")}
                         onDrop={(e) => {
                           e.currentTarget.classList.remove("drag-over");
                           handleDropToSlot(e, key);
+                          clearDragPreview();
                         }}
                         onClick={() => {
                           if (schedule[key]) {
@@ -710,18 +955,18 @@ export default function TheSilentClubDayDesigner9Page() {
                         }}
                       >
                         {schedule[key] && (
-                          <>
+                          <div style={{ height: "100%", width: "100%", display: "grid", gridTemplateRows: "auto 1fr", padding: "3px 2px" }}>
+                            <span style={{ fontSize: ".76rem", fontWeight: 700, color: "#b09070", lineHeight: 1, textAlign: "left", justifySelf: "start" }}>×</span>
                             {(() => {
                               const meta = getActMeta(schedule[key]);
                               return (
-                                <>
+                                <div style={{ textAlign: "center", alignSelf: "center" }}>
                                   <span className="material-symbols-outlined" style={{ fontSize: "14px", color: meta.color, display: "block", textAlign: "center" }}>{meta.icon}</span>
                                   <span style={{ fontSize: ".65rem", color: meta.color, textAlign: "center", lineHeight: 1.2, display: "block" }}>{schedule[key]}</span>
-                                </>
+                                </div>
                               );
                             })()}
-                            <span style={{ position: "absolute", top: 2, right: 8, fontSize: ".48rem", color: "#b09070" }}>×</span>
-                          </>
+                          </div>
                         )}
                       </div>
                     );
@@ -736,10 +981,28 @@ export default function TheSilentClubDayDesigner9Page() {
             </div>
           </div>
 
-          <div className="cta-bar">
+          <div
+            className="cta-bar"
+            style={{
+              opacity: aiAutoPlacing ? 0.55 : 1,
+              pointerEvents: aiAutoPlacing ? "none" : "auto",
+              transition: "opacity .25s",
+            }}
+          >
             <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: "1rem", color: "var(--text-3)" }}>If this made sense, <em style={{ color: "var(--gold-pale)", fontStyle: "normal" }}>you already know what to do.</em></div>
             <div style={{ display: "flex", gap: 8 }}>
-              <button className="btn-g" onClick={() => setStep(2)}>← Redesign</button>
+              <button
+                className="btn-g"
+                onClick={() => {
+                  aiQueueRef.current = null;
+                  setAiAutoPlacing(false);
+                  setAiDropFlashKey(null);
+                  document.querySelectorAll(".ai-drag-ghost").forEach((el) => el.remove());
+                  setStep(2);
+                }}
+              >
+                ← Redesign
+              </button>
               <button
                 className="btn-g"
                 onClick={downloadPlan}

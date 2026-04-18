@@ -1,8 +1,4 @@
-type Props = {
-  onOpenModal: () => void;
-};
-
-export function ClosingCtaSection({ onOpenModal }: Props) {
+export function ClosingCtaSection() {
   return (
     <section className="closing-cta">
       <div className="closing-quote">

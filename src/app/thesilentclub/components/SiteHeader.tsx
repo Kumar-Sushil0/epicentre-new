@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { InviteModal } from "./InviteModal";
 
 type HeaderPage = "home" | "about" | "estate" | "faq" | "journal" | "events";
 
@@ -11,15 +12,38 @@ type Props = {
 
 const links: { id: HeaderPage; label: string; href: string }[] = [
   { id: "home", label: "Home", href: "/thesilentclub/home" },
-  { id: "about", label: "About", href: "/thesilentclub/about" },
   { id: "estate", label: "The Estate", href: "/thesilentclub/estate" },
   { id: "events", label: "Events", href: "/thesilentclub/events" },
-  { id: "faq", label: "FAQ", href: "/thesilentclub/faq" },
   { id: "journal", label: "Journal", href: "/thesilentclub/blogs" },
+  { id: "about", label: "About", href: "/thesilentclub/about" },
+  { id: "faq", label: "FAQ", href: "/thesilentclub/faq" },
 ];
 
 export function SiteHeader({ active = "home" }: Props) {
   const [open, setOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  // Listen for #invite hash to open modal from any page
+  if (typeof window !== "undefined") {
+    if (window.location.hash === "#invite" && !modalOpen) {
+      setTimeout(() => {
+        setModalOpen(true);
+        window.history.replaceState(null, "", window.location.pathname);
+      }, 0);
+    }
+  }
+
+  const openInvite = () => setModalOpen(true);
+
+  // Listen for #invite hash to open modal from any page
+  if (typeof window !== "undefined") {
+    if (window.location.hash === "#invite" && !modalOpen) {
+      setTimeout(() => {
+        setModalOpen(true);
+        window.history.replaceState(null, "", window.location.pathname);
+      }, 0);
+    }
+  }
 
   return (
     <>
@@ -56,12 +80,12 @@ export function SiteHeader({ active = "home" }: Props) {
           </ul>
 
           {/* Desktop CTA */}
-          <a
-            href="/thesilentclub/daydesigner"
+          <button
+            onClick={() => setModalOpen(true)}
             className="hidden h-9 items-center bg-[#c5a065] px-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0f0b08] transition-colors hover:bg-[#d4b07a] md:inline-flex"
           >
             Request Invite →
-          </a>
+          </button>
 
           {/* Mobile hamburger */}
           <button
@@ -124,14 +148,16 @@ export function SiteHeader({ active = "home" }: Props) {
 
         {/* CTA */}
         <div className="p-5">
-          <a
-            href="/thesilentclub/daydesigner"
+          <button
+            onClick={() => { setOpen(false); setModalOpen(true); }}
             className="flex w-full items-center justify-center bg-[#c5a065] py-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0f0b08]"
           >
             Request Invite →
-          </a>
+          </button>
         </div>
       </aside>
+
+      <InviteModal open={modalOpen} onClose={() => setModalOpen(false)} />
     </>
   );
 }

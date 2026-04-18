@@ -81,12 +81,12 @@ export function InviteModal(props: Props) {
 
   const stepInfo = {
     1: { eyebrow: "Before we speak", title: "Two questions" },
-    2: { eyebrow: "Pick a time", title: "15-minute conversation" },
+    2: { eyebrow: "Pick a time", title: "15-minute alignment conversation" },
     3: { eyebrow: "Your details", title: "Almost done" },
   } as const;
 
   return (
-    <div className="modal" onClick={() => setShowModal(false)}>
+    <div className="tsc-invite-modal-overlay" onClick={() => setShowModal(false)}>
       <div
         style={{
           background: "#160f0a",

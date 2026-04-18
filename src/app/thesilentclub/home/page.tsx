@@ -4,13 +4,16 @@ import { useEffect, useMemo, useState } from "react";
 import { DepthSection } from "./components/DepthSection";
 import { FaqSection } from "./components/FaqSection";
 import { SiteFooter } from "../components/SiteFooter";
+import { InviteModal } from "../components/InviteModal";
 import { HeroSection } from "./components/HeroSection";
 import { ProvidesSection } from "./components/ProvidesSection";
 import { TopNav } from "./components/TopNav";
 import { WhoBelongsSection } from "./components/WhoBelongsSection";
-import { depthCards, designedCards, howRules, providesSlides, type DepthId, whoMembers } from "./content";
+import { depthCards, designedCards, providesSlides, type DepthId, walkInRules, whoMembers, whoThisIsFor } from "./content";
 
 export default function TheSilentClubHomepage20Page() {
+  const [openModal, setOpenModal] = useState(false);
+  const [openDrivesModal, setOpenDrivesModal] = useState(false);
   const [selectedDepth, setSelectedDepth] = useState<DepthId | null>(null);
   const [depthVariant, setDepthVariant] = useState<{
     residency: "dorm" | "room";
@@ -38,6 +41,13 @@ export default function TheSilentClubHomepage20Page() {
       creation: "Full Cycle",
     };
     return `You've selected : ${map[selectedDepth]}`;
+  }, [selectedDepth]);
+
+  const inviteCycleLabel = useMemo(() => {
+    if (!selectedDepth) return "The Silent Club · Home";
+    const card = depthCards.find((c) => c.id === selectedDepth);
+    if (!card) return "The Silent Club · Home";
+    return `${card.name} · ${card.cycle}`;
   }, [selectedDepth]);
 
   useEffect(() => {
@@ -90,10 +100,27 @@ export default function TheSilentClubHomepage20Page() {
     return { price: selected.price ?? "", note: selected.note ?? depth.note };
   };
 
+  const driversByRoute = {
+    puneToBhigwan: [
+      { num: "01", name: "Ramesh Pawar", phone: "+91 98220 11001" },
+      { num: "02", name: "Suresh Shinde", phone: "+91 98220 11002" },
+      { num: "03", name: "Amol Jadhav", phone: "+91 98220 11003" },
+      { num: "04", name: "Vikram More", phone: "+91 98220 11004" },
+      { num: "05", name: "Ganesh Bhosale", phone: "+91 98220 11005" },
+    ],
+    bhigwanToPune: [
+      { num: "01", name: "Prakash Shitole", phone: "+91 98220 22001" },
+      { num: "02", name: "Nitin Salunke", phone: "+91 98220 22002" },
+      { num: "03", name: "Rohit Kale", phone: "+91 98220 22003" },
+      { num: "04", name: "Santosh More", phone: "+91 98220 22004" },
+      { num: "05", name: "Dhanraj Jadhav", phone: "+91 98220 22005" },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-[#0f0b08] text-[#e8d5b0]">
       <TopNav />
-      <HeroSection />
+      <HeroSection onOpenModal={() => setOpenModal(true)} />
 
       <section className="flex flex-wrap items-center justify-between gap-4 border-b border-[#2a1f17] bg-[#160f0a] px-[56px] py-4">
         <p className="text-xs font-medium uppercase tracking-[0.14em] text-[#b09070]">
@@ -179,6 +206,53 @@ export default function TheSilentClubHomepage20Page() {
         </div>
       </section>
 
+      <section className="grid gap-10 border-y border-[#2a1f17] px-[56px] py-20 md:grid-cols-[280px,1fr]">
+        <div>
+          <div className="mb-4 h-px w-10 bg-[#8a6e42]" />
+          <p className="mb-3 text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">How it works here</p>
+          <h2 className="mb-4 font-serif text-4xl">What you agree to when you walk in</h2>
+        </div>
+        <div>
+          <div className="grid gap-8 md:grid-cols-2 md:gap-10">
+            <div>
+              <h3 className="mb-4 font-serif text-2xl text-[#e8d5b0]">Who this is for:</h3>
+              {whoThisIsFor.map((rule, index) => (
+                <div key={rule} className="border-b border-[#2a1f17] py-4">
+                  <p className="text-sm leading-7 text-[#b09070]">
+                    <span className="mr-2 font-serif text-sm font-bold text-[#c5a065]">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    - {rule}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div>
+              <h3 className="mb-4 font-serif text-2xl text-[#e8d5b0]">What you agree to when you walk in:</h3>
+              {walkInRules.map((rule, index) => (
+                <div key={rule} className="border-b border-[#2a1f17] py-4">
+                  <p className="text-sm leading-7 text-[#b09070]">
+                    <span className="mr-2 font-serif text-sm font-bold text-[#c5a065]">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    - {rule}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <p className="mt-2 flex items-center justify-center gap-2 text-center font-serif italic text-[#7a6048] md:col-span-2">
+              <span className="text-[#c5a065]">★</span>
+              <span>If these feel natural to you, you probably belong here.</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <ProvidesSection
+        provideSlideIndex={provideSlideIndex}
+        setProvideSlideIndex={setProvideSlideIndex}
+      />
+
       <DepthSection
         selectedDepth={selectedDepth}
         setSelectedDepth={setSelectedDepth}
@@ -186,35 +260,7 @@ export default function TheSilentClubHomepage20Page() {
         setDepthVariant={setDepthVariant}
         depthLabel={depthLabel}
         getDepthPrice={getDepthPrice}
-      />
-
-      <section className="grid gap-10 border-y border-[#2a1f17] px-[56px] py-20 md:grid-cols-[1fr,1.6fr]">
-        <div>
-          <div className="mb-4 h-px w-10 bg-[#8a6e42]" />
-          <p className="mb-3 text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">How it works here</p>
-          <h2 className="mb-4 font-serif text-4xl">What you agree to when you walk in</h2>
-        </div>
-        <div>
-          {howRules.map((rule, index) => (
-            <div key={rule} className="border-b border-[#2a1f17] py-5">
-              <p className="text-sm leading-7 text-[#b09070]">
-                <span className="mr-2 font-serif text-sm font-bold text-[#c5a065]">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                - {rule}
-              </p>
-            </div>
-          ))}
-          <p className="mt-6 flex items-center gap-2 font-serif italic text-[#7a6048]">
-            <span className="text-[#c5a065]">★</span>
-            <span>If these feel natural to you, you probably belong here.</span>
-          </p>
-        </div>
-      </section>
-
-      <ProvidesSection
-        provideSlideIndex={provideSlideIndex}
-        setProvideSlideIndex={setProvideSlideIndex}
+        onOpenModal={() => setOpenModal(true)}
       />
 
       <section className="grid border-y border-[#2a1f17] bg-[#160f0a] md:grid-cols-2">
@@ -235,7 +281,7 @@ export default function TheSilentClubHomepage20Page() {
           <div className="space-y-3 pt-6">
             {[
               ["From Pune", "2.5 hours via Pune–Solapur Highway"],
-              ["From Mumbai", "5.5 hours via Mumbai–Pune Expressway"],
+              ["From Mumbai", "5.5 hours via Mumbai–Pune Expressway, then Pune–Solapur Highway"],
               ["Getting here", "Taxi, bus, or train. Pickup arrangements available on request."],
             ].map(([label, value], index, arr) => (
               <div
@@ -244,10 +290,17 @@ export default function TheSilentClubHomepage20Page() {
                   index === arr.length - 1 ? "" : "border-b border-[#2a1f17]"
                 }`}
               >
-                <p className="text-xs font-medium uppercase tracking-[0.16em] text-[#b09070]">{label}</p>
+                <p className="text-xs font-medium uppercase tracking-[0.16em] text-[#e8d5b0]">{label}</p>
                 <p className="text-sm text-[#b09070]">{value}</p>
               </div>
             ))}
+            <button
+              type="button"
+              onClick={() => setOpenDrivesModal(true)}
+              className="mt-3 border border-[#3a2a1f] bg-[#0f0b08] px-5 py-2 text-[10px] font-medium uppercase tracking-[0.16em] text-[#c5a065] transition-colors hover:border-[#8a6e42] hover:text-[#e8d5b0]"
+            >
+              View 5 Drivers →
+            </button>
           </div>
         </div>
         <div className="border-l border-[#2a1f17]">
@@ -277,12 +330,67 @@ export default function TheSilentClubHomepage20Page() {
         <h2 className="mx-auto mb-8 max-w-4xl font-serif text-5xl leading-tight md:text-7xl">
           The rarest luxury in modern life is <em className="italic text-[#c5a065]">uninterrupted time.</em>
         </h2>
-        <a href="/thesilentclub/daydesigner" className="bg-[#c5a065] px-7 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0f0b08]">
+        <button onClick={() => setOpenModal(true)} className="bg-[#c5a065] px-7 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0f0b08]">
           Request Invite →
-        </a>
+        </button>
       </section>
 
       <SiteFooter />
+
+      <InviteModal open={openModal} onClose={() => setOpenModal(false)} cycleLabel={inviteCycleLabel} />
+      {openDrivesModal && (
+        <div
+          className="fixed inset-0 z-[9200] flex items-center justify-center bg-[#0f0b08]/90 p-6 backdrop-blur-sm"
+          onClick={(e) => {
+            if (e.currentTarget === e.target) setOpenDrivesModal(false);
+          }}
+        >
+          <div className="w-full max-w-[980px] border border-[#3a2a1f] bg-[#160f0a] p-6">
+            <div className="mb-5 flex items-center justify-between">
+              <h3 className="font-serif text-3xl text-[#e8d5b0]">Associated Drivers</h3>
+              <button
+                type="button"
+                onClick={() => setOpenDrivesModal(false)}
+                className="text-2xl text-[#8a6e42] transition-colors hover:text-[#c5a065]"
+              >
+                ×
+              </button>
+            </div>
+            <div className="grid gap-5 md:grid-cols-2">
+              {[
+                { title: "Pune to Bhigwan", rows: driversByRoute.puneToBhigwan },
+                { title: "Bhigwan to Pune", rows: driversByRoute.bhigwanToPune },
+              ].map((group) => (
+                <div key={group.title} className="border border-[#2a1f17] bg-[#0f0b08]">
+                  <div className="border-b border-[#2a1f17] bg-[#1c1410] px-4 py-3 text-[11px] uppercase tracking-[0.16em] text-[#e8d5b0]">
+                    {group.title}
+                  </div>
+                  <div className="overflow-x-auto">
+                    <table className="w-full table-fixed border-collapse">
+                      <thead>
+                        <tr>
+                          <th className="w-[58px] border-b border-r border-[#2a1f17] px-3 py-2 text-left text-[10px] font-normal uppercase tracking-[0.12em] text-[#8a6e42]">No</th>
+                          <th className="w-[220px] border-b border-r border-[#2a1f17] px-3 py-2 text-left text-[10px] font-normal uppercase tracking-[0.12em] text-[#8a6e42]">Name</th>
+                          <th className="w-[150px] border-b border-[#2a1f17] px-3 py-2 text-left text-[10px] font-normal uppercase tracking-[0.12em] text-[#8a6e42]">Number</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {group.rows.map((row) => (
+                          <tr key={`${group.title}-${row.num}`}>
+                            <td className="whitespace-nowrap border-r border-b border-[#2a1f17] px-3 py-2.5 text-xs text-[#c5a065]">{row.num}</td>
+                            <td className="whitespace-nowrap border-r border-b border-[#2a1f17] px-3 py-2.5 text-sm text-[#e8d5b0]">{row.name}</td>
+                            <td className="whitespace-nowrap border-b border-[#2a1f17] px-3 py-2.5 text-xs text-[#b09070]">{row.phone}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
