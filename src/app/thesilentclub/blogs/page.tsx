@@ -149,7 +149,7 @@ export default function TheSilentClubBlogsPage() {
         .hero{padding-top:60px;border-bottom:1px solid var(--rule)}
         .hero-inner{padding:clamp(56px,8vw,96px) var(--g) clamp(40px,5vw,56px);display:flex;flex-direction:column;gap:24px;border-bottom:1px solid var(--rule)}
         .hero-label{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px}
-        .hero-heading{font-family:var(--serif);font-weight:300;font-size:clamp(2.2rem,5vw,5rem);line-height:.95;letter-spacing:-.02em;color:var(--gold-pale)}
+        .hero-heading{font-family:var(--serif);font-weight:700;font-size:clamp(2.2rem,5vw,5rem);line-height:.95;letter-spacing:-.02em;color:var(--gold-pale)}
         .hero-heading em{font-style:italic;color:var(--gold)}
         .hero-desc{font-size:.9rem;line-height:1.85;color:var(--text-2);margin-bottom:24px}
         .hero-desc em{font-family:var(--serif);font-style:italic;color:var(--gold-pale)}
@@ -178,8 +178,10 @@ export default function TheSilentClubBlogsPage() {
         .post-card-img-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:.85rem;font-style:italic;color:var(--rule-2)}
         .post-card-body{padding:22px 22px 26px;flex:1;display:flex;flex-direction:column}
         .post-card-tag{font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:8px}
-        .post-card-title{font-family:var(--serif);font-size:1.1rem;font-weight:300;color:var(--gold-pale);line-height:1.2;margin-bottom:8px}
-        .post-card-sub{font-size:.76rem;color:var(--text-3);line-height:1.6;flex:1;margin-bottom:18px;font-family:var(--serif);font-style:italic}
+        .post-card-title{font-family:var(--serif);font-size:1.22rem;font-weight:700;color:var(--gold-pale);line-height:1.18;letter-spacing:-.01em;margin-bottom:10px;transition:color .25s ease,transform .25s ease}
+        .post-card-sub{font-size:.8rem;font-weight:700;color:#bca58a;line-height:1.7;flex:1;margin-bottom:18px;font-family:var(--serif);font-style:normal;transition:color .25s ease}
+        .post-card:hover .post-card-title{color:#f1e2c6;transform:translateX(1px)}
+        .post-card:hover .post-card-sub{color:#d2bea1}
         .post-card-meta{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--rule)}
         .post-card-date{font-size:.6rem;letter-spacing:.08em;color:var(--text-3)}
         .post-card-read{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3)}

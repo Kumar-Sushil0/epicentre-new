@@ -24,7 +24,7 @@ export default function TheSilentClubHomepage20Page() {
     solitude: "dorm",
     creation: "weekday",
   });
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [provideSlideIndex, setProvideSlideIndex] = useState({
     spaces: 0,
     food: 0,
@@ -210,7 +210,7 @@ export default function TheSilentClubHomepage20Page() {
         <div>
           <div className="mb-4 h-px w-10 bg-[#8a6e42]" />
           <p className="mb-3 text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">How it works here</p>
-          <h2 className="mb-4 font-serif text-4xl">What you agree to when you walk in</h2>
+          
         </div>
         <div>
           <div className="grid gap-8 md:grid-cols-2 md:gap-10">
@@ -297,14 +297,15 @@ export default function TheSilentClubHomepage20Page() {
             <button
               type="button"
               onClick={() => setOpenDrivesModal(true)}
-              className="mt-3 border border-[#3a2a1f] bg-[#0f0b08] px-5 py-2 text-[10px] font-medium uppercase tracking-[0.16em] text-[#c5a065] transition-colors hover:border-[#8a6e42] hover:text-[#e8d5b0]"
+              className="mt-3 border border-[#3a2a1f] bg-[#0f0b08] px-5 py-2 text-[10px] font-medium tracking-[0.16em] text-[#c5a065] transition-colors hover:border-[#8a6e42] hover:text-[#e8d5b0]"
             >
-              View 5 Drivers →
+              Book your Drive with Associated Drivers Or you can book an ola or uber from Pune
             </button>
+            
           </div>
         </div>
         <div className="border-l border-[#2a1f17]">
-          <div className="border-b border-[#2a1f17] px-[56px] py-5 text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">
+          <div className="border-b border-[#2a1f17] pl-4 pr-[56px] py-5 text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">
             The Silent Club · Overlooking Ujni Lake · Bhigwan, Maharashtra
           </div>
           <iframe
@@ -313,12 +314,12 @@ export default function TheSilentClubHomepage20Page() {
             loading="lazy"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3788.8023952143494!2d74.78934330608215!3d18.264878020717468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc379a78540dae5%3A0x1887106e21d5085d!2sThe%20Silent%20Club!5e0!3m2!1sen!2sin!4v1772105560153!5m2!1sen!2sin"
           />
-          <div className="border-t border-[#2a1f17] px-[56px] py-4">
-            <p className="mb-1 text-xs font-medium uppercase tracking-[0.16em] text-[#b09070]">
+          <div className="border-t border-[#2a1f17] pl-4 pr-[56px] py-4">
+            <p className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-[#b09070]">
               Postal Address
             </p>
             <p className="text-sm text-[#b09070]">
-              The Silent Club, Kumbhar Goan, Bird Sanctuary, Bhigwan, Maharashtra 413104
+              The Silent Club, Kumbhar Goan, Bird Sanctuary, Bhigwan, Maharashtra 413104 | Tel: +91 98903 22494
             </p>
           </div>
         </div>

@@ -105,7 +105,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <a href="#invite" className="relative bg-[#c5a065] text-[#0f0b08] text-[0.68rem] font-bold uppercase tracking-[0.18em] px-9 py-3.5 hover:bg-[#d4b07a] transition-colors">
           Request Invite →
         </a>
-        <p className="relative mt-4 font-serif italic text-[0.9rem] text-[#7a6048]">Two questions. A short conversation. Your first invite.</p>
+        <p className="relative mt-4 font-serif italic text-[1.02rem] text-[#7a6048]">Two questions. A short conversation. Your first invite.</p>
       </section>
 
       <SiteFooter />

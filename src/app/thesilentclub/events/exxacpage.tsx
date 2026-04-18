@@ -164,8 +164,8 @@ export default function ExxacPage() {
   const [invEmail, setInvEmail] = useState("");
   const [invPhone, setInvPhone] = useState("");
 
-  const visibleMonths = useMemo(() => MONTHS.slice(calOffset, calOffset + 4), [calOffset]);
-  const calRange = `${visibleMonths[0]?.name ?? ""} - ${visibleMonths[3]?.name ?? ""} ${visibleMonths[3]?.year ?? ""}`;
+  const visibleMonths = useMemo(() => MONTHS.slice(calOffset, calOffset + 3), [calOffset]);
+  const calRange = `${visibleMonths[0]?.name ?? ""} – ${visibleMonths[visibleMonths.length - 1]?.name ?? ""} ${visibleMonths[visibleMonths.length - 1]?.year ?? ""}`;
 
   const openInviteModal = () => {
     const today = new Date();
@@ -290,7 +290,7 @@ export default function ExxacPage() {
             <button
               className="cal-nav-btn"
               type="button"
-              onClick={() => setCalOffset((v) => Math.min(MONTHS.length - 4, v + 1))}
+              onClick={() => setCalOffset((v) => Math.min(MONTHS.length - 3, v + 1))}
             >
               &#8250;
             </button>
@@ -384,6 +384,7 @@ export default function ExxacPage() {
           <button
             className="creator-cta-btn"
             type="button"
+            style={{ fontWeight: 700 }}
             onClick={() => {
               setCollabSubmitted(false);
               setShowCollabModal(true);
@@ -734,11 +735,11 @@ export default function ExxacPage() {
           overflow: hidden;
         }
         .cal-header {
-          padding: 0 6vw;
-          min-height: 96px;
+          padding: clamp(16px, 2.5vw, 22px) 6vw;
           display: flex;
-          align-items: center;
+          align-items: flex-start;
           justify-content: space-between;
+          gap: 16px;
           border-bottom: 1px solid #2a1f17;
           background: #160f0a;
         }
@@ -751,7 +752,7 @@ export default function ExxacPage() {
         }
         .cal-title {
           font-family: "Cormorant", Georgia, serif;
-          font-weight: 300;
+          font-weight: 700;
           font-size: clamp(1.6rem, 3vw, 2.8rem);
           color: #e8d5b0;
           line-height: 1;
@@ -760,6 +761,8 @@ export default function ExxacPage() {
           display: flex;
           align-items: center;
           gap: 8px;
+          flex-shrink: 0;
+          padding-top: 2px;
         }
         .cal-nav-btn {
           width: 36px;
@@ -771,16 +774,18 @@ export default function ExxacPage() {
           font-size: 1.2rem;
         }
         .cal-range {
-          font-size: 0.62rem;
-          letter-spacing: 0.12em;
+          font-size: 0.66rem;
+          font-weight: 700;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: #7a6048;
-          padding: 0 12px;
+          color: #c5a065;
+          padding: 0 14px;
+          white-space: nowrap;
         }
         .calendar {
           flex: 1;
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(3, 1fr);
           gap: 1px;
           background: #2a1f17;
           border-bottom: 1px solid #2a1f17;
@@ -795,7 +800,7 @@ export default function ExxacPage() {
           border-bottom: 1px solid #2a1f17;
           background: #160f0a;
           position: sticky;
-          top: 60px;
+          top: 56px;
           z-index: 10;
         }
         .month-name {

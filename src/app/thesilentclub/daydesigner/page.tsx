@@ -8,7 +8,21 @@ import { fetchAiScheduleOrFallback, type SlotMeta } from "./suggestScheduleClien
 import { DayDesignerStyles } from "./components/DayDesignerStyles";
 import { DesignerHeader } from "./components/DesignerHeader";
 import { InviteModal } from "./components/InviteModal";
-import { runAiDragGhostAnimation } from "./aiDragAnimation";
+import { runAiDragGhostAnimation, runGhostBetweenSlots } from "./aiDragAnimation";
+
+const TABLE_TUTORIAL_STORAGE_KEY = "epicentre_daydesigner_table_tutorial_v1";
+
+/** Activities used for the automated table tutorial (restored when the guide closes). */
+const TABLE_TUTORIAL_ACTIVITIES = ["Writing", "Reading", "Journalling", "Thinking"] as const;
+
+const TABLE_TUTORIAL_COPY = {
+  run: {
+    title: "Table guide",
+    body: "Each activity drops in once, moves once, then a cursor clicks each × to clear—no need to tap anything.",
+  },
+} as const;
+
+const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
 
 export default function TheSilentClubDayDesigner9Page() {
   const router = useRouter();
@@ -43,11 +57,38 @@ export default function TheSilentClubDayDesigner9Page() {
   const [aiDropFlashKey, setAiDropFlashKey] = useState<string | null>(null);
   const [aiPlayId, setAiPlayId] = useState(0);
   const [aiSuggestLoading, setAiSuggestLoading] = useState(false);
-  const [aiQuestionStep, setAiQuestionStep] = useState<1 | 2>(1);
+  const [aiQuestionIndex, setAiQuestionIndex] = useState(0);
   const [aiResultSource, setAiResultSource] = useState<"cohere" | "fallback" | null>(null);
   const [aiResultNote, setAiResultNote] = useState<string>("");
+  /** 0 = add demo, 1 = move demo, 2 = × highlight — advanced automatically in one sequence. */
+  const [tableTutorialStep, setTableTutorialStep] = useState<number | null>(null);
+  /** Fake mouse for the remove-phase demo (fixed px, viewport coords). */
+  const [tutorialFakeCursor, setTutorialFakeCursor] = useState<{ x: number; y: number; clicking: boolean } | null>(null);
+  /** Slot whose × is pulsing while the fake cursor “clicks” it. */
+  const [tutorialPingRemoveKey, setTutorialPingRemoveKey] = useState<string | null>(null);
+  /** Bumped whenever the tutorial opens so the runner effect does not cancel mid-sequence. */
+  const [tutorialRunKey, setTutorialRunKey] = useState(0);
   const aiQueueRef = useRef<{ key: string; activity: string }[] | null>(null);
   const dragPreviewRef = useRef<HTMLDivElement | null>(null);
+  const schedulePreTutorialRef = useRef<Record<string, string> | null>(null);
+  const tutorialAutoOpenedRef = useRef(false);
+  const tableTutorialStepForRunnerRef = useRef(tableTutorialStep);
+  tableTutorialStepForRunnerRef.current = tableTutorialStep;
+
+  const dismissTableTutorial = () => {
+    try {
+      window.localStorage.setItem(TABLE_TUTORIAL_STORAGE_KEY, "1");
+    } catch {
+      /* ignore */
+    }
+    if (schedulePreTutorialRef.current) {
+      setSchedule(schedulePreTutorialRef.current);
+      schedulePreTutorialRef.current = null;
+    }
+    setTutorialFakeCursor(null);
+    setTutorialPingRemoveKey(null);
+    setTableTutorialStep(null);
+  };
 
   useEffect(() => {
     const onEsc = (e: KeyboardEvent) => {
@@ -67,8 +108,34 @@ export default function TheSilentClubDayDesigner9Page() {
   }, [step]);
 
   useEffect(() => {
-    if (step !== 2 || mode !== "ai") setAiQuestionStep(1);
+    if (step !== 2 || mode !== "ai") setAiQuestionIndex(0);
   }, [step, mode]);
+
+  useEffect(() => {
+    if (step !== 3) {
+      tutorialAutoOpenedRef.current = false;
+      return;
+    }
+    if (aiAutoPlacing) return;
+    try {
+      if (window.localStorage.getItem(TABLE_TUTORIAL_STORAGE_KEY)) return;
+    } catch {
+      return;
+    }
+    if (tutorialAutoOpenedRef.current) return;
+    tutorialAutoOpenedRef.current = true;
+    schedulePreTutorialRef.current = { ...schedule };
+    setTutorialRunKey((k) => k + 1);
+    setTableTutorialStep(0);
+  }, [step, aiAutoPlacing, schedule]);
+
+  const openTableTutorial = () => {
+    schedulePreTutorialRef.current = { ...schedule };
+    setTutorialFakeCursor(null);
+    setTutorialPingRemoveKey(null);
+    setTutorialRunKey((k) => k + 1);
+    setTableTutorialStep(0);
+  };
 
   useEffect(() => {
     if (step !== 3 || aiPlayId === 0) return;
@@ -120,7 +187,8 @@ export default function TheSilentClubDayDesigner9Page() {
   }, [calM, calY]);
 
   const canStep1Continue = Boolean(product && arrivalDate);
-  const dayCycleLimitReached = product?.id === "silence" && Object.keys(schedule).length >= 2;
+  const dayCycleLimitReached =
+    product?.id === "silence" && Object.keys(schedule).length >= 2 && tableTutorialStep === null;
   const dayCycleSelectedPeriod = useMemo(() => {
     if (product?.id !== "silence") return null;
     for (const key of Object.keys(schedule)) {
@@ -176,6 +244,137 @@ export default function TheSilentClubDayDesigner9Page() {
     return false;
   };
 
+  const tableTutorialActive = tableTutorialStep !== null;
+  const scheduleRefForTutorial = useRef(schedule);
+  scheduleRefForTutorial.current = schedule;
+
+  /** Empty interactive slot keys in grid order (for tutorial placement targets). */
+  const getTutorialEmptySlotKeys = (sched: Record<string, string>): string[] => {
+    if (!product) return [];
+    const keys: string[] = [];
+    for (let di = 0; di < days.length; di++) {
+      for (const slot of SLOTS) {
+        const key = `${di}_${slot.id}`;
+        const showCheckBlocks = product.id !== "silence";
+        const isCI = showCheckBlocks && di === 0 && slot.id === "s7";
+        const isCO = showCheckBlocks && di === days.length - 1 && slot.id === "s4" && days.length > 1;
+        if (isCI || isCO || slot.fixed) continue;
+        const locked = slotLocked(di, slot.id);
+        const periodLocked =
+          product.id === "silence" &&
+          Boolean(dayCycleSelectedPeriod) &&
+          !slot.fixed &&
+          slot.period !== dayCycleSelectedPeriod;
+        if (locked || periodLocked) continue;
+        if (!sched[key]) keys.push(key);
+      }
+    }
+    return keys;
+  };
+
+  /** Silence day-cycle allows at most 2 activities in-app; tutorial uses 2 chips + 4 slots. Others use 4 + 8 slots. */
+  const tutorialChipCount = product?.id === "silence" ? 2 : 4;
+
+  /** One continuous run: N auto “drops”, loop ghosts, N auto moves, loop move ghosts, highlight N ×, then dismiss. */
+  useEffect(() => {
+    if (step !== 3 || aiAutoPlacing) return;
+    if (tableTutorialStepForRunnerRef.current !== 0) return;
+    let cancelled = false;
+    const n = tutorialChipCount;
+    const acts = TABLE_TUTORIAL_ACTIVITIES.slice(0, n) as unknown as readonly string[];
+
+    const run = async () => {
+      const sched = scheduleRefForTutorial.current;
+      const empties = getTutorialEmptySlotKeys(sched);
+      if (empties.length < 2 * n) {
+        schedulePreTutorialRef.current = null;
+        setTableTutorialStep(null);
+        return;
+      }
+      const sources = empties.slice(0, n);
+      const targets = empties.slice(n, 2 * n);
+
+      for (let i = 0; i < n; i++) {
+        await runAiDragGhostAnimation(acts[i], sources[i]);
+        if (cancelled) return;
+        const a = acts[i];
+        const sk = sources[i];
+        setSchedule((prev) => (prev[sk] === a ? prev : { ...prev, [sk]: a }));
+        await sleep(280);
+      }
+
+      if (cancelled) return;
+      setTableTutorialStep(1);
+
+      for (let i = 0; i < n; i++) {
+        await runGhostBetweenSlots(sources[i], targets[i], acts[i]);
+        if (cancelled) return;
+        const a = acts[i];
+        const from = sources[i];
+        const to = targets[i];
+        setSchedule((prev) => {
+          const next = { ...prev };
+          if (next[from] !== a) return prev;
+          delete next[from];
+          next[to] = a;
+          return next;
+        });
+        await sleep(300);
+      }
+
+      if (cancelled) return;
+      setTableTutorialStep(2);
+      await sleep(350);
+
+      const startX = typeof window !== "undefined" ? window.innerWidth - 56 : 200;
+      const startY = typeof window !== "undefined" ? window.innerHeight * 0.42 : 200;
+      setTutorialFakeCursor({ x: startX, y: startY, clicking: false });
+      await sleep(120);
+
+      for (let i = 0; i < n; i++) {
+        if (cancelled) break;
+        const slotKey = targets[i];
+        const el = document.querySelector<HTMLElement>(`[data-ai-slot="${slotKey}"]`);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+          await sleep(280);
+        }
+        const el2 = document.querySelector<HTMLElement>(`[data-ai-slot="${slotKey}"]`);
+        if (!el2) continue;
+        const r = el2.getBoundingClientRect();
+        const tx = r.left + 6;
+        const ty = r.top + 5;
+        setTutorialFakeCursor({ x: tx, y: ty, clicking: false });
+        await sleep(460);
+        if (cancelled) break;
+        setTutorialPingRemoveKey(slotKey);
+        setTutorialFakeCursor({ x: tx, y: ty, clicking: true });
+        await sleep(130);
+        setSchedule((prev) => {
+          if (!prev[slotKey]) return prev;
+          const next = { ...prev };
+          delete next[slotKey];
+          return next;
+        });
+        setTutorialPingRemoveKey(null);
+        setTutorialFakeCursor({ x: tx, y: ty, clicking: false });
+        await sleep(260);
+      }
+
+      setTutorialFakeCursor(null);
+      if (cancelled) return;
+      await sleep(400);
+      dismissTableTutorial();
+    };
+
+    void run();
+
+    return () => {
+      cancelled = true;
+    };
+    // tableTutorialStep intentionally omitted so mid-sequence updates do not cancel the async run.
+  }, [step, aiAutoPlacing, tutorialRunKey, tutorialChipCount, dayCycleSelectedPeriod, days.length, product?.id]);
+
   // Helper: find icon and color for a placed activity
   const getActMeta = (name: string): { icon: string; color: string } => {
     for (const cat of Object.values(CATS)) {
@@ -184,6 +383,47 @@ export default function TheSilentClubDayDesigner9Page() {
     }
     return { icon: "circle", color: "var(--gold)" };
   };
+
+  const ACTIVITY_HINTS: Record<string, string> = {
+    Writing: "Focused writing session in silence.",
+    Reading: "Deep reading without interruptions.",
+    Journalling: "Private reflection and thought capture.",
+    Thinking: "Unstructured time to think clearly.",
+    "Idea Sketching": "Map ideas and concepts visually.",
+    "Long Walks": "Slow walking to reset mental pace.",
+    "Bird Watching": "Observe birds quietly around the estate.",
+    "Forest Safari": "Guided nature exploration on-site.",
+    Sunrise: "Start the day with stillness and light.",
+    "Boat Rides": "Quiet ride time on the water.",
+    Kayaking: "Solo or slow-paced movement session.",
+    "Star Gazing": "Night sky observation in silence.",
+    Gym: "Strength and movement session.",
+    Running: "Cardio session to energize body and mind.",
+    Cycling: "Steady outdoor movement.",
+    Swimming: "Calm, low-impact body reset.",
+    Recovery: "Restorative time for body and nervous system.",
+    Stretching: "Mobility and breath-led release.",
+    Drawing: "Freehand creative expression.",
+    Sketching: "Quick visual ideation practice.",
+    Photography: "Capture details with full attention.",
+    "Zen Garden": "Hands-on mindful arrangement practice.",
+    "Farm Work": "Grounding physical work with nature.",
+    "Plant Obs.": "Observe plants and patterns slowly.",
+    "Board Games": "Light, low-stimulation social play.",
+    Cooking: "Intentional meal prep activity.",
+    "Lawn Games": "Gentle movement in open space.",
+    Conversations: "Intentional human connection window.",
+    "Shared Dinner": "Meal with quiet shared presence.",
+    Letters: "Write letters you normally postpone.",
+    "Silence Block": "Protected no-input silent block.",
+    "Dark Room": "Low-stimulation darkness reset.",
+    "Digital Fast": "Time away from devices and signals.",
+    "Anon. Presence": "Be around others without interaction.",
+    "Horizon Gazing": "Look far, soften focus, decompress.",
+    "Long Bath": "Warm water recovery and calm.",
+  };
+
+  const getActivityHint = (name: string) => ACTIVITY_HINTS[name] ?? "A curated activity for your day cycle.";
 
   const placeActivity = (key: string, activity: string) => {
     setSchedule((prev) => {
@@ -533,12 +773,32 @@ export default function TheSilentClubDayDesigner9Page() {
     return "How to design: Selfdesign";
   }, [mode]);
 
-  const questionGroups = [
-    ["01: What are you coming here to do?", ["Finish something I've started", "Think without interruption", "Rest and recover", "I don't know yet"]],
-    ["02: How do you want your body to feel each day?", ["Physically active", "Rested and still", "A mix of both"]],
-    ["03: When does your thinking feel sharpest?", ["Early morning", "Late morning", "Afternoon", "Evening"]],
+  /** Option-only groups (labels are numbered in `aiQuestionFlow` in display order 01–06). */
+  const aiOptionGroups = [
+    ["Finish something I've started", "Think without interruption", "Rest and recover", "I don't know yet"],
+    ["Physically active", "Rested and still", "A mix of both"],
+    ["Early morning", "Late morning", "Afternoon", "Evening"],
   ] as const;
-  const aiFirstStepComplete = questionGroups.every(([, opts]) => opts.some((opt) => aiAnswers[opt]));
+  const aiQuestionFlow = [
+    { type: "option" as const, groupIndex: 0, title: "01: What are you coming here to do?" },
+    { type: "text" as const, key: "activities" as const, title: "02: Any activities you already want?", placeholder: "Example: Writing, Long Walks, Bird Watching" },
+    { type: "option" as const, groupIndex: 1, title: "03: How do you want your body to feel each day?" },
+    { type: "text" as const, key: "structure" as const, title: "04: How structured should your days feel?", placeholder: "Example: Keep it light, just a few anchors each day." },
+    { type: "option" as const, groupIndex: 2, title: "05: When does your thinking feel sharpest?" },
+    { type: "text" as const, key: "arrival" as const, title: "06: How are you arriving?", placeholder: "Example: Carrying a lot of noise and decision fatigue." },
+  ];
+  const aiQuestionsTotal = aiQuestionFlow.length;
+  const currentFlowQuestion = aiQuestionFlow[aiQuestionIndex];
+  const currentOptionGroup =
+    currentFlowQuestion?.type === "option" ? aiOptionGroups[currentFlowQuestion.groupIndex] : null;
+  const aiCurrentQuestionAnswered =
+    currentFlowQuestion?.type === "option"
+      ? Boolean(currentOptionGroup && currentOptionGroup.some((opt) => aiAnswers[opt]))
+      : currentFlowQuestion?.key === "activities"
+        ? aiContextActivities.trim().length > 0
+        : currentFlowQuestion?.key === "structure"
+          ? aiContextStructure.trim().length > 0
+          : aiContextArrival.trim().length > 0;
 
   const selectSingleInGroup = (groupOpts: readonly string[], selected: string) => {
     setAiAnswers((prev) => {
@@ -626,90 +886,99 @@ export default function TheSilentClubDayDesigner9Page() {
             <div className={`cc ${mode === "manual" ? "sel" : ""}`} onClick={() => setMode("manual")}><div style={{ fontSize: "1.2rem" }}>◻</div><div style={{ fontFamily: "var(--serif)", fontSize: "1.25rem", marginTop: 6 }}>I'll design it myself</div><div style={{ fontSize: ".88rem", color: "var(--text-3)", marginTop: 4 }}>Start with a blank grid. Pick activities and place them. Or leave everything empty.</div></div>
           </div>
           {mode === "ai" && (
-            <div style={{ border: "1px solid var(--rule)", background: "var(--bg-2)", padding: 20, marginTop: 16 }}>
-              {aiQuestionStep === 1 ? (
-                <>
-                  {questionGroups.map(([q, opts]) => (
-                      <div key={q as string} style={{ marginBottom: 16 }}>
-                        <div style={{ fontSize: ".75rem", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 8 }}>{q as string}</div>
-                        <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-                          {opts.map((opt) => (
-                            <button
-                              type="button"
-                              key={opt}
-                              className={`ai-opt ${aiAnswers[opt] ? "on" : ""}`}
-                              onClick={() => selectSingleInGroup(opts, opt)}
-                            >
-                              {opt}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
+            <div style={{ border: "1px solid var(--rule)", background: "var(--bg-2)", padding: 20, marginTop: 16, minHeight: 200, maxHeight: 200, overflow: "auto", display: "flex", flexDirection: "column" }}>
+              <div style={{ marginBottom: 12, fontSize: ".62rem", letterSpacing: ".16em", textTransform: "uppercase", color: "var(--text-3)", flexShrink: 0 }}>
+                Question {aiQuestionIndex + 1} of {aiQuestionsTotal}
+              </div>
+              <div style={{ flex: 1 }}>
+              {currentFlowQuestion?.type === "option" ? (
+                <div style={{ marginBottom: 16 }}>
+                  <div style={{ fontSize: ".75rem", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 8 }}>
+                    {currentFlowQuestion.title}
+                  </div>
+                  <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                    {(currentOptionGroup ?? []).map((opt) => (
+                      <button
+                        type="button"
+                        key={opt}
+                        className={`ai-opt ${aiAnswers[opt] ? "on" : ""}`}
+                        onClick={() => selectSingleInGroup(currentOptionGroup!, opt)}
+                      >
+                        {opt}
+                      </button>
                     ))}
-                </>
-              ) : (
-                <>
-                  <div style={{ marginBottom: 16 }}>
-                    <button type="button" className="btn-g" onClick={() => setAiQuestionStep(1)}>← Previous 3</button>
                   </div>
-                  <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 14 }}>
-                    <div>
-                      <div style={{ fontSize: ".75rem", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 8 }}>
-                        04: Any activities you already want?
-                      </div>
-                      <textarea
-                        value={aiContextActivities}
-                        onChange={(e) => setAiContextActivities(e.target.value)}
-                        placeholder="Example: Writing, Long Walks, Bird Watching"
-                        rows={3}
-                        style={{ width: "100%", minHeight: 112, background: "var(--bg-3)", border: "1px solid var(--rule-2)", color: "var(--gold-pale)", padding: "10px 12px", resize: "vertical", outline: "none", fontFamily: "var(--sans)", fontSize: ".88rem", lineHeight: 1.5 }}
-                      />
-                    </div>
-                    <div>
-                      <div style={{ fontSize: ".75rem", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 8 }}>
-                        05: How structured should your days feel?
-                      </div>
-                      <textarea
-                        value={aiContextStructure}
-                        onChange={(e) => setAiContextStructure(e.target.value)}
-                        placeholder="Example: Keep it light, just a few anchors each day."
-                        rows={3}
-                        style={{ width: "100%", minHeight: 112, background: "var(--bg-3)", border: "1px solid var(--rule-2)", color: "var(--gold-pale)", padding: "10px 12px", resize: "vertical", outline: "none", fontFamily: "var(--sans)", fontSize: ".88rem", lineHeight: 1.5 }}
-                      />
-                    </div>
-                    <div>
-                      <div style={{ fontSize: ".75rem", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 8 }}>
-                        06: How are you arriving?
-                      </div>
-                      <textarea
-                        value={aiContextArrival}
-                        onChange={(e) => setAiContextArrival(e.target.value)}
-                        placeholder="Example: Carrying a lot of noise and decision fatigue."
-                        rows={3}
-                        style={{ width: "100%", minHeight: 112, background: "var(--bg-3)", border: "1px solid var(--rule-2)", color: "var(--gold-pale)", padding: "10px 12px", resize: "vertical", outline: "none", fontFamily: "var(--sans)", fontSize: ".88rem", lineHeight: 1.5 }}
-                      />
-                    </div>
+                </div>
+              ) : currentFlowQuestion?.key === "activities" ? (
+                <div style={{ marginBottom: 4 }}>
+                  <div style={{ fontSize: ".75rem", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 8 }}>
+                    {currentFlowQuestion.title}
                   </div>
-                </>
-              )}
+                  <textarea
+                    value={aiContextActivities}
+                    onChange={(e) => setAiContextActivities(e.target.value)}
+                    placeholder={currentFlowQuestion.placeholder}
+                    rows={3}
+                    style={{ width: "100%", minHeight: 100, maxHeight: 120, background: "var(--bg-3)", border: "1px solid var(--rule-2)", color: "var(--gold-pale)", padding: "10px 12px", resize: "none", outline: "none", fontFamily: "var(--sans)", fontSize: ".88rem", lineHeight: 1.5 }}
+                  />
+                </div>
+              ) : currentFlowQuestion?.key === "structure" ? (
+                <div style={{ marginBottom: 4 }}>
+                  <div style={{ fontSize: ".75rem", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 8 }}>
+                    {currentFlowQuestion.title}
+                  </div>
+                  <textarea
+                    value={aiContextStructure}
+                    onChange={(e) => setAiContextStructure(e.target.value)}
+                    placeholder={currentFlowQuestion.placeholder}
+                    rows={3}
+                    style={{ width: "100%", minHeight: 100, maxHeight: 120, background: "var(--bg-3)", border: "1px solid var(--rule-2)", color: "var(--gold-pale)", padding: "10px 12px", resize: "none", outline: "none", fontFamily: "var(--sans)", fontSize: ".88rem", lineHeight: 1.5 }}
+                  />
+                </div>
+              ) : currentFlowQuestion ? (
+                <div style={{ marginBottom: 4 }}>
+                  <div style={{ fontSize: ".75rem", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 8 }}>
+                    {currentFlowQuestion.title}
+                  </div>
+                  <textarea
+                    value={aiContextArrival}
+                    onChange={(e) => setAiContextArrival(e.target.value)}
+                    placeholder={currentFlowQuestion.placeholder}
+                    rows={3}
+                    style={{ width: "100%", minHeight: 100, maxHeight: 120, background: "var(--bg-3)", border: "1px solid var(--rule-2)", color: "var(--gold-pale)", padding: "10px 12px", resize: "none", outline: "none", fontFamily: "var(--sans)", fontSize: ".88rem", lineHeight: 1.5 }}
+                  />
+                </div>
+              ) : null}
+              </div>
             </div>
           )}
 
           <div style={{ display: "flex", gap: 10, marginTop: 14 }}>
-            <button className="btn-g" onClick={() => setStep(1)}>← Back</button>
+            <button
+              className="btn-g"
+              onClick={() => {
+                if (mode === "ai" && aiQuestionIndex > 0) {
+                  setAiQuestionIndex((n) => n - 1);
+                  return;
+                }
+                setStep(1);
+              }}
+            >
+              {mode === "ai" && aiQuestionIndex > 0 ? "← Previous" : "← Back"}
+            </button>
             <button
               className="btn"
               type="button"
-              disabled={aiSuggestLoading || (mode === "ai" && aiQuestionStep === 1 && !aiFirstStepComplete)}
+              disabled={aiSuggestLoading || (mode === "ai" && !aiCurrentQuestionAnswered)}
               onClick={() => {
-                if (mode === "ai" && aiQuestionStep === 1) {
-                  setAiQuestionStep(2);
+                if (mode === "ai" && aiQuestionIndex < aiQuestionsTotal - 1) {
+                  setAiQuestionIndex((n) => n + 1);
                   return;
                 }
                 void handleS2();
               }}
             >
-              {aiSuggestLoading ? "Shaping your stay…" : mode === "ai" && aiQuestionStep === 1 ? "Next →" : "Shape my Stay →"}
+              {aiSuggestLoading ? "Shaping your stay…" : mode === "ai" && aiQuestionIndex < aiQuestionsTotal - 1 ? "Next →" : "Shape my Stay →"}
             </button>
           </div>
         </div>
@@ -717,8 +986,40 @@ export default function TheSilentClubDayDesigner9Page() {
 
       {step === 3 && (
         <div className="s3">
+          {tableTutorialActive && (
+            <div
+              className="table-tutorial-scrim"
+              aria-hidden
+              style={{
+                position: "fixed",
+                inset: 0,
+                zIndex: 100,
+                background: "rgba(15, 11, 8, 0.78)",
+                pointerEvents: "auto",
+              }}
+            />
+          )}
+          {tutorialFakeCursor && (
+            <div
+              className={`table-tutorial-fake-cursor ${tutorialFakeCursor.clicking ? "is-down" : ""}`}
+              style={{
+                position: "fixed",
+                left: tutorialFakeCursor.x,
+                top: tutorialFakeCursor.y,
+                pointerEvents: "none",
+                zIndex: 10160,
+                transition:
+                  "left 0.42s cubic-bezier(0.22, 1, 0.36, 1), top 0.42s cubic-bezier(0.22, 1, 0.36, 1)",
+              }}
+              aria-hidden
+            >
+              <span className="material-symbols-outlined" style={{ fontSize: 26, color: "var(--gold-pale)", textShadow: "0 2px 14px rgba(0,0,0,.75)" }}>
+                near_me
+              </span>
+            </div>
+          )}
           {aiResultSource && (
-            <div style={{ position: "fixed", top: 72, right: 24, zIndex: 45, fontSize: ".68rem", letterSpacing: ".12em", textTransform: "uppercase", color: aiResultSource === "cohere" ? "#c5a065" : "#b09070" }}>
+            <div style={{ position: "fixed", top: 72, right: 24, zIndex: tableTutorialActive ? 108 : 45, fontSize: ".68rem", letterSpacing: ".12em", textTransform: "uppercase", color: aiResultSource === "cohere" ? "#c5a065" : "#b09070" }}>
               AI Source: {aiResultSource === "cohere" ? "Cohere" : "Fallback"}
               {aiResultSource === "fallback" && aiResultNote && (
                 <span style={{ display: "block", marginTop: 4, fontSize: ".58rem", letterSpacing: ".08em", textTransform: "none", color: "#7a6048" }}>
@@ -745,7 +1046,17 @@ export default function TheSilentClubDayDesigner9Page() {
               Placing your schedule…
             </div>
           )}
-          <div className="pal" style={{ pointerEvents: aiAutoPlacing ? "none" : "auto", opacity: aiAutoPlacing ? 0.7 : 1, transition: "opacity .3s" }}>
+          <div
+            className={`pal ${tableTutorialStep === 0 ? "table-tutorial-spotlight-pal" : ""}`}
+            style={{
+              position: tableTutorialActive ? "relative" : undefined,
+              zIndex: tableTutorialActive ? (tableTutorialStep === 0 ? 110 : 40) : undefined,
+              isolation: tableTutorialActive && tableTutorialStep === 0 ? "isolate" : undefined,
+              pointerEvents: aiAutoPlacing ? "none" : "auto",
+              opacity: aiAutoPlacing ? 0.7 : 1,
+              transition: "opacity .3s",
+            }}
+          >
             <div className="pal-cats">
               {Object.entries(CATS).map(([cat, catData]) => (
                 <div key={cat} className="pal-cat">
@@ -756,6 +1067,7 @@ export default function TheSilentClubDayDesigner9Page() {
                         key={item.name}
                         type="button"
                         data-ai-pill={item.name}
+                        title={getActivityHint(item.name)}
                         draggable={!dayCycleLimitReached}
                         onDragStart={(e) => {
                           if (dayCycleLimitReached) {
@@ -777,7 +1089,7 @@ export default function TheSilentClubDayDesigner9Page() {
                         }}
                       >
                         <span className="material-symbols-outlined" style={{ fontSize: "13px", color: catData.color, verticalAlign: "middle", marginRight: 4 }}>{item.icon}</span>
-                        {item.name}
+                        <span className="pill-label" data-tip={getActivityHint(item.name)}>{item.name}</span>
                       </button>
                     ))}
                   </div>
@@ -786,7 +1098,16 @@ export default function TheSilentClubDayDesigner9Page() {
             </div>
           </div>
 
-          <div className="tl-wrap" style={{ pointerEvents: aiAutoPlacing ? "none" : "auto" }}>
+          <div
+            className={`tl-wrap ${tableTutorialStep === 1 || tableTutorialStep === 2 ? "table-tutorial-spotlight-tl" : ""}`}
+            style={{
+              position: tableTutorialActive ? "relative" : undefined,
+              zIndex: tableTutorialActive ? (tableTutorialStep === 1 || tableTutorialStep === 2 ? 110 : 40) : undefined,
+              isolation:
+                tableTutorialActive && (tableTutorialStep === 1 || tableTutorialStep === 2) ? "isolate" : undefined,
+              pointerEvents: aiAutoPlacing ? "none" : "auto",
+            }}
+          >
             <div className="tl-scroll">
             <div style={{ minWidth: "max-content", margin: "0 4vw", paddingBottom: 8 }}>
               {(() => {
@@ -956,7 +1277,16 @@ export default function TheSilentClubDayDesigner9Page() {
                       >
                         {schedule[key] && (
                           <div style={{ height: "100%", width: "100%", display: "grid", gridTemplateRows: "auto 1fr", padding: "3px 2px" }}>
-                            <span style={{ fontSize: ".76rem", fontWeight: 700, color: "#b09070", lineHeight: 1, textAlign: "left", justifySelf: "start" }}>×</span>
+                            <span
+                              className={
+                                tableTutorialStep === 2 && tutorialPingRemoveKey === key
+                                  ? "table-tutorial-cross-glow"
+                                  : undefined
+                              }
+                              style={{ fontSize: ".76rem", fontWeight: 700, color: "#b09070", lineHeight: 1, textAlign: "left", justifySelf: "start" }}
+                            >
+                              ×
+                            </span>
                             {(() => {
                               const meta = getActMeta(schedule[key]);
                               return (
@@ -981,16 +1311,71 @@ export default function TheSilentClubDayDesigner9Page() {
             </div>
           </div>
 
+          {tableTutorialStep !== null && (
+            <div
+              className="table-tutorial-bar"
+              style={{
+                position: "relative",
+                flexShrink: 0,
+                borderTop: "1px solid var(--rule)",
+                background: "var(--bg-2)",
+                padding: "14px 4vw 16px",
+                display: "flex",
+                flexDirection: "column",
+                gap: 10,
+                zIndex: 120,
+                boxShadow: "0 -8px 32px rgba(0,0,0,.45)",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+                <div style={{ flex: "1 1 240px", minWidth: 0 }}>
+                  <div style={{ fontSize: ".62rem", letterSpacing: ".2em", textTransform: "uppercase", color: "var(--gold-dim)", marginBottom: 6 }}>
+                    Table guide ·{" "}
+                    {tableTutorialStep === 0 ? "Adding" : tableTutorialStep === 1 ? "Moving" : "Remove"}
+                  </div>
+                  <div style={{ fontFamily: "var(--serif)", fontSize: "1.05rem", fontWeight: 400, color: "var(--gold-pale)", marginBottom: 6, lineHeight: 1.25 }}>
+                    {TABLE_TUTORIAL_COPY.run.title}
+                  </div>
+                  <p style={{ margin: 0, fontSize: ".84rem", lineHeight: 1.5, color: "var(--text-2)", maxWidth: "56ch" }}>
+                    {TABLE_TUTORIAL_COPY.run.body}
+                  </p>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
+                  <button type="button" className="btn-g" onClick={dismissTableTutorial}>
+                    Skip
+                  </button>
+                </div>
+              </div>
+              <div style={{ display: "flex", gap: 6, justifyContent: "center", opacity: 0.85 }}>
+                {[0, 1, 2].map((i) => (
+                  <div
+                    key={i}
+                    aria-hidden
+                    style={{
+                      width: i === tableTutorialStep ? 22 : 7,
+                      height: 7,
+                      borderRadius: 999,
+                      background: i === tableTutorialStep ? "var(--gold)" : "var(--rule-2)",
+                      transition: "width .2s ease, background .2s",
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
           <div
             className="cta-bar"
             style={{
-              opacity: aiAutoPlacing ? 0.55 : 1,
+              position: "relative",
+              zIndex: tableTutorialActive ? 40 : undefined,
+              opacity: aiAutoPlacing ? 0.55 : tableTutorialActive ? 0.45 : 1,
               pointerEvents: aiAutoPlacing ? "none" : "auto",
               transition: "opacity .25s",
             }}
           >
             <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: "1rem", color: "var(--text-3)" }}>If this made sense, <em style={{ color: "var(--gold-pale)", fontStyle: "normal" }}>you already know what to do.</em></div>
-            <div style={{ display: "flex", gap: 8 }}>
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
               <button
                 className="btn-g"
                 onClick={() => {
@@ -1002,6 +1387,9 @@ export default function TheSilentClubDayDesigner9Page() {
                 }}
               >
                 ← Redesign
+              </button>
+              <button type="button" className="btn-g" onClick={openTableTutorial} aria-label="Show table guide">
+                Table guide
               </button>
               <button
                 className="btn-g"

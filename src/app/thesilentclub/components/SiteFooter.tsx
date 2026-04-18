@@ -18,8 +18,8 @@ export function SiteFooter() {
   return (
     <footer className="overflow-hidden bg-[#0f0b08]">
       <div className="grid gap-px border-b border-[#2a1f17] bg-[#2a1f17] md:grid-cols-[1.6fr_1fr_1fr_1fr]">
-        <div className="bg-[#0f0b08] px-7 py-9">
-          <a href="/thesilentclub/home" className="mb-2 inline-flex h-10 w-40 items-center">
+        <div className="flex h-full flex-col bg-[#0f0b08] px-7 py-9">
+          <a href="/thesilentclub/home" className="mb-2 inline-flex h-12 w-44 items-center">
             <Image
               src="/the-silent-club-logo.png"
               alt="The Silent Club"
@@ -28,22 +28,26 @@ export function SiteFooter() {
               className="h-full w-full object-contain"
             />
           </a>
-          <p className="mb-5 text-[10px] tracking-[0.06em] text-[#7a6048]">Silence as a Service · Bhigwan, Pune</p>
-          <p className="mb-2.5 text-[11px] font-light leading-[1.5] text-[#b09070]">
-            Artist, musician, or experience creator?
-          </p>
-          <a
-            href="/thesilentclub/events"
-            className="inline-block border border-[#3a2a1f] px-3.5 py-1.5 text-[9px] font-bold uppercase tracking-[0.18em] text-[#c5a065]"
-          >
-            Experiment with us →
-          </a>
+          <p className="text-sm font-bold text-[#7a6048]">Silence as a Service · Bhigwan, Pune</p>
+          <div className="mt-4 h-px w-full bg-[#2a1f17]" />
+
+          <div className="mt-auto pt-5">
+            <p className="mb-3 text-sm font-bold leading-[1.5] text-[#7a6048]">
+              Artist, musician, or experience creator?
+            </p>
+            <a
+              href="/thesilentclub/events"
+              className="inline-block border border-[#3a2a1f] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[#c5a065]"
+            >
+              Experiment with us →
+            </a>
+          </div>
         </div>
 
         {[
           {
             heading: "Explore",
-            items: ["Home", "About", "The Estate", "Journal", "Events", "FAQ"],
+            items: ["Home", "The Estate", "About", "Events", "Journal", "FAQ"],
           },
           {
             heading: "Stay",
@@ -55,14 +59,14 @@ export function SiteFooter() {
           },
         ].map(({ heading, items }) => (
           <div key={heading} className="bg-[#0f0b08] px-7 py-9">
-            <p className="mb-3.5 text-[9px] uppercase tracking-[0.22em] text-[#7a6048]">{heading}</p>
+            <p className="mb-3.5 text-xs font-bold uppercase tracking-[0.22em] text-[#e8d5b0]">{heading}</p>
             {items.map((item) =>
               footerLinks[item] ? (
-                <a key={item} href={footerLinks[item]} className="block py-1 text-xs font-light text-[#7a6048]">
+                <a key={item} href={footerLinks[item]} className="block py-1 text-sm font-bold text-[#7a6048]">
                   {item}
                 </a>
               ) : (
-                <p key={item} className="py-1 text-xs font-light text-[#7a6048]">{item}</p>
+                <p key={item} className="py-1 text-sm font-bold text-[#7a6048]">{item}</p>
               ),
             )}
           </div>
@@ -70,9 +74,9 @@ export function SiteFooter() {
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-4 px-7 py-3.5">
-        <p className="text-[10px] tracking-[0.04em] text-[#3a2a1f]">© 2026 The Silent Club. All rights reserved.</p>
-        <p className="text-[10px] tracking-[0.04em] text-[#3a2a1f]">Kumbhar Goan, Bird Sanctuary, Bhigwan, Maharashtra 413104</p>
-        <p className="text-[10px] tracking-[0.04em] text-[#3a2a1f]">A registered initiative of Silent Tourism Foundation.</p>
+        <p className="text-[10px] tracking-[0.04em] text-[#b09070]">© 2026 The Silent Club. All rights reserved.</p>
+        <p className="text-[10px] tracking-[0.04em] text-[#b09070]">Kumbhar Goan, Bird Sanctuary, Bhigwan, Maharashtra 413104</p>
+        <p className="text-[10px] tracking-[0.04em] text-[#b09070]">A registered initiative of Silent Tourism Foundation.</p>
       </div>
     </footer>
   );

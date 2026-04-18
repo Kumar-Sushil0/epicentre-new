@@ -48,10 +48,13 @@ export function FaqSection({ openFaq, setOpenFaq }: Props) {
           );
         })}
         <div className="mt-8">
-          <button className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.16em] text-[#8a6e42] transition-colors hover:text-[#c5a065]">
+          <a
+            href="/thesilentclub/faq"
+            className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[#8a6e42] transition-colors hover:text-[#c5a065]"
+          >
             More FAQ
             <span>→</span>
-          </button>
+          </a>
         </div>
       </div>
     </section>

@@ -24,10 +24,6 @@ export function HeroSection() {
       </div>
       <div className="hero-overlay" />
       <div className="hero-content">
-        <div className="hero-badge">
-          <span className="hero-badge-dot" />
-          <span>Private Estate · Bhigwan, Pune · Invite Only</span>
-        </div>
         <h1 className="hero-headline">
           Nothing is asking
           <em>for your attention.</em>

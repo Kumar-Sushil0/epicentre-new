@@ -19,7 +19,7 @@ export function AboutStyles() {
       .hero-badge{display:flex;align-items:center;gap:12px;font-size:.625rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
       .hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
       @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-      .hero-heading{font-family:var(--serif);font-size:clamp(2.2rem,6vw,6rem);font-weight:300;line-height:.92;margin:0 0 28px;max-width:none;width:100%}
+      .hero-heading{font-family:var(--serif);font-size:clamp(2.2rem,6vw,6rem);font-weight:700;line-height:.92;margin:0 0 28px;max-width:none;width:100%}
       .hero-sub{font-size:.875rem;color:var(--text-2);line-height:2;max-width:none;width:100%;font-family:var(--sans)}
       .why-header{padding:clamp(56px,7vw,88px) var(--g) clamp(32px,4vw,48px);display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:end;border-bottom:1px solid var(--rule)}
       .why-header-main{grid-column:1 / -1;max-width:none}
@@ -87,7 +87,7 @@ export function AboutStyles() {
       .closing-cta{padding:clamp(80px,10vw,120px) var(--g);text-align:center;border-bottom:1px solid var(--rule);background:var(--bg-2)}
       .closing-quote{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.8rem);line-height:1.3;margin-bottom:40px}
       .closing-btn{background:var(--gold);color:var(--bg);padding:14px 36px;border:none;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;font-weight:bold;text-decoration:none;display:inline-block}
-      .closing-sub{margin-top:16px;font-family:var(--serif);font-style:italic;font-size:.9rem;color:var(--text-3)}
+      .closing-sub{margin-top:16px;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--text-3)}
       .footer{background:var(--bg);border-top:1px solid var(--rule)}
       .footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:1px;background:var(--rule);border-bottom:1px solid var(--rule)}
       .footer-col{background:var(--bg);padding:clamp(36px,4vw,52px) clamp(24px,3vw,36px)}

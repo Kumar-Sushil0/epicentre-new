@@ -13,9 +13,9 @@ type Props = {
 const links: { id: HeaderPage; label: string; href: string }[] = [
   { id: "home", label: "Home", href: "/thesilentclub/home" },
   { id: "estate", label: "The Estate", href: "/thesilentclub/estate" },
+  { id: "about", label: "About", href: "/thesilentclub/about" },
   { id: "events", label: "Events", href: "/thesilentclub/events" },
   { id: "journal", label: "Journal", href: "/thesilentclub/blogs" },
-  { id: "about", label: "About", href: "/thesilentclub/about" },
   { id: "faq", label: "FAQ", href: "/thesilentclub/faq" },
 ];
 
