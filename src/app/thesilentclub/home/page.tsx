@@ -156,10 +156,15 @@ export default function TheSilentClubHomepage20Page() {
           <div className="mb-4 h-px w-10 bg-[#8a6e42]" />
           <p className="text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">The case for quiet</p>
         </div>
-        <p className=" font-serif text-3xl leading-[1.45] md:text-5xl">
-          Your best thinking doesn't happen in meetings.<br/> It happens in the quiet moments{" "}
-          <br/><em className="text-[#c5a065]">you can never quite find</em> until now.
-        </p>
+        <div>
+          <p className="font-serif text-3xl leading-[1.45] md:text-5xl">
+            Your best thinking doesn't happen in meetings.<br /> It happens in the quiet moments{" "}
+            <br/><em className="text-[#c5a065]">you can never quite find.</em>
+          </p>
+          <p className="mt-6 text-sm leading-8 text-[#b09070]">
+            That's not a discipline problem.<br />It's a design problem.
+          </p>
+        </div>
       </section>
 
       <section className="grid gap-12 border-b border-[#2a1f17] bg-[#160f0a] px-[56px] py-20 md:grid-cols-[1fr,1.4fr]">
@@ -169,12 +174,17 @@ export default function TheSilentClubHomepage20Page() {
         </div>
         <div className="space-y-4 text-[15px] leading-8 text-[#b09070]">
           <p>
-            The Silent Club is a private estate designed for people who no longer need more input,
-            but cannot yet sit still without it.
+            Most environments take your attention. This one returns it.
           </p>
           <p>
-            No programme. No facilitator. No one telling you what to do with your time. Because if
-            you still need that, this is not for you.
+            The Silent Club is a private estate for people who no longer need more input,
+            but cannot yet sit still without it. It removes what most environments add —
+            noise, pace, expectation, performance.
+          </p>
+          <p>
+            No programme. No facilitator. No one telling you what to do. Silence here is not
+            an experience. It is a condition. Clarity doesn't arrive. It emerges when
+            interference is removed.
           </p>
           <p className="border-t border-[#2a1f17] pt-5 font-serif text-xl italic text-[#e8d5b0]">
             The Silent Club is not for burnout. It is for what comes after.
@@ -187,6 +197,9 @@ export default function TheSilentClubHomepage20Page() {
           Silence <span className="text-base italic text-[#7a6048]">as a</span>{" "}
           <em className="italic text-[#c5a065]">Service.</em>
         </h2>
+        <p className="mt-4 text-sm leading-8 text-[#b09070]">
+          Silence, designed for. Structured around. Delivered reliably. That is the service.
+        </p>
       </section>
 
       <WhoBelongsSection whoReviewIndex={whoReviewIndex} setWhoReviewIndex={setWhoReviewIndex} />
