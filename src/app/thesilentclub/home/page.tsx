@@ -14,6 +14,7 @@ import { depthCards, designedCards, providesSlides, type DepthId, walkInRules, w
 export default function TheSilentClubHomepage20Page() {
   const [openModal, setOpenModal] = useState(false);
   const [openDrivesModal, setOpenDrivesModal] = useState(false);
+  const [subscribeEmail, setSubscribeEmail] = useState("");
   const [selectedDepth, setSelectedDepth] = useState<DepthId | null>(null);
   const [depthVariant, setDepthVariant] = useState<{
     residency: "dorm" | "room";
@@ -130,9 +131,21 @@ export default function TheSilentClubHomepage20Page() {
           <input
             type="email"
             placeholder="your@email.com"
+            value={subscribeEmail}
+            onChange={(e) => setSubscribeEmail(e.target.value)}
             className="w-56 border border-r-0 border-[#3a2a1f] bg-[#1c1410] px-3 py-2 text-sm text-[#e8d5b0] outline-none"
           />
-          <button className="bg-[#c5a065] px-4 py-2 text-[11px] uppercase tracking-[0.14em] text-[#0f0b08] font-bold hover:bg-[#d4b07a] transition-colors">
+          <button
+            type="button"
+            onClick={() =>
+              window.dispatchEvent(
+                new CustomEvent("open-newsletter-popup", {
+                  detail: { email: subscribeEmail.trim() },
+                }),
+              )
+            }
+            className="bg-[#c5a065] px-4 py-2 text-[11px] uppercase tracking-[0.14em] text-[#0f0b08] font-bold hover:bg-[#d4b07a] transition-colors"
+          >
             Subscribe
           </button>
         </div>

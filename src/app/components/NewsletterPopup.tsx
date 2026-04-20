@@ -49,6 +49,21 @@ export default function NewsletterPopup() {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    const openFromStrip = (event: Event) => {
+      const custom = event as CustomEvent<{ email?: string }>;
+      const incomingEmail = custom.detail?.email?.trim();
+      if (incomingEmail) setEmail(incomingEmail);
+      setSubmitMessage("");
+      setIsVisible(true);
+    };
+
+    window.addEventListener("open-newsletter-popup", openFromStrip as EventListener);
+    return () => {
+      window.removeEventListener("open-newsletter-popup", openFromStrip as EventListener);
+    };
+  }, []);
+
   const handleClose = () => {
     setIsVisible(false);
     try {
@@ -64,8 +79,16 @@ export default function NewsletterPopup() {
     setSubmitMessage("");
 
     try {
-      // Add your newsletter subscription logic here
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await fetch("/api/newsletter-subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const payload = await response.json();
+      if (!response.ok) {
+        throw new Error(payload?.error || "Failed to subscribe");
+      }
 
       setSubmitMessage("Thank you for subscribing!");
       setEmail("");
@@ -81,8 +104,9 @@ export default function NewsletterPopup() {
       setTimeout(() => {
         setIsVisible(false);
       }, 2000);
-    } catch {
-      setSubmitMessage("Something went wrong. Please try again.");
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Something went wrong. Please try again.";
+      setSubmitMessage(message);
     } finally {
       setIsSubmitting(false);
     }
@@ -93,14 +117,14 @@ export default function NewsletterPopup() {
   return (
     <>
       <div
-        className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] transition-opacity duration-300"
+        className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm transition-opacity duration-300"
         onClick={handleClose}
         aria-hidden
       />
 
       <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 pointer-events-none">
         <div
-          className="relative bg-earth-800/95 backdrop-blur-sm border border-earth-700/50 rounded-lg p-6 md:p-8 max-w-md w-full shadow-2xl pointer-events-auto transform transition-all duration-300 scale-100"
+          className="relative w-full max-w-md border border-[#3a2a1f] bg-[#160f0a] p-6 md:p-8 shadow-2xl pointer-events-auto transition-all duration-300"
           onClick={(e) => e.stopPropagation()}
           role="dialog"
           aria-modal="true"
@@ -109,7 +133,7 @@ export default function NewsletterPopup() {
           <button
             type="button"
             onClick={handleClose}
-            className="absolute top-4 right-4 text-earth-300 hover:text-gold-500 transition-colors"
+            className="absolute right-4 top-4 text-[#7a6048] transition-colors hover:text-[#c5a065]"
             aria-label="Close"
           >
             <span className="material-symbols-outlined text-2xl">close</span>
@@ -118,13 +142,13 @@ export default function NewsletterPopup() {
           <div className="text-center mb-6">
             <h3
               id="newsletter-popup-title"
-              className="text-2xl md:text-3xl font-normal text-gold-500 mb-3"
-              style={{ fontFamily: "Outfit, sans-serif" }}
+              className="mb-2 font-serif text-3xl font-light text-[#e8d5b0]"
             >
-              Stay Connected
+              Follow the pollination
             </h3>
-            <p className="text-earth-300 text-sm md:text-base leading-relaxed">
-              Receive updates on cycles, residencies, and occasional reflections on silence and attention.
+            <p className="font-serif text-sm leading-7 text-[#b09070]">
+              Receive updates on cycles, residencies, and occasional reflections on silence and
+              attention.
             </p>
           </div>
 
@@ -136,30 +160,32 @@ export default function NewsletterPopup() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
                 required
-                className="w-full px-4 py-3 bg-earth-900/50 border border-earth-700/50 rounded-lg text-earth-100 placeholder-earth-400 focus:outline-none focus:border-gold-500 transition-colors"
-                style={{ fontFamily: "Outfit, sans-serif" }}
+                className="w-full border border-[#3a2a1f] bg-[#1c1410] px-4 py-3 text-center text-sm text-[#e8d5b0] outline-none transition-colors placeholder:text-center placeholder:text-[#7a6048] focus:border-[#8a6e42]"
               />
             </div>
 
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full px-6 py-3 bg-gold-500 text-earth-950 rounded-lg font-medium hover:bg-gold-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              style={{ fontFamily: "Outfit, sans-serif" }}
+              className="w-full bg-[#c5a065] px-6 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0f0b08] transition-colors hover:bg-[#d4b07a] disabled:cursor-not-allowed disabled:opacity-50"
             >
               {isSubmitting ? "Subscribing..." : "Subscribe"}
             </button>
 
             {submitMessage && (
               <p
-                className={`text-center text-sm ${submitMessage.includes("Thank you") ? "text-gold-500" : "text-red-400"}`}
+                className={`text-center text-sm ${
+                  submitMessage.includes("Thank you") ? "text-[#c5a065]" : "text-red-400"
+                }`}
               >
                 {submitMessage}
               </p>
             )}
           </form>
 
-          <p className="text-earth-400 text-xs text-center mt-4">No spam. Unsubscribe anytime.</p>
+          <p className="mt-4 text-center font-serif text-xs italic text-[#7a6048]">
+            No spam. Unsubscribe anytime.
+          </p>
         </div>
       </div>
     </>
