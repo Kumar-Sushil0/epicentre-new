@@ -124,7 +124,7 @@ export default function TheSilentClubHomepage20Page() {
 
       <section className="flex flex-wrap items-center justify-between gap-4 border-b border-[#2a1f17] bg-[#160f0a] px-[56px] py-4">
         <p className="text-xs font-medium uppercase tracking-[0.14em] text-[#b09070]">
-          Founding memberships now open
+          Follow the pollination
         </p>
         <div className="flex">
           <input
@@ -133,7 +133,7 @@ export default function TheSilentClubHomepage20Page() {
             className="w-56 border border-r-0 border-[#3a2a1f] bg-[#1c1410] px-3 py-2 text-sm text-[#e8d5b0] outline-none"
           />
           <button className="bg-[#c5a065] px-4 py-2 text-[11px] uppercase tracking-[0.14em] text-[#0f0b08] font-bold hover:bg-[#d4b07a] transition-colors">
-            Know More
+            Subscribe
           </button>
         </div>
       </section>
