@@ -35,198 +35,223 @@ export default function TheSilentClubVolunteerPage() {
   };
 
   return (
-    <main>
-      <style jsx global>{`
-        :root{--bg:#0f0b08;--bg-2:#160f0a;--bg-3:#1c1410;--bg-4:#221814;--gold:#c5a065;--gold-dim:#8a6e42;--gold-pale:#e8d5b0;--text-2:#b09070;--text-3:#7a6048;--rule:#2a1f17;--rule-2:#3a2a1f;--serif:'Cormorant',Georgia,serif;--sans:'Jost',sans-serif;--g:6vw;}
-        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-        html{font-size:16px;scroll-behavior:smooth;}
-        body{background:var(--bg);color:var(--gold-pale);font-family:var(--sans);font-weight:300;-webkit-font-smoothing:antialiased;}
-        body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4;}
-        .nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(15,11,8,0.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--rule);transition:background .2s;}
-        .nav.scrolled{background:rgba(15,11,8,0.98);}
-        .nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:1400px;margin:0 auto;padding:0 var(--g);}
-        .nav-brand{height:56px;width:160px;display:flex;align-items:center;justify-content:center;text-decoration:none;}
-        .nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
-        .nav-links a{font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3);text-decoration:none;transition:color 0.2s;}
-        .nav-links a:hover{color:var(--gold);}
-        .nav-cta{font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:9px 22px;border:none;cursor:pointer;font-family:var(--sans);}
-        .hero{padding-top:60px;min-height:50vh;display:flex;flex-direction:column;justify-content:flex-end;border-bottom:1px solid var(--rule);position:relative;overflow:hidden;background:var(--bg-2);}
-        .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 40%,rgba(197,160,101,0.04) 0%,transparent 60%);pointer-events:none;}
-        .hero-inner{position:relative;z-index:2;padding:clamp(48px,6vw,80px) var(--g);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;}
-        .hero-label{font-size:0.6rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;}
-        .hero-heading{font-family:var(--serif);font-weight:300;font-size:clamp(2.4rem,5vw,4.8rem);line-height:0.95;letter-spacing:-0.02em;color:var(--gold-pale);margin-bottom:16px;}
-        .hero-heading em{font-style:italic;color:var(--gold);}
-        .hero-duration{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-dim);border:1px solid var(--rule-2);display:inline-block;padding:4px 12px;}
-        .hero-desc{font-size:0.9rem;line-height:1.85;color:var(--text-2);font-family:var(--serif);}
-        .hero-desc em{font-style:italic;color:var(--gold-pale);}
-        .main{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border-bottom:1px solid var(--rule);}
-        .details{background:var(--bg);padding:clamp(48px,6vw,72px) var(--g);}
-        .detail-block{margin-bottom:40px;}
-        .detail-block:last-child{margin-bottom:0;}
-        .detail-label,.form-label-top{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-3);margin-bottom:20px;display:flex;align-items:center;gap:12px;}
-        .detail-label::after,.form-label-top::after{content:'';flex:1;height:1px;background:var(--rule);}
-        .detail-heading,.form-heading{font-family:var(--serif);font-weight:300;font-size:clamp(1.4rem,2.2vw,2rem);color:var(--gold-pale);margin-bottom:16px;line-height:1.1;}
-        .exchange-list{display:flex;flex-direction:column;}
-        .exchange-item{display:flex;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid var(--rule);font-size:0.875rem;color:var(--text-2);}
-        .exchange-item:first-child{border-top:1px solid var(--rule);}
-        .exchange-dot{width:4px;height:4px;border-radius:50%;background:var(--gold-dim);flex-shrink:0;margin-top:7px;}
-        .roles-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);}
-        .role-card{background:var(--bg-2);padding:18px 20px;}
-        .role-card-name{font-family:var(--serif);font-size:1rem;color:var(--gold-pale);margin-bottom:4px;}
-        .role-card-desc{font-size:0.72rem;color:var(--text-3);line-height:1.5;}
-        .contact-block{display:flex;flex-direction:column;gap:12px;}
-        .contact-item{display:flex;align-items:center;gap:16px;padding:14px 18px;border:1px solid var(--rule-2);text-decoration:none;}
-        .contact-icon{width:36px;height:36px;border:1px solid var(--rule-2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;}
-        .contact-label{font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3);}
-        .contact-value{font-size:0.84rem;color:var(--text-2);}
-        .form-wrap{background:var(--bg-2);padding:clamp(48px,6vw,72px) var(--g);}
-        .form-heading{margin-bottom:28px;}
-        .form{display:flex;flex-direction:column;gap:16px;}
-        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-        .form-field{display:flex;flex-direction:column;gap:6px;}
-        .form-field label{font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3);}
-        .form-field input,.form-field textarea,.form-field select{background:var(--bg-3);border:1px solid var(--rule-2);padding:11px 14px;font-size:0.84rem;color:var(--gold-pale);outline:none;width:100%;}
-        .file-upload{border:1px solid var(--rule-2);padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;background:var(--bg-3);}
-        .file-upload input{display:none;}
-        .file-upload-btn{font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--bg);background:var(--gold-dim);padding:6px 12px;}
-        .file-upload-name{font-size:0.78rem;color:var(--text-3);}
-        .file-upload-note{font-size:0.6rem;color:var(--text-3);margin-top:4px;}
-        .form-submit{background:var(--gold);color:var(--bg);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;padding:14px 28px;border:none;cursor:pointer;margin-top:8px;}
-        .form-submit-note{font-size:0.62rem;color:var(--text-3);font-family:var(--serif);font-style:italic;margin-top:6px;}
-        .form-success{text-align:center;padding:48px 0;}
-        .form-success-heading{font-family:var(--serif);font-size:2rem;color:var(--gold-pale);margin-bottom:12px;}
-        .form-success-text{font-size:0.875rem;color:var(--text-3);line-height:1.7;max-width:320px;margin:0 auto;}
-        .footer{background:var(--bg);border-top:1px solid var(--rule);}
-        .footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:1px;background:var(--rule);border-bottom:1px solid var(--rule);}
-        .footer-col{background:var(--bg);padding:clamp(36px,4vw,52px) clamp(24px,3vw,36px);}
-        .footer-brand{font-family:var(--serif);font-size:1.1rem;color:var(--gold-pale);margin-bottom:4px;}
-        .footer-tagline,.footer-copy,.footer-link,.footer-collab-text,.footer-col-label{color:var(--text-3);}
-        .footer-collab-link{font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-dim);background:none;border:none;}
-        .footer-link{display:block;font-size:0.78rem;padding:3px 0;text-decoration:none;}
-        .footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px var(--g);flex-wrap:wrap;}
-        .invite-modal{display:none;position:fixed;inset:0;z-index:9000;background:rgba(15,11,8,.88);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:24px;}
-        .invite-modal.show{display:flex;}
-        .invite-modal-box{background:#160f0a;border:1px solid #3a2a1f;max-width:480px;width:100%;padding:44px;position:relative;}
-        .invite-x{position:absolute;top:14px;right:18px;background:none;border:none;color:#7a6048;font-size:1.3rem;cursor:pointer;}
-        @media(max-width:860px){.nav-links{display:none}.hero-inner,.main{grid-template-columns:1fr}.roles-grid,.form-row{grid-template-columns:1fr}}
-        @media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr}}
-        @media(max-width:540px){.footer-top{grid-template-columns:1fr}}
-      `}</style>
+    <main className="min-h-screen bg-[#0f0b08] text-[#e8d5b0]">
+      <SiteHeader active="events" />
 
-      <SiteHeader active="home" />
-
-      <section className="hero">
-        <div className="hero-inner">
+      <section className="relative overflow-hidden border-b border-[#2a1f17] bg-[#160f0a]">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_40%,rgba(197,160,101,0.04)_0%,transparent_60%)]" />
+        <div className="relative grid gap-12 px-6 py-14 md:grid-cols-2 md:gap-20 md:px-[56px] md:py-20">
           <div>
-            <div className="hero-label">Volunteer</div>
-            <h1 className="hero-heading">Work here.<br /><em>Live here.</em><br />Think here.</h1>
-            <div className="hero-duration" style={{ marginTop: 20 }}>Minimum 3 months</div>
+            <p className="mb-4 text-[0.6rem] uppercase tracking-[0.24em] text-[#7a6048]">Volunteer</p>
+            <h1 className="font-serif text-[clamp(2.4rem,5vw,4.8rem)] font-light leading-[0.95] tracking-[-0.02em]">
+              Work here.
+              <br />
+              <em className="text-[#c5a065]">Live here.</em>
+              <br />
+              Think here.
+            </h1>
+            <span className="mt-6 inline-block border border-[#3a2a1f] px-3 py-1 text-[0.62rem] uppercase tracking-[0.18em] text-[#8a6e42]">
+              Minimum 3 months
+            </span>
           </div>
-          <div className="hero-right">
-            <p className="hero-desc">This is not an internship. There is no syllabus, no performance review, no certificate at the end. <em>You contribute to what makes this place possible, and in return, you get to live inside it.</em> That exchange is the whole arrangement.</p>
+          <div className="self-end">
+            <p className="font-serif text-[0.95rem] leading-[1.85] text-[#b09070]">
+              This is not an internship. There is no syllabus, no performance review, no
+              certificate at the end.{" "}
+              <em className="text-[#e8d5b0]">
+                You contribute to what makes this place possible, and in return, you get to live
+                inside it.
+              </em>{" "}
+              That exchange is the whole arrangement.
+            </p>
           </div>
         </div>
       </section>
 
-      <div className="main">
-        <div className="details">
-          <div className="detail-block">
-            <div className="detail-label">What you receive</div>
-            <h2 className="detail-heading">The exchange</h2>
-            <div className="exchange-list">
+      <section className="grid gap-px bg-[#2a1f17] md:grid-cols-2">
+        <div className="space-y-10 bg-[#0f0b08] px-6 py-12 md:px-[56px] md:py-16">
+          <section>
+            <p className="mb-5 flex items-center gap-3 text-[0.6rem] uppercase tracking-[0.22em] text-[#7a6048]">
+              What you receive <span className="h-px flex-1 bg-[#2a1f17]" />
+            </p>
+            <h2 className="mb-5 font-serif text-[clamp(1.4rem,2.2vw,2rem)] font-light text-[#e8d5b0]">
+              The exchange
+            </h2>
+            <div className="border-y border-[#2a1f17]">
               {[
                 "Food and accommodation for the full duration of your volunteer period",
                 "Full access to the estate, all spaces, all activities, and all meals",
                 "An immersive experience inside a practice of silence and intentional living",
                 "Time. Unstructured, protected time to think, create, and be",
               ].map((item) => (
-                <div className="exchange-item" key={item}><div className="exchange-dot" />{item}</div>
+                <div key={item} className="flex items-start gap-3 border-b border-[#2a1f17] py-3.5 last:border-b-0">
+                  <span className="mt-2 h-1 w-1 rounded-full bg-[#8a6e42]" />
+                  <p className="text-sm leading-7 text-[#b09070]">{item}</p>
+                </div>
               ))}
             </div>
-          </div>
+          </section>
 
-          <div className="detail-block">
-            <div className="detail-label">What you contribute</div>
-            <h2 className="detail-heading">Volunteer roles</h2>
-            <div className="roles-grid">
+          <section>
+            <p className="mb-5 flex items-center gap-3 text-[0.6rem] uppercase tracking-[0.22em] text-[#7a6048]">
+              What you contribute <span className="h-px flex-1 bg-[#2a1f17]" />
+            </p>
+            <h2 className="mb-5 font-serif text-[clamp(1.4rem,2.2vw,2rem)] font-light text-[#e8d5b0]">
+              Volunteer roles
+            </h2>
+            <div className="grid gap-px border border-[#2a1f17] bg-[#2a1f17] md:grid-cols-2">
               {[
                 ["Facility Management", "Keeping the estate running quietly and without friction."],
                 ["Vendor Communication", "Coordinating with external suppliers and service providers."],
                 ["Guest Hospitality", "Ensuring members arrive and settle in without needing to ask for anything."],
                 ["Content & Documentation", "Capturing what happens here in words, photographs, or film."],
               ].map(([name, desc]) => (
-                <div className="role-card" key={name}>
-                  <div className="role-card-name">{name}</div>
-                  <div className="role-card-desc">{desc}</div>
+                <div key={name} className="bg-[#160f0a] p-5">
+                  <p className="mb-1 font-serif text-base text-[#e8d5b0]">{name}</p>
+                  <p className="text-xs leading-5 text-[#7a6048]">{desc}</p>
                 </div>
               ))}
             </div>
-          </div>
+          </section>
 
-          <div className="detail-block">
-            <div className="detail-label">Questions</div>
-            <h2 className="detail-heading">Get in touch</h2>
-            <div className="contact-block">
+          <section>
+            <p className="mb-5 flex items-center gap-3 text-[0.6rem] uppercase tracking-[0.22em] text-[#7a6048]">
+              Questions <span className="h-px flex-1 bg-[#2a1f17]" />
+            </p>
+            <h2 className="mb-4 font-serif text-[clamp(1.4rem,2.2vw,2rem)] font-light text-[#e8d5b0]">
+              Get in touch
+            </h2>
+            <div className="space-y-3">
               <a className="contact-item" href="mailto:hello@thesilent.club">
-                <div className="contact-icon">✉</div>
-                <div><div className="contact-label">Email</div><div className="contact-value">hello@thesilent.club</div></div>
+                <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#3a2a1f] text-sm">✉</span>
+                <span>
+                  <span className="block text-[0.58rem] uppercase tracking-[0.16em] text-[#7a6048]">Email</span>
+                  <span className="text-sm text-[#b09070]">hello@thesilent.club</span>
+                </span>
               </a>
               <a className="contact-item" href="https://wa.me/919890322494">
-                <div className="contact-icon">◎</div>
-                <div><div className="contact-label">WhatsApp</div><div className="contact-value">+91 98903 22494</div></div>
+                <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#3a2a1f] text-sm">◎</span>
+                <span>
+                  <span className="block text-[0.58rem] uppercase tracking-[0.16em] text-[#7a6048]">WhatsApp</span>
+                  <span className="text-sm text-[#b09070]">+91 98903 22494</span>
+                </span>
               </a>
             </div>
-          </div>
+          </section>
         </div>
 
-        <div className="form-wrap">
-          <div className="form-label-top">Apply</div>
-          <h2 className="form-heading">Volunteer application</h2>
+        <div className="bg-[#160f0a] px-6 py-12 md:px-[56px] md:py-16">
+          <p className="mb-5 flex items-center gap-3 text-[0.6rem] uppercase tracking-[0.22em] text-[#7a6048]">
+            Apply <span className="h-px flex-1 bg-[#2a1f17]" />
+          </p>
+          <h2 className="mb-7 font-serif text-[clamp(1.4rem,2.2vw,2rem)] font-light text-[#e8d5b0]">
+            Volunteer application
+          </h2>
           {!showSuccess ? (
-            <div className="form" id="volForm">
-              <div className="form-row">
-                <div className="form-field"><label>Full name *</label><input type="text" placeholder="Your full name" onChange={(e) => setFormData((s) => ({ ...s, name: e.target.value }))} /></div>
-                <div className="form-field"><label>Email *</label><input type="email" placeholder="your@email.com" onChange={(e) => setFormData((s) => ({ ...s, email: e.target.value }))} /></div>
+            <div className="space-y-4" id="volForm">
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[0.58rem] uppercase tracking-[0.16em] text-[#7a6048]">Full name *</label>
+                  <input
+                    type="text"
+                    placeholder="Your full name"
+                    onChange={(e) => setFormData((s) => ({ ...s, name: e.target.value }))}
+                    className="w-full border border-[#3a2a1f] bg-[#1c1410] px-3.5 py-2.5 text-sm text-[#e8d5b0] outline-none placeholder:text-[#7a6048]"
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[0.58rem] uppercase tracking-[0.16em] text-[#7a6048]">Email *</label>
+                  <input
+                    type="email"
+                    placeholder="your@email.com"
+                    onChange={(e) => setFormData((s) => ({ ...s, email: e.target.value }))}
+                    className="w-full border border-[#3a2a1f] bg-[#1c1410] px-3.5 py-2.5 text-sm text-[#e8d5b0] outline-none placeholder:text-[#7a6048]"
+                  />
+                </div>
               </div>
-              <div className="form-row">
-                <div className="form-field"><label>Phone number *</label><input type="tel" placeholder="+91 XXXXX XXXXX" /></div>
-                <div className="form-field"><label>Current location *</label><input type="text" placeholder="City, Country" /></div>
+
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[0.58rem] uppercase tracking-[0.16em] text-[#7a6048]">Phone number *</label>
+                  <input type="tel" placeholder="+91 XXXXX XXXXX" className="w-full border border-[#3a2a1f] bg-[#1c1410] px-3.5 py-2.5 text-sm text-[#e8d5b0] outline-none placeholder:text-[#7a6048]" />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[0.58rem] uppercase tracking-[0.16em] text-[#7a6048]">Current location *</label>
+                  <input type="text" placeholder="City, Country" className="w-full border border-[#3a2a1f] bg-[#1c1410] px-3.5 py-2.5 text-sm text-[#e8d5b0] outline-none placeholder:text-[#7a6048]" />
+                </div>
               </div>
-              <div className="form-row">
-                <div className="form-field"><label>Preferred duration *</label><select><option value="">Select duration</option><option>3 months</option><option>3–6 months</option><option>6 months</option><option>6 months or more</option></select></div>
-                <div className="form-field"><label>When can you start? *</label><input type="text" placeholder="e.g., Immediately, After June 2026" /></div>
+
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[0.58rem] uppercase tracking-[0.16em] text-[#7a6048]">Preferred duration *</label>
+                  <select className="w-full border border-[#3a2a1f] bg-[#1c1410] px-3.5 py-2.5 text-sm text-[#e8d5b0] outline-none">
+                    <option value="">Select duration</option>
+                    <option>3 months</option>
+                    <option>3-6 months</option>
+                    <option>6 months</option>
+                    <option>6 months or more</option>
+                  </select>
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[0.58rem] uppercase tracking-[0.16em] text-[#7a6048]">When can you start? *</label>
+                  <input type="text" placeholder="e.g., Immediately, After June 2026" className="w-full border border-[#3a2a1f] bg-[#1c1410] px-3.5 py-2.5 text-sm text-[#e8d5b0] outline-none placeholder:text-[#7a6048]" />
+                </div>
               </div>
-              <div className="form-field"><label>Relevant skills *</label><textarea rows={3} placeholder="e.g., Gardening, cooking, maintenance, hospitality, content creation, photography..." /></div>
-              <div className="form-field"><label>Previous experience</label><textarea rows={3} placeholder="Any relevant volunteer or work experience..." /></div>
-              <div className="form-field"><label>Why do you want to volunteer here? *</label><textarea rows={4} placeholder="Tell us what draws you to The Silent Club and what you hope to contribute and gain from this experience..." onChange={(e) => setFormData((s) => ({ ...s, why: e.target.value }))} /></div>
-              <div className="form-field">
-                <label>Attach CV / Résumé</label>
-                <label className="file-upload">
+
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[0.58rem] uppercase tracking-[0.16em] text-[#7a6048]">Relevant skills *</label>
+                <textarea rows={3} placeholder="e.g., Gardening, cooking, maintenance, hospitality, content creation, photography..." className="w-full resize-y border border-[#3a2a1f] bg-[#1c1410] px-3.5 py-2.5 text-sm leading-6 text-[#e8d5b0] outline-none placeholder:text-[#7a6048]" />
+              </div>
+
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[0.58rem] uppercase tracking-[0.16em] text-[#7a6048]">Previous experience</label>
+                <textarea rows={3} placeholder="Any relevant volunteer or work experience..." className="w-full resize-y border border-[#3a2a1f] bg-[#1c1410] px-3.5 py-2.5 text-sm leading-6 text-[#e8d5b0] outline-none placeholder:text-[#7a6048]" />
+              </div>
+
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[0.58rem] uppercase tracking-[0.16em] text-[#7a6048]">Why do you want to volunteer here? *</label>
+                <textarea rows={4} placeholder="Tell us what draws you to The Silent Club and what you hope to contribute and gain from this experience..." onChange={(e) => setFormData((s) => ({ ...s, why: e.target.value }))} className="w-full resize-y border border-[#3a2a1f] bg-[#1c1410] px-3.5 py-2.5 text-sm leading-6 text-[#e8d5b0] outline-none placeholder:text-[#7a6048]" />
+              </div>
+
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[0.58rem] uppercase tracking-[0.16em] text-[#7a6048]">Attach CV / Resume</label>
+                <label className="flex cursor-pointer items-center gap-3 border border-[#3a2a1f] bg-[#1c1410] px-3.5 py-3">
                   <input type="file" accept=".pdf,.doc,.docx" onChange={onFileChange} />
-                  <div className="file-upload-btn">Choose file</div>
-                  <div className="file-upload-name">{fileName}</div>
+                  <span className="bg-[#8a6e42] px-2.5 py-1 text-[0.58rem] uppercase tracking-[0.14em] text-[#0f0b08]">Choose file</span>
+                  <span className="text-xs text-[#7a6048]">{fileName}</span>
                 </label>
-                <div className="file-upload-note">Accepted formats: PDF, DOC, DOCX · Max 5MB</div>
+                <p className="text-[0.62rem] text-[#7a6048]">Accepted formats: PDF, DOC, DOCX - Max 5MB</p>
               </div>
+
               <div>
-                <button className="form-submit" onClick={submitForm}>Submit Application →</button>
-                <div className="form-submit-note">We review all applications within 72 hours.</div>
+                <button className="bg-[#c5a065] px-7 py-3 text-[0.65rem] uppercase tracking-[0.2em] text-[#0f0b08] transition-colors hover:bg-[#d4b07a]" onClick={submitForm}>
+                  Submit Application →
+                </button>
+                <p className="mt-2 font-serif text-[0.68rem] italic text-[#7a6048]">
+                  We review all applications within 72 hours.
+                </p>
               </div>
             </div>
           ) : (
-            <div className="form-success show" id="formSuccess">
-              <div className="form-success-heading">Application received.</div>
-              <p className="form-success-text">Thank you for applying. We review every application carefully and will be in touch within 72 hours.</p>
+            <div className="py-12 text-center" id="formSuccess">
+              <h3 className="mb-3 font-serif text-4xl font-light text-[#e8d5b0]">Application received.</h3>
+              <p className="mx-auto max-w-md text-sm leading-7 text-[#7a6048]">
+                Thank you for applying. We review every application carefully and will be in touch
+                within 72 hours.
+              </p>
             </div>
           )}
         </div>
-      </div>
+      </section>
 
       <SiteFooter />
 
-      <div className={`invite-modal ${openInviteModal ? "show" : ""}`} onClick={(e) => e.currentTarget === e.target && setOpenInviteModal(false)}>
-        <div className="invite-modal-box">
-          <button className="invite-x" onClick={() => setOpenInviteModal(false)}>×</button>
+      <div
+        className={`fixed inset-0 z-[9000] items-center justify-center bg-[rgba(15,11,8,.88)] p-6 backdrop-blur ${openInviteModal ? "flex" : "hidden"}`}
+        onClick={(e) => e.currentTarget === e.target && setOpenInviteModal(false)}
+      >
+        <div className="relative w-full max-w-[480px] border border-[#3a2a1f] bg-[#160f0a] p-11">
+          <button className="absolute right-5 top-3 text-xl text-[#7a6048]" onClick={() => setOpenInviteModal(false)}>×</button>
           <div style={{ fontSize: "0.6rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#7a6048", marginBottom: 12 }}>Request Invite</div>
           <div style={{ fontFamily: "var(--serif)", fontSize: "1.7rem", fontWeight: 300, color: "#e8d5b0", marginBottom: 6 }}>Two questions.<br />No pitch.</div>
           <p style={{ fontSize: "0.82rem", color: "#7a6048", lineHeight: 1.65, marginBottom: 22 }}>We respond within 72 hours.</p>

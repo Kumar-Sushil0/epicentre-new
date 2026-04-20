@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Host an Event — The Silent Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f0b08;--bg-2:#160f0a;--bg-3:#1c1410;--bg-4:#221814;
+  --gold:#c5a065;--gold-dim:#8a6e42;--gold-pale:#e8d5b0;
+  --text-2:#b09070;--text-3:#7a6048;
+  --rule:#2a1f17;--rule-2:#3a2a1f;
+  --serif:'Cormorant',Georgia,serif;
+  --sans:'Jost',sans-serif;
+  --g:6vw;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--gold-pale);font-family:var(--sans);font-weight:300;-webkit-font-smoothing:antialiased;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4;}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(15,11,8,0.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--rule);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:1400px;margin:0 auto;padding:0 var(--g);}
+.nav-brand{font-family:var(--serif);font-size:1.1rem;color:var(--gold-pale);text-decoration:none;}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
+.nav-links a{font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-cta{font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:9px 22px;border:none;cursor:pointer;font-family:var(--sans);transition:background 0.2s;}
+.nav-cta:hover{background:var(--gold-pale);}
+@media(max-width:860px){.nav-links{display:none;}}
+
+/* HERO */
+.hero{
+  padding-top:60px;min-height:50vh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  border-bottom:1px solid var(--rule);
+  position:relative;overflow:hidden;background:var(--bg-2);
+}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 40%,rgba(197,160,101,0.04) 0%,transparent 60%);pointer-events:none;}
+.hero-inner{position:relative;z-index:2;padding:clamp(48px,6vw,80px) var(--g);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;}
+.hero-label{font-size:0.6rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;}
+.hero-heading{font-family:var(--serif);font-weight:300;font-size:clamp(2.4rem,5vw,4.8rem);line-height:0.95;letter-spacing:-0.02em;color:var(--gold-pale);margin-bottom:16px;}
+.hero-heading em{font-style:italic;color:var(--gold);}
+.hero-tag{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-dim);border:1px solid var(--rule-2);display:inline-block;padding:4px 12px;}
+.hero-desc{font-size:0.9rem;font-weight:300;line-height:1.85;color:var(--text-2);font-family:var(--serif);}
+.hero-desc em{font-style:italic;color:var(--gold-pale);}
+@media(max-width:860px){.hero-inner{grid-template-columns:1fr;gap:28px;}}
+
+/* MAIN */
+.main{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border-bottom:1px solid var(--rule);}
+
+/* LEFT */
+.details{background:var(--bg);padding:clamp(48px,6vw,72px) var(--g);}
+.detail-block{margin-bottom:40px;}
+.detail-block:last-child{margin-bottom:0;}
+.detail-label{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-3);margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.detail-label::after{content:'';flex:1;height:1px;background:var(--rule);}
+.detail-heading{font-family:var(--serif);font-weight:300;font-size:clamp(1.3rem,2vw,1.8rem);color:var(--gold-pale);margin-bottom:16px;letter-spacing:-0.01em;line-height:1.1;}
+.detail-desc{font-size:0.84rem;font-weight:300;color:var(--text-3);line-height:1.75;margin-bottom:20px;}
+.detail-desc em{font-family:var(--serif);font-style:italic;color:var(--text-2);}
+
+/* WHAT'S INCLUDED LIST */
+.included-list{display:flex;flex-direction:column;gap:0;}
+.included-item{display:flex;align-items:baseline;gap:14px;padding:12px 0;border-bottom:1px solid var(--rule);font-size:0.84rem;font-weight:300;color:var(--text-2);line-height:1.5;}
+.included-item:first-child{border-top:1px solid var(--rule);}
+.included-dot{width:4px;height:4px;border-radius:50%;background:var(--gold-dim);flex-shrink:0;margin-top:7px;}
+.included-label{color:var(--gold-pale);font-weight:300;}
+
+/* PRICING BLOCK */
+.pricing-block{background:var(--bg-3);border:1px solid var(--rule-2);padding:20px 22px;margin-bottom:20px;}
+.pricing-row{display:flex;align-items:baseline;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--rule);}
+.pricing-row:last-child{border-bottom:none;}
+.pricing-type{font-size:0.72rem;font-weight:300;letter-spacing:0.08em;color:var(--text-3);}
+.pricing-val{font-family:var(--serif);font-size:1.1rem;color:var(--gold);}
+.pricing-note{font-size:0.6rem;color:var(--text-3);margin-top:2px;}
+
+/* VENDOR NOTE */
+.vendor-note{padding:16px 18px;border:1px solid var(--rule-2);background:var(--bg-2);}
+.vendor-note-text{font-family:var(--serif);font-style:italic;font-size:0.9rem;color:var(--text-2);line-height:1.65;}
+
+/* CONTACT */
+.contact-block{display:flex;flex-direction:column;gap:10px;}
+.contact-item{display:flex;align-items:center;gap:16px;padding:12px 16px;border:1px solid var(--rule-2);text-decoration:none;transition:border-color 0.2s;}
+.contact-item:hover{border-color:var(--gold-dim);}
+.contact-icon{width:32px;height:32px;border:1px solid var(--rule-2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0;}
+.contact-label{font-size:0.56rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3);margin-bottom:2px;}
+.contact-value{font-size:0.82rem;font-weight:300;color:var(--text-2);}
+
+/* RIGHT: FORM */
+.form-wrap{background:var(--bg-2);padding:clamp(48px,6vw,72px) var(--g);}
+.form-label-top{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-3);margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.form-label-top::after{content:'';flex:1;height:1px;background:var(--rule);}
+.form-heading{font-family:var(--serif);font-weight:300;font-size:clamp(1.3rem,2vw,1.8rem);color:var(--gold-pale);margin-bottom:28px;letter-spacing:-0.01em;line-height:1.1;}
+
+.form{display:flex;flex-direction:column;gap:16px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-field{display:flex;flex-direction:column;gap:6px;}
+.form-field label{font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3);}
+.form-field input,
+.form-field textarea,
+.form-field select{background:var(--bg-3);border:1px solid var(--rule-2);padding:11px 14px;font-family:var(--sans);font-size:0.84rem;color:var(--gold-pale);outline:none;transition:border-color 0.2s;width:100%;box-sizing:border-box;appearance:none;}
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus{border-color:var(--gold-dim);}
+.form-field input::placeholder,
+.form-field textarea::placeholder{color:var(--text-3);}
+.form-field textarea{resize:vertical;line-height:1.6;}
+.form-field select{cursor:pointer;color-scheme:dark;}
+
+/* VENDOR CHECKBOXES */
+.vendor-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.vendor-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--rule-2);cursor:pointer;transition:all 0.2s;background:var(--bg-3);}
+.vendor-item:hover{border-color:var(--gold-dim);}
+.vendor-item.selected{border-color:var(--gold-dim);background:rgba(197,160,101,0.06);}
+.vendor-item input[type=checkbox]{display:none;}
+.vendor-check{width:14px;height:14px;border:1px solid var(--rule-2);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.vendor-item.selected .vendor-check{border-color:var(--gold);background:rgba(197,160,101,0.15);}
+.vendor-check-inner{width:6px;height:6px;background:var(--gold);display:none;}
+.vendor-item.selected .vendor-check-inner{display:block;}
+.vendor-item-label{font-size:0.72rem;font-weight:300;color:var(--text-2);line-height:1.3;}
+
+.form-section-label{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-3);margin-bottom:10px;margin-top:4px;}
+
+.form-submit{background:var(--gold);color:var(--bg);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;padding:14px 28px;border:none;cursor:pointer;font-family:var(--sans);transition:background 0.2s;margin-top:8px;}
+.form-submit:hover{background:var(--gold-pale);}
+.form-submit-note{font-size:0.62rem;color:var(--text-3);font-family:var(--serif);font-style:italic;margin-top:8px;}
+
+.form-success{display:none;text-align:center;padding:48px 0;}
+.form-success.show{display:block;}
+.form-success-heading{font-family:var(--serif);font-size:2rem;font-weight:300;color:var(--gold-pale);margin-bottom:12px;}
+.form-success-text{font-size:0.875rem;color:var(--text-3);line-height:1.7;max-width:320px;margin:0 auto;}
+
+/* FOOTER */
+.footer{background:var(--bg);border-top:1px solid var(--rule);}
+.footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:1px;background:var(--rule);border-bottom:1px solid var(--rule);}
+.footer-col{background:var(--bg);padding:clamp(36px,4vw,52px) clamp(24px,3vw,36px);}
+.footer-logo-row{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.footer-brand{font-family:var(--serif);font-size:1.1rem;color:var(--gold-pale);}
+.footer-tagline{font-size:0.66rem;color:var(--text-3);letter-spacing:0.06em;margin-bottom:20px;}
+.footer-exp-text{font-size:0.75rem;color:var(--text-3);line-height:1.5;margin-bottom:10px;}
+.footer-exp-btn{font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-dim);border:1px solid var(--rule-2);padding:7px 14px;background:none;cursor:pointer;font-family:var(--sans);transition:all 0.2s;display:inline-block;}
+.footer-exp-btn:hover{border-color:var(--gold-dim);color:var(--gold);}
+.footer-col-label{font-size:0.56rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-3);margin-bottom:14px;}
+.footer-link{display:block;font-size:0.78rem;color:var(--text-3);padding:3px 0;text-decoration:none;transition:color 0.2s;}
+.footer-link:hover{color:var(--gold);}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px var(--g);flex-wrap:wrap;}
+.footer-copy{font-size:0.62rem;color:var(--text-3);}
+@media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr;}}
+@media(max-width:540px){.footer-top{grid-template-columns:1fr;}}
+
+@media(max-width:860px){
+  .main{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .vendor-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="thesilentclub-homepage.html">The Silent Club</a>
+    <ul class="nav-links">
+      <li><a href="thesilentclub-homepage.html">Home</a></li>
+      <li><a href="thesilentclub-estate.html">The Estate</a></li>
+      <li><a href="thesilentclub-events.html">Events</a></li>
+      <li><a href="thesilentclub-journal.html">Journal</a></li>
+      <li><a href="thesilentclub-about.html">About</a></li>
+      <li><a href="thesilentclub-faq.html">FAQ</a></li>
+    </ul>
+    <button class="nav-cta" onclick="openInviteModal()">Request Invite</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-label">Full Cycle</div>
+      <h1 class="hero-heading">Bring your<br>people.<br><em>We'll handle<br>the rest.</em></h1>
+      <div class="hero-tag" style="margin-top:20px;">Full Estate Rental</div>
+    </div>
+    <div>
+      <p class="hero-desc">The entire Silent Club estate — seven acres, all spaces, all meals, up to 20 people — for 24 hours or more. <em>You bring the intention. We build the conditions around it.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- LEFT -->
+  <div class="details">
+
+    <!-- WHAT'S INCLUDED -->
+    <div class="detail-block">
+      <div class="detail-label">What's included</div>
+      <h2 class="detail-heading">Everything. Nothing extra.</h2>
+      <div class="included-list">
+        <div class="included-item"><div class="included-dot"></div><span><span class="included-label">Full estate access</span> — all rooms, dorms, decks, shared spaces and outdoor areas</span></div>
+        <div class="included-item"><div class="included-dot"></div><span><span class="included-label">Up to 20 people</span> — private rooms and shared dorms, your combination</span></div>
+        <div class="included-item"><div class="included-dot"></div><span><span class="included-label">All meals</span> — satvik kitchen, the pantry, outdoor kitchen. 24-hour access</span></div>
+        <div class="included-item"><div class="included-dot"></div><span><span class="included-label">All activities and gear</span> — birds, boats, cycles, gym, pool, contrast therapy</span></div>
+        <div class="included-item"><div class="included-dot"></div><span><span class="included-label">Silent compact optional</span> — we can design the experience around silence or not. Your call</span></div>
+        <div class="included-item"><div class="included-dot"></div><span><span class="included-label">On-ground support</span> — estate team present throughout. Nothing goes unnoticed</span></div>
+      </div>
+    </div>
+
+    <!-- PRICING -->
+    <div class="detail-block">
+      <div class="detail-label">Pricing</div>
+      <h2 class="detail-heading">Noon to noon. 24 hours.</h2>
+      <div class="pricing-block">
+        <div class="pricing-row">
+          <div><div class="pricing-type">Weekday</div><div class="pricing-note">Mon – Thu</div></div>
+          <div style="text-align:right;"><div class="pricing-val">Rs. 1,00,000</div><div class="pricing-note">Per night · Taxes applicable</div></div>
+        </div>
+        <div class="pricing-row">
+          <div><div class="pricing-type">Weekend</div><div class="pricing-note">Fri – Sun</div></div>
+          <div style="text-align:right;"><div class="pricing-val">Rs. 1,20,000</div><div class="pricing-note">Per night · Taxes applicable</div></div>
+        </div>
+      </div>
+      <p style="font-size:0.78rem;color:var(--text-3);line-height:1.65;">Multi-night bookings available. Custom pricing for extended stays of 3 nights or more.</p>
+    </div>
+
+    <!-- VENDOR SUPPORT -->
+    <div class="detail-block">
+      <div class="detail-label">Vendor support</div>
+      <h2 class="detail-heading">We know who to call.</h2>
+      <div class="vendor-note">
+        <p class="vendor-note-text">We have working relationships with trusted vendors across all categories. You don't need to figure it out alone — just tell us what you need and we'll coordinate everything.</p>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="detail-block">
+      <div class="detail-label">Talk to us first</div>
+      <h2 class="detail-heading">Questions before the form?</h2>
+      <div class="contact-block">
+        <a class="contact-item" href="mailto:hello@thesilent.club">
+          <div class="contact-icon">✉</div>
+          <div><div class="contact-label">Email</div><div class="contact-value">hello@thesilent.club</div></div>
+        </a>
+        <a class="contact-item" href="https://wa.me/919890322494">
+          <div class="contact-icon">◎</div>
+          <div><div class="contact-label">WhatsApp</div><div class="contact-value">+91 98903 22494</div></div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: FORM -->
+  <div class="form-wrap">
+    <div class="form-label-top">Enquiry</div>
+    <h2 class="form-heading">Tell us what you're planning.</h2>
+
+    <div class="form" id="hostForm">
+
+      <!-- CONTACT INFO -->
+      <div class="form-row">
+        <div class="form-field"><label>Your name *</label><input type="text" id="h_name" placeholder="Full name"></div>
+        <div class="form-field"><label>Email *</label><input type="email" id="h_email" placeholder="email@example.com"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-field"><label>Phone *</label><input type="tel" id="h_phone" placeholder="+91 XXXXX XXXXX"></div>
+        <div class="form-field"><label>Organisation / Company</label><input type="text" id="h_org" placeholder="Optional"></div>
+      </div>
+      <div class="form-field">
+        <label>Are you organising this as part of a company, brand, or group?</label>
+        <textarea id="h_affiliation" rows="2" placeholder="e.g. We are a 12-person product team at a startup, a creative collective, a friend group who met at a workshop... or just tell us who's coming."></textarea>
+      </div>
+
+      <!-- EVENT DETAILS -->
+      <div class="form-field">
+        <label>Type of gathering *</label>
+        <select id="h_type">
+          <option value="">Select type</option>
+          <option>Corporate offsite</option>
+          <option>Creative retreat</option>
+          <option>Workshop or facilitation</option>
+          <option>Music or performance event</option>
+          <option>Art installation or exhibition</option>
+          <option>Film or photography project</option>
+          <option>Private celebration</option>
+          <option>Team building</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field"><label>Number of people *</label><input type="text" id="h_people" placeholder="e.g. 12-15 people"></div>
+        <div class="form-field"><label>Preferred dates *</label><input type="text" id="h_dates" placeholder="e.g. July 2026"></div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>Weekday or weekend?</label>
+          <select id="h_day">
+            <option value="">Select preference</option>
+            <option>Weekday (Mon-Thu)</option>
+            <option>Weekend (Fri-Sun)</option>
+            <option>Both / Flexible</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Budget range</label>
+          <select id="h_budget">
+            <option value="">Select range</option>
+            <option>Rs. 1,00,000 – 1,50,000</option>
+            <option>Rs. 1,50,000 – 2,50,000</option>
+            <option>Rs. 2,50,000 – 5,00,000</option>
+            <option>Rs. 5,00,000+</option>
+            <option>Flexible / Let's discuss</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- VISION -->
+      <div class="form-field">
+        <label>What are you planning? *</label>
+        <textarea id="h_vision" rows="4" placeholder="Tell us what you're imagining. What's the intention behind this gathering? What do you want people to feel or leave with? A paragraph is enough."></textarea>
+      </div>
+
+      <div class="form-field">
+        <label>Have you done something like this before?</label>
+        <textarea id="h_prev" rows="2" placeholder="Any context helps us understand what you're looking for..."></textarea>
+      </div>
+
+      <!-- VENDOR NEEDS -->
+      <div>
+        <div class="form-section-label">Vendor support needed (select all that apply)</div>
+        <div class="vendor-grid" id="vendorGrid">
+          <div class="vendor-item" onclick="toggleVendor(this)">
+            <input type="checkbox"><div class="vendor-check"><div class="vendor-check-inner"></div></div>
+            <div class="vendor-item-label">Audio-visual equipment and setup</div>
+          </div>
+          <div class="vendor-item" onclick="toggleVendor(this)">
+            <input type="checkbox"><div class="vendor-check"><div class="vendor-check-inner"></div></div>
+            <div class="vendor-item-label">Event management on ground</div>
+          </div>
+          <div class="vendor-item" onclick="toggleVendor(this)">
+            <input type="checkbox"><div class="vendor-check"><div class="vendor-check-inner"></div></div>
+            <div class="vendor-item-label">Tour and travel logistics</div>
+          </div>
+          <div class="vendor-item" onclick="toggleVendor(this)">
+            <input type="checkbox"><div class="vendor-check"><div class="vendor-check-inner"></div></div>
+            <div class="vendor-item-label">Outside catering and bar setup</div>
+          </div>
+          <div class="vendor-item" onclick="toggleVendor(this)">
+            <input type="checkbox"><div class="vendor-check"><div class="vendor-check-inner"></div></div>
+            <div class="vendor-item-label">Liquor permit</div>
+          </div>
+          <div class="vendor-item" onclick="toggleVendor(this)">
+            <input type="checkbox"><div class="vendor-check"><div class="vendor-check-inner"></div></div>
+            <div class="vendor-item-label">Bulk boat bookings</div>
+          </div>
+          <div class="vendor-item" onclick="toggleVendor(this)">
+            <input type="checkbox"><div class="vendor-check"><div class="vendor-check-inner"></div></div>
+            <div class="vendor-item-label">Safari and wildlife rides</div>
+          </div>
+          <div class="vendor-item" onclick="toggleVendor(this)">
+            <input type="checkbox"><div class="vendor-check"><div class="vendor-check-inner"></div></div>
+            <div class="vendor-item-label">Activity gear and equipment</div>
+          </div>
+          <div class="vendor-item" onclick="toggleVendor(this)">
+            <input type="checkbox"><div class="vendor-check"><div class="vendor-check-inner"></div></div>
+            <div class="vendor-item-label">Government permissions and licensing</div>
+          </div>
+          <div class="vendor-item" onclick="toggleVendor(this)">
+            <input type="checkbox"><div class="vendor-check"><div class="vendor-check-inner"></div></div>
+            <div class="vendor-item-label">Security arrangements</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label>Anything else we should know?</label>
+        <textarea id="h_notes" rows="3" placeholder="Dietary requirements, special setup, accessibility needs, or anything else..."></textarea>
+      </div>
+
+      <div>
+        <button class="form-submit" onclick="submitHost()">Send enquiry</button>
+        <div class="form-submit-note">We respond within 48 hours with availability and initial suggestions.</div>
+      </div>
+
+    </div>
+
+    <div class="form-success" id="hostSuccess">
+      <div class="form-success-heading">Received.</div>
+      <p class="form-success-text">We will review your enquiry and come back within 48 hours with availability, initial thoughts, and suggestions on how we can shape this together.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-col">
+      <div class="footer-logo-row">
+        <svg width="36" height="36" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M60 8 C35 8 18 28 18 55 C18 82 35 102 60 112 C85 102 102 82 102 55 C102 28 85 8 60 8Z" stroke="#8a6e42" stroke-width="1.5" fill="none"/>
+          <circle cx="72" cy="28" r="5" stroke="#8a6e42" stroke-width="1.2" fill="none"/>
+          <line x1="48" y1="85" x2="48" y2="55" stroke="#c5a065" stroke-width="1.5"/>
+          <path d="M48 55 C48 55 36 46 32 38 C40 40 48 45 48 45" stroke="#c5a065" stroke-width="1.2" fill="none"/>
+          <path d="M48 55 C48 55 58 44 64 38 C58 42 50 50 48 50" stroke="#c5a065" stroke-width="1.2" fill="none"/>
+          <ellipse cx="50" cy="88" rx="18" ry="4" stroke="#8a6e42" stroke-width="1" fill="none"/>
+          <circle cx="50" cy="84" r="6" fill="#8a6e42" opacity="0.6"/>
+          <path d="M58 82 C62 78 66 80 64 85 C62 88 58 86 58 82Z" stroke="#8a6e42" stroke-width="1" fill="none"/>
+          <path d="M30 90 Q60 96 90 90" stroke="#8a6e42" stroke-width="1" fill="none" opacity="0.4"/>
+        </svg>
+        <div class="footer-brand">The Silent Club</div>
+      </div>
+      <div class="footer-tagline">Silence as a Service · Bhigwan, Pune</div>
+      <div class="footer-exp-text">Artist, musician, or experience creator?</div>
+      <button class="footer-exp-btn" onclick="window.location.href='thesilentclub-hostevent.html'">Experiment with us &rarr;</button>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-label">Explore</div>
+      <a class="footer-link" href="thesilentclub-homepage.html">Home</a>
+      <a class="footer-link" href="thesilentclub-about.html">About</a>
+      <a class="footer-link" href="thesilentclub-estate.html">The Estate</a>
+      <a class="footer-link" href="thesilentclub-journal.html">Journal</a>
+      <a class="footer-link" href="thesilentclub-events.html">Events</a>
+      <a class="footer-link" href="thesilentclub-faq.html">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-label">Stay</div>
+      <a class="footer-link" href="#">Day Cycle</a>
+      <a class="footer-link" href="#">Weekend Cycle</a>
+      <a class="footer-link" href="#">Weekday Cycle</a>
+      <a class="footer-link" href="#">Full Cycle</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-label">Connect</div>
+      <a class="footer-link" href="#">Instagram</a>
+      <a class="footer-link" href="#">Substack</a>
+      <a class="footer-link" href="#">Request Invite</a>
+      <a class="footer-link" href="thesilentclub-volunteer.html">Work as Volunteer</a>
+      <a class="footer-link" href="thesilentclub-hostevent.html">Host an Event</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2026 The Silent Club. All rights reserved.</div>
+    <div class="footer-copy">Kumbhar Goan, Bird Sanctuary, Bhigwan, Maharashtra 413104</div>
+    <div class="footer-copy">A registered initiative of Silent Tourism Foundation.</div>
+  </div>
+</footer>
+
+<!-- INVITE MODAL -->
+<div id="inviteModal" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(15,11,8,0.88);backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:24px;">
+<div style="background:#160f0a;border:1px solid #3a2a1f;border-radius:4px;max-width:500px;width:100%;overflow:hidden;max-height:92vh;">
+  <div style="padding:16px 20px;border-bottom:1px solid #2a1f17;display:flex;align-items:center;justify-content:space-between;">
+    <div style="display:flex;gap:10px;align-items:center;">
+      <div id="sd1" style="width:24px;height:24px;border-radius:50%;background:rgba(197,160,101,0.15);display:flex;align-items:center;justify-content:center;font-size:11px;color:#c5a065;font-family:'Jost',sans-serif;">1</div>
+      <div style="height:1px;width:20px;background:#2a1f17;"></div>
+      <div id="sd2" style="width:24px;height:24px;border-radius:50%;border:1px solid #2a1f17;display:flex;align-items:center;justify-content:center;font-size:11px;color:#7a6048;font-family:'Jost',sans-serif;">2</div>
+      <div style="height:1px;width:20px;background:#2a1f17;"></div>
+      <div id="sd3" style="width:24px;height:24px;border-radius:50%;border:1px solid #2a1f17;display:flex;align-items:center;justify-content:center;font-size:11px;color:#7a6048;font-family:'Jost',sans-serif;">3</div>
+    </div>
+    <button onclick="closeInviteModal()" style="border:1px solid #2a1f17;background:none;cursor:pointer;font-size:1rem;color:#7a6048;width:30px;height:30px;display:flex;align-items:center;justify-content:center;">&times;</button>
+  </div>
+  <div style="height:420px;display:flex;flex-direction:column;overflow:hidden;">
+    <div id="inv_s1" style="flex:1;display:flex;flex-direction:column;padding:24px 20px 0;overflow-y:auto;">
+      <div style="font-size:0.54rem;letter-spacing:0.22em;text-transform:uppercase;color:#7a6048;margin-bottom:8px;font-family:'Jost',sans-serif;">Before we speak</div>
+      <h2 style="font-family:'Cormorant',serif;font-size:1.8rem;font-weight:300;color:#e8d5b0;margin-bottom:20px;">Two questions</h2>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div><label style="display:block;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:#7a6048;margin-bottom:7px;font-family:'Jost',sans-serif;">What are you hoping to get from this stay?</label><textarea id="inv_q1" rows="3" placeholder="Take your time..." style="width:100%;background:#1c1410;border:1px solid #2a1f17;padding:10px 12px;font-family:'Cormorant',serif;font-size:1rem;color:#e8d5b0;outline:none;resize:none;line-height:1.6;box-sizing:border-box;"></textarea></div>
+        <div><label style="display:block;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:#7a6048;margin-bottom:7px;font-family:'Jost',sans-serif;">Anything we should know before we speak?</label><textarea id="inv_q2" rows="3" placeholder="Share any context..." style="width:100%;background:#1c1410;border:1px solid #2a1f17;padding:10px 12px;font-family:'Cormorant',serif;font-size:1rem;color:#e8d5b0;outline:none;resize:none;line-height:1.6;box-sizing:border-box;"></textarea></div>
+      </div>
+    </div>
+    <div id="inv_s2" style="flex:1;display:none;flex-direction:column;padding:24px 20px 0;overflow-y:auto;">
+      <div style="font-size:0.54rem;letter-spacing:0.22em;text-transform:uppercase;color:#7a6048;margin-bottom:8px;font-family:'Jost',sans-serif;">Pick a time</div>
+      <h2 style="font-family:'Cormorant',serif;font-size:1.8rem;font-weight:300;color:#e8d5b0;margin-bottom:16px;">15-minute conversation</h2>
+      <div style="border:1px solid #2a1f17;margin-bottom:12px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#1c1410;border-bottom:1px solid #2a1f17;">
+          <button onclick="invCalPrev()" style="border:1px solid #2a1f17;background:none;cursor:pointer;color:#7a6048;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;">&lsaquo;</button>
+          <span id="inv_calLabel" style="font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:#b09070;font-family:'Jost',sans-serif;"></span>
+          <button onclick="invCalNext()" style="border:1px solid #2a1f17;background:none;cursor:pointer;color:#7a6048;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;">&rsaquo;</button>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);padding:6px 8px 2px;background:#160f0a;">
+          <div style="text-align:center;font-size:0.5rem;color:#7a6048;padding:3px 0;font-family:'Jost',sans-serif;">S</div><div style="text-align:center;font-size:0.5rem;color:#7a6048;padding:3px 0;font-family:'Jost',sans-serif;">M</div><div style="text-align:center;font-size:0.5rem;color:#7a6048;padding:3px 0;font-family:'Jost',sans-serif;">T</div><div style="text-align:center;font-size:0.5rem;color:#7a6048;padding:3px 0;font-family:'Jost',sans-serif;">W</div><div style="text-align:center;font-size:0.5rem;color:#7a6048;padding:3px 0;font-family:'Jost',sans-serif;">T</div><div style="text-align:center;font-size:0.5rem;color:#7a6048;padding:3px 0;font-family:'Jost',sans-serif;">F</div><div style="text-align:center;font-size:0.5rem;color:#7a6048;padding:3px 0;font-family:'Jost',sans-serif;">S</div>
+        </div>
+        <div id="inv_calGrid" style="display:grid;grid-template-columns:repeat(7,1fr);padding:2px 8px 8px;background:#160f0a;gap:2px;"></div>
+      </div>
+      <div style="font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:#7a6048;margin-bottom:8px;font-family:'Jost',sans-serif;">Choose a slot</div>
+      <div id="inv_slots" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px;"></div>
+      <div id="inv_selDisplay" style="display:none;padding:8px 12px;background:#1c1410;border:1px solid #2a1f17;font-size:0.78rem;color:#b09070;font-family:'Jost',sans-serif;"></div>
+    </div>
+    <div id="inv_s3" style="flex:1;display:none;flex-direction:column;padding:24px 20px 0;overflow-y:auto;">
+      <div style="font-size:0.54rem;letter-spacing:0.22em;text-transform:uppercase;color:#7a6048;margin-bottom:8px;font-family:'Jost',sans-serif;">Your details</div>
+      <h2 style="font-family:'Cormorant',serif;font-size:1.8rem;font-weight:300;color:#e8d5b0;margin-bottom:6px;">Almost done</h2>
+      <p style="font-size:0.78rem;color:#7a6048;margin-bottom:20px;line-height:1.5;font-family:'Jost',sans-serif;">We will confirm your conversation within 24 hours.</p>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div><label style="display:block;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:#7a6048;margin-bottom:7px;font-family:'Jost',sans-serif;">Full name</label><input type="text" id="inv_name" placeholder="Your full name" style="width:100%;background:#1c1410;border:1px solid #2a1f17;padding:10px 12px;font-family:'Jost',sans-serif;font-size:0.875rem;color:#e8d5b0;outline:none;box-sizing:border-box;"></div>
+        <div><label style="display:block;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:#7a6048;margin-bottom:7px;font-family:'Jost',sans-serif;">Email</label><input type="email" id="inv_email" placeholder="email@example.com" style="width:100%;background:#1c1410;border:1px solid #2a1f17;padding:10px 12px;font-family:'Jost',sans-serif;font-size:0.875rem;color:#e8d5b0;outline:none;box-sizing:border-box;"></div>
+        <div><label style="display:block;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:#7a6048;margin-bottom:7px;font-family:'Jost',sans-serif;">Phone</label><input type="tel" id="inv_phone" placeholder="+91 XXXXX XXXXX" style="width:100%;background:#1c1410;border:1px solid #2a1f17;padding:10px 12px;font-family:'Jost',sans-serif;font-size:0.875rem;color:#e8d5b0;outline:none;box-sizing:border-box;"></div>
+      </div>
+    </div>
+    <div id="inv_s4" style="flex:1;display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;text-align:center;">
+      <div style="width:48px;height:48px;border-radius:50%;border:1px solid #8a6e42;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:1.2rem;color:#c5a065;">&#10003;</div>
+      <div style="font-family:'Cormorant',serif;font-size:2rem;font-weight:300;color:#e8d5b0;margin-bottom:10px;">Thank you.</div>
+      <p style="font-size:0.82rem;color:#7a6048;line-height:1.7;max-width:300px;margin:0 auto 24px;font-family:'Jost',sans-serif;">Application received. We will confirm within 24 hours.</p>
+      <button onclick="closeInviteModal()" style="border:1px solid #2a1f17;background:none;padding:9px 22px;font-family:'Jost',sans-serif;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;color:#b09070;">Close</button>
+    </div>
+  </div>
+  <div id="inv_footer" style="padding:16px 20px;border-top:1px solid #2a1f17;display:flex;gap:8px;">
+    <button id="inv_back" onclick="invBack()" style="display:none;flex:1;padding:12px;border:1px solid #2a1f17;background:none;font-family:'Jost',sans-serif;font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;color:#7a6048;">Back</button>
+    <button id="inv_next" onclick="invNext()" style="flex:2;padding:12px;background:#c5a065;color:#0f0b08;border:none;font-family:'Jost',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;">Continue</button>
+  </div>
+</div>
+</div>
+
+<script>
+function toggleVendor(item) {
+  item.classList.toggle('selected');
+  var cb = item.querySelector('input[type=checkbox]');
+  if(cb) cb.checked = item.classList.contains('selected');
+}
+
+function submitHost() {
+  var name = document.getElementById('h_name').value.trim();
+  var email = document.getElementById('h_email').value.trim();
+  var vision = document.getElementById('h_vision').value.trim();
+  if(!name || !email || !vision) {
+    alert('Please fill in your name, email and tell us what you are planning.');
+    return;
+  }
+  document.getElementById('hostForm').style.display = 'none';
+  document.getElementById('hostSuccess').classList.add('show');
+}
+
+var _invStep=1,_invDate=null,_invTime=null,_invCalY,_invCalM;
+var _invMN=['January','February','March','April','May','June','July','August','September','October','November','December'];
+var _invTimes=['09:00','10:30','12:00','14:00','16:00','18:00'];
+
+function openInviteModal(){
+  _invStep=1;_invDate=null;_invTime=null;
+  var t=new Date();_invCalY=t.getFullYear();_invCalM=t.getMonth();
+  _invShowStep(1);
+  document.getElementById('inviteModal').style.display='flex';
+  document.body.style.overflow='hidden';
+  _invRenderCal();_invRenderSlots();
+}
+function closeInviteModal(){document.getElementById('inviteModal').style.display='none';document.body.style.overflow='';}
+
+function _invShowStep(n){
+  _invStep=n;
+  ['inv_s1','inv_s2','inv_s3','inv_s4'].forEach(function(id,i){document.getElementById(id).style.display=(i+1===n||(n===99&&i===3))?'flex':'none';});
+  [1,2,3].forEach(function(i){
+    var d=document.getElementById('sd'+i);
+    if(i<n&&n<99){d.style.background='rgba(107,155,94,0.15)';d.style.border='none';d.style.color='#6b9b5e';d.textContent='✓';}
+    else if(i===n){d.style.background='rgba(197,160,101,0.15)';d.style.border='none';d.style.color='#c5a065';d.textContent=i;}
+    else{d.style.background='none';d.style.border='1px solid #2a1f17';d.style.color='#7a6048';d.textContent=i;}
+  });
+  var footer=document.getElementById('inv_footer');
+  if(n===99){footer.style.display='none';return;}
+  footer.style.display='flex';
+  document.getElementById('inv_back').style.display=n>1?'block':'none';
+  document.getElementById('inv_next').textContent=n===3?'Submit':'Continue';
+}
+function invNext(){
+  if(_invStep===1){if(!document.getElementById('inv_q1').value.trim()){alert('Please tell us what you are hoping to get from this stay.');return;}_invShowStep(2);}
+  else if(_invStep===2){if(!_invDate||!_invTime){alert('Please select a date and time slot.');return;}_invShowStep(3);}
+  else if(_invStep===3){if(!document.getElementById('inv_name').value.trim()||!document.getElementById('inv_email').value.trim()){alert('Please enter your name and email.');return;}_invShowStep(99);}
+}
+function invBack(){if(_invStep>1)_invShowStep(_invStep-1);}
+function _invRenderCal(){
+  document.getElementById('inv_calLabel').textContent=_invMN[_invCalM]+' '+_invCalY;
+  var g=document.getElementById('inv_calGrid');g.innerHTML='';
+  var fd=new Date(_invCalY,_invCalM,1).getDay(),dm=new Date(_invCalY,_invCalM+1,0).getDate();
+  var today=new Date();today.setHours(0,0,0,0);
+  for(var i=0;i<fd;i++)g.appendChild(document.createElement('div'));
+  for(var d=1;d<=dm;d++){
+    var dt=new Date(_invCalY,_invCalM,d),c=document.createElement('div');
+    var past=dt<today,isSel=_invDate&&_invDate.toDateString()===dt.toDateString();
+    c.textContent=d;
+    c.style.cssText='text-align:center;padding:5px 2px;font-size:0.78rem;font-family:Jost,sans-serif;border-radius:2px;cursor:'+(past?'default':'pointer')+';color:'+(past?'#3a2a1f':isSel?'#0f0b08':'#e8d5b0')+';background:'+(isSel?'#c5a065':'none')+';';
+    if(!past)(function(date){c.addEventListener('click',function(){_invDate=date;_invTime=null;_invRenderCal();_invRenderSlots();_invUpdateSel();});})(new Date(dt));
+    g.appendChild(c);
+  }
+}
+function _invRenderSlots(){
+  var c=document.getElementById('inv_slots');c.innerHTML='';
+  _invTimes.forEach(function(t){
+    var btn=document.createElement('button');btn.textContent=t;var isSel=_invTime===t;
+    btn.style.cssText='padding:8px 4px;font-size:0.72rem;font-family:Jost,sans-serif;letter-spacing:0.06em;cursor:pointer;border:1px solid '+(isSel?'#8a6e42':'#2a1f17')+';background:'+(isSel?'rgba(197,160,101,0.1)':'#1c1410')+';color:'+(isSel?'#e8d5b0':'#b09070')+';';
+    btn.addEventListener('click',function(){_invTime=t;_invRenderSlots();_invUpdateSel();});
+    c.appendChild(btn);
+  });
+}
+function _invUpdateSel(){
+  var el=document.getElementById('inv_selDisplay');
+  if(_invDate&&_invTime){var dn=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],mn=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];el.style.display='block';el.textContent=dn[_invDate.getDay()]+' '+_invDate.getDate()+' '+mn[_invDate.getMonth()]+' - '+_invTime;}
+  else el.style.display='none';
+}
+function invCalPrev(){_invCalM--;if(_invCalM<0){_invCalM=11;_invCalY--;}_invRenderCal();}
+function invCalNext(){_invCalM++;if(_invCalM>11){_invCalM=0;_invCalY++;}_invRenderCal();}
+document.getElementById('inviteModal').addEventListener('click',function(e){if(e.target===this)closeInviteModal();});
+window.addEventListener('scroll',function(){document.querySelector('.nav').style.background=window.scrollY>40?'rgba(15,11,8,0.98)':'rgba(15,11,8,0.94)';});
+</script>
+</body>
+</html>

@@ -11,7 +11,7 @@ const footerLinks: Record<string, string> = {
   Substack: "#",
   "Request Invite": "/thesilentclub/daydesigner",
   "Work as Volunteer": "/thesilentclub/volunteer",
-  "Host an Event": "/thesilentclub/events",
+  "Host an Event": "/thesilentclub/hostevent",
 };
 
 export function SiteFooter() {
@@ -36,7 +36,7 @@ export function SiteFooter() {
               Artist, musician, or experience creator?
             </p>
             <a
-              href="/thesilentclub/events"
+              href="/thesilentclub/creator"
               className="inline-block border border-[#3a2a1f] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[#c5a065]"
             >
               Experiment with us →
@@ -60,15 +60,23 @@ export function SiteFooter() {
         ].map(({ heading, items }) => (
           <div key={heading} className="bg-[#0f0b08] px-7 py-9">
             <p className="mb-3.5 text-xs font-bold uppercase tracking-[0.22em] text-[#e8d5b0]">{heading}</p>
-            {items.map((item) =>
-              footerLinks[item] ? (
-                <a key={item} href={footerLinks[item]} className="block py-1 text-sm font-bold text-[#7a6048]">
-                  {item}
-                </a>
-              ) : (
-                <p key={item} className="py-1 text-sm font-bold text-[#7a6048]">{item}</p>
-              ),
-            )}
+            <ul className="space-y-1">
+              {items.map((item) => (
+                <li key={item}>
+                  {footerLinks[item] ? (
+                    <a
+                      href={footerLinks[item]}
+                      className="group flex w-fit items-center gap-2 py-1 text-sm font-bold text-[#7a6048] transition-colors duration-200 hover:text-[#c5a065]"
+                    >
+                      {item}
+                      <span className="h-px w-0 bg-[#c5a065] transition-all duration-200 group-hover:w-3" />
+                    </a>
+                  ) : (
+                    <p className="py-1 text-sm font-bold text-[#7a6048]">{item}</p>
+                  )}
+                </li>
+              ))}
+            </ul>
           </div>
         ))}
       </div>
