@@ -1,6 +1,6 @@
 export function DayDesignerStyles() {
   return (
-    <style jsx global>{`
+    <style dangerouslySetInnerHTML={{__html: `
       @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;600&display=swap');
       @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,300,0,0');
       .material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;font-size:inherit;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-smoothing:antialiased;}
@@ -164,6 +164,6 @@ export function DayDesignerStyles() {
         .p-inner{padding:24px 6vw}
         .cta-bar{padding:16px 6vw}
       }
-    `}</style>
+    `}} />
   );
 }

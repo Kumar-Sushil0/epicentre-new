@@ -105,7 +105,7 @@ export function ClosingCta({ onOpenModal }: { onOpenModal: () => void }) {
   return (
     <section className="cta-band">
       <h2 className="cta-headline">The infrastructure is ready.<br /><em style={{ color: "var(--gold)" }}>The thinking is yours.</em></h2>
-      <a href="#invite" className="btn-gold">Request Invite →</a>
+      <button type="button" className="btn-gold" onClick={onOpenModal}>Request Invite →</button>
       <p className="cta-sub">Two questions. A short conversation. Your first invite.</p>
     </section>
   );

@@ -1,6 +1,6 @@
 export function EstateStyles() {
   return (
-    <style jsx global>{`
+    <style dangerouslySetInnerHTML={{__html: `
       :root{--bg:#0f0b08;--bg-2:#160f0a;--bg-3:#1c1410;--bg-4:#221814;--gold:#c5a065;--gold-dim:#8a6e42;--gold-pale:#e8d5b0;--text-2:#b09070;--text-3:#7a6048;--rule:#2a1f17;--rule-2:#3a2a1f;--serif:'Cormorant',Georgia,serif;--sans:'Jost',sans-serif;--g:6vw}
       *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--gold-pale);font-family:var(--sans);font-weight:300}
       .nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(15,11,8,0);backdrop-filter:blur(0);border-bottom:1px solid transparent;transition:all .4s}
@@ -61,6 +61,6 @@ export function EstateStyles() {
       @media(max-width:900px){.numbers{grid-template-columns:repeat(3,1fr)}.cards,.cards.four-col{grid-template-columns:repeat(2,1fr)}.footer-top{grid-template-columns:1fr 1fr}}
       @media(max-width:860px){.nav-links{display:none}.intro,.cat-header{grid-template-columns:1fr;gap:16px}}
       @media(max-width:540px){.numbers{grid-template-columns:repeat(2,1fr)}.cards,.cards.four-col{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr}}
-    `}</style>
+    `}} />
   );
 }

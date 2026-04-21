@@ -1,6 +1,6 @@
 export function AboutStyles() {
   return (
-    <style jsx global>{`
+    <style dangerouslySetInnerHTML={{__html: `
       :root{--bg:#0f0b08;--bg-2:#160f0a;--bg-3:#1c1410;--gold:#c5a065;--gold-dim:#8a6e42;--gold-pale:#e8d5b0;--text-2:#b09070;--text-3:#7a6048;--rule:#2a1f17;--rule-2:#3a2a1f;--serif:'Cormorant',Georgia,serif;--sans:'Jost',sans-serif;--g:6vw;--ease:cubic-bezier(.25,.46,.45,.94)}
       *{box-sizing:border-box} html{font-size:16px;scroll-behavior:smooth}
       body{margin:0;background:var(--bg);color:var(--gold-pale);font-family:var(--sans);font-weight:300;-webkit-font-smoothing:antialiased}
@@ -104,6 +104,6 @@ export function AboutStyles() {
       .modal-x{position:absolute;top:14px;right:18px;background:none;border:none;color:#7a6048;font-size:1.3rem;cursor:pointer}
       @media(max-width:860px){.nav-links{display:none}.hero{grid-template-columns:1fr}.hero-right{display:none}.why-header,.founder,.stf-idea{grid-template-columns:1fr;gap:24px}.founder-left,.stf-idea-left{border-right:none;border-bottom:1px solid var(--rule)}.acc-trigger{gap:20px}.acc-body-inner{grid-template-columns:1fr}.acc-body-text{grid-column:1}.stf-cohorts-h{grid-template-columns:1fr 1fr}.stf-cohort-h{padding:16px 16px 20px}.footer-top{grid-template-columns:1fr 1fr}.footer-bottom{flex-direction:column;gap:8px}}
       @media(max-width:480px){.stf-cohorts-h{grid-template-columns:1fr}.stf-cohort-h{padding:16px 16px 20px}.footer-top{grid-template-columns:1fr}}
-    `}</style>
+    `}} />
   );
 }

@@ -93,7 +93,7 @@ export function InviteModal({ open, onClose, cycleLabel = "The Silent Club" }: P
 
 function InviteModalStyles() {
   return (
-    <style jsx global>{`
+    <style dangerouslySetInnerHTML={{__html: `
       @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;600&display=swap');
       :root {
         --bg: #0f0b08;
@@ -147,6 +147,6 @@ function InviteModalStyles() {
         padding: 16px;
         z-index: 9999;
       }
-    `}</style>
+    `}} />
   );
 }

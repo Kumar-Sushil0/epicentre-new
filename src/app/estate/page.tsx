@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { natureCards, practiceCards, spacesCards, symbolicaCards } from "./content";
 import { EstateStyles } from "./components/EstateStyles";
 import { ClosingCta, CategorySection, HeroSection, IntroAndNumbers, TopNav } from "./components/EstateSections";
-import { InviteModal } from "./components/FooterAndModal";
+import { InviteModal } from "../thesilentclub/components/InviteModal";
 import { SiteFooter } from "../thesilentclub/components/SiteFooter";
 
 export default function TheSilentClubEstatePage() {
@@ -39,7 +39,7 @@ export default function TheSilentClubEstatePage() {
       <CategorySection groupKey="symbolica" num="04" title="Symbolica" desc="The parts of the estate that don't have a function. That's the point." open={openGroups.symbolica} onToggle={toggleGroup} cards={symbolicaCards} className="symbolica" />
       <ClosingCta onOpenModal={() => setOpenModal(true)} />
       <SiteFooter />
-      <InviteModal openModal={openModal} setOpenModal={setOpenModal} />
+      <InviteModal open={openModal} onClose={() => setOpenModal(false)} />
     </main>
   );
 }
