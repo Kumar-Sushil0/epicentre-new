@@ -21,10 +21,11 @@ export function WhoBelongsSection({ whoReviewIndex, setWhoReviewIndex }: Props) 
           </h2>
         </div>
         <p className="text-sm leading-8 text-[#b09070]">
-          # This is not a wellness retreat.
-          <br /> # Not a co-working space.
-          <br /> # Not a place that added the word silence to its marketing.
-          <br /> # It is the place that quietly curious people have always needed.
+          This is not a wellness retreat. Not a co-working space. Not a place that added the word
+          silence to its marketing.
+          <br />
+          <br />
+          It is the place that quietly curious people have always needed.
         </p>
       </div>
       <div className="grid gap-px bg-[#2a1f17] md:grid-cols-3">
