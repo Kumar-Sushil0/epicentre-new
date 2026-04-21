@@ -31,11 +31,13 @@ export default function AboutFounder() {
 
           {/* Image Side - Now with CarouselCard behavior */}
           <div className="w-full lg:w-5/12 relative group">
-            <div className="relative h-full min-h-[500px] w-full overflow-hidden rounded-sm">
+            <div className="relative h-full min-h-[400px] md:min-h-[500px] w-full overflow-hidden rounded-sm">
               <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110 contrast-[1.1]"
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 group-hover:scale-110 contrast-[1.1]"
                 style={{
-                  backgroundImage: "url('/dd.jpeg')"
+                  backgroundImage: "url('/dd.jpeg')",
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
                 }}
               ></div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>

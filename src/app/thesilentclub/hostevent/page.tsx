@@ -69,6 +69,8 @@ const dayOptions = ["Weekday (Mon-Thu)", "Weekend (Fri-Sun)", "Both / Flexible"]
 export default function HostEventPage() {
   const [selectedVendors, setSelectedVendors] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [formValues, setFormValues] = useState({
     name: "",
     email: "",
@@ -91,12 +93,34 @@ export default function HostEventPage() {
     );
   };
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setSubmitError("");
     if (!formValues.name.trim() || !formValues.email.trim() || !formValues.vision.trim()) {
+      setSubmitError("Please fill name, email, and event vision.");
       return;
     }
-    setSubmitted(true);
+    try {
+      setIsSubmitting(true);
+      const response = await fetch("/api/host-event-enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formValues,
+          vendorSupport: selectedVendors,
+        }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        setSubmitError(payload?.error || "Failed to submit. Please try again.");
+        return;
+      }
+      setSubmitted(true);
+    } catch {
+      setSubmitError("Failed to submit. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -256,6 +280,11 @@ export default function HostEventPage() {
 
           {!submitted ? (
             <form className="space-y-4" onSubmit={onSubmit}>
+              {submitError ? (
+                <p className="border border-red-500/40 bg-red-500/10 px-3 py-2 text-sm text-red-300">
+                  {submitError}
+                </p>
+              ) : null}
               <div className="grid gap-4 md:grid-cols-2">
                 <Field
                   label="Your name *"
@@ -400,9 +429,10 @@ export default function HostEventPage() {
               <div>
                 <button
                   type="submit"
+                  disabled={isSubmitting}
                   className="bg-[#c5a065] px-7 py-3 text-[0.65rem] uppercase tracking-[0.2em] text-[#0f0b08] transition-colors hover:bg-[#d4b07a]"
                 >
-                  Send enquiry
+                  {isSubmitting ? "Sending..." : "Send enquiry"}
                 </button>
                 <p className="mt-2 font-serif text-[0.68rem] italic text-[#7a6048]">
                   We respond within 48 hours with availability and initial suggestions.

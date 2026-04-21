@@ -20,6 +20,7 @@ const navItems: NavItem[] = [
     { label: 'Activities', icon: 'hiking', href: '/admin/activities' },
     { label: 'Blogs', icon: 'article', href: '/admin/blogs' },
     { label: 'Events', icon: 'event', href: '/admin/events' },
+    { label: 'Newsletter', icon: 'mark_email_unread', href: '/admin/newsletter' },
     { label: 'Payments', icon: 'payments', href: '/admin/payments' },
     { label: 'Analytics', icon: 'analytics', href: '/admin/analytics' },
     { label: 'Settings', icon: 'settings', href: '/admin/settings' },

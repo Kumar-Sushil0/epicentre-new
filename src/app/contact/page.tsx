@@ -48,12 +48,17 @@ export default function ContactPage() {
         setSubmitStatus(null);
 
         try {
+            const payload = {
+                ...formData,
+                cvFileName: formData.cv?.name || null,
+                cv: undefined,
+            };
             const response = await fetch('/api/contact', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(payload),
             });
 
             const data = await response.json();

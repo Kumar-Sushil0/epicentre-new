@@ -31,6 +31,8 @@ const mediums = [
 export default function CreatorPage() {
   const [selectedMediums, setSelectedMediums] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -46,12 +48,35 @@ export default function CreatorPage() {
     );
   };
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setSubmitError("");
     if (!form.name.trim() || !form.email.trim() || !form.vision.trim()) {
+      setSubmitError("Please fill name, email, and your vision.");
       return;
     }
-    setSubmitted(true);
+
+    try {
+      setIsSubmitting(true);
+      const response = await fetch("/api/creator-apply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...form,
+          mediums: selectedMediums,
+        }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        setSubmitError(payload?.error || "Failed to submit. Please try again.");
+        return;
+      }
+      setSubmitted(true);
+    } catch {
+      setSubmitError("Failed to submit. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -175,6 +200,11 @@ export default function CreatorPage() {
 
           {!submitted ? (
             <form className="space-y-4" onSubmit={onSubmit}>
+              {submitError ? (
+                <p className="border border-red-500/40 bg-red-500/10 px-3 py-2 text-sm text-red-300">
+                  {submitError}
+                </p>
+              ) : null}
               <div className="flex flex-col gap-1.5">
                 <label className="text-[0.58rem] uppercase tracking-[0.16em] text-[#7a6048]">
                   Your name and what you make *
@@ -303,9 +333,10 @@ export default function CreatorPage() {
               <div>
                 <button
                   type="submit"
+                  disabled={isSubmitting}
                   className="bg-[#c5a065] px-7 py-3 text-[0.65rem] uppercase tracking-[0.2em] text-[#0f0b08] transition-colors hover:bg-[#d4b07a]"
                 >
-                  Start the conversation
+                  {isSubmitting ? "Submitting..." : "Start the conversation"}
                 </button>
                 <p className="mt-2 font-serif text-[0.68rem] italic text-[#7a6048]">
                   We respond within 48 hours. No templates. An actual reply.
