@@ -123,7 +123,7 @@ export default function TheSilentClubHomepage20Page() {
       <TopNav />
       <HeroSection onOpenModal={() => setOpenModal(true)} />
 
-      <section className="flex flex-wrap items-center justify-between gap-4 border-b border-[#2a1f17] bg-[#160f0a] px-[56px] py-4">
+      <section className="flex flex-wrap items-center justify-between gap-4 border-b border-[#2a1f17] bg-[#160f0a] px-5 py-4 md:px-[56px]">
         <p className="text-xs font-medium uppercase tracking-[0.14em] text-[#b09070]">
           Follow the pollination
         </p>
@@ -133,7 +133,7 @@ export default function TheSilentClubHomepage20Page() {
             placeholder="your@email.com"
             value={subscribeEmail}
             onChange={(e) => setSubscribeEmail(e.target.value)}
-            className="w-56 border border-r-0 border-[#3a2a1f] bg-[#1c1410] px-3 py-2 text-sm text-[#e8d5b0] outline-none"
+            className="w-40 border border-r-0 border-[#3a2a1f] bg-[#1c1410] px-3 py-2 text-sm text-[#e8d5b0] outline-none md:w-56"
           />
           <button
             type="button"
@@ -151,7 +151,7 @@ export default function TheSilentClubHomepage20Page() {
         </div>
       </section>
 
-      <section className="grid gap-10 border-b border-[#2a1f17] px-[56px] py-20 md:grid-cols-[200px,1fr]">
+      <section className="grid gap-10 border-b border-[#2a1f17] px-5 py-14 md:px-[56px] md:py-20 md:grid-cols-[200px,1fr]">
         <div>
           <div className="mb-4 h-px w-10 bg-[#8a6e42]" />
           <p className="text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">The case for quiet</p>
@@ -167,7 +167,7 @@ export default function TheSilentClubHomepage20Page() {
         </div>
       </section>
 
-      <section className="grid gap-12 border-b border-[#2a1f17] bg-[#160f0a] px-[56px] py-20 md:grid-cols-[1fr,1.4fr]">
+      <section className="grid gap-12 border-b border-[#2a1f17] bg-[#160f0a] px-5 py-14 md:px-[56px] md:py-20 md:grid-cols-[1fr,1.4fr]">
         <div>
           <h2 className="mb-2 font-serif text-4xl italic">Silence reveals direction.</h2>
           <p className="text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">The rest is up to you.</p>
@@ -192,8 +192,8 @@ export default function TheSilentClubHomepage20Page() {
         </div>
       </section>
 
-      <section className="px-[56px] py-10 text-center">
-        <h2 className="font-serif text-5xl leading-none md:text-7xl">
+      <section className="px-5 py-10 text-center md:px-[56px]">
+        <h2 className="font-serif text-4xl leading-none md:text-5xl lg:text-7xl">
           Silence <span className="text-base italic text-[#7a6048]">as a</span>{" "}
           <em className="italic text-[#c5a065]">Service.</em>
         </h2>
@@ -204,9 +204,9 @@ export default function TheSilentClubHomepage20Page() {
 
       <WhoBelongsSection whoReviewIndex={whoReviewIndex} setWhoReviewIndex={setWhoReviewIndex} />
 
-      <section className="border-b border-[#2a1f17] bg-[#160f0a] px-[56px] py-20">
+      <section className="border-b border-[#2a1f17] bg-[#160f0a] px-5 py-14 md:px-[56px] md:py-20">
         <div className="mb-14 text-center">
-          <h2 className="font-serif text-5xl">Designed Deliberately</h2>
+          <h2 className="font-serif text-3xl md:text-5xl">Designed Deliberately</h2>
           <p className="mt-2 font-serif italic text-[#7a6048]">
             Three conditions. Removed by design, not willpower.
           </p>
@@ -232,7 +232,7 @@ export default function TheSilentClubHomepage20Page() {
         </div>
       </section>
 
-      <section className="grid gap-10 border-y border-[#2a1f17] px-[56px] py-20 md:grid-cols-[280px,1fr]">
+      <section className="grid gap-10 border-y border-[#2a1f17] px-5 py-14 md:px-[56px] md:py-20 md:grid-cols-[280px,1fr]">
         <div>
           <div className="mb-4 h-px w-10 bg-[#8a6e42]" />
           <p className="mb-3 text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">How it works here</p>
@@ -290,7 +290,7 @@ export default function TheSilentClubHomepage20Page() {
       />
 
       <section className="grid border-y border-[#2a1f17] bg-[#160f0a] md:grid-cols-2">
-        <div className="flex h-full flex-col justify-between px-[56px] pb-5 pt-5">
+        <div className="flex h-full flex-col justify-between px-5 pb-5 pt-5 md:px-[56px]">
           <div className="space-y-5">
             <div className="h-px w-10 bg-[#8a6e42]" />
             <p className="text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">Location</p>
@@ -331,16 +331,16 @@ export default function TheSilentClubHomepage20Page() {
           </div>
         </div>
         <div className="border-l border-[#2a1f17]">
-          <div className="border-b border-[#2a1f17] pl-4 pr-[56px] py-5 text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">
+          <div className="border-b border-[#2a1f17] pl-4 pr-5 py-5 text-xs font-medium uppercase tracking-[0.24em] text-[#b09070] md:pr-[56px]">
             The Silent Club · Overlooking Ujni Lake · Bhigwan, Maharashtra
           </div>
           <iframe
             title="Bhigwan Map"
-            className="h-[360px] w-full"
+            className="h-[240px] w-full md:h-[360px]"
             loading="lazy"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3788.8023952143494!2d74.78934330608215!3d18.264878020717468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc379a78540dae5%3A0x1887106e21d5085d!2sThe%20Silent%20Club!5e0!3m2!1sen!2sin!4v1772105560153!5m2!1sen!2sin"
           />
-          <div className="border-t border-[#2a1f17] pl-4 pr-[56px] py-4">
+          <div className="border-t border-[#2a1f17] pl-4 pr-5 py-4 md:pr-[56px]">
             <p className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-[#b09070]">
               Postal Address
             </p>
@@ -353,8 +353,8 @@ export default function TheSilentClubHomepage20Page() {
 
       <FaqSection openFaq={openFaq} setOpenFaq={setOpenFaq} />
 
-      <section className="border-t border-[#2a1f17] bg-[#160f0a] px-[56px] py-24 text-center">
-        <h2 className="mx-auto mb-8 max-w-4xl font-serif text-5xl leading-tight md:text-7xl">
+      <section className="border-t border-[#2a1f17] bg-[#160f0a] px-5 py-16 text-center md:px-[56px] md:py-24">
+        <h2 className="mx-auto mb-8 max-w-4xl font-serif text-3xl leading-tight md:text-5xl lg:text-7xl">
           The rarest luxury in modern life is <em className="italic text-[#c5a065]">uninterrupted time.</em>
         </h2>
         <button onClick={() => setOpenModal(true)} className="bg-[#c5a065] px-7 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0f0b08]">

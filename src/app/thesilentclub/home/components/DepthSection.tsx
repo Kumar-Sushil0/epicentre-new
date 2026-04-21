@@ -28,13 +28,13 @@ export function DepthSection({
 }: Props) {
   return (
     <section className="border-y border-[#2a1f17]">
-      <div className="border-b border-[#2a1f17] px-[56px] py-16 text-center">
+      <div className="border-b border-[#2a1f17] px-5 py-12 text-center md:px-[56px] md:py-16">
         <p className="mb-3 text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">
           Choose your depth
         </p>
-        <h2 className="font-serif text-4xl">The environment stays the same. The depth changes.</h2>
+        <h2 className="font-serif text-2xl md:text-4xl">The environment stays the same. The depth changes.</h2>
       </div>
-      <div className="grid gap-px bg-[#2a1f17] lg:grid-cols-4">
+      <div className="grid gap-px bg-[#2a1f17] md:grid-cols-2 lg:grid-cols-4">
         {depthCards.map((card) => {
           const selected = selectedDepth === card.id;
           const pricing = getDepthPrice(card.id);
@@ -59,78 +59,78 @@ export function DepthSection({
                   </li>
                 ))}
               </ul>
-              {card.id === "residency" && (
-                <div className="mb-5 grid grid-cols-2 gap-px bg-[#2a1f17]">
-                  {(["dorm", "room"] as const).map((key) => (
-                    <button
-                      key={key}
-                      type="button"
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        setDepthVariant((state) => ({ ...state, residency: key }));
-                      }}
-                      className={`px-2 py-2 text-[10px] uppercase tracking-[0.1em] ${
-                        depthVariant.residency === key
-                          ? "bg-[#8a6e42] text-[#0f0b08]"
-                          : "bg-[#1c1410] text-[#7a6048]"
-                      }`}
-                    >
-                      {card.toggles[key].label}
-                    </button>
-                  ))}
-                </div>
-              )}
-              {card.id === "solitude" && (
-                <div className="mb-5 grid grid-cols-2 gap-px bg-[#2a1f17]">
-                  {(["dorm", "room"] as const).map((key) => (
-                    <button
-                      key={key}
-                      type="button"
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        setDepthVariant((state) => ({ ...state, solitude: key }));
-                      }}
-                      className={`px-2 py-2 text-[10px] uppercase tracking-[0.1em] ${
-                        depthVariant.solitude === key
-                          ? "bg-[#8a6e42] text-[#0f0b08]"
-                          : "bg-[#1c1410] text-[#7a6048]"
-                      }`}
-                    >
-                      {card.toggles[key].label}
-                    </button>
-                  ))}
-                </div>
-              )}
-              {card.id === "creation" && (
-                <div className="mb-5 grid grid-cols-2 gap-px bg-[#2a1f17]">
-                  {(["weekday", "weekend"] as const).map((key) => (
-                    <button
-                      key={key}
-                      type="button"
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        setDepthVariant((state) => ({ ...state, creation: key }));
-                      }}
-                      className={`px-2 py-2 text-[10px] uppercase tracking-[0.1em] ${
-                        depthVariant.creation === key
-                          ? "bg-[#8a6e42] text-[#0f0b08]"
-                          : "bg-[#1c1410] text-[#7a6048]"
-                      }`}
-                    >
-                      {card.toggles[key].label}
-                    </button>
-                  ))}
-                </div>
-              )}
               <div className="mt-auto pt-2">
-                <p className="font-serif text-3xl text-[#c5a065]">{pricing.price}</p>
+                {card.id === "residency" && (
+                  <div className="grid grid-cols-2 gap-px bg-[#2a1f17]">
+                    {(["dorm", "room"] as const).map((key) => (
+                      <button
+                        key={key}
+                        type="button"
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          setDepthVariant((state) => ({ ...state, residency: key }));
+                        }}
+                        className={`px-2 py-2 text-[10px] uppercase tracking-[0.1em] ${
+                          depthVariant.residency === key
+                            ? "bg-[#8a6e42] text-[#0f0b08]"
+                            : "bg-[#1c1410] text-[#7a6048]"
+                        }`}
+                      >
+                        {card.toggles[key].label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {card.id === "solitude" && (
+                  <div className="grid grid-cols-2 gap-px bg-[#2a1f17]">
+                    {(["dorm", "room"] as const).map((key) => (
+                      <button
+                        key={key}
+                        type="button"
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          setDepthVariant((state) => ({ ...state, solitude: key }));
+                        }}
+                        className={`px-2 py-2 text-[10px] uppercase tracking-[0.1em] ${
+                          depthVariant.solitude === key
+                            ? "bg-[#8a6e42] text-[#0f0b08]"
+                            : "bg-[#1c1410] text-[#7a6048]"
+                        }`}
+                      >
+                        {card.toggles[key].label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {card.id === "creation" && (
+                  <div className="grid grid-cols-2 gap-px bg-[#2a1f17]">
+                    {(["weekday", "weekend"] as const).map((key) => (
+                      <button
+                        key={key}
+                        type="button"
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          setDepthVariant((state) => ({ ...state, creation: key }));
+                        }}
+                        className={`px-2 py-2 text-[10px] uppercase tracking-[0.1em] ${
+                          depthVariant.creation === key
+                            ? "bg-[#8a6e42] text-[#0f0b08]"
+                            : "bg-[#1c1410] text-[#7a6048]"
+                        }`}
+                      >
+                        {card.toggles[key].label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+                <p className="mt-4 font-serif text-3xl text-[#c5a065]">{pricing.price}</p>
                 <p className="text-xs font-medium text-[#b09070]">{pricing.note}</p>
               </div>
             </article>
           );
         })}
       </div>
-      <div className="flex flex-wrap items-center justify-between gap-4 bg-[#160f0a] px-[56px] py-6">
+      <div className="flex flex-wrap items-center justify-between gap-4 bg-[#160f0a] px-5 py-6 md:px-[56px]">
         <p className="font-serif italic text-[#7a6048]">
           {selectedDepth ? (
             <>

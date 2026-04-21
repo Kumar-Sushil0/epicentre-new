@@ -1,10 +1,10 @@
 export type DepthId = "silence" | "residency" | "solitude" | "creation";
 
 export const navLinks = [
-  { label: "Home", href: "/thesilentclub/home" },
-  { label: "About", href: "/thesilentclub/about" },
-  { label: "The Estate", href: "/thesilentclub/estate" },
-  { label: "FAQ", href: "/thesilentclub/faq" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "The Estate", href: "/estate" },
+  { label: "FAQ", href: "/faq" },
   { label: "Journal", href: "/blogs" },
 ];
 
@@ -118,7 +118,6 @@ export const depthCards = [
       "Structured or themed weekend experience",
       "Shared non-performative environment",
       "Full estate access + all meals",
-      "Friday conversation circle included",
     ],
     toggles: {
       dorm: { label: "Dorm", price: "₹10,000" },
@@ -148,10 +147,10 @@ export const depthCards = [
     id: "creation" as const,
     num: "04",
     name: "Creation",
-    cycle: "Noon to Noon Cycle · 24 Hours",
+    cycle: "Full estate, Full Cycle",
     forText: "For groups who want the whole place to themselves.",
     features: [
-      "Full estate, Full Cycle",
+      "Noon to Noon Cycle · 24 Hours",
       "All rooms, dorms, decks + shared spaces",
       "Accommodation up to 20 people max",
       "Full access + all meals included",

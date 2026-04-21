@@ -1,15 +1,15 @@
 import Image from "next/image";
 
 const footerLinks: Record<string, string> = {
-  Home: "/thesilentclub/home",
-  About: "/thesilentclub/about",
-  "The Estate": "/thesilentclub/estate",
-  Journal: "/thesilentclub/blogs",
-  Events: "/thesilentclub/events",
-  FAQ: "/thesilentclub/faq",
+  Home: "/",
+  About: "/about",
+  "The Estate": "/estate",
+  Journal: "/blogs",
+  Events: "/events",
+  FAQ: "/faq",
   Instagram: "#",
   Substack: "#",
-  "Request Invite": "/thesilentclub/daydesigner",
+  "Request Invite": "/daydesigner",
   "Work as Volunteer": "/thesilentclub/volunteer",
   "Host an Event": "/thesilentclub/hostevent",
 };
@@ -19,7 +19,7 @@ export function SiteFooter() {
     <footer className="overflow-hidden bg-[#0f0b08]">
       <div className="grid gap-px border-b border-[#2a1f17] bg-[#2a1f17] md:grid-cols-[1.6fr_1fr_1fr_1fr]">
         <div className="flex h-full flex-col bg-[#0f0b08] px-7 py-9">
-          <a href="/thesilentclub/home" className="mb-2 inline-flex h-12 w-44 items-center">
+          <a href="/" className="mb-2 inline-flex h-12 w-44 items-center">
             <Image
               src="/the-silent-club-logo.png"
               alt="The Silent Club"

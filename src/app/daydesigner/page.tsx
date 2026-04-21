@@ -509,7 +509,7 @@ export default function TheSilentClubDayDesigner9Page() {
       <DayDesignerStyles />
       <DesignerHeader
         stepClass={stepClass}
-        onBackToSite={() => router.push("/thesilentclub/home")}
+        onBackToSite={() => router.push("/")}
         stepOneLabel={stepOneLabel}
       />
 

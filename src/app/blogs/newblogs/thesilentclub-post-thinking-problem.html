@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You Don't Have a Thinking Problem — The Silent Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f0b08;--bg-2:#160f0a;--bg-3:#1c1410;--gold:#c5a065;--gold-dim:#8a6e42;--gold-pale:#e8d5b0;--text-2:#b09070;--text-3:#7a6048;--rule:#2a1f17;--rule-2:#3a2a1f;--serif:'Cormorant',Georgia,serif;--sans:'Jost',sans-serif;--g:6vw;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--gold-pale);font-family:var(--sans);font-weight:300;-webkit-font-smoothing:antialiased;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4;}
+.nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(15,11,8,0.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--rule);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:1400px;margin:0 auto;padding:0 var(--g);}
+.nav-brand{font-family:var(--serif);font-size:1.1rem;color:var(--gold-pale);text-decoration:none;}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
+.nav-links a{font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-cta{font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:9px 22px;border:none;cursor:pointer;font-family:var(--sans);transition:background 0.2s;}
+.nav-cta:hover{background:var(--gold-pale);}
+@media(max-width:860px){.nav-links{display:none;}}
+.progress-bar{position:fixed;top:60px;left:0;right:0;height:2px;background:var(--rule);z-index:800;}
+.progress-fill{height:100%;background:var(--gold);width:0%;transition:width 0.1s;}
+.post-hero{padding-top:60px;position:relative;min-height:65vh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;border-bottom:1px solid var(--rule);}
+.post-hero-bg{position:absolute;inset:0;background:var(--bg-3);}
+.post-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,11,8,0.96) 0%,rgba(15,11,8,0.5) 60%,rgba(15,11,8,0.2) 100%);}
+.post-hero-content{position:relative;z-index:2;padding:clamp(40px,5vw,64px) var(--g);max-width:900px;}
+.post-back{display:inline-flex;align-items:center;gap:8px;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3);text-decoration:none;margin-bottom:20px;transition:color 0.2s;}
+.post-back:hover{color:var(--gold-dim);}
+.post-cat{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:12px;}
+.post-original-title{font-family:var(--serif);font-size:clamp(0.8rem,1.2vw,0.95rem);font-weight:300;color:var(--text-3);letter-spacing:0.06em;margin-bottom:16px;text-transform:uppercase;}
+.post-h1{font-family:var(--serif);font-weight:300;font-size:clamp(1.8rem,4vw,3.8rem);color:var(--gold-pale);line-height:1.1;letter-spacing:-0.02em;margin-bottom:12px;}
+.post-sub{font-family:var(--serif);font-style:italic;font-size:clamp(1rem,1.5vw,1.2rem);color:var(--text-2);margin-bottom:20px;font-weight:300;}
+.post-meta{display:flex;align-items:center;gap:16px;font-size:0.62rem;letter-spacing:0.1em;color:var(--text-3);}
+.post-meta-dot{width:3px;height:3px;border-radius:50%;background:var(--rule-2);}
+.post-layout{display:grid;grid-template-columns:180px 1fr 180px;gap:0;max-width:1200px;margin:0 auto;padding:clamp(48px,6vw,80px) var(--g);}
+.post-sidebar-left{padding-right:44px;position:sticky;top:100px;align-self:start;}
+.sidebar-label{font-size:0.56rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;display:block;}
+.sidebar-share{display:flex;flex-direction:column;gap:8px;}
+.sidebar-share-btn{background:none;border:1px solid var(--rule-2);padding:7px 12px;font-family:var(--sans);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);cursor:pointer;transition:all 0.2s;text-align:left;}
+.sidebar-share-btn:hover{border-color:var(--gold-dim);color:var(--gold);}
+.post-content{border-left:1px solid var(--rule);border-right:1px solid var(--rule);padding:0 clamp(40px,5vw,64px);}
+.post-sidebar-right{padding-left:44px;position:sticky;top:100px;align-self:start;}
+.sidebar-cta-label{font-size:0.56rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-3);margin-bottom:12px;display:block;}
+.sidebar-cta-text{font-family:var(--serif);font-size:0.9rem;color:var(--text-2);line-height:1.6;margin-bottom:16px;}
+.sidebar-cta-btn{display:block;background:var(--gold);color:var(--bg);font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;padding:10px 16px;border:none;cursor:pointer;font-family:var(--sans);transition:background 0.2s;text-align:center;width:100%;}
+.sidebar-cta-btn:hover{background:var(--gold-pale);}
+.chapter-marker{font-family:var(--sans);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-dim);padding:28px 0 12px;margin-bottom:4px;border-top:1px solid var(--rule);margin-top:20px;}
+.chapter-marker:first-child{border-top:none;margin-top:0;padding-top:0;}
+.prose{font-family:var(--serif);font-weight:300;font-size:clamp(1.05rem,1.4vw,1.2rem);line-height:1.9;color:#d4c4a8;}
+.prose p{margin-bottom:0;padding:6px 0;}
+.prose p.gap{padding-top:20px;}
+.prose .highlight{color:var(--gold);font-style:italic;}
+.post-closing{margin-top:40px;padding:28px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);}
+.post-closing-text{font-family:var(--serif);font-weight:300;font-size:clamp(1rem,1.3vw,1.1rem);color:var(--text-2);line-height:1.8;margin-bottom:16px;font-style:italic;}
+.post-closing-place{font-family:var(--sans);font-size:0.7rem;letter-spacing:0.1em;color:var(--gold-dim);margin-bottom:12px;}
+.post-closing-cta{display:inline-block;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:9px 20px;border:none;cursor:pointer;font-family:var(--sans);transition:background 0.2s;text-decoration:none;}
+.post-closing-cta:hover{background:var(--gold-pale);}
+.post-end{padding-top:24px;}
+.post-end-label{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;}
+.post-end-text{font-family:var(--serif);font-size:0.95rem;color:var(--text-2);}
+.post-nav{border-top:1px solid var(--rule);display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);}
+.post-nav-item{background:var(--bg-2);padding:28px var(--g);text-decoration:none;transition:background 0.2s;display:block;}
+.post-nav-item:hover{background:var(--bg-3);}
+.post-nav-item.empty{background:var(--bg);cursor:default;}
+.post-nav-item.next{text-align:right;}
+.post-nav-dir{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px;font-family:var(--sans);}
+.post-nav-title{font-family:var(--serif);font-size:clamp(1rem,1.5vw,1.2rem);color:var(--gold-pale);line-height:1.2;font-weight:300;}
+.related{border-top:1px solid var(--rule);padding:clamp(40px,5vw,60px) var(--g);}
+.related-label{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-3);margin-bottom:24px;}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);}
+.related-card{background:var(--bg-2);padding:22px;cursor:pointer;transition:background 0.2s;text-decoration:none;display:block;}
+.related-card:hover{background:var(--bg-3);}
+.related-card-tag{font-size:0.56rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:8px;}
+.related-card-title{font-family:var(--serif);font-size:1rem;color:var(--gold-pale);line-height:1.2;margin-bottom:6px;}
+.related-card-sub{font-size:0.7rem;color:var(--text-3);line-height:1.5;font-family:var(--serif);font-style:italic;}
+.footer{background:var(--bg);border-top:1px solid var(--rule);}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px var(--g);flex-wrap:wrap;}
+.footer-copy{font-size:0.62rem;color:var(--text-3);}
+.footer-links-row{display:flex;gap:24px;}
+.footer-link{font-size:0.62rem;color:var(--text-3);text-decoration:none;transition:color 0.2s;}
+.footer-link:hover{color:var(--gold);}
+@media(max-width:1100px){.post-layout{grid-template-columns:1fr;padding:clamp(40px,5vw,64px) var(--g);}.post-sidebar-left,.post-sidebar-right{display:none;}.post-content{border:none;padding:0;}}
+@media(max-width:860px){.related-grid{grid-template-columns:1fr;}.post-nav{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="thesilentclub-homepage.html">The Silent Club</a>
+    <ul class="nav-links">
+      <li><a href="thesilentclub-homepage.html">Home</a></li>
+      <li><a href="thesilentclub-estate.html">The Estate</a></li>
+      <li><a href="thesilentclub-events.html">Events</a></li>
+      <li><a href="thesilentclub-journal.html" class="active">Journal</a></li>
+      <li><a href="thesilentclub-about.html">About</a></li>
+      <li><a href="thesilentclub-faq.html">FAQ</a></li>
+    </ul>
+    <button class="nav-cta" onclick="openInviteModal()">Request Invite</button>
+  </div>
+</nav>
+
+<section class="post-hero">
+  <div class="post-hero-bg"></div>
+  <div class="post-hero-overlay"></div>
+  <div class="post-hero-content">
+    <a class="post-back" href="thesilentclub-journal.html">&larr; Back to Journal</a>
+    <div class="post-cat">Silence &amp; Attention</div>
+    <div class="post-original-title">You Don't Have a Thinking Problem</div>
+    <h1 class="post-h1">You Don't Lack Answers. You Lack Attention.</h1>
+    <p class="post-sub">Why clarity is not intelligence — it's continuity.</p>
+    <div class="post-meta">
+      <span>The Silent Club</span>
+      <span class="post-meta-dot"></span>
+      <span>2026</span>
+      <span class="post-meta-dot"></span>
+      <span>5 min read</span>
+    </div>
+  </div>
+</section>
+
+<div class="post-layout">
+  <div class="post-sidebar-left">
+    <span class="sidebar-label">Share</span>
+    <div class="sidebar-share">
+      <button class="sidebar-share-btn" onclick="copyLink()">Copy link</button>
+      <button class="sidebar-share-btn">Twitter</button>
+      <button class="sidebar-share-btn">WhatsApp</button>
+    </div>
+  </div>
+  <article class="post-content">
+    <div class="prose">
+      <div class="chapter-marker">Your Mind Didn't Stop Working. It Stopped Being Yours.</div>
+<p>Somewhere along the way, your mind stopped being a place and became a feed.</p>
+      <p>Endless. Frictionless. Crowded. Not with noise, but with other people's clarity.</p>
+      <p>You wake up already occupied. Not by thoughts. By leftovers.</p>
+      <p class="gap">You don't notice it at first.</p>
+      <p>Because it feels like intelligence. You can reference things. You can explain things. You can sound like you know what you're saying.</p>
+      <p>But if you sit long enough, really still, something strange happens. Not yours.</p>
+      <p>There was a time when a question would sit with you. Heavy. Unresolved. Alive.</p>
+      <p>Now? You kill it instantly. Search. Scroll. Replace.</p>
+      <p>Closure without understanding. Answers without ownership.</p>
+      <p class="highlight">And slowly, quietly, you become a well-informed stranger to yourself.</p>
+      <p class="gap">The world calls this efficiency. Access. Speed. Optimisation.</p>
+      <p>But beneath all that, there's a quiet decay. Not of knowledge. Of original thought.</p>
+      <p>Because thinking, real thinking, is slow.</p>
+      <p>It's uncomfortable. It loops. It contradicts itself. It doesn't arrive clean. It arrives earned.</p>
+      <p class="gap">But you don't earn thoughts anymore.</p>
+      <p>You inherit them. Pre-packaged. Pre-approved. Pre-digested.</p>
+      <p>And the more you consume, the less tolerance you have for the raw version.</p>
+      <p class="gap">Silence used to be neutral. Now it feels wrong. Like something is missing.</p>
+      <p>So you reach for anything. A screen. A voice. A distraction.</p>
+      <div class="chapter-marker">The Comfort of Borrowed Conclusions</div>
+<p>Just to avoid that moment where it's just you and whatever hasn't been processed yet.</p>
+      <p class="gap">Because silence is not empty. It's backed up.</p>
+      <p>With everything you've postponed — decisions, doubts, things that don't quite fit but you kept anyway.</p>
+      <p class="highlight">Silence doesn't give you peace. It gives you evidence.</p>
+      <p class="gap">And this is where it gets interesting.</p>
+      <p>Because there's a certain kind of person, not loud, not broke, not chasing, who eventually runs out of solvable problems.</p>
+      <p>Money handled. Options open. Access unlocked.</p>
+      <p>And still, something feels slightly off. Not broken. Just not true.</p>
+      <p class="gap">That's a dangerous place to be.</p>
+      <p>Because now you can't blame circumstance. You can't blame luck. You can't even distract yourself with ambition the same way.</p>
+      <p>What's left is quieter. Closer. You.</p>
+      <p class="gap">And most people, at this point, go back.</p>
+      <p>Back to noise. Back to movement. Back to building things they don't even need just to feel aligned again.</p>
+      <p>Even if it's fake. Especially if it's loud enough.</p>
+      <p class="gap">But a few don't.</p>
+      <p>A few pause. Not because they're disciplined, but because something in them no longer buys the performance.</p>
+      <p>They start noticing conversations that feel rehearsed, relationships that feel negotiated, a life that works but doesn't land.</p>
+      <p>And once you see that, really see it, it's hard to unsee.</p>
+      <p class="gap">So you're left with a choice no one talks about. Not success vs failure. Not rich vs poor. But: Noise or truth.</p>
+      <div class="chapter-marker">What Happens When You Stay</div>
+<p>Noise is easy. It gives you momentum. Identity. Belonging.</p>
+      <p>Truth strips. It removes the padding. The roles. The convenient stories.</p>
+      <p class="highlight">Until what's left is not impressive. But it's real.</p>
+      <p class="gap">And real is quieter than you think.</p>
+      <p class="gap">This is why most environments fail.</p>
+      <p>They add more. More input. More people. More frameworks. As if clarity comes from accumulation.</p>
+      <p>It doesn't. It comes from subtraction.</p>
+      <p>Remove the noise and something unsettling happens.</p>
+      <p>Your thoughts don't get better. They get honest.</p>
+      <p>No audience. No validation. No performance.</p>
+      <p>Just a raw, unedited encounter with yourself.</p>
+      <p class="gap">Most people won't stay there. Not because they can't, but because they don't like what shows up.</p>
+      <p>But if you do, if you stay just a little longer than comfortable, something shifts.</p>
+      <p>Not dramatically. Not instantly. But enough.</p>
+      <p>Enough to notice what is yours and what never was.</p>
+      <p class="gap">That's the line. Thin. Invisible. Unforgiving.</p>
+      <p>And once you cross it, you don't need more information. You need fewer places to hide.</p>
+      <p class="gap">That's all this is. Not a method. Not a system. Not a community.</p>
+      <p>Just a space where escape is removed, and whatever remains has to be faced.</p>
+      <p class="gap">Most people will never choose that.</p>
+      <p class="highlight">Which is exactly why it works.</p>
+    </div>
+    <div class="post-closing">
+      <p class="post-closing-text">The thought you keep interrupting is not lost. It comes back every time you stop filling the space. You just need somewhere that doesn't fill it for you.</p>
+      <div class="post-closing-place">That place exists. The Silent Club, Bhigwan.</div>
+      <button class="post-closing-cta" onclick="openInviteModal()">Request an invite &rarr;</button>
+    </div>
+    <div class="post-end">
+      <div class="post-end-label">Published by</div>
+      <div class="post-end-text">The Silent Club &middot; Bhigwan, Maharashtra &middot; 2026</div>
+    </div>
+  </article>
+  <div class="post-sidebar-right">
+    <span class="sidebar-cta-label">If this landed</span>
+    <p class="sidebar-cta-text">The thought you keep interrupting is not lost. It comes back...</p>
+    <button class="sidebar-cta-btn" onclick="openInviteModal()">Request Invite &rarr;</button>
+  </div>
+</div>
+
+<nav class="post-nav">
+  <div class="post-nav-item prev empty"></div>
+  <a class="post-nav-item next" href="thesilentclub-post-performing.html">
+          <div class="post-nav-dir">Next &rarr;</div>
+          <div class="post-nav-title">You're Always Performing (Even When You're Alone)</div>
+        </a>
+</nav>
+
+<footer class="footer">
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2026 The Silent Club &middot; Bhigwan, Maharashtra</div>
+    <div class="footer-links-row">
+      <a class="footer-link" href="thesilentclub-homepage.html">Home</a>
+      <a class="footer-link" href="thesilentclub-estate.html">Estate</a>
+      <a class="footer-link" href="thesilentclub-journal.html">Journal</a>
+      <a class="footer-link" href="thesilentclub-faq.html">FAQ</a>
+    </div>
+    <div class="footer-copy">A registered initiative of Silent Tourism Foundation.</div>
+  </div>
+</footer>
+
+<div id="inviteModal" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(15,11,8,0.88);backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:24px;">
+<div style="background:#160f0a;border:1px solid #3a2a1f;border-radius:4px;max-width:500px;width:100%;overflow:hidden;max-height:92vh;">
+  <div style="padding:16px 20px;border-bottom:1px solid #2a1f17;display:flex;align-items:center;justify-content:space-between;">
+    <div style="display:flex;gap:10px;align-items:center;">
+      <div id="sd1" style="width:24px;height:24px;border-radius:50%;background:rgba(197,160,101,0.15);display:flex;align-items:center;justify-content:center;font-size:11px;color:#c5a065;font-family:'Jost',sans-serif;">1</div>
+      <div style="height:1px;width:20px;background:#2a1f17;"></div>
+      <div id="sd2" style="width:24px;height:24px;border-radius:50%;border:1px solid #2a1f17;display:flex;align-items:center;justify-content:center;font-size:11px;color:#7a6048;font-family:'Jost',sans-serif;">2</div>
+      <div style="height:1px;width:20px;background:#2a1f17;"></div>
+      <div id="sd3" style="width:24px;height:24px;border-radius:50%;border:1px solid #2a1f17;display:flex;align-items:center;justify-content:center;font-size:11px;color:#7a6048;font-family:'Jost',sans-serif;">3</div>
+    </div>
+    <button onclick="closeInviteModal()" style="border:1px solid #2a1f17;background:none;cursor:pointer;font-size:1rem;color:#7a6048;width:30px;height:30px;display:flex;align-items:center;justify-content:center;">&times;</button>
+  </div>
+  <div style="height:420px;display:flex;flex-direction:column;overflow:hidden;">
+    <div id="inv_s1" style="flex:1;display:flex;flex-direction:column;padding:24px 20px 0;overflow-y:auto;">
+      <div style="font-size:0.54rem;letter-spacing:0.22em;text-transform:uppercase;color:#7a6048;margin-bottom:8px;font-family:'Jost',sans-serif;">Before we speak</div>
+      <h2 style="font-family:'Cormorant',serif;font-size:1.8rem;font-weight:300;color:#e8d5b0;margin-bottom:20px;">Two questions</h2>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div><label style="display:block;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:#7a6048;margin-bottom:7px;font-family:'Jost',sans-serif;">What are you hoping to get from this stay?</label><textarea id="inv_q1" rows="3" placeholder="Take your time..." style="width:100%;background:#1c1410;border:1px solid #2a1f17;padding:10px 12px;font-family:'Cormorant',serif;font-size:1rem;color:#e8d5b0;outline:none;resize:none;line-height:1.6;box-sizing:border-box;"></textarea></div>
+        <div><label style="display:block;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:#7a6048;margin-bottom:7px;font-family:'Jost',sans-serif;">Anything we should know before we speak?</label><textarea id="inv_q2" rows="3" placeholder="Share any context..." style="width:100%;background:#1c1410;border:1px solid #2a1f17;padding:10px 12px;font-family:'Cormorant',serif;font-size:1rem;color:#e8d5b0;outline:none;resize:none;line-height:1.6;box-sizing:border-box;"></textarea></div>
+      </div>
+    </div>
+    <div id="inv_s2" style="flex:1;display:none;flex-direction:column;padding:24px 20px 0;overflow-y:auto;">
+      <div style="font-size:0.54rem;letter-spacing:0.22em;text-transform:uppercase;color:#7a6048;margin-bottom:8px;font-family:'Jost',sans-serif;">Pick a time</div>
+      <h2 style="font-family:'Cormorant',serif;font-size:1.8rem;font-weight:300;color:#e8d5b0;margin-bottom:16px;">15-minute conversation</h2>
+      <div style="border:1px solid #2a1f17;margin-bottom:12px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#1c1410;border-bottom:1px solid #2a1f17;">
+          <button onclick="invCalPrev()" style="border:1px solid #2a1f17;background:none;cursor:pointer;color:#7a6048;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;">&lsaquo;</button>
+          <span id="inv_calLabel" style="font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:#b09070;font-family:'Jost',sans-serif;"></span>
+          <button onclick="invCalNext()" style="border:1px solid #2a1f17;background:none;cursor:pointer;color:#7a6048;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;">&rsaquo;</button>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);padding:6px 8px 2px;background:#160f0a;">
+          <div style="text-align:center;font-size:0.5rem;color:#7a6048;padding:3px 0;font-family:'Jost',sans-serif;">S</div><div style="text-align:center;font-size:0.5rem;color:#7a6048;padding:3px 0;font-family:'Jost',sans-serif;">M</div><div style="text-align:center;font-size:0.5rem;color:#7a6048;padding:3px 0;font-family:'Jost',sans-serif;">T</div><div style="text-align:center;font-size:0.5rem;color:#7a6048;padding:3px 0;font-family:'Jost',sans-serif;">W</div><div style="text-align:center;font-size:0.5rem;color:#7a6048;padding:3px 0;font-family:'Jost',sans-serif;">T</div><div style="text-align:center;font-size:0.5rem;color:#7a6048;padding:3px 0;font-family:'Jost',sans-serif;">F</div><div style="text-align:center;font-size:0.5rem;color:#7a6048;padding:3px 0;font-family:'Jost',sans-serif;">S</div>
+        </div>
+        <div id="inv_calGrid" style="display:grid;grid-template-columns:repeat(7,1fr);padding:2px 8px 8px;background:#160f0a;gap:2px;"></div>
+      </div>
+      <div style="font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:#7a6048;margin-bottom:8px;font-family:'Jost',sans-serif;">Choose a slot</div>
+      <div id="inv_slots" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px;"></div>
+      <div id="inv_selDisplay" style="display:none;padding:8px 12px;background:#1c1410;border:1px solid #2a1f17;font-size:0.78rem;color:#b09070;font-family:'Jost',sans-serif;"></div>
+    </div>
+    <div id="inv_s3" style="flex:1;display:none;flex-direction:column;padding:24px 20px 0;overflow-y:auto;">
+      <div style="font-size:0.54rem;letter-spacing:0.22em;text-transform:uppercase;color:#7a6048;margin-bottom:8px;font-family:'Jost',sans-serif;">Your details</div>
+      <h2 style="font-family:'Cormorant',serif;font-size:1.8rem;font-weight:300;color:#e8d5b0;margin-bottom:6px;">Almost done</h2>
+      <p style="font-size:0.78rem;color:#7a6048;margin-bottom:20px;line-height:1.5;font-family:'Jost',sans-serif;">We will confirm your conversation within 24 hours.</p>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div><label style="display:block;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:#7a6048;margin-bottom:7px;font-family:'Jost',sans-serif;">Full name</label><input type="text" id="inv_name" placeholder="Your full name" style="width:100%;background:#1c1410;border:1px solid #2a1f17;padding:10px 12px;font-family:'Jost',sans-serif;font-size:0.875rem;color:#e8d5b0;outline:none;box-sizing:border-box;"></div>
+        <div><label style="display:block;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:#7a6048;margin-bottom:7px;font-family:'Jost',sans-serif;">Email</label><input type="email" id="inv_email" placeholder="email@example.com" style="width:100%;background:#1c1410;border:1px solid #2a1f17;padding:10px 12px;font-family:'Jost',sans-serif;font-size:0.875rem;color:#e8d5b0;outline:none;box-sizing:border-box;"></div>
+        <div><label style="display:block;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:#7a6048;margin-bottom:7px;font-family:'Jost',sans-serif;">Phone</label><input type="tel" id="inv_phone" placeholder="+91 XXXXX XXXXX" style="width:100%;background:#1c1410;border:1px solid #2a1f17;padding:10px 12px;font-family:'Jost',sans-serif;font-size:0.875rem;color:#e8d5b0;outline:none;box-sizing:border-box;"></div>
+      </div>
+    </div>
+    <div id="inv_s4" style="flex:1;display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;text-align:center;">
+      <div style="width:48px;height:48px;border-radius:50%;border:1px solid #8a6e42;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:1.2rem;color:#c5a065;">&#10003;</div>
+      <div style="font-family:'Cormorant',serif;font-size:2rem;font-weight:300;color:#e8d5b0;margin-bottom:10px;">Thank you.</div>
+      <p style="font-size:0.82rem;color:#7a6048;line-height:1.7;max-width:300px;margin:0 auto 24px;font-family:'Jost',sans-serif;">Application received. We will confirm within 24 hours.</p>
+      <button onclick="closeInviteModal()" style="border:1px solid #2a1f17;background:none;padding:9px 22px;font-family:'Jost',sans-serif;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;color:#b09070;">Close</button>
+    </div>
+  </div>
+  <div id="inv_footer" style="padding:16px 20px;border-top:1px solid #2a1f17;display:flex;gap:8px;">
+    <button id="inv_back" onclick="invBack()" style="display:none;flex:1;padding:12px;border:1px solid #2a1f17;background:none;font-family:'Jost',sans-serif;font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;color:#7a6048;">Back</button>
+    <button id="inv_next" onclick="invNext()" style="flex:2;padding:12px;background:#c5a065;color:#0f0b08;border:none;font-family:'Jost',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;">Continue</button>
+  </div>
+</div>
+</div>
+
+<script>
+window.addEventListener('scroll',function(){var d=document.documentElement;var s=d.scrollTop||document.body.scrollTop;var t=d.scrollHeight-d.clientHeight;document.getElementById('progressFill').style.width=(t>0?(s/t)*100:0)+'%';document.querySelector('.nav').style.background=s>40?'rgba(15,11,8,0.98)':'rgba(15,11,8,0.94)';} );
+function copyLink(){navigator.clipboard.writeText(window.location.href).then(function(){var b=document.querySelector('.sidebar-share-btn');var o=b.textContent;b.textContent='Copied';setTimeout(function(){b.textContent=o;},1500);});}
+var _invStep=1,_invDate=null,_invTime=null,_invCalY,_invCalM;
+var _invMN=['January','February','March','April','May','June','July','August','September','October','November','December'];
+var _invTimes=['09:00','10:30','12:00','14:00','16:00','18:00'];
+function openInviteModal(){_invStep=1;_invDate=null;_invTime=null;var t=new Date();_invCalY=t.getFullYear();_invCalM=t.getMonth();_invShowStep(1);document.getElementById('inviteModal').style.display='flex';document.body.style.overflow='hidden';_invRenderCal();_invRenderSlots();}
+function closeInviteModal(){document.getElementById('inviteModal').style.display='none';document.body.style.overflow='';}
+function _invShowStep(n){_invStep=n;['inv_s1','inv_s2','inv_s3','inv_s4'].forEach(function(id,i){document.getElementById(id).style.display=(i+1===n||(n===99&&i===3))?'flex':'none';});[1,2,3].forEach(function(i){var d=document.getElementById('sd'+i);if(i<n&&n<99){d.style.background='rgba(107,155,94,0.15)';d.style.border='none';d.style.color='#6b9b5e';d.textContent='✓';}else if(i===n){d.style.background='rgba(197,160,101,0.15)';d.style.border='none';d.style.color='#c5a065';d.textContent=i;}else{d.style.background='none';d.style.border='1px solid #2a1f17';d.style.color='#7a6048';d.textContent=i;}});var footer=document.getElementById('inv_footer');if(n===99){footer.style.display='none';return;}footer.style.display='flex';document.getElementById('inv_back').style.display=n>1?'block':'none';document.getElementById('inv_next').textContent=n===3?'Submit':'Continue';}
+function invNext(){if(_invStep===1){if(!document.getElementById('inv_q1').value.trim()){alert('Please tell us what you are hoping to get from this stay.');return;}_invShowStep(2);}else if(_invStep===2){if(!_invDate||!_invTime){alert('Please select a date and time slot.');return;}_invShowStep(3);}else if(_invStep===3){if(!document.getElementById('inv_name').value.trim()||!document.getElementById('inv_email').value.trim()){alert('Please enter your name and email.');return;}_invShowStep(99);}}
+function invBack(){if(_invStep>1)_invShowStep(_invStep-1);}
+function _invRenderCal(){document.getElementById('inv_calLabel').textContent=_invMN[_invCalM]+' '+_invCalY;var g=document.getElementById('inv_calGrid');g.innerHTML='';var fd=new Date(_invCalY,_invCalM,1).getDay(),dm=new Date(_invCalY,_invCalM+1,0).getDate();var today=new Date();today.setHours(0,0,0,0);for(var i=0;i<fd;i++)g.appendChild(document.createElement('div'));for(var d=1;d<=dm;d++){var dt=new Date(_invCalY,_invCalM,d),c=document.createElement('div');var past=dt<today,isSel=_invDate&&_invDate.toDateString()===dt.toDateString();c.textContent=d;c.style.cssText='text-align:center;padding:5px 2px;font-size:0.78rem;font-family:Jost,sans-serif;border-radius:2px;cursor:'+(past?'default':'pointer')+';color:'+(past?'#3a2a1f':isSel?'#0f0b08':'#e8d5b0')+';background:'+(isSel?'#c5a065':'none')+';';if(!past)(function(date){c.addEventListener('click',function(){_invDate=date;_invTime=null;_invRenderCal();_invRenderSlots();_invUpdateSel();});})( new Date(dt));g.appendChild(c);}}
+function _invRenderSlots(){var c=document.getElementById('inv_slots');c.innerHTML='';_invTimes.forEach(function(t){var btn=document.createElement('button');btn.textContent=t;var isSel=_invTime===t;btn.style.cssText='padding:8px 4px;font-size:0.72rem;font-family:Jost,sans-serif;letter-spacing:0.06em;cursor:pointer;border:1px solid '+(isSel?'#8a6e42':'#2a1f17')+';background:'+(isSel?'rgba(197,160,101,0.1)':'#1c1410')+';color:'+(isSel?'#e8d5b0':'#b09070')+';';btn.addEventListener('click',function(){_invTime=t;_invRenderSlots();_invUpdateSel();});c.appendChild(btn);});}
+function _invUpdateSel(){var el=document.getElementById('inv_selDisplay');if(_invDate&&_invTime){var dn=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],mn=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];el.style.display='block';el.textContent=dn[_invDate.getDay()]+' '+_invDate.getDate()+' '+mn[_invDate.getMonth()]+' - '+_invTime;}else el.style.display='none';}
+function invCalPrev(){_invCalM--;if(_invCalM<0){_invCalM=11;_invCalY--;}_invRenderCal();}
+function invCalNext(){_invCalM++;if(_invCalM>11){_invCalM=0;_invCalY++;}_invRenderCal();}
+document.getElementById('inviteModal').addEventListener('click',function(e){if(e.target===this)closeInviteModal();});
+</script>
+</body>
+</html>

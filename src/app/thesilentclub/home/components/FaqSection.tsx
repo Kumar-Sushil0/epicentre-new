@@ -8,11 +8,11 @@ type Props = {
 
 export function FaqSection({ openFaq, setOpenFaq }: Props) {
   return (
-    <section className="grid gap-y-12 border-y border-[#2a1f17] px-[56px] py-20 md:grid-cols-[1fr,1.8fr] md:gap-x-[100px]">
+    <section className="grid gap-y-12 border-y border-[#2a1f17] px-5 py-16 md:px-[56px] md:py-20 md:grid-cols-[1fr,1.8fr] md:gap-x-[100px]">
       <div>
         <p className="mb-4 text-xs font-medium uppercase tracking-[0.24em] text-[#b09070]">Before you come</p>
         <h2 className="mb-4 font-serif text-[clamp(1.8rem,3vw,2.8rem)] leading-[1.02]">
-          <span className="block whitespace-nowrap">Most people arrive with questions.</span>
+          <span className="block">Most people arrive with questions.</span>
           <em className="block text-[#c5a065]">Few leave with the same ones.</em>
         </h2>
         <p className="max-w-[54ch] text-sm leading-[1.8] text-[#7a6048]">
@@ -49,7 +49,7 @@ export function FaqSection({ openFaq, setOpenFaq }: Props) {
         })}
         <div className="mt-8">
           <a
-            href="/thesilentclub/faq"
+            href="/faq"
             className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[#8a6e42] transition-colors hover:text-[#c5a065]"
           >
             More FAQ

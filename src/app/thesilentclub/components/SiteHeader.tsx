@@ -11,12 +11,12 @@ type Props = {
 };
 
 const links: { id: HeaderPage; label: string; href: string }[] = [
-  { id: "home", label: "Home", href: "/thesilentclub/home" },
-  { id: "estate", label: "The Estate", href: "/thesilentclub/estate" },
-  { id: "about", label: "About", href: "/thesilentclub/about" },
-  { id: "events", label: "Events", href: "/thesilentclub/events" },
-  { id: "journal", label: "Journal", href: "/thesilentclub/blogs" },
-  { id: "faq", label: "FAQ", href: "/thesilentclub/faq" },
+  { id: "home", label: "Home", href: "/" },
+  { id: "estate", label: "The Estate", href: "/estate" },
+  { id: "about", label: "About", href: "/about" },
+  { id: "events", label: "Events", href: "/events" },
+  { id: "journal", label: "Journal", href: "/blogs" },
+  { id: "faq", label: "FAQ", href: "/faq" },
 ];
 
 export function SiteHeader({ active = "home" }: Props) {
@@ -50,7 +50,7 @@ export function SiteHeader({ active = "home" }: Props) {
       <nav className="sticky top-0 z-50 border-b border-[#2a1f17] bg-[#0f0b08]/95 backdrop-blur">
         <div className="flex h-14 w-full items-center justify-between px-4 md:px-[56px]">
           {/* Logo */}
-          <a href="/thesilentclub/home" className="flex h-10 w-40 items-center justify-center">
+          <a href="/" className="flex h-10 w-40 items-center justify-center">
             <Image
               src="/the-silent-club-logo.png"
               alt="The Silent Club"
@@ -93,9 +93,9 @@ export function SiteHeader({ active = "home" }: Props) {
             className="flex h-10 w-10 flex-col items-center justify-center gap-[5px] md:hidden"
             aria-label="Open menu"
           >
-            <span className="h-px w-5 bg-[#c5a065]" />
-            <span className="h-px w-5 bg-[#c5a065]" />
-            <span className="h-px w-3 self-start bg-[#c5a065]" />
+            <span className="block h-[1.5px] w-5 bg-[#c5a065]" />
+            <span className="block h-[1.5px] w-5 bg-[#c5a065]" />
+            <span className="block h-[1.5px] w-3 bg-[#c5a065]" />
           </button>
         </div>
       </nav>

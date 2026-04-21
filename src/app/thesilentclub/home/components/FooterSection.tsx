@@ -1,10 +1,10 @@
 const footerLinks: Record<string, string> = {
-  "Home": "/thesilentclub/home",
-  "About": "/thesilentclub/about",
-  "The Estate": "/thesilentclub/estate",
-  "Journal": "/thesilentclub/blogs",
-  "FAQ": "/thesilentclub/faq",
-  "Request Invite": "/thesilentclub/daydesigner",
+  "Home": "/",
+  "About": "/about",
+  "The Estate": "/estate",
+  "Journal": "/blogs",
+  "FAQ": "/faq",
+  "Request Invite": "/daydesigner",
 };
 
 export function FooterSection() {
