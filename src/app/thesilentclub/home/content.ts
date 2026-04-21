@@ -147,10 +147,10 @@ export const depthCards = [
     id: "creation" as const,
     num: "04",
     name: "Creation",
-    cycle: "Full estate, Full Cycle",
+    cycle: " Full Cycle - 24 Hours",
     forText: "For groups who want the whole place to themselves.",
     features: [
-      "Noon to Noon Cycle · 24 Hours",
+      "Noon to Noon Cycle · Full estate",
       "All rooms, dorms, decks + shared spaces",
       "Accommodation up to 20 people max",
       "Full access + all meals included",
