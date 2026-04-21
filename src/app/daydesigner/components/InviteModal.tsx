@@ -149,7 +149,7 @@ export function InviteModal(props: Props) {
                       <label style={{ display: "block", fontSize: 12, color: "var(--text-2)", marginBottom: 6 }}>What's been occupying your thinking lately — even if you can't fully articulate it yet?</label>
                       <textarea
                         rows={3}
-                        placeholder="Take your time..."
+                        placeholder="You can use concepts to explain, if needed. Nothing Private."
                         value={modalQ1}
                         onChange={(e) => setModalQ1(e.target.value)}
                         style={{ width: "100%", background: "#1c1410", border: "1px solid #2a1f17", padding: "10px 12px", fontSize: 14, lineHeight: 1.6, color: "#e8d5b0", resize: "none", boxSizing: "border-box" }}
