@@ -6,7 +6,7 @@ export function ClosingCtaSection() {
         <br />
         <em style={{ color: "var(--gold)" }}>It robs you of the moment you're actually in.</em>"
       </div>
-      <a href="/thesilentclub/daydesigner" className="closing-btn">
+      <a href="/#invite" className="closing-btn">
         Request Invite →
       </a>
       <div className="closing-sub">Two questions. A short conversation. Your first invite.</div>

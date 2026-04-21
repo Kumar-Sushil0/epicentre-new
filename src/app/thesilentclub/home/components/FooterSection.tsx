@@ -1,10 +1,11 @@
+"use client";
+
 const footerLinks: Record<string, string> = {
   "Home": "/",
   "About": "/about",
   "The Estate": "/estate",
   "Journal": "/blogs",
   "FAQ": "/faq",
-  "Request Invite": "/daydesigner",
 };
 
 export function FooterSection() {
@@ -23,15 +24,30 @@ export function FooterSection() {
           <div key={heading} className="bg-[#0f0b08] p-8">
             <p className="mb-3 text-[10px] uppercase tracking-[0.22em] text-[#7a6048]">{heading}</p>
             <div className="space-y-1">
-              {items.map((item) => (
-                footerLinks[item] ? (
+              {items.map((item) => {
+                if (item === "Request Invite") {
+                  return (
+                    <button
+                      key={item}
+                      onClick={() => {
+                        const header = document.querySelector("[data-invite-trigger]") as HTMLButtonElement | null;
+                        if (header) { header.click(); return; }
+                        window.location.hash = "invite";
+                      }}
+                      className="block text-sm text-[#7a6048] hover:text-[#c5a065] transition-colors bg-none border-none cursor-pointer p-0 text-left"
+                    >
+                      {item}
+                    </button>
+                  );
+                }
+                return footerLinks[item] ? (
                   <a key={item} href={footerLinks[item]} className="block text-sm text-[#7a6048] hover:text-[#c5a065] transition-colors">
                     {item}
                   </a>
                 ) : (
                   <p key={item} className="text-sm text-[#7a6048]">{item}</p>
-                )
-              ))}
+                );
+              })}
             </div>
           </div>
         ))}

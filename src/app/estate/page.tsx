@@ -5,7 +5,7 @@ import { natureCards, practiceCards, spacesCards, symbolicaCards } from "./conte
 import { EstateStyles } from "./components/EstateStyles";
 import { ClosingCta, CategorySection, HeroSection, IntroAndNumbers, TopNav } from "./components/EstateSections";
 import { InviteModal } from "./components/FooterAndModal";
-import { SiteFooter } from "./thesilentclub/components/SiteFooter";
+import { SiteFooter } from "../thesilentclub/components/SiteFooter";
 
 export default function TheSilentClubEstatePage() {
   const [openModal, setOpenModal] = useState(false);

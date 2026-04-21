@@ -1,15 +1,15 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { DepthSection } from "./components/DepthSection";
-import { FaqSection } from "./components/FaqSection";
+import { DepthSection } from "./thesilentclub/home/components/DepthSection";
+import { FaqSection } from "./thesilentclub/home/components/FaqSection";
 import { SiteFooter } from "./thesilentclub/components/SiteFooter";
 import { InviteModal } from "./thesilentclub/components/InviteModal";
-import { HeroSection } from "./components/HeroSection";
-import { ProvidesSection } from "./components/ProvidesSection";
-import { TopNav } from "./components/TopNav";
-import { WhoBelongsSection } from "./components/WhoBelongsSection";
-import { depthCards, designedCards, providesSlides, type DepthId, walkInRules, whoMembers, whoThisIsFor } from "./content";
+import { HeroSection } from "./thesilentclub/home/components/HeroSection";
+import { ProvidesSection } from "./thesilentclub/home/components/ProvidesSection";
+import { TopNav } from "./thesilentclub/home/components/TopNav";
+import { WhoBelongsSection } from "./thesilentclub/home/components/WhoBelongsSection";
+import { depthCards, designedCards, providesSlides, type DepthId, walkInRules, whoMembers, whoThisIsFor } from "./thesilentclub/home/content";
 
 export default function TheSilentClubHomepage20Page() {
   const [openModal, setOpenModal] = useState(false);

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useMemo, useState } from "react";
-import { SiteHeader } from "./thesilentclub/components/SiteHeader";
+import { SiteHeader } from "../thesilentclub/components/SiteHeader";
 
 type EventStatus = "open" | "invite" | "soon";
 
@@ -352,9 +352,9 @@ export default function ExxacPage() {
                               </div>
                               <div className={`event-status ${statusClassMap[ev.status]}`}>{statusLabelMap[ev.status]}</div>
                               <br />
-                              <a href="/daydesigner" className="event-cta">
+                              <button type="button" onClick={openInviteModal} className="event-cta">
                                 Express interest
-                              </a>
+                              </button>
                             </div>
                           </div>
                         </div>
@@ -381,17 +381,13 @@ export default function ExxacPage() {
               love to hear what you are thinking.
             </p>
           </div>
-          <button
+          <a
+            href="/thesilentclub/creator"
             className="creator-cta-btn"
-            type="button"
-            style={{ fontWeight: 700 }}
-            onClick={() => {
-              setCollabSubmitted(false);
-              setShowCollabModal(true);
-            }}
+            style={{ fontWeight: 700, display: "inline-block", textDecoration: "none", textAlign: "center" }}
           >
-            Collaborate with us
-          </button>
+            Experiment with us
+          </a>
         </div>
       </div>
 

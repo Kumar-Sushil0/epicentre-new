@@ -144,6 +144,15 @@ export function DayDesignerStyles() {
       }
       .cta-bar{flex-shrink:0;border-top:1px solid var(--rule);background:var(--bg-2);padding:12px 4vw;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
       .modal{position:fixed;inset:0;background:rgba(15,11,8,.88);display:grid;place-items:center;padding:16px;z-index:9999}
+      .tsc-invite-modal-overlay{
+        position:fixed;
+        inset:0;
+        background:rgba(15,11,8,.88);
+        display:grid;
+        place-items:center;
+        padding:16px;
+        z-index:12000;
+      }
       @media(min-width:640px){
         .p-grid{grid-template-columns:repeat(4,1fr)}
         .pal-cats{grid-template-columns:repeat(6,1fr);margin:0 3vw}

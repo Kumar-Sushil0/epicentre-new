@@ -82,6 +82,7 @@ export function SiteHeader({ active = "home" }: Props) {
           {/* Desktop CTA */}
           <button
             onClick={() => setModalOpen(true)}
+            data-invite-trigger
             className="hidden h-9 items-center bg-[#c5a065] px-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0f0b08] transition-colors hover:bg-[#d4b07a] md:inline-flex"
           >
             Request Invite →

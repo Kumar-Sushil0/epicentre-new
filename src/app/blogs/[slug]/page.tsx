@@ -1,11 +1,17 @@
+"use client";
+
+import { useState } from "react";
 import { notFound } from "next/navigation";
+import { use } from "react";
 import { SiteHeader } from "../../thesilentclub/components/SiteHeader";
 import { SiteFooter } from "../../thesilentclub/components/SiteFooter";
+import { InviteModal } from "../../thesilentclub/components/InviteModal";
 import { blogPosts } from "../blogContent";
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export default function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = use(params);
   const post = blogPosts.find((p) => p.slug === slug);
+  const [openModal, setOpenModal] = useState(false);
 
   if (!post) {
     notFound();
@@ -89,9 +95,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div className="hidden lg:block pl-12 sticky top-24 self-start">
           <span className="block text-[0.56rem] uppercase tracking-[0.2em] text-[#7a6048] mb-3">If this landed</span>
           <p className="font-serif text-[0.9rem] text-[#b09070] leading-[1.6] mb-4">{post.sidebarCta}</p>
-          <a href="#invite" className="w-full block text-center bg-[#c5a065] text-[#0f0b08] text-[0.58rem] font-bold uppercase tracking-[0.14em] px-4 py-2.5 hover:bg-[#d4b07a] transition-colors">
+          <button onClick={() => setOpenModal(true)} className="w-full block text-center bg-[#c5a065] text-[#0f0b08] text-[0.58rem] font-bold uppercase tracking-[0.14em] px-4 py-2.5 hover:bg-[#d4b07a] transition-colors">
             Request Invite →
-          </a>
+          </button>
         </div>
       </div>
 
@@ -102,13 +108,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           className="relative font-serif font-light text-[clamp(1.8rem,3.5vw,3.4rem)] leading-[1.15] tracking-tight mb-8"
           dangerouslySetInnerHTML={{ __html: post.ctaHeadline }}
         />
-        <a href="#invite" className="relative bg-[#c5a065] text-[#0f0b08] text-[0.68rem] font-bold uppercase tracking-[0.18em] px-9 py-3.5 hover:bg-[#d4b07a] transition-colors">
+        <button onClick={() => setOpenModal(true)} className="relative bg-[#c5a065] text-[#0f0b08] text-[0.68rem] font-bold uppercase tracking-[0.18em] px-9 py-3.5 hover:bg-[#d4b07a] transition-colors">
           Request Invite →
-        </a>
+        </button>
         <p className="relative mt-4 font-serif italic text-[1.02rem] text-[#7a6048]">Two questions. A short conversation. Your first invite.</p>
       </section>
 
       <SiteFooter />
+      <InviteModal open={openModal} onClose={() => setOpenModal(false)} />
     </main>
   );
 }

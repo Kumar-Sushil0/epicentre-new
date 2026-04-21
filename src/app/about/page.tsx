@@ -3,15 +3,17 @@
 import { useState } from "react";
 import { AboutStyles } from "./components/AboutStyles";
 import { ClosingCtaSection } from "./components/ClosingCtaSection";
-import { SiteFooter } from "./thesilentclub/components/SiteFooter";
+import { SiteFooter } from "../thesilentclub/components/SiteFooter";
 import { FounderSection } from "./components/FounderSection";
 import { HeroSection } from "./components/HeroSection";
 import { StfSection } from "./components/StfSection";
 import { TopNav } from "./components/TopNav";
 import { WhySection } from "./components/WhySection";
+import { InviteModal } from "../thesilentclub/components/InviteModal";
 
 export default function TheSilentClubAbout3Page() {
   const [openAcc, setOpenAcc] = useState("");
+  const [openModal, setOpenModal] = useState(false);
 
   return (
     <main>
@@ -21,8 +23,9 @@ export default function TheSilentClubAbout3Page() {
       <WhySection openAcc={openAcc} setOpenAcc={setOpenAcc} />
       <FounderSection />
       <StfSection />
-      <ClosingCtaSection />
+      <ClosingCtaSection onOpenModal={() => setOpenModal(true)} />
       <SiteFooter />
+      <InviteModal open={openModal} onClose={() => setOpenModal(false)} />
     </main>
   );
 }

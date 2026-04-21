@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { SiteHeader } from "./thesilentclub/components/SiteHeader";
-import { SiteFooter } from "./thesilentclub/components/SiteFooter";
+import { SiteHeader } from "../thesilentclub/components/SiteHeader";
+import { SiteFooter } from "../thesilentclub/components/SiteFooter";
 
 type Category = "all" | "silence" | "identity" | "decision" | "environment";
 

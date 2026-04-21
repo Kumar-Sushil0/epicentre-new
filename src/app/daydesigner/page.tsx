@@ -952,7 +952,7 @@ export default function TheSilentClubDayDesigner9Page() {
                 onClick={downloadPlan}
                 aria-label="Download plan"
                 title="Download plan"
-                style={{ width: 44, padding: 0, display: "grid", placeItems: "center" }}
+                style={{ width: 44, height: 40, padding: 0, display: "grid", placeItems: "center" }}
               >
                 <span className="material-symbols-outlined" style={{ fontSize: "18px" }}>download</span>
               </button>

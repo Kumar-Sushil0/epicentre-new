@@ -57,8 +57,8 @@ export function InviteModal(props: Props) {
           callDate: modalDate,
           callTime: modalTime,
           questions: [
-            "What are you hoping to get out of this stay?",
-            "Is there anything we should know before we speak?",
+            "What's been occupying your thinking lately — even if you can't fully articulate it yet?",
+            "What have you already tried, and why didn't it work?",
           ],
           answers: [modalQ1.trim(), modalQ2.trim()],
           comingFrom: comingFrom.trim(),
@@ -146,7 +146,7 @@ export function InviteModal(props: Props) {
                   <div style={{ fontFamily: "var(--serif)", fontSize: 20, fontWeight: 500, marginBottom: 20 }}>{stepInfo[1].title}</div>
                   <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 14, overflowY: "auto", paddingRight: 2 }}>
                     <div>
-                      <label style={{ display: "block", fontSize: 12, color: "var(--text-2)", marginBottom: 6 }}>What are you hoping to get out of this stay?</label>
+                      <label style={{ display: "block", fontSize: 12, color: "var(--text-2)", marginBottom: 6 }}>What's been occupying your thinking lately — even if you can't fully articulate it yet?</label>
                       <textarea
                         rows={3}
                         placeholder="Take your time..."
@@ -156,7 +156,7 @@ export function InviteModal(props: Props) {
                       />
                     </div>
                     <div>
-                      <label style={{ display: "block", fontSize: 12, color: "var(--text-2)", marginBottom: 6 }}>Is there anything we should know before we speak?</label>
+                      <label style={{ display: "block", fontSize: 12, color: "var(--text-2)", marginBottom: 6 }}>What have you already tried, and why didn't it work?</label>
                       <textarea
                         rows={3}
                         placeholder="Share any context..."
